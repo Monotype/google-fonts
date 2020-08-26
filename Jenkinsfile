@@ -81,6 +81,7 @@ node('master') {
                 git config --local user.email \"fonttools-jenkins@monotype.com\"
                 git config --local user.name \"Font Tools Jenkins\"
                 # we are not on branch ${branch} !!!
+                git pull
                 git checkout origin/${branch}
                 git remote -v | grep -wq upstream || git remote add upstream git://github.com/google/fonts.git
                 git fetch upstream
