@@ -89,7 +89,7 @@ node('master') {
             if (params.build_type == 'full') {
                 files = sh(script: "find . -iregex '.*\\(\\.ttf\\|\\.cff\\|\\.otf\\)\$' | cut -c3- | head -n 1", returnStdout: true).split("\n")
             } else {
-                files = sh(script: "git diff origin/${branch} --name-only --diff-filter=d | grep -iE '(\\.otf|\\.ttf|\\.cff)\$'", returnStdout: true).split("\n")
+                files = sh(script: "git diff origin/${branch} --name-only --diff-filter=d | grep -iE '(\\.otf|\\.ttf|\\.cff)\$ || x=0'", returnStdout: true).split("\n")
             }
             sh """
                 export GIT_ASKPASS=\$PWD/.git-askpass
