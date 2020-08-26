@@ -141,7 +141,7 @@ node('master') {
         withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'jenkins-github', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_TOKEN']]) {
             sh """
                 export GIT_ASKPASS=\$PWD/.git-askpass
-                git diff-index --quiet origin/${branch} && git commit -a -m \"FQ Reports - Test ${date}\"
+                git diff-index --quiet origin/${branch} || git commit -a -m \"FQ Reports - Test ${date}\"
                 git push origin HEAD:${branch}
                 git tag -a \"${tag}\" -m "Font Quality Reports from ${date}"
                 curl -H "Authorization: token \$GIT_TOKEN" --data '{"tag_name": "${tag}","target_commitish": "${branch}","name": "${tag}","body": "Publish Font Quality reports from ${date}","draft": false,"prerelease": false}' https://api.github.com/repos/Monotype/google-fonts/releases
