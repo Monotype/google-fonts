@@ -89,7 +89,7 @@ node('master') {
             if (params.build_type == 'full') {
                 files = sh(script: "find . -iregex '.*\\(\\.ttf\\|\\.cff\\|\\.otf\\)\$' | cut -c3- | head -n 1", returnStdout: true).split("\n")
             } else {
-                files = sh(script: "git diff origin/${branch} --name-only --diff-filter=d | grep -iE '(\\.otf|\\.ttf|\\.cff)\$ || x=0'", returnStdout: true).split("\n")
+                files = sh(script: "git diff origin/${branch} --name-only --diff-filter=d | grep -iE '(\\.otf|\\.ttf|\\.cff)\$' || x=0", returnStdout: true).split("\n")
             }
             sh """
                 export GIT_ASKPASS=\$PWD/.git-askpass
@@ -99,6 +99,7 @@ node('master') {
     }
 
     stage('Create Font Reports') {
+        files = files.findAll { item -> !item.isEmpty() }
         files = split(files, 20)
         def stages = [:]
         def i = 0
@@ -139,7 +140,7 @@ node('master') {
         withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'jenkins-github', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_TOKEN']]) {
             sh """
                 export GIT_ASKPASS=\$PWD/.git-askpass
-                git commit -a -m \"FQ Reports - Test ${date}\"
+                git diff-index --quiet origin/${branch} || git commit -a -m \"FQ Reports - Test ${date}\"
                 git push origin HEAD:${branch}
                 git tag -a \"${tag}\" -m "Font Quality Reports from ${date}"
                 curl -H "Authorization: token \$GIT_TOKEN" --data '{"tag_name": "${tag}","target_commitish": "${branch}","name": "${tag}","body": "Publish Font Quality reports from ${date}","draft": false,"prerelease": false}' https://api.github.com/repos/Monotype/google-fonts/releases
