@@ -1,0 +1,1754 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv='content-type' content='text/html; charset=utf-8'>
+    <title>MT FontSniffer Report</title>
+    <style type="text/css">
+      body {
+        background-color: #fff;
+        color: #000;
+        font-family: "Kootenay Pro", Axel, "System Font", "Fira Sans", sans-serif;
+        line-height: 1.3em;
+        margin: 0;
+        padding: 1em;
+        font-size: 14px;
+      }
+      mark {
+        background-color: #fff990;
+        color: black;
+      }
+      h2 {
+        padding: 2em 0 0.2em 2.35em;
+        border-bottom: 2px solid #606060;
+        margin: 0;
+      }
+      h3 {
+        padding: 0.2em 0 0.3em 0;
+        margin: 0;
+      }
+      table {
+        border-collapse: collapse; 
+        margin: 1em 0; 
+        /* width: 100%; */
+        padding: 0;
+      }
+      table.togglemessages {
+        border: none; 
+        background-color: #f0f0f0;
+      }
+      td, th {
+        line-height: 1.3em; 
+        padding: 0.25em 0.5em; 
+        vertical-align: top;
+        text-align: left;
+      }
+      .summary th {
+        border-bottom: 1px solid #000;
+      }
+      td p, th p {
+        margin: 0 0 0em 0;
+        padding: 0;
+      }
+      td.num, th.num {
+        text-align: right;
+        width: 6em;
+      }
+      
+      td.time, th.time {
+        text-align: right;
+        width: 4.5em;
+        color: #c8c8c8;
+        font-size: 0.9em;
+        background-color: #fff;
+      }
+      
+      th.time p {
+        color: #d8d8d8;
+        padding-top: 0.5em;
+      }
+      
+      .summary {
+        width: auto;
+      }
+      
+      .summary tbody tr:nth-child(odd) {
+        background-color: #f8f8f8;
+      }
+      
+      .summary tbody tr:nth-last-child(1) {
+        background-color: #f0f0f0;
+      }
+      
+      .code {
+        font-weight: bold;
+        color: #fff;
+        width: 2em; 
+        text-align: center
+      }
+      
+      .results th {
+        border-radius: 0.0em;
+      }
+      
+      .results th button{
+        font-family: "Erler Dingbats", Arial;
+        line-height: 1.4em;
+        width: 2.6em;
+        padding-top: 0.2em;
+        margin-top: 0.2em;
+        background-color: rgba(255, 255, 255, 0.0);
+        border-radius: 0.0em;
+        border: 0px solid rgba(0, 0, 0, 0.3);
+      }
+
+      .A, .S, .E, .W, .I, .P {
+        width: 5em; 
+      }
+
+      tr.S {                                  color: hsl(  0,  0%,  90%) }
+      tr.S .code {                            color: hsl(  0,  0%,  90%) }
+      tr.S:nth-child(odd)        { background-color: hsl(  0,  0%,  10%) }
+      tr.S:nth-child(even)       { background-color: hsl(  0,  0%,  20%) }
+      tr.S:nth-child(odd)  .code { background-color: hsl(  0,  0%,  20%) }
+      tr.S:nth-child(even) .code { background-color: hsl(  0,  0%,  10%) }
+
+      tr.E {                                  color: #000 }
+      tr.E .code {                            color: #fff }
+      tr.E:nth-child(odd)        { background-color: hsl( 24,  100%, 95%) }
+      tr.E:nth-child(even)       { background-color: hsl( 24,  100%, 90%) }
+      tr.E:nth-child(odd)  .code { background-color: hsl( 24,  100%, 45%) }
+      tr.E:nth-child(even) .code { background-color: hsl( 24,  100%, 40%) }
+      
+      tr.W {                                  color: #000 }
+      tr.W .code {                            color: #fff }
+      tr.W:nth-child(odd)        { background-color: hsl( 50,  65%, 95%) }
+      tr.W:nth-child(even)       { background-color: hsl( 50,  65%, 90%) }
+      tr.W:nth-child(odd)  .code { background-color: hsl( 50,  65%, 52%) }
+      tr.W:nth-child(even) .code { background-color: hsl( 50,  65%, 48%) }
+      
+      tr.I {                                  color: #000 }
+      tr.I .code {                            color: #fff }
+      tr.I:nth-child(odd)        { background-color: hsl( 200,  50%, 95%) }
+      tr.I:nth-child(even)       { background-color: hsl( 200,  50%, 90%) }
+      tr.I:nth-child(odd)  .code { background-color: hsl( 200,  50%, 52%) }
+      tr.I:nth-child(even) .code { background-color: hsl( 200,  50%, 48%) }
+      
+      tr.P {                                  color: #000 }
+      tr.P .code {                            color: #fff }
+      tr.P:nth-child(odd)        { background-color: hsl( 130,  40%, 95%) }
+      tr.P:nth-child(even)       { background-color: hsl( 130,  40%, 90%) }
+      tr.P:nth-child(odd)  .code { background-color: hsl( 130,  40%, 60%) }
+      tr.P:nth-child(even) .code { background-color: hsl( 130,  40%, 55%) }
+      
+      tr.A {                                  color: hsl(  0,  0%,  50%) }
+      tr.A .code {                            color: hsl(  0,  0%,  50%) }
+      tr.A:nth-child(odd)        { background-color: hsl(  0,  0%,  75%) }
+      tr.A:nth-child(even)       { background-color: hsl(  0,  0%,  80%) }
+      tr.A:nth-child(odd)  .code { background-color: hsl(  0,  0%,  85%) }
+      tr.A:nth-child(even) .code { background-color: hsl(  0,  0%,  90%) }
+      
+      
+      /* Summary backgrounds */
+
+      th.S {
+        background: hsl(  0,  0%,  85%);
+      }
+      
+      th.A {
+        background: hsl(  0,  0%,  85%);
+      }
+      
+      th.E {
+        background: hsl( 24,  100%, 45%);
+      }
+      
+      th.I {
+        background: hsl( 200,  50%, 52%);
+      }
+      
+      th.P {
+        background: hsl( 130,  40%, 60%);
+      }
+      
+      th.W {
+        background: hsl( 50,  65%, 52%);
+      }
+      
+      
+      th.AE {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 24,  100%, 45%) 100%
+        );
+      }
+      
+      th.AI {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 200,  50%, 52%) 100%
+        );
+      }
+      
+      th.AP {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 130,  40%, 60%) 100%
+        );
+      }
+      
+      th.AW {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.EI {
+        background: linear-gradient(
+          90deg,
+          hsl( 24,  100%, 45%) 0%,
+          hsl( 200,  50%, 52%) 100%
+        );
+      }
+      
+      th.EP {
+        background: linear-gradient(
+          90deg,
+          hsl( 24,  100%, 45%) 0%,
+          hsl( 130,  40%, 60%) 100%
+        );
+      }
+      
+      th.EW {
+        background: linear-gradient(
+          90deg,
+          hsl( 24,  100%, 45%) 0%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.IP {
+        background: linear-gradient(
+          90deg,
+          hsl( 200,  50%, 52%) 0%,
+          hsl( 130,  40%, 60%) 100%
+        );
+      }
+      
+      th.IW {
+        background: linear-gradient(
+          90deg,
+          hsl( 200,  50%, 52%) 0%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.PW {
+        background: linear-gradient(
+          90deg,
+          hsl( 130,  40%, 60%) 0%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      
+      th.AEI {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 24,  100%, 45%) 50%,
+          hsl( 200,  50%, 52%) 100%
+        );
+      }
+      
+      th.AEP {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 24,  100%, 45%) 50%,
+          hsl( 130,  40%, 60%) 100%
+        );
+      }
+      
+      th.AEW {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 24,  100%, 45%) 50%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.AIP {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 200,  50%, 52%) 50%,
+          hsl( 130,  40%, 60%) 100%
+        );
+      }
+      
+      th.AIW {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 200,  50%, 52%) 50%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.APW {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 130,  40%, 60%) 50%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.EIP {
+        background: linear-gradient(
+          90deg,
+          hsl( 24,  100%, 45%) 0%,
+          hsl( 200,  50%, 52%) 50%,
+          hsl( 130,  40%, 60%) 100%
+        );
+      }
+      
+      th.EIW {
+        background: linear-gradient(
+          90deg,
+          hsl( 24,  100%, 45%) 0%,
+          hsl( 200,  50%, 52%) 50%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.IPW {
+        background: linear-gradient(
+          90deg,
+          hsl( 200,  50%, 52%) 0%,
+          hsl( 130,  40%, 60%) 50%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      
+      /* AEIPW */
+      
+      
+      th.AEIP {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 24,  100%, 45%) 33%,
+          hsl( 200,  50%, 52%) 66%,
+          hsl( 130,  40%, 60%) 100%
+        );
+      }
+      
+      th.AEIW {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 24,  100%, 45%) 33%,
+          hsl( 200,  50%, 52%) 66%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.AEPW {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 24,  100%, 45%) 33%,
+          hsl( 130,  40%, 60%) 66%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.AIPW {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 200,  50%, 52%) 33%,
+          hsl( 130,  40%, 60%) 66%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.EIPW {
+        background: linear-gradient(
+          90deg,
+          hsl( 24,  100%, 45%) 0%,
+          hsl( 200,  50%, 52%) 33%,
+          hsl( 130,  40%, 60%) 66%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      
+      th.AEIPW {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 24,  100%, 45%) 25%,
+          hsl( 200,  50%, 52%) 50%,
+          hsl( 130,  40%, 60%) 75%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      
+      .fontname {
+        width: 20em;
+      }
+      .table {
+        width: 2.5em;
+      }
+      .feature {
+        width: 7.5em;
+      }
+      .message {
+        /*width: 20em;*/
+      }
+      .detail {
+        width: 40em;
+      }
+      .detail p {
+      }
+      .name { background-color: #eee }
+      .name th { padding-top: 1em }
+
+    </style>
+    <script type='text/javascript'>
+      function toggle(toggle_class){
+        var elements = document.getElementsByTagName('tr')
+        for (var i = 0; i < elements.length; i++){
+          var e = elements[i]
+          if (e.className == toggle_class) {
+            if (e.style.display != 'none') {
+              e.style.display = 'none'
+            } else {
+              e.style.display = 'table-row'
+            }
+          }
+        }
+      }
+    </script>
+    
+    <script type='text/javascript'>
+      function toggle_detail(my_id){
+        var element = document.getElementById(my_id)
+        var buttoncell = document.getElementById(my_id+"_cell")
+        var button = document.getElementById(my_id+"_btn")
+        if (element.style.display != 'none') {
+          element.style.display = 'none'
+          buttoncell.style.borderRadius = '0.0em'
+          button.firstChild.data = '\u25bc'
+        } else {
+          element.style.display = ''
+          buttoncell.style.borderRadius = '0.0em 0.0em 0 0'
+          button.firstChild.data = '\u25b2'
+        }
+      }
+    </script>
+    
+    <script type='text/javascript'>
+      function toggle_all_results(){
+        var elements = document.getElementsByClassName('result_body')
+        for (var i = 0; i < elements.length; i++){
+          var e = elements[i]
+          if (e.style.display != 'none') {
+            e.style.display = 'none'
+          } else {
+            e.style.display = ''
+          }
+        }
+      }
+    </script>
+  </head>
+  <body onload="toggle_all_results()">
+    <h1>FontSniffer Report</h1>
+    <p>Library Project, start: 2020-03-18 - 09:23.55, end: 09:24.02</p>
+    <table class='togglemessages'>
+      <tr>
+        <td>Show messages:</td>
+        <td><input type='checkbox' checked name='P' id='itoggle' onclick='toggle("P");'>
+          <label for='itoggle'>Pass</label></td>
+        <td><input type='checkbox' checked name='I' id='itoggle' onclick='toggle("I");'>
+          <label for='itoggle'>Info</label></td>
+        <td><input type='checkbox' checked name='W' id='wtoggle'onclick='toggle("W");'>
+          <label for='wtoggle'>Warning</label></td>
+        <td><input type='checkbox' checked name='E' id='etoggle' onclick='toggle("E");'>
+          <label for='etoggle'>Error</label></td>
+
+        <td><button onclick='toggle_all_results();'>Toggle all details</button></td>
+      </tr>
+    </table>
+    
+        <table class="fontlist">
+
+            <thead>
+                <tr><th>Font List</th></tr>
+            </thead>
+            <tbody>
+								<tr><td>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</td></tr>
+						</tbody>
+        </table>
+
+            <h2>Table Description</h2>
+            <table class="results">
+
+                <thead>
+                    <tr>
+                    <th class="A code" id="Table Description_cell">
+                    <button id="Table Description_btn" onclick='toggle_detail("Table Description");' title="Toggle details">&#x25bc;</button>
+                    </th>
+                    <th colspan="3"><h3>Table Description</h3></th></tr>
+                </thead>
+              <tbody id="Table Description" class="result_body">
+                    
+                <tr class="A">
+                    <td class="code"><p>Level</p></td>
+                    <td class="fontname"><p>Font Name</p></td>
+                    <td class="table"><p>Table</p></td>
+                    <td class="feature"><p>Feature/Item</p></td>
+                    <td class="message"><p>Description</p></td>
+                    <td class="detail"><p>Notes</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+              </tbody>
+            </table>				<h2>OS/2 table</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="OS/2 table_cell">
+                <button id="OS/2 table_btn" onclick='toggle_detail("OS/2 table");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>OS/2 table</h3></th></tr>
+            </thead>
+            <tbody id="OS/2 table" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>table version 4.</p></td>
+                    <td class="message"><p>'OS/2' table version should be 4.</p></td>
+                    <td class="detail"><p>OK: 'OS/2' table version is: 4.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>usWeightClass</p></td>
+                    <td class="message"><p>'fvar' axis 'wght' defaultValue must match 'OS/2' table usWeightClass.</p></td>
+                    <td class="detail"><p>'OS/2' table usWeightClass '400' does match 'fvar' axis 'wght' defaultValue '400.0'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>useTypoMetrics</p></td>
+                    <td class="message"><p>If the hhea metrics match the usWin metrics, it does not matter what the sTypo metrics are the fsSelection useTypoMetrics flag should be False.</p></td>
+                    <td class="detail"><p>OK: fsSelection useTypoMetrics flag should be False and is False.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>name and OS/2</p></td>
+                    <td class="feature"><p>MS and Mac NID 21/22 + WWS</p></td>
+                    <td class="message"><p>If MS and Mac NID 21 and 22 is not set, 'OS/2' fsSelection flag for WWS should be True.</p></td>
+                    <td class="detail"><p>OK: Mac/Mac NID 21/22 is not set and 'OS/2' fsSelection flag for WWS is True.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>italic flag</p></td>
+                    <td class="message"><p>'OS/2' fsSelection italic flag should match the 'head' macStyle italic flag. They should be the same.</p></td>
+                    <td class="detail"><p>OK: They are the same.'OS/2' fsSelection italic flag is False and 'head' macStyle italic flag is False.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>Panose Normal</p></td>
+                    <td class="message"><p>Because 'OS/2' fsSelection italic flag is False and 'head' macStyle italic flag is False the OS/2 panose array form flag should be a 'Normal' entry.</p></td>
+                    <td class="detail"><p>OK: 'OS/2' panose array form flag is a 'Normal' entry.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>usBreakChar</p></td>
+                    <td class="message"><p>'OS/2' usBreakChar should be 0x0020.</p></td>
+                    <td class="detail"><p>OK: 'OS/2' usBreakChar is 0x0020.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>usDefaultChar</p></td>
+                    <td class="message"><p>'OS/2' usDefaultChar should be 0x0000.</p></td>
+                    <td class="detail"><p>OK: 'OS/2' usDefaultChar is 0x0000.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>usFirstCharIndex</p></td>
+                    <td class="message"><p>'OS/2' usFirstCharIndex should be 0x0000</p></td>
+                    <td class="detail"><p>OK: 'OS/2' usFirstCharIndex is 0x0000.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>usLastCharIndex</p></td>
+                    <td class="message"><p>'OS/2' usLastCharIndex should be 0xFEFF</p></td>
+                    <td class="detail"><p>OK: 'OS/2' usLastCharIndex is 0xFEFF.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>Embedding Level</p></td>
+                    <td class="message"><p>For library fonts embedding level should be 'Preview & Print Embedding'.</p></td>
+                    <td class="detail"><p>Embedding Level is 'Embedding Level = Preview & Print Embedding'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>fsType</p></td>
+                    <td class="message"><p>Pull 'OS/2' fsType.</p></td>
+                    <td class="detail"><p>embedding level: Embedding Level = Preview & Print Embedding<br>no subsetting flag: False<br>bitmap embedding only flag: False</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>-/-</p></td>
+                    <td class="detail"><p>OK: 'OS/2' table entries [fsType, fsSelection, usBreakChar, usDefaultChar, usFirstCharIndex] have the correct values.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>fvar table</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="fvar table_cell">
+                <button id="fvar table_btn" onclick='toggle_detail("fvar table");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>fvar table</h3></th></tr>
+            </thead>
+            <tbody id="fvar table" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>fvar</p></td>
+                    <td class="feature"><p>instance name ID</p></td>
+                    <td class="message"><p>Check fvar instance name ID.</p></td>
+                    <td class="detail"><p>Instance name ID '262' exists in name table.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>fvar/STAT</p></td>
+                    <td class="feature"><p>axis name</p></td>
+                    <td class="message"><p>Compare fvar name with STAT table names.</p></td>
+                    <td class="detail"><p>fvar instance name 'Thin' is equal to constructed STAT table name 'Thin'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>fvar</p></td>
+                    <td class="feature"><p>instance axis value</p></td>
+                    <td class="message"><p>Check fvar instance axis value.</p></td>
+                    <td class="detail"><p>Instance axis value is between axis min and max value.<br>'Thin' (NID262) axis 'wght' value is '400.0'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>fvar</p></td>
+                    <td class="feature"><p>instance axis value</p></td>
+                    <td class="message"><p>Check fvar instance axis value.</p></td>
+                    <td class="detail"><p>Instance axis value is between axis min and max value.<br>'Thin' (NID262) axis 'ital' value is '0.0'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>fvar</p></td>
+                    <td class="feature"><p>instance name ID</p></td>
+                    <td class="message"><p>Check fvar instance name ID.</p></td>
+                    <td class="detail"><p>Instance name ID '263' exists in name table.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>fvar/STAT</p></td>
+                    <td class="feature"><p>axis name</p></td>
+                    <td class="message"><p>Compare fvar name with STAT table names.</p></td>
+                    <td class="detail"><p>fvar instance name 'Light' is equal to constructed STAT table name 'Light'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>fvar</p></td>
+                    <td class="feature"><p>instance axis value</p></td>
+                    <td class="message"><p>Check fvar instance axis value.</p></td>
+                    <td class="detail"><p>Instance axis value is between axis min and max value.<br>'Light' (NID263) axis 'wght' value is '440.0'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>fvar</p></td>
+                    <td class="feature"><p>instance axis value</p></td>
+                    <td class="message"><p>Check fvar instance axis value.</p></td>
+                    <td class="detail"><p>Instance axis value is between axis min and max value.<br>'Light' (NID263) axis 'ital' value is '0.0'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>fvar</p></td>
+                    <td class="feature"><p>instance name ID</p></td>
+                    <td class="message"><p>Check fvar instance name ID.</p></td>
+                    <td class="detail"><p>Instance name ID '264' exists in name table.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>fvar/STAT</p></td>
+                    <td class="feature"><p>axis name</p></td>
+                    <td class="message"><p>Compare fvar name with STAT table names.</p></td>
+                    <td class="detail"><p>fvar instance name 'Regular' is equal to constructed STAT table name 'Regular'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>fvar</p></td>
+                    <td class="feature"><p>instance axis value</p></td>
+                    <td class="message"><p>Check fvar instance axis value.</p></td>
+                    <td class="detail"><p>Instance axis value is between axis min and max value.<br>'Regular' (NID264) axis 'wght' value is '520.0'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>fvar</p></td>
+                    <td class="feature"><p>instance axis value</p></td>
+                    <td class="message"><p>Check fvar instance axis value.</p></td>
+                    <td class="detail"><p>Instance axis value is between axis min and max value.<br>'Regular' (NID264) axis 'ital' value is '0.0'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>fvar</p></td>
+                    <td class="feature"><p>instance name ID</p></td>
+                    <td class="message"><p>Check fvar instance name ID.</p></td>
+                    <td class="detail"><p>Instance name ID '265' exists in name table.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>fvar/STAT</p></td>
+                    <td class="feature"><p>axis name</p></td>
+                    <td class="message"><p>Compare fvar name with STAT table names.</p></td>
+                    <td class="detail"><p>fvar instance name 'SemiBold' is equal to constructed STAT table name 'SemiBold'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>fvar</p></td>
+                    <td class="feature"><p>instance axis value</p></td>
+                    <td class="message"><p>Check fvar instance axis value.</p></td>
+                    <td class="detail"><p>Instance axis value is between axis min and max value.<br>'SemiBold' (NID265) axis 'wght' value is '600.0'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>fvar</p></td>
+                    <td class="feature"><p>instance axis value</p></td>
+                    <td class="message"><p>Check fvar instance axis value.</p></td>
+                    <td class="detail"><p>Instance axis value is between axis min and max value.<br>'SemiBold' (NID265) axis 'ital' value is '0.0'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>fvar</p></td>
+                    <td class="feature"><p>instance name ID</p></td>
+                    <td class="message"><p>Check fvar instance name ID.</p></td>
+                    <td class="detail"><p>Instance name ID '266' exists in name table.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>fvar/STAT</p></td>
+                    <td class="feature"><p>axis name</p></td>
+                    <td class="message"><p>Compare fvar name with STAT table names.</p></td>
+                    <td class="detail"><p>fvar instance name 'Bold' is equal to constructed STAT table name 'Bold'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>fvar</p></td>
+                    <td class="feature"><p>instance axis value</p></td>
+                    <td class="message"><p>Check fvar instance axis value.</p></td>
+                    <td class="detail"><p>Instance axis value is between axis min and max value.<br>'Bold' (NID266) axis 'wght' value is '680.0'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>fvar</p></td>
+                    <td class="feature"><p>instance axis value</p></td>
+                    <td class="message"><p>Check fvar instance axis value.</p></td>
+                    <td class="detail"><p>Instance axis value is between axis min and max value.<br>'Bold' (NID266) axis 'ital' value is '0.0'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>fvar</p></td>
+                    <td class="feature"><p>instance name ID</p></td>
+                    <td class="message"><p>Check fvar instance name ID.</p></td>
+                    <td class="detail"><p>Instance name ID '267' exists in name table.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>fvar/STAT</p></td>
+                    <td class="feature"><p>axis name</p></td>
+                    <td class="message"><p>Compare fvar name with STAT table names.</p></td>
+                    <td class="detail"><p>fvar instance name 'Black' is equal to constructed STAT table name 'Black'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>fvar</p></td>
+                    <td class="feature"><p>instance axis value</p></td>
+                    <td class="message"><p>Check fvar instance axis value.</p></td>
+                    <td class="detail"><p>Instance axis value is between axis min and max value.<br>'Black' (NID267) axis 'wght' value is '740.0'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>fvar</p></td>
+                    <td class="feature"><p>instance axis value</p></td>
+                    <td class="message"><p>Check fvar instance axis value.</p></td>
+                    <td class="detail"><p>Instance axis value is between axis min and max value.<br>'Black' (NID267) axis 'ital' value is '0.0'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>fvar</p></td>
+                    <td class="feature"><p>instance name ID</p></td>
+                    <td class="message"><p>Check fvar instance name ID.</p></td>
+                    <td class="detail"><p>Instance name ID '281' exists in name table.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>fvar/STAT</p></td>
+                    <td class="feature"><p>axis name</p></td>
+                    <td class="message"><p>Compare fvar name with STAT table names.</p></td>
+                    <td class="detail"><p>fvar instance name 'Thin Italic' is different to constructed STAT table name 'Thin <mark>Weight</mark>'. This may cause issues in applications.<br>This might be related to wrong ordering of axis in the STAT table, or wrong/different names or different use of abbreviations. Please double check names of STAT and fvar table.<br><br></p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>fvar</p></td>
+                    <td class="feature"><p>instance axis value</p></td>
+                    <td class="message"><p>Check fvar instance axis value.</p></td>
+                    <td class="detail"><p>Instance axis value is between axis min and max value.<br>'Thin Italic' (NID281) axis 'wght' value is '400.0'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>fvar</p></td>
+                    <td class="feature"><p>instance axis value</p></td>
+                    <td class="message"><p>Check fvar instance axis value.</p></td>
+                    <td class="detail"><p>Instance axis value is between axis min and max value.<br>'Thin Italic' (NID281) axis 'ital' value is '1.0'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>fvar</p></td>
+                    <td class="feature"><p>instance name ID</p></td>
+                    <td class="message"><p>Check fvar instance name ID.</p></td>
+                    <td class="detail"><p>Instance name ID '282' exists in name table.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>fvar/STAT</p></td>
+                    <td class="feature"><p>axis name</p></td>
+                    <td class="message"><p>Compare fvar name with STAT table names.</p></td>
+                    <td class="detail"><p>fvar instance name '<mark>Light Italic</mark>' is different to constructed STAT table name 'Weight'. This may cause issues in applications.<br>This might be related to wrong ordering of axis in the STAT table, or wrong/different names or different use of abbreviations. Please double check names of STAT and fvar table.<br><br>STAT: Issues to get name for 'wght' = '455.0'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>fvar</p></td>
+                    <td class="feature"><p>instance axis value</p></td>
+                    <td class="message"><p>Check fvar instance axis value.</p></td>
+                    <td class="detail"><p>Instance axis value is between axis min and max value.<br>'Light Italic' (NID282) axis 'wght' value is '455.0'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>fvar</p></td>
+                    <td class="feature"><p>instance axis value</p></td>
+                    <td class="message"><p>Check fvar instance axis value.</p></td>
+                    <td class="detail"><p>Instance axis value is between axis min and max value.<br>'Light Italic' (NID282) axis 'ital' value is '1.0'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>fvar</p></td>
+                    <td class="feature"><p>instance name ID</p></td>
+                    <td class="message"><p>Check fvar instance name ID.</p></td>
+                    <td class="detail"><p>Instance name ID '283' exists in name table.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>fvar/STAT</p></td>
+                    <td class="feature"><p>axis name</p></td>
+                    <td class="message"><p>Compare fvar name with STAT table names.</p></td>
+                    <td class="detail"><p>fvar instance name 'Italic' is different to constructed STAT table name '<mark>Regular Weight</mark>'. This may cause issues in applications.<br>This might be related to wrong ordering of axis in the STAT table, or wrong/different names or different use of abbreviations. Please double check names of STAT and fvar table.<br><br></p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>fvar</p></td>
+                    <td class="feature"><p>instance axis value</p></td>
+                    <td class="message"><p>Check fvar instance axis value.</p></td>
+                    <td class="detail"><p>Instance axis value is between axis min and max value.<br>'Italic' (NID283) axis 'wght' value is '520.0'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>fvar</p></td>
+                    <td class="feature"><p>instance axis value</p></td>
+                    <td class="message"><p>Check fvar instance axis value.</p></td>
+                    <td class="detail"><p>Instance axis value is between axis min and max value.<br>'Italic' (NID283) axis 'ital' value is '1.0'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>fvar</p></td>
+                    <td class="feature"><p>instance name ID</p></td>
+                    <td class="message"><p>Check fvar instance name ID.</p></td>
+                    <td class="detail"><p>Instance name ID '284' exists in name table.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>fvar/STAT</p></td>
+                    <td class="feature"><p>axis name</p></td>
+                    <td class="message"><p>Compare fvar name with STAT table names.</p></td>
+                    <td class="detail"><p>fvar instance name 'SemiBold Italic' is different to constructed STAT table name 'SemiBold <mark>Weight</mark>'. This may cause issues in applications.<br>This might be related to wrong ordering of axis in the STAT table, or wrong/different names or different use of abbreviations. Please double check names of STAT and fvar table.<br><br></p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>fvar</p></td>
+                    <td class="feature"><p>instance axis value</p></td>
+                    <td class="message"><p>Check fvar instance axis value.</p></td>
+                    <td class="detail"><p>Instance axis value is between axis min and max value.<br>'SemiBold Italic' (NID284) axis 'wght' value is '600.0'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>fvar</p></td>
+                    <td class="feature"><p>instance axis value</p></td>
+                    <td class="message"><p>Check fvar instance axis value.</p></td>
+                    <td class="detail"><p>Instance axis value is between axis min and max value.<br>'SemiBold Italic' (NID284) axis 'ital' value is '1.0'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>fvar</p></td>
+                    <td class="feature"><p>instance name ID</p></td>
+                    <td class="message"><p>Check fvar instance name ID.</p></td>
+                    <td class="detail"><p>Instance name ID '285' exists in name table.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>fvar/STAT</p></td>
+                    <td class="feature"><p>axis name</p></td>
+                    <td class="message"><p>Compare fvar name with STAT table names.</p></td>
+                    <td class="detail"><p>fvar instance name 'Bold Italic' is different to constructed STAT table name 'Bold <mark>Weight</mark>'. This may cause issues in applications.<br>This might be related to wrong ordering of axis in the STAT table, or wrong/different names or different use of abbreviations. Please double check names of STAT and fvar table.<br><br></p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>fvar</p></td>
+                    <td class="feature"><p>instance axis value</p></td>
+                    <td class="message"><p>Check fvar instance axis value.</p></td>
+                    <td class="detail"><p>Instance axis value is between axis min and max value.<br>'Bold Italic' (NID285) axis 'wght' value is '680.0'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>fvar</p></td>
+                    <td class="feature"><p>instance axis value</p></td>
+                    <td class="message"><p>Check fvar instance axis value.</p></td>
+                    <td class="detail"><p>Instance axis value is between axis min and max value.<br>'Bold Italic' (NID285) axis 'ital' value is '1.0'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>fvar</p></td>
+                    <td class="feature"><p>instance name ID</p></td>
+                    <td class="message"><p>Check fvar instance name ID.</p></td>
+                    <td class="detail"><p>Instance name ID '286' exists in name table.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>fvar/STAT</p></td>
+                    <td class="feature"><p>axis name</p></td>
+                    <td class="message"><p>Compare fvar name with STAT table names.</p></td>
+                    <td class="detail"><p>fvar instance name 'Black Italic' is different to constructed STAT table name 'Black <mark>Weight</mark>'. This may cause issues in applications.<br>This might be related to wrong ordering of axis in the STAT table, or wrong/different names or different use of abbreviations. Please double check names of STAT and fvar table.<br><br></p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>fvar</p></td>
+                    <td class="feature"><p>instance axis value</p></td>
+                    <td class="message"><p>Check fvar instance axis value.</p></td>
+                    <td class="detail"><p>Instance axis value is between axis min and max value.<br>'Black Italic' (NID286) axis 'wght' value is '740.0'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>fvar</p></td>
+                    <td class="feature"><p>instance axis value</p></td>
+                    <td class="message"><p>Check fvar instance axis value.</p></td>
+                    <td class="detail"><p>Instance axis value is between axis min and max value.<br>'Black Italic' (NID286) axis 'ital' value is '1.0'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>fvar</p></td>
+                    <td class="feature"><p>axis name ID</p></td>
+                    <td class="message"><p>Check fvar axis name ID.</p></td>
+                    <td class="detail"><p>Axis name ID '286' exists in name table.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>fvar</p></td>
+                    <td class="feature"><p>axis name</p></td>
+                    <td class="message"><p>Check axis 'wght' name.</p></td>
+                    <td class="detail"><p>Axis 'wght' name is correct: 'Weight'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>fvar</p></td>
+                    <td class="feature"><p>minValue</p></td>
+                    <td class="message"><p>Check Axis 'wght' minValue.</p></td>
+                    <td class="detail"><p>Axis 'wght' minValue '400.0' is greater or equal '1'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>fvar</p></td>
+                    <td class="feature"><p>maxValue</p></td>
+                    <td class="message"><p>Check Axis 'wght' maxValue.</p></td>
+                    <td class="detail"><p>Axis 'wght' maxValue '750.0' is smaller or equal '1000'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>fvar</p></td>
+                    <td class="feature"><p>defaultValue</p></td>
+                    <td class="message"><p>Check Axis 'wght' defaultValue.</p></td>
+                    <td class="detail"><p>Axis 'wght' defaultValue '400.0' = '400'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>fvar</p></td>
+                    <td class="feature"><p>axis name</p></td>
+                    <td class="message"><p>Check axis 'ital' name.</p></td>
+                    <td class="detail"><p>Axis 'ital' name is correct: 'Italic'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>fvar</p></td>
+                    <td class="feature"><p>minValue</p></td>
+                    <td class="message"><p>Check Axis 'ital' minValue.</p></td>
+                    <td class="detail"><p>Axis 'ital' minValue '0.0' is greater or equal '0'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>fvar</p></td>
+                    <td class="feature"><p>maxValue</p></td>
+                    <td class="message"><p>Check Axis 'ital' maxValue.</p></td>
+                    <td class="detail"><p>Axis 'ital' maxValue '1.0' is smaller or equal '1'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>fvar</p></td>
+                    <td class="feature"><p>defaultValue</p></td>
+                    <td class="message"><p>Check Axis 'ital' defaultValue.</p></td>
+                    <td class="detail"><p>Axis 'ital' defaultValue '0.0' = '0'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>STAT table</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="STAT table_cell">
+                <button id="STAT table_btn" onclick='toggle_detail("STAT table");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>STAT table</h3></th></tr>
+            </thead>
+            <tbody id="STAT table" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>STAT</p></td>
+                    <td class="feature"><p>variable font</p></td>
+                    <td class="message"><p>Variable font must have a STAT table.</p></td>
+                    <td class="detail"><p>Font has a STAT table.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>STAT</p></td>
+                    <td class="feature"><p>elidableFallbackName</p></td>
+                    <td class="message"><p>Check STAT table elidableFallbackName</p></td>
+                    <td class="detail"><p>elidableFallbackName is equal to name ID 2:<br>'Regular' (STAT) = 'Regular' (name).</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>STAT</p></td>
+                    <td class="feature"><p>axis ordering</p></td>
+                    <td class="message"><p>Check STAT table axis ordering.</p></td>
+                    <td class="detail"><p>STAT table axis 'ital' has order number '1'. This is correct.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>STAT</p></td>
+                    <td class="feature"><p>axis ordering</p></td>
+                    <td class="message"><p>Check STAT table axis ordering.</p></td>
+                    <td class="detail"><p>STAT table axis 'wght' has order number '0'. This is correct.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>STAT</p></td>
+                    <td class="feature"><p>axis</p></td>
+                    <td class="message"><p>Axis from fvar table should be present in STAT table.</p></td>
+                    <td class="detail"><p>Axis 'wght' is present in fvar and STAT table.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>fvar/name</p></td>
+                    <td class="feature"><p>nameID</p></td>
+                    <td class="message"><p>Axis nameID.</p></td>
+                    <td class="detail"><p>nameID 261 'Weight' exists in name table.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>STAT</p></td>
+                    <td class="feature"><p>axis name</p></td>
+                    <td class="message"><p>Axis name should be the same in fvar and STAT table.</p></td>
+                    <td class="detail"><p>Axis name of 'wght' is the same for fvar and STAT table:<br>= 'Weight'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>STAT</p></td>
+                    <td class="feature"><p>axis values</p></td>
+                    <td class="message"><p>Axis values should be the same in fvar and STAT table.</p></td>
+                    <td class="detail"><p>'wght' axis values '[455.0]' are present in fvar but missing in STAT.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>STAT</p></td>
+                    <td class="feature"><p>axis values</p></td>
+                    <td class="message"><p>Axis values should be the same in fvar and STAT table.</p></td>
+                    <td class="detail"><p>All STAT 'wght' axis values are present fvar.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>STAT</p></td>
+                    <td class="feature"><p>nominal value</p></td>
+                    <td class="message"><p>Check if STAT table nominal value is in fvar instances.</p></td>
+                    <td class="detail"><p>'wght' [0], value '400.0' is in fvar instances.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>STAT</p></td>
+                    <td class="feature"><p>nominal value</p></td>
+                    <td class="message"><p>Check if STAT table nominal value is in fvar instances.</p></td>
+                    <td class="detail"><p>'wght' [1], value '440.0' is in fvar instances.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>STAT</p></td>
+                    <td class="feature"><p>nominal value</p></td>
+                    <td class="message"><p>Check if STAT table nominal value is in fvar instances.</p></td>
+                    <td class="detail"><p>'wght' [2], value '520.0' is in fvar instances.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>STAT</p></td>
+                    <td class="feature"><p>nominal value</p></td>
+                    <td class="message"><p>Check if STAT table nominal value is in fvar instances.</p></td>
+                    <td class="detail"><p>'wght' [3], value '600.0' is in fvar instances.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>STAT</p></td>
+                    <td class="feature"><p>nominal value</p></td>
+                    <td class="message"><p>Check if STAT table nominal value is in fvar instances.</p></td>
+                    <td class="detail"><p>'wght' [4], value '680.0' is in fvar instances.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>STAT</p></td>
+                    <td class="feature"><p>nominal value</p></td>
+                    <td class="message"><p>Check if STAT table nominal value is in fvar instances.</p></td>
+                    <td class="detail"><p>'wght' [5], value '740.0' is in fvar instances.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>STAT</p></td>
+                    <td class="feature"><p>axis</p></td>
+                    <td class="message"><p>Axis from fvar table should be present in STAT table.</p></td>
+                    <td class="detail"><p>Axis 'ital' is present in fvar and STAT table.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>fvar/name</p></td>
+                    <td class="feature"><p>nameID</p></td>
+                    <td class="message"><p>Axis nameID.</p></td>
+                    <td class="detail"><p>nameID 268 'Italic' exists in name table.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>STAT</p></td>
+                    <td class="feature"><p>axis name</p></td>
+                    <td class="message"><p>Axis name should be the same in fvar and STAT table.</p></td>
+                    <td class="detail"><p>Axis name of 'ital' is different:<br>fvar nameID '268' = '<mark>Italic</mark>'<br>STAT nameID '261' = 'Weight' .</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>STAT</p></td>
+                    <td class="feature"><p>axis values</p></td>
+                    <td class="message"><p>Axis values should be the same in fvar and STAT table.</p></td>
+                    <td class="detail"><p>All fvar 'ital' axis values are present STAT.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>STAT</p></td>
+                    <td class="feature"><p>axis values</p></td>
+                    <td class="message"><p>Axis values should be the same in fvar and STAT table.</p></td>
+                    <td class="detail"><p>All STAT 'ital' axis values are present fvar.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>STAT</p></td>
+                    <td class="feature"><p>nominal value</p></td>
+                    <td class="message"><p>Check if STAT table nominal value is in fvar instances.</p></td>
+                    <td class="detail"><p>'ital' [0], value '0.0' is in fvar instances.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>STAT/name</p></td>
+                    <td class="feature"><p>nameID</p></td>
+                    <td class="message"><p>Axis nameID.</p></td>
+                    <td class="detail"><p>nameID 261 'Weight' exists in name table.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>STAT/name</p></td>
+                    <td class="feature"><p>name</p></td>
+                    <td class="message"><p>Check Axis name.</p></td>
+                    <td class="detail"><p>STAT table axis name is correct: 'Weight' (wght).</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>STAT</p></td>
+                    <td class="feature"><p>axisValue nameID</p></td>
+                    <td class="message"><p>Check if axisValue name ID in name table.</p></td>
+                    <td class="detail"><p>'wght' [0]: nameID '262' is present in name table as 'Thin'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>STAT</p></td>
+                    <td class="feature"><p>axisValue name</p></td>
+                    <td class="message"><p>Check axisValue name.</p></td>
+                    <td class="detail"><p>'wght' [0] axisValue name 'Thin' is a valid weight name.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>STAT</p></td>
+                    <td class="feature"><p>axisValue format</p></td>
+                    <td class="message"><p>Check if STAT table axisValue format is the right one.</p></td>
+                    <td class="detail"><p>'wght' [0] 'Thin' axisValue format is 'Single', but should be format2 'Range' for variable fonts.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>STAT</p></td>
+                    <td class="feature"><p>axisValue nameID</p></td>
+                    <td class="message"><p>Check if axisValue name ID in name table.</p></td>
+                    <td class="detail"><p>'wght' [1]: nameID '263' is present in name table as 'Light'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>STAT</p></td>
+                    <td class="feature"><p>axisValue name</p></td>
+                    <td class="message"><p>Check axisValue name.</p></td>
+                    <td class="detail"><p>'wght' [1] axisValue name 'Light' is a valid weight name.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>STAT</p></td>
+                    <td class="feature"><p>axisValue format</p></td>
+                    <td class="message"><p>Check if STAT table axisValue format is the right one.</p></td>
+                    <td class="detail"><p>'wght' [1] 'Light' axisValue format is 'Single', but should be format2 'Range' for variable fonts.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>STAT</p></td>
+                    <td class="feature"><p>axisValue nameID</p></td>
+                    <td class="message"><p>Check if axisValue name ID in name table.</p></td>
+                    <td class="detail"><p>'wght' [2]: nameID '264' is present in name table as 'Regular'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>STAT</p></td>
+                    <td class="feature"><p>axisValue name</p></td>
+                    <td class="message"><p>Check axisValue name.</p></td>
+                    <td class="detail"><p>'wght' [2] axisValue name 'Regular' is a valid weight name.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>STAT</p></td>
+                    <td class="feature"><p>axisValue format</p></td>
+                    <td class="message"><p>Check if STAT table axisValue format is the right one.</p></td>
+                    <td class="detail"><p>'wght' [2] 'Regular' axisValue format is 'Linked', but should be format2 'Range' for variable fonts.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>STAT</p></td>
+                    <td class="feature"><p>axisValue nameID</p></td>
+                    <td class="message"><p>Check if axisValue name ID in name table.</p></td>
+                    <td class="detail"><p>'wght' [3]: nameID '265' is present in name table as 'SemiBold'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>STAT</p></td>
+                    <td class="feature"><p>axisValue name</p></td>
+                    <td class="message"><p>Check axisValue name.</p></td>
+                    <td class="detail"><p>'wght' [3] axisValue name 'SemiBold' is a valid weight name.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>STAT</p></td>
+                    <td class="feature"><p>axisValue format</p></td>
+                    <td class="message"><p>Check if STAT table axisValue format is the right one.</p></td>
+                    <td class="detail"><p>'wght' [3] 'SemiBold' axisValue format is 'Single', but should be format2 'Range' for variable fonts.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>STAT</p></td>
+                    <td class="feature"><p>axisValue nameID</p></td>
+                    <td class="message"><p>Check if axisValue name ID in name table.</p></td>
+                    <td class="detail"><p>'wght' [4]: nameID '266' is present in name table as 'Bold'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>STAT</p></td>
+                    <td class="feature"><p>axisValue name</p></td>
+                    <td class="message"><p>Check axisValue name.</p></td>
+                    <td class="detail"><p>'wght' [4] axisValue name 'Bold' is a valid weight name.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>STAT</p></td>
+                    <td class="feature"><p>axisValue format</p></td>
+                    <td class="message"><p>Check if STAT table axisValue format is the right one.</p></td>
+                    <td class="detail"><p>'wght' [4] 'Bold' axisValue format is 'Single', but should be format2 'Range' for variable fonts.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>STAT</p></td>
+                    <td class="feature"><p>axisValue nameID</p></td>
+                    <td class="message"><p>Check if axisValue name ID in name table.</p></td>
+                    <td class="detail"><p>'wght' [5]: nameID '267' is present in name table as 'Black'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>STAT</p></td>
+                    <td class="feature"><p>axisValue name</p></td>
+                    <td class="message"><p>Check axisValue name.</p></td>
+                    <td class="detail"><p>'wght' [5] axisValue name 'Black' is a valid weight name.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>STAT</p></td>
+                    <td class="feature"><p>axisValue format</p></td>
+                    <td class="message"><p>Check if STAT table axisValue format is the right one.</p></td>
+                    <td class="detail"><p>Last axisValue format (in this case 'wght' [5] 'Black') should be 'linked', but it is 'Single'. <br>Either this axisValue is wrong, or you missed to add a 'linked' axisValue format ('Regular' -> 'Bold').</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>STAT/name</p></td>
+                    <td class="feature"><p>name</p></td>
+                    <td class="message"><p>Check Axis name.</p></td>
+                    <td class="detail"><p>STAT table axis name is 'Weight' (ital), but should be 'Italic' for axis 'ital'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>STAT</p></td>
+                    <td class="feature"><p>axisValue nameID</p></td>
+                    <td class="message"><p>Check if axisValue name ID in name table.</p></td>
+                    <td class="detail"><p>'ital' [0]: nameID '280' is present in name table as 'Weight'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>STAT</p></td>
+                    <td class="feature"><p>axisValue name</p></td>
+                    <td class="message"><p>Check axisValue name.</p></td>
+                    <td class="detail"><p>'ital' [0] axisValue name 'Weight' seems to be not a valid name. Please double check.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>STAT</p></td>
+                    <td class="feature"><p>axisValue name</p></td>
+                    <td class="message"><p>Check axisValue name.</p></td>
+                    <td class="detail"><p>'ital' [0] axisValue name 'Weight' differs from name table ID 2 'Regular'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>STAT</p></td>
+                    <td class="feature"><p>axisValue</p></td>
+                    <td class="message"><p>Check STAT table axisValue</p></td>
+                    <td class="detail"><p>'ital' [0] 'Weight' axisValue is '1', but is '0.0'.<br>This is correct, because it seems to be an upright font; name ID 2 = 'Regular'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>STAT</p></td>
+                    <td class="feature"><p>axisValue format</p></td>
+                    <td class="message"><p>Check STAT table axisValue format.</p></td>
+                    <td class="detail"><p>'ital' [0] 'Weight' axisValue format is 'linked'.<br>This is correct, because it seems to be an upright font; name ID 2 = 'Regular'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>STAT</p></td>
+                    <td class="feature"><p>axisValue format</p></td>
+                    <td class="message"><p>Check STAT table axisValue</p></td>
+                    <td class="detail"><p>'ital' [0] 'Weight' axisValue is '1'.<br>This is correct, because it seems to be an upright font (name ID 2 = 'Regular') linked with 'Italic'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Neue Plak Text Variable Set Regular (NeuePlakTextVariable-Set.ttf)</p></td>
+                    <td class="table"><p>STAT</p></td>
+                    <td class="feature"><p>axis</p></td>
+                    <td class="message"><p>Linked variable font.</p></td>
+                    <td class="detail"><p>This font has an 'ital' axis, but does not have a linked font. Please make sure to open both fonts in PyFontChef 'Upright' and 'Italic'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>
+    </body>
+</html>
