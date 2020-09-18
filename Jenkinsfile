@@ -1,7 +1,7 @@
-properties([parameters([choice(choices: "incremental\nfull", description: 'Select build type.', name: 'build_type')]), [$class: 'JiraProjectProperty']])
+//properties([parameters([choice(choices: "full\nincremental", description: 'Select build type.', name: 'build_type')]), [$class: 'JiraProjectProperty']])
 
 def date = ''
-def branch = 'testparam4'
+def branch = 'master'
 def files = [:]
 
 def getDate() {
@@ -39,6 +39,7 @@ node('master') {
             sh """
             docker login -u $USERNAME -p $PASSWORD docker-artifact.monotype.com
             docker pull docker-artifact.monotype.com/fonttools/fonttoolkit:latest
+            docker logout docker-artifact.monotype.com
             """
         }
     }
@@ -81,14 +82,14 @@ node('master') {
                 git config --local user.email \"fonttools-jenkins@monotype.com\"
                 git config --local user.name \"Font Tools Jenkins\"
                 # we are not on branch ${branch} !!!
-                git pull
                 git checkout origin/${branch}
+                git pull origin ${branch}
                 git remote -v | grep -wq upstream || git remote add upstream git://github.com/google/fonts.git
                 git fetch upstream
                 git merge upstream/master -m \"update from Google fonts ${date}\"
             """
-            if (params.build_type == 'full') {
-                files = sh(script: "find . -iregex '.*\\(\\.ttf\\|\\.cff\\|\\.otf\\)\$' | cut -c3- | head -n 1", returnStdout: true).split("\n")
+            if (true || params.build_type == 'full') {
+                files = sh(script: "find . -iregex '.*\\(\\.ttf\\|\\.cff\\|\\.otf\\)\$' | grep apache | cut -c3-", returnStdout: true).split("\n")
             } else {
                 files = sh(script: "git diff origin/${branch} --name-only --diff-filter=d | grep -iE '(\\.otf|\\.ttf|\\.cff)\$' || x=0", returnStdout: true).split("\n")
             }
@@ -101,9 +102,35 @@ node('master') {
 
     stage('Create Font Reports') {
         files = files.findAll { item -> !item.isEmpty() }
+        folders = []
+        for (file in files) {
+            folders << file.substring(0, file.lastIndexOf('/'))
+        }
+        folders = split(folders.unique(), 5)
         files = split(files, 20)
         def stages = [:]
         def i = 0
+        for (chunk in folders) {
+            def entries = chunk
+            def n = i
+            stages["fvs ${n}"] = {
+                stage("fvs: ${n}") {
+                    for (folder in entries) {
+                        sh """
+                            docker run --user \$(id -u):\$(id -g) --rm -v \"\$PWD\":/work -w /work docker-artifact.monotype.com/fonttools/fonttoolkit:latest font-splitter --nt=false --md=false --cb=false --mvm=false --tbtoeo=false --ew=false --ofl=false "${folder}"
+                            for html in \$(find "${folder}" -name "FontSplitter*.html")
+                            do
+                                pdf=\$(echo \$html | sed 's@.html@.pdf@')
+                                xvfb-run -a wkhtmltopdf --enable-local-file-access "\$html" "\$pdf"
+                            done
+                            docker run --user \$(id -u):\$(id -g) --rm -v \"\$PWD\":/work -w /work docker-artifact.monotype.com/fonttools/fonttoolkit:latest font-splitter --r=c --mvm=false --tbtoeo=false --ew=false --ofl=false "${folder}"
+                            docker run --user \$(id -u):\$(id -g) --rm -v \"\$PWD\":/work -w /work docker-artifact.monotype.com/fonttools/fonttoolkit:latest font-sniffer --r=c "${folder}"
+                        """
+                    }
+                }
+            }
+            i = i+1
+        }
         for (chunk in files) {
             def entries = chunk
             def n = i
@@ -116,14 +143,19 @@ node('master') {
                               passwordVariable: 'RABBITMQ_PASS')
                     ]) {
                         for (file in entries) {
+                            folder = file.substring(0, file.lastIndexOf('/'))
                             json = file.replaceAll(/\.ttf$/, '_fv_report.json')
+                            txt =  file.replaceAll(/\.ttf$/, '_fv_report.txt')
+                            name_json = file.replaceAll(/\.ttf$/, '_names.json')
+                            name_txt = file.replaceAll(/\.ttf$/, '_names.txt')
                             sh """
                                 export RABBITMQ_HOST=fonttools-dev.monotype.com
                                 export RABBITMQ_USER=$RABBITMQ_USER
                                 export RABBITMQ_PASS=$RABBITMQ_PASS
-                                docker run --env RABBITMQ_HOST --env RABBITMQ_USER --env RABBITMQ_PASS  --user \$(id -u):\$(id -g) --rm -v \"\$PWD\":/work -w /work docker-artifact.monotype.com/fonttools/fonttoolkit:latest validate-font  https://github.com/Monotype/google-fonts/raw/${branch}/${file} -o ${json}
-                                export GIT_ASKPASS=\$PWD/.git-askpass
-                                git add ${json}
+                                docker run --env RABBITMQ_HOST --env RABBITMQ_USER --env RABBITMQ_PASS --user \$(id -u):\$(id -g) --rm -v \"\$PWD\":/work -w /work docker-artifact.monotype.com/fonttools/fonttoolkit:latest validate-font  https://github.com/Monotype/google-fonts/raw/${branch}/${file} -o ${json}
+                                docker run --user \$(id -u):\$(id -g) --rm -v \"\$PWD\":/work -w /work docker-artifact.monotype.com/fonttools/fonttoolkit:latest font-validation-result-to-csv ${json} -o ${txt}
+                                docker run --user \$(id -u):\$(id -g) --rm -v \"\$PWD\":/work -w /work docker-artifact.monotype.com/fonttools/fonttoolkit:latest dump-names ${file} -o ${name_txt}
+                                docker run --user \$(id -u):\$(id -g) --rm -v \"\$PWD\":/work -w /work docker-artifact.monotype.com/fonttools/fonttoolkit:latest dump-names ${file} -f json -o ${name_json}
                             """
                         }
                     }
@@ -133,6 +165,10 @@ node('master') {
         }
         stages.failFast = true
         parallel(stages)
+        sh """
+            export GIT_ASKPASS=\$PWD/.git-askpass
+            find . -iregex '.*\\(\\.json\\|\\.txt|\\.html|\\.pdf|\\.csv\\)\$' | xargs git add
+        """
     }
 
     stage('Push reports to Git') {
