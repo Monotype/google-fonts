@@ -155,7 +155,7 @@ node('master') {
                                 export RABBITMQ_USER=$RABBITMQ_USER
                                 export RABBITMQ_PASS=$RABBITMQ_PASS
                                 docker run --env RABBITMQ_HOST --env RABBITMQ_USER --env RABBITMQ_PASS --user \$(id -u):\$(id -g) --rm -v \"\$PWD\":/work -w /work docker-artifact.monotype.com/fonttools/fonttoolkit:latest validate-font  https://github.com/Monotype/google-fonts/raw/${branch}/${file} -o ${json}
-                                docker run --user \$(id -u):\$(id -g) --rm -v \"\$PWD\":/work -w /work docker-artifact.monotype.com/fonttools/fonttoolkit:latest font-validation-result-to-csv ${json} -o ${txt}
+                                docker run --user \$(id -u):\$(id -g) --rm -v \"\$PWD\":/work -w /work docker-artifact.monotype.com/fonttools/fonttoolkit:latest font-validation-result-to-csv -l CRITICAL ${json} -o ${txt}
                                 docker run --user \$(id -u):\$(id -g) --rm -v \"\$PWD\":/work -w /work docker-artifact.monotype.com/fonttools/fonttoolkit:latest dump-names ${file} -o ${name_txt}
                                 docker run --user \$(id -u):\$(id -g) --rm -v \"\$PWD\":/work -w /work docker-artifact.monotype.com/fonttools/fonttoolkit:latest dump-names ${file} -f json -o ${name_json}
                             """
@@ -168,9 +168,9 @@ node('master') {
         stages.failFast = true
         parallel(stages)
         sh """
-            docker run --user \$(id -u):\$(id -g) --rm -v \"\$PWD\":/work -w /work docker-artifact.monotype.com/fonttools/fonttoolkit:latest dump-meta-data apache apache/_summary_report.csv
-            docker run --user \$(id -u):\$(id -g) --rm -v \"\$PWD\":/work -w /work docker-artifact.monotype.com/fonttools/fonttoolkit:latest dump-meta-data ofl ofl/_summary_report.csv
-            docker run --user \$(id -u):\$(id -g) --rm -v \"\$PWD\":/work -w /work docker-artifact.monotype.com/fonttools/fonttoolkit:latest dump-meta-data ufl ufl/_summary_report.csv
+            docker run --user \$(id -u):\$(id -g) --rm -v \"\$PWD\":/work -w /work docker-artifact.monotype.com/fonttools/fonttoolkit:latest dump-meta-data --sf apache apache/_summary_report.csv
+            docker run --user \$(id -u):\$(id -g) --rm -v \"\$PWD\":/work -w /work docker-artifact.monotype.com/fonttools/fonttoolkit:latest dump-meta-data --sf ofl ofl/_summary_report.csv
+            docker run --user \$(id -u):\$(id -g) --rm -v \"\$PWD\":/work -w /work docker-artifact.monotype.com/fonttools/fonttoolkit:latest dump-meta-data --sf ufl ufl/_summary_report.csv
             export GIT_ASKPASS=\$PWD/.git-askpass
             find . -iregex '.*\\(\\.json\\|\\.txt\\|\\.html\\|\\.pdf\\|\\.csv\\)\$' | xargs git add
         """
