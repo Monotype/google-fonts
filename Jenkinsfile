@@ -117,6 +117,7 @@ node('master') {
                 stage("fvs: ${n}") {
                     for (folder in entries) {
                         sh """
+                            rm -f "${folder}/FontSplitter_*" "${folder}/FontSniffer_*"
                             docker run --user \$(id -u):\$(id -g) --rm -v \"\$PWD\":/work -w /work docker-artifact.monotype.com/fonttools/fonttoolkit:latest font-splitter --nt=false --md=false --cb=false --mvm=false --tbtoeo=false --ew=false --ofl=false "${folder}"
                             for html in \$(find "${folder}" -name "FontSplitter*.html")
                             do
@@ -149,6 +150,7 @@ node('master') {
                             name_json = file.replaceAll(/\.ttf$/, '_names.json')
                             name_txt = file.replaceAll(/\.ttf$/, '_names.txt')
                             sh """
+                                rm -f "${folder}/*_fv_report.*" "${folder}/*_names.txt" "${folder}/*_names.json"
                                 export RABBITMQ_HOST=fonttools-dev.monotype.com
                                 export RABBITMQ_USER=$RABBITMQ_USER
                                 export RABBITMQ_PASS=$RABBITMQ_PASS
