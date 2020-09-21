@@ -89,7 +89,7 @@ node('master') {
                 git merge upstream/master -m \"update from Google fonts ${date}\"
             """
             if (true || params.build_type == 'full') {
-                files = sh(script: "find . -iregex '.*\\(\\.ttf\\|\\.cff\\|\\.otf\\)\$' | grep apache | cut -c3-", returnStdout: true).split("\n")
+                files = sh(script: "find . -iregex '.*\\(\\.ttf\\|\\.cff\\|\\.otf\\)\$' | cut -c3-", returnStdout: true).split("\n")
             } else {
                 files = sh(script: "git diff origin/${branch} --name-only --diff-filter=d | grep -iE '(\\.otf|\\.ttf|\\.cff)\$' || x=0", returnStdout: true).split("\n")
             }
@@ -168,8 +168,11 @@ node('master') {
         stages.failFast = true
         parallel(stages)
         sh """
+            docker run --user \$(id -u):\$(id -g) --rm -v \"\$PWD\":/work -w /work docker-artifact.monotype.com/fonttools/fonttoolkit:latest dump-meta-data apache apache/_summary_report.csv
+            docker run --user \$(id -u):\$(id -g) --rm -v \"\$PWD\":/work -w /work docker-artifact.monotype.com/fonttools/fonttoolkit:latest dump-meta-data ofl ofl/_summary_report.csv
+            docker run --user \$(id -u):\$(id -g) --rm -v \"\$PWD\":/work -w /work docker-artifact.monotype.com/fonttools/fonttoolkit:latest dump-meta-data ufl ufl/_summary_report.csv
             export GIT_ASKPASS=\$PWD/.git-askpass
-            find . -iregex '.*\\(\\.json\\|\\.txt|\\.html|\\.pdf|\\.csv\\)\$' | xargs git add
+            find . -iregex '.*\\(\\.json\\|\\.txt\\|\\.html\\|\\.pdf\\|\\.csv\\)\$' | xargs git add
         """
     }
 
