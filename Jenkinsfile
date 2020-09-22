@@ -168,9 +168,9 @@ node('master') {
         stages.failFast = true
         parallel(stages)
         sh """
-            docker run --user \$(id -u):\$(id -g) --rm -v \"\$PWD\":/work -w /work docker-artifact.monotype.com/fonttools/fonttoolkit:latest dump-meta-data --sf apache apache/_summary_report.csv
-            docker run --user \$(id -u):\$(id -g) --rm -v \"\$PWD\":/work -w /work docker-artifact.monotype.com/fonttools/fonttoolkit:latest dump-meta-data --sf ofl ofl/_summary_report.csv
-            docker run --user \$(id -u):\$(id -g) --rm -v \"\$PWD\":/work -w /work docker-artifact.monotype.com/fonttools/fonttoolkit:latest dump-meta-data --sf ufl ufl/_summary_report.csv
+            docker run --user \$(id -u):\$(id -g) --rm -v \"\$PWD\":/work -w /work docker-artifact.monotype.com/fonttools/fonttoolkit:latest dump-meta-data --sf --rs=True apache apache/_summary_report.csv
+            docker run --user \$(id -u):\$(id -g) --rm -v \"\$PWD\":/work -w /work docker-artifact.monotype.com/fonttools/fonttoolkit:latest dump-meta-data --sf --rs=True ofl ofl/_summary_report.csv
+            docker run --user \$(id -u):\$(id -g) --rm -v \"\$PWD\":/work -w /work docker-artifact.monotype.com/fonttools/fonttoolkit:latest dump-meta-data --sf --rs=True ufl ufl/_summary_report.csv
             export GIT_ASKPASS=\$PWD/.git-askpass
             find . -iregex '.*\\(\\.json\\|\\.txt\\|\\.html\\|\\.pdf\\|\\.csv\\)\$' | xargs git add
         """
