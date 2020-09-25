@@ -1,0 +1,91 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "KumbhSans-Bold.ttf",
+                "type": "ttf",
+                "size": 50496,
+                "md5": "3202b9264855648b2f1ea0054b9bb848",
+                "geometryMd5": "dfe93dfedbb2643abd16cedae3751fbd"
+            },
+            "name": {
+                "family": "Kumbh Sans",
+                "subFamily": "Bold",
+                "fullName": "Kumbh Sans Bold",
+                "psName": "KumbhSans-Bold",
+                "versionText": "Version 1.000; ttfautohint (v1.8.3)",
+                "copyright": "Copyright 2020 The KumbhSans Project Authors (https://github.com/xconsau/KumbhSans)",
+                "trademark": "Unknown"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 389,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "XCON",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Kumbh Sans Bold",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 5,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_dfeba57e231749258f884e8bb0a2bc58.GDEF.glyphClasses",
+                        "levelname": "ERROR",
+                        "message": "The following mark glyphs have nonzero advances: [94, 104, 106, 107, 108, 109, 117, 119, 120, 128, 129, 130, 131, 175]",
+                        "timestamp": "2020-09-24T22:14:55.770422Z",
+                        "orig_output": "validate_dfeba57e231749258f884e8bb0a2bc58.GDEF.glyphClasses - ERROR - The following mark glyphs have nonzero advances: [94, 104, 106, 107, 108, 109, 117, 119, 120, 128, 129, 130, 131, 175]",
+                        "msg_code": "V1102"
+                    },
+                    {
+                        "subroutine": "validate_dfeba57e231749258f884e8bb0a2bc58.glyf.glyph 303 ('uni0123')",
+                        "levelname": "ERROR",
+                        "message": "Bounds should be [-205, -520, 1154, 1420], but are [60, -520, 1154, 1620].",
+                        "timestamp": "2020-09-24T22:15:00.433610Z",
+                        "orig_output": "validate_dfeba57e231749258f884e8bb0a2bc58.glyf.glyph 303 ('uni0123') - ERROR - Bounds should be [-205, -520, 1154, 1420], but are [60, -520, 1154, 1620].",
+                        "msg_code": "E1112"
+                    },
+                    {
+                        "subroutine": "validate_dfeba57e231749258f884e8bb0a2bc58.head",
+                        "levelname": "ERROR",
+                        "message": "The calculated value for xMin (-205) exceeds the actual value -145",
+                        "timestamp": "2020-09-24T22:15:01.988475Z",
+                        "orig_output": "validate_dfeba57e231749258f884e8bb0a2bc58.head - ERROR - The calculated value for xMin (-205) exceeds the actual value -145",
+                        "msg_code": "E1326"
+                    },
+                    {
+                        "subroutine": "validate_dfeba57e231749258f884e8bb0a2bc58.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2020-09-24T22:15:15.371097Z",
+                        "orig_output": "validate_dfeba57e231749258f884e8bb0a2bc58.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
+                    },
+                    {
+                        "subroutine": "validate_dfeba57e231749258f884e8bb0a2bc58.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 1200, but is 1201",
+                        "timestamp": "2020-09-24T22:14:57.014299Z",
+                        "orig_output": "validate_dfeba57e231749258f884e8bb0a2bc58.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 1200, but is 1201",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 33647,
+    "completedDate": "2020-09-24 22:15:26.802542"
+}

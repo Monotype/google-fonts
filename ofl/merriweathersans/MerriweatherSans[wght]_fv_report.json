@@ -1,0 +1,84 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "MerriweatherSans[wght].ttf",
+                "type": "ttf",
+                "size": 266512,
+                "md5": "a8381f759e7db5aa642d82b8e224f2bd",
+                "geometryMd5": "a1fc18ab38f5425ecf9e2eb5780c1c33"
+            },
+            "name": {
+                "family": "Merriweather Sans",
+                "subFamily": "Regular",
+                "fullName": "Merriweather Sans Regular",
+                "psName": "MerriweatherSans-Regular",
+                "versionText": "Version 2.001",
+                "copyright": "Copyright 2019 The Merriweather Project Authors (https://github.com/SorkinType/Merriweather-Sans)",
+                "trademark": "Merriweather is a trademark of Sorkin Type Co.",
+                "variationsPSNamePrefix": "MerriweatherSansRoman"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 1173,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "STC ",
+                "font_vendor": "Sorkin Type Co"
+            },
+            "validation": {
+                "font_full_name": "Merriweather Sans Regular",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 4,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_7321393f85ed4532ac62bf4481e2d855.glyf.glyph 301 ('eth').contours.contour 2",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-24T19:31:37.562969Z",
+                        "orig_output": "validate_7321393f85ed4532ac62bf4481e2d855.glyf.glyph 301 ('eth').contours.contour 2 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_7321393f85ed4532ac62bf4481e2d855.GPOS.features.[b'mark0003'].[0]",
+                        "levelname": "ERROR",
+                        "message": "The following ligatures have inconsistent counts between the GSUB Ligature Lookup that created them and the length of the mark-to-ligature data in this table: [262, 263]",
+                        "timestamp": "2020-09-24T19:31:32.068971Z",
+                        "orig_output": "validate_7321393f85ed4532ac62bf4481e2d855.GPOS.features.[b'mark0003'].[0] - ERROR - The following ligatures have inconsistent counts between the GSUB Ligature Lookup that created them and the length of the mark-to-ligature data in this table: [262, 263]",
+                        "msg_code": "V1062"
+                    },
+                    {
+                        "subroutine": "validate_7321393f85ed4532ac62bf4481e2d855.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2020-09-24T19:32:00.652877Z",
+                        "orig_output": "validate_7321393f85ed4532ac62bf4481e2d855.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
+                    },
+                    {
+                        "subroutine": "validate_7321393f85ed4532ac62bf4481e2d855.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 1244, but is 1245",
+                        "timestamp": "2020-09-24T19:31:34.944486Z",
+                        "orig_output": "validate_7321393f85ed4532ac62bf4481e2d855.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 1244, but is 1245",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 38888,
+    "completedDate": "2020-09-24 19:32:00.988835"
+}

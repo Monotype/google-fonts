@@ -1,0 +1,77 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Montserrat-ExtraBold.ttf",
+                "type": "ttf",
+                "size": 262108,
+                "md5": "9bc77c3bca968c7490de95d1532d0e87",
+                "geometryMd5": "c18063b45ae3d2b17364c3321d387df2"
+            },
+            "name": {
+                "family": "Montserrat ExtraBold",
+                "subFamily": "Regular",
+                "fullName": "Montserrat ExtraBold",
+                "psName": "Montserrat-ExtraBold",
+                "versionText": "Version 7.200",
+                "copyright": "Copyright 2011 The Montserrat Project Authors (https://github.com/JulietaUla/Montserrat)",
+                "trademark": "Unknown",
+                "typographicFamily": "Montserrat",
+                "typographicSubFamily": "ExtraBold"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 1943,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "ULA ",
+                "font_vendor": "Montserrat Typeface"
+            },
+            "validation": {
+                "font_full_name": "Montserrat ExtraBold",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 3,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_ced6179e89814656a6008784204d9574.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 9 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-25T04:54:56.988362Z",
+                        "orig_output": "validate_ced6179e89814656a6008784204d9574.fontedit.OS_2.PANOSE.weight - ERROR - Value 9 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_ced6179e89814656a6008784204d9574.GDEF.glyphClasses",
+                        "levelname": "ERROR",
+                        "message": "The following mark glyphs have nonzero advances: [1917, 1918, 1919, 1920]",
+                        "timestamp": "2020-09-25T04:54:57.035831Z",
+                        "orig_output": "validate_ced6179e89814656a6008784204d9574.GDEF.glyphClasses - ERROR - The following mark glyphs have nonzero advances: [1917, 1918, 1919, 1920]",
+                        "msg_code": "V1102"
+                    },
+                    {
+                        "subroutine": "validate_ced6179e89814656a6008784204d9574.glyf.glyph 1407 ('uni04F9')",
+                        "levelname": "ERROR",
+                        "message": "Bounds should be [64, -1, 824, 763], but are [64, 0, 824, 763].",
+                        "timestamp": "2020-09-25T04:55:08.340886Z",
+                        "orig_output": "validate_ced6179e89814656a6008784204d9574.glyf.glyph 1407 ('uni04F9') - ERROR - Bounds should be [64, -1, 824, 763], but are [64, 0, 824, 763].",
+                        "msg_code": "E1112"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 120440,
+    "completedDate": "2020-09-25 04:56:54.146703"
+}

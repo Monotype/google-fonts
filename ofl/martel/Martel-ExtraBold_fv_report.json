@@ -1,0 +1,85 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Martel-ExtraBold.ttf",
+                "type": "ttf",
+                "size": 170900,
+                "md5": "1263be7fa428dede49c310dd4fbd66fc",
+                "geometryMd5": "cfdbc2b00cdc9a9fcfe47ac0f7cbd999"
+            },
+            "name": {
+                "family": "Martel ExtraBold",
+                "subFamily": "Regular",
+                "fullName": "Martel ExtraBold",
+                "psName": "Martel-ExtraBold",
+                "versionText": "Version 1.001; ttfautohint (v1.1) -l 5 -r 5 -G 72 -x 0 -D latn -f none -w gGD -W -c",
+                "copyright": "Copyright (c) 2015 Dan Reynolds.",
+                "trademark": "Unknown",
+                "typographicFamily": "Martel",
+                "typographicSubFamily": "ExtraBold"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 718,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "toff",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Martel ExtraBold",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 4,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_df769fbff15f47cfa6bf626dcd6ae5de.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 9 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-24T11:55:36.212856Z",
+                        "orig_output": "validate_df769fbff15f47cfa6bf626dcd6ae5de.fontedit.OS_2.PANOSE.weight - ERROR - Value 9 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_df769fbff15f47cfa6bf626dcd6ae5de.GDEF.glyphClasses",
+                        "levelname": "ERROR",
+                        "message": "The following mark glyphs have nonzero advances: [675, 695, 696, 697]",
+                        "timestamp": "2020-09-24T11:55:36.275078Z",
+                        "orig_output": "validate_df769fbff15f47cfa6bf626dcd6ae5de.GDEF.glyphClasses - ERROR - The following mark glyphs have nonzero advances: [675, 695, 696, 697]",
+                        "msg_code": "V1102"
+                    },
+                    {
+                        "subroutine": "validate_df769fbff15f47cfa6bf626dcd6ae5de.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2020-09-24T11:56:25.403847Z",
+                        "orig_output": "validate_df769fbff15f47cfa6bf626dcd6ae5de.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
+                    },
+                    {
+                        "subroutine": "validate_df769fbff15f47cfa6bf626dcd6ae5de.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 636, but is 639",
+                        "timestamp": "2020-09-24T11:55:38.680070Z",
+                        "orig_output": "validate_df769fbff15f47cfa6bf626dcd6ae5de.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 636, but is 639",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 76151,
+    "completedDate": "2020-09-24 11:56:50.012136"
+}

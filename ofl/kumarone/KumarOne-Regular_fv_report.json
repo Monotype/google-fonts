@@ -1,0 +1,75 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "KumarOne-Regular.ttf",
+                "type": "ttf",
+                "size": 95852,
+                "md5": "19cceb556885c8267a5b1c00cae372a8",
+                "geometryMd5": "37730567895aa36fd5d64403df62567c"
+            },
+            "name": {
+                "family": "Kumar One",
+                "subFamily": "Regular",
+                "fullName": "Kumar One Regular",
+                "psName": "KumarOne-Regular",
+                "versionText": "Version 1.001;PS 1.001;hotconv 1.0.88;makeotf.lib2.5.647800",
+                "copyright": "Copyright (c) 2016 Indian Type Foundry (info@indiantypefoundry.com)",
+                "trademark": "Kumar One is a trademark of the Indian Type Foundry."
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 868,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "ITFO",
+                "font_vendor": "Indian Type Foundry"
+            },
+            "validation": {
+                "font_full_name": "Kumar One Regular",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 3,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_0eed1c6c0f3e4272beeec6312e4275fc.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 5 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-25T10:45:12.381385Z",
+                        "orig_output": "validate_0eed1c6c0f3e4272beeec6312e4275fc.fontedit.OS_2.PANOSE.weight - ERROR - Value 5 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_0eed1c6c0f3e4272beeec6312e4275fc",
+                        "levelname": "ERROR",
+                        "message": "Scaler preflight failed; will continue validation without a scaler.",
+                        "timestamp": "2020-09-25T10:45:12.351128Z",
+                        "orig_output": "validate_0eed1c6c0f3e4272beeec6312e4275fc - ERROR - Scaler preflight failed; will continue validation without a scaler.",
+                        "msg_code": "V1109"
+                    },
+                    {
+                        "subroutine": "validate_0eed1c6c0f3e4272beeec6312e4275fc.gasp.up to 19 ppem",
+                        "levelname": "ERROR",
+                        "message": "v0 Smoothing flag (GASP_DOGRAY) set without corresponding v1 Symmetric Smoothing flag (GASP_SYMMETRIC_SMOOTHING).",
+                        "timestamp": "2020-09-25T10:45:13.207764Z",
+                        "orig_output": "validate_0eed1c6c0f3e4272beeec6312e4275fc.gasp.up to 19 ppem - ERROR - v0 Smoothing flag (GASP_DOGRAY) set without corresponding v1 Symmetric Smoothing flag (GASP_SYMMETRIC_SMOOTHING).",
+                        "msg_code": "V0992"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 41869,
+    "completedDate": "2020-09-25 10:45:52.706733"
+}

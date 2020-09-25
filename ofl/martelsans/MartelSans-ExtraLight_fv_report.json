@@ -1,0 +1,93 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "MartelSans-ExtraLight.ttf",
+                "type": "ttf",
+                "size": 153652,
+                "md5": "416cddf46a5489474408e6904c6427be",
+                "geometryMd5": "0d603d3f1e11c35a612446657937b4c7"
+            },
+            "name": {
+                "family": "Martel Sans ExtraLight",
+                "subFamily": "Regular",
+                "fullName": "Martel Sans ExtraLight",
+                "psName": "MartelSans-ExtraLight",
+                "versionText": "Version 1.002; ttfautohint (v1.1) -l 5 -r 5 -G 72 -x 0 -D latn -f none -w gGD -W -c",
+                "copyright": "Copyright (c) 2014 Dan Reynolds. Copyright (c) 2014 Mathieu R\u00e9guer.",
+                "trademark": "Unknown",
+                "typographicFamily": "Martel Sans",
+                "typographicSubFamily": "ExtraLight"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 721,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "toff",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Martel Sans ExtraLight",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 5,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_b32b5a441db0403e8904e25331cb6a89.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 3 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-25T11:19:06.051640Z",
+                        "orig_output": "validate_b32b5a441db0403e8904e25331cb6a89.fontedit.OS_2.PANOSE.weight - ERROR - Value 3 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_b32b5a441db0403e8904e25331cb6a89.GDEF.glyphClasses",
+                        "levelname": "ERROR",
+                        "message": "The following mark glyphs have nonzero advances: [657, 658]",
+                        "timestamp": "2020-09-25T11:19:06.081090Z",
+                        "orig_output": "validate_b32b5a441db0403e8904e25331cb6a89.GDEF.glyphClasses - ERROR - The following mark glyphs have nonzero advances: [657, 658]",
+                        "msg_code": "V1102"
+                    },
+                    {
+                        "subroutine": "validate_b32b5a441db0403e8904e25331cb6a89.glyf.glyph 285 ('uni09400930094D.02').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-25T11:19:09.983228Z",
+                        "orig_output": "validate_b32b5a441db0403e8904e25331cb6a89.glyf.glyph 285 ('uni09400930094D.02').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_b32b5a441db0403e8904e25331cb6a89.glyf.glyph 286 ('uni09400930094D0902.02').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-25T11:19:10.005527Z",
+                        "orig_output": "validate_b32b5a441db0403e8904e25331cb6a89.glyf.glyph 286 ('uni09400930094D0902.02').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_b32b5a441db0403e8904e25331cb6a89.OS_2.usWeightClass",
+                        "levelname": "ERROR",
+                        "message": "The usWeightClass value 275 is not valid",
+                        "timestamp": "2020-09-25T11:19:07.331640Z",
+                        "orig_output": "validate_b32b5a441db0403e8904e25331cb6a89.OS_2.usWeightClass - ERROR - The usWeightClass value 275 is not valid",
+                        "msg_code": "E2133"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 46994,
+    "completedDate": "2020-09-25 11:19:51.538821"
+}

@@ -1,0 +1,139 @@
+﻿{
+    "processed": [],
+    "skipped": [
+        {
+            "file": {
+                "name": "Khula-Bold.ttf",
+                "type": "ttf",
+                "size": 178976,
+                "md5": "a888c0a290a6195ade86e7aa98d49165",
+                "geometryMd5": "eb6f80def26a2d26a4e95630f03ea686"
+            },
+            "error": {
+                "init": "argument of type 'NoneType' is not iterable\nTraceback (most recent call last):\n  File \"/fvs/venv/lib/python3.7/site-packages/fontvalidator/fontvalidation.py\", line 525, in __init__\n    _validate(self.editor, **val_kw)\n  File \"/fvs/venv/lib/python3.7/site-packages/fontvalidator/fontvalidation.py\", line 174, in _validate\n    r = v.validate() and r\n  File \"/fvs/venv/lib/python3.7/site-packages/fontio3/h3/validate_tt.py\", line 930, in validate\n    ok = self._doGlyph(i, logger=subLogger, **kwArgs)\n  File \"/fvs/venv/lib/python3.7/site-packages/fontio3/h3/validate_tt.py\", line 170, in _doGlyph\n    ok = state.run(logger=logger)\n  File \"/fvs/venv/lib/python3.7/site-packages/fontio3/h3/state_tt.py\", line 1085, in run\n    if not self.step(**kwArgs):\n  File \"/fvs/venv/lib/python3.7/site-packages/fontio3/h3/state_tt.py\", line 1277, in step\n    wentOK = func(self, **kwArgs)\n  File \"/fvs/venv/lib/python3.7/site-packages/fontio3/h3/details/if_.py\", line 68, in run\n    assert state.pc in d, \"Bad IFMap!\"\nTypeError: argument of type 'NoneType' is not iterable\n",
+                "raise": true
+            },
+            "name": {
+                "family": "Khula",
+                "subFamily": "Bold",
+                "fullName": "Khula Bold",
+                "psName": "Khula-Bold",
+                "versionText": "Version 1.001;PS 1.0;hotconv 1.0.72;makeotf.lib2.5.5900; ttfautohint (v1.1) -l 8 -r 50 -G 200 -x 14 -D deva -f latn -w G",
+                "copyright": "Copyright (c) 2014, Erin McLaughlin (hello@erinmclaughlin.com). Digitized data copyright 2010, Google Corporation.",
+                "trademark": "Unknown"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 571,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "GOOG",
+                "font_vendor": "Google"
+            },
+            "validation": {
+                "font_full_name": "Khula Bold",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 8,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_691b43646de54fbf9196c6748ebe9952.GDEF.glyphClasses",
+                        "levelname": "ERROR",
+                        "message": "The following mark glyphs have nonzero advances: [102, 216]",
+                        "timestamp": "2020-09-24T08:38:56.558287Z",
+                        "orig_output": "validate_691b43646de54fbf9196c6748ebe9952.GDEF.glyphClasses - ERROR - The following mark glyphs have nonzero advances: [102, 216]",
+                        "msg_code": "V1102"
+                    },
+                    {
+                        "subroutine": "validate_691b43646de54fbf9196c6748ebe9952.hints.glyph 284.FDEF 29.FDEF 19.FDEF 114.FDEF 73.FDEF 72",
+                        "levelname": "ERROR",
+                        "message": "RCVT[] in FDEF 72 (PC 2) is attempting to read from CVT index 255, which does not exist!",
+                        "timestamp": "2020-09-24T08:40:49.969357Z",
+                        "orig_output": "validate_691b43646de54fbf9196c6748ebe9952.hints.glyph 284.FDEF 29.FDEF 19.FDEF 114.FDEF 73.FDEF 72 - ERROR - RCVT[] in FDEF 72 (PC 2) is attempting to read from CVT index 255, which does not exist!",
+                        "glyph": {
+                            "id": 284,
+                            "name": "iivowelsignreph3deva"
+                        },
+                        "msg_code": "G0029"
+                    },
+                    {
+                        "subroutine": "validate_691b43646de54fbf9196c6748ebe9952.hints.glyph 298",
+                        "levelname": "ERROR",
+                        "message": "ELSE without preceding IF at PC 63!",
+                        "timestamp": "2020-09-24T08:40:55.829438Z",
+                        "orig_output": "validate_691b43646de54fbf9196c6748ebe9952.hints.glyph 298 - ERROR - ELSE without preceding IF at PC 63!",
+                        "glyph": {
+                            "id": 298,
+                            "name": "oshortvowelsignanusvaradeva"
+                        },
+                        "msg_code": "Vxxxx"
+                    },
+                    {
+                        "subroutine": "validate_691b43646de54fbf9196c6748ebe9952.hints.glyph 298.hints.opcode 17",
+                        "levelname": "ERROR",
+                        "message": "The opcode value 0xFF specifies an undefined color distance!",
+                        "timestamp": "2020-09-24T08:40:55.827637Z",
+                        "orig_output": "validate_691b43646de54fbf9196c6748ebe9952.hints.glyph 298.hints.opcode 17 - ERROR - The opcode value 0xFF specifies an undefined color distance!",
+                        "glyph": {
+                            "id": 298,
+                            "name": "oshortvowelsignanusvaradeva"
+                        },
+                        "msg_code": "V1068"
+                    },
+                    {
+                        "subroutine": "validate_691b43646de54fbf9196c6748ebe9952.hints.glyph 298.hints.opcode 18",
+                        "levelname": "ERROR",
+                        "message": "The opcode value 0xFF specifies an undefined color distance!",
+                        "timestamp": "2020-09-24T08:40:55.827788Z",
+                        "orig_output": "validate_691b43646de54fbf9196c6748ebe9952.hints.glyph 298.hints.opcode 18 - ERROR - The opcode value 0xFF specifies an undefined color distance!",
+                        "glyph": {
+                            "id": 298,
+                            "name": "oshortvowelsignanusvaradeva"
+                        },
+                        "msg_code": "V1068"
+                    },
+                    {
+                        "subroutine": "validate_691b43646de54fbf9196c6748ebe9952.hints.glyph 298.hints.opcode 19",
+                        "levelname": "ERROR",
+                        "message": "The opcode value 0xFF specifies an undefined color distance!",
+                        "timestamp": "2020-09-24T08:40:55.827862Z",
+                        "orig_output": "validate_691b43646de54fbf9196c6748ebe9952.hints.glyph 298.hints.opcode 19 - ERROR - The opcode value 0xFF specifies an undefined color distance!",
+                        "glyph": {
+                            "id": 298,
+                            "name": "oshortvowelsignanusvaradeva"
+                        },
+                        "msg_code": "V1068"
+                    },
+                    {
+                        "subroutine": "validate_691b43646de54fbf9196c6748ebe9952.maxp",
+                        "levelname": "ERROR",
+                        "message": "Encountered an error during validation: TypeError: argument of type 'NoneType' is not iterable",
+                        "timestamp": "2020-09-24T08:40:08.199216Z",
+                        "orig_output": "validate_691b43646de54fbf9196c6748ebe9952.maxp - ERROR - Encountered an error during validation: TypeError: argument of type 'NoneType' is not iterable",
+                        "msg_code": "V0246"
+                    },
+                    {
+                        "subroutine": "validate_691b43646de54fbf9196c6748ebe9952.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 1253, but is 1209",
+                        "timestamp": "2020-09-24T08:38:58.661925Z",
+                        "orig_output": "validate_691b43646de54fbf9196c6748ebe9952.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 1253, but is 1209",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 122673,
+    "completedDate": "2020-09-24 08:40:56.219513"
+}

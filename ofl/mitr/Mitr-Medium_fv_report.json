@@ -1,0 +1,77 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Mitr-Medium.ttf",
+                "type": "ttf",
+                "size": 222116,
+                "md5": "81c778ada465df16a6a06216b1bbbf96",
+                "geometryMd5": "5dc59cd286b3749090908a5ce004b013"
+            },
+            "name": {
+                "family": "Mitr Medium",
+                "subFamily": "Regular",
+                "fullName": "Mitr Medium",
+                "psName": "Mitr-Medium",
+                "versionText": "Version 1.003",
+                "copyright": "Copyright (c) 2015, Cadson Demak (info@cadsondemak.com)",
+                "trademark": "Unknown",
+                "typographicFamily": "Mitr",
+                "typographicSubFamily": "Medium"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 775,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "CDK ",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Mitr Medium",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 3,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_f9e46067457948bdaec25e38ac4fb444.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 6 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-24T09:45:04.369562Z",
+                        "orig_output": "validate_f9e46067457948bdaec25e38ac4fb444.fontedit.OS_2.PANOSE.weight - ERROR - Value 6 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_f9e46067457948bdaec25e38ac4fb444.glyf.glyph 293 ('iogonek').contours.contour 1",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-24T09:45:13.329359Z",
+                        "orig_output": "validate_f9e46067457948bdaec25e38ac4fb444.glyf.glyph 293 ('iogonek').contours.contour 1 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_f9e46067457948bdaec25e38ac4fb444.glyf.glyph 59 ('Eogonek').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-24T09:45:09.541937Z",
+                        "orig_output": "validate_f9e46067457948bdaec25e38ac4fb444.glyf.glyph 59 ('Eogonek').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 229204,
+    "completedDate": "2020-09-24 09:48:50.642965"
+}

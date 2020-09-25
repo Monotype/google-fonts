@@ -1,0 +1,99 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Mali-Bold.ttf",
+                "type": "ttf",
+                "size": 112176,
+                "md5": "18983c725f84f9cfc5397b08d890a028",
+                "geometryMd5": "2fd7334397e81281b2fb03f8e543bc1f"
+            },
+            "name": {
+                "family": "Mali",
+                "subFamily": "Bold",
+                "fullName": "Mali Bold",
+                "psName": "Mali-Bold",
+                "versionText": "Version 1.000; ttfautohint (v1.6)",
+                "copyright": "Copyright 2018 The Mali Project Authors (https://github.com/cadsondemak/Mali)",
+                "trademark": "Unknown"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 773,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "CDK ",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Mali Bold",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 6,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_99f99570bc6b41cc9f5e5552d9307fda.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 8 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-25T08:19:38.141678Z",
+                        "orig_output": "validate_99f99570bc6b41cc9f5e5552d9307fda.fontedit.OS_2.PANOSE.weight - ERROR - Value 8 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_99f99570bc6b41cc9f5e5552d9307fda.glyf.glyph 231 ('aogonek').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-25T08:19:43.383384Z",
+                        "orig_output": "validate_99f99570bc6b41cc9f5e5552d9307fda.glyf.glyph 231 ('aogonek').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_99f99570bc6b41cc9f5e5552d9307fda.glyf.glyph 270 ('g').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-25T08:19:44.102282Z",
+                        "orig_output": "validate_99f99570bc6b41cc9f5e5552d9307fda.glyf.glyph 270 ('g').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_99f99570bc6b41cc9f5e5552d9307fda.glyf.glyph 434 ('uni0E05').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-25T08:19:46.136500Z",
+                        "orig_output": "validate_99f99570bc6b41cc9f5e5552d9307fda.glyf.glyph 434 ('uni0E05').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_99f99570bc6b41cc9f5e5552d9307fda.maxp",
+                        "levelname": "ERROR",
+                        "message": "The maxZones value should be 1, but is 0.",
+                        "timestamp": "2020-09-25T08:19:56.682677Z",
+                        "orig_output": "validate_99f99570bc6b41cc9f5e5552d9307fda.maxp - ERROR - The maxZones value should be 1, but is 0.",
+                        "msg_code": "V0272"
+                    },
+                    {
+                        "subroutine": "validate_99f99570bc6b41cc9f5e5552d9307fda.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 626, but is 612",
+                        "timestamp": "2020-09-25T08:19:40.338076Z",
+                        "orig_output": "validate_99f99570bc6b41cc9f5e5552d9307fda.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 626, but is 612",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 21915,
+    "completedDate": "2020-09-25 08:19:57.315257"
+}

@@ -1,0 +1,83 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "MartelSans-Regular.ttf",
+                "type": "ttf",
+                "size": 153396,
+                "md5": "7bc1ae0711d292287fd948f397f05e08",
+                "geometryMd5": "9c50055d5e64389ed3a2ddd8306e8cd8"
+            },
+            "name": {
+                "family": "Martel Sans",
+                "subFamily": "Regular",
+                "fullName": "Martel Sans Regular",
+                "psName": "MartelSans-Regular",
+                "versionText": "Version 1.002; ttfautohint (v1.1) -l 5 -r 5 -G 72 -x 0 -D latn -f none -w gGD -W -c",
+                "copyright": "Copyright (c) 2014 Dan Reynolds. Copyright (c) 2014 Mathieu R\u00e9guer.",
+                "trademark": "Unknown"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 721,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "toff",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Martel Sans Regular",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 4,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_83d220820b2645f39035d7fbf3715e70.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 5 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-25T11:21:49.602932Z",
+                        "orig_output": "validate_83d220820b2645f39035d7fbf3715e70.fontedit.OS_2.PANOSE.weight - ERROR - Value 5 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_83d220820b2645f39035d7fbf3715e70.GDEF.glyphClasses",
+                        "levelname": "ERROR",
+                        "message": "The following mark glyphs have nonzero advances: [657, 658, 707]",
+                        "timestamp": "2020-09-25T11:21:49.632474Z",
+                        "orig_output": "validate_83d220820b2645f39035d7fbf3715e70.GDEF.glyphClasses - ERROR - The following mark glyphs have nonzero advances: [657, 658, 707]",
+                        "msg_code": "V1102"
+                    },
+                    {
+                        "subroutine": "validate_83d220820b2645f39035d7fbf3715e70.glyf.glyph 361 ('uni0918094D0930').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-25T11:21:54.726348Z",
+                        "orig_output": "validate_83d220820b2645f39035d7fbf3715e70.glyf.glyph 361 ('uni0918094D0930').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_83d220820b2645f39035d7fbf3715e70.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 588, but is 590",
+                        "timestamp": "2020-09-25T11:21:51.023201Z",
+                        "orig_output": "validate_83d220820b2645f39035d7fbf3715e70.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 588, but is 590",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 47071,
+    "completedDate": "2020-09-25 11:22:35.028327"
+}

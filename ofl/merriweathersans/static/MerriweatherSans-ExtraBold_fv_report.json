@@ -1,0 +1,77 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "MerriweatherSans-ExtraBold.ttf",
+                "type": "ttf",
+                "size": 168192,
+                "md5": "fc34a9efa12310fa94c77ec5fa1a82f6",
+                "geometryMd5": "da6355163b75443eaee9de39af49beae"
+            },
+            "name": {
+                "family": "Merriweather Sans ExtraBold",
+                "subFamily": "Regular",
+                "fullName": "Merriweather Sans ExtraBold",
+                "psName": "MerriweatherSans-ExtraBold",
+                "versionText": "Version 2.001; ttfautohint (v1.8.3)",
+                "copyright": "Copyright 2019 The Merriweather Project Authors (https://github.com/SorkinType/Merriweather-Sans)",
+                "trademark": "Merriweather is a trademark of Sorkin Type Co.",
+                "typographicFamily": "Merriweather Sans",
+                "typographicSubFamily": "ExtraBold"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 1173,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "STC ",
+                "font_vendor": "Sorkin Type Co"
+            },
+            "validation": {
+                "font_full_name": "Merriweather Sans ExtraBold",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 3,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_8bc6065b70ea4d3ea1a04aee56f9670b.glyf.glyph 301 ('eth').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-24T20:31:14.367260Z",
+                        "orig_output": "validate_8bc6065b70ea4d3ea1a04aee56f9670b.glyf.glyph 301 ('eth').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_8bc6065b70ea4d3ea1a04aee56f9670b.GPOS.features.[b'mark0003'].[0]",
+                        "levelname": "ERROR",
+                        "message": "The following ligatures have inconsistent counts between the GSUB Ligature Lookup that created them and the length of the mark-to-ligature data in this table: [262, 263]",
+                        "timestamp": "2020-09-24T20:31:11.499037Z",
+                        "orig_output": "validate_8bc6065b70ea4d3ea1a04aee56f9670b.GPOS.features.[b'mark0003'].[0] - ERROR - The following ligatures have inconsistent counts between the GSUB Ligature Lookup that created them and the length of the mark-to-ligature data in this table: [262, 263]",
+                        "msg_code": "V1062"
+                    },
+                    {
+                        "subroutine": "validate_8bc6065b70ea4d3ea1a04aee56f9670b.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2020-09-24T20:32:14.465992Z",
+                        "orig_output": "validate_8bc6065b70ea4d3ea1a04aee56f9670b.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 115878,
+    "completedDate": "2020-09-24 20:33:04.280924"
+}

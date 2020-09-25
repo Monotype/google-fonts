@@ -1,0 +1,99 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Martel-Regular.ttf",
+                "type": "ttf",
+                "size": 170196,
+                "md5": "6e2ee67fdaeb55243f7756c686abbe30",
+                "geometryMd5": "f96ecba371a409c8f050bacd593c1c06"
+            },
+            "name": {
+                "family": "Martel",
+                "subFamily": "Regular",
+                "fullName": "Martel",
+                "psName": "Martel-Regular",
+                "versionText": "Version 1.001; ttfautohint (v1.1) -l 5 -r 5 -G 72 -x 0 -D latn -f none -w gGD -W -c",
+                "copyright": "Copyright (c) 2015 Dan Reynolds.",
+                "trademark": "Unknown"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 718,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "toff",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Martel",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 6,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_54cf4b0b7acd4d568a1f1bdc7986afcb.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 5 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-24T12:07:18.757650Z",
+                        "orig_output": "validate_54cf4b0b7acd4d568a1f1bdc7986afcb.fontedit.OS_2.PANOSE.weight - ERROR - Value 5 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_54cf4b0b7acd4d568a1f1bdc7986afcb.GDEF.glyphClasses",
+                        "levelname": "ERROR",
+                        "message": "The following mark glyphs have nonzero advances: [675, 695, 696, 697]",
+                        "timestamp": "2020-09-24T12:07:18.814043Z",
+                        "orig_output": "validate_54cf4b0b7acd4d568a1f1bdc7986afcb.GDEF.glyphClasses - ERROR - The following mark glyphs have nonzero advances: [675, 695, 696, 697]",
+                        "msg_code": "V1102"
+                    },
+                    {
+                        "subroutine": "validate_54cf4b0b7acd4d568a1f1bdc7986afcb.glyf.glyph 271 ('uni093F0930094D.0').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-24T12:07:26.455447Z",
+                        "orig_output": "validate_54cf4b0b7acd4d568a1f1bdc7986afcb.glyf.glyph 271 ('uni093F0930094D.0').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_54cf4b0b7acd4d568a1f1bdc7986afcb.glyf.glyph 529 ('uni0967').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-24T12:07:35.273039Z",
+                        "orig_output": "validate_54cf4b0b7acd4d568a1f1bdc7986afcb.glyf.glyph 529 ('uni0967').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_54cf4b0b7acd4d568a1f1bdc7986afcb.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2020-09-24T12:08:08.522873Z",
+                        "orig_output": "validate_54cf4b0b7acd4d568a1f1bdc7986afcb.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
+                    },
+                    {
+                        "subroutine": "validate_54cf4b0b7acd4d568a1f1bdc7986afcb.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 606, but is 609",
+                        "timestamp": "2020-09-24T12:07:20.909236Z",
+                        "orig_output": "validate_54cf4b0b7acd4d568a1f1bdc7986afcb.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 606, but is 609",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 80330,
+    "completedDate": "2020-09-24 12:08:36.466895"
+}

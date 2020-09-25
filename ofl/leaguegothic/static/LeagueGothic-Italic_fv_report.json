@@ -1,0 +1,91 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "LeagueGothic-Italic.ttf",
+                "type": "ttf",
+                "size": 54164,
+                "md5": "f94b17d15280a78b055c02c1a1e6b85a",
+                "geometryMd5": "3ffcc5bfef84c16a5b5d6176437b05c3"
+            },
+            "name": {
+                "family": "League Gothic",
+                "subFamily": "Italic",
+                "fullName": "League Gothic Italic",
+                "psName": "LeagueGothic-Italic",
+                "versionText": "Version 1.600; ttfautohint (v1.8.3)",
+                "copyright": "Copyright 2020 The League Gothic Project Authors (https://github.com/bghryct/league-gothic)",
+                "trademark": "Unknown"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 413,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "NONE",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "League Gothic Italic",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 5,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_036c0be65bb74e05b0115441f51b0c1b.glyf.glyph 146 ('g').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-25T09:07:58.211449Z",
+                        "orig_output": "validate_036c0be65bb74e05b0115441f51b0c1b.glyf.glyph 146 ('g').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_036c0be65bb74e05b0115441f51b0c1b.head",
+                        "levelname": "ERROR",
+                        "message": "The macStyle italic bit is True but post.italicAngle is   0.0",
+                        "timestamp": "2020-09-25T09:08:00.668575Z",
+                        "orig_output": "validate_036c0be65bb74e05b0115441f51b0c1b.head - ERROR - The macStyle italic bit is True but post.italicAngle is   0.0",
+                        "msg_code": "E1316"
+                    },
+                    {
+                        "subroutine": "validate_036c0be65bb74e05b0115441f51b0c1b.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2020-09-25T09:08:20.438180Z",
+                        "orig_output": "validate_036c0be65bb74e05b0115441f51b0c1b.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
+                    },
+                    {
+                        "subroutine": "validate_036c0be65bb74e05b0115441f51b0c1b.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 759, but is 760",
+                        "timestamp": "2020-09-25T09:07:56.433967Z",
+                        "orig_output": "validate_036c0be65bb74e05b0115441f51b0c1b.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 759, but is 760",
+                        "msg_code": "E2135"
+                    },
+                    {
+                        "subroutine": "validate_036c0be65bb74e05b0115441f51b0c1b.post",
+                        "levelname": "ERROR",
+                        "message": "Zero italic angle but head.macStyle.italic is True.",
+                        "timestamp": "2020-09-25T09:08:20.439171Z",
+                        "orig_output": "validate_036c0be65bb74e05b0115441f51b0c1b.post - ERROR - Zero italic angle but head.macStyle.italic is True.",
+                        "msg_code": "E2310"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 52979,
+    "completedDate": "2020-09-25 09:08:45.714797"
+}

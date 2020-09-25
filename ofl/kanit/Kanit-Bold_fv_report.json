@@ -1,0 +1,71 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Kanit-Bold.ttf",
+                "type": "ttf",
+                "size": 176136,
+                "md5": "5e47d7fa1b13f5d623a0cedabcc62433",
+                "geometryMd5": "9ec4febe41060b42a5bab250256d3428"
+            },
+            "name": {
+                "family": "Kanit",
+                "subFamily": "Bold",
+                "fullName": "Kanit Bold",
+                "psName": "Kanit-Bold",
+                "versionText": "Version 2.000; ttfautohint (v1.8.3)",
+                "copyright": "Copyright 2020 The Kanit Project Authors (https://github.com/cadsondemak/kanit)",
+                "trademark": "Unknown"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 775,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "CDK ",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Kanit Bold",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 2,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_ab659ff4a26240bd86d3fa36dd7d7977.hints.glyph 623.FDEF 31.FDEF 21.FDEF 139.FDEF 79.FDEF 70.FDEF 4",
+                        "levelname": "ERROR",
+                        "message": "RCVT[] in FDEF 4 (PC 31) is attempting to read from CVT index -8, which does not exist!",
+                        "timestamp": "2020-09-25T07:12:15.332385Z",
+                        "orig_output": "validate_ab659ff4a26240bd86d3fa36dd7d7977.hints.glyph 623.FDEF 31.FDEF 21.FDEF 139.FDEF 79.FDEF 70.FDEF 4 - ERROR - RCVT[] in FDEF 4 (PC 31) is attempting to read from CVT index -8, which does not exist!",
+                        "glyph": {
+                            "id": 623,
+                            "name": "notequal"
+                        },
+                        "msg_code": "G0029"
+                    },
+                    {
+                        "subroutine": "validate_ab659ff4a26240bd86d3fa36dd7d7977.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2020-09-25T07:10:25.919495Z",
+                        "orig_output": "validate_ab659ff4a26240bd86d3fa36dd7d7977.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 270521,
+    "completedDate": "2020-09-25 07:12:34.791463"
+}

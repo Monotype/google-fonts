@@ -1,0 +1,727 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Kadwa-Bold.ttf",
+                "type": "ttf",
+                "size": 239892,
+                "md5": "1112fdce6979869bcc137d1c831173ec",
+                "geometryMd5": "56c6c2b28c25e8c3acf8bf3a9a4c5fa7"
+            },
+            "name": {
+                "family": "Kadwa",
+                "subFamily": "Bold",
+                "fullName": "Kadwa Bold",
+                "psName": "Kadwa-Bold",
+                "versionText": "Version 1.001;PS 001.000;hotconv 1.0.70;makeotf.lib2.5.58329 DEVELOPMENT; ttfautohint (v1.00) -l 8 -r 50 -G 200 -x 14 -D latn -f none -w G",
+                "copyright": "Copyright (c) 2014-2015, Sol Matas (www.huertatipografica.com - sol@huertatipografica.com)",
+                "trademark": "Kadwa is a trademark of Sol Matas (www.huertatipografica.com)."
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 932,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "HT  ",
+                "font_vendor": "Huerta Tipogr\u00e1fica"
+            },
+            "validation": {
+                "font_full_name": "Kadwa Bold",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 63,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_5ac214f4e9634969ad0fac0f398331cd.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 8 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-24T13:31:59.886077Z",
+                        "orig_output": "validate_5ac214f4e9634969ad0fac0f398331cd.fontedit.OS_2.PANOSE.weight - ERROR - Value 8 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_5ac214f4e9634969ad0fac0f398331cd.glyf.glyph 324 ('aringacute').components.[2]",
+                        "levelname": "ERROR",
+                        "message": "Component matrix collapses to zero in x.",
+                        "timestamp": "2020-09-24T13:32:08.948667Z",
+                        "orig_output": "validate_5ac214f4e9634969ad0fac0f398331cd.glyf.glyph 324 ('aringacute').components.[2] - ERROR - Component matrix collapses to zero in x.",
+                        "msg_code": "E1116"
+                    },
+                    {
+                        "subroutine": "validate_5ac214f4e9634969ad0fac0f398331cd.glyf.glyph 324 ('aringacute').components.[2]",
+                        "levelname": "ERROR",
+                        "message": "Component matrix collapses to zero in y.",
+                        "timestamp": "2020-09-24T13:32:08.948774Z",
+                        "orig_output": "validate_5ac214f4e9634969ad0fac0f398331cd.glyf.glyph 324 ('aringacute').components.[2] - ERROR - Component matrix collapses to zero in y.",
+                        "msg_code": "E1116"
+                    },
+                    {
+                        "subroutine": "validate_5ac214f4e9634969ad0fac0f398331cd.glyf.glyph 334 ('apostrophemod').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-24T13:32:08.992241Z",
+                        "orig_output": "validate_5ac214f4e9634969ad0fac0f398331cd.glyf.glyph 334 ('apostrophemod').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_5ac214f4e9634969ad0fac0f398331cd.glyf.glyph 907 ('eMatra_anusvara-deva')",
+                        "levelname": "ERROR",
+                        "message": "Bounds should be [-1202, 1382, -12, 2054], but are [-1202, 1382, -11, 2054].",
+                        "timestamp": "2020-09-24T13:32:24.688559Z",
+                        "orig_output": "validate_5ac214f4e9634969ad0fac0f398331cd.glyf.glyph 907 ('eMatra_anusvara-deva') - ERROR - Bounds should be [-1202, 1382, -12, 2054], but are [-1202, 1382, -11, 2054].",
+                        "msg_code": "E1112"
+                    },
+                    {
+                        "subroutine": "validate_5ac214f4e9634969ad0fac0f398331cd.glyf.glyph 910 ('aiMatra_anusvara-deva')",
+                        "levelname": "ERROR",
+                        "message": "Bounds should be [-1204, 1382, 33, 2183], but are [-1204, 1382, 34, 2183].",
+                        "timestamp": "2020-09-24T13:32:24.705737Z",
+                        "orig_output": "validate_5ac214f4e9634969ad0fac0f398331cd.glyf.glyph 910 ('aiMatra_anusvara-deva') - ERROR - Bounds should be [-1204, 1382, 33, 2183], but are [-1204, 1382, 34, 2183].",
+                        "msg_code": "E1112"
+                    },
+                    {
+                        "subroutine": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 112.FDEF 29.FDEF 19.FDEF 114.FDEF 88.FDEF 64.FDEF 4.call FDEF 3",
+                        "levelname": "ERROR",
+                        "message": "RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "timestamp": "2020-09-24T13:33:09.016948Z",
+                        "orig_output": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 112.FDEF 29.FDEF 19.FDEF 114.FDEF 88.FDEF 64.FDEF 4.call FDEF 3 - ERROR - RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "glyph": {
+                            "id": 112,
+                            "name": "registered"
+                        },
+                        "msg_code": "G0029"
+                    },
+                    {
+                        "subroutine": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 114.FDEF 24.FDEF 19.FDEF 114.FDEF 76.FDEF 65.FDEF 4.call FDEF 3",
+                        "levelname": "ERROR",
+                        "message": "RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "timestamp": "2020-09-24T13:33:09.195142Z",
+                        "orig_output": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 114.FDEF 24.FDEF 19.FDEF 114.FDEF 76.FDEF 65.FDEF 4.call FDEF 3 - ERROR - RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "glyph": {
+                            "id": 114,
+                            "name": "degree"
+                        },
+                        "msg_code": "G0029"
+                    },
+                    {
+                        "subroutine": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 119.FDEF 26.FDEF 19.FDEF 114.FDEF 88.FDEF 64.FDEF 4.call FDEF 3",
+                        "levelname": "ERROR",
+                        "message": "RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "timestamp": "2020-09-24T13:33:09.661306Z",
+                        "orig_output": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 119.FDEF 26.FDEF 19.FDEF 114.FDEF 88.FDEF 64.FDEF 4.call FDEF 3 - ERROR - RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "glyph": {
+                            "id": 119,
+                            "name": "micro"
+                        },
+                        "msg_code": "G0029"
+                    },
+                    {
+                        "subroutine": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 136.FDEF 29.FDEF 19.FDEF 114.FDEF 87.FDEF 64.FDEF 4.call FDEF 3",
+                        "levelname": "ERROR",
+                        "message": "RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "timestamp": "2020-09-24T13:33:10.871850Z",
+                        "orig_output": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 136.FDEF 29.FDEF 19.FDEF 114.FDEF 87.FDEF 64.FDEF 4.call FDEF 3 - ERROR - RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "glyph": {
+                            "id": 136,
+                            "name": "AE"
+                        },
+                        "msg_code": "G0029"
+                    },
+                    {
+                        "subroutine": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 137.FDEF 28.FDEF 19.FDEF 114.FDEF 88.FDEF 64.FDEF 4.call FDEF 3",
+                        "levelname": "ERROR",
+                        "message": "RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "timestamp": "2020-09-24T13:33:11.108432Z",
+                        "orig_output": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 137.FDEF 28.FDEF 19.FDEF 114.FDEF 88.FDEF 64.FDEF 4.call FDEF 3 - ERROR - RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "glyph": {
+                            "id": 137,
+                            "name": "Ccedilla"
+                        },
+                        "msg_code": "G0029"
+                    },
+                    {
+                        "subroutine": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 161.FDEF 21.FDEF 19.FDEF 114.FDEF 88.FDEF 64.FDEF 4.call FDEF 3",
+                        "levelname": "ERROR",
+                        "message": "RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "timestamp": "2020-09-24T13:33:11.802717Z",
+                        "orig_output": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 161.FDEF 21.FDEF 19.FDEF 114.FDEF 88.FDEF 64.FDEF 4.call FDEF 3 - ERROR - RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "glyph": {
+                            "id": 161,
+                            "name": "germandbls"
+                        },
+                        "msg_code": "G0029"
+                    },
+                    {
+                        "subroutine": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 168.FDEF 29.FDEF 19.FDEF 114.FDEF 88.FDEF 64.FDEF 4.call FDEF 3",
+                        "levelname": "ERROR",
+                        "message": "RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "timestamp": "2020-09-24T13:33:12.006985Z",
+                        "orig_output": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 168.FDEF 29.FDEF 19.FDEF 114.FDEF 88.FDEF 64.FDEF 4.call FDEF 3 - ERROR - RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "glyph": {
+                            "id": 168,
+                            "name": "ae"
+                        },
+                        "msg_code": "G0029"
+                    },
+                    {
+                        "subroutine": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 185.FDEF 26.FDEF 19.FDEF 114.FDEF 88.FDEF 64.FDEF 4.call FDEF 3",
+                        "levelname": "ERROR",
+                        "message": "RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "timestamp": "2020-09-24T13:33:12.417124Z",
+                        "orig_output": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 185.FDEF 26.FDEF 19.FDEF 114.FDEF 88.FDEF 64.FDEF 4.call FDEF 3 - ERROR - RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "glyph": {
+                            "id": 185,
+                            "name": "divide"
+                        },
+                        "msg_code": "G0029"
+                    },
+                    {
+                        "subroutine": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 192.FDEF 26.FDEF 19.FDEF 114.FDEF 88.FDEF 64.FDEF 4.call FDEF 3",
+                        "levelname": "ERROR",
+                        "message": "RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "timestamp": "2020-09-24T13:33:12.556076Z",
+                        "orig_output": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 192.FDEF 26.FDEF 19.FDEF 114.FDEF 88.FDEF 64.FDEF 4.call FDEF 3 - ERROR - RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "glyph": {
+                            "id": 192,
+                            "name": "thorn"
+                        },
+                        "msg_code": "G0029"
+                    },
+                    {
+                        "subroutine": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 199.FDEF 29.FDEF 19.FDEF 114.FDEF 88.FDEF 64.FDEF 4.call FDEF 3",
+                        "levelname": "ERROR",
+                        "message": "RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "timestamp": "2020-09-24T13:33:12.825133Z",
+                        "orig_output": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 199.FDEF 29.FDEF 19.FDEF 114.FDEF 88.FDEF 64.FDEF 4.call FDEF 3 - ERROR - RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "glyph": {
+                            "id": 199,
+                            "name": "aogonek"
+                        },
+                        "msg_code": "G0029"
+                    },
+                    {
+                        "subroutine": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 209.FDEF 27.FDEF 19.FDEF 114.FDEF 88.FDEF 64.FDEF 4.call FDEF 3",
+                        "levelname": "ERROR",
+                        "message": "RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "timestamp": "2020-09-24T13:33:13.053583Z",
+                        "orig_output": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 209.FDEF 27.FDEF 19.FDEF 114.FDEF 88.FDEF 64.FDEF 4.call FDEF 3 - ERROR - RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "glyph": {
+                            "id": 209,
+                            "name": "dcaron"
+                        },
+                        "msg_code": "G0029"
+                    },
+                    {
+                        "subroutine": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 211.FDEF 29.FDEF 19.FDEF 114.FDEF 88.FDEF 64.FDEF 4.call FDEF 3",
+                        "levelname": "ERROR",
+                        "message": "RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "timestamp": "2020-09-24T13:33:13.366184Z",
+                        "orig_output": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 211.FDEF 29.FDEF 19.FDEF 114.FDEF 88.FDEF 64.FDEF 4.call FDEF 3 - ERROR - RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "glyph": {
+                            "id": 211,
+                            "name": "dcroat"
+                        },
+                        "msg_code": "G0029"
+                    },
+                    {
+                        "subroutine": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 235.FDEF 26.FDEF 19.FDEF 114.FDEF 88.FDEF 64.FDEF 4.call FDEF 3",
+                        "levelname": "ERROR",
+                        "message": "RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "timestamp": "2020-09-24T13:33:14.135225Z",
+                        "orig_output": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 235.FDEF 26.FDEF 19.FDEF 114.FDEF 88.FDEF 64.FDEF 4.call FDEF 3 - ERROR - RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "glyph": {
+                            "id": 235,
+                            "name": "itilde"
+                        },
+                        "msg_code": "G0029"
+                    },
+                    {
+                        "subroutine": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 241.FDEF 21.FDEF 19.FDEF 114.FDEF 88.FDEF 64.FDEF 4.call FDEF 3",
+                        "levelname": "ERROR",
+                        "message": "RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "timestamp": "2020-09-24T13:33:14.527627Z",
+                        "orig_output": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 241.FDEF 21.FDEF 19.FDEF 114.FDEF 88.FDEF 64.FDEF 4.call FDEF 3 - ERROR - RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "glyph": {
+                            "id": 241,
+                            "name": "iogonek"
+                        },
+                        "msg_code": "G0029"
+                    },
+                    {
+                        "subroutine": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 269.FDEF 26.FDEF 19.FDEF 114.FDEF 88.FDEF 64.FDEF 4.call FDEF 3",
+                        "levelname": "ERROR",
+                        "message": "RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "timestamp": "2020-09-24T13:33:15.547446Z",
+                        "orig_output": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 269.FDEF 26.FDEF 19.FDEF 114.FDEF 88.FDEF 64.FDEF 4.call FDEF 3 - ERROR - RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "glyph": {
+                            "id": 269,
+                            "name": "eng"
+                        },
+                        "msg_code": "G0029"
+                    },
+                    {
+                        "subroutine": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 276.FDEF 29.FDEF 19.FDEF 114.FDEF 89.FDEF 64.FDEF 4.call FDEF 3",
+                        "levelname": "ERROR",
+                        "message": "RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "timestamp": "2020-09-24T13:33:15.976802Z",
+                        "orig_output": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 276.FDEF 29.FDEF 19.FDEF 114.FDEF 89.FDEF 64.FDEF 4.call FDEF 3 - ERROR - RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "glyph": {
+                            "id": 276,
+                            "name": "OE"
+                        },
+                        "msg_code": "G0029"
+                    },
+                    {
+                        "subroutine": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 288.FDEF 29.FDEF 19.FDEF 114.FDEF 88.FDEF 64.FDEF 4.call FDEF 3",
+                        "levelname": "ERROR",
+                        "message": "RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "timestamp": "2020-09-24T13:33:16.478263Z",
+                        "orig_output": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 288.FDEF 29.FDEF 19.FDEF 114.FDEF 88.FDEF 64.FDEF 4.call FDEF 3 - ERROR - RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "glyph": {
+                            "id": 288,
+                            "name": "Scedilla"
+                        },
+                        "msg_code": "G0029"
+                    },
+                    {
+                        "subroutine": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 293.FDEF 27.FDEF 19.FDEF 114.FDEF 89.FDEF 64.FDEF 4.call FDEF 3",
+                        "levelname": "ERROR",
+                        "message": "RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "timestamp": "2020-09-24T13:33:16.869235Z",
+                        "orig_output": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 293.FDEF 27.FDEF 19.FDEF 114.FDEF 89.FDEF 64.FDEF 4.call FDEF 3 - ERROR - RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "glyph": {
+                            "id": 293,
+                            "name": "tcedilla"
+                        },
+                        "msg_code": "G0029"
+                    },
+                    {
+                        "subroutine": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 309.FDEF 27.FDEF 19.FDEF 114.FDEF 89.FDEF 64.FDEF 4.call FDEF 3",
+                        "levelname": "ERROR",
+                        "message": "RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "timestamp": "2020-09-24T13:33:17.666446Z",
+                        "orig_output": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 309.FDEF 27.FDEF 19.FDEF 114.FDEF 89.FDEF 64.FDEF 4.call FDEF 3 - ERROR - RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "glyph": {
+                            "id": 309,
+                            "name": "uogonek"
+                        },
+                        "msg_code": "G0029"
+                    },
+                    {
+                        "subroutine": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 323.FDEF 25.FDEF 19.FDEF 114.FDEF 95.FDEF 63.FDEF 54.FDEF 4.call FDEF 3",
+                        "levelname": "ERROR",
+                        "message": "RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "timestamp": "2020-09-24T13:33:18.330911Z",
+                        "orig_output": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 323.FDEF 25.FDEF 19.FDEF 114.FDEF 95.FDEF 63.FDEF 54.FDEF 4.call FDEF 3 - ERROR - RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "glyph": {
+                            "id": 323,
+                            "name": "Aringacute"
+                        },
+                        "msg_code": "G0029"
+                    },
+                    {
+                        "subroutine": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 342.FDEF 24.FDEF 19.FDEF 114.FDEF 88.FDEF 64.FDEF 4.call FDEF 3",
+                        "levelname": "ERROR",
+                        "message": "RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "timestamp": "2020-09-24T13:33:18.834063Z",
+                        "orig_output": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 342.FDEF 24.FDEF 19.FDEF 114.FDEF 88.FDEF 64.FDEF 4.call FDEF 3 - ERROR - RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "glyph": {
+                            "id": 342,
+                            "name": "tilde"
+                        },
+                        "msg_code": "G0029"
+                    },
+                    {
+                        "subroutine": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 40.FDEF 28.FDEF 19.FDEF 114.FDEF 87.FDEF 64.FDEF 4.call FDEF 3",
+                        "levelname": "ERROR",
+                        "message": "RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "timestamp": "2020-09-24T13:33:03.828561Z",
+                        "orig_output": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 40.FDEF 28.FDEF 19.FDEF 114.FDEF 87.FDEF 64.FDEF 4.call FDEF 3 - ERROR - RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "glyph": {
+                            "id": 40,
+                            "name": "E"
+                        },
+                        "msg_code": "G0029"
+                    },
+                    {
+                        "subroutine": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 504.FDEF 29.FDEF 19.FDEF 114.FDEF 88.FDEF 64.FDEF 4.call FDEF 3",
+                        "levelname": "ERROR",
+                        "message": "RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "timestamp": "2020-09-24T13:33:20.620873Z",
+                        "orig_output": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 504.FDEF 29.FDEF 19.FDEF 114.FDEF 88.FDEF 64.FDEF 4.call FDEF 3 - ERROR - RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "glyph": {
+                            "id": 504,
+                            "name": "perthousand"
+                        },
+                        "msg_code": "G0029"
+                    },
+                    {
+                        "subroutine": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 526.FDEF 29.FDEF 19.FDEF 114.FDEF 89.FDEF 64.FDEF 4.call FDEF 3",
+                        "levelname": "ERROR",
+                        "message": "RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "timestamp": "2020-09-24T13:33:22.033903Z",
+                        "orig_output": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 526.FDEF 29.FDEF 19.FDEF 114.FDEF 89.FDEF 64.FDEF 4.call FDEF 3 - ERROR - RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "glyph": {
+                            "id": 526,
+                            "name": "threeeighths"
+                        },
+                        "msg_code": "G0029"
+                    },
+                    {
+                        "subroutine": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 528.FDEF 29.FDEF 19.FDEF 114.FDEF 89.FDEF 64.FDEF 4.call FDEF 3",
+                        "levelname": "ERROR",
+                        "message": "RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "timestamp": "2020-09-24T13:33:22.438356Z",
+                        "orig_output": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 528.FDEF 29.FDEF 19.FDEF 114.FDEF 89.FDEF 64.FDEF 4.call FDEF 3 - ERROR - RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "glyph": {
+                            "id": 528,
+                            "name": "seveneighths"
+                        },
+                        "msg_code": "G0029"
+                    },
+                    {
+                        "subroutine": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 563.FDEF 27.FDEF 19.FDEF 114.FDEF 86.FDEF 64.FDEF 4.call FDEF 3",
+                        "levelname": "ERROR",
+                        "message": "RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "timestamp": "2020-09-24T13:33:22.870733Z",
+                        "orig_output": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 563.FDEF 27.FDEF 19.FDEF 114.FDEF 86.FDEF 64.FDEF 4.call FDEF 3 - ERROR - RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "glyph": {
+                            "id": 563,
+                            "name": "fl"
+                        },
+                        "msg_code": "G0029"
+                    },
+                    {
+                        "subroutine": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 565.FDEF 28.FDEF 19.FDEF 114.FDEF 86.FDEF 64.FDEF 4.call FDEF 3",
+                        "levelname": "ERROR",
+                        "message": "RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "timestamp": "2020-09-24T13:33:23.161858Z",
+                        "orig_output": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 565.FDEF 28.FDEF 19.FDEF 114.FDEF 86.FDEF 64.FDEF 4.call FDEF 3 - ERROR - RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "glyph": {
+                            "id": 565,
+                            "name": "cha-deva.comp"
+                        },
+                        "msg_code": "G0029"
+                    },
+                    {
+                        "subroutine": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 6.FDEF 29.FDEF 19.FDEF 114.FDEF 94.FDEF 63.FDEF 54.FDEF 4.call FDEF 3",
+                        "levelname": "ERROR",
+                        "message": "RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "timestamp": "2020-09-24T13:33:02.062273Z",
+                        "orig_output": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 6.FDEF 29.FDEF 19.FDEF 114.FDEF 94.FDEF 63.FDEF 54.FDEF 4.call FDEF 3 - ERROR - RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "glyph": {
+                            "id": 6,
+                            "name": "numbersign"
+                        },
+                        "msg_code": "G0029"
+                    },
+                    {
+                        "subroutine": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 71.FDEF 26.FDEF 19.FDEF 114.FDEF 88.FDEF 64.FDEF 4.call FDEF 3",
+                        "levelname": "ERROR",
+                        "message": "RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "timestamp": "2020-09-24T13:33:05.169063Z",
+                        "orig_output": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 71.FDEF 26.FDEF 19.FDEF 114.FDEF 88.FDEF 64.FDEF 4.call FDEF 3 - ERROR - RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "glyph": {
+                            "id": 71,
+                            "name": "d"
+                        },
+                        "msg_code": "G0029"
+                    },
+                    {
+                        "subroutine": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 73.FDEF 27.FDEF 19.FDEF 114.FDEF 86.FDEF 64.FDEF 4.call FDEF 3",
+                        "levelname": "ERROR",
+                        "message": "RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "timestamp": "2020-09-24T13:33:05.297407Z",
+                        "orig_output": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 73.FDEF 27.FDEF 19.FDEF 114.FDEF 86.FDEF 64.FDEF 4.call FDEF 3 - ERROR - RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "glyph": {
+                            "id": 73,
+                            "name": "f"
+                        },
+                        "msg_code": "G0029"
+                    },
+                    {
+                        "subroutine": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 74.FDEF 27.FDEF 19.FDEF 114.FDEF 89.FDEF 64.FDEF 4.call FDEF 3",
+                        "levelname": "ERROR",
+                        "message": "RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "timestamp": "2020-09-24T13:33:05.524937Z",
+                        "orig_output": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 74.FDEF 27.FDEF 19.FDEF 114.FDEF 89.FDEF 64.FDEF 4.call FDEF 3 - ERROR - RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "glyph": {
+                            "id": 74,
+                            "name": "g"
+                        },
+                        "msg_code": "G0029"
+                    },
+                    {
+                        "subroutine": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 762.FDEF 27.FDEF 19.FDEF 114.FDEF 88.FDEF 64.FDEF 4.call FDEF 3",
+                        "levelname": "ERROR",
+                        "message": "RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "timestamp": "2020-09-24T13:33:26.162851Z",
+                        "orig_output": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 762.FDEF 27.FDEF 19.FDEF 114.FDEF 88.FDEF 64.FDEF 4.call FDEF 3 - ERROR - RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "glyph": {
+                            "id": 762,
+                            "name": "kh-deva"
+                        },
+                        "msg_code": "G0029"
+                    },
+                    {
+                        "subroutine": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 77.FDEF 24.FDEF 19.FDEF 114.FDEF 89.FDEF 64.FDEF 4.call FDEF 3",
+                        "levelname": "ERROR",
+                        "message": "RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "timestamp": "2020-09-24T13:33:05.757454Z",
+                        "orig_output": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 77.FDEF 24.FDEF 19.FDEF 114.FDEF 89.FDEF 64.FDEF 4.call FDEF 3 - ERROR - RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "glyph": {
+                            "id": 77,
+                            "name": "j"
+                        },
+                        "msg_code": "G0029"
+                    },
+                    {
+                        "subroutine": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 771.FDEF 28.FDEF 19.FDEF 114.FDEF 88.FDEF 64.FDEF 4.call FDEF 3",
+                        "levelname": "ERROR",
+                        "message": "RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "timestamp": "2020-09-24T13:33:26.775750Z",
+                        "orig_output": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 771.FDEF 28.FDEF 19.FDEF 114.FDEF 88.FDEF 64.FDEF 4.call FDEF 3 - ERROR - RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "glyph": {
+                            "id": 771,
+                            "name": "ch-deva"
+                        },
+                        "msg_code": "G0029"
+                    },
+                    {
+                        "subroutine": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 8.FDEF 29.FDEF 19.FDEF 114.FDEF 88.FDEF 64.FDEF 4.call FDEF 3",
+                        "levelname": "ERROR",
+                        "message": "RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "timestamp": "2020-09-24T13:33:02.334500Z",
+                        "orig_output": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 8.FDEF 29.FDEF 19.FDEF 114.FDEF 88.FDEF 64.FDEF 4.call FDEF 3 - ERROR - RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "glyph": {
+                            "id": 8,
+                            "name": "percent"
+                        },
+                        "msg_code": "G0029"
+                    },
+                    {
+                        "subroutine": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 805.FDEF 21.FDEF 19.FDEF 114.FDEF 86.FDEF 64.FDEF 4.call FDEF 3",
+                        "levelname": "ERROR",
+                        "message": "RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "timestamp": "2020-09-24T13:33:28.832696Z",
+                        "orig_output": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 805.FDEF 21.FDEF 19.FDEF 114.FDEF 86.FDEF 64.FDEF 4.call FDEF 3 - ERROR - RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "glyph": {
+                            "id": 805,
+                            "name": "l-deva"
+                        },
+                        "msg_code": "G0029"
+                    },
+                    {
+                        "subroutine": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 815.FDEF 28.FDEF 19.FDEF 114.FDEF 88.FDEF 64.FDEF 4.call FDEF 3",
+                        "levelname": "ERROR",
+                        "message": "RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "timestamp": "2020-09-24T13:33:29.437894Z",
+                        "orig_output": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 815.FDEF 28.FDEF 19.FDEF 114.FDEF 88.FDEF 64.FDEF 4.call FDEF 3 - ERROR - RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "glyph": {
+                            "id": 815,
+                            "name": "h-deva"
+                        },
+                        "msg_code": "G0029"
+                    },
+                    {
+                        "subroutine": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 83.FDEF 23.FDEF 19.FDEF 114.FDEF 88.FDEF 64.FDEF 4.call FDEF 3",
+                        "levelname": "ERROR",
+                        "message": "RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "timestamp": "2020-09-24T13:33:06.233853Z",
+                        "orig_output": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 83.FDEF 23.FDEF 19.FDEF 114.FDEF 88.FDEF 64.FDEF 4.call FDEF 3 - ERROR - RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "glyph": {
+                            "id": 83,
+                            "name": "p"
+                        },
+                        "msg_code": "G0029"
+                    },
+                    {
+                        "subroutine": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 85.FDEF 25.FDEF 19.FDEF 114.FDEF 89.FDEF 64.FDEF 4.call FDEF 3",
+                        "levelname": "ERROR",
+                        "message": "RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "timestamp": "2020-09-24T13:33:06.385841Z",
+                        "orig_output": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 85.FDEF 25.FDEF 19.FDEF 114.FDEF 89.FDEF 64.FDEF 4.call FDEF 3 - ERROR - RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "glyph": {
+                            "id": 85,
+                            "name": "r"
+                        },
+                        "msg_code": "G0029"
+                    },
+                    {
+                        "subroutine": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 890.FDEF 21.FDEF 19.FDEF 114.FDEF 86.FDEF 64.FDEF 4.call FDEF 3",
+                        "levelname": "ERROR",
+                        "message": "RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "timestamp": "2020-09-24T13:33:30.502811Z",
+                        "orig_output": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 890.FDEF 21.FDEF 19.FDEF 114.FDEF 86.FDEF 64.FDEF 4.call FDEF 3 - ERROR - RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "glyph": {
+                            "id": 890,
+                            "name": "j_j-deva.alt"
+                        },
+                        "msg_code": "G0029"
+                    },
+                    {
+                        "subroutine": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 93.FDEF 26.FDEF 19.FDEF 114.FDEF 87.FDEF 64.FDEF 4.call FDEF 3",
+                        "levelname": "ERROR",
+                        "message": "RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "timestamp": "2020-09-24T13:33:06.974496Z",
+                        "orig_output": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 93.FDEF 26.FDEF 19.FDEF 114.FDEF 87.FDEF 64.FDEF 4.call FDEF 3 - ERROR - RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "glyph": {
+                            "id": 93,
+                            "name": "z"
+                        },
+                        "msg_code": "G0029"
+                    },
+                    {
+                        "subroutine": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 94.FDEF 26.FDEF 19.FDEF 114.FDEF 88.FDEF 64.FDEF 4.call FDEF 3",
+                        "levelname": "ERROR",
+                        "message": "RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "timestamp": "2020-09-24T13:33:07.106436Z",
+                        "orig_output": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 94.FDEF 26.FDEF 19.FDEF 114.FDEF 88.FDEF 64.FDEF 4.call FDEF 3 - ERROR - RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "glyph": {
+                            "id": 94,
+                            "name": "braceleft"
+                        },
+                        "msg_code": "G0029"
+                    },
+                    {
+                        "subroutine": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 96.FDEF 26.FDEF 19.FDEF 114.FDEF 88.FDEF 64.FDEF 4.call FDEF 3",
+                        "levelname": "ERROR",
+                        "message": "RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "timestamp": "2020-09-24T13:33:07.495844Z",
+                        "orig_output": "validate_5ac214f4e9634969ad0fac0f398331cd.hints.glyph 96.FDEF 26.FDEF 19.FDEF 114.FDEF 88.FDEF 64.FDEF 4.call FDEF 3 - ERROR - RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "glyph": {
+                            "id": 96,
+                            "name": "braceright"
+                        },
+                        "msg_code": "G0029"
+                    },
+                    {
+                        "subroutine": "validate_5ac214f4e9634969ad0fac0f398331cd.hmtx",
+                        "levelname": "ERROR",
+                        "message": "The left sidebearing 46 does not match the glyph's xMin 47 (glyph 237)",
+                        "timestamp": "2020-09-24T13:32:27.608962Z",
+                        "orig_output": "validate_5ac214f4e9634969ad0fac0f398331cd.hmtx - ERROR - The left sidebearing 46 does not match the glyph's xMin 47 (glyph 237)",
+                        "msg_code": "V0933"
+                    },
+                    {
+                        "subroutine": "validate_5ac214f4e9634969ad0fac0f398331cd.hmtx",
+                        "levelname": "ERROR",
+                        "message": "The left sidebearing 82 does not match the glyph's xMin 0 (glyph 324)",
+                        "timestamp": "2020-09-24T13:32:27.637226Z",
+                        "orig_output": "validate_5ac214f4e9634969ad0fac0f398331cd.hmtx - ERROR - The left sidebearing 82 does not match the glyph's xMin 0 (glyph 324)",
+                        "msg_code": "V0933"
+                    },
+                    {
+                        "subroutine": "validate_5ac214f4e9634969ad0fac0f398331cd.hmtx",
+                        "levelname": "ERROR",
+                        "message": "The left sidebearing 92 does not match the glyph's xMin 88 (glyph 405)",
+                        "timestamp": "2020-09-24T13:32:27.663585Z",
+                        "orig_output": "validate_5ac214f4e9634969ad0fac0f398331cd.hmtx - ERROR - The left sidebearing 92 does not match the glyph's xMin 88 (glyph 405)",
+                        "msg_code": "V0933"
+                    },
+                    {
+                        "subroutine": "validate_5ac214f4e9634969ad0fac0f398331cd.hmtx",
+                        "levelname": "ERROR",
+                        "message": "The left sidebearing -112 does not match the glyph's xMin -113 (glyph 423)",
+                        "timestamp": "2020-09-24T13:32:27.667662Z",
+                        "orig_output": "validate_5ac214f4e9634969ad0fac0f398331cd.hmtx - ERROR - The left sidebearing -112 does not match the glyph's xMin -113 (glyph 423)",
+                        "msg_code": "V0933"
+                    },
+                    {
+                        "subroutine": "validate_5ac214f4e9634969ad0fac0f398331cd.hmtx",
+                        "levelname": "ERROR",
+                        "message": "The left sidebearing -32 does not match the glyph's xMin -33 (glyph 442)",
+                        "timestamp": "2020-09-24T13:32:27.672582Z",
+                        "orig_output": "validate_5ac214f4e9634969ad0fac0f398331cd.hmtx - ERROR - The left sidebearing -32 does not match the glyph's xMin -33 (glyph 442)",
+                        "msg_code": "V0933"
+                    },
+                    {
+                        "subroutine": "validate_5ac214f4e9634969ad0fac0f398331cd.hmtx",
+                        "levelname": "ERROR",
+                        "message": "The left sidebearing 92 does not match the glyph's xMin 88 (glyph 811)",
+                        "timestamp": "2020-09-24T13:32:27.901881Z",
+                        "orig_output": "validate_5ac214f4e9634969ad0fac0f398331cd.hmtx - ERROR - The left sidebearing 92 does not match the glyph's xMin 88 (glyph 811)",
+                        "msg_code": "V0933"
+                    },
+                    {
+                        "subroutine": "validate_5ac214f4e9634969ad0fac0f398331cd.hmtx",
+                        "levelname": "ERROR",
+                        "message": "The left sidebearing -1214 does not match the glyph's xMin -1215 (glyph 844)",
+                        "timestamp": "2020-09-24T13:32:27.929346Z",
+                        "orig_output": "validate_5ac214f4e9634969ad0fac0f398331cd.hmtx - ERROR - The left sidebearing -1214 does not match the glyph's xMin -1215 (glyph 844)",
+                        "msg_code": "V0933"
+                    },
+                    {
+                        "subroutine": "validate_5ac214f4e9634969ad0fac0f398331cd.hmtx",
+                        "levelname": "ERROR",
+                        "message": "The left sidebearing -1214 does not match the glyph's xMin -1215 (glyph 845)",
+                        "timestamp": "2020-09-24T13:32:27.929829Z",
+                        "orig_output": "validate_5ac214f4e9634969ad0fac0f398331cd.hmtx - ERROR - The left sidebearing -1214 does not match the glyph's xMin -1215 (glyph 845)",
+                        "msg_code": "V0933"
+                    },
+                    {
+                        "subroutine": "validate_5ac214f4e9634969ad0fac0f398331cd.hmtx",
+                        "levelname": "ERROR",
+                        "message": "The left sidebearing -1214 does not match the glyph's xMin -1215 (glyph 846)",
+                        "timestamp": "2020-09-24T13:32:27.930179Z",
+                        "orig_output": "validate_5ac214f4e9634969ad0fac0f398331cd.hmtx - ERROR - The left sidebearing -1214 does not match the glyph's xMin -1215 (glyph 846)",
+                        "msg_code": "V0933"
+                    },
+                    {
+                        "subroutine": "validate_5ac214f4e9634969ad0fac0f398331cd.hmtx",
+                        "levelname": "ERROR",
+                        "message": "The left sidebearing -1242 does not match the glyph's xMin -1243 (glyph 916)",
+                        "timestamp": "2020-09-24T13:32:27.975869Z",
+                        "orig_output": "validate_5ac214f4e9634969ad0fac0f398331cd.hmtx - ERROR - The left sidebearing -1242 does not match the glyph's xMin -1243 (glyph 916)",
+                        "msg_code": "V0933"
+                    },
+                    {
+                        "subroutine": "validate_5ac214f4e9634969ad0fac0f398331cd.hmtx",
+                        "levelname": "ERROR",
+                        "message": "The left sidebearing -552 does not match the glyph's xMin -553 (glyph 921)",
+                        "timestamp": "2020-09-24T13:32:27.977507Z",
+                        "orig_output": "validate_5ac214f4e9634969ad0fac0f398331cd.hmtx - ERROR - The left sidebearing -552 does not match the glyph's xMin -553 (glyph 921)",
+                        "msg_code": "V0933"
+                    },
+                    {
+                        "subroutine": "validate_5ac214f4e9634969ad0fac0f398331cd.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2020-09-24T13:33:01.611254Z",
+                        "orig_output": "validate_5ac214f4e9634969ad0fac0f398331cd.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
+                    },
+                    {
+                        "subroutine": "validate_5ac214f4e9634969ad0fac0f398331cd.OS_2.usMaxContext",
+                        "levelname": "ERROR",
+                        "message": "The usMaxContext should be 6, but is 7",
+                        "timestamp": "2020-09-24T13:32:03.300478Z",
+                        "orig_output": "validate_5ac214f4e9634969ad0fac0f398331cd.OS_2.usMaxContext - ERROR - The usMaxContext should be 6, but is 7",
+                        "msg_code": "V0831"
+                    },
+                    {
+                        "subroutine": "validate_5ac214f4e9634969ad0fac0f398331cd.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 1318, but is 1291",
+                        "timestamp": "2020-09-24T13:32:03.300878Z",
+                        "orig_output": "validate_5ac214f4e9634969ad0fac0f398331cd.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 1318, but is 1291",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 94252,
+    "completedDate": "2020-09-24 13:33:31.115149"
+}

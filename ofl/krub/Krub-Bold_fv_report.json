@@ -1,0 +1,83 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Krub-Bold.ttf",
+                "type": "ttf",
+                "size": 89564,
+                "md5": "fbb898e592458c59ce01601ddcad5831",
+                "geometryMd5": "20afd11f4f6a6f85d87052a208ab1404"
+            },
+            "name": {
+                "family": "Krub",
+                "subFamily": "Bold",
+                "fullName": "Krub Bold",
+                "psName": "Krub-Bold",
+                "versionText": "Version 1.000; ttfautohint (v1.6)",
+                "copyright": "Copyright 2018 The Krub Project Authors (https://github.com/cadsondemak/Krub)",
+                "trademark": "Unknown"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 772,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "CDK ",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Krub Bold",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 4,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_947dd8f0c386460bb5f8575bb47ca7e1.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 8 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-25T04:23:10.985218Z",
+                        "orig_output": "validate_947dd8f0c386460bb5f8575bb47ca7e1.fontedit.OS_2.PANOSE.weight - ERROR - Value 8 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_947dd8f0c386460bb5f8575bb47ca7e1.glyf.glyph 292 ('ij')",
+                        "levelname": "ERROR",
+                        "message": "Circular component at or below these glyphs: [685]",
+                        "timestamp": "2020-09-25T04:23:15.792801Z",
+                        "orig_output": "validate_947dd8f0c386460bb5f8575bb47ca7e1.glyf.glyph 292 ('ij') - ERROR - Circular component at or below these glyphs: [685]",
+                        "msg_code": "E1118"
+                    },
+                    {
+                        "subroutine": "validate_947dd8f0c386460bb5f8575bb47ca7e1.maxp",
+                        "levelname": "ERROR",
+                        "message": "The following glyphs had improperly constructed composite information, and could not be used in validating the 'maxp' table: [685]",
+                        "timestamp": "2020-09-25T04:23:29.800389Z",
+                        "orig_output": "validate_947dd8f0c386460bb5f8575bb47ca7e1.maxp - ERROR - The following glyphs had improperly constructed composite information, and could not be used in validating the 'maxp' table: [685]",
+                        "msg_code": "V0555"
+                    },
+                    {
+                        "subroutine": "validate_947dd8f0c386460bb5f8575bb47ca7e1.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 584, but is 570",
+                        "timestamp": "2020-09-25T04:23:13.191651Z",
+                        "orig_output": "validate_947dd8f0c386460bb5f8575bb47ca7e1.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 584, but is 570",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 21902,
+    "completedDate": "2020-09-25 04:23:30.722050"
+}

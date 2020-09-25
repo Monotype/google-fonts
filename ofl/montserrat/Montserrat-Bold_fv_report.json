@@ -1,0 +1,67 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Montserrat-Bold.ttf",
+                "type": "ttf",
+                "size": 261588,
+                "md5": "88932dadc42e1bba93b21a76de60ef7a",
+                "geometryMd5": "adb78f46ec7dcadf464712f8fb13ead5"
+            },
+            "name": {
+                "family": "Montserrat",
+                "subFamily": "Bold",
+                "fullName": "Montserrat Bold",
+                "psName": "Montserrat-Bold",
+                "versionText": "Version 7.200",
+                "copyright": "Copyright 2011 The Montserrat Project Authors (https://github.com/JulietaUla/Montserrat)",
+                "trademark": "Unknown"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 1943,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "ULA ",
+                "font_vendor": "Montserrat Typeface"
+            },
+            "validation": {
+                "font_full_name": "Montserrat Bold",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 2,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_59bea0e0635f48b8b01a25c3c64c38fd.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 8 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-25T03:12:49.727971Z",
+                        "orig_output": "validate_59bea0e0635f48b8b01a25c3c64c38fd.fontedit.OS_2.PANOSE.weight - ERROR - Value 8 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_59bea0e0635f48b8b01a25c3c64c38fd.GDEF.glyphClasses",
+                        "levelname": "ERROR",
+                        "message": "The following mark glyphs have nonzero advances: [1917, 1918, 1919, 1920]",
+                        "timestamp": "2020-09-25T03:12:49.867662Z",
+                        "orig_output": "validate_59bea0e0635f48b8b01a25c3c64c38fd.GDEF.glyphClasses - ERROR - The following mark glyphs have nonzero advances: [1917, 1918, 1919, 1920]",
+                        "msg_code": "V1102"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 131853,
+    "completedDate": "2020-09-25 03:14:56.968143"
+}

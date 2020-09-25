@@ -1,0 +1,147 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Inconsolata[wdth,wght].ttf",
+                "type": "ttf",
+                "size": 347180,
+                "md5": "c0e267256b72f5694971fca3350f13a8",
+                "geometryMd5": "3a7b69b06403e6d45c281ff26f217bd4"
+            },
+            "name": {
+                "family": "Inconsolata",
+                "subFamily": "Regular",
+                "fullName": "Inconsolata Regular",
+                "psName": "Inconsolata-Regular",
+                "versionText": "Version 3.001",
+                "copyright": "Copyright 2006 The Inconsolata Project Authors (https://github.com/cyrealtype/Inconsolata)",
+                "trademark": "Unknown"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 964,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "CYRE",
+                "font_vendor": "Cyreal"
+            },
+            "validation": {
+                "font_full_name": "Inconsolata Regular",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 11,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_0296a6d7b6364d79a9398e4a4d7b95e7.fontedit.OS_2.PANOSE.proportion",
+                        "levelname": "ERROR",
+                        "message": "Value 9 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-24T11:40:57.387266Z",
+                        "orig_output": "validate_0296a6d7b6364d79a9398e4a4d7b95e7.fontedit.OS_2.PANOSE.proportion - ERROR - Value 9 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2108"
+                    },
+                    {
+                        "subroutine": "validate_0296a6d7b6364d79a9398e4a4d7b95e7.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 5 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-24T11:40:57.387462Z",
+                        "orig_output": "validate_0296a6d7b6364d79a9398e4a4d7b95e7.fontedit.OS_2.PANOSE.weight - ERROR - Value 5 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_0296a6d7b6364d79a9398e4a4d7b95e7.glyf.glyph 322 ('uni1ECB')",
+                        "levelname": "ERROR",
+                        "message": "Circular component at or below these glyphs: [892]",
+                        "timestamp": "2020-09-24T11:41:15.985075Z",
+                        "orig_output": "validate_0296a6d7b6364d79a9398e4a4d7b95e7.glyf.glyph 322 ('uni1ECB') - ERROR - Circular component at or below these glyphs: [892]",
+                        "msg_code": "E1118"
+                    },
+                    {
+                        "subroutine": "validate_0296a6d7b6364d79a9398e4a4d7b95e7.glyf.glyph 413 ('uni1E69')",
+                        "levelname": "ERROR",
+                        "message": "Circular component at or below these glyphs: [892]",
+                        "timestamp": "2020-09-24T11:41:16.881309Z",
+                        "orig_output": "validate_0296a6d7b6364d79a9398e4a4d7b95e7.glyf.glyph 413 ('uni1E69') - ERROR - Circular component at or below these glyphs: [892]",
+                        "msg_code": "E1118"
+                    },
+                    {
+                        "subroutine": "validate_0296a6d7b6364d79a9398e4a4d7b95e7.hints.glyph 322",
+                        "levelname": "ERROR",
+                        "message": "Unable to convert glyph 322 to a non-composite glyph!",
+                        "timestamp": "2020-09-24T11:42:14.977120Z",
+                        "orig_output": "validate_0296a6d7b6364d79a9398e4a4d7b95e7.hints.glyph 322 - ERROR - Unable to convert glyph 322 to a non-composite glyph!",
+                        "glyph": {
+                            "id": 322,
+                            "name": "uni1ECB"
+                        },
+                        "msg_code": "V1204"
+                    },
+                    {
+                        "subroutine": "validate_0296a6d7b6364d79a9398e4a4d7b95e7.hints.glyph 413",
+                        "levelname": "ERROR",
+                        "message": "Unable to convert glyph 413 to a non-composite glyph!",
+                        "timestamp": "2020-09-24T11:42:15.539764Z",
+                        "orig_output": "validate_0296a6d7b6364d79a9398e4a4d7b95e7.hints.glyph 413 - ERROR - Unable to convert glyph 413 to a non-composite glyph!",
+                        "glyph": {
+                            "id": 413,
+                            "name": "uni1E69"
+                        },
+                        "msg_code": "V1204"
+                    },
+                    {
+                        "subroutine": "validate_0296a6d7b6364d79a9398e4a4d7b95e7.maxp",
+                        "levelname": "ERROR",
+                        "message": "The following glyphs had improperly constructed composite information, and could not be used in validating the 'maxp' table: [892]",
+                        "timestamp": "2020-09-24T11:42:12.805647Z",
+                        "orig_output": "validate_0296a6d7b6364d79a9398e4a4d7b95e7.maxp - ERROR - The following glyphs had improperly constructed composite information, and could not be used in validating the 'maxp' table: [892]",
+                        "msg_code": "V0555"
+                    },
+                    {
+                        "subroutine": "validate_0296a6d7b6364d79a9398e4a4d7b95e7.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2020-09-24T11:42:12.806943Z",
+                        "orig_output": "validate_0296a6d7b6364d79a9398e4a4d7b95e7.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
+                    },
+                    {
+                        "subroutine": "validate_0296a6d7b6364d79a9398e4a4d7b95e7.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 504, but is 505",
+                        "timestamp": "2020-09-24T11:41:13.777903Z",
+                        "orig_output": "validate_0296a6d7b6364d79a9398e4a4d7b95e7.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 504, but is 505",
+                        "msg_code": "E2135"
+                    },
+                    {
+                        "subroutine": "validate_0296a6d7b6364d79a9398e4a4d7b95e7.post",
+                        "levelname": "ERROR",
+                        "message": "Header says isFixedPitch, but advances vary.",
+                        "timestamp": "2020-09-24T11:42:12.829258Z",
+                        "orig_output": "validate_0296a6d7b6364d79a9398e4a4d7b95e7.post - ERROR - Header says isFixedPitch, but advances vary.",
+                        "msg_code": "E2302"
+                    },
+                    {
+                        "subroutine": "validate_0296a6d7b6364d79a9398e4a4d7b95e7.post",
+                        "levelname": "ERROR",
+                        "message": "Header disagrees with PANOSE on fixed-pitch.",
+                        "timestamp": "2020-09-24T11:42:12.829354Z",
+                        "orig_output": "validate_0296a6d7b6364d79a9398e4a4d7b95e7.post - ERROR - Header disagrees with PANOSE on fixed-pitch.",
+                        "msg_code": "E2303"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 83938,
+    "completedDate": "2020-09-24 11:42:18.547970"
+}

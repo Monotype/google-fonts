@@ -1,0 +1,69 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "MontserratAlternates-Black.ttf",
+                "type": "ttf",
+                "size": 221652,
+                "md5": "4f6df5424eb11d28afe045a99c8168c1",
+                "geometryMd5": "af5bc23bdd658a499cc1dd52ffccdc81"
+            },
+            "name": {
+                "family": "Montserrat Alternates Black",
+                "subFamily": "Regular",
+                "fullName": "Montserrat Alternates Black",
+                "psName": "MontserratAlternates-Black",
+                "versionText": "Version 7.200",
+                "copyright": "Copyright 2011 The Montserrat Project Authors (https://github.com/JulietaUla/Montserrat)",
+                "trademark": "Unknown",
+                "typographicFamily": "Montserrat Alternates",
+                "typographicSubFamily": "Black"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 1482,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "ULA ",
+                "font_vendor": "Montserrat Typeface"
+            },
+            "validation": {
+                "font_full_name": "Montserrat Alternates Black",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 2,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_fcf4a2a1ea9640418033c5603e04ac60.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 10 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-24T18:45:36.016753Z",
+                        "orig_output": "validate_fcf4a2a1ea9640418033c5603e04ac60.fontedit.OS_2.PANOSE.weight - ERROR - Value 10 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_fcf4a2a1ea9640418033c5603e04ac60.GDEF.glyphClasses",
+                        "levelname": "ERROR",
+                        "message": "The following mark glyphs have nonzero advances: [1457, 1458, 1459, 1460]",
+                        "timestamp": "2020-09-24T18:45:36.056304Z",
+                        "orig_output": "validate_fcf4a2a1ea9640418033c5603e04ac60.GDEF.glyphClasses - ERROR - The following mark glyphs have nonzero advances: [1457, 1458, 1459, 1460]",
+                        "msg_code": "V1102"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 132551,
+    "completedDate": "2020-09-24 18:47:46.163460"
+}

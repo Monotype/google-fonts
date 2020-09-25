@@ -1,0 +1,109 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Martel-Light.ttf",
+                "type": "ttf",
+                "size": 170540,
+                "md5": "6adc81d893bfefd18c52795f14b68831",
+                "geometryMd5": "746ccc38924406d7b635fcf917c75bc9"
+            },
+            "name": {
+                "family": "Martel Light",
+                "subFamily": "Regular",
+                "fullName": "Martel Light",
+                "psName": "Martel-Light",
+                "versionText": "Version 1.001; ttfautohint (v1.1) -l 5 -r 5 -G 72 -x 0 -D latn -f none -w gGD -W -c",
+                "copyright": "Copyright (c) 2015 Dan Reynolds.",
+                "trademark": "Unknown",
+                "typographicFamily": "Martel",
+                "typographicSubFamily": "Light"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 718,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "toff",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Martel Light",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 7,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_188086a2776d44f8b3ea90b24dbbe853.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 4 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-24T12:36:26.715110Z",
+                        "orig_output": "validate_188086a2776d44f8b3ea90b24dbbe853.fontedit.OS_2.PANOSE.weight - ERROR - Value 4 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_188086a2776d44f8b3ea90b24dbbe853.GDEF.glyphClasses",
+                        "levelname": "ERROR",
+                        "message": "The following mark glyphs have nonzero advances: [697]",
+                        "timestamp": "2020-09-24T12:36:26.788756Z",
+                        "orig_output": "validate_188086a2776d44f8b3ea90b24dbbe853.GDEF.glyphClasses - ERROR - The following mark glyphs have nonzero advances: [697]",
+                        "msg_code": "V1102"
+                    },
+                    {
+                        "subroutine": "validate_188086a2776d44f8b3ea90b24dbbe853.glyf.glyph 280 ('uni093F0930094D0902.10').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-24T12:36:33.594961Z",
+                        "orig_output": "validate_188086a2776d44f8b3ea90b24dbbe853.glyf.glyph 280 ('uni093F0930094D0902.10').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_188086a2776d44f8b3ea90b24dbbe853.glyf.glyph 606 ('yen').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-24T12:36:40.276667Z",
+                        "orig_output": "validate_188086a2776d44f8b3ea90b24dbbe853.glyf.glyph 606 ('yen').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_188086a2776d44f8b3ea90b24dbbe853.glyf.glyph 667 ('dotaccent.cap').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-24T12:36:40.875844Z",
+                        "orig_output": "validate_188086a2776d44f8b3ea90b24dbbe853.glyf.glyph 667 ('dotaccent.cap').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_188086a2776d44f8b3ea90b24dbbe853.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2020-09-24T12:37:14.803508Z",
+                        "orig_output": "validate_188086a2776d44f8b3ea90b24dbbe853.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
+                    },
+                    {
+                        "subroutine": "validate_188086a2776d44f8b3ea90b24dbbe853.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 604, but is 605",
+                        "timestamp": "2020-09-24T12:36:29.246651Z",
+                        "orig_output": "validate_188086a2776d44f8b3ea90b24dbbe853.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 604, but is 605",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 84873,
+    "completedDate": "2020-09-24 12:37:48.821870"
+}

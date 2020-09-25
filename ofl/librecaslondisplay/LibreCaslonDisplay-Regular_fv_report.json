@@ -1,0 +1,67 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "LibreCaslonDisplay-Regular.ttf",
+                "type": "ttf",
+                "size": 101384,
+                "md5": "01c2c12e6c3a1dd593ca6d1a120a8657",
+                "geometryMd5": "5bba13dfeaddd02a2ddd1039b35b8398"
+            },
+            "name": {
+                "family": "Libre Caslon Display",
+                "subFamily": "Regular",
+                "fullName": "Libre Caslon Display Regular",
+                "psName": "LibreCaslonDisplay-Regular",
+                "versionText": "Version 1.100; ttfautohint (v1.6) -l 8 -r 50 -G 200 -x 14 -D latn -f none -w G -X \"\"",
+                "copyright": "Copyright 2012 The Libre Caslon Display Authors (https://github.com/impallari/Libre-Caslon-Display)",
+                "trademark": "Libre Caslon is a trademark of Pablo Impallari"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 551,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "IMPA",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Libre Caslon Display Regular",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 2,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_a28de657afa5402fb2960b8187abc4cd.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 5 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-24T08:01:57.307390Z",
+                        "orig_output": "validate_a28de657afa5402fb2960b8187abc4cd.fontedit.OS_2.PANOSE.weight - ERROR - Value 5 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_a28de657afa5402fb2960b8187abc4cd.glyf.glyph 481 ('sterling').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-24T08:02:04.752648Z",
+                        "orig_output": "validate_a28de657afa5402fb2960b8187abc4cd.glyf.glyph 481 ('sterling').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 67757,
+    "completedDate": "2020-09-24 08:03:02.671951"
+}

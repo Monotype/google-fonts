@@ -1,0 +1,77 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Mulish-BlackItalic.ttf",
+                "type": "ttf",
+                "size": 97232,
+                "md5": "6d91b8392d1e696e57017019efb760cb",
+                "geometryMd5": "8ecda36096259387bc4109f6f8318262"
+            },
+            "name": {
+                "family": "Mulish Black",
+                "subFamily": "Italic",
+                "fullName": "Mulish Black Italic",
+                "psName": "Mulish-BlackItalic",
+                "versionText": "Version 2.001",
+                "copyright": "Copyright 2011 The Mulish Project Authors (github.com/googlefonts/mulish)",
+                "trademark": "Unknown",
+                "typographicFamily": "Mulish",
+                "typographicSubFamily": "Black Italic"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 740,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "UKWN",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Mulish Black Italic",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 3,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_a6135d8fbb804781baf90f0a22100b34.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 10 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-24T18:11:17.719038Z",
+                        "orig_output": "validate_a6135d8fbb804781baf90f0a22100b34.fontedit.OS_2.PANOSE.weight - ERROR - Value 10 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_a6135d8fbb804781baf90f0a22100b34.glyf.glyph 651 ('uni2113').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-24T18:11:24.162981Z",
+                        "orig_output": "validate_a6135d8fbb804781baf90f0a22100b34.glyf.glyph 651 ('uni2113').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_a6135d8fbb804781baf90f0a22100b34.hhea",
+                        "levelname": "ERROR",
+                        "message": "The minRightSidebearing value (-188) does not match the expected value (-223)",
+                        "timestamp": "2020-09-24T18:11:26.303310Z",
+                        "orig_output": "validate_a6135d8fbb804781baf90f0a22100b34.hhea - ERROR - The minRightSidebearing value (-188) does not match the expected value (-223)",
+                        "msg_code": "E1403"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 83808,
+    "completedDate": "2020-09-24 18:12:39.284887"
+}

@@ -1,0 +1,75 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "KoHo-BoldItalic.ttf",
+                "type": "ttf",
+                "size": 97836,
+                "md5": "e928b19ca8b1d50acb6d6b2b790d6f9a",
+                "geometryMd5": "b05cf5778010e6e85a9f82ca31c19033"
+            },
+            "name": {
+                "family": "KoHo",
+                "subFamily": "Bold Italic",
+                "fullName": "KoHo Bold Italic",
+                "psName": "KoHo-BoldItalic",
+                "versionText": "Version 1.000; ttfautohint (v1.6)",
+                "copyright": "Copyright 2018 The KoHo Project Authors (https://github.com/cadsondemak/Koho)",
+                "trademark": "Unknown"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 774,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "CDK ",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "KoHo Bold Italic",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 3,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_bb047a5f8a7847a3bd332f78aaaa7e9a.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 8 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-24T14:04:39.765850Z",
+                        "orig_output": "validate_bb047a5f8a7847a3bd332f78aaaa7e9a.fontedit.OS_2.PANOSE.weight - ERROR - Value 8 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_bb047a5f8a7847a3bd332f78aaaa7e9a.glyf.glyph 450 ('uni0E10').contours.contour 2",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-24T14:04:49.057211Z",
+                        "orig_output": "validate_bb047a5f8a7847a3bd332f78aaaa7e9a.glyf.glyph 450 ('uni0E10').contours.contour 2 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_bb047a5f8a7847a3bd332f78aaaa7e9a.maxp",
+                        "levelname": "ERROR",
+                        "message": "The maxZones value should be 1, but is 0.",
+                        "timestamp": "2020-09-24T14:04:57.975315Z",
+                        "orig_output": "validate_bb047a5f8a7847a3bd332f78aaaa7e9a.maxp - ERROR - The maxZones value should be 1, but is 0.",
+                        "msg_code": "V0272"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 21817,
+    "completedDate": "2020-09-24 14:04:58.342398"
+}

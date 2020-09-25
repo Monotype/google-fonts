@@ -1,0 +1,93 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Mitr-ExtraLight.ttf",
+                "type": "ttf",
+                "size": 200760,
+                "md5": "d18f6df7ced0eba78b20d6a35a7f9b55",
+                "geometryMd5": "89cdd8a74723ed7c6f24f101a667ac54"
+            },
+            "name": {
+                "family": "Mitr ExtraLight",
+                "subFamily": "Regular",
+                "fullName": "Mitr ExtraLight",
+                "psName": "Mitr-ExtraLight",
+                "versionText": "Version 1.001",
+                "copyright": "Copyright (c) 2015, Cadson Demak (info@cadsondemak.com)",
+                "trademark": "Unknown",
+                "typographicFamily": "Mitr",
+                "typographicSubFamily": "ExtraLight"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 774,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "CDK ",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Mitr ExtraLight",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 5,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_eecce8a47d64437a9deb3030f81f96e5.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 3 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-24T10:11:47.083704Z",
+                        "orig_output": "validate_eecce8a47d64437a9deb3030f81f96e5.fontedit.OS_2.PANOSE.weight - ERROR - Value 3 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_eecce8a47d64437a9deb3030f81f96e5.glyf.glyph 293 ('iogonek').contours.contour 1",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-24T10:11:59.454149Z",
+                        "orig_output": "validate_eecce8a47d64437a9deb3030f81f96e5.glyf.glyph 293 ('iogonek').contours.contour 1 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_eecce8a47d64437a9deb3030f81f96e5.glyf.glyph 59 ('Eogonek').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-24T10:11:53.795972Z",
+                        "orig_output": "validate_eecce8a47d64437a9deb3030f81f96e5.glyf.glyph 59 ('Eogonek').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_eecce8a47d64437a9deb3030f81f96e5.glyf.glyph 86 ('Iogonek').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-24T10:11:54.422710Z",
+                        "orig_output": "validate_eecce8a47d64437a9deb3030f81f96e5.glyf.glyph 86 ('Iogonek').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_eecce8a47d64437a9deb3030f81f96e5.OS_2.usWeightClass",
+                        "levelname": "ERROR",
+                        "message": "The usWeightClass value 275 is not valid",
+                        "timestamp": "2020-09-24T10:11:51.750234Z",
+                        "orig_output": "validate_eecce8a47d64437a9deb3030f81f96e5.OS_2.usWeightClass - ERROR - The usWeightClass value 275 is not valid",
+                        "msg_code": "E2133"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 139699,
+    "completedDate": "2020-09-24 10:14:03.897865"
+}

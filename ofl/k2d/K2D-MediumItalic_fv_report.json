@@ -1,0 +1,77 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "K2D-MediumItalic.ttf",
+                "type": "ttf",
+                "size": 100792,
+                "md5": "dd38474916a75c03b9c7b6f99e969195",
+                "geometryMd5": "3358c5c7cb94572ad9ea4db08994b97a"
+            },
+            "name": {
+                "family": "K2D Medium",
+                "subFamily": "Italic",
+                "fullName": "K2D Medium Italic",
+                "psName": "K2D-MediumItalic",
+                "versionText": "Version 1.000; ttfautohint (v1.6)",
+                "copyright": "Copyright 2018 The K2D Project Authors (https://github.com/cadsondemak/K2D)",
+                "trademark": "Unknown",
+                "typographicFamily": "K2D",
+                "typographicSubFamily": "Medium Italic"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 772,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "CDK ",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "K2D Medium Italic",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 3,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_c08e0feb70564e078fc0559a38c4fe86.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 6 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-24T16:55:19.664658Z",
+                        "orig_output": "validate_c08e0feb70564e078fc0559a38c4fe86.fontedit.OS_2.PANOSE.weight - ERROR - Value 6 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_c08e0feb70564e078fc0559a38c4fe86.maxp",
+                        "levelname": "ERROR",
+                        "message": "The maxZones value should be 1, but is 0.",
+                        "timestamp": "2020-09-24T16:55:33.934465Z",
+                        "orig_output": "validate_c08e0feb70564e078fc0559a38c4fe86.maxp - ERROR - The maxZones value should be 1, but is 0.",
+                        "msg_code": "V0272"
+                    },
+                    {
+                        "subroutine": "validate_c08e0feb70564e078fc0559a38c4fe86.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 583, but is 578",
+                        "timestamp": "2020-09-24T16:55:22.042489Z",
+                        "orig_output": "validate_c08e0feb70564e078fc0559a38c4fe86.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 583, but is 578",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 17883,
+    "completedDate": "2020-09-24 16:55:34.681172"
+}

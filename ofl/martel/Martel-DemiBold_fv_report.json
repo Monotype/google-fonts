@@ -1,0 +1,85 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Martel-DemiBold.ttf",
+                "type": "ttf",
+                "size": 170100,
+                "md5": "6e4acf08c67b206d56898eabc8449ea1",
+                "geometryMd5": "0661a6e0b5fae1f54db0bd86f1faed1d"
+            },
+            "name": {
+                "family": "Martel DemiBold",
+                "subFamily": "Regular",
+                "fullName": "Martel DemiBold",
+                "psName": "Martel-DemiBold",
+                "versionText": "Version 1.001; ttfautohint (v1.1) -l 5 -r 5 -G 72 -x 0 -D latn -f none -w gGD -W -c",
+                "copyright": "Copyright (c) 2015 Dan Reynolds.",
+                "trademark": "Unknown",
+                "typographicFamily": "Martel",
+                "typographicSubFamily": "DemiBold"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 718,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "toff",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Martel DemiBold",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 4,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_e974bbf6f16741e6bff3053e6f3b5ab4.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 7 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-24T12:02:48.621148Z",
+                        "orig_output": "validate_e974bbf6f16741e6bff3053e6f3b5ab4.fontedit.OS_2.PANOSE.weight - ERROR - Value 7 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_e974bbf6f16741e6bff3053e6f3b5ab4.GDEF.glyphClasses",
+                        "levelname": "ERROR",
+                        "message": "The following mark glyphs have nonzero advances: [697]",
+                        "timestamp": "2020-09-24T12:02:48.686539Z",
+                        "orig_output": "validate_e974bbf6f16741e6bff3053e6f3b5ab4.GDEF.glyphClasses - ERROR - The following mark glyphs have nonzero advances: [697]",
+                        "msg_code": "V1102"
+                    },
+                    {
+                        "subroutine": "validate_e974bbf6f16741e6bff3053e6f3b5ab4.glyf.glyph 434 ('uni09300941').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-24T12:03:04.732442Z",
+                        "orig_output": "validate_e974bbf6f16741e6bff3053e6f3b5ab4.glyf.glyph 434 ('uni09300941').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_e974bbf6f16741e6bff3053e6f3b5ab4.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2020-09-24T12:03:45.193954Z",
+                        "orig_output": "validate_e974bbf6f16741e6bff3053e6f3b5ab4.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 88080,
+    "completedDate": "2020-09-24 12:04:14.389076"
+}

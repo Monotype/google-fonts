@@ -1,0 +1,75 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Inika-Bold.ttf",
+                "type": "ttf",
+                "size": 38736,
+                "md5": "a8755e02ed6f62acffb837528f03f450",
+                "geometryMd5": "c7f4a79a295daa0e0816be8a4eae69c9"
+            },
+            "name": {
+                "family": "Inika",
+                "subFamily": "Bold",
+                "fullName": "Inika Bold",
+                "psName": "Inika-Bold",
+                "versionText": "Version 1.001",
+                "copyright": "Copyright (c) 2011 by Constanza Artigas Preller. All rights reserved.",
+                "trademark": "Inika-Bold is a trademark of Constanza Artigas Preller."
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 306,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "pyrs",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Inika Bold",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 3,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_cab518f8b8b145a9aec84b2230167845.glyf.glyph 292 ('Lu').contours.contour 1",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-25T01:41:19.428871Z",
+                        "orig_output": "validate_cab518f8b8b145a9aec84b2230167845.glyf.glyph 292 ('Lu').contours.contour 1 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_cab518f8b8b145a9aec84b2230167845.glyf.glyph 295 ('alternateQ')",
+                        "levelname": "ERROR",
+                        "message": "Bounds should be [20, -287, 1012, 712], but are [20, -287, 1013, 712].",
+                        "timestamp": "2020-09-25T01:41:19.491829Z",
+                        "orig_output": "validate_cab518f8b8b145a9aec84b2230167845.glyf.glyph 295 ('alternateQ') - ERROR - Bounds should be [20, -287, 1012, 712], but are [20, -287, 1013, 712].",
+                        "msg_code": "E1112"
+                    },
+                    {
+                        "subroutine": "validate_cab518f8b8b145a9aec84b2230167845.hhea",
+                        "levelname": "ERROR",
+                        "message": "The minRightSidebearing value (-327) does not match the expected value (-328)",
+                        "timestamp": "2020-09-25T01:41:20.434012Z",
+                        "orig_output": "validate_cab518f8b8b145a9aec84b2230167845.hhea - ERROR - The minRightSidebearing value (-327) does not match the expected value (-328)",
+                        "msg_code": "E1403"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 9466,
+    "completedDate": "2020-09-25 01:41:21.390748"
+}

@@ -1,0 +1,107 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Metrophobic-Regular.ttf",
+                "type": "ttf",
+                "size": 88736,
+                "md5": "4526f28a9a6755266c18f251b220f387",
+                "geometryMd5": "a5757167cf1e757b7f14d40ac74b8865"
+            },
+            "name": {
+                "family": "Metrophobic",
+                "subFamily": "Regular",
+                "fullName": "Metrophobic Regular",
+                "psName": "Metrophobic-Regular",
+                "versionText": "Version 3.100",
+                "copyright": "Copyright 2011 The Metrophobic Project Authors (https://github.com/googlefonts/MetrophobicFont), with Reserved Font Name 'Metrophobic'.",
+                "trademark": "Unknown"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 597,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "newt",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Metrophobic Regular",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 6,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_7997dafa738e465794c0611947fd9eb4.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 5 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-25T10:59:01.536051Z",
+                        "orig_output": "validate_7997dafa738e465794c0611947fd9eb4.fontedit.OS_2.PANOSE.weight - ERROR - Value 5 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_7997dafa738e465794c0611947fd9eb4.glyf.glyph 447 ('question').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-25T10:59:05.419501Z",
+                        "orig_output": "validate_7997dafa738e465794c0611947fd9eb4.glyf.glyph 447 ('question').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_7997dafa738e465794c0611947fd9eb4.glyf.glyph 448 ('questiondown').contours.contour 1",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-25T10:59:05.429836Z",
+                        "orig_output": "validate_7997dafa738e465794c0611947fd9eb4.glyf.glyph 448 ('questiondown').contours.contour 1 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_7997dafa738e465794c0611947fd9eb4.hints.glyph 242.FDEF 51.call FDEF 50",
+                        "levelname": "ERROR",
+                        "message": "SHC[1] in FDEF 50 (PC 1) was given contour index 5, which does not exist!",
+                        "timestamp": "2020-09-25T10:59:29.110144Z",
+                        "orig_output": "validate_7997dafa738e465794c0611947fd9eb4.hints.glyph 242.FDEF 51.call FDEF 50 - ERROR - SHC[1] in FDEF 50 (PC 1) was given contour index 5, which does not exist!",
+                        "glyph": {
+                            "id": 242,
+                            "name": "uni01C6"
+                        },
+                        "msg_code": "E6004"
+                    },
+                    {
+                        "subroutine": "validate_7997dafa738e465794c0611947fd9eb4.hints.glyph 43.FDEF 51.call FDEF 50",
+                        "levelname": "ERROR",
+                        "message": "SHC[1] in FDEF 50 (PC 1) was given contour index 5, which does not exist!",
+                        "timestamp": "2020-09-25T10:59:25.591294Z",
+                        "orig_output": "validate_7997dafa738e465794c0611947fd9eb4.hints.glyph 43.FDEF 51.call FDEF 50 - ERROR - SHC[1] in FDEF 50 (PC 1) was given contour index 5, which does not exist!",
+                        "glyph": {
+                            "id": 43,
+                            "name": "uni01C5"
+                        },
+                        "msg_code": "E6004"
+                    },
+                    {
+                        "subroutine": "validate_7997dafa738e465794c0611947fd9eb4.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 1179, but is 1177",
+                        "timestamp": "2020-09-25T10:59:02.753362Z",
+                        "orig_output": "validate_7997dafa738e465794c0611947fd9eb4.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 1179, but is 1177",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 40570,
+    "completedDate": "2020-09-25 10:59:39.569060"
+}

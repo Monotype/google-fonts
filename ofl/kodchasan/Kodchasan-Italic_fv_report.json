@@ -1,0 +1,83 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Kodchasan-Italic.ttf",
+                "type": "ttf",
+                "size": 105636,
+                "md5": "4f45fc1b8a6a17588929e7da6d398bd4",
+                "geometryMd5": "2b8a4de6d95bd557400ed8501776f7df"
+            },
+            "name": {
+                "family": "Kodchasan",
+                "subFamily": "Italic",
+                "fullName": "Kodchasan Italic",
+                "psName": "Kodchasan-Italic",
+                "versionText": "Version 1.000; ttfautohint (v1.6)",
+                "copyright": "Copyright 2018 The Kodchasan Project Authors (https://github.com/cadsondemak/Kodchasan)",
+                "trademark": "Unknown"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 774,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "CDK ",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Kodchasan Italic",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 4,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_0b66dca287904b3e8dc8e17ef396bba5.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 5 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-24T18:45:14.733868Z",
+                        "orig_output": "validate_0b66dca287904b3e8dc8e17ef396bba5.fontedit.OS_2.PANOSE.weight - ERROR - Value 5 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_0b66dca287904b3e8dc8e17ef396bba5.glyf.glyph 442 ('uni0E240E45').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-24T18:45:21.175548Z",
+                        "orig_output": "validate_0b66dca287904b3e8dc8e17ef396bba5.glyf.glyph 442 ('uni0E240E45').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_0b66dca287904b3e8dc8e17ef396bba5.maxp",
+                        "levelname": "ERROR",
+                        "message": "The maxZones value should be 1, but is 0.",
+                        "timestamp": "2020-09-24T18:45:32.664247Z",
+                        "orig_output": "validate_0b66dca287904b3e8dc8e17ef396bba5.maxp - ERROR - The maxZones value should be 1, but is 0.",
+                        "msg_code": "V0272"
+                    },
+                    {
+                        "subroutine": "validate_0b66dca287904b3e8dc8e17ef396bba5.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 626, but is 613",
+                        "timestamp": "2020-09-24T18:45:16.377978Z",
+                        "orig_output": "validate_0b66dca287904b3e8dc8e17ef396bba5.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 626, but is 613",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 21054,
+    "completedDate": "2020-09-24 18:45:33.590789"
+}

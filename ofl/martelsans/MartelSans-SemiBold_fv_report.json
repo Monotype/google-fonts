@@ -1,0 +1,93 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "MartelSans-SemiBold.ttf",
+                "type": "ttf",
+                "size": 152724,
+                "md5": "dfbd9084053afafa14e21ac38ca596d6",
+                "geometryMd5": "d6b5ec97ada39a68040023000ba5fbf2"
+            },
+            "name": {
+                "family": "Martel Sans SemiBold",
+                "subFamily": "Regular",
+                "fullName": "Martel Sans SemiBold",
+                "psName": "MartelSans-SemiBold",
+                "versionText": "Version 1.002; ttfautohint (v1.1) -l 5 -r 5 -G 72 -x 0 -D latn -f none -w gGD -W -c",
+                "copyright": "Copyright (c) 2014 Dan Reynolds. Copyright (c) 2014 Mathieu R\u00e9guer.",
+                "trademark": "Unknown",
+                "typographicFamily": "Martel Sans",
+                "typographicSubFamily": "SemiBold"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 721,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "toff",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Martel Sans SemiBold",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 5,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_3126d37fe1964b1faec9e381d4d72b4c.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 7 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-25T11:24:34.081873Z",
+                        "orig_output": "validate_3126d37fe1964b1faec9e381d4d72b4c.fontedit.OS_2.PANOSE.weight - ERROR - Value 7 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_3126d37fe1964b1faec9e381d4d72b4c.GDEF.glyphClasses",
+                        "levelname": "ERROR",
+                        "message": "The following mark glyphs have nonzero advances: [657, 658, 707]",
+                        "timestamp": "2020-09-25T11:24:34.111986Z",
+                        "orig_output": "validate_3126d37fe1964b1faec9e381d4d72b4c.GDEF.glyphClasses - ERROR - The following mark glyphs have nonzero advances: [657, 658, 707]",
+                        "msg_code": "V1102"
+                    },
+                    {
+                        "subroutine": "validate_3126d37fe1964b1faec9e381d4d72b4c.glyf.glyph 434 ('uni092A094D0072').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-25T11:24:40.714791Z",
+                        "orig_output": "validate_3126d37fe1964b1faec9e381d4d72b4c.glyf.glyph 434 ('uni092A094D0072').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_3126d37fe1964b1faec9e381d4d72b4c.glyf.glyph 459 ('uni0937094D0930').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-25T11:24:41.194064Z",
+                        "orig_output": "validate_3126d37fe1964b1faec9e381d4d72b4c.glyf.glyph 459 ('uni0937094D0930').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_3126d37fe1964b1faec9e381d4d72b4c.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 606, but is 607",
+                        "timestamp": "2020-09-25T11:24:35.358288Z",
+                        "orig_output": "validate_3126d37fe1964b1faec9e381d4d72b4c.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 606, but is 607",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 47624,
+    "completedDate": "2020-09-25 11:25:20.133756"
+}

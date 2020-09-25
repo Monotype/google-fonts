@@ -1,0 +1,101 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Montserrat-ExtraLight.ttf",
+                "type": "ttf",
+                "size": 259888,
+                "md5": "38bc5e073a0692a4eddd8e61c821d57a",
+                "geometryMd5": "ec31eaa45d01c7d426f770426b816777"
+            },
+            "name": {
+                "family": "Montserrat ExtraLight",
+                "subFamily": "Regular",
+                "fullName": "Montserrat ExtraLight",
+                "psName": "Montserrat-ExtraLight",
+                "versionText": "Version 7.200",
+                "copyright": "Copyright 2011 The Montserrat Project Authors (https://github.com/JulietaUla/Montserrat)",
+                "trademark": "Unknown",
+                "typographicFamily": "Montserrat",
+                "typographicSubFamily": "ExtraLight"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 1943,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "ULA ",
+                "font_vendor": "Montserrat Typeface"
+            },
+            "validation": {
+                "font_full_name": "Montserrat ExtraLight",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 6,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_866a908c91334422913ea17027dcd92e.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 3 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-25T03:45:51.795110Z",
+                        "orig_output": "validate_866a908c91334422913ea17027dcd92e.fontedit.OS_2.PANOSE.weight - ERROR - Value 3 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_866a908c91334422913ea17027dcd92e.GDEF.glyphClasses",
+                        "levelname": "ERROR",
+                        "message": "The following mark glyphs have nonzero advances: [1917, 1918, 1919, 1920]",
+                        "timestamp": "2020-09-25T03:45:51.840034Z",
+                        "orig_output": "validate_866a908c91334422913ea17027dcd92e.GDEF.glyphClasses - ERROR - The following mark glyphs have nonzero advances: [1917, 1918, 1919, 1920]",
+                        "msg_code": "V1102"
+                    },
+                    {
+                        "subroutine": "validate_866a908c91334422913ea17027dcd92e.glyf.glyph 1407 ('uni04F9')",
+                        "levelname": "ERROR",
+                        "message": "Bounds should be [113, -3, 638, 699], but are [113, -2, 638, 699].",
+                        "timestamp": "2020-09-25T03:46:06.768974Z",
+                        "orig_output": "validate_866a908c91334422913ea17027dcd92e.glyf.glyph 1407 ('uni04F9') - ERROR - Bounds should be [113, -3, 638, 699], but are [113, -2, 638, 699].",
+                        "msg_code": "E1112"
+                    },
+                    {
+                        "subroutine": "validate_866a908c91334422913ea17027dcd92e.glyf.glyph 311 ('uni01E4.ss01')",
+                        "levelname": "ERROR",
+                        "message": "Bounds should be [57, -4, 781, 704], but are [57, -4, 782, 704].",
+                        "timestamp": "2020-09-25T03:45:56.667417Z",
+                        "orig_output": "validate_866a908c91334422913ea17027dcd92e.glyf.glyph 311 ('uni01E4.ss01') - ERROR - Bounds should be [57, -4, 781, 704], but are [57, -4, 782, 704].",
+                        "msg_code": "E1112"
+                    },
+                    {
+                        "subroutine": "validate_866a908c91334422913ea17027dcd92e.glyf.glyph 81 ('uni01E4')",
+                        "levelname": "ERROR",
+                        "message": "Bounds should be [57, -4, 780, 704], but are [57, -4, 781, 704].",
+                        "timestamp": "2020-09-25T03:45:55.632132Z",
+                        "orig_output": "validate_866a908c91334422913ea17027dcd92e.glyf.glyph 81 ('uni01E4') - ERROR - Bounds should be [57, -4, 780, 704], but are [57, -4, 781, 704].",
+                        "msg_code": "E1112"
+                    },
+                    {
+                        "subroutine": "validate_866a908c91334422913ea17027dcd92e.OS_2.usWeightClass",
+                        "levelname": "ERROR",
+                        "message": "The usWeightClass value 275 is not valid",
+                        "timestamp": "2020-09-25T03:45:55.215870Z",
+                        "orig_output": "validate_866a908c91334422913ea17027dcd92e.OS_2.usWeightClass - ERROR - The usWeightClass value 275 is not valid",
+                        "msg_code": "E2133"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 117086,
+    "completedDate": "2020-09-25 03:47:45.455140"
+}

@@ -1,0 +1,91 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Krub-Regular.ttf",
+                "type": "ttf",
+                "size": 89912,
+                "md5": "4bd36b6276313cf882f686de37c05ba0",
+                "geometryMd5": "13f4c03f80492f2fd9a61583357d9cf0"
+            },
+            "name": {
+                "family": "Krub",
+                "subFamily": "Regular",
+                "fullName": "Krub Regular",
+                "psName": "Krub-Regular",
+                "versionText": "Version 1.000; ttfautohint (v1.6)",
+                "copyright": "Copyright 2018 The Krub Project Authors (https://github.com/cadsondemak/Krub)",
+                "trademark": "Unknown"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 772,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "CDK ",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Krub Regular",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 5,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_7fffbe7e746c42eba3af5888ab0a115b.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 5 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-25T04:11:35.542466Z",
+                        "orig_output": "validate_7fffbe7e746c42eba3af5888ab0a115b.fontedit.OS_2.PANOSE.weight - ERROR - Value 5 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_7fffbe7e746c42eba3af5888ab0a115b.glyf.glyph 231 ('aogonek').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-25T04:11:39.724333Z",
+                        "orig_output": "validate_7fffbe7e746c42eba3af5888ab0a115b.glyf.glyph 231 ('aogonek').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_7fffbe7e746c42eba3af5888ab0a115b.glyf.glyph 292 ('ij')",
+                        "levelname": "ERROR",
+                        "message": "Circular component at or below these glyphs: [685]",
+                        "timestamp": "2020-09-25T04:11:40.523741Z",
+                        "orig_output": "validate_7fffbe7e746c42eba3af5888ab0a115b.glyf.glyph 292 ('ij') - ERROR - Circular component at or below these glyphs: [685]",
+                        "msg_code": "E1118"
+                    },
+                    {
+                        "subroutine": "validate_7fffbe7e746c42eba3af5888ab0a115b.maxp",
+                        "levelname": "ERROR",
+                        "message": "The following glyphs had improperly constructed composite information, and could not be used in validating the 'maxp' table: [685]",
+                        "timestamp": "2020-09-25T04:11:53.221554Z",
+                        "orig_output": "validate_7fffbe7e746c42eba3af5888ab0a115b.maxp - ERROR - The following glyphs had improperly constructed composite information, and could not be used in validating the 'maxp' table: [685]",
+                        "msg_code": "V0555"
+                    },
+                    {
+                        "subroutine": "validate_7fffbe7e746c42eba3af5888ab0a115b.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 570, but is 557",
+                        "timestamp": "2020-09-25T04:11:37.651893Z",
+                        "orig_output": "validate_7fffbe7e746c42eba3af5888ab0a115b.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 570, but is 557",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 21600,
+    "completedDate": "2020-09-25 04:11:54.034891"
+}

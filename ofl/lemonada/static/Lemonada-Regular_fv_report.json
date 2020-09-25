@@ -1,0 +1,91 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Lemonada-Regular.ttf",
+                "type": "ttf",
+                "size": 130732,
+                "md5": "ecdc5e2bd4205f080a503f82a5768215",
+                "geometryMd5": "c786c00d691899eeaa21d58cf938eb31"
+            },
+            "name": {
+                "family": "Lemonada",
+                "subFamily": "Regular",
+                "fullName": "Lemonada Regular",
+                "psName": "Lemonada-Regular",
+                "versionText": "Version 3.007",
+                "copyright": "Copyright 2011 The Lemonada Project Authors (gaber@gaberism.net)",
+                "trademark": "Unknown"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 818,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "1KTF",
+                "font_vendor": "Kief Type Foundry"
+            },
+            "validation": {
+                "font_full_name": "Lemonada Regular",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 5,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_2033f2f8621b43a79fa3a7df05f94950.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 5 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-24T08:01:30.249921Z",
+                        "orig_output": "validate_2033f2f8621b43a79fa3a7df05f94950.fontedit.OS_2.PANOSE.weight - ERROR - Value 5 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_2033f2f8621b43a79fa3a7df05f94950.glyf.glyph 239 ('h').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-24T08:01:34.811415Z",
+                        "orig_output": "validate_2033f2f8621b43a79fa3a7df05f94950.glyf.glyph 239 ('h').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_2033f2f8621b43a79fa3a7df05f94950.glyf.glyph 519 ('uniFBA7').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-24T08:01:38.882288Z",
+                        "orig_output": "validate_2033f2f8621b43a79fa3a7df05f94950.glyf.glyph 519 ('uniFBA7').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_2033f2f8621b43a79fa3a7df05f94950.hhea",
+                        "levelname": "ERROR",
+                        "message": "The minLeftSidebearing value (-788) does not match the expected value (-777)",
+                        "timestamp": "2020-09-24T08:01:45.935810Z",
+                        "orig_output": "validate_2033f2f8621b43a79fa3a7df05f94950.hhea - ERROR - The minLeftSidebearing value (-788) does not match the expected value (-777)",
+                        "msg_code": "E1402"
+                    },
+                    {
+                        "subroutine": "validate_2033f2f8621b43a79fa3a7df05f94950.hhea",
+                        "levelname": "ERROR",
+                        "message": "The minRightSidebearing value (-346) does not match the expected value (-421)",
+                        "timestamp": "2020-09-24T08:01:45.935916Z",
+                        "orig_output": "validate_2033f2f8621b43a79fa3a7df05f94950.hhea - ERROR - The minRightSidebearing value (-346) does not match the expected value (-421)",
+                        "msg_code": "E1403"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 76895,
+    "completedDate": "2020-09-24 08:02:44.223387"
+}

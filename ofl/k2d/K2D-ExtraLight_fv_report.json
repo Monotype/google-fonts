@@ -1,0 +1,101 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "K2D-ExtraLight.ttf",
+                "type": "ttf",
+                "size": 96008,
+                "md5": "13c484faed8ac0d3ab7c52633149cf33",
+                "geometryMd5": "3737a19547103bd4e6b90173c07c0e0d"
+            },
+            "name": {
+                "family": "K2D ExtraLight",
+                "subFamily": "Regular",
+                "fullName": "K2D ExtraLight",
+                "psName": "K2D-ExtraLight",
+                "versionText": "Version 1.000; ttfautohint (v1.6)",
+                "copyright": "Copyright 2018 The K2D Project Authors (https://github.com/cadsondemak/K2D)",
+                "trademark": "Unknown",
+                "typographicFamily": "K2D",
+                "typographicSubFamily": "ExtraLight"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 772,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "CDK ",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "K2D ExtraLight",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 6,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_c7370d7d6c7f4536ba20e5e23b32792b.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 3 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-24T16:25:21.346177Z",
+                        "orig_output": "validate_c7370d7d6c7f4536ba20e5e23b32792b.fontedit.OS_2.PANOSE.weight - ERROR - Value 3 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_c7370d7d6c7f4536ba20e5e23b32792b.glyf.glyph 24 ('Aogonek').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-24T16:25:23.597498Z",
+                        "orig_output": "validate_c7370d7d6c7f4536ba20e5e23b32792b.glyf.glyph 24 ('Aogonek').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_c7370d7d6c7f4536ba20e5e23b32792b.glyf.glyph 349 ('p').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-24T16:25:25.646362Z",
+                        "orig_output": "validate_c7370d7d6c7f4536ba20e5e23b32792b.glyf.glyph 349 ('p').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_c7370d7d6c7f4536ba20e5e23b32792b.maxp",
+                        "levelname": "ERROR",
+                        "message": "The maxZones value should be 1, but is 0.",
+                        "timestamp": "2020-09-24T16:25:33.400606Z",
+                        "orig_output": "validate_c7370d7d6c7f4536ba20e5e23b32792b.maxp - ERROR - The maxZones value should be 1, but is 0.",
+                        "msg_code": "V0272"
+                    },
+                    {
+                        "subroutine": "validate_c7370d7d6c7f4536ba20e5e23b32792b.OS_2.usWeightClass",
+                        "levelname": "ERROR",
+                        "message": "The usWeightClass value 275 is not valid",
+                        "timestamp": "2020-09-24T16:25:23.413299Z",
+                        "orig_output": "validate_c7370d7d6c7f4536ba20e5e23b32792b.OS_2.usWeightClass - ERROR - The usWeightClass value 275 is not valid",
+                        "msg_code": "E2133"
+                    },
+                    {
+                        "subroutine": "validate_c7370d7d6c7f4536ba20e5e23b32792b.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 569, but is 563",
+                        "timestamp": "2020-09-24T16:25:23.423736Z",
+                        "orig_output": "validate_c7370d7d6c7f4536ba20e5e23b32792b.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 569, but is 563",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 14464,
+    "completedDate": "2020-09-24 16:25:34.180444"
+}

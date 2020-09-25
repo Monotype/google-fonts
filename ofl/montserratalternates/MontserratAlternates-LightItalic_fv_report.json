@@ -1,0 +1,93 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "MontserratAlternates-LightItalic.ttf",
+                "type": "ttf",
+                "size": 214004,
+                "md5": "361b479b3d8a879fd722d7a2489b3662",
+                "geometryMd5": "f0ecbd5405568360ae0c23ff550be00f"
+            },
+            "name": {
+                "family": "Montserrat Alternates Light",
+                "subFamily": "Italic",
+                "fullName": "Montserrat Alternates Light Italic",
+                "psName": "MontserratAlternates-LightItalic",
+                "versionText": "Version 7.200",
+                "copyright": "Copyright 2011 The Montserrat Project Authors (https://github.com/JulietaUla/Montserrat)",
+                "trademark": "Unknown",
+                "typographicFamily": "Montserrat Alternates",
+                "typographicSubFamily": "Light Italic"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 1480,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "ULA ",
+                "font_vendor": "Montserrat Typeface"
+            },
+            "validation": {
+                "font_full_name": "Montserrat Alternates Light Italic",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 5,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_c9fe667c02da4c679ac44147a7d64ae8.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 4 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-24T17:48:38.004986Z",
+                        "orig_output": "validate_c9fe667c02da4c679ac44147a7d64ae8.fontedit.OS_2.PANOSE.weight - ERROR - Value 4 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_c9fe667c02da4c679ac44147a7d64ae8.GDEF.glyphClasses",
+                        "levelname": "ERROR",
+                        "message": "The following mark glyphs have nonzero advances: [1455, 1456, 1457, 1458]",
+                        "timestamp": "2020-09-24T17:48:38.126483Z",
+                        "orig_output": "validate_c9fe667c02da4c679ac44147a7d64ae8.GDEF.glyphClasses - ERROR - The following mark glyphs have nonzero advances: [1455, 1456, 1457, 1458]",
+                        "msg_code": "V1102"
+                    },
+                    {
+                        "subroutine": "validate_c9fe667c02da4c679ac44147a7d64ae8.glyf.glyph 1438 ('breve')",
+                        "levelname": "ERROR",
+                        "message": "Bounds should be [243, 603, 535, 725], but are [247, 603, 535, 725].",
+                        "timestamp": "2020-09-24T17:48:55.239865Z",
+                        "orig_output": "validate_c9fe667c02da4c679ac44147a7d64ae8.glyf.glyph 1438 ('breve') - ERROR - Bounds should be [243, 603, 535, 725], but are [247, 603, 535, 725].",
+                        "msg_code": "E1112"
+                    },
+                    {
+                        "subroutine": "validate_c9fe667c02da4c679ac44147a7d64ae8.glyf.glyph 424 ('uni0213')",
+                        "levelname": "ERROR",
+                        "message": "Bounds should be [53, 0, 446, 729], but are [53, 0, 442, 729].",
+                        "timestamp": "2020-09-24T17:48:45.592578Z",
+                        "orig_output": "validate_c9fe667c02da4c679ac44147a7d64ae8.glyf.glyph 424 ('uni0213') - ERROR - Bounds should be [53, 0, 446, 729], but are [53, 0, 442, 729].",
+                        "msg_code": "E1112"
+                    },
+                    {
+                        "subroutine": "validate_c9fe667c02da4c679ac44147a7d64ae8.hhea",
+                        "levelname": "ERROR",
+                        "message": "The minLeftSidebearing value (-809) does not match the expected value (-801)",
+                        "timestamp": "2020-09-24T17:49:00.320762Z",
+                        "orig_output": "validate_c9fe667c02da4c679ac44147a7d64ae8.hhea - ERROR - The minLeftSidebearing value (-809) does not match the expected value (-801)",
+                        "msg_code": "E1402"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 97447,
+    "completedDate": "2020-09-24 17:50:12.079667"
+}

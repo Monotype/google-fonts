@@ -1,0 +1,85 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "MontserratAlternates-ExtraLight.ttf",
+                "type": "ttf",
+                "size": 212840,
+                "md5": "22645ae9e60b745c1f39e6cccadb2e3a",
+                "geometryMd5": "c9402f1d5527565a188eb485f84d10bb"
+            },
+            "name": {
+                "family": "Montserrat Alternates ExLight",
+                "subFamily": "Regular",
+                "fullName": "Montserrat Alternates ExtraLight",
+                "psName": "MontserratAlternates-ExtraLight",
+                "versionText": "Version 7.200",
+                "copyright": "Copyright 2011 The Montserrat Project Authors (https://github.com/JulietaUla/Montserrat)",
+                "trademark": "Unknown",
+                "typographicFamily": "Montserrat Alternates",
+                "typographicSubFamily": "ExtraLight"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 1482,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "ULA ",
+                "font_vendor": "Montserrat Typeface"
+            },
+            "validation": {
+                "font_full_name": "Montserrat Alternates ExtraLight",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 4,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_bfe5598e4fa94f2f8bf48cea3a911baf.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 3 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-24T17:42:21.482456Z",
+                        "orig_output": "validate_bfe5598e4fa94f2f8bf48cea3a911baf.fontedit.OS_2.PANOSE.weight - ERROR - Value 3 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_bfe5598e4fa94f2f8bf48cea3a911baf.GDEF.glyphClasses",
+                        "levelname": "ERROR",
+                        "message": "The following mark glyphs have nonzero advances: [1457, 1458, 1459, 1460]",
+                        "timestamp": "2020-09-24T17:42:21.560951Z",
+                        "orig_output": "validate_bfe5598e4fa94f2f8bf48cea3a911baf.GDEF.glyphClasses - ERROR - The following mark glyphs have nonzero advances: [1457, 1458, 1459, 1460]",
+                        "msg_code": "V1102"
+                    },
+                    {
+                        "subroutine": "validate_bfe5598e4fa94f2f8bf48cea3a911baf.glyf.glyph 81 ('uni01E4')",
+                        "levelname": "ERROR",
+                        "message": "Bounds should be [57, -4, 781, 704], but are [57, -4, 782, 704].",
+                        "timestamp": "2020-09-24T17:42:27.603687Z",
+                        "orig_output": "validate_bfe5598e4fa94f2f8bf48cea3a911baf.glyf.glyph 81 ('uni01E4') - ERROR - Bounds should be [57, -4, 781, 704], but are [57, -4, 782, 704].",
+                        "msg_code": "E1112"
+                    },
+                    {
+                        "subroutine": "validate_bfe5598e4fa94f2f8bf48cea3a911baf.OS_2.usWeightClass",
+                        "levelname": "ERROR",
+                        "message": "The usWeightClass value 275 is not valid",
+                        "timestamp": "2020-09-24T17:42:26.609598Z",
+                        "orig_output": "validate_bfe5598e4fa94f2f8bf48cea3a911baf.OS_2.usWeightClass - ERROR - The usWeightClass value 275 is not valid",
+                        "msg_code": "E2133"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 127120,
+    "completedDate": "2020-09-24 17:44:24.431820"
+}

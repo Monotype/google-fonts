@@ -1,0 +1,101 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Inconsolata-SemiCondensedExtraBold.ttf",
+                "type": "ttf",
+                "size": 107660,
+                "md5": "644887573bffc77150e8a3130337fd35",
+                "geometryMd5": "7506baa7e261a563c62ea3bc9c8f8034"
+            },
+            "name": {
+                "family": "Inconsolata SemiCondensed ExtraBold",
+                "subFamily": "Regular",
+                "fullName": "Inconsolata SemiCondensed ExtraBold",
+                "psName": "Inconsolata-SemiCondensedExtraBold",
+                "versionText": "Version 3.001; ttfautohint (v1.8.2.53-6de2)",
+                "copyright": "Copyright 2006 The Inconsolata Project Authors (https://github.com/cyrealtype/Inconsolata)",
+                "trademark": "Unknown",
+                "typographicFamily": "Inconsolata",
+                "typographicSubFamily": "SemiCondensed ExtraBold"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 964,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "CYRE",
+                "font_vendor": "Cyreal"
+            },
+            "validation": {
+                "font_full_name": "Inconsolata SemiCondensed ExtraBold",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 6,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_04c6e945aab64a8287249ef4a642dcf0.glyf.glyph 322 ('uni1ECB')",
+                        "levelname": "ERROR",
+                        "message": "Circular component at or below these glyphs: [892]",
+                        "timestamp": "2020-09-24T15:55:21.727537Z",
+                        "orig_output": "validate_04c6e945aab64a8287249ef4a642dcf0.glyf.glyph 322 ('uni1ECB') - ERROR - Circular component at or below these glyphs: [892]",
+                        "msg_code": "E1118"
+                    },
+                    {
+                        "subroutine": "validate_04c6e945aab64a8287249ef4a642dcf0.glyf.glyph 413 ('uni1E69')",
+                        "levelname": "ERROR",
+                        "message": "Circular component at or below these glyphs: [892]",
+                        "timestamp": "2020-09-24T15:55:22.517905Z",
+                        "orig_output": "validate_04c6e945aab64a8287249ef4a642dcf0.glyf.glyph 413 ('uni1E69') - ERROR - Circular component at or below these glyphs: [892]",
+                        "msg_code": "E1118"
+                    },
+                    {
+                        "subroutine": "validate_04c6e945aab64a8287249ef4a642dcf0.maxp",
+                        "levelname": "ERROR",
+                        "message": "The following glyphs had improperly constructed composite information, and could not be used in validating the 'maxp' table: [892]",
+                        "timestamp": "2020-09-24T15:55:34.231860Z",
+                        "orig_output": "validate_04c6e945aab64a8287249ef4a642dcf0.maxp - ERROR - The following glyphs had improperly constructed composite information, and could not be used in validating the 'maxp' table: [892]",
+                        "msg_code": "V0555"
+                    },
+                    {
+                        "subroutine": "validate_04c6e945aab64a8287249ef4a642dcf0.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2020-09-24T15:55:34.232307Z",
+                        "orig_output": "validate_04c6e945aab64a8287249ef4a642dcf0.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
+                    },
+                    {
+                        "subroutine": "validate_04c6e945aab64a8287249ef4a642dcf0.post",
+                        "levelname": "ERROR",
+                        "message": "Header says isFixedPitch, but advances vary.",
+                        "timestamp": "2020-09-24T15:55:34.233550Z",
+                        "orig_output": "validate_04c6e945aab64a8287249ef4a642dcf0.post - ERROR - Header says isFixedPitch, but advances vary.",
+                        "msg_code": "E2302"
+                    },
+                    {
+                        "subroutine": "validate_04c6e945aab64a8287249ef4a642dcf0.post",
+                        "levelname": "ERROR",
+                        "message": "Header disagrees with PANOSE on fixed-pitch.",
+                        "timestamp": "2020-09-24T15:55:34.233622Z",
+                        "orig_output": "validate_04c6e945aab64a8287249ef4a642dcf0.post - ERROR - Header disagrees with PANOSE on fixed-pitch.",
+                        "msg_code": "E2303"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 50087,
+    "completedDate": "2020-09-24 15:56:03.111454"
+}

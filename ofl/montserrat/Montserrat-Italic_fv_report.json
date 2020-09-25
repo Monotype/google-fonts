@@ -1,0 +1,99 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Montserrat-Italic.ttf",
+                "type": "ttf",
+                "size": 266628,
+                "md5": "6786546363c0261228fd66d68bbf27e9",
+                "geometryMd5": "6bcebe429de13bd5e75b820adca2621f"
+            },
+            "name": {
+                "family": "Montserrat",
+                "subFamily": "Italic",
+                "fullName": "Montserrat Italic",
+                "psName": "Montserrat-Italic",
+                "versionText": "Version 7.200",
+                "copyright": "Copyright 2011 The Montserrat Project Authors (https://github.com/JulietaUla/Montserrat)",
+                "trademark": "Unknown"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 1970,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "ULA ",
+                "font_vendor": "Montserrat Typeface"
+            },
+            "validation": {
+                "font_full_name": "Montserrat Italic",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 6,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_bc1903ece09c4499b0b4c37621740ac4.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 5 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-25T05:00:08.531595Z",
+                        "orig_output": "validate_bc1903ece09c4499b0b4c37621740ac4.fontedit.OS_2.PANOSE.weight - ERROR - Value 5 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_bc1903ece09c4499b0b4c37621740ac4.GDEF.glyphClasses",
+                        "levelname": "ERROR",
+                        "message": "The following mark glyphs have nonzero advances: [1944, 1945, 1946, 1947]",
+                        "timestamp": "2020-09-25T05:00:08.599471Z",
+                        "orig_output": "validate_bc1903ece09c4499b0b4c37621740ac4.GDEF.glyphClasses - ERROR - The following mark glyphs have nonzero advances: [1944, 1945, 1946, 1947]",
+                        "msg_code": "V1102"
+                    },
+                    {
+                        "subroutine": "validate_bc1903ece09c4499b0b4c37621740ac4.glyf.glyph 100 ('uni020A')",
+                        "levelname": "ERROR",
+                        "message": "Bounds should be [62, 0, 406, 886], but are [62, 0, 402, 886].",
+                        "timestamp": "2020-09-25T05:00:13.098628Z",
+                        "orig_output": "validate_bc1903ece09c4499b0b4c37621740ac4.glyf.glyph 100 ('uni020A') - ERROR - Bounds should be [62, 0, 406, 886], but are [62, 0, 402, 886].",
+                        "msg_code": "E1112"
+                    },
+                    {
+                        "subroutine": "validate_bc1903ece09c4499b0b4c37621740ac4.glyf.glyph 1927 ('breve')",
+                        "levelname": "ERROR",
+                        "message": "Bounds should be [236, 602, 545, 731], but are [240, 602, 545, 731].",
+                        "timestamp": "2020-09-25T05:00:24.232834Z",
+                        "orig_output": "validate_bc1903ece09c4499b0b4c37621740ac4.glyf.glyph 1927 ('breve') - ERROR - Bounds should be [236, 602, 545, 731], but are [240, 602, 545, 731].",
+                        "msg_code": "E1112"
+                    },
+                    {
+                        "subroutine": "validate_bc1903ece09c4499b0b4c37621740ac4.glyf.glyph 574 ('uni0213')",
+                        "levelname": "ERROR",
+                        "message": "Bounds should be [47, 0, 457, 737], but are [47, 0, 453, 737].",
+                        "timestamp": "2020-09-25T05:00:15.733215Z",
+                        "orig_output": "validate_bc1903ece09c4499b0b4c37621740ac4.glyf.glyph 574 ('uni0213') - ERROR - Bounds should be [47, 0, 457, 737], but are [47, 0, 453, 737].",
+                        "msg_code": "E1112"
+                    },
+                    {
+                        "subroutine": "validate_bc1903ece09c4499b0b4c37621740ac4.hhea",
+                        "levelname": "ERROR",
+                        "message": "The minLeftSidebearing value (-824) does not match the expected value (-807)",
+                        "timestamp": "2020-09-25T05:00:30.524729Z",
+                        "orig_output": "validate_bc1903ece09c4499b0b4c37621740ac4.hhea - ERROR - The minLeftSidebearing value (-824) does not match the expected value (-807)",
+                        "msg_code": "E1402"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 99092,
+    "completedDate": "2020-09-25 05:01:43.895512"
+}

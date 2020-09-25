@@ -1,0 +1,85 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Kodchasan-MediumItalic.ttf",
+                "type": "ttf",
+                "size": 106076,
+                "md5": "e4147488b45e3af466f84d0df58adb39",
+                "geometryMd5": "e03fb6d7dd0dd526dc7a5ae0e4ab232e"
+            },
+            "name": {
+                "family": "Kodchasan Medium",
+                "subFamily": "Italic",
+                "fullName": "Kodchasan Medium Italic",
+                "psName": "Kodchasan-MediumItalic",
+                "versionText": "Version 1.000; ttfautohint (v1.6)",
+                "copyright": "Copyright 2018 The Kodchasan Project Authors (https://github.com/cadsondemak/Kodchasan)",
+                "trademark": "Unknown",
+                "typographicFamily": "Kodchasan",
+                "typographicSubFamily": "Medium Italic"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 774,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "CDK ",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Kodchasan Medium Italic",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 4,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_2bf54b419b064081b78ecd75fec2c450.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 6 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-24T19:28:15.851744Z",
+                        "orig_output": "validate_2bf54b419b064081b78ecd75fec2c450.fontedit.OS_2.PANOSE.weight - ERROR - Value 6 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_2bf54b419b064081b78ecd75fec2c450.glyf.glyph 24 ('Aogonek').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-24T19:28:18.525764Z",
+                        "orig_output": "validate_2bf54b419b064081b78ecd75fec2c450.glyf.glyph 24 ('Aogonek').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_2bf54b419b064081b78ecd75fec2c450.maxp",
+                        "levelname": "ERROR",
+                        "message": "The maxZones value should be 1, but is 0.",
+                        "timestamp": "2020-09-24T19:28:33.524548Z",
+                        "orig_output": "validate_2bf54b419b064081b78ecd75fec2c450.maxp - ERROR - The maxZones value should be 1, but is 0.",
+                        "msg_code": "V0272"
+                    },
+                    {
+                        "subroutine": "validate_2bf54b419b064081b78ecd75fec2c450.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 632, but is 619",
+                        "timestamp": "2020-09-24T19:28:18.214414Z",
+                        "orig_output": "validate_2bf54b419b064081b78ecd75fec2c450.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 632, but is 619",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 21193,
+    "completedDate": "2020-09-24 19:28:33.984813"
+}

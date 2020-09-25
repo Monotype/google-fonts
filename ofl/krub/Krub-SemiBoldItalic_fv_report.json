@@ -1,0 +1,85 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Krub-SemiBoldItalic.ttf",
+                "type": "ttf",
+                "size": 92832,
+                "md5": "4207c7c19140c41279be57744a28da73",
+                "geometryMd5": "77bfa8c31121f3227295cfe799b55731"
+            },
+            "name": {
+                "family": "Krub SemiBold",
+                "subFamily": "Italic",
+                "fullName": "Krub SemiBold Italic",
+                "psName": "Krub-SemiBoldItalic",
+                "versionText": "Version 1.000; ttfautohint (v1.6)",
+                "copyright": "Copyright 2018 The Krub Project Authors (https://github.com/cadsondemak/Krub)",
+                "trademark": "Unknown",
+                "typographicFamily": "Krub",
+                "typographicSubFamily": "SemiBold Italic"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 772,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "CDK ",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Krub SemiBold Italic",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 4,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_bcbb069e8d1740479de010ceae5e3137.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 7 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-25T04:40:25.327750Z",
+                        "orig_output": "validate_bcbb069e8d1740479de010ceae5e3137.fontedit.OS_2.PANOSE.weight - ERROR - Value 7 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_bcbb069e8d1740479de010ceae5e3137.glyf.glyph 292 ('ij')",
+                        "levelname": "ERROR",
+                        "message": "Circular component at or below these glyphs: [685]",
+                        "timestamp": "2020-09-25T04:40:29.959878Z",
+                        "orig_output": "validate_bcbb069e8d1740479de010ceae5e3137.glyf.glyph 292 ('ij') - ERROR - Circular component at or below these glyphs: [685]",
+                        "msg_code": "E1118"
+                    },
+                    {
+                        "subroutine": "validate_bcbb069e8d1740479de010ceae5e3137.maxp",
+                        "levelname": "ERROR",
+                        "message": "The following glyphs had improperly constructed composite information, and could not be used in validating the 'maxp' table: [685]",
+                        "timestamp": "2020-09-25T04:40:39.727493Z",
+                        "orig_output": "validate_bcbb069e8d1740479de010ceae5e3137.maxp - ERROR - The following glyphs had improperly constructed composite information, and could not be used in validating the 'maxp' table: [685]",
+                        "msg_code": "V0555"
+                    },
+                    {
+                        "subroutine": "validate_bcbb069e8d1740479de010ceae5e3137.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 579, but is 566",
+                        "timestamp": "2020-09-25T04:40:26.759267Z",
+                        "orig_output": "validate_bcbb069e8d1740479de010ceae5e3137.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 579, but is 566",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 17693,
+    "completedDate": "2020-09-25 04:40:40.088046"
+}
