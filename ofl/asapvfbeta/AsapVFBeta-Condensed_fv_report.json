@@ -1,0 +1,107 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "AsapVFBeta-Condensed.ttf",
+                "type": "ttf",
+                "size": 121540,
+                "md5": "df5e941bda3a953b0de213c3c682eeb9",
+                "geometryMd5": "673511f3aa307a56bb66b1084ce2f0b1"
+            },
+            "name": {
+                "family": "Asap Condensed VF Beta",
+                "subFamily": "Regular",
+                "fullName": "Asap Condensed VF Beta Regular",
+                "psName": "AsapCondensedVFBeta-Regular",
+                "versionText": "Version 1.008",
+                "copyright": "Copyright 2017 The Asap Condensed Project Authors (https://github.com/Omnibus-Type/AsapCondensed) with Reserved Font Name \"Asap\".",
+                "trademark": "Unknown"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 585,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "OMNI",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Asap Condensed VF Beta Regular",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 7,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_b696cdfa072b4c4682bdcaf5624a7402.fvar",
+                        "levelname": "ERROR",
+                        "message": "Missing STAT table. Required for variable fonts.",
+                        "timestamp": "2020-09-24T08:25:43.725034Z",
+                        "orig_output": "validate_b696cdfa072b4c4682bdcaf5624a7402.fvar - ERROR - Missing STAT table. Required for variable fonts.",
+                        "msg_code": "W0050"
+                    },
+                    {
+                        "subroutine": "validate_b696cdfa072b4c4682bdcaf5624a7402.fvar",
+                        "levelname": "ERROR",
+                        "message": "Missing STAT table. Required for variable fonts.",
+                        "timestamp": "2020-09-24T08:25:43.725141Z",
+                        "orig_output": "validate_b696cdfa072b4c4682bdcaf5624a7402.fvar - ERROR - Missing STAT table. Required for variable fonts.",
+                        "msg_code": "W0050"
+                    },
+                    {
+                        "subroutine": "validate_b696cdfa072b4c4682bdcaf5624a7402.glyf.glyph 285 ('ij')",
+                        "levelname": "ERROR",
+                        "message": "Circular component at or below these glyphs: [554]",
+                        "timestamp": "2020-09-24T08:25:47.207375Z",
+                        "orig_output": "validate_b696cdfa072b4c4682bdcaf5624a7402.glyf.glyph 285 ('ij') - ERROR - Circular component at or below these glyphs: [554]",
+                        "msg_code": "E1118"
+                    },
+                    {
+                        "subroutine": "validate_b696cdfa072b4c4682bdcaf5624a7402.GPOS.features.[b'mark0003'].[0]",
+                        "levelname": "ERROR",
+                        "message": "The following ligatures have inconsistent counts between the GSUB Ligature Lookup that created them and the length of the mark-to-ligature data in this table: [422]",
+                        "timestamp": "2020-09-24T08:25:42.073732Z",
+                        "orig_output": "validate_b696cdfa072b4c4682bdcaf5624a7402.GPOS.features.[b'mark0003'].[0] - ERROR - The following ligatures have inconsistent counts between the GSUB Ligature Lookup that created them and the length of the mark-to-ligature data in this table: [422]",
+                        "msg_code": "V1062"
+                    },
+                    {
+                        "subroutine": "validate_b696cdfa072b4c4682bdcaf5624a7402.maxp",
+                        "levelname": "ERROR",
+                        "message": "The following glyphs had improperly constructed composite information, and could not be used in validating the 'maxp' table: [554]",
+                        "timestamp": "2020-09-24T08:25:58.098541Z",
+                        "orig_output": "validate_b696cdfa072b4c4682bdcaf5624a7402.maxp - ERROR - The following glyphs had improperly constructed composite information, and could not be used in validating the 'maxp' table: [554]",
+                        "msg_code": "V0555"
+                    },
+                    {
+                        "subroutine": "validate_b696cdfa072b4c4682bdcaf5624a7402.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2020-09-24T08:25:58.099044Z",
+                        "orig_output": "validate_b696cdfa072b4c4682bdcaf5624a7402.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
+                    },
+                    {
+                        "subroutine": "validate_b696cdfa072b4c4682bdcaf5624a7402.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 462, but is 459",
+                        "timestamp": "2020-09-24T08:25:43.704829Z",
+                        "orig_output": "validate_b696cdfa072b4c4682bdcaf5624a7402.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 462, but is 459",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 20412,
+    "completedDate": "2020-09-24 08:25:58.402912"
+}

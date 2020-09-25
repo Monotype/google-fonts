@@ -1,0 +1,75 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "AbyssinicaSIL-Regular.ttf",
+                "type": "ttf",
+                "size": 519064,
+                "md5": "40426d645e4e4dd769ff854b0bd1c308",
+                "geometryMd5": "59ca2c6e39783362d36c81b6d1ec29b2"
+            },
+            "name": {
+                "family": "Abyssinica SIL",
+                "subFamily": "Regular",
+                "fullName": "Abyssinica SIL",
+                "psName": "AbyssinicaSIL-Regular",
+                "versionText": "Version 1.500g",
+                "copyright": "Copyright (c) 2000-2013 by SIL International. All rights reserved.",
+                "trademark": "Abyssinica SIL is a trademark of SIL International."
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 1027,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "SIL ",
+                "font_vendor": "SIL International (SIL)"
+            },
+            "validation": {
+                "font_full_name": "Abyssinica SIL",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 3,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_f90a02ed5b1748218393d5eccdbf4714.GDEF.glyphClasses",
+                        "levelname": "ERROR",
+                        "message": "The following mark glyphs have nonzero advances: [285, 286, 287, 334, 335, 336, 337, 338, 339, 340, 341, 342, 343, 1018, 1026]",
+                        "timestamp": "2020-09-24T16:56:32.264391Z",
+                        "orig_output": "validate_f90a02ed5b1748218393d5eccdbf4714.GDEF.glyphClasses - ERROR - The following mark glyphs have nonzero advances: [285, 286, 287, 334, 335, 336, 337, 338, 339, 340, 341, 342, 343, 1018, 1026]",
+                        "msg_code": "V1102"
+                    },
+                    {
+                        "subroutine": "validate_f90a02ed5b1748218393d5eccdbf4714.OS_2.usMaxContext",
+                        "levelname": "ERROR",
+                        "message": "The usMaxContext should be 7, but is 0",
+                        "timestamp": "2020-09-24T16:56:34.359324Z",
+                        "orig_output": "validate_f90a02ed5b1748218393d5eccdbf4714.OS_2.usMaxContext - ERROR - The usMaxContext should be 7, but is 0",
+                        "msg_code": "V0831"
+                    },
+                    {
+                        "subroutine": "validate_f90a02ed5b1748218393d5eccdbf4714.post",
+                        "levelname": "ERROR",
+                        "message": "Glyphname 'nonmarkingreturn' is used in multiple glyphs: [2, 332]",
+                        "timestamp": "2020-09-24T16:58:16.967325Z",
+                        "orig_output": "validate_f90a02ed5b1748218393d5eccdbf4714.post - ERROR - Glyphname 'nonmarkingreturn' is used in multiple glyphs: [2, 332]",
+                        "msg_code": "V0932"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 132756,
+    "completedDate": "2020-09-24 16:58:37.429487"
+}

@@ -1,0 +1,101 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "AlegreyaSansSC-BlackItalic.ttf",
+                "type": "ttf",
+                "size": 277236,
+                "md5": "4e0cb4103f6270fb528b8f7be7f870ce",
+                "geometryMd5": "d41f5682b6f7c37c47fbdbba1f489baf"
+            },
+            "name": {
+                "family": "Alegreya Sans SC Black",
+                "subFamily": "Italic",
+                "fullName": "Alegreya Sans SC Black Italic",
+                "psName": "AlegreyaSansSC-BlackItalic",
+                "versionText": "Version 2.003; ttfautohint (v1.6)",
+                "copyright": "Copyright 2013 The Alegreya Sans Project Authors (https://github.com/huertatipografica/Alegreya-Sans)",
+                "trademark": "Unknown",
+                "typographicFamily": "Alegreya Sans SC",
+                "typographicSubFamily": "Black Italic"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 1577,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "HT  ",
+                "font_vendor": "Huerta Tipogr\u00e1fica"
+            },
+            "validation": {
+                "font_full_name": "Alegreya Sans SC Black Italic",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 6,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_12b79c5ebd074bcf8c5c0a42b35a8d19.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 10 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-25T00:35:23.799425Z",
+                        "orig_output": "validate_12b79c5ebd074bcf8c5c0a42b35a8d19.fontedit.OS_2.PANOSE.weight - ERROR - Value 10 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_12b79c5ebd074bcf8c5c0a42b35a8d19.GDEF.glyphClasses",
+                        "levelname": "ERROR",
+                        "message": "The following mark glyphs have nonzero advances: [1555, 1556, 1557, 1558, 1559]",
+                        "timestamp": "2020-09-25T00:35:23.848830Z",
+                        "orig_output": "validate_12b79c5ebd074bcf8c5c0a42b35a8d19.GDEF.glyphClasses - ERROR - The following mark glyphs have nonzero advances: [1555, 1556, 1557, 1558, 1559]",
+                        "msg_code": "V1102"
+                    },
+                    {
+                        "subroutine": "validate_12b79c5ebd074bcf8c5c0a42b35a8d19.glyf.glyph 515 ('uni02B0')",
+                        "levelname": "ERROR",
+                        "message": "Bounds should be [41, 317, 370, 813], but are [41, 317, 369, 813].",
+                        "timestamp": "2020-09-25T00:35:34.336837Z",
+                        "orig_output": "validate_12b79c5ebd074bcf8c5c0a42b35a8d19.glyf.glyph 515 ('uni02B0') - ERROR - Bounds should be [41, 317, 370, 813], but are [41, 317, 369, 813].",
+                        "msg_code": "E1112"
+                    },
+                    {
+                        "subroutine": "validate_12b79c5ebd074bcf8c5c0a42b35a8d19.glyf.glyph 518 ('uni207F')",
+                        "levelname": "ERROR",
+                        "message": "Bounds should be [42, 317, 371, 646], but are [42, 317, 370, 646].",
+                        "timestamp": "2020-09-25T00:35:34.344456Z",
+                        "orig_output": "validate_12b79c5ebd074bcf8c5c0a42b35a8d19.glyf.glyph 518 ('uni207F') - ERROR - Bounds should be [42, 317, 371, 646], but are [42, 317, 370, 646].",
+                        "msg_code": "E1112"
+                    },
+                    {
+                        "subroutine": "validate_12b79c5ebd074bcf8c5c0a42b35a8d19.glyf.glyph 519 ('uni02E2')",
+                        "levelname": "ERROR",
+                        "message": "Bounds should be [25, 313, 289, 649], but are [25, 313, 289, 648].",
+                        "timestamp": "2020-09-25T00:35:34.367468Z",
+                        "orig_output": "validate_12b79c5ebd074bcf8c5c0a42b35a8d19.glyf.glyph 519 ('uni02E2') - ERROR - Bounds should be [25, 313, 289, 649], but are [25, 313, 289, 648].",
+                        "msg_code": "E1112"
+                    },
+                    {
+                        "subroutine": "validate_12b79c5ebd074bcf8c5c0a42b35a8d19.hhea",
+                        "levelname": "ERROR",
+                        "message": "The minLeftSidebearing value (-476) does not match the expected value (-450)",
+                        "timestamp": "2020-09-25T00:35:52.664809Z",
+                        "orig_output": "validate_12b79c5ebd074bcf8c5c0a42b35a8d19.hhea - ERROR - The minLeftSidebearing value (-476) does not match the expected value (-450)",
+                        "msg_code": "E1402"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 177853,
+    "completedDate": "2020-09-25 00:38:18.776627"
+}

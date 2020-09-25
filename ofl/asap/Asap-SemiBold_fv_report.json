@@ -1,0 +1,85 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Asap-SemiBold.ttf",
+                "type": "ttf",
+                "size": 109036,
+                "md5": "26c3b756fdba4300c88b47a5f1234aa3",
+                "geometryMd5": "c39f3e65a1dc42b908892bae70fc9b4b"
+            },
+            "name": {
+                "family": "Asap SemiBold",
+                "subFamily": "Regular",
+                "fullName": "Asap SemiBold",
+                "psName": "Asap-SemiBold",
+                "versionText": "Version 2.000; ttfautohint (v1.8)",
+                "copyright": "Copyright 2018 The Asap Project Authors (https://github.com/Omnibus-Type/Asap) with Reserved Font Name \"Asap\".",
+                "trademark": "Asap is a trademark of Omnibus-Type.",
+                "typographicFamily": "Asap",
+                "typographicSubFamily": "SemiBold"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 791,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "OMNI",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Asap SemiBold",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 4,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_f63e36081f2a491ab89db5248627c415.glyf.glyph 323 ('ij')",
+                        "levelname": "ERROR",
+                        "message": "Circular component at or below these glyphs: [719]",
+                        "timestamp": "2020-09-24T13:04:16.048387Z",
+                        "orig_output": "validate_f63e36081f2a491ab89db5248627c415.glyf.glyph 323 ('ij') - ERROR - Circular component at or below these glyphs: [719]",
+                        "msg_code": "E1118"
+                    },
+                    {
+                        "subroutine": "validate_f63e36081f2a491ab89db5248627c415.glyf.glyph 687 ('radical').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-24T13:04:20.108530Z",
+                        "orig_output": "validate_f63e36081f2a491ab89db5248627c415.glyf.glyph 687 ('radical').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_f63e36081f2a491ab89db5248627c415.maxp",
+                        "levelname": "ERROR",
+                        "message": "The following glyphs had improperly constructed composite information, and could not be used in validating the 'maxp' table: [719]",
+                        "timestamp": "2020-09-24T13:04:26.903948Z",
+                        "orig_output": "validate_f63e36081f2a491ab89db5248627c415.maxp - ERROR - The following glyphs had improperly constructed composite information, and could not be used in validating the 'maxp' table: [719]",
+                        "msg_code": "V0555"
+                    },
+                    {
+                        "subroutine": "validate_f63e36081f2a491ab89db5248627c415.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 537, but is 536",
+                        "timestamp": "2020-09-24T13:04:12.404557Z",
+                        "orig_output": "validate_f63e36081f2a491ab89db5248627c415.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 537, but is 536",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 52079,
+    "completedDate": "2020-09-24 13:04:59.620409"
+}

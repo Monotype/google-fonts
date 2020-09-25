@@ -1,0 +1,75 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Asap-BoldItalic.ttf",
+                "type": "ttf",
+                "size": 117380,
+                "md5": "e7c7215f520a3e20558debf912c3be74",
+                "geometryMd5": "0d9b2f46817e31ae3ea1f6921668d4b3"
+            },
+            "name": {
+                "family": "Asap",
+                "subFamily": "Bold Italic",
+                "fullName": "Asap Bold Italic",
+                "psName": "Asap-BoldItalic",
+                "versionText": "Version 2.000; ttfautohint (v1.8)",
+                "copyright": "Copyright 2018 The Asap Project Authors (https://github.com/Omnibus-Type/Asap) with Reserved Font Name \"Asap\".",
+                "trademark": "Asap is a trademark of Omnibus-Type."
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 791,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "OMNI",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Asap Bold Italic",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 3,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_ecebbee408814a6aac17c9038ec69bf5.glyf.glyph 323 ('ij')",
+                        "levelname": "ERROR",
+                        "message": "Circular component at or below these glyphs: [719]",
+                        "timestamp": "2020-09-24T12:57:19.076045Z",
+                        "orig_output": "validate_ecebbee408814a6aac17c9038ec69bf5.glyf.glyph 323 ('ij') - ERROR - Circular component at or below these glyphs: [719]",
+                        "msg_code": "E1118"
+                    },
+                    {
+                        "subroutine": "validate_ecebbee408814a6aac17c9038ec69bf5.maxp",
+                        "levelname": "ERROR",
+                        "message": "The following glyphs had improperly constructed composite information, and could not be used in validating the 'maxp' table: [719]",
+                        "timestamp": "2020-09-24T12:57:32.134054Z",
+                        "orig_output": "validate_ecebbee408814a6aac17c9038ec69bf5.maxp - ERROR - The following glyphs had improperly constructed composite information, and could not be used in validating the 'maxp' table: [719]",
+                        "msg_code": "V0555"
+                    },
+                    {
+                        "subroutine": "validate_ecebbee408814a6aac17c9038ec69bf5.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 537, but is 536",
+                        "timestamp": "2020-09-24T12:57:13.340149Z",
+                        "orig_output": "validate_ecebbee408814a6aac17c9038ec69bf5.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 537, but is 536",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 73222,
+    "completedDate": "2020-09-24 12:58:21.428568"
+}

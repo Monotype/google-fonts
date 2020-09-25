@@ -1,0 +1,82 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Arvo-Italic.ttf",
+                "type": "ttf",
+                "size": 35156,
+                "md5": "54082baaf3ceecaeac49559cf98b5de8",
+                "geometryMd5": "dfe5e2c833385ccdccea037b2c7daa77"
+            },
+            "name": {
+                "family": "Arvo",
+                "subFamily": "Italic",
+                "fullName": "Arvo-Italic",
+                "psName": "Arvo-Italic",
+                "versionText": "Version 1.006 2010 beta release; ttfautohint (v1.8.2)",
+                "copyright": "Copyright 2010 Anton Koovit, Yassin Baggar.",
+                "trademark": "Unknown"
+            },
+            "format": {
+                "format": "TT"
+            },
+            "summary": {
+                "num_glyphs": 220,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "KORK",
+                "font_vendor": "Khork O\u00dc"
+            },
+            "validation": {
+                "font_full_name": "Arvo-Italic",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 4,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_ad2592d0c4fc4cc9ba9e3fa4bc17fa11.head",
+                        "levelname": "ERROR",
+                        "message": "The macStyle italic bit is True but post.italicAngle is   0.0",
+                        "timestamp": "2020-09-24T20:25:14.308987Z",
+                        "orig_output": "validate_ad2592d0c4fc4cc9ba9e3fa4bc17fa11.head - ERROR - The macStyle italic bit is True but post.italicAngle is   0.0",
+                        "msg_code": "E1316"
+                    },
+                    {
+                        "subroutine": "validate_ad2592d0c4fc4cc9ba9e3fa4bc17fa11.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2020-09-24T20:25:25.207483Z",
+                        "orig_output": "validate_ad2592d0c4fc4cc9ba9e3fa4bc17fa11.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
+                    },
+                    {
+                        "subroutine": "validate_ad2592d0c4fc4cc9ba9e3fa4bc17fa11.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 1026, but is 1025",
+                        "timestamp": "2020-09-24T20:25:11.680618Z",
+                        "orig_output": "validate_ad2592d0c4fc4cc9ba9e3fa4bc17fa11.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 1026, but is 1025",
+                        "msg_code": "E2135"
+                    },
+                    {
+                        "subroutine": "validate_ad2592d0c4fc4cc9ba9e3fa4bc17fa11.post",
+                        "levelname": "ERROR",
+                        "message": "Zero italic angle but head.macStyle.italic is True.",
+                        "timestamp": "2020-09-24T20:25:25.208231Z",
+                        "orig_output": "validate_ad2592d0c4fc4cc9ba9e3fa4bc17fa11.post - ERROR - Zero italic angle but head.macStyle.italic is True.",
+                        "msg_code": "E2310"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 25268,
+    "completedDate": "2020-09-24 20:25:33.723205"
+}

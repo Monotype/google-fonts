@@ -1,0 +1,75 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Acme-Regular.ttf",
+                "type": "ttf",
+                "size": 23292,
+                "md5": "cf2842ec05dc062e6a7c67ff09e83fd8",
+                "geometryMd5": "edd517bfcfa8af64ef48ed4ded98bf17"
+            },
+            "name": {
+                "family": "Acme",
+                "subFamily": "Regular",
+                "fullName": "Acme Regular",
+                "psName": "Acme-Regular",
+                "versionText": "Version 1.002",
+                "copyright": "Copyright (c) 2011 by Juan Pablo del Peral (huertatipografica.com.ar), , with Reserved Font Name \"Acme\"",
+                "trademark": "Acme is a trademark of Juan Pablo del Peral"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 231,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "pyrs",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Acme Regular",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 3,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_036946fe212d4f3fba0584799a636016.glyf.glyph 191 ('thorn').contours.contour 2",
+                        "levelname": "ERROR",
+                        "message": "Contour is degenerate (only two (x,y) locations).",
+                        "timestamp": "2020-09-24T12:22:02.531807Z",
+                        "orig_output": "validate_036946fe212d4f3fba0584799a636016.glyf.glyph 191 ('thorn').contours.contour 2 - ERROR - Contour is degenerate (only two (x,y) locations).",
+                        "msg_code": "V1013"
+                    },
+                    {
+                        "subroutine": "validate_036946fe212d4f3fba0584799a636016.glyf.glyph 24 ('five')",
+                        "levelname": "ERROR",
+                        "message": "Bounds should be [17, -11, 457, 644], but are [17, -11, 458, 644].",
+                        "timestamp": "2020-09-24T12:22:01.418706Z",
+                        "orig_output": "validate_036946fe212d4f3fba0584799a636016.glyf.glyph 24 ('five') - ERROR - Bounds should be [17, -11, 457, 644], but are [17, -11, 458, 644].",
+                        "msg_code": "E1112"
+                    },
+                    {
+                        "subroutine": "validate_036946fe212d4f3fba0584799a636016.OS_2.usMaxContext",
+                        "levelname": "ERROR",
+                        "message": "The usMaxContext should be 0, but is 1",
+                        "timestamp": "2020-09-24T12:22:01.297006Z",
+                        "orig_output": "validate_036946fe212d4f3fba0584799a636016.OS_2.usMaxContext - ERROR - The usMaxContext should be 0, but is 1",
+                        "msg_code": "V0831"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 4961,
+    "completedDate": "2020-09-24 12:22:03.260080"
+}

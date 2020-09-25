@@ -1,0 +1,83 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Asap-Italic.ttf",
+                "type": "ttf",
+                "size": 115536,
+                "md5": "3331f26d1e1c75ad61ab74b2ecd6eb7b",
+                "geometryMd5": "f0720e0163d0498f7391a39ac3dcdbce"
+            },
+            "name": {
+                "family": "Asap",
+                "subFamily": "Italic",
+                "fullName": "Asap Italic",
+                "psName": "Asap-Italic",
+                "versionText": "Version 2.000; ttfautohint (v1.8)",
+                "copyright": "Copyright 2018 The Asap Project Authors (https://github.com/Omnibus-Type/Asap) with Reserved Font Name \"Asap\".",
+                "trademark": "Asap is a trademark of Omnibus-Type."
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 791,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "OMNI",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Asap Italic",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 4,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_ab15e9301f144978a0fa5454d22eea24.glyf.glyph 272 ('eth').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-24T12:47:51.345939Z",
+                        "orig_output": "validate_ab15e9301f144978a0fa5454d22eea24.glyf.glyph 272 ('eth').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_ab15e9301f144978a0fa5454d22eea24.glyf.glyph 323 ('ij')",
+                        "levelname": "ERROR",
+                        "message": "Circular component at or below these glyphs: [719]",
+                        "timestamp": "2020-09-24T12:47:51.750955Z",
+                        "orig_output": "validate_ab15e9301f144978a0fa5454d22eea24.glyf.glyph 323 ('ij') - ERROR - Circular component at or below these glyphs: [719]",
+                        "msg_code": "E1118"
+                    },
+                    {
+                        "subroutine": "validate_ab15e9301f144978a0fa5454d22eea24.maxp",
+                        "levelname": "ERROR",
+                        "message": "The following glyphs had improperly constructed composite information, and could not be used in validating the 'maxp' table: [719]",
+                        "timestamp": "2020-09-24T12:48:04.152597Z",
+                        "orig_output": "validate_ab15e9301f144978a0fa5454d22eea24.maxp - ERROR - The following glyphs had improperly constructed composite information, and could not be used in validating the 'maxp' table: [719]",
+                        "msg_code": "V0555"
+                    },
+                    {
+                        "subroutine": "validate_ab15e9301f144978a0fa5454d22eea24.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 536, but is 535",
+                        "timestamp": "2020-09-24T12:47:49.247402Z",
+                        "orig_output": "validate_ab15e9301f144978a0fa5454d22eea24.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 536, but is 535",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 53106,
+    "completedDate": "2020-09-24 12:48:39.478193"
+}

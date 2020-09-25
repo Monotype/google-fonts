@@ -1,0 +1,67 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Amiko-Bold.ttf",
+                "type": "ttf",
+                "size": 196396,
+                "md5": "0beecfed3f46c7cb49b30aba1d8ebd8e",
+                "geometryMd5": "e65fb8446c06f88da0f0d50a88a5f8ff"
+            },
+            "name": {
+                "family": "Amiko",
+                "subFamily": "Bold",
+                "fullName": "Amiko Bold",
+                "psName": "Amiko-Bold",
+                "versionText": "Version 1.001; ttfautohint (v1.3)",
+                "copyright": "Copyright (c) 2014, Impallari Type (www.impallari.com).",
+                "trademark": "Amiko is a trademark of Impallari Type."
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 918,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "IMPA",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Amiko Bold",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 2,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_b908b68754cf484090765f2a62e7eb10.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 8 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-25T04:05:55.940952Z",
+                        "orig_output": "validate_b908b68754cf484090765f2a62e7eb10.fontedit.OS_2.PANOSE.weight - ERROR - Value 8 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_b908b68754cf484090765f2a62e7eb10.glyf.glyph 632 ('uni0937094D').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-25T04:06:13.235661Z",
+                        "orig_output": "validate_b908b68754cf484090765f2a62e7eb10.glyf.glyph 632 ('uni0937094D').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 142165,
+    "completedDate": "2020-09-25 04:08:14.506220"
+}
