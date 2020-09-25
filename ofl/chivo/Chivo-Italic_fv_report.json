@@ -1,0 +1,91 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Chivo-Italic.ttf",
+                "type": "ttf",
+                "size": 56276,
+                "md5": "982835fb3a9332824b135c36aeecb40a",
+                "geometryMd5": "ada59ffdee69eb2855129d6ad9740f6a"
+            },
+            "name": {
+                "family": "Chivo",
+                "subFamily": "Italic",
+                "fullName": "Chivo Italic",
+                "psName": "Chivo-Italic",
+                "versionText": "Version 1.007",
+                "copyright": "Copyright 2016 The Chivo Project Authors (omnibus.type@gmail.com)",
+                "trademark": "Chivo is a trademark of Omnibus-Type."
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 337,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "OMNI",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Chivo Italic",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 5,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_0963453b06124833bc354fc473151dd4.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 5 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-24T09:47:39.669762Z",
+                        "orig_output": "validate_0963453b06124833bc354fc473151dd4.fontedit.OS_2.PANOSE.weight - ERROR - Value 5 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_0963453b06124833bc354fc473151dd4.glyf.glyph 215 ('zero').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-24T09:47:44.162773Z",
+                        "orig_output": "validate_0963453b06124833bc354fc473151dd4.glyf.glyph 215 ('zero').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_0963453b06124833bc354fc473151dd4.glyf.glyph 222 ('seven').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-24T09:47:44.320925Z",
+                        "orig_output": "validate_0963453b06124833bc354fc473151dd4.glyf.glyph 222 ('seven').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_0963453b06124833bc354fc473151dd4.glyf.glyph 65 ('Ohungarumlaut')",
+                        "levelname": "ERROR",
+                        "message": "Bounds should be [56, -10, 647, 895], but are [57, -10, 647, 895].",
+                        "timestamp": "2020-09-24T09:47:41.681069Z",
+                        "orig_output": "validate_0963453b06124833bc354fc473151dd4.glyf.glyph 65 ('Ohungarumlaut') - ERROR - Bounds should be [56, -10, 647, 895], but are [57, -10, 647, 895].",
+                        "msg_code": "E1112"
+                    },
+                    {
+                        "subroutine": "validate_0963453b06124833bc354fc473151dd4.glyf.glyph 66 ('Omacron')",
+                        "levelname": "ERROR",
+                        "message": "Bounds should be [56, -10, 647, 911], but are [57, -10, 647, 911].",
+                        "timestamp": "2020-09-24T09:47:41.685370Z",
+                        "orig_output": "validate_0963453b06124833bc354fc473151dd4.glyf.glyph 66 ('Omacron') - ERROR - Bounds should be [56, -10, 647, 911], but are [57, -10, 647, 911].",
+                        "msg_code": "E1112"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 34149,
+    "completedDate": "2020-09-24 09:48:11.061537"
+}

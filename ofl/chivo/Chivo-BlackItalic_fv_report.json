@@ -1,0 +1,69 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Chivo-BlackItalic.ttf",
+                "type": "ttf",
+                "size": 61336,
+                "md5": "d5a87b8de8a114d4502d7195438127f9",
+                "geometryMd5": "4800b9ad747b71abdfae5bf580956322"
+            },
+            "name": {
+                "family": "Chivo Black",
+                "subFamily": "Italic",
+                "fullName": "Chivo Black Italic",
+                "psName": "Chivo-BlackItalic",
+                "versionText": "Version 1.007",
+                "copyright": "Copyright 2016 The Chivo Project Authors (omnibus.type@gmail.com)",
+                "trademark": "Chivo is a trademark of Omnibus-Type.",
+                "typographicFamily": "Chivo",
+                "typographicSubFamily": "Black Italic"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 337,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "OMNI",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Chivo Black Italic",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 2,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_cc096fc6ae9845ceaef636aa8ee53502.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 10 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-24T09:04:23.021762Z",
+                        "orig_output": "validate_cc096fc6ae9845ceaef636aa8ee53502.fontedit.OS_2.PANOSE.weight - ERROR - Value 10 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_cc096fc6ae9845ceaef636aa8ee53502.glyf.glyph 72 ('Q').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-24T09:04:25.460155Z",
+                        "orig_output": "validate_cc096fc6ae9845ceaef636aa8ee53502.glyf.glyph 72 ('Q').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 55756,
+    "completedDate": "2020-09-24 09:05:16.700565"
+}

@@ -1,0 +1,91 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Chivo-Regular.ttf",
+                "type": "ttf",
+                "size": 61316,
+                "md5": "07ad6513875bfaa020596c8d92085765",
+                "geometryMd5": "7394a60081f0fce961d99eb2b0c3ca78"
+            },
+            "name": {
+                "family": "Chivo",
+                "subFamily": "Regular",
+                "fullName": "Chivo Regular",
+                "psName": "Chivo-Regular",
+                "versionText": "Version 1.007",
+                "copyright": "Copyright 2016 The Chivo Project Authors (omnibus.type@gmail.com)",
+                "trademark": "Chivo is a trademark of Omnibus-Type."
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 337,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "OMNI",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Chivo Regular",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 5,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_482b131988b846ddbb5b6c998120920c.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 5 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-24T09:12:25.857224Z",
+                        "orig_output": "validate_482b131988b846ddbb5b6c998120920c.fontedit.OS_2.PANOSE.weight - ERROR - Value 5 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_482b131988b846ddbb5b6c998120920c.glyf.glyph 122 ('eth').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-24T09:12:27.781689Z",
+                        "orig_output": "validate_482b131988b846ddbb5b6c998120920c.glyf.glyph 122 ('eth').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_482b131988b846ddbb5b6c998120920c.glyf.glyph 179 ('sacute')",
+                        "levelname": "ERROR",
+                        "message": "Bounds should be [45, -10, 485, 720], but are [46, -10, 485, 720].",
+                        "timestamp": "2020-09-24T09:12:28.209694Z",
+                        "orig_output": "validate_482b131988b846ddbb5b6c998120920c.glyf.glyph 179 ('sacute') - ERROR - Bounds should be [45, -10, 485, 720], but are [46, -10, 485, 720].",
+                        "msg_code": "E1112"
+                    },
+                    {
+                        "subroutine": "validate_482b131988b846ddbb5b6c998120920c.glyf.glyph 181 ('scedilla')",
+                        "levelname": "ERROR",
+                        "message": "Bounds should be [45, -197, 485, 521], but are [46, -197, 485, 521].",
+                        "timestamp": "2020-09-24T09:12:28.233088Z",
+                        "orig_output": "validate_482b131988b846ddbb5b6c998120920c.glyf.glyph 181 ('scedilla') - ERROR - Bounds should be [45, -197, 485, 521], but are [46, -197, 485, 521].",
+                        "msg_code": "E1112"
+                    },
+                    {
+                        "subroutine": "validate_482b131988b846ddbb5b6c998120920c.glyf.glyph 182 ('scommaaccent')",
+                        "levelname": "ERROR",
+                        "message": "Bounds should be [45, -250, 485, 521], but are [46, -250, 485, 521].",
+                        "timestamp": "2020-09-24T09:12:28.238246Z",
+                        "orig_output": "validate_482b131988b846ddbb5b6c998120920c.glyf.glyph 182 ('scommaaccent') - ERROR - Bounds should be [45, -250, 485, 521], but are [46, -250, 485, 521].",
+                        "msg_code": "E1112"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 35261,
+    "completedDate": "2020-09-24 09:12:58.711113"
+}

@@ -1,0 +1,66 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Cantarell-BoldOblique.ttf",
+                "type": "ttf",
+                "size": 52200,
+                "md5": "44d6aabfd74afa57dd697dc288ccf4a1",
+                "geometryMd5": "d696e5882be299b9c686c06f489ea65b"
+            },
+            "name": {
+                "family": "Cantarell",
+                "subFamily": "BoldOblique",
+                "fullName": "Cantarell Bold Oblique",
+                "psName": "Cantarell-BoldOblique",
+                "versionText": "Version 001.001 ",
+                "copyright": "Copyright (c) 2009 Dave Crossland <dave@lab6.com>",
+                "trademark": "Unknown"
+            },
+            "format": {
+                "format": "TT"
+            },
+            "summary": {
+                "num_glyphs": 391,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "ABAT",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Cantarell Bold Oblique",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 2,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_166040262bec4230ab208868affdf18a.head",
+                        "levelname": "ERROR",
+                        "message": "The macStyle italic bit (True) is not consistent with the name table's subfamily string 'BoldOblique'.",
+                        "timestamp": "2020-09-24T14:22:13.288860Z",
+                        "orig_output": "validate_166040262bec4230ab208868affdf18a.head - ERROR - The macStyle italic bit (True) is not consistent with the name table's subfamily string 'BoldOblique'.",
+                        "msg_code": "E1314"
+                    },
+                    {
+                        "subroutine": "validate_166040262bec4230ab208868affdf18a.OS_2.fsSelection",
+                        "levelname": "ERROR",
+                        "message": "The fsSelection doesn't match the subfamily 'name' entry",
+                        "timestamp": "2020-09-24T14:22:07.058890Z",
+                        "orig_output": "validate_166040262bec4230ab208868affdf18a.OS_2.fsSelection - ERROR - The fsSelection doesn't match the subfamily 'name' entry",
+                        "msg_code": "E2100"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 11077,
+    "completedDate": "2020-09-24 14:22:14.540134"
+}

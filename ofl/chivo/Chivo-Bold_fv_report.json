@@ -1,0 +1,77 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Chivo-Bold.ttf",
+                "type": "ttf",
+                "size": 53792,
+                "md5": "73980d1fbb7824eab74e7d1331890bf1",
+                "geometryMd5": "696ed3702d4d1fc7de014212011d4f0a"
+            },
+            "name": {
+                "family": "Chivo Bold",
+                "subFamily": "Regular",
+                "fullName": "Chivo Bold",
+                "psName": "Chivo-Bold",
+                "versionText": "Version 1.007",
+                "copyright": "Copyright 2016 The Chivo Project Authors (omnibus.type@gmail.com)",
+                "trademark": "Chivo is a trademark of Omnibus-Type.",
+                "typographicFamily": "Chivo",
+                "typographicSubFamily": "Bold"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 337,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "OMNI",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Chivo Bold",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 3,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_d694a273c39148a0a40fbd4af4763bcd.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 5 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-24T09:21:24.218284Z",
+                        "orig_output": "validate_d694a273c39148a0a40fbd4af4763bcd.fontedit.OS_2.PANOSE.weight - ERROR - Value 5 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_d694a273c39148a0a40fbd4af4763bcd.glyf.glyph 272 ('currency').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-24T09:21:29.421289Z",
+                        "orig_output": "validate_d694a273c39148a0a40fbd4af4763bcd.glyf.glyph 272 ('currency').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_d694a273c39148a0a40fbd4af4763bcd.glyf.glyph 282 ('multiply').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-24T09:21:29.702535Z",
+                        "orig_output": "validate_d694a273c39148a0a40fbd4af4763bcd.glyf.glyph 282 ('multiply').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 44035,
+    "completedDate": "2020-09-24 09:22:06.041412"
+}

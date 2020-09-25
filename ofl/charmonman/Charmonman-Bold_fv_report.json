@@ -1,0 +1,91 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Charmonman-Bold.ttf",
+                "type": "ttf",
+                "size": 117384,
+                "md5": "f78fc3901790680732e5a372d9993eb7",
+                "geometryMd5": "4207ad95a548890dc3892c4d60de5d1a"
+            },
+            "name": {
+                "family": "Charmonman",
+                "subFamily": "Bold",
+                "fullName": "Charmonman Bold",
+                "psName": "Charmonman-Bold",
+                "versionText": "Version 1.000; ttfautohint (v1.6)",
+                "copyright": "Copyright 2018 The Charmonman Project Authors (https://github.com/cadsondemak/Charmonman)",
+                "trademark": "Unknown"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 816,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "CDK ",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Charmonman Bold",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 5,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_0ac19a18f3684cd28ead740df7d9a089.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 8 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-24T21:30:29.040320Z",
+                        "orig_output": "validate_0ac19a18f3684cd28ead740df7d9a089.fontedit.OS_2.PANOSE.weight - ERROR - Value 8 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_0ac19a18f3684cd28ead740df7d9a089.glyf.glyph 137 ('OE').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-24T21:30:34.287859Z",
+                        "orig_output": "validate_0ac19a18f3684cd28ead740df7d9a089.glyf.glyph 137 ('OE').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_0ac19a18f3684cd28ead740df7d9a089.glyf.glyph 345 ('oslash').contours.contour 2",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-24T21:30:39.251394Z",
+                        "orig_output": "validate_0ac19a18f3684cd28ead740df7d9a089.glyf.glyph 345 ('oslash').contours.contour 2 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_0ac19a18f3684cd28ead740df7d9a089.maxp",
+                        "levelname": "ERROR",
+                        "message": "The maxZones value should be 1, but is 0.",
+                        "timestamp": "2020-09-24T21:30:58.485990Z",
+                        "orig_output": "validate_0ac19a18f3684cd28ead740df7d9a089.maxp - ERROR - The maxZones value should be 1, but is 0.",
+                        "msg_code": "V0272"
+                    },
+                    {
+                        "subroutine": "validate_0ac19a18f3684cd28ead740df7d9a089.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 578, but is 561",
+                        "timestamp": "2020-09-24T21:30:31.808212Z",
+                        "orig_output": "validate_0ac19a18f3684cd28ead740df7d9a089.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 578, but is 561",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 33067,
+    "completedDate": "2020-09-24 21:30:59.091040"
+}

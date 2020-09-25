@@ -1,0 +1,71 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "DidactGothic-Regular.ttf",
+                "type": "ttf",
+                "size": 194200,
+                "md5": "dda9b9eec9b3c47fa007f94191e90b71",
+                "geometryMd5": "fea91db7a942d09a51fc5c87d38af24a"
+            },
+            "name": {
+                "family": "Didact Gothic",
+                "subFamily": "Regular",
+                "fullName": "Didact Gothic Regular",
+                "psName": "DidactGothic-Regular",
+                "versionText": "Version 2.101",
+                "copyright": "Copyright 2016 The Didact Gothic Project Authors (il.basso.buffo@gmail.com)",
+                "trademark": "Unknown"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 1272,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "CYRE",
+                "font_vendor": "Cyreal"
+            },
+            "validation": {
+                "font_full_name": "Didact Gothic Regular",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 2,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_4a5a0682a9f84828ba76766c85976445.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 5 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-25T06:43:24.419736Z",
+                        "orig_output": "validate_4a5a0682a9f84828ba76766c85976445.fontedit.OS_2.PANOSE.weight - ERROR - Value 5 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_4a5a0682a9f84828ba76766c85976445.hints.glyph 749.FDEF 51.call FDEF 50",
+                        "levelname": "ERROR",
+                        "message": "SHC[1] in FDEF 50 (PC 1) was given contour index 5, which does not exist!",
+                        "timestamp": "2020-09-25T06:45:49.781229Z",
+                        "orig_output": "validate_4a5a0682a9f84828ba76766c85976445.hints.glyph 749.FDEF 51.call FDEF 50 - ERROR - SHC[1] in FDEF 50 (PC 1) was given contour index 5, which does not exist!",
+                        "glyph": {
+                            "id": 749,
+                            "name": "uni1F0E"
+                        },
+                        "msg_code": "E6004"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 198846,
+    "completedDate": "2020-09-25 06:46:40.454803"
+}

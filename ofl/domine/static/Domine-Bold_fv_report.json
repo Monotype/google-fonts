@@ -1,0 +1,83 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Domine-Bold.ttf",
+                "type": "ttf",
+                "size": 65924,
+                "md5": "182dc5502344c74d2503a8606f094257",
+                "geometryMd5": "b7c56692331b69287425ad00ddbe8c68"
+            },
+            "name": {
+                "family": "Domine",
+                "subFamily": "Bold",
+                "fullName": "Domine Bold",
+                "psName": "Domine-Bold",
+                "versionText": "Version 2.000",
+                "copyright": "Copyright 2020 The Domine Project Authors (https://github.com/googlefonts/domine)",
+                "trademark": "Domine is a trademark of Pablo Impallari"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 477,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "pyrs",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Domine Bold",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 4,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_3d9c5c71eb2244cba1a96cc862dcfc5b.GDEF.glyphClasses",
+                        "levelname": "ERROR",
+                        "message": "The following mark glyphs have nonzero advances: [110, 111, 158, 159, 160, 161, 203, 204, 238, 244, 250, 251, 277, 281]",
+                        "timestamp": "2020-09-25T06:54:59.778487Z",
+                        "orig_output": "validate_3d9c5c71eb2244cba1a96cc862dcfc5b.GDEF.glyphClasses - ERROR - The following mark glyphs have nonzero advances: [110, 111, 158, 159, 160, 161, 203, 204, 238, 244, 250, 251, 277, 281]",
+                        "msg_code": "V1102"
+                    },
+                    {
+                        "subroutine": "validate_3d9c5c71eb2244cba1a96cc862dcfc5b.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2020-09-25T06:55:14.434683Z",
+                        "orig_output": "validate_3d9c5c71eb2244cba1a96cc862dcfc5b.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
+                    },
+                    {
+                        "subroutine": "validate_3d9c5c71eb2244cba1a96cc862dcfc5b.OS_2.unicodeRanges",
+                        "levelname": "ERROR",
+                        "message": "Unicode range 'hasPlaneZeroPrivate' claimed to be present but is not.",
+                        "timestamp": "2020-09-25T06:55:03.495502Z",
+                        "orig_output": "validate_3d9c5c71eb2244cba1a96cc862dcfc5b.OS_2.unicodeRanges - ERROR - Unicode range 'hasPlaneZeroPrivate' claimed to be present but is not.",
+                        "msg_code": "E2113"
+                    },
+                    {
+                        "subroutine": "validate_3d9c5c71eb2244cba1a96cc862dcfc5b.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 607, but is 608",
+                        "timestamp": "2020-09-25T06:55:03.900034Z",
+                        "orig_output": "validate_3d9c5c71eb2244cba1a96cc862dcfc5b.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 607, but is 608",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 19031,
+    "completedDate": "2020-09-25 06:55:14.938792"
+}

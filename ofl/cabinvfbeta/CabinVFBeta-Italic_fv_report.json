@@ -1,0 +1,115 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "CabinVFBeta-Italic.ttf",
+                "type": "ttf",
+                "size": 182980,
+                "md5": "142b544f9c8310eb818435e88295c877",
+                "geometryMd5": "c1041bdd6c2a2d1bcd535c5cad95cf09"
+            },
+            "name": {
+                "family": "Cabin VF Beta",
+                "subFamily": "Italic",
+                "fullName": "Cabin VF Beta Italic",
+                "psName": "CabinVFBeta-Italic",
+                "versionText": "Version 2.300",
+                "copyright": "Copyright 2016 The Cabin Project Authors (https://github.com/impallari/Cabin.git)",
+                "trademark": "Cabin is a trademark of Pablo Impallari. www.impallari.com Igino Marini. www.ikern.com."
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 747,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "IMPA",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Cabin VF Beta Italic",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 8,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_6e062851d2f341b489c9bc8bb6fc586e.fvar",
+                        "levelname": "ERROR",
+                        "message": "Missing STAT table. Required for variable fonts.",
+                        "timestamp": "2020-09-25T07:28:57.622689Z",
+                        "orig_output": "validate_6e062851d2f341b489c9bc8bb6fc586e.fvar - ERROR - Missing STAT table. Required for variable fonts.",
+                        "msg_code": "W0050"
+                    },
+                    {
+                        "subroutine": "validate_6e062851d2f341b489c9bc8bb6fc586e.glyf.glyph 717 ('uni02BB')",
+                        "levelname": "ERROR",
+                        "message": "Bounds should be [-246, 576, -127, 747], but are [120, 576, 239, 747].",
+                        "timestamp": "2020-09-25T07:29:04.335899Z",
+                        "orig_output": "validate_6e062851d2f341b489c9bc8bb6fc586e.glyf.glyph 717 ('uni02BB') - ERROR - Bounds should be [-246, 576, -127, 747], but are [120, 576, 239, 747].",
+                        "msg_code": "E1112"
+                    },
+                    {
+                        "subroutine": "validate_6e062851d2f341b489c9bc8bb6fc586e.hhea",
+                        "levelname": "ERROR",
+                        "message": "The caretSlopeRise/caretSlopeRun (1/0) angle ( 90.0) is not consistent with post.italicAngle ( -7.0)",
+                        "timestamp": "2020-09-25T07:29:11.019061Z",
+                        "orig_output": "validate_6e062851d2f341b489c9bc8bb6fc586e.hhea - ERROR - The caretSlopeRise/caretSlopeRun (1/0) angle ( 90.0) is not consistent with post.italicAngle ( -7.0)",
+                        "msg_code": "E1411"
+                    },
+                    {
+                        "subroutine": "validate_6e062851d2f341b489c9bc8bb6fc586e.hhea",
+                        "levelname": "ERROR",
+                        "message": "The caretSlopeRun is zero, but the post.italicAngle is nonzero ( -7.0)",
+                        "timestamp": "2020-09-25T07:29:11.019185Z",
+                        "orig_output": "validate_6e062851d2f341b489c9bc8bb6fc586e.hhea - ERROR - The caretSlopeRun is zero, but the post.italicAngle is nonzero ( -7.0)",
+                        "msg_code": "E1413"
+                    },
+                    {
+                        "subroutine": "validate_6e062851d2f341b489c9bc8bb6fc586e.hmtx",
+                        "levelname": "ERROR",
+                        "message": "The left sidebearing 120 does not match the glyph's xMin -246 (glyph 717)",
+                        "timestamp": "2020-09-25T07:29:11.678863Z",
+                        "orig_output": "validate_6e062851d2f341b489c9bc8bb6fc586e.hmtx - ERROR - The left sidebearing 120 does not match the glyph's xMin -246 (glyph 717)",
+                        "msg_code": "V0933"
+                    },
+                    {
+                        "subroutine": "validate_6e062851d2f341b489c9bc8bb6fc586e.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2020-09-25T07:29:11.766043Z",
+                        "orig_output": "validate_6e062851d2f341b489c9bc8bb6fc586e.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
+                    },
+                    {
+                        "subroutine": "validate_6e062851d2f341b489c9bc8bb6fc586e.post",
+                        "levelname": "ERROR",
+                        "message": "Nonzero italic angle but zero hhea.caretSlopeRun",
+                        "timestamp": "2020-09-25T07:29:11.780009Z",
+                        "orig_output": "validate_6e062851d2f341b489c9bc8bb6fc586e.post - ERROR - Nonzero italic angle but zero hhea.caretSlopeRun",
+                        "msg_code": "E2306"
+                    },
+                    {
+                        "subroutine": "validate_6e062851d2f341b489c9bc8bb6fc586e.post",
+                        "levelname": "ERROR",
+                        "message": "The slope of the hhea caretSlopeRise/Run deviates from the italic angle of -7.0 by more than 0.5 degrees.",
+                        "timestamp": "2020-09-25T07:29:11.780117Z",
+                        "orig_output": "validate_6e062851d2f341b489c9bc8bb6fc586e.post - ERROR - The slope of the hhea caretSlopeRise/Run deviates from the italic angle of -7.0 by more than 0.5 degrees.",
+                        "msg_code": "E2307"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 29770,
+    "completedDate": "2020-09-25 07:29:12.095295"
+}

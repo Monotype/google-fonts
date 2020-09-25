@@ -1,0 +1,117 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Changa-ExtraLight.ttf",
+                "type": "ttf",
+                "size": 151516,
+                "md5": "74c8205b3f80972510d7f9630329d7a5",
+                "geometryMd5": "8cfcd23618dd01a7d7c3d4932033675e"
+            },
+            "name": {
+                "family": "Changa ExtraLight",
+                "subFamily": "Regular",
+                "fullName": "Changa-ExtraLight",
+                "psName": "Changa-ExtraLight",
+                "versionText": "Version 2.002; ttfautohint (v1.5.10-5e6f)",
+                "copyright": "Copyright 2011 Eduardo Tunni (www.tipo.net.ar)",
+                "trademark": "Changa is a trademark of Eduardo Rodriguez Tunni.",
+                "typographicFamily": "Changa",
+                "typographicSubFamily": "ExtraLight"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 794,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "TIPO",
+                "font_vendor": "Tipo"
+            },
+            "validation": {
+                "font_full_name": "Changa-ExtraLight",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 8,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_043fdf6dcc294019b1358bb69e907d41.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 3 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-24T08:16:57.441351Z",
+                        "orig_output": "validate_043fdf6dcc294019b1358bb69e907d41.fontedit.OS_2.PANOSE.weight - ERROR - Value 3 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_043fdf6dcc294019b1358bb69e907d41.glyf.glyph 718 ('uni030B').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-24T08:17:07.622566Z",
+                        "orig_output": "validate_043fdf6dcc294019b1358bb69e907d41.glyf.glyph 718 ('uni030B').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_043fdf6dcc294019b1358bb69e907d41.glyf.glyph 718 ('uni030B').contours.contour 1",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-24T08:17:07.624986Z",
+                        "orig_output": "validate_043fdf6dcc294019b1358bb69e907d41.glyf.glyph 718 ('uni030B').contours.contour 1 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_043fdf6dcc294019b1358bb69e907d41.GPOS.features.[b'mark0025', b'mark0026', b'mark0027', b'mark0028', b'mark0029', b'mark0030', b'mark0031', b'mark0032', b'mark0033', b'mark0034', b'mark0035', b'mark0036'].[0]",
+                        "levelname": "ERROR",
+                        "message": "The following ligatures have inconsistent counts between the GSUB Ligature Lookup that created them and the length of the mark-to-ligature data in this table: [468, 469, 470, 474, 475, 476, 480, 481, 482, 486, 487, 488, 492, 493, 498, 499, 502, 503, 504, 505, 506, 507, 508, 509, 510, 511, 512, 513, 514, 515, 516, 517, 518, 522, 523, 524, 525, 526, 527, 528, 529, 530]",
+                        "timestamp": "2020-09-24T08:16:57.769338Z",
+                        "orig_output": "validate_043fdf6dcc294019b1358bb69e907d41.GPOS.features.[b'mark0025', b'mark0026', b'mark0027', b'mark0028', b'mark0029', b'mark0030', b'mark0031', b'mark0032', b'mark0033', b'mark0034', b'mark0035', b'mark0036'].[0] - ERROR - The following ligatures have inconsistent counts between the GSUB Ligature Lookup that created them and the length of the mark-to-ligature data in this table: [468, 469, 470, 474, 475, 476, 480, 481, 482, 486, 487, 488, 492, 493, 498, 499, 502, 503, 504, 505, 506, 507, 508, 509, 510, 511, 512, 513, 514, 515, 516, 517, 518, 522, 523, 524, 525, 526, 527, 528, 529, 530]",
+                        "msg_code": "V1062"
+                    },
+                    {
+                        "subroutine": "validate_043fdf6dcc294019b1358bb69e907d41.hhea",
+                        "levelname": "ERROR",
+                        "message": "The minRightSidebearing value (-329) does not match the expected value (-333)",
+                        "timestamp": "2020-09-24T08:17:11.027267Z",
+                        "orig_output": "validate_043fdf6dcc294019b1358bb69e907d41.hhea - ERROR - The minRightSidebearing value (-329) does not match the expected value (-333)",
+                        "msg_code": "E1403"
+                    },
+                    {
+                        "subroutine": "validate_043fdf6dcc294019b1358bb69e907d41.hmtx",
+                        "levelname": "ERROR",
+                        "message": "The left sidebearing 57 does not match the glyph's xMin 56 (glyph 656)",
+                        "timestamp": "2020-09-24T08:17:11.430255Z",
+                        "orig_output": "validate_043fdf6dcc294019b1358bb69e907d41.hmtx - ERROR - The left sidebearing 57 does not match the glyph's xMin 56 (glyph 656)",
+                        "msg_code": "V0933"
+                    },
+                    {
+                        "subroutine": "validate_043fdf6dcc294019b1358bb69e907d41.OS_2.usWeightClass",
+                        "levelname": "ERROR",
+                        "message": "The usWeightClass value 275 is not valid",
+                        "timestamp": "2020-09-24T08:16:59.216872Z",
+                        "orig_output": "validate_043fdf6dcc294019b1358bb69e907d41.OS_2.usWeightClass - ERROR - The usWeightClass value 275 is not valid",
+                        "msg_code": "E2133"
+                    },
+                    {
+                        "subroutine": "validate_043fdf6dcc294019b1358bb69e907d41.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 589, but is 588",
+                        "timestamp": "2020-09-24T08:16:59.217229Z",
+                        "orig_output": "validate_043fdf6dcc294019b1358bb69e907d41.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 589, but is 588",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 111797,
+    "completedDate": "2020-09-24 08:18:46.440582"
+}

@@ -1,0 +1,75 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Changa-Regular.ttf",
+                "type": "ttf",
+                "size": 155744,
+                "md5": "a6aa4fb891b5d078969d1e0c3a7e0135",
+                "geometryMd5": "1bd4b3f18729ec8a5e6dbe306fa76ca9"
+            },
+            "name": {
+                "family": "Changa",
+                "subFamily": "Regular",
+                "fullName": "Changa-Regular",
+                "psName": "Changa-Regular",
+                "versionText": "Version 2.002; ttfautohint (v1.5.10-5e6f)",
+                "copyright": "Copyright 2011 Eduardo Tunni (www.tipo.net.ar)",
+                "trademark": "Changa is a trademark of Eduardo Rodriguez Tunni."
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 794,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "TIPO",
+                "font_vendor": "Tipo"
+            },
+            "validation": {
+                "font_full_name": "Changa-Regular",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 3,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_aa9cd08f7c3e45aca9d92d02848322f4.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 5 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-24T08:51:05.342703Z",
+                        "orig_output": "validate_aa9cd08f7c3e45aca9d92d02848322f4.fontedit.OS_2.PANOSE.weight - ERROR - Value 5 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_aa9cd08f7c3e45aca9d92d02848322f4.GPOS.features.[b'mark0025', b'mark0026', b'mark0027', b'mark0028', b'mark0029', b'mark0030', b'mark0031', b'mark0032', b'mark0033', b'mark0034', b'mark0035', b'mark0036'].[0]",
+                        "levelname": "ERROR",
+                        "message": "The following ligatures have inconsistent counts between the GSUB Ligature Lookup that created them and the length of the mark-to-ligature data in this table: [468, 469, 470, 474, 475, 476, 480, 481, 482, 486, 487, 488, 492, 493, 498, 499, 502, 503, 504, 505, 506, 507, 508, 509, 510, 511, 512, 513, 514, 515, 516, 517, 518, 522, 523, 524, 525, 526, 527, 528, 529, 530]",
+                        "timestamp": "2020-09-24T08:51:05.644875Z",
+                        "orig_output": "validate_aa9cd08f7c3e45aca9d92d02848322f4.GPOS.features.[b'mark0025', b'mark0026', b'mark0027', b'mark0028', b'mark0029', b'mark0030', b'mark0031', b'mark0032', b'mark0033', b'mark0034', b'mark0035', b'mark0036'].[0] - ERROR - The following ligatures have inconsistent counts between the GSUB Ligature Lookup that created them and the length of the mark-to-ligature data in this table: [468, 469, 470, 474, 475, 476, 480, 481, 482, 486, 487, 488, 492, 493, 498, 499, 502, 503, 504, 505, 506, 507, 508, 509, 510, 511, 512, 513, 514, 515, 516, 517, 518, 522, 523, 524, 525, 526, 527, 528, 529, 530]",
+                        "msg_code": "V1062"
+                    },
+                    {
+                        "subroutine": "validate_aa9cd08f7c3e45aca9d92d02848322f4.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 603, but is 602",
+                        "timestamp": "2020-09-24T08:51:07.734503Z",
+                        "orig_output": "validate_aa9cd08f7c3e45aca9d92d02848322f4.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 603, but is 602",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 152139,
+    "completedDate": "2020-09-24 08:53:34.739744"
+}
