@@ -26,7 +26,7 @@ def split(array, n) {
 }
 
 
-node('master') {
+node('fonttools-dev') {
     properties([disableConcurrentBuilds()])
 
     stage('Initialize') {
@@ -151,7 +151,7 @@ node('master') {
                             name_txt = file.replaceAll(/\.ttf$/, '_names.txt')
                             sh """
                                 rm -f "${folder}/*_fv_report.*" "${folder}/*_names.txt" "${folder}/*_names.json"
-                                export RABBITMQ_HOST=fonttools-dev.monotype.com
+                                export RABBITMQ_HOST=fonttools-preprod.monotype.com
                                 export RABBITMQ_USER=$RABBITMQ_USER
                                 export RABBITMQ_PASS=$RABBITMQ_PASS
                                 docker run --env RABBITMQ_HOST --env RABBITMQ_USER --env RABBITMQ_PASS --user \$(id -u):\$(id -g) --rm -v \"\$PWD\":/work -w /work docker-artifact.monotype.com/fonttools/fonttoolkit:latest validate-font  https://github.com/Monotype/google-fonts/raw/${branch}/${file} -o ${json}
@@ -181,6 +181,8 @@ node('master') {
         tag = "fq_reports_test_${tag}"
         withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'jenkins-github', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_TOKEN']]) {
             sh """
+                # github does not allow more than 100M - to be sure do we are using 90M
+                find . -type f -name "FontSplitter*.pdf" -size +90M | xargs rm -f
                 export GIT_ASKPASS=\$PWD/.git-askpass
                 git diff-index --quiet origin/${branch} || git commit -a -m \"FQ Reports - Test ${date}\"
                 git push origin HEAD:${branch}
