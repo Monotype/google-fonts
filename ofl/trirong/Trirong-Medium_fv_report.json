@@ -1,0 +1,69 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Trirong-Medium.ttf",
+                "type": "ttf",
+                "size": 196460,
+                "md5": "0994551b80effd865926bb19276909b9",
+                "geometryMd5": "6dbc088ab218cd4e968183cb62db0332"
+            },
+            "name": {
+                "family": "Trirong Medium",
+                "subFamily": "Regular",
+                "fullName": "Trirong Medium",
+                "psName": "Trirong-Medium",
+                "versionText": "Version 1.001",
+                "copyright": "Copyright (c) 2015, Cadson Demak (info@cadsondemak.com)",
+                "trademark": "Unknown",
+                "typographicFamily": "Trirong",
+                "typographicSubFamily": "Medium"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 772,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "CDK ",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Trirong Medium",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 2,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_e1f1aece6fbc4110bf9ff4ed575fa46b.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 6 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-25T04:11:12.498465Z",
+                        "orig_output": "validate_e1f1aece6fbc4110bf9ff4ed575fa46b.fontedit.OS_2.PANOSE.weight - ERROR - Value 6 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_e1f1aece6fbc4110bf9ff4ed575fa46b.glyf.glyph 740 ('uni0E36.narrow').contours.contour 1",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-25T04:11:28.701535Z",
+                        "orig_output": "validate_e1f1aece6fbc4110bf9ff4ed575fa46b.glyf.glyph 740 ('uni0E36.narrow').contours.contour 1 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 157524,
+    "completedDate": "2020-09-25 04:13:47.354850"
+}

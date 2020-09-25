@@ -1,0 +1,93 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Tajawal-Black.ttf",
+                "type": "ttf",
+                "size": 59028,
+                "md5": "7dc741330fe9acc9c2e913d7dc4274cd",
+                "geometryMd5": "f64c8544dd91ea01e68dea49dff17981"
+            },
+            "name": {
+                "family": "Tajawal Black",
+                "subFamily": "Regular",
+                "fullName": "Tajawal Black",
+                "psName": "Tajawal-Black",
+                "versionText": "Version 1.700",
+                "copyright": "(c) 2017 by Boutros International. All rights reserved.",
+                "trademark": "Unknown",
+                "typographicFamily": "Tajawal",
+                "typographicSubFamily": "Black"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 465,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "1bou",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Tajawal Black",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 5,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_57256a56cf164e1e98e183f43bd58cb3.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 5 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-24T16:43:21.508865Z",
+                        "orig_output": "validate_57256a56cf164e1e98e183f43bd58cb3.fontedit.OS_2.PANOSE.weight - ERROR - Value 5 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_57256a56cf164e1e98e183f43bd58cb3.gasp.up to 8 ppem",
+                        "levelname": "ERROR",
+                        "message": "v0 Smoothing flag (GASP_DOGRAY) set without corresponding v1 Symmetric Smoothing flag (GASP_SYMMETRIC_SMOOTHING).",
+                        "timestamp": "2020-09-24T16:43:22.827970Z",
+                        "orig_output": "validate_57256a56cf164e1e98e183f43bd58cb3.gasp.up to 8 ppem - ERROR - v0 Smoothing flag (GASP_DOGRAY) set without corresponding v1 Symmetric Smoothing flag (GASP_SYMMETRIC_SMOOTHING).",
+                        "msg_code": "V0992"
+                    },
+                    {
+                        "subroutine": "validate_57256a56cf164e1e98e183f43bd58cb3.OS_2.usMaxContext",
+                        "levelname": "ERROR",
+                        "message": "The usMaxContext should be 4, but is 2",
+                        "timestamp": "2020-09-24T16:43:22.804034Z",
+                        "orig_output": "validate_57256a56cf164e1e98e183f43bd58cb3.OS_2.usMaxContext - ERROR - The usMaxContext should be 4, but is 2",
+                        "msg_code": "V0831"
+                    },
+                    {
+                        "subroutine": "validate_57256a56cf164e1e98e183f43bd58cb3.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 572, but is 840",
+                        "timestamp": "2020-09-24T16:43:22.804407Z",
+                        "orig_output": "validate_57256a56cf164e1e98e183f43bd58cb3.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 572, but is 840",
+                        "msg_code": "E2135"
+                    },
+                    {
+                        "subroutine": "validate_57256a56cf164e1e98e183f43bd58cb3.post",
+                        "levelname": "ERROR",
+                        "message": "Glyphname '.notdef' is used in multiple glyphs: [0, 1, 2, 159, 168, 172, 185, 210, 247, 248, 249, 250, 251, 252, 253, 254, 255, 256, 257]",
+                        "timestamp": "2020-09-24T16:43:29.172061Z",
+                        "orig_output": "validate_57256a56cf164e1e98e183f43bd58cb3.post - ERROR - Glyphname '.notdef' is used in multiple glyphs: [0, 1, 2, 159, 168, 172, 185, 210, 247, 248, 249, 250, 251, 252, 253, 254, 255, 256, 257]",
+                        "msg_code": "V0932"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 10486,
+    "completedDate": "2020-09-24 16:43:29.567955"
+}

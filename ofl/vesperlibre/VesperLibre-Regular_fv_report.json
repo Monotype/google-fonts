@@ -1,0 +1,91 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "VesperLibre-Regular.ttf",
+                "type": "ttf",
+                "size": 166124,
+                "md5": "e6b2cfa2496dff78dcdb27a67a300908",
+                "geometryMd5": "63576c06764e94a29f1325db2361a6ee"
+            },
+            "name": {
+                "family": "Vesper Libre",
+                "subFamily": "Regular",
+                "fullName": "Vesper Libre",
+                "psName": "VesperLibre-Regular",
+                "versionText": "Version 1.058",
+                "copyright": "Unknown",
+                "trademark": "Vesper is a trademark of Robert Keller."
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 795,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "MOTA",
+                "font_vendor": "Mota Italic"
+            },
+            "validation": {
+                "font_full_name": "Vesper Libre",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 5,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_b0931c54ce494df897053cfee61cb2d0.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 5 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-24T14:28:51.888615Z",
+                        "orig_output": "validate_b0931c54ce494df897053cfee61cb2d0.fontedit.OS_2.PANOSE.weight - ERROR - Value 5 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_b0931c54ce494df897053cfee61cb2d0.gasp.up to 19 ppem",
+                        "levelname": "ERROR",
+                        "message": "v0 Smoothing flag (GASP_DOGRAY) set without corresponding v1 Symmetric Smoothing flag (GASP_SYMMETRIC_SMOOTHING).",
+                        "timestamp": "2020-09-24T14:28:55.828256Z",
+                        "orig_output": "validate_b0931c54ce494df897053cfee61cb2d0.gasp.up to 19 ppem - ERROR - v0 Smoothing flag (GASP_DOGRAY) set without corresponding v1 Symmetric Smoothing flag (GASP_SYMMETRIC_SMOOTHING).",
+                        "msg_code": "V0992"
+                    },
+                    {
+                        "subroutine": "validate_b0931c54ce494df897053cfee61cb2d0.glyf.glyph 478 ('uni0926094D092C0941').contours.contour 1",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-24T14:29:11.874396Z",
+                        "orig_output": "validate_b0931c54ce494df897053cfee61cb2d0.glyf.glyph 478 ('uni0926094D092C0941').contours.contour 1 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_b0931c54ce494df897053cfee61cb2d0.glyf.glyph 479 ('uni0926094D092C0942').contours.contour 1",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-24T14:29:11.924793Z",
+                        "orig_output": "validate_b0931c54ce494df897053cfee61cb2d0.glyf.glyph 479 ('uni0926094D092C0942').contours.contour 1 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_b0931c54ce494df897053cfee61cb2d0.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2020-09-24T14:29:23.430757Z",
+                        "orig_output": "validate_b0931c54ce494df897053cfee61cb2d0.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 35838,
+    "completedDate": "2020-09-24 14:29:25.331060"
+}

@@ -1,0 +1,69 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Trirong-ExtraBoldItalic.ttf",
+                "type": "ttf",
+                "size": 231236,
+                "md5": "c0930157fb60d8319fc441d13425a1c3",
+                "geometryMd5": "73c8043b569c3ec3a8f266659a42bbc9"
+            },
+            "name": {
+                "family": "Trirong ExtraBold",
+                "subFamily": "Italic",
+                "fullName": "Trirong ExtraBold Italic",
+                "psName": "Trirong-ExtraBoldItalic",
+                "versionText": "Version 1.001",
+                "copyright": "Copyright (c) 2015, Cadson Demak (info@cadsondemak.com)",
+                "trademark": "Unknown",
+                "typographicFamily": "Trirong",
+                "typographicSubFamily": "ExtraBold Italic"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 772,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "CDK ",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Trirong ExtraBold Italic",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 2,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_993c98a4e696417daec10711771cb073.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 9 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-25T04:18:24.680534Z",
+                        "orig_output": "validate_993c98a4e696417daec10711771cb073.fontedit.OS_2.PANOSE.weight - ERROR - Value 9 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_993c98a4e696417daec10711771cb073.glyf.glyph 608 ('uni20BA').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-25T04:18:41.220040Z",
+                        "orig_output": "validate_993c98a4e696417daec10711771cb073.glyf.glyph 608 ('uni20BA').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 274409,
+    "completedDate": "2020-09-25 04:22:57.009197"
+}

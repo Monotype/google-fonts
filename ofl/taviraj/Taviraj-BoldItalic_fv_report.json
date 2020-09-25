@@ -1,0 +1,67 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Taviraj-BoldItalic.ttf",
+                "type": "ttf",
+                "size": 244760,
+                "md5": "c15fe658c25885a32c804762ece47bc8",
+                "geometryMd5": "9b70908643aa84426bdcd25b1ff56f91"
+            },
+            "name": {
+                "family": "Taviraj",
+                "subFamily": "Bold Italic",
+                "fullName": "Taviraj Bold Italic",
+                "psName": "Taviraj-BoldItalic",
+                "versionText": "Version 1.001",
+                "copyright": "Copyright (c) 2015, Cadson Demak (info@cadsondemak.com)",
+                "trademark": "Unknown"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 772,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "CDK ",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Taviraj Bold Italic",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 2,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_d4585aac5350416b991b2c1115c3b183.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 8 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-24T10:01:42.696202Z",
+                        "orig_output": "validate_d4585aac5350416b991b2c1115c3b183.fontedit.OS_2.PANOSE.weight - ERROR - Value 8 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_d4585aac5350416b991b2c1115c3b183.glyf.glyph 552 ('exclam').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-24T10:02:00.017000Z",
+                        "orig_output": "validate_d4585aac5350416b991b2c1115c3b183.glyf.glyph 552 ('exclam').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 302247,
+    "completedDate": "2020-09-24 10:06:42.459536"
+}

@@ -1,0 +1,67 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Trirong-Bold.ttf",
+                "type": "ttf",
+                "size": 201896,
+                "md5": "16fd7af8e19e84fece6d2f44915197f9",
+                "geometryMd5": "8600d658e28551641eca5f4135f3f4a6"
+            },
+            "name": {
+                "family": "Trirong",
+                "subFamily": "Bold",
+                "fullName": "Trirong Bold",
+                "psName": "Trirong-Bold",
+                "versionText": "Version 1.001",
+                "copyright": "Copyright (c) 2015, Cadson Demak (info@cadsondemak.com)",
+                "trademark": "Unknown"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 772,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "CDK ",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Trirong Bold",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 2,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_335dcd5b26d54b229650ac25534df48f.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 8 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-25T02:27:12.032837Z",
+                        "orig_output": "validate_335dcd5b26d54b229650ac25534df48f.fontedit.OS_2.PANOSE.weight - ERROR - Value 8 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_335dcd5b26d54b229650ac25534df48f.glyf.glyph 659 ('ampersand').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-25T02:27:26.340135Z",
+                        "orig_output": "validate_335dcd5b26d54b229650ac25534df48f.glyf.glyph 659 ('ampersand').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 195474,
+    "completedDate": "2020-09-25 02:30:24.848922"
+}

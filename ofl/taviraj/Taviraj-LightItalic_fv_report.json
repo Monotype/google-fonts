@@ -1,0 +1,69 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Taviraj-LightItalic.ttf",
+                "type": "ttf",
+                "size": 211844,
+                "md5": "0093e2d64a05a5e47c4c74a69f462c3a",
+                "geometryMd5": "dc5e2f845e0019e1a32b0d338804b798"
+            },
+            "name": {
+                "family": "Taviraj Light",
+                "subFamily": "Italic",
+                "fullName": "Taviraj Light Italic",
+                "psName": "Taviraj-LightItalic",
+                "versionText": "Version 1.001",
+                "copyright": "Copyright (c) 2015, Cadson Demak (info@cadsondemak.com)",
+                "trademark": "Unknown",
+                "typographicFamily": "Taviraj",
+                "typographicSubFamily": "Light Italic"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 772,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "CDK ",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Taviraj Light Italic",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 2,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_e02a544d8224495d99f48fd901aa2e77.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 4 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-24T12:01:18.517225Z",
+                        "orig_output": "validate_e02a544d8224495d99f48fd901aa2e77.fontedit.OS_2.PANOSE.weight - ERROR - Value 4 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_e02a544d8224495d99f48fd901aa2e77.glyf.glyph 665 ('trademark').contours.contour 1",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-24T12:01:38.689234Z",
+                        "orig_output": "validate_e02a544d8224495d99f48fd901aa2e77.glyf.glyph 665 ('trademark').contours.contour 1 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 185353,
+    "completedDate": "2020-09-24 12:04:21.276264"
+}

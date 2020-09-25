@@ -1,0 +1,83 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Tillana-Regular.ttf",
+                "type": "ttf",
+                "size": 329148,
+                "md5": "0e4cd03c412febbe0c55a585ebccfe90",
+                "geometryMd5": "47dd54bef138faea70145032ee44bdb6"
+            },
+            "name": {
+                "family": "Tillana",
+                "subFamily": "Regular",
+                "fullName": "Tillana Regular",
+                "psName": "Tillana-Regular",
+                "versionText": "Version 2.003;PS 1.0;hotconv 1.0.79;makeotf.lib2.5.61930; ttfautohint (v1.2.42-39fb)",
+                "copyright": "Copyright (c) 2014 Indian Type Foundry (info@indiantypefoundry.com)",
+                "trademark": "Tillana is a trademark of Indian Type Foundry."
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 1012,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "ITFO",
+                "font_vendor": "Indian Type Foundry"
+            },
+            "validation": {
+                "font_full_name": "Tillana Regular",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 4,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_55aa0accd0ce415d95c90d44a08992d8.GDEF.glyphClasses",
+                        "levelname": "ERROR",
+                        "message": "The following mark glyphs have nonzero advances: [69, 108, 115, 120, 124, 287, 288, 290, 291, 292, 293, 294, 295]",
+                        "timestamp": "2020-09-24T11:32:24.387334Z",
+                        "orig_output": "validate_55aa0accd0ce415d95c90d44a08992d8.GDEF.glyphClasses - ERROR - The following mark glyphs have nonzero advances: [69, 108, 115, 120, 124, 287, 288, 290, 291, 292, 293, 294, 295]",
+                        "msg_code": "V1102"
+                    },
+                    {
+                        "subroutine": "validate_55aa0accd0ce415d95c90d44a08992d8.hmtx",
+                        "levelname": "ERROR",
+                        "message": "The left sidebearing 43 does not match the glyph's xMin 44 (glyph 21)",
+                        "timestamp": "2020-09-24T11:32:51.186151Z",
+                        "orig_output": "validate_55aa0accd0ce415d95c90d44a08992d8.hmtx - ERROR - The left sidebearing 43 does not match the glyph's xMin 44 (glyph 21)",
+                        "msg_code": "V0933"
+                    },
+                    {
+                        "subroutine": "validate_55aa0accd0ce415d95c90d44a08992d8.OS_2.unicodeRanges",
+                        "levelname": "ERROR",
+                        "message": "Font has non-BMP characters but surrogates bit not set.",
+                        "timestamp": "2020-09-24T11:32:25.018434Z",
+                        "orig_output": "validate_55aa0accd0ce415d95c90d44a08992d8.OS_2.unicodeRanges - ERROR - Font has non-BMP characters but surrogates bit not set.",
+                        "msg_code": "E2122"
+                    },
+                    {
+                        "subroutine": "validate_55aa0accd0ce415d95c90d44a08992d8.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 644, but is 503",
+                        "timestamp": "2020-09-24T11:32:25.649135Z",
+                        "orig_output": "validate_55aa0accd0ce415d95c90d44a08992d8.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 644, but is 503",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 806154,
+    "completedDate": "2020-09-24 11:45:47.052943"
+}

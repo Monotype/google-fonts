@@ -1,0 +1,75 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Thasadith-Italic.ttf",
+                "type": "ttf",
+                "size": 98268,
+                "md5": "48c34f5e93a5240c4fa69b35d3e9fe3d",
+                "geometryMd5": "e90fc1a39dea0b9ccd8f029ffe0e4e0e"
+            },
+            "name": {
+                "family": "Thasadith",
+                "subFamily": "Italic",
+                "fullName": "Thasadith Italic",
+                "psName": "Thasadith-Italic",
+                "versionText": "Version 1.000; ttfautohint (v1.6)",
+                "copyright": "Copyright 2018 The Thasadith Project Authors (https://github.com/cadsondemak/Thasadith)",
+                "trademark": "Unknown"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 773,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "CDK ",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Thasadith Italic",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 3,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_283cc3a768bb418a8b221373b7590eb0.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 5 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-25T06:38:20.969795Z",
+                        "orig_output": "validate_283cc3a768bb418a8b221373b7590eb0.fontedit.OS_2.PANOSE.weight - ERROR - Value 5 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_283cc3a768bb418a8b221373b7590eb0.maxp",
+                        "levelname": "ERROR",
+                        "message": "The maxZones value should be 1, but is 0.",
+                        "timestamp": "2020-09-25T06:38:36.906137Z",
+                        "orig_output": "validate_283cc3a768bb418a8b221373b7590eb0.maxp - ERROR - The maxZones value should be 1, but is 0.",
+                        "msg_code": "V0272"
+                    },
+                    {
+                        "subroutine": "validate_283cc3a768bb418a8b221373b7590eb0.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 494, but is 493",
+                        "timestamp": "2020-09-25T06:38:23.698929Z",
+                        "orig_output": "validate_283cc3a768bb418a8b221373b7590eb0.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 494, but is 493",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 19173,
+    "completedDate": "2020-09-25 06:38:37.522762"
+}
