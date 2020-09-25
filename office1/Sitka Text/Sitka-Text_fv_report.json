@@ -1,0 +1,69 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Sitka-Text.ttf",
+                "type": "ttf",
+                "size": 186300,
+                "md5": "08535179df91bce7d184a0cbfd86c440",
+                "geometryMd5": "d8bb213c265b4da05a834a92fe29b6a0"
+            },
+            "name": {
+                "family": "Sitka Text",
+                "subFamily": "Regular",
+                "fullName": "Sitka Text",
+                "psName": "Sitka-b0000-1900000",
+                "versionText": "Version 2.00",
+                "copyright": "\u00a9 2020 Microsoft Corporation. All Rights Reserved.",
+                "trademark": "Sitka is a trademark of the Microsoft group of companies.",
+                "typographicFamily": "Sitka",
+                "typographicSubFamily": "Text"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 1185,
+                "embedding": "Editable Embedding",
+                "font_vendor_id": "MS  ",
+                "font_vendor": "Microsoft Corp."
+            },
+            "validation": {
+                "font_full_name": "Sitka Text",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 2,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_6cea6666c6fb43db84e27d7fd07589ad.hints",
+                        "levelname": "ERROR",
+                        "message": "CALL[] in Prep table (PC 73) is trying to call nonexistent function 1!",
+                        "timestamp": "2020-09-25T15:06:15.765867Z",
+                        "orig_output": "validate_6cea6666c6fb43db84e27d7fd07589ad.hints - ERROR - CALL[] in Prep table (PC 73) is trying to call nonexistent function 1!",
+                        "msg_code": "E6020"
+                    },
+                    {
+                        "subroutine": "validate_6cea6666c6fb43db84e27d7fd07589ad.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 1352, but is 1353",
+                        "timestamp": "2020-09-25T15:05:45.561984Z",
+                        "orig_output": "validate_6cea6666c6fb43db84e27d7fd07589ad.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 1352, but is 1353",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 36217,
+    "completedDate": "2020-09-25 15:06:16.106202"
+}

@@ -1,0 +1,101 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "segoeuil.ttf",
+                "type": "ttf",
+                "size": 913712,
+                "md5": "d44929d62a49114d494d1768893fcdf7",
+                "geometryMd5": "962069ceb7ec9fd67fb2673dec9fed1b"
+            },
+            "name": {
+                "family": "Segoe UI Light",
+                "subFamily": "Regular",
+                "fullName": "Segoe UI Light",
+                "psName": "SegoeUI-Light",
+                "versionText": "Version 5.62",
+                "copyright": "\u00a9 2018 Microsoft Corporation. All Rights Reserved. \r\n\r\nHebrew OpenType Layout logic copyright \u00a9 2003 & 2007, Ralph Hancock & John Hudson. This layout logic for Biblical Hebrew is open source software under the MIT License; see embedded license description for details.",
+                "trademark": "Segoe is a trademark of the Microsoft group of companies.",
+                "typographicFamily": "Segoe UI",
+                "typographicSubFamily": "Light"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 5282,
+                "embedding": "Editable Embedding",
+                "font_vendor_id": "MS  ",
+                "font_vendor": "Microsoft Corp."
+            },
+            "validation": {
+                "font_full_name": "Segoe UI Light",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 6,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_77a58d1f321b4b20ac25c1b703cf53c7.fontedit.GPOS.GPOS.lookuplist.lookup 41.lookup.subtable 0.marktobase",
+                        "levelname": "ERROR",
+                        "message": "The number of classes should be 1 (based on the actual values in the MarkRecords), but is actually 2.",
+                        "timestamp": "2020-09-25T15:18:24.689012Z",
+                        "orig_output": "validate_77a58d1f321b4b20ac25c1b703cf53c7.fontedit.GPOS.GPOS.lookuplist.lookup 41.lookup.subtable 0.marktobase - ERROR - The number of classes should be 1 (based on the actual values in the MarkRecords), but is actually 2.",
+                        "msg_code": "V0343"
+                    },
+                    {
+                        "subroutine": "validate_77a58d1f321b4b20ac25c1b703cf53c7.gasp.up to 17 ppem",
+                        "levelname": "ERROR",
+                        "message": "v0 Smoothing flag (GASP_DOGRAY) set without corresponding v1 Symmetric Smoothing flag (GASP_SYMMETRIC_SMOOTHING).",
+                        "timestamp": "2020-09-25T15:19:15.460117Z",
+                        "orig_output": "validate_77a58d1f321b4b20ac25c1b703cf53c7.gasp.up to 17 ppem - ERROR - v0 Smoothing flag (GASP_DOGRAY) set without corresponding v1 Symmetric Smoothing flag (GASP_SYMMETRIC_SMOOTHING).",
+                        "msg_code": "V0992"
+                    },
+                    {
+                        "subroutine": "validate_77a58d1f321b4b20ac25c1b703cf53c7.GDEF.glyphClasses",
+                        "levelname": "ERROR",
+                        "message": "The following mark glyphs have nonzero advances: [580, 581, 582, 583, 1533, 1534, 1537, 1538, 1691, 3496, 3497, 5019, 5020, 5021, 5022, 5023, 5024, 5025, 5026, 5027, 5028, 5029, 5030, 5031, 5032, 5033, 5034]",
+                        "timestamp": "2020-09-25T15:18:47.486807Z",
+                        "orig_output": "validate_77a58d1f321b4b20ac25c1b703cf53c7.GDEF.glyphClasses - ERROR - The following mark glyphs have nonzero advances: [580, 581, 582, 583, 1533, 1534, 1537, 1538, 1691, 3496, 3497, 5019, 5020, 5021, 5022, 5023, 5024, 5025, 5026, 5027, 5028, 5029, 5030, 5031, 5032, 5033, 5034]",
+                        "msg_code": "V1102"
+                    },
+                    {
+                        "subroutine": "validate_77a58d1f321b4b20ac25c1b703cf53c7.glyf.glyph 2214 ('U+2081')",
+                        "levelname": "ERROR",
+                        "message": "Bounds should be [75, -241, 410, 635], but are [115, -241, 600, 635].",
+                        "timestamp": "2020-09-25T15:19:31.933253Z",
+                        "orig_output": "validate_77a58d1f321b4b20ac25c1b703cf53c7.glyf.glyph 2214 ('U+2081') - ERROR - Bounds should be [75, -241, 410, 635], but are [115, -241, 600, 635].",
+                        "msg_code": "E1112"
+                    },
+                    {
+                        "subroutine": "validate_77a58d1f321b4b20ac25c1b703cf53c7.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2020-09-25T15:21:19.844817Z",
+                        "orig_output": "validate_77a58d1f321b4b20ac25c1b703cf53c7.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
+                    },
+                    {
+                        "subroutine": "validate_77a58d1f321b4b20ac25c1b703cf53c7.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 1156, but is 1080",
+                        "timestamp": "2020-09-25T15:18:50.234936Z",
+                        "orig_output": "validate_77a58d1f321b4b20ac25c1b703cf53c7.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 1156, but is 1080",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 217182,
+    "completedDate": "2020-09-25 15:21:59.206096"
+}
