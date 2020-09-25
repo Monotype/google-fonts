@@ -1,0 +1,77 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Grenze-BlackItalic.ttf",
+                "type": "ttf",
+                "size": 103024,
+                "md5": "126853feb0db0db09c64fca49b5cedf5",
+                "geometryMd5": "2c115c7246f6b91309e2b736eb9bd17e"
+            },
+            "name": {
+                "family": "Grenze Black",
+                "subFamily": "Italic",
+                "fullName": "Grenze Black Italic",
+                "psName": "Grenze-BlackItalic",
+                "versionText": "Version 1.002; ttfautohint (v1.8)",
+                "copyright": "Copyright 2018 The Grenze Project Authors (https://github.com/Omnibus-Type/Grenze), with Reserved Font Name \"Grenze\".",
+                "trademark": "Grenze is a trademark of Omnibus-Type",
+                "typographicFamily": "Grenze",
+                "typographicSubFamily": "Black Italic"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 808,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "OMNI",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Grenze Black Italic",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 3,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_17dca75d24944dd9bc6321f67104e718.glyf.glyph 325 ('ij')",
+                        "levelname": "ERROR",
+                        "message": "Circular component at or below these glyphs: [718]",
+                        "timestamp": "2020-09-24T16:10:08.610090Z",
+                        "orig_output": "validate_17dca75d24944dd9bc6321f67104e718.glyf.glyph 325 ('ij') - ERROR - Circular component at or below these glyphs: [718]",
+                        "msg_code": "E1118"
+                    },
+                    {
+                        "subroutine": "validate_17dca75d24944dd9bc6321f67104e718.maxp",
+                        "levelname": "ERROR",
+                        "message": "The following glyphs had improperly constructed composite information, and could not be used in validating the 'maxp' table: [718]",
+                        "timestamp": "2020-09-24T16:10:16.786040Z",
+                        "orig_output": "validate_17dca75d24944dd9bc6321f67104e718.maxp - ERROR - The following glyphs had improperly constructed composite information, and could not be used in validating the 'maxp' table: [718]",
+                        "msg_code": "V0555"
+                    },
+                    {
+                        "subroutine": "validate_17dca75d24944dd9bc6321f67104e718.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 524, but is 523",
+                        "timestamp": "2020-09-24T16:10:04.864187Z",
+                        "orig_output": "validate_17dca75d24944dd9bc6321f67104e718.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 524, but is 523",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 38961,
+    "completedDate": "2020-09-24 16:10:39.047044"
+}

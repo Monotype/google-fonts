@@ -1,0 +1,83 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Gudea-Italic.ttf",
+                "type": "ttf",
+                "size": 27028,
+                "md5": "6e7dc0396ddd3990db7d3d23c7d059b5",
+                "geometryMd5": "db12e0cd4ced0922418de6e9a5d60b33"
+            },
+            "name": {
+                "family": "Gudea",
+                "subFamily": "Italic",
+                "fullName": "Gudea Italic",
+                "psName": "Gudea-Italic",
+                "versionText": "Version 1.002",
+                "copyright": "Copyright (c) 2012, Agustina Mingote (agustinamingote@gmail.com), with Reserved Font Names \"Gudea\"",
+                "trademark": "Gudea is a trademark of Agustina Mingote."
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 291,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "pyrs",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Gudea Italic",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 4,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_f9935f4b4b6d425682ba9f18b1a67b3a.fontedit.post",
+                        "levelname": "ERROR",
+                        "message": "Non-ASCII in name for glyph 275.",
+                        "timestamp": "2020-09-25T06:12:17.569569Z",
+                        "orig_output": "validate_f9935f4b4b6d425682ba9f18b1a67b3a.fontedit.post - ERROR - Non-ASCII in name for glyph 275.",
+                        "msg_code": "V0127"
+                    },
+                    {
+                        "subroutine": "validate_f9935f4b4b6d425682ba9f18b1a67b3a.glyf.glyph 8 ('dollar')",
+                        "levelname": "ERROR",
+                        "message": "Bounds should be [0, -60, 428, 747], but are [41, -60, 428, 747].",
+                        "timestamp": "2020-09-25T06:12:18.183716Z",
+                        "orig_output": "validate_f9935f4b4b6d425682ba9f18b1a67b3a.glyf.glyph 8 ('dollar') - ERROR - Bounds should be [0, -60, 428, 747], but are [41, -60, 428, 747].",
+                        "msg_code": "E1112"
+                    },
+                    {
+                        "subroutine": "validate_f9935f4b4b6d425682ba9f18b1a67b3a.head",
+                        "levelname": "ERROR",
+                        "message": "The macStyle italic bit is True but post.italicAngle is   0.0",
+                        "timestamp": "2020-09-25T06:12:22.241455Z",
+                        "orig_output": "validate_f9935f4b4b6d425682ba9f18b1a67b3a.head - ERROR - The macStyle italic bit is True but post.italicAngle is   0.0",
+                        "msg_code": "E1316"
+                    },
+                    {
+                        "subroutine": "validate_f9935f4b4b6d425682ba9f18b1a67b3a.post",
+                        "levelname": "ERROR",
+                        "message": "Zero italic angle but head.macStyle.italic is True.",
+                        "timestamp": "2020-09-25T06:12:22.756475Z",
+                        "orig_output": "validate_f9935f4b4b6d425682ba9f18b1a67b3a.post - ERROR - Zero italic angle but head.macStyle.italic is True.",
+                        "msg_code": "E2310"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 7150,
+    "completedDate": "2020-09-25 06:12:23.068277"
+}

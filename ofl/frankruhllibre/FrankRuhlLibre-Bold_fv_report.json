@@ -1,0 +1,67 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "FrankRuhlLibre-Bold.ttf",
+                "type": "ttf",
+                "size": 93560,
+                "md5": "0bd31a6bd0a517a63e85dde58b25b7f0",
+                "geometryMd5": "8a79826f14873fd6aabb9d3857c52e0c"
+            },
+            "name": {
+                "family": "Frank Ruhl Libre",
+                "subFamily": "Bold",
+                "fullName": "Frank Ruhl Libre Bold",
+                "psName": "FrankRuhlLibre-Bold",
+                "versionText": "Version 5.001",
+                "copyright": "Copyright 2015 The Frank Ruhl Libre Project Authors.",
+                "trademark": "Unknown"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 511,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "UKWN",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Frank Ruhl Libre Bold",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 2,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_40a116e31e29476db28e53d15325781e.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 8 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-24T06:47:46.433614Z",
+                        "orig_output": "validate_40a116e31e29476db28e53d15325781e.fontedit.OS_2.PANOSE.weight - ERROR - Value 8 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_40a116e31e29476db28e53d15325781e.glyf.glyph 461 ('dagger').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-24T06:47:57.938777Z",
+                        "orig_output": "validate_40a116e31e29476db28e53d15325781e.glyf.glyph 461 ('dagger').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 103915,
+    "completedDate": "2020-09-24 06:49:27.676142"
+}

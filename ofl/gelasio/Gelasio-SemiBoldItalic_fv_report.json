@@ -1,0 +1,77 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Gelasio-SemiBoldItalic.ttf",
+                "type": "ttf",
+                "size": 145696,
+                "md5": "faec845b25ddcb7e77fb35c7492db9fc",
+                "geometryMd5": "3c9a7483ab74028ba739956cce4cfd17"
+            },
+            "name": {
+                "family": "Gelasio SemiBold",
+                "subFamily": "Italic",
+                "fullName": "Gelasio SemiBold Italic",
+                "psName": "Gelasio-SemiBoldItalic",
+                "versionText": "Version 1.006",
+                "copyright": "Copyright 2019 The Gelasio Project Authors (https://github.com/SorkinType/Gelasio)",
+                "trademark": "Gelasio is a trademark of Sorkin Type Co.",
+                "typographicFamily": "Gelasio",
+                "typographicSubFamily": "SemiBold Italic"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 868,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "STC ",
+                "font_vendor": "Sorkin Type Co"
+            },
+            "validation": {
+                "font_full_name": "Gelasio SemiBold Italic",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 3,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_bc9cb21085da41f98aa956f4d68a9a0b.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 7 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-24T15:51:04.077337Z",
+                        "orig_output": "validate_bc9cb21085da41f98aa956f4d68a9a0b.fontedit.OS_2.PANOSE.weight - ERROR - Value 7 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_bc9cb21085da41f98aa956f4d68a9a0b.glyf.glyph 452 ('section').contours.contour 1",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-24T15:51:13.044655Z",
+                        "orig_output": "validate_bc9cb21085da41f98aa956f4d68a9a0b.glyf.glyph 452 ('section').contours.contour 1 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_bc9cb21085da41f98aa956f4d68a9a0b.glyf.glyph 464 ('ordfeminine').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-24T15:51:13.291313Z",
+                        "orig_output": "validate_bc9cb21085da41f98aa956f4d68a9a0b.glyf.glyph 464 ('ordfeminine').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 189248,
+    "completedDate": "2020-09-24 15:54:10.297608"
+}

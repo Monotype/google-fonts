@@ -1,0 +1,93 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Grenze-MediumItalic.ttf",
+                "type": "ttf",
+                "size": 103272,
+                "md5": "4ac5bffbad3cc637122555d01a5f73ee",
+                "geometryMd5": "7bc6ab43a4376cab704fa7f5e9f186ef"
+            },
+            "name": {
+                "family": "Grenze Medium",
+                "subFamily": "Italic",
+                "fullName": "Grenze Medium Italic",
+                "psName": "Grenze-MediumItalic",
+                "versionText": "Version 1.002; ttfautohint (v1.8)",
+                "copyright": "Copyright 2018 The Grenze Project Authors (https://github.com/Omnibus-Type/Grenze), with Reserved Font Name \"Grenze\".",
+                "trademark": "Grenze is a trademark of Omnibus-Type",
+                "typographicFamily": "Grenze",
+                "typographicSubFamily": "Medium Italic"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 808,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "OMNI",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Grenze Medium Italic",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 5,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_91469898f8e74f4ab26c26cf9c7e3c48.glyf.glyph 325 ('ij')",
+                        "levelname": "ERROR",
+                        "message": "Circular component at or below these glyphs: [718]",
+                        "timestamp": "2020-09-24T16:59:53.778671Z",
+                        "orig_output": "validate_91469898f8e74f4ab26c26cf9c7e3c48.glyf.glyph 325 ('ij') - ERROR - Circular component at or below these glyphs: [718]",
+                        "msg_code": "E1118"
+                    },
+                    {
+                        "subroutine": "validate_91469898f8e74f4ab26c26cf9c7e3c48.glyf.glyph 343 ('m').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-24T16:59:53.871867Z",
+                        "orig_output": "validate_91469898f8e74f4ab26c26cf9c7e3c48.glyf.glyph 343 ('m').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_91469898f8e74f4ab26c26cf9c7e3c48.glyf.glyph 389 ('r').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-24T16:59:54.639239Z",
+                        "orig_output": "validate_91469898f8e74f4ab26c26cf9c7e3c48.glyf.glyph 389 ('r').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_91469898f8e74f4ab26c26cf9c7e3c48.maxp",
+                        "levelname": "ERROR",
+                        "message": "The following glyphs had improperly constructed composite information, and could not be used in validating the 'maxp' table: [718]",
+                        "timestamp": "2020-09-24T17:00:05.982143Z",
+                        "orig_output": "validate_91469898f8e74f4ab26c26cf9c7e3c48.maxp - ERROR - The following glyphs had improperly constructed composite information, and could not be used in validating the 'maxp' table: [718]",
+                        "msg_code": "V0555"
+                    },
+                    {
+                        "subroutine": "validate_91469898f8e74f4ab26c26cf9c7e3c48.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 461, but is 460",
+                        "timestamp": "2020-09-24T16:59:50.814903Z",
+                        "orig_output": "validate_91469898f8e74f4ab26c26cf9c7e3c48.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 461, but is 460",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 47675,
+    "completedDate": "2020-09-24 17:00:34.733406"
+}

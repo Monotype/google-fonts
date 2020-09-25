@@ -1,0 +1,77 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Faustina-SemiBold.ttf",
+                "type": "ttf",
+                "size": 168804,
+                "md5": "7c5b5fea530577c4896919beb4f16707",
+                "geometryMd5": "d62f390bc62d58157fa8352a338bdc2f"
+            },
+            "name": {
+                "family": "Faustina Medium",
+                "subFamily": "Regular",
+                "fullName": "Faustina SemiBold",
+                "psName": "Faustina-SemiBold",
+                "versionText": "Version 1.006; ttfautohint (v1.5)",
+                "copyright": "Copyright 2016 The Faustina Project Authors (omnibus.type@gmail.com)",
+                "trademark": "Unknown",
+                "typographicFamily": "Faustina",
+                "typographicSubFamily": "SemiBold"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 667,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "OMNI",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Faustina SemiBold",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 3,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_39df10fe85ac4fdd8134cf09a80de503.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 7 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-25T05:57:11.932029Z",
+                        "orig_output": "validate_39df10fe85ac4fdd8134cf09a80de503.fontedit.OS_2.PANOSE.weight - ERROR - Value 7 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_39df10fe85ac4fdd8134cf09a80de503.glyf.glyph 405 ('uni1E6D')",
+                        "levelname": "ERROR",
+                        "message": "Bounds should be [2, -194, 352, 622], but are [2, -194, 350, 622].",
+                        "timestamp": "2020-09-25T05:57:22.800899Z",
+                        "orig_output": "validate_39df10fe85ac4fdd8134cf09a80de503.glyf.glyph 405 ('uni1E6D') - ERROR - Bounds should be [2, -194, 352, 622], but are [2, -194, 350, 622].",
+                        "msg_code": "E1112"
+                    },
+                    {
+                        "subroutine": "validate_39df10fe85ac4fdd8134cf09a80de503.hhea",
+                        "levelname": "ERROR",
+                        "message": "The minRightSidebearing value (-121) does not match the expected value (-122)",
+                        "timestamp": "2020-09-25T05:57:28.554015Z",
+                        "orig_output": "validate_39df10fe85ac4fdd8134cf09a80de503.hhea - ERROR - The minRightSidebearing value (-121) does not match the expected value (-122)",
+                        "msg_code": "E1403"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 202578,
+    "completedDate": "2020-09-25 06:00:32.244936"
+}

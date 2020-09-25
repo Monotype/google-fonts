@@ -1,0 +1,93 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Faustina-MediumItalic.ttf",
+                "type": "ttf",
+                "size": 160260,
+                "md5": "98f77b9d267d41d00eabfb08332535c9",
+                "geometryMd5": "e31d8f9a675e1b4818869bf070231482"
+            },
+            "name": {
+                "family": "Faustina Medium",
+                "subFamily": "Italic",
+                "fullName": "Faustina Medium Italic",
+                "psName": "Faustina-MediumItalic",
+                "versionText": "Version 1.006; ttfautohint (v1.5)",
+                "copyright": "Copyright 2016 The Faustina Project Authors (omnibus.type@gmail.com)",
+                "trademark": "Unknown",
+                "typographicFamily": "Faustina",
+                "typographicSubFamily": "Medium Italic"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 666,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "OMNI",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Faustina Medium Italic",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 5,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_d4d9701759564c968a3ce6c5c24dd29e.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 6 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-25T06:35:02.300236Z",
+                        "orig_output": "validate_d4d9701759564c968a3ce6c5c24dd29e.fontedit.OS_2.PANOSE.weight - ERROR - Value 6 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_d4d9701759564c968a3ce6c5c24dd29e.glyf.glyph 327 ('j').contours.contour 1",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-25T06:35:09.046273Z",
+                        "orig_output": "validate_d4d9701759564c968a3ce6c5c24dd29e.glyf.glyph 327 ('j').contours.contour 1 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_d4d9701759564c968a3ce6c5c24dd29e.glyf.glyph 328 ('uni0237').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-25T06:35:09.052776Z",
+                        "orig_output": "validate_d4d9701759564c968a3ce6c5c24dd29e.glyf.glyph 328 ('uni0237').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_d4d9701759564c968a3ce6c5c24dd29e.hhea",
+                        "levelname": "ERROR",
+                        "message": "The minLeftSidebearing value (-626) does not match the expected value (-600)",
+                        "timestamp": "2020-09-25T06:35:15.841210Z",
+                        "orig_output": "validate_d4d9701759564c968a3ce6c5c24dd29e.hhea - ERROR - The minLeftSidebearing value (-626) does not match the expected value (-600)",
+                        "msg_code": "E1402"
+                    },
+                    {
+                        "subroutine": "validate_d4d9701759564c968a3ce6c5c24dd29e.hhea",
+                        "levelname": "ERROR",
+                        "message": "The minRightSidebearing value (-162) does not match the expected value (-185)",
+                        "timestamp": "2020-09-25T06:35:15.841343Z",
+                        "orig_output": "validate_d4d9701759564c968a3ce6c5c24dd29e.hhea - ERROR - The minRightSidebearing value (-162) does not match the expected value (-185)",
+                        "msg_code": "E1403"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 198458,
+    "completedDate": "2020-09-25 06:38:18.327319"
+}

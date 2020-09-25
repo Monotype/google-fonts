@@ -1,0 +1,83 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "ExpletusSans-BoldItalic.ttf",
+                "type": "ttf",
+                "size": 49044,
+                "md5": "2bbc2d6893b577a6b5ba1d9d21917983",
+                "geometryMd5": "34526cc536d0aeaa6095ef05b3bf10e6"
+            },
+            "name": {
+                "family": "Expletus Sans",
+                "subFamily": "Bold Italic",
+                "fullName": "Expletus Sans Bold Italic",
+                "psName": "ExpletusSans-BoldItalic",
+                "versionText": "Version 7.029",
+                "copyright": "Copyright (c) 2009 by Jasper de Waard. All rights reserved.",
+                "trademark": "Expletus Sans Bold Italic is a trademark of Jasper de Waard."
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 224,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "pyrs",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Expletus Sans Bold Italic",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 4,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_a2f5e32b8d934d3bb2857175a1956735.glyf.glyph 138 ('paragraph').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-24T06:47:50.092724Z",
+                        "orig_output": "validate_a2f5e32b8d934d3bb2857175a1956735.glyf.glyph 138 ('paragraph').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_a2f5e32b8d934d3bb2857175a1956735.head",
+                        "levelname": "ERROR",
+                        "message": "The macStyle italic bit is True but post.italicAngle is   0.0",
+                        "timestamp": "2020-09-24T06:47:52.212393Z",
+                        "orig_output": "validate_a2f5e32b8d934d3bb2857175a1956735.head - ERROR - The macStyle italic bit is True but post.italicAngle is   0.0",
+                        "msg_code": "E1316"
+                    },
+                    {
+                        "subroutine": "validate_a2f5e32b8d934d3bb2857175a1956735.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 561, but is 482",
+                        "timestamp": "2020-09-24T06:47:48.744556Z",
+                        "orig_output": "validate_a2f5e32b8d934d3bb2857175a1956735.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 561, but is 482",
+                        "msg_code": "E2135"
+                    },
+                    {
+                        "subroutine": "validate_a2f5e32b8d934d3bb2857175a1956735.post",
+                        "levelname": "ERROR",
+                        "message": "Zero italic angle but head.macStyle.italic is True.",
+                        "timestamp": "2020-09-24T06:47:54.044956Z",
+                        "orig_output": "validate_a2f5e32b8d934d3bb2857175a1956735.post - ERROR - Zero italic angle but head.macStyle.italic is True.",
+                        "msg_code": "E2310"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 11659,
+    "completedDate": "2020-09-24 06:47:55.930966"
+}

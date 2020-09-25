@@ -1,0 +1,99 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "ExpletusSans-SemiBoldItalic.ttf",
+                "type": "ttf",
+                "size": 48508,
+                "md5": "350d5adcfb71731a296d235ab633ca3f",
+                "geometryMd5": "dd2b41abb0f7fed315518452dea5e8e6"
+            },
+            "name": {
+                "family": "Expletus Sans",
+                "subFamily": "SemiBold Italic",
+                "fullName": "Expletus Sans SemiBold Italic",
+                "psName": "ExpletusSans-SemiBoldItalic",
+                "versionText": "Version 1.002",
+                "copyright": "Copyright (c) 2010 by Jasper de Waard. All rights reserved.",
+                "trademark": "Expletus Sans SemiBold Italic is a trademark of Jasper de Waard."
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 218,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "pyrs",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Expletus Sans SemiBold Italic",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 6,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_09f5055d108b4a1ca11feda0224ba3a9.glyf.glyph 168 ('paragraph').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-24T06:38:00.378922Z",
+                        "orig_output": "validate_09f5055d108b4a1ca11feda0224ba3a9.glyf.glyph 168 ('paragraph').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_09f5055d108b4a1ca11feda0224ba3a9.head",
+                        "levelname": "ERROR",
+                        "message": "The macStyle bold bit (False) is not consistent with the name table's subfamily string 'SemiBold Italic'.",
+                        "timestamp": "2020-09-24T06:38:01.358797Z",
+                        "orig_output": "validate_09f5055d108b4a1ca11feda0224ba3a9.head - ERROR - The macStyle bold bit (False) is not consistent with the name table's subfamily string 'SemiBold Italic'.",
+                        "msg_code": "E1311"
+                    },
+                    {
+                        "subroutine": "validate_09f5055d108b4a1ca11feda0224ba3a9.head",
+                        "levelname": "ERROR",
+                        "message": "The macStyle italic bit is True but post.italicAngle is   0.0",
+                        "timestamp": "2020-09-24T06:38:01.358984Z",
+                        "orig_output": "validate_09f5055d108b4a1ca11feda0224ba3a9.head - ERROR - The macStyle italic bit is True but post.italicAngle is   0.0",
+                        "msg_code": "E1316"
+                    },
+                    {
+                        "subroutine": "validate_09f5055d108b4a1ca11feda0224ba3a9.OS_2.fsSelection",
+                        "levelname": "ERROR",
+                        "message": "The fsSelection doesn't match the subfamily 'name' entry",
+                        "timestamp": "2020-09-24T06:37:58.142057Z",
+                        "orig_output": "validate_09f5055d108b4a1ca11feda0224ba3a9.OS_2.fsSelection - ERROR - The fsSelection doesn't match the subfamily 'name' entry",
+                        "msg_code": "E2100"
+                    },
+                    {
+                        "subroutine": "validate_09f5055d108b4a1ca11feda0224ba3a9.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 559, but is 475",
+                        "timestamp": "2020-09-24T06:37:58.300048Z",
+                        "orig_output": "validate_09f5055d108b4a1ca11feda0224ba3a9.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 559, but is 475",
+                        "msg_code": "E2135"
+                    },
+                    {
+                        "subroutine": "validate_09f5055d108b4a1ca11feda0224ba3a9.post",
+                        "levelname": "ERROR",
+                        "message": "Zero italic angle but head.macStyle.italic is True.",
+                        "timestamp": "2020-09-24T06:38:02.246478Z",
+                        "orig_output": "validate_09f5055d108b4a1ca11feda0224ba3a9.post - ERROR - Zero italic angle but head.macStyle.italic is True.",
+                        "msg_code": "E2310"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 9758,
+    "completedDate": "2020-09-24 06:38:03.775190"
+}

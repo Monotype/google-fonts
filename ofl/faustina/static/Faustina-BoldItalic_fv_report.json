@@ -1,0 +1,67 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Faustina-BoldItalic.ttf",
+                "type": "ttf",
+                "size": 156404,
+                "md5": "3dc5ec0f60b41255256fa195802f0959",
+                "geometryMd5": "93fab959489e726dc9af25beb8799786"
+            },
+            "name": {
+                "family": "Faustina",
+                "subFamily": "Bold Italic",
+                "fullName": "Faustina Bold Italic",
+                "psName": "Faustina-BoldItalic",
+                "versionText": "Version 1.006; ttfautohint (v1.5)",
+                "copyright": "Copyright 2016 The Faustina Project Authors (omnibus.type@gmail.com)",
+                "trademark": "Unknown"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 666,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "OMNI",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Faustina Bold Italic",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 2,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_be7ca0757e854b8da7894456ffb94a18.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 8 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-25T05:27:06.105795Z",
+                        "orig_output": "validate_be7ca0757e854b8da7894456ffb94a18.fontedit.OS_2.PANOSE.weight - ERROR - Value 8 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_be7ca0757e854b8da7894456ffb94a18.hhea",
+                        "levelname": "ERROR",
+                        "message": "The minLeftSidebearing value (-651) does not match the expected value (-626)",
+                        "timestamp": "2020-09-25T05:27:21.198348Z",
+                        "orig_output": "validate_be7ca0757e854b8da7894456ffb94a18.hhea - ERROR - The minLeftSidebearing value (-651) does not match the expected value (-626)",
+                        "msg_code": "E1402"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 185674,
+    "completedDate": "2020-09-25 05:30:09.020537"
+}

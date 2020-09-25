@@ -1,0 +1,2327 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv='content-type' content='text/html; charset=utf-8'>
+    <title>MT FontSniffer Report</title>
+    <style type="text/css">
+      body {
+        background-color: #fff;
+        color: #000;
+        font-family: "Kootenay Pro", Axel, "System Font", "Fira Sans", sans-serif;
+        line-height: 1.3em;
+        margin: 0;
+        padding: 1em;
+        font-size: 14px;
+      }
+      mark {
+        background-color: #fff990;
+        color: black;
+      }
+      h2 {
+        padding: 2em 0 0.2em 2.35em;
+        border-bottom: 2px solid #606060;
+        margin: 0;
+      }
+      h3 {
+        padding: 0.2em 0 0.3em 0;
+        margin: 0;
+      }
+      table {
+        border-collapse: collapse; 
+        margin: 1em 0; 
+        /* width: 100%; */
+        padding: 0;
+      }
+      table.togglemessages {
+        border: none; 
+        background-color: #f0f0f0;
+      }
+      td, th {
+        line-height: 1.3em; 
+        padding: 0.25em 0.5em; 
+        vertical-align: top;
+        text-align: left;
+      }
+      .summary th {
+        border-bottom: 1px solid #000;
+      }
+      td p, th p {
+        margin: 0 0 0em 0;
+        padding: 0;
+      }
+      td.num, th.num {
+        text-align: right;
+        width: 6em;
+      }
+      
+      td.time, th.time {
+        text-align: right;
+        width: 4.5em;
+        color: #c8c8c8;
+        font-size: 0.9em;
+        background-color: #fff;
+      }
+      
+      th.time p {
+        color: #d8d8d8;
+        padding-top: 0.5em;
+      }
+      
+      .summary {
+        width: auto;
+      }
+      
+      .summary tbody tr:nth-child(odd) {
+        background-color: #f8f8f8;
+      }
+      
+      .summary tbody tr:nth-last-child(1) {
+        background-color: #f0f0f0;
+      }
+      
+      .code {
+        font-weight: bold;
+        color: #fff;
+        width: 2em; 
+        text-align: center
+      }
+      
+      .results th {
+        border-radius: 0.0em;
+      }
+      
+      .results th button{
+        font-family: "Erler Dingbats", Arial;
+        line-height: 1.4em;
+        width: 2.6em;
+        padding-top: 0.2em;
+        margin-top: 0.2em;
+        background-color: rgba(255, 255, 255, 0.0);
+        border-radius: 0.0em;
+        border: 0px solid rgba(0, 0, 0, 0.3);
+      }
+
+      .A, .S, .E, .W, .I, .P {
+        width: 5em; 
+      }
+
+      tr.S {                                  color: hsl(  0,  0%,  90%) }
+      tr.S .code {                            color: hsl(  0,  0%,  90%) }
+      tr.S:nth-child(odd)        { background-color: hsl(  0,  0%,  10%) }
+      tr.S:nth-child(even)       { background-color: hsl(  0,  0%,  20%) }
+      tr.S:nth-child(odd)  .code { background-color: hsl(  0,  0%,  20%) }
+      tr.S:nth-child(even) .code { background-color: hsl(  0,  0%,  10%) }
+
+      tr.C {                                  color: hsl(  0,  0%,  90%) }
+      tr.C .code {                            color: hsl(  0,  0%,  90%) }
+      tr.C:nth-child(odd)        { background-color: hsl(  0,  100%,  20%) }
+      tr.C:nth-child(even)       { background-color: hsl(  0,  100%,  25%) }
+      tr.C:nth-child(odd)  .code { background-color: hsl(  0,  100%,  27%) }
+      tr.C:nth-child(even) .code { background-color: hsl(  0,  100%,  30%) }
+
+      tr.E {                                  color: #000 }
+      tr.E .code {                            color: #fff }
+      tr.E:nth-child(odd)        { background-color: hsl( 24,  100%, 95%) }
+      tr.E:nth-child(even)       { background-color: hsl( 24,  100%, 90%) }
+      tr.E:nth-child(odd)  .code { background-color: hsl( 24,  100%, 45%) }
+      tr.E:nth-child(even) .code { background-color: hsl( 24,  100%, 40%) }
+      
+      tr.W {                                  color: #000 }
+      tr.W .code {                            color: #fff }
+      tr.W:nth-child(odd)        { background-color: hsl( 50,  65%, 95%) }
+      tr.W:nth-child(even)       { background-color: hsl( 50,  65%, 90%) }
+      tr.W:nth-child(odd)  .code { background-color: hsl( 50,  65%, 52%) }
+      tr.W:nth-child(even) .code { background-color: hsl( 50,  65%, 48%) }
+      
+      tr.I {                                  color: #000 }
+      tr.I .code {                            color: #fff }
+      tr.I:nth-child(odd)        { background-color: hsl( 200,  50%, 95%) }
+      tr.I:nth-child(even)       { background-color: hsl( 200,  50%, 90%) }
+      tr.I:nth-child(odd)  .code { background-color: hsl( 200,  50%, 52%) }
+      tr.I:nth-child(even) .code { background-color: hsl( 200,  50%, 48%) }
+      
+      tr.P {                                  color: #000 }
+      tr.P .code {                            color: #fff }
+      tr.P:nth-child(odd)        { background-color: hsl( 130,  40%, 95%) }
+      tr.P:nth-child(even)       { background-color: hsl( 130,  40%, 90%) }
+      tr.P:nth-child(odd)  .code { background-color: hsl( 130,  40%, 60%) }
+      tr.P:nth-child(even) .code { background-color: hsl( 130,  40%, 55%) }
+      
+      tr.A {                                  color: hsl(  0,  0%,  50%) }
+      tr.A .code {                            color: hsl(  0,  0%,  50%) }
+      tr.A:nth-child(odd)        { background-color: hsl(  0,  0%,  75%) }
+      tr.A:nth-child(even)       { background-color: hsl(  0,  0%,  80%) }
+      tr.A:nth-child(odd)  .code { background-color: hsl(  0,  0%,  85%) }
+      tr.A:nth-child(even) .code { background-color: hsl(  0,  0%,  90%) }
+      
+      
+      /* Summary backgrounds */
+
+      th.S {
+        background: hsl(  0,  0%,  85%);
+      }
+      
+      th.A {
+        background: hsl(  0,  0%,  85%);
+      }
+      
+      th.E {
+        background: hsl( 24,  100%, 45%);
+      }
+      
+      th.I {
+        background: hsl( 200,  50%, 52%);
+      }
+      
+      th.P {
+        background: hsl( 130,  40%, 60%);
+      }
+      
+      th.W {
+        background: hsl( 50,  65%, 52%);
+      }
+      
+      
+      th.AE {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 24,  100%, 45%) 100%
+        );
+      }
+      
+      th.AI {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 200,  50%, 52%) 100%
+        );
+      }
+      
+      th.AP {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 130,  40%, 60%) 100%
+        );
+      }
+      
+      th.AW {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.EI {
+        background: linear-gradient(
+          90deg,
+          hsl( 24,  100%, 45%) 0%,
+          hsl( 200,  50%, 52%) 100%
+        );
+      }
+      
+      th.EP {
+        background: linear-gradient(
+          90deg,
+          hsl( 24,  100%, 45%) 0%,
+          hsl( 130,  40%, 60%) 100%
+        );
+      }
+      
+      th.EW {
+        background: linear-gradient(
+          90deg,
+          hsl( 24,  100%, 45%) 0%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.IP {
+        background: linear-gradient(
+          90deg,
+          hsl( 200,  50%, 52%) 0%,
+          hsl( 130,  40%, 60%) 100%
+        );
+      }
+      
+      th.IW {
+        background: linear-gradient(
+          90deg,
+          hsl( 200,  50%, 52%) 0%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.PW {
+        background: linear-gradient(
+          90deg,
+          hsl( 130,  40%, 60%) 0%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      
+      th.AEI {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 24,  100%, 45%) 50%,
+          hsl( 200,  50%, 52%) 100%
+        );
+      }
+      
+      th.AEP {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 24,  100%, 45%) 50%,
+          hsl( 130,  40%, 60%) 100%
+        );
+      }
+      
+      th.AEW {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 24,  100%, 45%) 50%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.AIP {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 200,  50%, 52%) 50%,
+          hsl( 130,  40%, 60%) 100%
+        );
+      }
+      
+      th.AIW {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 200,  50%, 52%) 50%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.APW {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 130,  40%, 60%) 50%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.EIP {
+        background: linear-gradient(
+          90deg,
+          hsl( 24,  100%, 45%) 0%,
+          hsl( 200,  50%, 52%) 50%,
+          hsl( 130,  40%, 60%) 100%
+        );
+      }
+      
+      th.EIW {
+        background: linear-gradient(
+          90deg,
+          hsl( 24,  100%, 45%) 0%,
+          hsl( 200,  50%, 52%) 50%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.IPW {
+        background: linear-gradient(
+          90deg,
+          hsl( 200,  50%, 52%) 0%,
+          hsl( 130,  40%, 60%) 50%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      
+      /* AEIPW */
+      
+      
+      th.AEIP {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 24,  100%, 45%) 33%,
+          hsl( 200,  50%, 52%) 66%,
+          hsl( 130,  40%, 60%) 100%
+        );
+      }
+      
+      th.AEIW {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 24,  100%, 45%) 33%,
+          hsl( 200,  50%, 52%) 66%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.AEPW {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 24,  100%, 45%) 33%,
+          hsl( 130,  40%, 60%) 66%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.AIPW {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 200,  50%, 52%) 33%,
+          hsl( 130,  40%, 60%) 66%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.EIPW {
+        background: linear-gradient(
+          90deg,
+          hsl( 24,  100%, 45%) 0%,
+          hsl( 200,  50%, 52%) 33%,
+          hsl( 130,  40%, 60%) 66%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      
+      th.AEIPW {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 24,  100%, 45%) 25%,
+          hsl( 200,  50%, 52%) 50%,
+          hsl( 130,  40%, 60%) 75%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      
+      .fontname {
+        width: 20em;
+      }
+      .table {
+        width: 2.5em;
+      }
+      .feature {
+        width: 7.5em;
+      }
+      .message {
+        /*width: 20em;*/
+      }
+      .detail {
+        width: 40em;
+      }
+      .detail p {
+      }
+      .name { background-color: #eee }
+      .name th { padding-top: 1em }
+
+    </style>
+    <script type='text/javascript'>
+      function toggle(toggle_class){
+        var elements = document.getElementsByTagName('tr')
+        for (var i = 0; i < elements.length; i++){
+          var e = elements[i]
+          if (e.className == toggle_class) {
+            if (e.style.display != 'none') {
+              e.style.display = 'none'
+            } else {
+              e.style.display = 'table-row'
+            }
+          }
+        }
+      }
+    </script>
+    
+    <script type='text/javascript'>
+      function toggle_detail(my_id){
+        var element = document.getElementById(my_id)
+        var buttoncell = document.getElementById(my_id+"_cell")
+        var button = document.getElementById(my_id+"_btn")
+        if (element.style.display != 'none') {
+          element.style.display = 'none'
+          buttoncell.style.borderRadius = '0.0em'
+          button.firstChild.data = '\u25bc'
+        } else {
+          element.style.display = ''
+          buttoncell.style.borderRadius = '0.0em 0.0em 0 0'
+          button.firstChild.data = '\u25b2'
+        }
+      }
+    </script>
+    
+    <script type='text/javascript'>
+      function toggle_all_results(){
+        var elements = document.getElementsByClassName('result_body')
+        for (var i = 0; i < elements.length; i++){
+          var e = elements[i]
+          if (e.style.display != 'none') {
+            e.style.display = 'none'
+          } else {
+            e.style.display = ''
+          }
+        }
+      }
+    </script>
+  </head>
+  <body onload="toggle_all_results()">
+    <h1>FontSniffer Report</h1>
+    <p>Library Project, start: 2020-09-25 - 02:23.02, end: 02:23.04</p>
+    <table class='togglemessages'>
+      <tr>
+        <td>Show messages:</td>
+        <td><input type='checkbox' checked name='P' id='itoggle' onclick='toggle("P");'>
+          <label for='itoggle'>Pass</label></td>
+        <td><input type='checkbox' checked name='I' id='itoggle' onclick='toggle("I");'>
+          <label for='itoggle'>Info</label></td>
+        <td><input type='checkbox' checked name='W' id='wtoggle'onclick='toggle("W");'>
+          <label for='wtoggle'>Warning</label></td>
+        <td><input type='checkbox' checked name='E' id='etoggle' onclick='toggle("E");'>
+          <label for='etoggle'>Error</label></td>
+        <td><input type='checkbox' checked name='C' id='ctoggle' onclick='toggle("C");'>
+          <label for='ctoggle'>Critical</label></td>
+          
+        <td><button onclick='toggle_all_results();'>Toggle all details</button></td>
+      </tr>
+    </table>
+    
+        <table class="fontlist">
+
+            <thead>
+                <tr><th>Font List</th></tr>
+            </thead>
+            <tbody>
+								<tr><td>Girassol Regular (Girassol-Regular.ttf)</td></tr>
+						</tbody>
+        </table>
+
+            <h2>Table Description</h2>
+            <table class="results">
+
+                <thead>
+                    <tr>
+                    <th class="A code" id="Table Description_cell">
+                    <button id="Table Description_btn" onclick='toggle_detail("Table Description");' title="Toggle details">&#x25bc;</button>
+                    </th>
+                    <th colspan="3"><h3>Table Description</h3></th></tr>
+                </thead>
+              <tbody id="Table Description" class="result_body">
+                    
+                <tr class="A">
+                    <td class="code"><p>Level</p></td>
+                    <td class="fontname"><p>Font Name</p></td>
+                    <td class="table"><p>Table</p></td>
+                    <td class="feature"><p>Feature/Item</p></td>
+                    <td class="message"><p>Description</p></td>
+                    <td class="detail"><p>Notes</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+              </tbody>
+            </table>				<h2>Table Version</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Table Version_cell">
+                <button id="Table Version_btn" onclick='toggle_detail("Table Version");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Table Version</h3></th></tr>
+            </thead>
+            <tbody id="Table Version" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>head</p></td>
+                    <td class="feature"><p>version</p></td>
+                    <td class="message"><p>head table version should be 1.0.</p></td>
+                    <td class="detail"><p>head table version is 1.0.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>version</p></td>
+                    <td class="message"><p>OS/2 table version should be 4.</p></td>
+                    <td class="detail"><p>OS/2 table version is 4.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>post</p></td>
+                    <td class="feature"><p>format</p></td>
+                    <td class="message"><p>If not CFF, post table format should be 2.</p></td>
+                    <td class="detail"><p>Format is 2.0</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>OT Sanitizer</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="OT Sanitizer_cell">
+                <button id="OT Sanitizer_btn" onclick='toggle_detail("OT Sanitizer");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>OT Sanitizer</h3></th></tr>
+            </thead>
+            <tbody id="OT Sanitizer" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>-/-</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>OT Sanitizer</p></td>
+                    <td class="detail"><p>Passed:<br>&emsp;&emsp;&emsp;&emsp;Process start (TTF file)<br>&emsp;&emsp;&emsp;&emsp;&emsp;ProcessGeneric start<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Validating font<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Reading font<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Processing glyphs...<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Processing glyphs done<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Writing new font<br>&emsp;&emsp;&emsp;&emsp;&emsp;ProcessGeneric end<br>&emsp;&emsp;&emsp;&emsp;Process end<br>&emsp;&emsp;&emsp;&emsp;Process start (TTF file)<br>&emsp;&emsp;&emsp;&emsp;&emsp;ProcessGeneric start<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Validating font<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Reading font<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Processing glyphs...<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Processing glyphs done<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Writing new font<br>&emsp;&emsp;&emsp;&emsp;&emsp;ProcessGeneric end<br>&emsp;&emsp;&emsp;&emsp;Process end<br></p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Weight Class</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Weight Class_cell">
+                <button id="Weight Class_btn" onclick='toggle_detail("Weight Class");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Weight Class</h3></th></tr>
+            </thead>
+            <tbody id="Weight Class" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>usWeightClass</p></td>
+                    <td class="message"><p>OS/2 weight class should be greater then 250 otherwise it cause issues in MS PowerPoint.</p></td>
+                    <td class="detail"><p>OK: usWeightClass is '400'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>File Name</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="File Name_cell">
+                <button id="File Name_btn" onclick='toggle_detail("File Name");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>File Name</h3></th></tr>
+            </thead>
+            <tbody id="File Name" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>-/-</p></td>
+                    <td class="feature"><p>File Name</p></td>
+                    <td class="message"><p>File name should not be longer than 31 characters, otherwise style linking does not work in MS Word/Mac.</p></td>
+                    <td class="detail"><p>file name length is '20': 'Girassol-Regular.ttf'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>-/-</p></td>
+                    <td class="feature"><p>File Name</p></td>
+                    <td class="message"><p>File name should not be longer than 31 characters, contain space and have more then one dot for ending.</p></td>
+                    <td class="detail"><p>Everything is fine: 'Girassol-Regular.ttf'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Style Linking</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Style Linking_cell">
+                <button id="Style Linking_btn" onclick='toggle_detail("Style Linking");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Style Linking</h3></th></tr>
+            </thead>
+            <tbody id="Style Linking" class="result_body">
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>-/-</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Check if italic or upright.</p></td>
+                    <td class="detail"><p>It seems to be an upright font.<br>OS2.fsSelection.italic: False<br>head.macStyle.italic: False<br>post.header.italicAngle: 0.0</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>-/-</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Check if bold.</p></td>
+                    <td class="detail"><p>It seems to be not bold.<br>OS2.fsSelection.bold: False<br>head.macStyle.bold: False</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Empty Glyphs</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Empty Glyphs_cell">
+                <button id="Empty Glyphs_btn" onclick='toggle_detail("Empty Glyphs");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Empty Glyphs</h3></th></tr>
+            </thead>
+            <tbody id="Empty Glyphs" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>glyf</p></td>
+                    <td class="feature"><p>outline</p></td>
+                    <td class="message"><p>Unicodes should have outlines.</p></td>
+                    <td class="detail"><p>The following glyphs have no outlines, but this is correct:<br>SPACE (uni0020)<br>NO-BREAK SPACE (uni00A0)<br>FIGURE SPACE (uni2007)<br> (uni000D)</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Supplementary NFC</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Supplementary NFC_cell">
+                <button id="Supplementary NFC_btn" onclick='toggle_detail("Supplementary NFC");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Supplementary NFC</h3></th></tr>
+            </thead>
+            <tbody id="Supplementary NFC" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>unicode</p></td>
+                    <td class="message"><p>Supplementary glyphs</p></td>
+                    <td class="detail"><p>No issues found.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Supplementary Glyphs</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Supplementary Glyphs_cell">
+                <button id="Supplementary Glyphs_btn" onclick='toggle_detail("Supplementary Glyphs");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Supplementary Glyphs</h3></th></tr>
+            </thead>
+            <tbody id="Supplementary Glyphs" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>unicode</p></td>
+                    <td class="message"><p>Supplementary glyphs</p></td>
+                    <td class="detail"><p>uni0022 (QUOTATION MARK) is present, and the following 'uni2033', too.<br>uni0027 (APOSTROPHE) is present, and the following 'uni2032', too.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Check against Base Glyph Advance Width</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Check against Base Glyph Advance Width_cell">
+                <button id="Check against Base Glyph Advance Width_btn" onclick='toggle_detail("Check against Base Glyph Advance Width");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Check against Base Glyph Advance Width</h3></th></tr>
+            </thead>
+            <tbody id="Check against Base Glyph Advance Width" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>hmtx</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Compare advance width against base glyph advance width (tolerance 2 units).</p></td>
+                    <td class="detail"><p>'Aring' (ID 35): width is 478, base glyph ('A' (ID 4)) width is 478<br>'Aogonek' (ID 36): width is 478, base glyph ('A' (ID 4)) width is 478<br>'Eogonek' (ID 37): width is 483, base glyph ('E' (ID 8)) width is 483<br>'Uogonek' (ID 39): width is 507, base glyph ('U' (ID 27)) width is 507<br>'Aringacute' (ID 48): width is 478, base glyph ('A' (ID 4)) width is 478<br>'Aacute' (ID 49): width is 478, base glyph ('A' (ID 4)) width is 478<br>'Agrave' (ID 50): width is 478, base glyph ('A' (ID 4)) width is 478<br>'Acaron' (ID 51): width is 478, base glyph ('A' (ID 4)) width is 478<br>'Alphatonos' (ID 57): width is 478, base glyph ('A' (ID 4)) width is 478<br>'AEacute' (ID 58): width is 686, base glyph ('AE' (ID 33)) width is 686<br>'Cacute' (ID 59): width is 426, base glyph ('C' (ID 6)) width is 426<br>'Ccaron' (ID 60): width is 426, base glyph ('C' (ID 6)) width is 426<br>'Cdotaccent' (ID 61): width is 428, base glyph ('C' (ID 6)) width is 426<br>'Ccedilla' (ID 62): width is 426, base glyph ('C' (ID 6)) width is 426<br>'Dcaron' (ID 63): width is 494, base glyph ('D' (ID 7)) width is 494<br>'Egrave' (ID 64): width is 483, base glyph ('E' (ID 8)) width is 483<br>'Eacute' (ID 65): width is 483, base glyph ('E' (ID 8)) width is 483<br>'Etilde' (ID 66): width is 483, base glyph ('E' (ID 8)) width is 483<br>'Ecircumflex' (ID 67): width is 483, base glyph ('E' (ID 8)) width is 483<br>'Ecaron' (ID 68): width is 483, base glyph ('E' (ID 8)) width is 483<br>'Emacron' (ID 70): width is 483, base glyph ('E' (ID 8)) width is 483<br>'Ebreve' (ID 71): width is 483, base glyph ('E' (ID 8)) width is 483<br>'Gbreve' (ID 73): width is 459, base glyph ('G' (ID 10)) width is 459<br>'Gcommaaccent' (ID 75): width is 459, base glyph ('G' (ID 10)) width is 459<br>'Gcircumflex' (ID 76): width is 459, base glyph ('G' (ID 10)) width is 459<br>'Gtilde' (ID 77): width is 459, base glyph ('G' (ID 10)) width is 459<br>'Icaron' (ID 85): width is 292, base glyph ('I' (ID 12)) width is 292<br>'Kcommaaccent' (ID 87): width is 528, base glyph ('K' (ID 15)) width is 528<br>'Lacute' (ID 88): width is 449, base glyph ('L' (ID 17)) width is 449<br>'Lcaron' (ID 90): width is 449, base glyph ('L' (ID 17)) width is 449<br>'Lcommaaccent' (ID 91): width is 449, base glyph ('L' (ID 17)) width is 449<br>'Nacute' (ID 92): width is 512, base glyph ('N' (ID 19)) width is 512<br>'Ncaron' (ID 93): width is 512, base glyph ('N' (ID 19)) width is 512<br>'Ntilde' (ID 94): width is 512, base glyph ('N' (ID 19)) width is 512<br>'Ncommaaccent' (ID 95): width is 512, base glyph ('N' (ID 19)) width is 512<br>'Ndotaccent' (ID 96): width is 512, base glyph ('N' (ID 19)) width is 512<br>'Ograve' (ID 97): width is 480, base glyph ('O' (ID 20)) width is 480<br>'Oacute' (ID 98): width is 480, base glyph ('O' (ID 20)) width is 480<br>'Ocircumflex' (ID 99): width is 480, base glyph ('O' (ID 20)) width is 480<br>'Otilde' (ID 100): width is 480, base glyph ('O' (ID 20)) width is 480<br>'Odieresis' (ID 101): width is 480, base glyph ('O' (ID 20)) width is 480<br>'Omacron' (ID 102): width is 480, base glyph ('O' (ID 20)) width is 480<br>'Obreve' (ID 103): width is 480, base glyph ('O' (ID 20)) width is 480<br>'Ohungarumlaut' (ID 104): width is 480, base glyph ('O' (ID 20)) width is 480<br>'Oslashacute' (ID 105): width is 480, base glyph ('Oslash' (ID 44)) width is 480<br>'Ocaron' (ID 106): width is 480, base glyph ('O' (ID 20)) width is 480<br>'Racute' (ID 107): width is 534, base glyph ('R' (ID 24)) width is 534<br>'Rcaron' (ID 108): width is 534, base glyph ('R' (ID 24)) width is 534<br>'Rcommaaccent' (ID 109): width is 534, base glyph ('R' (ID 24)) width is 534<br>'Sacute' (ID 111): width is 417, base glyph ('S' (ID 25)) width is 417<br>'Scaron' (ID 112): width is 417, base glyph ('S' (ID 25)) width is 417<br>'Scedilla' (ID 113): width is 417, base glyph ('S' (ID 25)) width is 417<br>'Scommaaccent' (ID 114): width is 417, base glyph ('S' (ID 25)) width is 417<br>'Tcaron' (ID 116): width is 520, base glyph ('T' (ID 26)) width is 520<br>'Tcommaaccent' (ID 117): width is 520, base glyph ('T' (ID 26)) width is 520<br>'Ugrave' (ID 118): width is 507, base glyph ('U' (ID 27)) width is 507<br>'Uacute' (ID 119): width is 507, base glyph ('U' (ID 27)) width is 507<br>'Ucircumflex' (ID 120): width is 507, base glyph ('U' (ID 27)) width is 507<br>'Utilde' (ID 121): width is 507, base glyph ('U' (ID 27)) width is 507<br>'Udieresis' (ID 122): width is 507, base glyph ('U' (ID 27)) width is 507<br>'Umacron' (ID 123): width is 507, base glyph ('U' (ID 27)) width is 507<br>'Ubreve' (ID 124): width is 507, base glyph ('U' (ID 27)) width is 507<br>'Uring' (ID 125): width is 507, base glyph ('U' (ID 27)) width is 507<br>'Uhungarumlaut' (ID 126): width is 507, base glyph ('U' (ID 27)) width is 507<br>'Ucaron' (ID 127): width is 507, base glyph ('U' (ID 27)) width is 507<br>'Wgrave' (ID 128): width is 800, base glyph ('W' (ID 29)) width is 800<br>'Wacute' (ID 129): width is 800, base glyph ('W' (ID 29)) width is 800<br>'Wcircumflex' (ID 130): width is 800, base glyph ('W' (ID 29)) width is 800<br>'Wdieresis' (ID 131): width is 800, base glyph ('W' (ID 29)) width is 800<br>'Ygrave' (ID 132): width is 484, base glyph ('Y' (ID 31)) width is 484<br>'Yacute' (ID 133): width is 484, base glyph ('Y' (ID 31)) width is 484<br>'Ycircumflex' (ID 134): width is 484, base glyph ('Y' (ID 31)) width is 484<br>'Ydieresis' (ID 135): width is 484, base glyph ('Y' (ID 31)) width is 484<br>'Zacute' (ID 136): width is 435, base glyph ('Z' (ID 32)) width is 435<br>'Zcaron' (ID 137): width is 435, base glyph ('Z' (ID 32)) width is 435<br>'Zcircumflex' (ID 139): width is 435, base glyph ('Z' (ID 32)) width is 435<br>'aogonek' (ID 181): width is 462, base glyph ('a' (ID 148)) width is 462<br>'eogonek' (ID 182): width is 469, base glyph ('e' (ID 152)) width is 469<br>'iogonek' (ID 184): width is 278, base glyph ('i' (ID 156)) width is 278<br>'uogonek' (ID 185): width is 488, base glyph ('u' (ID 173)) width is 488<br>'aacute' (ID 196): width is 462, base glyph ('a' (ID 148)) width is 462<br>'acircumflex' (ID 197): width is 462, base glyph ('a' (ID 148)) width is 462<br>'atilde' (ID 198): width is 462, base glyph ('a' (ID 148)) width is 462<br>'adieresis' (ID 199): width is 462, base glyph ('a' (ID 148)) width is 462<br>'amacron' (ID 200): width is 462, base glyph ('a' (ID 148)) width is 462<br>'abreve' (ID 201): width is 462, base glyph ('a' (ID 148)) width is 462<br>'aring' (ID 202): width is 462, base glyph ('a' (ID 148)) width is 462<br>'aringacute' (ID 203): width is 462, base glyph ('a' (ID 148)) width is 462<br>'acaron' (ID 204): width is 462, base glyph ('a' (ID 148)) width is 462<br>'aeacute' (ID 206): width is 668, base glyph ('ae' (ID 179)) width is 668<br>'ccedilla' (ID 210): width is 414, base glyph ('c' (ID 150)) width is 414<br>'eacute' (ID 213): width is 469, base glyph ('e' (ID 152)) width is 469<br>'ecircumflex' (ID 214): width is 469, base glyph ('e' (ID 152)) width is 469<br>'ecaron' (ID 215): width is 469, base glyph ('e' (ID 152)) width is 469<br>'edieresis' (ID 216): width is 469, base glyph ('e' (ID 152)) width is 469<br>'emacron' (ID 217): width is 469, base glyph ('e' (ID 152)) width is 469<br>'ebreve' (ID 218): width is 469, base glyph ('e' (ID 152)) width is 469<br>'edotaccent' (ID 219): width is 469, base glyph ('e' (ID 152)) width is 469<br>'etilde' (ID 220): width is 469, base glyph ('e' (ID 152)) width is 469<br>'gbreve' (ID 221): width is 448, base glyph ('g' (ID 154)) width is 448<br>'gtilde' (ID 222): width is 448, base glyph ('g' (ID 154)) width is 448<br>'gdotaccent' (ID 223): width is 448, base glyph ('g' (ID 154)) width is 448<br>'gcommaaccent' (ID 224): width is 448, base glyph ('g' (ID 154)) width is 448<br>'gcircumflex' (ID 225): width is 448, base glyph ('g' (ID 154)) width is 448<br>'iacute' (ID 227): width is 278, base glyph ('i' (ID 156)) width is 278<br>'icaron' (ID 232): width is 278, base glyph ('i' (ID 156)) width is 278<br>'idotaccent' (ID 233): width is 278, base glyph ('i' (ID 156)) width is 278<br>'kcommaaccent' (ID 234): width is 482, base glyph ('k' (ID 160)) width is 482<br>'lacute' (ID 235): width is 429, base glyph ('l' (ID 163)) width is 429<br>'lcommaaccent' (ID 238): width is 429, base glyph ('l' (ID 163)) width is 429<br>'nacute' (ID 239): width is 531, base glyph ('n' (ID 165)) width is 531<br>'ncaron' (ID 240): width is 531, base glyph ('n' (ID 165)) width is 531<br>'ntilde' (ID 241): width is 531, base glyph ('n' (ID 165)) width is 531<br>'ndotaccent' (ID 242): width is 531, base glyph ('n' (ID 165)) width is 531<br>'ncommaaccent' (ID 243): width is 531, base glyph ('n' (ID 165)) width is 531<br>'ograve' (ID 244): width is 466, base glyph ('o' (ID 166)) width is 466<br>'oacute' (ID 245): width is 466, base glyph ('o' (ID 166)) width is 466<br>'ocircumflex' (ID 246): width is 466, base glyph ('o' (ID 166)) width is 466<br>'otilde' (ID 247): width is 466, base glyph ('o' (ID 166)) width is 466<br>'ocaron' (ID 248): width is 466, base glyph ('o' (ID 166)) width is 466<br>'odieresis' (ID 249): width is 466, base glyph ('o' (ID 166)) width is 466<br>'omacron' (ID 250): width is 466, base glyph ('o' (ID 166)) width is 466<br>'obreve' (ID 251): width is 466, base glyph ('o' (ID 166)) width is 466<br>'ohungarumlaut' (ID 252): width is 466, base glyph ('o' (ID 166)) width is 466<br>'racute' (ID 254): width is 484, base glyph ('r' (ID 170)) width is 484<br>'rcommaaccent' (ID 255): width is 484, base glyph ('r' (ID 170)) width is 484<br>'rcaron' (ID 256): width is 484, base glyph ('r' (ID 170)) width is 484<br>'sacute' (ID 258): width is 432, base glyph ('s' (ID 171)) width is 432<br>'scaron' (ID 259): width is 432, base glyph ('s' (ID 171)) width is 432<br>'scircumflex' (ID 261): width is 432, base glyph ('s' (ID 171)) width is 432<br>'scommaaccent' (ID 262): width is 432, base glyph ('s' (ID 171)) width is 432<br>'tcaron' (ID 263): width is 440, base glyph ('t' (ID 172)) width is 440<br>'tcommaaccent' (ID 264): width is 440, base glyph ('t' (ID 172)) width is 440<br>'ugrave' (ID 265): width is 488, base glyph ('u' (ID 173)) width is 488<br>'uacute' (ID 266): width is 488, base glyph ('u' (ID 173)) width is 488<br>'ucaron' (ID 267): width is 488, base glyph ('u' (ID 173)) width is 488<br>'ucircumflex' (ID 268): width is 488, base glyph ('u' (ID 173)) width is 488<br>'udieresis' (ID 269): width is 488, base glyph ('u' (ID 173)) width is 488<br>'umacron' (ID 270): width is 488, base glyph ('u' (ID 173)) width is 488<br>'ubreve' (ID 271): width is 488, base glyph ('u' (ID 173)) width is 488<br>'uring' (ID 272): width is 488, base glyph ('u' (ID 173)) width is 488<br>'uhungarumlaut' (ID 273): width is 488, base glyph ('u' (ID 173)) width is 488<br>'wgrave' (ID 274): width is 712, base glyph ('w' (ID 175)) width is 712<br>'wacute' (ID 275): width is 712, base glyph ('w' (ID 175)) width is 712<br>'wcircumflex' (ID 276): width is 712, base glyph ('w' (ID 175)) width is 712<br>'wdieresis' (ID 277): width is 712, base glyph ('w' (ID 175)) width is 712<br>'ygrave' (ID 278): width is 454, base glyph ('y' (ID 177)) width is 454<br>'yacute' (ID 279): width is 454, base glyph ('y' (ID 177)) width is 454<br>'ycircumflex' (ID 280): width is 454, base glyph ('y' (ID 177)) width is 454<br>'ydieresis' (ID 281): width is 454, base glyph ('y' (ID 177)) width is 454<br>'zacute' (ID 282): width is 396, base glyph ('z' (ID 178)) width is 396<br>'zcaron' (ID 283): width is 396, base glyph ('z' (ID 178)) width is 396<br>'zcircumflex' (ID 284): width is 396, base glyph ('z' (ID 178)) width is 396<br>'zdotaccent' (ID 285): width is 396, base glyph ('z' (ID 178)) width is 396<br>'dialytika' (ID 298): width is 392, base glyph ('dieresis' (ID 297)) width is 392<br>'tonos.cap' (ID 309): width is 184, base glyph ('tonos' (ID 308)) width is 184<br>'exclamdown.cap' (ID 318): width is 357, base glyph ('exclamdown' (ID 317)) width is 357<br>'questiondown.cap' (ID 321): width is 579, base glyph ('questiondown' (ID 320)) width is 579<br>'quoteright' (ID 324): width is 277, base glyph ('apostrophe' (ID 322)) width is 277<br>'asciicircum' (ID 334): width is 366, base glyph ('circumflex' (ID 294)) width is 366<br>'asciitilde' (ID 335): width is 498, base glyph ('tilde' (ID 296)) width is 498<br>'bullet' (ID 343): width is 277, base glyph ('period' (ID 314)) width is 277<br>'bullet_small' (ID 344): width is 277, base glyph ('period' (ID 314)) width is 277<br>'periodcentered' (ID 345): width is 277, base glyph ('period' (ID 314)) width is 277<br>'fraction' (ID 406): width is 539, base glyph ('slash' (ID 332)) width is 539<br>'divisionslash' (ID 433): width is 539, base glyph ('slash' (ID 332)) width is 539<br>'Tbar' (ID 47): width is 520, base glyph ('T' (ID 26)) width is 520<br>'Oslashacute' (ID 105): width is 480, base glyph ('O' (ID 20)) width is 480<br>'Scircumflex' (ID 115): width is 417, base glyph ('S' (ID 25)) width is 417<br>'agrave' (ID 195): width is 462, base glyph ('a' (ID 148)) width is 462<br>'egrave' (ID 212): width is 469, base glyph ('e' (ID 152)) width is 469</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>hmtx</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Compare advance width against base glyph advance width (tolerance 2 units).</p></td>
+                    <td class="detail"><p>'Iogonek' (ID 38): width is 292, base glyph ('I' (ID 12)) width is 292<br>'Igrave' (ID 78): width is 280, base glyph ('I' (ID 12)) width is 292<br>'Iacute' (ID 79): width is 280, base glyph ('I' (ID 12)) width is 292<br>'Itilde' (ID 81): width is 280, base glyph ('I' (ID 12)) width is 292<br>'Idieresis' (ID 82): width is 280, base glyph ('I' (ID 12)) width is 292<br>'dcaron' (ID 211): width is 583, base glyph ('quotesingle' (ID 357)) width is 211<br>'igrave' (ID 226): width is 278, base glyph ('i' (ID 156)) width is 278<br>'icircumflex' (ID 228): width is 278, base glyph ('i' (ID 156)) width is 278<br>'idieresis' (ID 229): width is 279, base glyph ('i' (ID 156)) width is 278<br>'imacron' (ID 230): width is 296, base glyph ('i' (ID 156)) width is 278<br>'ibreve' (ID 231): width is 278, base glyph ('i' (ID 156)) width is 278<br>'lcaron' (ID 236): width is 429, base glyph ('l' (ID 163)) width is 429<br>'ldot' (ID 237): width is 429, base glyph ('l' (ID 163)) width is 429<br>'oslashacute' (ID 253): width is 469, base glyph ('oslash' (ID 192)) width is 469<br>'scedilla' (ID 260): width is 432, base glyph ('s' (ID 171)) width is 432<br>'dieresis' (ID 297): width is 392, base glyph ('period' (ID 314)) width is 277<br>'hungarumlaut' (ID 302): width is 418, base glyph ('acute' (ID 293)) width is 301<br>'dotaccent' (ID 303): width is 241, base glyph ('period' (ID 314)) width is 277<br>'quotedblleft' (ID 325): width is 442, base glyph ('quoteleft' (ID 323)) width is 277<br>'quotedblright' (ID 326): width is 442, base glyph ('apostrophe' (ID 322)) width is 277<br>'Iogonek' (ID 38): width is 292, base glyph ('I' (ID 12)) width is 292<br>'Dcroat' (ID 40): width is 494, base glyph ('D' (ID 7)) width is 494<br>'Hbar' (ID 42): width is 557, base glyph ('H' (ID 11)) width is 548<br>'Lslash' (ID 43): width is 479, base glyph ('L' (ID 17)) width is 449<br>'Oslash' (ID 44): width is 480, base glyph ('O' (ID 20)) width is 480<br>'Igrave' (ID 78): width is 280, base glyph ('I' (ID 12)) width is 292<br>'Iacute' (ID 79): width is 280, base glyph ('I' (ID 12)) width is 292<br>'Itilde' (ID 81): width is 280, base glyph ('I' (ID 12)) width is 292<br>'Idieresis' (ID 82): width is 280, base glyph ('I' (ID 12)) width is 292<br>'Imacron' (ID 83): width is 280, base glyph ('I' (ID 12)) width is 292<br>'dcroat' (ID 186): width is 489, base glyph ('d' (ID 151)) width is 479<br>'hbar' (ID 188): width is 562, base glyph ('h' (ID 155)) width is 539<br>'lslash' (ID 189): width is 461, base glyph ('l' (ID 163)) width is 429<br>'oslash' (ID 192): width is 469, base glyph ('o' (ID 166)) width is 466<br>'dcaron' (ID 211): width is 583, base glyph ('d' (ID 151)) width is 479<br>'igrave' (ID 226): width is 278, base glyph ('i' (ID 156)) width is 278<br>'icircumflex' (ID 228): width is 278, base glyph ('i' (ID 156)) width is 278<br>'idieresis' (ID 229): width is 279, base glyph ('i' (ID 156)) width is 278<br>'imacron' (ID 230): width is 296, base glyph ('i' (ID 156)) width is 278<br>'ibreve' (ID 231): width is 278, base glyph ('i' (ID 156)) width is 278<br>'lcaron' (ID 236): width is 429, base glyph ('l' (ID 163)) width is 429<br>'ldot' (ID 237): width is 429, base glyph ('l' (ID 163)) width is 429<br>'oslashacute' (ID 253): width is 469, base glyph ('o' (ID 166)) width is 466<br>'scedilla' (ID 260): width is 432, base glyph ('s' (ID 171)) width is 432</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="W">
+                    <td class="code"><p>Warning</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>hmtx</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Compare advance width against base glyph advance width (tolerance 2 units).</p></td>
+                    <td class="detail"><p>'Acircumflex' (ID 52): width is 491, base glyph ('A' (ID 4)) width is 478<br>'Atilde' (ID 53): width is 491, base glyph ('A' (ID 4)) width is 478<br>'Adieresis' (ID 54): width is 491, base glyph ('A' (ID 4)) width is 478<br>'Amacron' (ID 55): width is 491, base glyph ('A' (ID 4)) width is 478<br>'Abreve' (ID 56): width is 491, base glyph ('A' (ID 4)) width is 478<br>'Edieresis' (ID 69): width is 495, base glyph ('E' (ID 8)) width is 483<br>'Edotaccent' (ID 72): width is 495, base glyph ('E' (ID 8)) width is 483<br>'Gdotaccent' (ID 74): width is 439, base glyph ('G' (ID 10)) width is 459<br>'Icircumflex' (ID 80): width is 280, base glyph ('I' (ID 12)) width is 292<br>'Ibreve' (ID 84): width is 280, base glyph ('I' (ID 12)) width is 292<br>'Idotaccent' (ID 86): width is 280, base glyph ('I' (ID 12)) width is 292<br>'Ldot' (ID 89): width is 467, base glyph ('L' (ID 17)) width is 449<br>'Scircumflex' (ID 115): width is 417, base glyph ('circumflex' (ID 294)) width is 366<br>'Zdotaccent' (ID 138): width is 431, base glyph ('Z' (ID 32)) width is 435<br>'agrave' (ID 195): width is 462, base glyph ('grave' (ID 292)) width is 301<br>'cacute' (ID 207): width is 410, base glyph ('c' (ID 150)) width is 414<br>'ccaron' (ID 208): width is 410, base glyph ('c' (ID 150)) width is 414<br>'cdotaccent' (ID 209): width is 410, base glyph ('c' (ID 150)) width is 414<br>'egrave' (ID 212): width is 469, base glyph ('grave' (ID 292)) width is 301<br>'semicolon' (ID 312): width is 181, base glyph ('period' (ID 314)) width is 277<br>'colon' (ID 313): width is 181, base glyph ('period' (ID 314)) width is 277<br>'ellipsis' (ID 315): width is 511, base glyph ('period' (ID 314)) width is 277<br>'quotedblbase' (ID 328): width is 442, base glyph ('apostrophe' (ID 322)) width is 277<br>'tbar' (ID 194): width is 444, base glyph ('t' (ID 172)) width is 440<br>'dieresistonos' (ID 310): width is 394, base glyph ('tonos' (ID 308)) width is 184</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Compare Advance Width hmtx and CFF table</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Compare Advance Width hmtx and CFF table_cell">
+                <button id="Compare Advance Width hmtx and CFF table_btn" onclick='toggle_detail("Compare Advance Width hmtx and CFF table");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Compare Advance Width hmtx and CFF table</h3></th></tr>
+            </thead>
+            <tbody id="Compare Advance Width hmtx and CFF table" class="result_body">
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>hmtx/CFF</p></td>
+                    <td class="feature"><p>Advance width</p></td>
+                    <td class="message"><p>Advance width of hmtx and CFF table should be the same (tolerance 2 units).</p></td>
+                    <td class="detail"><p>This is a TrueType font. This test is only for CFF.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Individual Glyphs</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Individual Glyphs_cell">
+                <button id="Individual Glyphs_btn" onclick='toggle_detail("Individual Glyphs");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Individual Glyphs</h3></th></tr>
+            </thead>
+            <tbody id="Individual Glyphs" class="result_body">
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>post</p></td>
+                    <td class="feature"><p>PostScript names</p></td>
+                    <td class="message"><p>Check double NULL</p></td>
+                    <td class="detail"><p>Font does not have NULL at all. Please investigate.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>glyf</p></td>
+                    <td class="feature"><p>Contours</p></td>
+                    <td class="message"><p>.notdef should be TOFU.</p></td>
+                    <td class="detail"><p>Not Monotype standard TOFU. .notdef has 20 contours. It looks like it is not a TOFU. Please investigate.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>uni200B</p></td>
+                    <td class="message"><p>Check ZERO WIDTH SPACE</p></td>
+                    <td class="detail"><p>Missing uni200B in cmap table.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>FEFF</p></td>
+                    <td class="message"><p>ZERO WIDTH NO-BREAK SPACE: Missing FEFF in cmap table.</p></td>
+                    <td class="detail"><p>Required for Monotype library. Please add unicode FEFF. Custom work refer to spec.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>00AD</p></td>
+                    <td class="message"><p>Soft hyphen 00AD in cmap table.</p></td>
+                    <td class="detail"><p>Soft hyphen is often used in web and in professional print publishing software like Adobe InDesign.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>hmtx</p></td>
+                    <td class="feature"><p>Index 1 and 2</p></td>
+                    <td class="message"><p>Advance width of nonbreakingspace (uni00A0) should match the space (uni0020) width.</p></td>
+                    <td class="detail"><p>OK: Advance width nonbreakingspace (uni00A0) does match the space (uni0020) width:<br>192 = 192</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>uni2009</p></td>
+                    <td class="message"><p>Advance width of 'thinspace' (uni2009) should be smaller than the width of space (uni0020).</p></td>
+                    <td class="detail"><p>Can not check, because no uni2009 in this font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>uni200A</p></td>
+                    <td class="message"><p>Advance width of 'hairspace' (uni200A) should be smaller than the width of space (uni0020).</p></td>
+                    <td class="detail"><p>Can not check, because no uni200A in this font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>uni2004</p></td>
+                    <td class="message"><p>Advance width of 'THREE-PER-EM SPACE' (uni2004) should be 1/3 of em-square.</p></td>
+                    <td class="detail"><p>Can not check, because no uni2004 in this font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>uni2005</p></td>
+                    <td class="message"><p>Advance width of 'FOUR-PER-EM SPACE' (uni2005) should be 1/4 of em-square.</p></td>
+                    <td class="detail"><p>Can not check, because no uni2005 in this font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>uni2006</p></td>
+                    <td class="message"><p>Advance width of 'SIX-PER-EM SPACE' (uni2006) should be 1/6 of em-square.</p></td>
+                    <td class="detail"><p>Can not check, because no uni2006 in this font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>uni2002</p></td>
+                    <td class="message"><p>Advance width of 'EN SPACE' (uni2002) should be 50%% of em-square.</p></td>
+                    <td class="detail"><p>Can not check, because no uni2002 in this font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>uni2003</p></td>
+                    <td class="message"><p>Advance width of 'EM SPACE' (uni2003) should be equal to UPM.</p></td>
+                    <td class="detail"><p>Can not check, because no uni2003 in this font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>uni2008</p></td>
+                    <td class="message"><p>Advance width of 'PUNCTUATION SPACE' (uni2008) should be equal to the 'period' advance width.</p></td>
+                    <td class="detail"><p>Can not check, because no uni2008 in this font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Nodes Close to Zones (CFF)</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Nodes Close to Zones (CFF)_cell">
+                <button id="Nodes Close to Zones (CFF)_btn" onclick='toggle_detail("Nodes Close to Zones (CFF)");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Nodes Close to Zones (CFF)</h3></th></tr>
+            </thead>
+            <tbody id="Nodes Close to Zones (CFF)" class="result_body">
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>CFF</p></td>
+                    <td class="feature"><p>Alignment Zones</p></td>
+                    <td class="message"><p>Check if nodes are close to a zone, but not in or touching it.</p></td>
+                    <td class="detail"><p>This is a TTF, but this test is only for CFF fonts.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Should be Composite (only .ttf)</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Should be Composite (only .ttf)_cell">
+                <button id="Should be Composite (only .ttf)_btn" onclick='toggle_detail("Should be Composite (only .ttf)");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Should be Composite (only .ttf)</h3></th></tr>
+            </thead>
+            <tbody id="Should be Composite (only .ttf)" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>glyf</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Glyphs (LATIN) which are made from components.<br>Great.</p></td>
+                    <td class="detail"><p>'Aacute' (uni00C1) (ID 49)<br>'Abreve' (uni0102) (ID 56)<br>'Acircumflex' (uni00C2) (ID 52)<br>'Adieresis' (uni00C4) (ID 54)<br>'Agrave' (uni00C0) (ID 50)<br>'Amacron' (uni0100) (ID 55)<br>'Aring' (uni00C5) (ID 35)<br>'Aringacute' (uni01FA) (ID 48)<br>'Atilde' (uni00C3) (ID 53)<br>'AEacute' (uni01FC) (ID 58)<br>'Cacute' (uni0106) (ID 59)<br>'Ccaron' (uni010C) (ID 60)<br>'Cdotaccent' (uni010A) (ID 61)<br>'Dcaron' (uni010E) (ID 63)<br>'Eacute' (uni00C9) (ID 65)<br>'Ebreve' (uni0114) (ID 71)<br>'Ecaron' (uni011A) (ID 68)<br>'Ecircumflex' (uni00CA) (ID 67)<br>'Edieresis' (uni00CB) (ID 69)<br>'Edotaccent' (uni0116) (ID 72)<br>'Egrave' (uni00C8) (ID 64)<br>'Emacron' (uni0112) (ID 70)<br>'Gbreve' (uni011E) (ID 73)<br>'Gcircumflex' (uni011C) (ID 76)<br>'Gdotaccent' (uni0120) (ID 74)<br>'Iacute' (uni00CD) (ID 79)<br>'Ibreve' (uni012C) (ID 84)<br>'Icircumflex' (uni00CE) (ID 80)<br>'Idieresis' (uni00CF) (ID 82)<br>'Idotaccent' (uni0130) (ID 86)<br>'Igrave' (uni00CC) (ID 78)<br>'Itilde' (uni0128) (ID 81)<br>'Lacute' (uni0139) (ID 88)<br>'Lcaron' (uni013D) (ID 90)<br>'Ldot' (uni013F) (ID 89)<br>'Nacute' (uni0143) (ID 92)<br>'Ncaron' (uni0147) (ID 93)<br>'Ntilde' (uni00D1) (ID 94)<br>'Oacute' (uni00D3) (ID 98)<br>'Obreve' (uni014E) (ID 103)<br>'Ocircumflex' (uni00D4) (ID 99)<br>'Odieresis' (uni00D6) (ID 101)<br>'Ograve' (uni00D2) (ID 97)<br>'Ohungarumlaut' (uni0150) (ID 104)<br>'Omacron' (uni014C) (ID 102)<br>'Oslashacute' (uni01FE) (ID 105)<br>'Otilde' (uni00D5) (ID 100)<br>'Racute' (uni0154) (ID 107)<br>'Rcaron' (uni0158) (ID 108)<br>'Scaron' (uni0160) (ID 112)<br>'Scircumflex' (uni015C) (ID 115)<br>'Scommaaccent' (uni0218) (ID 114)<br>'Tcaron' (uni0164) (ID 116)<br>'Tcommaaccent' (uni021A) (ID 117)<br>'Uacute' (uni00DA) (ID 119)<br>'Ubreve' (uni016C) (ID 124)<br>'Ucircumflex' (uni00DB) (ID 120)<br>'Udieresis' (uni00DC) (ID 122)<br>'Ugrave' (uni00D9) (ID 118)<br>'Uhungarumlaut' (uni0170) (ID 126)<br>'Umacron' (uni016A) (ID 123)<br>'Uring' (uni016E) (ID 125)<br>'Utilde' (uni0168) (ID 121)<br>'Wacute' (uni1E82) (ID 129)<br>'Wcircumflex' (uni0174) (ID 130)<br>'Wdieresis' (uni1E84) (ID 131)<br>'Wgrave' (uni1E80) (ID 128)<br>'Yacute' (uni00DD) (ID 133)<br>'Ycircumflex' (uni0176) (ID 134)<br>'Ydieresis' (uni0178) (ID 135)<br>'Ygrave' (uni1EF2) (ID 132)<br>'Zacute' (uni0179) (ID 136)<br>'Zcaron' (uni017D) (ID 137)<br>'Zdotaccent' (uni017B) (ID 138)<br>'aacute' (uni00E1) (ID 196)<br>'abreve' (uni0103) (ID 201)<br>'acircumflex' (uni00E2) (ID 197)<br>'adieresis' (uni00E4) (ID 199)<br>'agrave' (uni00E0) (ID 195)<br>'amacron' (uni0101) (ID 200)<br>'aring' (uni00E5) (ID 202)<br>'aringacute' (uni01FB) (ID 203)<br>'atilde' (uni00E3) (ID 198)<br>'aeacute' (uni01FD) (ID 206)<br>'cacute' (uni0107) (ID 207)<br>'ccaron' (uni010D) (ID 208)<br>'cdotaccent' (uni010B) (ID 209)<br>'dcaron' (uni010F) (ID 211)<br>'eacute' (uni00E9) (ID 213)<br>'ebreve' (uni0115) (ID 218)<br>'ecaron' (uni011B) (ID 215)<br>'ecircumflex' (uni00EA) (ID 214)<br>'edieresis' (uni00EB) (ID 216)<br>'edotaccent' (uni0117) (ID 219)<br>'egrave' (uni00E8) (ID 212)<br>'emacron' (uni0113) (ID 217)<br>'gbreve' (uni011F) (ID 221)<br>'gcircumflex' (uni011D) (ID 225)<br>'gdotaccent' (uni0121) (ID 223)<br>'iacute' (uni00ED) (ID 227)<br>'ibreve' (uni012D) (ID 231)<br>'icircumflex' (uni00EE) (ID 228)<br>'idieresis' (uni00EF) (ID 229)<br>'igrave' (uni00EC) (ID 226)<br>'imacron' (uni012B) (ID 230)<br>'lacute' (uni013A) (ID 235)<br>'lcaron' (uni013E) (ID 236)<br>'ldot' (uni0140) (ID 237)<br>'nacute' (uni0144) (ID 239)<br>'ncaron' (uni0148) (ID 240)<br>'ntilde' (uni00F1) (ID 241)<br>'oacute' (uni00F3) (ID 245)<br>'obreve' (uni014F) (ID 251)<br>'ocircumflex' (uni00F4) (ID 246)<br>'odieresis' (uni00F6) (ID 249)<br>'ograve' (uni00F2) (ID 244)<br>'ohungarumlaut' (uni0151) (ID 252)<br>'omacron' (uni014D) (ID 250)<br>'oslashacute' (uni01FF) (ID 253)<br>'otilde' (uni00F5) (ID 247)<br>'racute' (uni0155) (ID 254)<br>'rcaron' (uni0159) (ID 256)<br>'sacute' (uni015B) (ID 258)<br>'scaron' (uni0161) (ID 259)<br>'scircumflex' (uni015D) (ID 261)<br>'scommaaccent' (uni0219) (ID 262)<br>'tcaron' (uni0165) (ID 263)<br>'tcommaaccent' (uni021B) (ID 264)<br>'uacute' (uni00FA) (ID 266)<br>'ubreve' (uni016D) (ID 271)<br>'ucircumflex' (uni00FB) (ID 268)<br>'udieresis' (uni00FC) (ID 269)<br>'ugrave' (uni00F9) (ID 265)<br>'uhungarumlaut' (uni0171) (ID 273)<br>'umacron' (uni016B) (ID 270)<br>'uring' (uni016F) (ID 272)<br>'wacute' (uni1E83) (ID 275)<br>'wcircumflex' (uni0175) (ID 276)<br>'wdieresis' (uni1E85) (ID 277)<br>'wgrave' (uni1E81) (ID 274)<br>'yacute' (uni00FD) (ID 279)<br>'ycircumflex' (uni0177) (ID 280)<br>'ydieresis' (uni00FF) (ID 281)<br>'ygrave' (uni1EF3) (ID 278)<br>'zacute' (uni017A) (ID 282)<br>'zcaron' (uni017E) (ID 283)<br>'zdotaccent' (uni017C) (ID 285)</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>glyf</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Glyphs (GREEK) which are made from components.<br>Great.</p></td>
+                    <td class="detail"><p>'Alphatonos' (uni0386) (ID 57)</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>glyf</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Glyphs (VIETNAMESE) which are made from components.<br>Great.</p></td>
+                    <td class="detail"><p>'Etilde' (uni1EBC) (ID 66)<br>'etilde' (uni1EBD) (ID 220)</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>glyf</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Glyphs (LATIN) which chould be made from components (in many cases).<br>Please investigate and approve if correct.</p></td>
+                    <td class="detail"><p>'Dcroat' (uni0110) (ID 40)<br>'Imacron' (uni012A) (ID 83)</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>glyf</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Glyphs (GREEK) which chould be made from components (in many cases).<br>Please investigate and approve if correct.</p></td>
+                    <td class="detail"><p>'alphatonos' (uni03AC) (ID 205)</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>glyf</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Glyphs (FRACTIONS) which chould be made from components (in many cases).<br>Please investigate and approve if correct.</p></td>
+                    <td class="detail"><p>'onehalf' (uni00BD) (ID 421)<br>'onequarter' (uni00BC) (ID 420)<br>'threequarters' (uni00BE) (ID 419)</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>glyf</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Glyphs (OTHER) which chould be made from components (in many cases).<br>Please investigate and approve if correct.</p></td>
+                    <td class="detail"><p>'hyphensoft' (uni00AD) (ID 431)</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Should not be Composite (CFF)</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Should not be Composite (CFF)_cell">
+                <button id="Should not be Composite (CFF)_btn" onclick='toggle_detail("Should not be Composite (CFF)");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Should not be Composite (CFF)</h3></th></tr>
+            </thead>
+            <tbody id="Should not be Composite (CFF)" class="result_body">
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>CFF </p></td>
+                    <td class="feature"><p>Composite</p></td>
+                    <td class="message"><p>CFF font should not have any composite.</p></td>
+                    <td class="detail"><p>This is not a CFF font. Skipped this check.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Advance Width (zero or negative)</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Advance Width (zero or negative)_cell">
+                <button id="Advance Width (zero or negative)_btn" onclick='toggle_detail("Advance Width (zero or negative)");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Advance Width (zero or negative)</h3></th></tr>
+            </thead>
+            <tbody id="Advance Width (zero or negative)" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>hmtx</p></td>
+                    <td class="feature"><p>advance width</p></td>
+                    <td class="message"><p>Advance width should not be negative or zero.</p></td>
+                    <td class="detail"><p>OK: There is no negative advance width for any glyph in the font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>glyf</p></td>
+                    <td class="feature"><p>advance width</p></td>
+                    <td class="message"><p>Advance width should be zero.</p></td>
+                    <td class="detail"><p>The following glyphs (1) should have advance width 0:<br>'commaturnedabovecmb' (uni0312) (ID 307) = '181'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Un/Necessary Tables</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Un/Necessary Tables_cell">
+                <button id="Un/Necessary Tables_btn" onclick='toggle_detail("Un/Necessary Tables");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Un/Necessary Tables</h3></th></tr>
+            </thead>
+            <tbody id="Un/Necessary Tables" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>-/-</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Unnecessary tables (private tables and embedded bitmap tables).</p></td>
+                    <td class="detail"><p>OK: No unnecessary tables.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>DSIG</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Necessary tables.</p></td>
+                    <td class="detail"><p>'DSIG' is in the font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>First Four Characters</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="First Four Characters_cell">
+                <button id="First Four Characters_btn" onclick='toggle_detail("First Four Characters");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>First Four Characters</h3></th></tr>
+            </thead>
+            <tbody id="First Four Characters" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>post</p></td>
+                    <td class="feature"><p>Index 0</p></td>
+                    <td class="message"><p>PostScript name should be ".notdef".</p></td>
+                    <td class="detail"><p>OK: Index 0 = ".notdef".</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>hmtx</p></td>
+                    <td class="feature"><p>Index 0</p></td>
+                    <td class="message"><p>'.notdef' advance width should not be 0.</p></td>
+                    <td class="detail"><p>OK: '.notdef' advance width is 572.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>post</p></td>
+                    <td class="feature"><p>Index 1</p></td>
+                    <td class="message"><p>PostScript name should be one of the names:<br>".null"<br>"null"<br>"NULL".</p></td>
+                    <td class="detail"><p>Index 1 = "space".<br>Check that character is the correct glyph.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>post</p></td>
+                    <td class="feature"><p>Index 2</p></td>
+                    <td class="message"><p>PostScript name should be one of the names:<br>"nonmarkingreturn"<br>"CR".</p></td>
+                    <td class="detail"><p>Index 2 = "nbspace". Check that character is the correct glyph.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>post</p></td>
+                    <td class="feature"><p>Index 3</p></td>
+                    <td class="message"><p>PostScript name should be "space"</p></td>
+                    <td class="detail"><p>Index 3 = "figurespace". Check that character is the correct glyph.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>OS/2 table</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="OS/2 table_cell">
+                <button id="OS/2 table_btn" onclick='toggle_detail("OS/2 table");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>OS/2 table</h3></th></tr>
+            </thead>
+            <tbody id="OS/2 table" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>table version 4.</p></td>
+                    <td class="message"><p>'OS/2' table version should be 4.</p></td>
+                    <td class="detail"><p>OK: 'OS/2' table version is: 4.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>useTypoMetrics</p></td>
+                    <td class="message"><p>If the hhea metrics match the sTypo metrics and not usWin metrics the fsSelection useTypoMetrics flag should be True.</p></td>
+                    <td class="detail"><p>fsSelection useTypoMetrics flag should be True but is False.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>WWS</p></td>
+                    <td class="message"><p>If no NID 21 and 22, 'OS/2' fsSelection flag for WWS should be True.</p></td>
+                    <td class="detail"><p>'OS/2' fsSelection flag for WWS should be True but is False.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>italic flag</p></td>
+                    <td class="message"><p>'OS/2' fsSelection italic flag should match the 'head' macStyle italic flag. They should be the same.</p></td>
+                    <td class="detail"><p>OK: They are the same.'OS/2' fsSelection italic flag is False and 'head' macStyle italic flag is False.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>usBreakChar</p></td>
+                    <td class="message"><p>'OS/2' usBreakChar should be 0x0020.</p></td>
+                    <td class="detail"><p>OK: 'OS/2' usBreakChar is 0x0020.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>usDefaultChar</p></td>
+                    <td class="message"><p>'OS/2' usDefaultChar should be 0x0000.</p></td>
+                    <td class="detail"><p>OK: 'OS/2' usDefaultChar is 0x0000.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>usFirstCharIndex</p></td>
+                    <td class="message"><p>'OS/2' usFirstCharIndex should be 0x000D</p></td>
+                    <td class="detail"><p>OK: 'OS/2' usFirstCharIndex is 0x000D.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>usLastCharIndex</p></td>
+                    <td class="message"><p>'OS/2' usLastCharIndex should be 0x25CA</p></td>
+                    <td class="detail"><p>OK: 'OS/2' usLastCharIndex is 0x25CA.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>Embedding Level</p></td>
+                    <td class="message"><p>For library fonts embedding level should be 'Preview & Print Embedding'.</p></td>
+                    <td class="detail"><p>Embedding Level is 'Embedding Level = Installable Embedding'. If custom font please check against job spec.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>fsType</p></td>
+                    <td class="message"><p>Pull 'OS/2' fsType.</p></td>
+                    <td class="detail"><p>embedding level: Embedding Level = Installable Embedding<br>no subsetting flag: False<br>bitmap embedding only flag: False</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>fvar table</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="fvar table_cell">
+                <button id="fvar table_btn" onclick='toggle_detail("fvar table");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>fvar table</h3></th></tr>
+            </thead>
+            <tbody id="fvar table" class="result_body">
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>fvar</p></td>
+                    <td class="feature"><p>variable font</p></td>
+                    <td class="message"><p>Variable font must have a fvar table.</p></td>
+                    <td class="detail"><p>This font is not a variable font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>STAT table</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="STAT table_cell">
+                <button id="STAT table_btn" onclick='toggle_detail("STAT table");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>STAT table</h3></th></tr>
+            </thead>
+            <tbody id="STAT table" class="result_body">
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>STAT</p></td>
+                    <td class="feature"><p>static font</p></td>
+                    <td class="message"><p>Variable font must have a STAT table.</p></td>
+                    <td class="detail"><p>No check of STAT table for static fonts included, yet. Static fonts do not need to have a STAT table. It is only recommended by Microsoft, not required.<br>More infos here:<br><a href='https://docs.microsoft.com/en-us/typography/opentype/spec/stat'>https://docs.microsoft.com/en-us/typography/opentype/spec/stat</a></p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Missing uni0000 and uni000D in cmap Table</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Missing uni0000 and uni000D in cmap Table_cell">
+                <button id="Missing uni0000 and uni000D in cmap Table_btn" onclick='toggle_detail("Missing uni0000 and uni000D in cmap Table");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Missing uni0000 and uni000D in cmap Table</h3></th></tr>
+            </thead>
+            <tbody id="Missing uni0000 and uni000D in cmap Table" class="result_body">
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>cmap(0, 3, 0)</p></td>
+                    <td class="message"><p>Missing uni0000 and uni000D in cmap MS/BMP(0,3,0) and Unicode/2.0, BMP only(3,1,0).</p></td>
+                    <td class="detail"><p>Please verify with spec or Project Manager if uni0000 is required, if so: PLEASE ADD.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>cmap(0, 3, 0)</p></td>
+                    <td class="message"><p>Missing uni0000 and uni000D in cmap MS/BMP(0,3,0) and Unicode/2.0, BMP only(3,1,0).</p></td>
+                    <td class="detail"><p>cmap(0, 3, 0) contains U+000D</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>cmap(3, 1, 0)</p></td>
+                    <td class="message"><p>Missing uni0000 and uni000D in cmap MS/BMP(0,3,0) and Unicode/2.0, BMP only(3,1,0).</p></td>
+                    <td class="detail"><p>Please verify with spec or Project Manager if uni0000 is required, if so: PLEASE ADD.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>cmap(3, 1, 0)</p></td>
+                    <td class="message"><p>Missing uni0000 and uni000D in cmap MS/BMP(0,3,0) and Unicode/2.0, BMP only(3,1,0).</p></td>
+                    <td class="detail"><p>cmap(3, 1, 0) contains U+000D</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Obsolete Language Tag TUR</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Obsolete Language Tag TUR_cell">
+                <button id="Obsolete Language Tag TUR_btn" onclick='toggle_detail("Obsolete Language Tag TUR");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Obsolete Language Tag TUR</h3></th></tr>
+            </thead>
+            <tbody id="Obsolete Language Tag TUR" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>-/-</p></td>
+                    <td class="feature"><p>TRK</p></td>
+                    <td class="message"><p>Obsolete language tag 'TUR' should be TRK.</p></td>
+                    <td class="detail"><p>OK: No language tag 'TUR' in any table.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Name Table</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Name Table_cell">
+                <button id="Name Table_btn" onclick='toggle_detail("Name Table");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Name Table</h3></th></tr>
+            </thead>
+            <tbody id="Name Table" class="result_body">
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 0 (3, 1, 1033, 0)</p></td>
+                    <td class="message"><p>MS NID 0, Copyright.</p></td>
+                    <td class="detail"><p>Please verify agains spec.<br>MS NID 0 is 'Copyright <mark>2019 The Girassol Project Authors (https://github.com/liamspradlin/Girassol-Display)</mark>'<br>It should follow this structure: 'Copyright (c) XXXX - XXXX /entity/. All rights reserved.' </p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 1</p></td>
+                    <td class="message"><p>MS NID 1, Family Name length shouldn't be longer then 31.</p></td>
+                    <td class="detail"><p>OK: NID 1 length is '8'<br>'Girassol' </p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 1</p></td>
+                    <td class="message"><p>Reserved word used in Family Name NID1 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 1 does not contain any of the following keywords: 'Regular, Bold, Roman'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 1</p></td>
+                    <td class="message"><p>Reserved word used in Family Name NID1 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 1 does not contain any of the following keywords: 'Book, Ultra, Normal'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 1</p></td>
+                    <td class="message"><p>Reserved word used in Family Name NID1 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 1 does not contain any of the following keywords: 'Roman'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 1</p></td>
+                    <td class="message"><p>Reserved word used in Family Name NID1 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 1 does not contain any of the following keywords: 'Regular, Bold, Italic, Extra, Light, Black, Thin, Wide, Ultra'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 1</p></td>
+                    <td class="message"><p>Should be camel case Family Name NID1</p></td>
+                    <td class="detail"><p>NID 1: OK. No camel case required.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 1</p></td>
+                    <td class="message"><p>Check style extentions Family Name NID1</p></td>
+                    <td class="detail"><p>NID 1 does not contain any of the following beginnings: 'Demi, X, Dm, Ultra, Sm, Semi, Extra, Ex, Xtra'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 2</p></td>
+                    <td class="message"><p>MS NID 2, Subfamily.</p></td>
+                    <td class="detail"><p>OK: NID 2 is 'Regular'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 2</p></td>
+                    <td class="message"><p>Reserved word used in Subfamily Name NID2 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 2 does not contain any of the following keywords: 'Book, Ultra, Normal'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 2</p></td>
+                    <td class="message"><p>Reserved word used in Subfamily Name NID2 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 2 does not contain any of the following keywords: 'Roman'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 4</p></td>
+                    <td class="message"><p>MS NID 4, Full Name length shouldn't be longer than 31.</p></td>
+                    <td class="detail"><p>OK: NID 4 length is '16'<br>'Girassol Regular' </p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="W">
+                    <td class="code"><p>Warning</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 4</p></td>
+                    <td class="message"><p>If NID 2 is 'Regular': MS NID 4 = NID 1</p></td>
+                    <td class="detail"><p>NID 4 'Girassol Regular' ≠ NID 1 'Girassol'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 4</p></td>
+                    <td class="message"><p>Reserved word used in Full Font Name NID4 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 4 does not contain any of the following keywords: 'Book, Ultra, Normal'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 4</p></td>
+                    <td class="message"><p>Reserved word used in Full Font Name NID4 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 4 does not contain any of the following keywords: 'Roman'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 4</p></td>
+                    <td class="message"><p>Should be camel case Full Font Name NID4</p></td>
+                    <td class="detail"><p>NID 4: OK. No camel case required.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 4</p></td>
+                    <td class="message"><p>Check style extentions Full Font Name NID4</p></td>
+                    <td class="detail"><p>NID 4 does not contain any of the following beginnings: 'Demi, X, Dm, Ultra, Sm, Semi, Extra, Ex, Xtra'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 4</p></td>
+                    <td class="message"><p>Check Width Names Full Font Name NID4</p></td>
+                    <td class="detail"><p>The width name should be before weight name. NID 4 is correct: 'Girassol Regular'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>name/head</p></td>
+                    <td class="feature"><p>MS NID 5</p></td>
+                    <td class="message"><p>name table version should match head table fontRevision.</p></td>
+                    <td class="detail"><p>OK: name table version entry 'Version 1.004' does match fontRevision 'Version 1.004'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 6</p></td>
+                    <td class="message"><p>MS NID 6, PostScript Name length shouldn't be longer then 27.<br>(Otherwise it may cause issues in MS Word.)</p></td>
+                    <td class="detail"><p>NID 6 length is '16'<br>'Girassol-Regular' </p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 6</p></td>
+                    <td class="message"><p>MS NID 6, PostScript Name check for illegal characters.<br>Monotype uses NID 6 for creating CSS classes for their demo HTML. The following characters cause issues in the CSS code: '<br>, ,  , &, _, [, ], (, ), {, }, <, >, /, \, %'</p></td>
+                    <td class="detail"><p>NID 6 is 'Girassol-Regular', Everything looks good.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 6</p></td>
+                    <td class="message"><p>MS NID 6, PostScript Name check for illegal characters.<br>'space' in NID 6 cause issues in fontbook for Mac.</p></td>
+                    <td class="detail"><p>NID 6 is 'Girassol-Regular', Everything looks good.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 6</p></td>
+                    <td class="message"><p>Reserved word used in PostScript Name NID6 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 6 does not contain any of the following keywords: 'Book, Ultra, Normal'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 6</p></td>
+                    <td class="message"><p>Reserved word used in PostScript Name NID6 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 6 does not contain any of the following keywords: 'Roman'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 6</p></td>
+                    <td class="message"><p>Should be camel case PostScript Name NID6</p></td>
+                    <td class="detail"><p>NID 6: OK. No camel case required.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 8/13</p></td>
+                    <td class="message"><p>License text.</p></td>
+                    <td class="detail"><p>There is a license text but no manufactur. Please verify agains spec.<br>The license text is:<br>This Font Software is licensed under the SIL Open Font License, Version 1.1. This license is available with a FAQ at: http://scripts.sil.org/OFL </p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 0</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: 'No entry.'<br>MS [3, 1, 1033] is: '<mark>Copyright 2019 The Girassol Project Authors (https://github.com/liamspradlin/Girassol-Display)</mark>'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 1</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: '<mark>No entry.</mark>'<br>MS [3, 1, 1033] is: 'Girassol'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 2</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: '<mark>No entry.</mark>'<br>MS [3, 1, 1033] is: 'Regular'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 3</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: 'No entry.'<br>MS [3, 1, 1033] is: '<mark>1.004;LIAM;Girassol-Regular</mark>'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 4</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: 'No entry.'<br>MS [3, 1, 1033] is: '<mark>Girassol Regular</mark>'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 5</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: 'No entry.'<br>MS [3, 1, 1033] is: '<mark>Version 1.004</mark>'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 6</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: 'No entry.'<br>MS [3, 1, 1033] is: '<mark>Girassol-Regular</mark>'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 9</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: 'No entry.'<br>MS [3, 1, 1033] is: '<mark>Liam Spradlin</mark>'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 12</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: '<mark>No entry.</mark>'<br>MS [3, 1, 1033] is: 'iamli.am'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 13</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: 'No entry.'<br>MS [3, 1, 1033] is: '<mark>This Font Software is licensed under the SIL Open Font License, Version 1.1. This license is available with a FAQ at: http://scripts.sil.org/OFL</mark>'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 14</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: 'No entry.'<br>MS [3, 1, 1033] is: '<mark>http://scripts.sil.org/OFL</mark>'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 0 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 0, Copyright' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Copyright is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 1 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 1, Family Name' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Family Name is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 2 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 2, Subfamily Name' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Subfamily Name is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 3 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 3, Unique Font Identifier' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Unique Font Identifier is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 4 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 4, Full Font Name' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Full Font Name is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 5 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 5, Version' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Version is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 6 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 6, PostScript Name' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>PostScript Name is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 7 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 7, Trademark' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Trademark NID 7 (MS/BMP/English (U.S.)) is missing.<br>Please verify agains spec. It might be ok if it's a symbol font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 8 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 8, Manufacturer' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Manufacturer NID 8 (MS/BMP/English (U.S.)) is missing.<br>Please verify agains spec. It might be ok if it's a symbol font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 9 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 9, Designer' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Designer is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 10 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 10, Description' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Description NID 10 (MS/BMP/English (U.S.)) is missing.<br>Please verify agains spec. It might be ok if it's a symbol font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 11 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 11, Vendor URL' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Vendor URL NID 11 (MS/BMP/English (U.S.)) is missing.<br>Please verify agains spec. It might be ok if it's a symbol font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 13 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 13, License Text' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>License Text is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 14 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 14, License URL' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>License URL is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 16 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 16, Typographic Family Name' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Typographic Family Name NID 16 (MS/BMP/English (U.S.)) is missing.<br>Please verify agains spec. It might be ok if it's a symbol font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 17 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 17, Typographic Subfamily Name' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Typographic Subfamily Name NID 17 (MS/BMP/English (U.S.)) is missing.<br>Please verify agains spec. It might be ok if it's a symbol font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Underline Position and Thickness</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Underline Position and Thickness_cell">
+                <button id="Underline Position and Thickness_btn" onclick='toggle_detail("Underline Position and Thickness");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Underline Position and Thickness</h3></th></tr>
+            </thead>
+            <tbody id="Underline Position and Thickness" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>post</p></td>
+                    <td class="feature"><p>underline position and thickness</p></td>
+                    <td class="message"><p>underlinePosition should be a negative and underlineThickness not 0 or negative.</p></td>
+                    <td class="detail"><p>underlinePosition is '-75'.<br>underlineThicknes is '50'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Kerning (kern Table and GPOS Kerning)</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Kerning (kern Table and GPOS Kerning)_cell">
+                <button id="Kerning (kern Table and GPOS Kerning)_btn" onclick='toggle_detail("Kerning (kern Table and GPOS Kerning)");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Kerning (kern Table and GPOS Kerning)</h3></th></tr>
+            </thead>
+            <tbody id="Kerning (kern Table and GPOS Kerning)" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>GPOS</p></td>
+                    <td class="feature"><p>kern</p></td>
+                    <td class="message"><p>Simple check if kern feature in GPOS table.</p></td>
+                    <td class="detail"><p>The font has GPOS kerning.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>kern</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Check if 'kern' table in font.</p></td>
+                    <td class="detail"><p>Font has no 'kern' table. Please verify if font requires kern table or if only GPOS kerning should be in font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>kern/GPOS</p></td>
+                    <td class="feature"><p>kern</p></td>
+                    <td class="message"><p>'kern' table and 'GPOS' kerning.</p></td>
+                    <td class="detail"><p>Font has GPOS kerning and no 'kern' table.<br>Verify with the spec or PM what is required.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Vendor ID</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Vendor ID_cell">
+                <button id="Vendor ID_btn" onclick='toggle_detail("Vendor ID");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Vendor ID</h3></th></tr>
+            </thead>
+            <tbody id="Vendor ID" class="result_body">
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>achVendID</p></td>
+                    <td class="message"><p>Vendor ID should be 'MONO'</p></td>
+                    <td class="detail"><p>Vendor ID is 'LIAM'. Please change to 'MONO'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Vertical Metrics</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Vertical Metrics_cell">
+                <button id="Vertical Metrics_btn" onclick='toggle_detail("Vertical Metrics");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Vertical Metrics</h3></th></tr>
+            </thead>
+            <tbody id="Vertical Metrics" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2 and head</p></td>
+                    <td class="feature"><p>sTypeAsc/Desc and unitsPerEm</p></td>
+                    <td class="message"><p>The result of sTypoAscender – sTypoDescender should match or exceed the unitsPerEm value.</p></td>
+                    <td class="detail"><p>The result of sTypoAscender – sTypoDescender (1194) match or exceed the unitsPerEm value (1000).</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>hhea</p></td>
+                    <td class="feature"><p>Vertical Metrics</p></td>
+                    <td class="message"><p>Pull hhea Metrics</p></td>
+                    <td class="detail"><p>hhea.ascent: 944<br>hhea.descent: -250<br>hhea.lineGap: 0</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>Vertical Metrics</p></td>
+                    <td class="message"><p>Pull OS/2 sTypo Metrics</p></td>
+                    <td class="detail"><p>OS2.sTypoAscender: 944<br>OS2.sTypoDescender: -250<br>OS2.sTypoLineGap: 0</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>Vertical Metrics</p></td>
+                    <td class="message"><p>Pull OS/2 usWin Metrics</p></td>
+                    <td class="detail"><p>OS2.usWinAscent: 1070<br>OS2.usWinDescent: 326</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>xAvgCharWidth</p></td>
+                    <td class="message"><p>Get 'OS/2' xAvgCharWidth.</p></td>
+                    <td class="detail"><p>xAvgCharWidth = 480.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>hhea</p></td>
+                    <td class="feature"><p>advanceWidthMax</p></td>
+                    <td class="message"><p>Get advanceWidthMax.</p></td>
+                    <td class="detail"><p>advanceWidthMax = 1134.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>hhea</p></td>
+                    <td class="feature"><p>xMin, yMin, xMax, yMax</p></td>
+                    <td class="message"><p>Get xMin, yMin, xMax, yMax.</p></td>
+                    <td class="detail"><p>xMin: -33<br>yMin: -326<br>xMax: 1092<br>yMax: 1070<br></p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>sTypoAscender</p></td>
+                    <td class="message"><p>Vertical Metrics 'sTypoAscender' shouldn't be negative.</p></td>
+                    <td class="detail"><p>sTypoAscender = '944'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>sTypoDescender</p></td>
+                    <td class="message"><p>Vertical Metrics 'sTypoDescender' should be negative.</p></td>
+                    <td class="detail"><p>sTypoDescender = '-250'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>sTypoLineGap</p></td>
+                    <td class="message"><p>Vertical Metrics 'sTypoLineGap' shouldn't be negative.</p></td>
+                    <td class="detail"><p>sTypoLineGap = '0'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>usWinAscent</p></td>
+                    <td class="message"><p>Vertical Metrics 'usWinAscent' shouldn't be negative.</p></td>
+                    <td class="detail"><p>usWinAscent = '1070'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>usWinDescent</p></td>
+                    <td class="message"><p>Vertical Metrics 'usWinDescent' shouldn't be negative.</p></td>
+                    <td class="detail"><p>usWinDescent = '326'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>hhea</p></td>
+                    <td class="feature"><p>ascent</p></td>
+                    <td class="message"><p>Vertical Metrics 'ascent' shouldn't be negative.</p></td>
+                    <td class="detail"><p>ascent = '944'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>hhea</p></td>
+                    <td class="feature"><p>descent</p></td>
+                    <td class="message"><p>Vertical Metrics 'descent' should be negative.</p></td>
+                    <td class="detail"><p>descent = '-250'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>hhea</p></td>
+                    <td class="feature"><p>lineGap</p></td>
+                    <td class="message"><p>Vertical Metrics 'lineGap' shouldn't be negative.</p></td>
+                    <td class="detail"><p>lineGap = '0'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>gasp Table</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="gasp Table_cell">
+                <button id="gasp Table_btn" onclick='toggle_detail("gasp Table");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>gasp Table</h3></th></tr>
+            </thead>
+            <tbody id="gasp Table" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>gasp</p></td>
+                    <td class="feature"><p>Version</p></td>
+                    <td class="message"><p>gasp table verison should be 1.</p></td>
+                    <td class="detail"><p>Verison = 1</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>gasp</p></td>
+                    <td class="feature"><p>Default</p></td>
+                    <td class="message"><p>Pull gasp table Default.</p></td>
+                    <td class="detail"><p>Grid-fit = True, Do gray = True, Symmetric grid-fit = True, Symmetric smoothing = True</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>gasp</p></td>
+                    <td class="feature"><p>Default</p></td>
+                    <td class="message"><p>Check gasp table Default.</p></td>
+                    <td class="detail"><p>gasp table default is:<br>Grid-fit = True, Do gray = True, Symmetric grid-fit = True, Symmetric smoothing = True<br>and should be:<br>Grid-fit = True, Do gray = True, Symmetric grid-fit = True, Symmetric smoothing = True</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>PostScript names</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="PostScript names_cell">
+                <button id="PostScript names_btn" onclick='toggle_detail("PostScript names");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>PostScript names</h3></th></tr>
+            </thead>
+            <tbody id="PostScript names" class="result_body">
+                    
+                <tr class="W">
+                    <td class="code"><p>Warning</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>post</p></td>
+                    <td class="feature"><p>PostScript names</p></td>
+                    <td class="message"><p>Postscript names should not be longer then 29 characters. May cause issues in PDF.</p></td>
+                    <td class="detail"><p>Is longer:<br>'smallcomponent_top_half_serif<br>smallcomponents_btm_half_serif'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Girassol Regular (Girassol-Regular.ttf)</p></td>
+                    <td class="table"><p>post</p></td>
+                    <td class="feature"><p>PostScript names</p></td>
+                    <td class="message"><p>Postscript names should not be longer then 29 characters. May cause issues in PDF.</p></td>
+                    <td class="detail"><p>OK:<br>'.notdef<br>space<br>nbspace<br>figurespace<br>A<br>B<br>C<br>D<br>E<br>F<br>G<br>H<br>I<br>J<br>J.alt_1<br>K<br>K.alt_1<br>L<br>M<br>N<br>O<br>P<br>Q<br>Q.alt_1<br>R<br>S<br>T<br>U<br>V<br>W<br>X<br>Y<br>Z<br>AE<br>OE<br>Aring<br>Aogonek<br>Eogonek<br>Iogonek<br>Uogonek<br>Dcroat<br>Eth<br>Hbar<br>Lslash<br>Oslash<br>Eng<br>Thorn<br>Tbar<br>Aringacute<br>Aacute<br>Agrave<br>Acaron<br>Acircumflex<br>Atilde<br>Adieresis<br>Amacron<br>Abreve<br>Alphatonos<br>AEacute<br>Cacute<br>Ccaron<br>Cdotaccent<br>Ccedilla<br>Dcaron<br>Egrave<br>Eacute<br>Etilde<br>Ecircumflex<br>Ecaron<br>Edieresis<br>Emacron<br>Ebreve<br>Edotaccent<br>Gbreve<br>Gdotaccent<br>Gcommaaccent<br>Gcircumflex<br>Gtilde<br>Igrave<br>Iacute<br>Icircumflex<br>Itilde<br>Idieresis<br>Imacron<br>Ibreve<br>Icaron<br>Idotaccent<br>Kcommaaccent<br>Lacute<br>Ldot<br>Lcaron<br>Lcommaaccent<br>Nacute<br>Ncaron<br>Ntilde<br>Ncommaaccent<br>Ndotaccent<br>Ograve<br>Oacute<br>Ocircumflex<br>Otilde<br>Odieresis<br>Omacron<br>Obreve<br>Ohungarumlaut<br>Oslashacute<br>Ocaron<br>Racute<br>Rcaron<br>Rcommaaccent<br>germandbls<br>Sacute<br>Scaron<br>Scedilla<br>Scommaaccent<br>Scircumflex<br>Tcaron<br>Tcommaaccent<br>Ugrave<br>Uacute<br>Ucircumflex<br>Utilde<br>Udieresis<br>Umacron<br>Ubreve<br>Uring<br>Uhungarumlaut<br>Ucaron<br>Wgrave<br>Wacute<br>Wcircumflex<br>Wdieresis<br>Ygrave<br>Yacute<br>Ycircumflex<br>Ydieresis<br>Zacute<br>Zcaron<br>Zdotaccent<br>Zcircumflex<br>D_E<br>E_A<br>E_a<br>L_A<br>L_a<br>R_R<br>T_E<br>T_T<br>a<br>b<br>c<br>d<br>e<br>f<br>g<br>h<br>i<br>dotlessi<br>j<br>j.alt_1<br>k<br>k.alt_1<br>kgreenlandic<br>l<br>m<br>n<br>o<br>p<br>q<br>q.alt_1<br>r<br>s<br>t<br>u<br>v<br>w<br>x<br>y<br>z<br>ae<br>oe<br>aogonek<br>eogonek<br>schwa<br>iogonek<br>uogonek<br>dcroat<br>eth<br>hbar<br>lslash<br>eng<br>mu<br>oslash<br>thorn<br>tbar<br>agrave<br>aacute<br>acircumflex<br>atilde<br>adieresis<br>amacron<br>abreve<br>aring<br>aringacute<br>acaron<br>alphatonos<br>aeacute<br>cacute<br>ccaron<br>cdotaccent<br>ccedilla<br>dcaron<br>egrave<br>eacute<br>ecircumflex<br>ecaron<br>edieresis<br>emacron<br>ebreve<br>edotaccent<br>etilde<br>gbreve<br>gtilde<br>gdotaccent<br>gcommaaccent<br>gcircumflex<br>igrave<br>iacute<br>icircumflex<br>idieresis<br>imacron<br>ibreve<br>icaron<br>idotaccent<br>kcommaaccent<br>lacute<br>lcaron<br>ldot<br>lcommaaccent<br>nacute<br>ncaron<br>ntilde<br>ndotaccent<br>ncommaaccent<br>ograve<br>oacute<br>ocircumflex<br>otilde<br>ocaron<br>odieresis<br>omacron<br>obreve<br>ohungarumlaut<br>oslashacute<br>racute<br>rcommaaccent<br>rcaron<br>small.germandbls<br>sacute<br>scaron<br>scedilla<br>scircumflex<br>scommaaccent<br>tcaron<br>tcommaaccent<br>ugrave<br>uacute<br>ucaron<br>ucircumflex<br>udieresis<br>umacron<br>ubreve<br>uring<br>uhungarumlaut<br>wgrave<br>wacute<br>wcircumflex<br>wdieresis<br>ygrave<br>yacute<br>ycircumflex<br>ydieresis<br>zacute<br>zcaron<br>zcircumflex<br>zdotaccent<br>d_e<br>e_a<br>l_a<br>r_r<br>t_e<br>t_t<br>grave<br>acute<br>circumflex<br>caron<br>tilde<br>dieresis<br>dialytika<br>macron<br>breve<br>ring<br>hungarumlaut<br>dotaccent<br>cedilla<br>ogonek<br>commaaccent<br>commaturnedabovecmb<br>tonos<br>tonos.cap<br>dieresistonos<br>comma<br>semicolon<br>colon<br>period<br>ellipsis<br>exclam<br>exclamdown<br>exclamdown.cap<br>question<br>questiondown<br>questiondown.cap<br>apostrophe<br>quoteleft<br>quoteright<br>quotedblleft<br>quotedblright<br>quotesinglbase<br>quotedblbase<br>guilsinglleft<br>guilsinglright<br>backslash<br>slash<br>bar<br>asciicircum<br>asciitilde<br>underscore<br>hyphen<br>hyphen_small<br>endash<br>endash_small<br>emdash<br>emdash_small<br>bullet<br>bullet_small<br>periodcentered<br>parenleft<br>parenright<br>bracketleft<br>bracketright<br>braceleft<br>braceright<br>dagger<br>dagger.alt_1<br>daggerdbl<br>daggerdbl.alt_1<br>asterisk<br>quotesingle<br>quotedbl<br>minute<br>second<br>ampersand<br>ampersand.alt_1<br>at<br>soundrecordingcopyright<br>registered<br>copyright<br>trademark<br>servicemark<br>ordfeminine<br>ordmasculine<br>florin<br>dollar<br>cent<br>yen<br>swiss_franc<br>sterling<br>lira<br>Euro<br>rupee<br>section<br>paragraph<br>degree<br>onesuperior<br>twosuperior<br>threesuperior<br>four.superior<br>zero<br>one<br>two<br>three<br>four<br>five<br>six<br>seven<br>eight<br>nine<br>numbersign<br>plus<br>minus<br>plusminus<br>multiply<br>divide<br>equal<br>approxequal<br>notequal<br>fraction<br>less<br>greater<br>lessequal<br>greaterequal<br>percent<br>perthousand<br>logicalnot<br>integral<br>Delta<br>lozenge<br>radical<br>summation<br>threequarters<br>onequarter<br>onehalf<br>brokenbar<br>component_bottom_serif<br>component_top_serif<br>smallcomponent_bottom_serif<br>smallcomponent_top_serif<br>guillemetleft<br>guillemetright<br>hyphensoft<br>currency<br>divisionslash<br>mu.math<br>uni000D'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>OT Features</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="OT Features_cell">
+                <button id="OT Features_btn" onclick='toggle_detail("OT Features");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>OT Features</h3></th></tr>
+            </thead>
+            <tbody id="OT Features" class="result_body">
+                      </tbody>
+            </table>
+    </body>
+</html>

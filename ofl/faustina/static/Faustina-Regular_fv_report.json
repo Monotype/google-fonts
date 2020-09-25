@@ -1,0 +1,83 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Faustina-Regular.ttf",
+                "type": "ttf",
+                "size": 153496,
+                "md5": "5788146b2e37c45e26aec79cff1935c0",
+                "geometryMd5": "bc937d9034e006149e84c0c4e33e7640"
+            },
+            "name": {
+                "family": "Faustina",
+                "subFamily": "Regular",
+                "fullName": "Faustina Regular",
+                "psName": "Faustina-Regular",
+                "versionText": "Version 1.006; ttfautohint (v1.5)",
+                "copyright": "Copyright 2016 The Faustina Project Authors (omnibus.type@gmail.com)",
+                "trademark": "Unknown"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 667,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "OMNI",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Faustina Regular",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 4,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_f48ce16fd4d24195bc03b0764f5d33b4.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 5 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-25T06:25:44.637059Z",
+                        "orig_output": "validate_f48ce16fd4d24195bc03b0764f5d33b4.fontedit.OS_2.PANOSE.weight - ERROR - Value 5 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_f48ce16fd4d24195bc03b0764f5d33b4.glyf.glyph 405 ('uni1E6D')",
+                        "levelname": "ERROR",
+                        "message": "Bounds should be [13, -172, 315, 609], but are [13, -172, 314, 609].",
+                        "timestamp": "2020-09-25T06:25:55.741233Z",
+                        "orig_output": "validate_f48ce16fd4d24195bc03b0764f5d33b4.glyf.glyph 405 ('uni1E6D') - ERROR - Bounds should be [13, -172, 315, 609], but are [13, -172, 314, 609].",
+                        "msg_code": "E1112"
+                    },
+                    {
+                        "subroutine": "validate_f48ce16fd4d24195bc03b0764f5d33b4.glyf.glyph 476 ('pi').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-25T06:25:56.575615Z",
+                        "orig_output": "validate_f48ce16fd4d24195bc03b0764f5d33b4.glyf.glyph 476 ('pi').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_f48ce16fd4d24195bc03b0764f5d33b4.hhea",
+                        "levelname": "ERROR",
+                        "message": "The minRightSidebearing value (-85) does not match the expected value (-105)",
+                        "timestamp": "2020-09-25T06:26:01.657086Z",
+                        "orig_output": "validate_f48ce16fd4d24195bc03b0764f5d33b4.hhea - ERROR - The minRightSidebearing value (-85) does not match the expected value (-105)",
+                        "msg_code": "E1403"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 178860,
+    "completedDate": "2020-09-25 06:28:40.716060"
+}

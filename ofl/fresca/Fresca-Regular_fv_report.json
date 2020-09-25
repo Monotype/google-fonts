@@ -1,0 +1,83 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Fresca-Regular.ttf",
+                "type": "ttf",
+                "size": 32644,
+                "md5": "04694cfc9bf42837acabe30f8cc70924",
+                "geometryMd5": "75e9a4fca0affbb7039557745623aea4"
+            },
+            "name": {
+                "family": "Fresca",
+                "subFamily": "Regular",
+                "fullName": "Fresca-Regular",
+                "psName": "Fresca-Regular",
+                "versionText": "Version 1.001",
+                "copyright": "Copyright (c) 2011 Fontstage (info@fontstage.com), with Reserved Font Name \"Fresca\"",
+                "trademark": "Fresca is a trademark of Fontstage."
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 305,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "PYRS",
+                "font_vendor": "PYRS Fontlab Ltd. / Made with FontLab"
+            },
+            "validation": {
+                "font_full_name": "Fresca-Regular",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 4,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_9e0e8e9ab395485bba2c9f6d5c419fa0.glyf.glyph 119 ('mu').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-24T21:56:01.947240Z",
+                        "orig_output": "validate_9e0e8e9ab395485bba2c9f6d5c419fa0.glyf.glyph 119 ('mu').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_9e0e8e9ab395485bba2c9f6d5c419fa0.hhea",
+                        "levelname": "ERROR",
+                        "message": "The minLeftSidebearing value (-182) does not match the expected value (-181)",
+                        "timestamp": "2020-09-24T21:56:03.540243Z",
+                        "orig_output": "validate_9e0e8e9ab395485bba2c9f6d5c419fa0.hhea - ERROR - The minLeftSidebearing value (-182) does not match the expected value (-181)",
+                        "msg_code": "E1402"
+                    },
+                    {
+                        "subroutine": "validate_9e0e8e9ab395485bba2c9f6d5c419fa0.hmtx",
+                        "levelname": "ERROR",
+                        "message": "The left sidebearing -181 does not match the glyph's xMin -182 (glyph 284)",
+                        "timestamp": "2020-09-24T21:56:03.598760Z",
+                        "orig_output": "validate_9e0e8e9ab395485bba2c9f6d5c419fa0.hmtx - ERROR - The left sidebearing -181 does not match the glyph's xMin -182 (glyph 284)",
+                        "msg_code": "V0933"
+                    },
+                    {
+                        "subroutine": "validate_9e0e8e9ab395485bba2c9f6d5c419fa0.OS_2.usMaxContext",
+                        "levelname": "ERROR",
+                        "message": "The usMaxContext should be 0, but is 1",
+                        "timestamp": "2020-09-24T21:56:01.231899Z",
+                        "orig_output": "validate_9e0e8e9ab395485bba2c9f6d5c419fa0.OS_2.usMaxContext - ERROR - The usMaxContext should be 0, but is 1",
+                        "msg_code": "V0831"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 5446,
+    "completedDate": "2020-09-24 21:56:03.915451"
+}

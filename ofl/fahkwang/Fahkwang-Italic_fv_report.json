@@ -1,0 +1,91 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Fahkwang-Italic.ttf",
+                "type": "ttf",
+                "size": 91048,
+                "md5": "732929a12ee6351d6d1a7fc8ccdddc59",
+                "geometryMd5": "f349b9bacaa485304e1599c7886b5b68"
+            },
+            "name": {
+                "family": "Fahkwang",
+                "subFamily": "Italic",
+                "fullName": "Fahkwang Italic",
+                "psName": "Fahkwang-Italic",
+                "versionText": "Version 1.000; ttfautohint (v1.6)",
+                "copyright": "Copyright 2018 The Fahkwang Project Authors (https://github.com/cadsondemak/Fah-Kwang)",
+                "trademark": "Unknown"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 775,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "CDK ",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Fahkwang Italic",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 5,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_fd6b210221724411b474a9b04c0bd9ef.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 5 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-25T06:45:42.280891Z",
+                        "orig_output": "validate_fd6b210221724411b474a9b04c0bd9ef.fontedit.OS_2.PANOSE.weight - ERROR - Value 5 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_fd6b210221724411b474a9b04c0bd9ef.glyf.glyph 266 ('eogonek').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-25T06:45:46.228986Z",
+                        "orig_output": "validate_fd6b210221724411b474a9b04c0bd9ef.glyf.glyph 266 ('eogonek').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_fd6b210221724411b474a9b04c0bd9ef.glyf.glyph 744 ('uni0E4C').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-25T06:45:50.107152Z",
+                        "orig_output": "validate_fd6b210221724411b474a9b04c0bd9ef.glyf.glyph 744 ('uni0E4C').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_fd6b210221724411b474a9b04c0bd9ef.maxp",
+                        "levelname": "ERROR",
+                        "message": "The maxZones value should be 1, but is 0.",
+                        "timestamp": "2020-09-25T06:45:54.947236Z",
+                        "orig_output": "validate_fd6b210221724411b474a9b04c0bd9ef.maxp - ERROR - The maxZones value should be 1, but is 0.",
+                        "msg_code": "V0272"
+                    },
+                    {
+                        "subroutine": "validate_fd6b210221724411b474a9b04c0bd9ef.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 642, but is 628",
+                        "timestamp": "2020-09-25T06:45:44.626842Z",
+                        "orig_output": "validate_fd6b210221724411b474a9b04c0bd9ef.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 642, but is 628",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 15743,
+    "completedDate": "2020-09-25 06:45:55.727437"
+}

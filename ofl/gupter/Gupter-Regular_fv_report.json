@@ -1,0 +1,67 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Gupter-Regular.ttf",
+                "type": "ttf",
+                "size": 52376,
+                "md5": "7e9bc8a493d3751b77eca21226ef0e54",
+                "geometryMd5": "dc86a66964ca8a3984bfe4633f786607"
+            },
+            "name": {
+                "family": "Gupter",
+                "subFamily": "Regular",
+                "fullName": "Gupter Regular",
+                "psName": "Gupter-Regular",
+                "versionText": "Version 1.000",
+                "copyright": "Copyright 2019 The Gupter Project Authors (https://github.com/octaviopardo/GUPTER)",
+                "trademark": "Unknown"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 251,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "MODI",
+                "font_vendor": "Modular Infotech Private Limited."
+            },
+            "validation": {
+                "font_full_name": "Gupter Regular",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 2,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_b4226ab960ca43328eeea2fbfe069cc9.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 5 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-24T08:47:47.557588Z",
+                        "orig_output": "validate_b4226ab960ca43328eeea2fbfe069cc9.fontedit.OS_2.PANOSE.weight - ERROR - Value 5 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_b4226ab960ca43328eeea2fbfe069cc9.glyf.glyph 112 ('germandbls').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-24T08:47:51.515375Z",
+                        "orig_output": "validate_b4226ab960ca43328eeea2fbfe069cc9.glyf.glyph 112 ('germandbls').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 50406,
+    "completedDate": "2020-09-24 08:48:35.897399"
+}

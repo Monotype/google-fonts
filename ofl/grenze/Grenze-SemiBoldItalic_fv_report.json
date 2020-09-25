@@ -1,0 +1,85 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Grenze-SemiBoldItalic.ttf",
+                "type": "ttf",
+                "size": 102300,
+                "md5": "7113e905b977b7bdb9cad7c6d8ce2f0c",
+                "geometryMd5": "6092e1b6156e0afda4841934200814e2"
+            },
+            "name": {
+                "family": "Grenze SemiBold",
+                "subFamily": "Italic",
+                "fullName": "Grenze SemiBold Italic",
+                "psName": "Grenze-SemiBoldItalic",
+                "versionText": "Version 1.002; ttfautohint (v1.8)",
+                "copyright": "Copyright 2018 The Grenze Project Authors (https://github.com/Omnibus-Type/Grenze), with Reserved Font Name \"Grenze\".",
+                "trademark": "Grenze is a trademark of Omnibus-Type",
+                "typographicFamily": "Grenze",
+                "typographicSubFamily": "SemiBold Italic"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 808,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "OMNI",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Grenze SemiBold Italic",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 4,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_b81de05bb6784d5aba0ff05421940157.glyf.glyph 199 ('Uogonek').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-24T16:20:49.382537Z",
+                        "orig_output": "validate_b81de05bb6784d5aba0ff05421940157.glyf.glyph 199 ('Uogonek').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_b81de05bb6784d5aba0ff05421940157.glyf.glyph 325 ('ij')",
+                        "levelname": "ERROR",
+                        "message": "Circular component at or below these glyphs: [718]",
+                        "timestamp": "2020-09-24T16:20:50.424751Z",
+                        "orig_output": "validate_b81de05bb6784d5aba0ff05421940157.glyf.glyph 325 ('ij') - ERROR - Circular component at or below these glyphs: [718]",
+                        "msg_code": "E1118"
+                    },
+                    {
+                        "subroutine": "validate_b81de05bb6784d5aba0ff05421940157.maxp",
+                        "levelname": "ERROR",
+                        "message": "The following glyphs had improperly constructed composite information, and could not be used in validating the 'maxp' table: [718]",
+                        "timestamp": "2020-09-24T16:20:59.557169Z",
+                        "orig_output": "validate_b81de05bb6784d5aba0ff05421940157.maxp - ERROR - The following glyphs had improperly constructed composite information, and could not be used in validating the 'maxp' table: [718]",
+                        "msg_code": "V0555"
+                    },
+                    {
+                        "subroutine": "validate_b81de05bb6784d5aba0ff05421940157.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 476, but is 474",
+                        "timestamp": "2020-09-24T16:20:48.014181Z",
+                        "orig_output": "validate_b81de05bb6784d5aba0ff05421940157.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 476, but is 474",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 42154,
+    "completedDate": "2020-09-24 16:21:26.515311"
+}

@@ -1,0 +1,75 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Faustina-Bold.ttf",
+                "type": "ttf",
+                "size": 169884,
+                "md5": "19336e46c75605acfcb72b3d609c3b7a",
+                "geometryMd5": "ed4176f0dff0a807fcf2f35e0aa4d485"
+            },
+            "name": {
+                "family": "Faustina",
+                "subFamily": "Bold",
+                "fullName": "Faustina Bold",
+                "psName": "Faustina-Bold",
+                "versionText": "Version 1.006; ttfautohint (v1.5)",
+                "copyright": "Copyright 2016 The Faustina Project Authors (omnibus.type@gmail.com)",
+                "trademark": "Unknown"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 667,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "OMNI",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Faustina Bold",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 3,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_2366f93b78a0433b97612e440e1e98a9.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 8 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-25T05:44:58.063540Z",
+                        "orig_output": "validate_2366f93b78a0433b97612e440e1e98a9.fontedit.OS_2.PANOSE.weight - ERROR - Value 8 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_2366f93b78a0433b97612e440e1e98a9.glyf.glyph 405 ('uni1E6D')",
+                        "levelname": "ERROR",
+                        "message": "Bounds should be [-4, -206, 374, 630], but are [-4, -206, 371, 630].",
+                        "timestamp": "2020-09-25T05:45:07.497240Z",
+                        "orig_output": "validate_2366f93b78a0433b97612e440e1e98a9.glyf.glyph 405 ('uni1E6D') - ERROR - Bounds should be [-4, -206, 374, 630], but are [-4, -206, 371, 630].",
+                        "msg_code": "E1112"
+                    },
+                    {
+                        "subroutine": "validate_2366f93b78a0433b97612e440e1e98a9.hhea",
+                        "levelname": "ERROR",
+                        "message": "The minRightSidebearing value (-88) does not match the expected value (-134)",
+                        "timestamp": "2020-09-25T05:45:14.027873Z",
+                        "orig_output": "validate_2366f93b78a0433b97612e440e1e98a9.hhea - ERROR - The minRightSidebearing value (-88) does not match the expected value (-134)",
+                        "msg_code": "E1403"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 229434,
+    "completedDate": "2020-09-25 05:48:45.162792"
+}
