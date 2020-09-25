@@ -1,0 +1,68 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "ProzaLibre-MediumItalic.ttf",
+                "type": "ttf",
+                "size": 100832,
+                "md5": "f7fb82add487cd1fc567412bc159eb45",
+                "geometryMd5": "9a540d136c8bb7edce561de8f9dc2074"
+            },
+            "name": {
+                "family": "Proza Libre Medium",
+                "subFamily": "Italic",
+                "fullName": "Proza Libre Medium Italic",
+                "psName": "ProzaLibre-MediumItalic",
+                "versionText": "Version 1.001; ttfautohint (v1.4.1.8-43bc)",
+                "copyright": "Copyright (c) 2015 by Jasper de Waard. All rights reserved.",
+                "trademark": "Proza Libre Medium Italic is a trademark of Jasper de Waard.",
+                "typographicFamily": "Proza Libre",
+                "typographicSubFamily": "Medium Italic"
+            },
+            "format": {
+                "format": "TT"
+            },
+            "summary": {
+                "num_glyphs": 348,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "pyrs",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Proza Libre Medium Italic",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 2,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_32c42ea587e047299610a19e5c8cef2a.head",
+                        "levelname": "ERROR",
+                        "message": "The macStyle italic bit is True but post.italicAngle is   0.0",
+                        "timestamp": "2020-09-24T22:50:01.964271Z",
+                        "orig_output": "validate_32c42ea587e047299610a19e5c8cef2a.head - ERROR - The macStyle italic bit is True but post.italicAngle is   0.0",
+                        "msg_code": "E1316"
+                    },
+                    {
+                        "subroutine": "validate_32c42ea587e047299610a19e5c8cef2a.post",
+                        "levelname": "ERROR",
+                        "message": "Zero italic angle but head.macStyle.italic is True.",
+                        "timestamp": "2020-09-24T22:50:16.586680Z",
+                        "orig_output": "validate_32c42ea587e047299610a19e5c8cef2a.post - ERROR - Zero italic angle but head.macStyle.italic is True.",
+                        "msg_code": "E2310"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 38933,
+    "completedDate": "2020-09-24 22:50:32.444072"
+}

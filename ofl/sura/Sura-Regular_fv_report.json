@@ -1,0 +1,207 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Sura-Regular.ttf",
+                "type": "ttf",
+                "size": 140444,
+                "md5": "b64e5c15432dfae39e02fd3248272ad4",
+                "geometryMd5": "2074a7f7a751ad0cae867dbb847e87a5"
+            },
+            "name": {
+                "family": "Sura",
+                "subFamily": "Regular",
+                "fullName": "Sura",
+                "psName": "Sura-Regular",
+                "versionText": "Version 1.003;PS 001.002;hotconv 1.0.70;makeotf.lib2.5.58329 DEVELOPMENT; ttfautohint (v1.00) -l 8 -r 50 -G 200 -x 14 -D latn -f none -w G",
+                "copyright": "Copyright 2015 by Carolina Giovagnoli. All rights reserved.",
+                "trademark": "Andada ht Pro is a trademark of Carolina Giovagnoli (huertatipografica.com.ar)."
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 664,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "HT  ",
+                "font_vendor": "Huerta Tipogr\u00e1fica"
+            },
+            "validation": {
+                "font_full_name": "Sura",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 16,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_32e6936d2ab048feb20913863ddbe788.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 5 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-24T20:57:20.711708Z",
+                        "orig_output": "validate_32e6936d2ab048feb20913863ddbe788.fontedit.OS_2.PANOSE.weight - ERROR - Value 5 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_32e6936d2ab048feb20913863ddbe788.GDEF.glyphClasses",
+                        "levelname": "ERROR",
+                        "message": "The following mark glyphs have nonzero advances: [163]",
+                        "timestamp": "2020-09-24T20:57:20.739508Z",
+                        "orig_output": "validate_32e6936d2ab048feb20913863ddbe788.GDEF.glyphClasses - ERROR - The following mark glyphs have nonzero advances: [163]",
+                        "msg_code": "V1102"
+                    },
+                    {
+                        "subroutine": "validate_32e6936d2ab048feb20913863ddbe788.glyf.glyph 198 ('da-deva').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-24T20:57:24.195053Z",
+                        "orig_output": "validate_32e6936d2ab048feb20913863ddbe788.glyf.glyph 198 ('da-deva').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_32e6936d2ab048feb20913863ddbe788.glyf.glyph 21 ('two').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-24T20:57:21.850243Z",
+                        "orig_output": "validate_32e6936d2ab048feb20913863ddbe788.glyf.glyph 21 ('two').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_32e6936d2ab048feb20913863ddbe788.glyf.glyph 415 ('d_ddh_r_ya-deva').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-24T20:57:29.286301Z",
+                        "orig_output": "validate_32e6936d2ab048feb20913863ddbe788.glyf.glyph 415 ('d_ddh_r_ya-deva').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_32e6936d2ab048feb20913863ddbe788.glyf.glyph 78 ('k').contours.contour 1",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-24T20:57:22.561962Z",
+                        "orig_output": "validate_32e6936d2ab048feb20913863ddbe788.glyf.glyph 78 ('k').contours.contour 1 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_32e6936d2ab048feb20913863ddbe788.hints.glyph 100.FDEF 29.FDEF 19.FDEF 114.FDEF 86.FDEF 64.FDEF 4.call FDEF 3",
+                        "levelname": "ERROR",
+                        "message": "RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "timestamp": "2020-09-24T20:57:56.313905Z",
+                        "orig_output": "validate_32e6936d2ab048feb20913863ddbe788.hints.glyph 100.FDEF 29.FDEF 19.FDEF 114.FDEF 86.FDEF 64.FDEF 4.call FDEF 3 - ERROR - RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "glyph": {
+                            "id": 100,
+                            "name": "sterling"
+                        },
+                        "msg_code": "G0029"
+                    },
+                    {
+                        "subroutine": "validate_32e6936d2ab048feb20913863ddbe788.hints.glyph 101.FDEF 29.FDEF 19.FDEF 114.FDEF 94.FDEF 63.FDEF 54.FDEF 4.call FDEF 3",
+                        "levelname": "ERROR",
+                        "message": "RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "timestamp": "2020-09-24T20:57:56.502854Z",
+                        "orig_output": "validate_32e6936d2ab048feb20913863ddbe788.hints.glyph 101.FDEF 29.FDEF 19.FDEF 114.FDEF 94.FDEF 63.FDEF 54.FDEF 4.call FDEF 3 - ERROR - RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "glyph": {
+                            "id": 101,
+                            "name": "yen"
+                        },
+                        "msg_code": "G0029"
+                    },
+                    {
+                        "subroutine": "validate_32e6936d2ab048feb20913863ddbe788.hints.glyph 109.FDEF 29.FDEF 19.FDEF 114.FDEF 76.FDEF 65.FDEF 4.call FDEF 3",
+                        "levelname": "ERROR",
+                        "message": "RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "timestamp": "2020-09-24T20:57:56.934828Z",
+                        "orig_output": "validate_32e6936d2ab048feb20913863ddbe788.hints.glyph 109.FDEF 29.FDEF 19.FDEF 114.FDEF 76.FDEF 65.FDEF 4.call FDEF 3 - ERROR - RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "glyph": {
+                            "id": 109,
+                            "name": "registered"
+                        },
+                        "msg_code": "G0029"
+                    },
+                    {
+                        "subroutine": "validate_32e6936d2ab048feb20913863ddbe788.hints.glyph 127.FDEF 22.FDEF 19.FDEF 114.FDEF 88.FDEF 64.FDEF 4.call FDEF 3",
+                        "levelname": "ERROR",
+                        "message": "RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "timestamp": "2020-09-24T20:57:57.603256Z",
+                        "orig_output": "validate_32e6936d2ab048feb20913863ddbe788.hints.glyph 127.FDEF 22.FDEF 19.FDEF 114.FDEF 88.FDEF 64.FDEF 4.call FDEF 3 - ERROR - RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "glyph": {
+                            "id": 127,
+                            "name": "germandbls"
+                        },
+                        "msg_code": "G0029"
+                    },
+                    {
+                        "subroutine": "validate_32e6936d2ab048feb20913863ddbe788.hints.glyph 156.FDEF 25.FDEF 19.FDEF 114.FDEF 88.FDEF 64.FDEF 4.call FDEF 3",
+                        "levelname": "ERROR",
+                        "message": "RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "timestamp": "2020-09-24T20:57:58.025613Z",
+                        "orig_output": "validate_32e6936d2ab048feb20913863ddbe788.hints.glyph 156.FDEF 25.FDEF 19.FDEF 114.FDEF 88.FDEF 64.FDEF 4.call FDEF 3 - ERROR - RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "glyph": {
+                            "id": 156,
+                            "name": "oe"
+                        },
+                        "msg_code": "G0029"
+                    },
+                    {
+                        "subroutine": "validate_32e6936d2ab048feb20913863ddbe788.hints.glyph 85.FDEF 26.FDEF 19.FDEF 114.FDEF 89.FDEF 64.FDEF 4.call FDEF 3",
+                        "levelname": "ERROR",
+                        "message": "RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "timestamp": "2020-09-24T20:57:55.643196Z",
+                        "orig_output": "validate_32e6936d2ab048feb20913863ddbe788.hints.glyph 85.FDEF 26.FDEF 19.FDEF 114.FDEF 89.FDEF 64.FDEF 4.call FDEF 3 - ERROR - RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "glyph": {
+                            "id": 85,
+                            "name": "r"
+                        },
+                        "msg_code": "G0029"
+                    },
+                    {
+                        "subroutine": "validate_32e6936d2ab048feb20913863ddbe788.hints.glyph 93.FDEF 20.FDEF 19.FDEF 114.FDEF 86.FDEF 64.FDEF 4.call FDEF 3",
+                        "levelname": "ERROR",
+                        "message": "RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "timestamp": "2020-09-24T20:57:55.914770Z",
+                        "orig_output": "validate_32e6936d2ab048feb20913863ddbe788.hints.glyph 93.FDEF 20.FDEF 19.FDEF 114.FDEF 86.FDEF 64.FDEF 4.call FDEF 3 - ERROR - RCVT[] in FDEF 3 (PC 1) is attempting to read from CVT index 28, which does not exist!",
+                        "glyph": {
+                            "id": 93,
+                            "name": "z"
+                        },
+                        "msg_code": "G0029"
+                    },
+                    {
+                        "subroutine": "validate_32e6936d2ab048feb20913863ddbe788.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2020-09-24T20:57:52.316134Z",
+                        "orig_output": "validate_32e6936d2ab048feb20913863ddbe788.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
+                    },
+                    {
+                        "subroutine": "validate_32e6936d2ab048feb20913863ddbe788.OS_2.usMaxContext",
+                        "levelname": "ERROR",
+                        "message": "The usMaxContext should be 3, but is 6",
+                        "timestamp": "2020-09-24T20:57:21.632135Z",
+                        "orig_output": "validate_32e6936d2ab048feb20913863ddbe788.OS_2.usMaxContext - ERROR - The usMaxContext should be 3, but is 6",
+                        "msg_code": "V0831"
+                    },
+                    {
+                        "subroutine": "validate_32e6936d2ab048feb20913863ddbe788.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 1099, but is 1083",
+                        "timestamp": "2020-09-24T20:57:21.632415Z",
+                        "orig_output": "validate_32e6936d2ab048feb20913863ddbe788.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 1099, but is 1083",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 44938,
+    "completedDate": "2020-09-24 20:58:03.245512"
+}

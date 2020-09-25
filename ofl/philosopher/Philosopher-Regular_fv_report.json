@@ -1,0 +1,67 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Philosopher-Regular.ttf",
+                "type": "ttf",
+                "size": 115544,
+                "md5": "4286c83f4bfdc2916e9602eb9bdeba23",
+                "geometryMd5": "e97faf230b1c8b4341e0db078e1d36c5"
+            },
+            "name": {
+                "family": "Philosopher",
+                "subFamily": "Regular",
+                "fullName": "Philosopher Regular",
+                "psName": "Philosopher-Regular",
+                "versionText": "Version 2.000",
+                "copyright": "Copyright 2011 The Philosopher Project Authors (lemonad@jovanny.ru)",
+                "trademark": "Philosopher is a trademark of Jovanny Lemonad."
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 555,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "PfEd",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Philosopher Regular",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 2,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_02c92e906a0146dda12e337146081a9b.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 5 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-24T18:55:27.744852Z",
+                        "orig_output": "validate_02c92e906a0146dda12e337146081a9b.fontedit.OS_2.PANOSE.weight - ERROR - Value 5 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_02c92e906a0146dda12e337146081a9b.GDEF.glyphClasses",
+                        "levelname": "ERROR",
+                        "message": "The following mark glyphs have nonzero advances: [543, 545]",
+                        "timestamp": "2020-09-24T18:55:27.779760Z",
+                        "orig_output": "validate_02c92e906a0146dda12e337146081a9b.GDEF.glyphClasses - ERROR - The following mark glyphs have nonzero advances: [543, 545]",
+                        "msg_code": "V1102"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 128505,
+    "completedDate": "2020-09-24 18:57:34.107864"
+}

@@ -1,0 +1,77 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Nunito-ExtraLightItalic.ttf",
+                "type": "ttf",
+                "size": 176380,
+                "md5": "76d63b7722c69a6233f0036a514352c7",
+                "geometryMd5": "bab7c4ce82f726eb17115a4c5c269e86"
+            },
+            "name": {
+                "family": "Nunito ExtraLight",
+                "subFamily": "Italic",
+                "fullName": "Nunito ExtraLight Italic",
+                "psName": "Nunito-ExtraLightItalic",
+                "versionText": "Version 3.504",
+                "copyright": "Copyright 2014 The Nunito Project Authors (https://github.com/googlefonts/NunitoFont)",
+                "trademark": "Nunito is a trademark of Vernon Adams and may be registered in certain jurisdictions.",
+                "typographicFamily": "Nunito",
+                "typographicSubFamily": "ExtraLight Italic"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 1041,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "NeWT",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Nunito ExtraLight Italic",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 3,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_84d375efdebc47dcba7fc478c9444b25.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 3 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-25T09:15:18.237207Z",
+                        "orig_output": "validate_84d375efdebc47dcba7fc478c9444b25.fontedit.OS_2.PANOSE.weight - ERROR - Value 3 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_84d375efdebc47dcba7fc478c9444b25.glyf.glyph 693 ('uni0495').contours.contour 1",
+                        "levelname": "ERROR",
+                        "message": "Contour is degenerate (only two (x,y) locations).",
+                        "timestamp": "2020-09-25T09:15:29.625939Z",
+                        "orig_output": "validate_84d375efdebc47dcba7fc478c9444b25.glyf.glyph 693 ('uni0495').contours.contour 1 - ERROR - Contour is degenerate (only two (x,y) locations).",
+                        "msg_code": "V1013"
+                    },
+                    {
+                        "subroutine": "validate_84d375efdebc47dcba7fc478c9444b25.OS_2.usWeightClass",
+                        "levelname": "ERROR",
+                        "message": "The usWeightClass value 275 is not valid",
+                        "timestamp": "2020-09-25T09:15:21.214539Z",
+                        "orig_output": "validate_84d375efdebc47dcba7fc478c9444b25.OS_2.usWeightClass - ERROR - The usWeightClass value 275 is not valid",
+                        "msg_code": "E2133"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 244702,
+    "completedDate": "2020-09-25 09:19:19.989052"
+}

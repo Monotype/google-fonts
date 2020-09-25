@@ -1,0 +1,85 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Overpass-Black.ttf",
+                "type": "ttf",
+                "size": 124868,
+                "md5": "4572b9015ab75f0929ce85f8879072f5",
+                "geometryMd5": "aeb46b76c7f69e4f3ba40dcb35603371"
+            },
+            "name": {
+                "family": "Overpass Black",
+                "subFamily": "Regular",
+                "fullName": "Overpass Black",
+                "psName": "Overpass-Black",
+                "versionText": "Version 3.000;DELV;Overpass; ttfautohint (v1.5)",
+                "copyright": "Copyright \u00a9 2016 by Red Hat, Inc. All rights reserved.",
+                "trademark": "Overpass is a trademark of Red Hat, Inc.",
+                "typographicFamily": "Overpass",
+                "typographicSubFamily": "Black"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 471,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "DELV",
+                "font_vendor": "Delve Fonts"
+            },
+            "validation": {
+                "font_full_name": "Overpass Black",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 4,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_cfddb479343c4c0a9e24f66afe57d036.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 10 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-25T04:32:41.083388Z",
+                        "orig_output": "validate_cfddb479343c4c0a9e24f66afe57d036.fontedit.OS_2.PANOSE.weight - ERROR - Value 10 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_cfddb479343c4c0a9e24f66afe57d036.glyf.glyph 400 ('arrowdown').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-25T04:32:49.649308Z",
+                        "orig_output": "validate_cfddb479343c4c0a9e24f66afe57d036.glyf.glyph 400 ('arrowdown').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_cfddb479343c4c0a9e24f66afe57d036.OS_2.unicodeRanges",
+                        "levelname": "ERROR",
+                        "message": "Font has non-BMP characters but surrogates bit not set.",
+                        "timestamp": "2020-09-25T04:32:42.460567Z",
+                        "orig_output": "validate_cfddb479343c4c0a9e24f66afe57d036.OS_2.unicodeRanges - ERROR - Font has non-BMP characters but surrogates bit not set.",
+                        "msg_code": "E2122"
+                    },
+                    {
+                        "subroutine": "validate_cfddb479343c4c0a9e24f66afe57d036.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 587, but is 600",
+                        "timestamp": "2020-09-25T04:32:42.885977Z",
+                        "orig_output": "validate_cfddb479343c4c0a9e24f66afe57d036.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 587, but is 600",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 110792,
+    "completedDate": "2020-09-25 04:34:29.231750"
+}

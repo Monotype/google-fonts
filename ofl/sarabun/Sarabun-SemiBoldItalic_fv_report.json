@@ -1,0 +1,77 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Sarabun-SemiBoldItalic.ttf",
+                "type": "ttf",
+                "size": 93352,
+                "md5": "b8c4f5f5003f4a6d7077e6f38d7182c2",
+                "geometryMd5": "f2e0a7dafeaf1022426d99544753a946"
+            },
+            "name": {
+                "family": "Sarabun SemiBold",
+                "subFamily": "Italic",
+                "fullName": "Sarabun SemiBold Italic",
+                "psName": "Sarabun-SemiBoldItalic",
+                "versionText": "Version 1.000; ttfautohint (v1.6)",
+                "copyright": "Copyright 2018 The Sarabun Project Authors (https://github.com/cadsondemak/Sarabun)",
+                "trademark": "Unknown",
+                "typographicFamily": "Sarabun",
+                "typographicSubFamily": "SemiBold Italic"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 777,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "CDK ",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Sarabun SemiBold Italic",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 3,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_ee7c4cac020447f496eb51afb15c3b0a.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 7 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-24T20:22:27.712571Z",
+                        "orig_output": "validate_ee7c4cac020447f496eb51afb15c3b0a.fontedit.OS_2.PANOSE.weight - ERROR - Value 7 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_ee7c4cac020447f496eb51afb15c3b0a.maxp",
+                        "levelname": "ERROR",
+                        "message": "The maxZones value should be 1, but is 0.",
+                        "timestamp": "2020-09-24T20:22:41.170468Z",
+                        "orig_output": "validate_ee7c4cac020447f496eb51afb15c3b0a.maxp - ERROR - The maxZones value should be 1, but is 0.",
+                        "msg_code": "V0272"
+                    },
+                    {
+                        "subroutine": "validate_ee7c4cac020447f496eb51afb15c3b0a.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 564, but is 549",
+                        "timestamp": "2020-09-24T20:22:30.000756Z",
+                        "orig_output": "validate_ee7c4cac020447f496eb51afb15c3b0a.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 564, but is 549",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 16662,
+    "completedDate": "2020-09-24 20:22:41.690784"
+}

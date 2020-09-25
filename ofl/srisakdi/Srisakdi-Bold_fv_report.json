@@ -1,0 +1,75 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Srisakdi-Bold.ttf",
+                "type": "ttf",
+                "size": 102088,
+                "md5": "927e1de7963ac74ce0cebf89e0fddd8c",
+                "geometryMd5": "5653654c5f19c4787825ebc4628cb445"
+            },
+            "name": {
+                "family": "Srisakdi",
+                "subFamily": "Bold",
+                "fullName": "Srisakdi Bold",
+                "psName": "Srisakdi-Bold",
+                "versionText": "Version 1.000; ttfautohint (v1.6)",
+                "copyright": "Copyright 2018 The Srisakdi Project Authors (https://github.com/cadsondemak/Srisakdi)",
+                "trademark": "Unknown"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 775,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "CDK ",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Srisakdi Bold",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 3,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_01c7bf9fc5dd4d59b7affc048997334f.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 8 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-24T19:00:31.924197Z",
+                        "orig_output": "validate_01c7bf9fc5dd4d59b7affc048997334f.fontedit.OS_2.PANOSE.weight - ERROR - Value 8 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_01c7bf9fc5dd4d59b7affc048997334f.maxp",
+                        "levelname": "ERROR",
+                        "message": "The maxZones value should be 1, but is 0.",
+                        "timestamp": "2020-09-24T19:00:54.300477Z",
+                        "orig_output": "validate_01c7bf9fc5dd4d59b7affc048997334f.maxp - ERROR - The maxZones value should be 1, but is 0.",
+                        "msg_code": "V0272"
+                    },
+                    {
+                        "subroutine": "validate_01c7bf9fc5dd4d59b7affc048997334f.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 572, but is 570",
+                        "timestamp": "2020-09-24T19:00:33.818477Z",
+                        "orig_output": "validate_01c7bf9fc5dd4d59b7affc048997334f.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 572, but is 570",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 25654,
+    "completedDate": "2020-09-24 19:00:55.013763"
+}

@@ -1,0 +1,67 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "OldStandard-Italic.ttf",
+                "type": "ttf",
+                "size": 272692,
+                "md5": "e15459ba33dae663a3a220adf498d364",
+                "geometryMd5": "7734f85b5f34cca7d2b52c209c2b59c8"
+            },
+            "name": {
+                "family": "Old Standard TT",
+                "subFamily": "Italic",
+                "fullName": "Old Standard TT Italic",
+                "psName": "OldStandardTT-Italic",
+                "versionText": "Version 3.000",
+                "copyright": "Copyright 2011 The Old Standard Project Authors (amkryukov@gmail.com)",
+                "trademark": "Unknown"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 938,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "PfEd",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Old Standard TT Italic",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 2,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_4d99a22f29ba4de582247b4f0940e023.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 5 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-24T09:10:19.053701Z",
+                        "orig_output": "validate_4d99a22f29ba4de582247b4f0940e023.fontedit.OS_2.PANOSE.weight - ERROR - Value 5 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_4d99a22f29ba4de582247b4f0940e023.hhea",
+                        "levelname": "ERROR",
+                        "message": "The minLeftSidebearing value (-845) does not match the expected value (-830)",
+                        "timestamp": "2020-09-24T09:10:45.092881Z",
+                        "orig_output": "validate_4d99a22f29ba4de582247b4f0940e023.hhea - ERROR - The minLeftSidebearing value (-845) does not match the expected value (-830)",
+                        "msg_code": "E1402"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 410843,
+    "completedDate": "2020-09-24 09:17:06.776679"
+}

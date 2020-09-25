@@ -1,0 +1,77 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Overpass-ExtraBold.ttf",
+                "type": "ttf",
+                "size": 122652,
+                "md5": "9865699abaa636202d84fd50b8b51248",
+                "geometryMd5": "ce089400b7a908e314961bfa15042f91"
+            },
+            "name": {
+                "family": "Overpass ExtraBold",
+                "subFamily": "Regular",
+                "fullName": "Overpass ExtraBold",
+                "psName": "Overpass-ExtraBold",
+                "versionText": "Version 3.000;DELV;Overpass; ttfautohint (v1.5)",
+                "copyright": "Copyright \u00a9 2016 by Red Hat, Inc. All rights reserved.",
+                "trademark": "Overpass is a trademark of Red Hat, Inc.",
+                "typographicFamily": "Overpass",
+                "typographicSubFamily": "ExtraBold"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 471,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "DELV",
+                "font_vendor": "Delve Fonts"
+            },
+            "validation": {
+                "font_full_name": "Overpass ExtraBold",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 3,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_c96d2a19cae7489cbf456daf8eb5ed37.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 9 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-25T04:11:11.647766Z",
+                        "orig_output": "validate_c96d2a19cae7489cbf456daf8eb5ed37.fontedit.OS_2.PANOSE.weight - ERROR - Value 9 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_c96d2a19cae7489cbf456daf8eb5ed37.OS_2.unicodeRanges",
+                        "levelname": "ERROR",
+                        "message": "Font has non-BMP characters but surrogates bit not set.",
+                        "timestamp": "2020-09-25T04:11:12.641767Z",
+                        "orig_output": "validate_c96d2a19cae7489cbf456daf8eb5ed37.OS_2.unicodeRanges - ERROR - Font has non-BMP characters but surrogates bit not set.",
+                        "msg_code": "E2122"
+                    },
+                    {
+                        "subroutine": "validate_c96d2a19cae7489cbf456daf8eb5ed37.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 576, but is 589",
+                        "timestamp": "2020-09-25T04:11:12.786960Z",
+                        "orig_output": "validate_c96d2a19cae7489cbf456daf8eb5ed37.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 576, but is 589",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 96317,
+    "completedDate": "2020-09-25 04:12:44.497971"
+}

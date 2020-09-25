@@ -1,0 +1,73 @@
+﻿{
+    "processed": [],
+    "skipped": [
+        {
+            "file": {
+                "name": "Recursive[CASL,CRSV,MONO,slnt,wght].ttf",
+                "type": "ttf",
+                "size": 1550368,
+                "md5": "9b9fc6f55b77c3942bafc9978a0cedd6",
+                "geometryMd5": "42a78da8fd338b4ca3452440d77d6494"
+            },
+            "error": {
+                "init": "argument of type 'STAT' is not iterable\nTraceback (most recent call last):\n  File \"/fvs/venv/lib/python3.7/site-packages/fontvalidator/fontvalidation.py\", line 525, in __init__\n    _validate(self.editor, **val_kw)\n  File \"/fvs/venv/lib/python3.7/site-packages/fontvalidator/fontvalidation.py\", line 166, in _validate\n    r = table.isValid(logger=subLogger, **kwArgs) and r\n  File \"/fvs/venv/lib/python3.7/site-packages/fontio3/fontdata/mapmeta.py\", line 3310, in M_isValid\n    r = wholeFuncPartial(self, logger=logger, **kwArgs)\n  File \"/fvs/venv/lib/python3.7/site-packages/fontio3/fvar/fvar.py\", line 84, in _validate\n    if tag not in editor.STAT:\nTypeError: argument of type 'STAT' is not iterable\n",
+                "raise": true
+            },
+            "name": {
+                "family": "Recursive Sans Linear Light",
+                "subFamily": "Regular",
+                "fullName": "Recursive Sans Linear Light",
+                "psName": "Recursive-SansLinearLight",
+                "versionText": "Version 1.047",
+                "copyright": "Copyright 2019 The Recursive Project Authors (github.com/arrowtype/recursive)",
+                "trademark": "Unknown",
+                "typographicFamily": "Recursive",
+                "typographicSubFamily": "Sans Linear Light"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 1256,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "ARRW",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Recursive Sans Linear Light",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 2,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_6059ce6814b049fca4e40365c0977847.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 610, but is 611",
+                        "timestamp": "2020-09-24T13:25:09.636013Z",
+                        "orig_output": "validate_6059ce6814b049fca4e40365c0977847.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 610, but is 611",
+                        "msg_code": "E2135"
+                    },
+                    {
+                        "subroutine": "validate_6059ce6814b049fca4e40365c0977847.STAT",
+                        "levelname": "ERROR",
+                        "message": "The following axes have no AxisValueTables associated with them: ['CRSV', 'slnt']",
+                        "timestamp": "2020-09-24T13:25:09.645225Z",
+                        "orig_output": "validate_6059ce6814b049fca4e40365c0977847.STAT - ERROR - The following axes have no AxisValueTables associated with them: ['CRSV', 'slnt']",
+                        "msg_code": "Vxxxx"
+                    }
+                ]
+            }
+        }
+    ],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 93628,
+    "completedDate": "2020-09-24 13:25:11.523457"
+}

@@ -1,0 +1,99 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Oswald[wght].ttf",
+                "type": "ttf",
+                "size": 160512,
+                "md5": "48ff42da985a3593b5c84367c93f68c1",
+                "geometryMd5": "9f7378b8d1e7696c503f1f6376ef628e"
+            },
+            "name": {
+                "family": "Oswald",
+                "subFamily": "Regular",
+                "fullName": "Oswald Regular",
+                "psName": "Oswald-Regular",
+                "versionText": "Version 4.100; ttfautohint (v1.8.1.43-b0c9)",
+                "copyright": "Copyright 2016 The Oswald Project Authors (https://github.com/googlefonts/OswaldFont)",
+                "trademark": "Unknown"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 768,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "newt",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Oswald Regular",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 6,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_5077b49e8a134ce88807d4815585c2ff.glyf.glyph 291 ('uni0123')",
+                        "levelname": "ERROR",
+                        "message": "Bounds should be [-273, -179, 447, 864], but are [20, -179, 447, 864].",
+                        "timestamp": "2020-09-24T15:22:08.599747Z",
+                        "orig_output": "validate_5077b49e8a134ce88807d4815585c2ff.glyf.glyph 291 ('uni0123') - ERROR - Bounds should be [-273, -179, 447, 864], but are [20, -179, 447, 864].",
+                        "msg_code": "E1112"
+                    },
+                    {
+                        "subroutine": "validate_5077b49e8a134ce88807d4815585c2ff.glyf.glyph 544 ('uni045A').contours.contour 1",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-24T15:22:11.278794Z",
+                        "orig_output": "validate_5077b49e8a134ce88807d4815585c2ff.glyf.glyph 544 ('uni045A').contours.contour 1 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_5077b49e8a134ce88807d4815585c2ff.head",
+                        "levelname": "ERROR",
+                        "message": "The calculated value for xMin (-273) exceeds the actual value -197",
+                        "timestamp": "2020-09-24T15:22:24.422090Z",
+                        "orig_output": "validate_5077b49e8a134ce88807d4815585c2ff.head - ERROR - The calculated value for xMin (-273) exceeds the actual value -197",
+                        "msg_code": "E1326"
+                    },
+                    {
+                        "subroutine": "validate_5077b49e8a134ce88807d4815585c2ff.hhea",
+                        "levelname": "ERROR",
+                        "message": "The minRightSidebearing value (-273) does not match the expected value (-305)",
+                        "timestamp": "2020-09-24T15:22:25.055659Z",
+                        "orig_output": "validate_5077b49e8a134ce88807d4815585c2ff.hhea - ERROR - The minRightSidebearing value (-273) does not match the expected value (-305)",
+                        "msg_code": "E1403"
+                    },
+                    {
+                        "subroutine": "validate_5077b49e8a134ce88807d4815585c2ff.hmtx",
+                        "levelname": "ERROR",
+                        "message": "The left sidebearing 20 does not match the glyph's xMin -273 (glyph 291)",
+                        "timestamp": "2020-09-24T15:22:25.057458Z",
+                        "orig_output": "validate_5077b49e8a134ce88807d4815585c2ff.hmtx - ERROR - The left sidebearing 20 does not match the glyph's xMin -273 (glyph 291)",
+                        "msg_code": "V0933"
+                    },
+                    {
+                        "subroutine": "validate_5077b49e8a134ce88807d4815585c2ff.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2020-09-24T15:22:53.718448Z",
+                        "orig_output": "validate_5077b49e8a134ce88807d4815585c2ff.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 83919,
+    "completedDate": "2020-09-24 15:23:23.701817"
+}

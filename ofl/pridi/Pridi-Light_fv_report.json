@@ -1,0 +1,69 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Pridi-Light.ttf",
+                "type": "ttf",
+                "size": 211748,
+                "md5": "247957ccac8d075bd7cca2f0dd495ead",
+                "geometryMd5": "d304855a8eb11bd5f7f852579c9968ae"
+            },
+            "name": {
+                "family": "Pridi Light",
+                "subFamily": "Regular",
+                "fullName": "Pridi Light",
+                "psName": "Pridi-Light",
+                "versionText": "Version 1.003",
+                "copyright": "Copyright (c) 2015, Cadson Demak (info@cadsondemak.com)",
+                "trademark": "Unknown",
+                "typographicFamily": "Pridi",
+                "typographicSubFamily": "Light"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 773,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "CDK ",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Pridi Light",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 2,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_4142f71a890a43a3be8075c2ee69d2e4.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 4 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-24T17:05:06.613940Z",
+                        "orig_output": "validate_4142f71a890a43a3be8075c2ee69d2e4.fontedit.OS_2.PANOSE.weight - ERROR - Value 4 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_4142f71a890a43a3be8075c2ee69d2e4.glyf.glyph 660 ('ampersand').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-24T17:05:25.382587Z",
+                        "orig_output": "validate_4142f71a890a43a3be8075c2ee69d2e4.glyf.glyph 660 ('ampersand').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 158378,
+    "completedDate": "2020-09-24 17:07:42.052394"
+}

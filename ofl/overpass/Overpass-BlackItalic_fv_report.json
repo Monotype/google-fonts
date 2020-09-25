@@ -1,0 +1,93 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Overpass-BlackItalic.ttf",
+                "type": "ttf",
+                "size": 128092,
+                "md5": "427c6e591cbf3c549cff4d73be40168f",
+                "geometryMd5": "120a0ed7e67e81c2a71d6ffe1c8c1a58"
+            },
+            "name": {
+                "family": "Overpass Black",
+                "subFamily": "Italic",
+                "fullName": "Overpass Black Italic",
+                "psName": "Overpass-BlackItalic",
+                "versionText": "Version 3.000;DELV;Overpass; ttfautohint (v1.5)",
+                "copyright": "Copyright (c) 2016 by Red Hat, Inc. All rights reserved.",
+                "trademark": "Overpass is a trademark of Red Hat, Inc.",
+                "typographicFamily": "Overpass",
+                "typographicSubFamily": "Black Italic"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 471,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "DELV",
+                "font_vendor": "Delve Fonts"
+            },
+            "validation": {
+                "font_full_name": "Overpass Black Italic",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 5,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_153766770722428e86d5d214718dcc39.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 10 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-25T04:23:48.691550Z",
+                        "orig_output": "validate_153766770722428e86d5d214718dcc39.fontedit.OS_2.PANOSE.weight - ERROR - Value 10 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_153766770722428e86d5d214718dcc39.glyf.glyph 400 ('arrowdown').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-25T04:23:56.494939Z",
+                        "orig_output": "validate_153766770722428e86d5d214718dcc39.glyf.glyph 400 ('arrowdown').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_153766770722428e86d5d214718dcc39.glyf.glyph 427 ('partialdiff').contours.contour 1",
+                        "levelname": "ERROR",
+                        "message": "Contour is degenerate (only two (x,y) locations).",
+                        "timestamp": "2020-09-25T04:23:57.255703Z",
+                        "orig_output": "validate_153766770722428e86d5d214718dcc39.glyf.glyph 427 ('partialdiff').contours.contour 1 - ERROR - Contour is degenerate (only two (x,y) locations).",
+                        "msg_code": "V1013"
+                    },
+                    {
+                        "subroutine": "validate_153766770722428e86d5d214718dcc39.OS_2.unicodeRanges",
+                        "levelname": "ERROR",
+                        "message": "Font has non-BMP characters but surrogates bit not set.",
+                        "timestamp": "2020-09-25T04:23:50.251582Z",
+                        "orig_output": "validate_153766770722428e86d5d214718dcc39.OS_2.unicodeRanges - ERROR - Font has non-BMP characters but surrogates bit not set.",
+                        "msg_code": "E2122"
+                    },
+                    {
+                        "subroutine": "validate_153766770722428e86d5d214718dcc39.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 558, but is 570",
+                        "timestamp": "2020-09-25T04:23:50.545163Z",
+                        "orig_output": "validate_153766770722428e86d5d214718dcc39.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 558, but is 570",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 112453,
+    "completedDate": "2020-09-25 04:25:38.313729"
+}

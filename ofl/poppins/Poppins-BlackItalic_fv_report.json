@@ -1,0 +1,85 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Poppins-BlackItalic.ttf",
+                "type": "ttf",
+                "size": 174116,
+                "md5": "2be557bf862cf2a886280ee9a64de3e0",
+                "geometryMd5": "5d188b6511926d9d7d2870bcbc849a21"
+            },
+            "name": {
+                "family": "Poppins Black",
+                "subFamily": "Italic",
+                "fullName": "Poppins Black Italic",
+                "psName": "Poppins-BlackItalic",
+                "versionText": "4.004",
+                "copyright": "Copyright 2020 The Poppins Project Authors (https://github.com/itfoundry/Poppins)",
+                "trademark": "Unknown",
+                "typographicFamily": "Poppins",
+                "typographicSubFamily": "Black Italic"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 1060,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "ITFO",
+                "font_vendor": "Indian Type Foundry"
+            },
+            "validation": {
+                "font_full_name": "Poppins Black Italic",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 4,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_2a26ba039a3946f18164ac96a94aee3f.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 10 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-24T07:39:07.195125Z",
+                        "orig_output": "validate_2a26ba039a3946f18164ac96a94aee3f.fontedit.OS_2.PANOSE.weight - ERROR - Value 10 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_2a26ba039a3946f18164ac96a94aee3f.glyf.glyph 174 ('dvY_RA').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-24T07:39:14.272814Z",
+                        "orig_output": "validate_2a26ba039a3946f18164ac96a94aee3f.glyf.glyph 174 ('dvY_RA').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_2a26ba039a3946f18164ac96a94aee3f.glyf.glyph 178 ('dvSS_RA').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-24T07:39:14.368839Z",
+                        "orig_output": "validate_2a26ba039a3946f18164ac96a94aee3f.glyf.glyph 178 ('dvSS_RA').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_2a26ba039a3946f18164ac96a94aee3f.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2020-09-24T07:39:53.753488Z",
+                        "orig_output": "validate_2a26ba039a3946f18164ac96a94aee3f.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 50140,
+    "completedDate": "2020-09-24 07:39:54.830516"
+}

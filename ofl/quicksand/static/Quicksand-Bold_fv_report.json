@@ -1,0 +1,91 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Quicksand-Bold.ttf",
+                "type": "ttf",
+                "size": 108752,
+                "md5": "abae4f617e3ba9b9ad15e497a20c2d2b",
+                "geometryMd5": "79b904d4890ca0f40ebb3770f9379536"
+            },
+            "name": {
+                "family": "Quicksand",
+                "subFamily": "Bold",
+                "fullName": "Quicksand Bold",
+                "psName": "Quicksand-Bold",
+                "versionText": "Version 3.000",
+                "copyright": "Copyright 2011 The Quicksand Project Authors (https://github.com/andrew-paglinawan/QuicksandFamily), with Reserved Font Name \u201cQuicksand\u201d.",
+                "trademark": "Unknown"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 812,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "PfEd",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Quicksand Bold",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 5,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_a26e9453882047819cb90e17021b4953.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 8 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-25T04:04:51.297892Z",
+                        "orig_output": "validate_a26e9453882047819cb90e17021b4953.fontedit.OS_2.PANOSE.weight - ERROR - Value 8 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_a26e9453882047819cb90e17021b4953.glyf.glyph 704 ('ampersand').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-25T04:05:01.839491Z",
+                        "orig_output": "validate_a26e9453882047819cb90e17021b4953.glyf.glyph 704 ('ampersand').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_a26e9453882047819cb90e17021b4953.maxp",
+                        "levelname": "ERROR",
+                        "message": "The maxComponentPoints should be 149, but is 131.",
+                        "timestamp": "2020-09-25T04:05:45.337082Z",
+                        "orig_output": "validate_a26e9453882047819cb90e17021b4953.maxp - ERROR - The maxComponentPoints should be 149, but is 131.",
+                        "msg_code": "V0238"
+                    },
+                    {
+                        "subroutine": "validate_a26e9453882047819cb90e17021b4953.maxp",
+                        "levelname": "ERROR",
+                        "message": "The maxComponentContours should be 6, but is 5.",
+                        "timestamp": "2020-09-25T04:05:45.337189Z",
+                        "orig_output": "validate_a26e9453882047819cb90e17021b4953.maxp - ERROR - The maxComponentContours should be 6, but is 5.",
+                        "msg_code": "V0239"
+                    },
+                    {
+                        "subroutine": "validate_a26e9453882047819cb90e17021b4953.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 567, but is 566",
+                        "timestamp": "2020-09-25T04:04:52.700006Z",
+                        "orig_output": "validate_a26e9453882047819cb90e17021b4953.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 567, but is 566",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 98764,
+    "completedDate": "2020-09-25 04:06:27.181031"
+}

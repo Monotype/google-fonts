@@ -1,0 +1,99 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "OverpassMono-Bold.ttf",
+                "type": "ttf",
+                "size": 196312,
+                "md5": "b61042d5a897722712518e11ff2cf25d",
+                "geometryMd5": "50fe762320d5d780b7826dac2f58f363"
+            },
+            "name": {
+                "family": "Overpass Mono",
+                "subFamily": "Bold",
+                "fullName": "Overpass Mono Bold",
+                "psName": "OverpassMono-Bold",
+                "versionText": "Version 1.000;DELV;Overpass; ttfautohint (v1.5)",
+                "copyright": "Copyright (c) 2016 by Red Hat, Inc. All rights reserved.",
+                "trademark": "Overpass is a trademark of Red Hat, Inc."
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 989,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "DELV",
+                "font_vendor": "Delve Fonts"
+            },
+            "validation": {
+                "font_full_name": "Overpass Mono Bold",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 6,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_ba65c4c0a4904fc1b5a56ed205cb01de.fontedit.OS_2.PANOSE.proportion",
+                        "levelname": "ERROR",
+                        "message": "Value 9 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-25T00:31:32.521617Z",
+                        "orig_output": "validate_ba65c4c0a4904fc1b5a56ed205cb01de.fontedit.OS_2.PANOSE.proportion - ERROR - Value 9 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2108"
+                    },
+                    {
+                        "subroutine": "validate_ba65c4c0a4904fc1b5a56ed205cb01de.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 8 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-25T00:31:32.521808Z",
+                        "orig_output": "validate_ba65c4c0a4904fc1b5a56ed205cb01de.fontedit.OS_2.PANOSE.weight - ERROR - Value 8 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_ba65c4c0a4904fc1b5a56ed205cb01de.GDEF.glyphClasses",
+                        "levelname": "ERROR",
+                        "message": "The following mark glyphs have nonzero advances: [106, 113, 118, 122, 349, 350]",
+                        "timestamp": "2020-09-25T00:31:32.593490Z",
+                        "orig_output": "validate_ba65c4c0a4904fc1b5a56ed205cb01de.GDEF.glyphClasses - ERROR - The following mark glyphs have nonzero advances: [106, 113, 118, 122, 349, 350]",
+                        "msg_code": "V1102"
+                    },
+                    {
+                        "subroutine": "validate_ba65c4c0a4904fc1b5a56ed205cb01de.OS_2.unicodeRanges",
+                        "levelname": "ERROR",
+                        "message": "Font has non-BMP characters but surrogates bit not set.",
+                        "timestamp": "2020-09-25T00:31:33.676814Z",
+                        "orig_output": "validate_ba65c4c0a4904fc1b5a56ed205cb01de.OS_2.unicodeRanges - ERROR - Font has non-BMP characters but surrogates bit not set.",
+                        "msg_code": "E2122"
+                    },
+                    {
+                        "subroutine": "validate_ba65c4c0a4904fc1b5a56ed205cb01de.OS_2.usMaxContext",
+                        "levelname": "ERROR",
+                        "message": "The usMaxContext should be 3, but is 4",
+                        "timestamp": "2020-09-25T00:31:33.994842Z",
+                        "orig_output": "validate_ba65c4c0a4904fc1b5a56ed205cb01de.OS_2.usMaxContext - ERROR - The usMaxContext should be 3, but is 4",
+                        "msg_code": "V0831"
+                    },
+                    {
+                        "subroutine": "validate_ba65c4c0a4904fc1b5a56ed205cb01de.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 625, but is 626",
+                        "timestamp": "2020-09-25T00:31:33.995260Z",
+                        "orig_output": "validate_ba65c4c0a4904fc1b5a56ed205cb01de.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 625, but is 626",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 194359,
+    "completedDate": "2020-09-25 00:34:44.483343"
+}

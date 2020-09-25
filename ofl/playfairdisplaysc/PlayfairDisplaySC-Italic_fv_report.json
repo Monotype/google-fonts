@@ -1,0 +1,75 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "PlayfairDisplaySC-Italic.ttf",
+                "type": "ttf",
+                "size": 202092,
+                "md5": "7358a2d2d45b8ecb812c7440ab3aba47",
+                "geometryMd5": "32cc2158b8646ab3fe22be32f4c661cd"
+            },
+            "name": {
+                "family": "Playfair Display SC",
+                "subFamily": "Italic",
+                "fullName": "Playfair Display SC Italic",
+                "psName": "PlayfairDisplaySC-Italic",
+                "versionText": "Version 1.200; ttfautohint (v1.6)",
+                "copyright": "Copyright 2017 The Playfair Display Project Authors (https://github.com/clauseggers/Playfair-Display), with Reserved Font Name \"Playfair Display\".",
+                "trademark": "Playfair is a trademark of Claus Eggers S\u00f8rensen."
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 1074,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "FTH ",
+                "font_vendor": "For the Hearts"
+            },
+            "validation": {
+                "font_full_name": "Playfair Display SC Italic",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 3,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_7a65a334bcd6438c80e09cfc530e9980.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 5 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-25T02:23:54.055919Z",
+                        "orig_output": "validate_7a65a334bcd6438c80e09cfc530e9980.fontedit.OS_2.PANOSE.weight - ERROR - Value 5 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_7a65a334bcd6438c80e09cfc530e9980.glyf.glyph 702 ('uni0431.srb').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-25T02:24:06.366312Z",
+                        "orig_output": "validate_7a65a334bcd6438c80e09cfc530e9980.glyf.glyph 702 ('uni0431.srb').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_7a65a334bcd6438c80e09cfc530e9980.glyf.glyph 753 ('uni046B.smcp').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-25T02:24:07.099616Z",
+                        "orig_output": "validate_7a65a334bcd6438c80e09cfc530e9980.glyf.glyph 753 ('uni046B.smcp').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 162706,
+    "completedDate": "2020-09-25 02:26:33.874411"
+}

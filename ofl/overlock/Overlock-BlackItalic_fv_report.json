@@ -1,0 +1,77 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Overlock-BlackItalic.ttf",
+                "type": "ttf",
+                "size": 44020,
+                "md5": "b1b8ba60311f269932e4218424842830",
+                "geometryMd5": "17adaf7ca06390608a7e485b49924395"
+            },
+            "name": {
+                "family": "Overlock Black",
+                "subFamily": "Italic",
+                "fullName": "Overlock Black Italic",
+                "psName": "Overlock-BlackItalic",
+                "versionText": "Version 1.002",
+                "copyright": "Copyright (c) 2011, Dario Manuel Muhafara (http://www.tipo.net.ar), with Reserved Font Name \"Overlock\".",
+                "trademark": "Overlock is a trademark of Dario Manuel Muhafara.",
+                "typographicFamily": "Overlock",
+                "typographicSubFamily": "Black Italic"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 283,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "pyrs",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Overlock Black Italic",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 3,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_f2403ffe257f48308126de59da33174c.head",
+                        "levelname": "ERROR",
+                        "message": "The macStyle italic bit is True but post.italicAngle is   0.0",
+                        "timestamp": "2020-09-25T00:40:11.691078Z",
+                        "orig_output": "validate_f2403ffe257f48308126de59da33174c.head - ERROR - The macStyle italic bit is True but post.italicAngle is   0.0",
+                        "msg_code": "E1316"
+                    },
+                    {
+                        "subroutine": "validate_f2403ffe257f48308126de59da33174c.OS_2.unicodeRanges",
+                        "levelname": "ERROR",
+                        "message": "Unicode range 'hasSuperscriptsAndSubscripts' claimed to be present but is not.",
+                        "timestamp": "2020-09-25T00:40:05.943449Z",
+                        "orig_output": "validate_f2403ffe257f48308126de59da33174c.OS_2.unicodeRanges - ERROR - Unicode range 'hasSuperscriptsAndSubscripts' claimed to be present but is not.",
+                        "msg_code": "E2113"
+                    },
+                    {
+                        "subroutine": "validate_f2403ffe257f48308126de59da33174c.post",
+                        "levelname": "ERROR",
+                        "message": "Zero italic angle but head.macStyle.italic is True.",
+                        "timestamp": "2020-09-25T00:40:12.493325Z",
+                        "orig_output": "validate_f2403ffe257f48308126de59da33174c.post - ERROR - Zero italic angle but head.macStyle.italic is True.",
+                        "msg_code": "E2310"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 10197,
+    "completedDate": "2020-09-25 00:40:12.890153"
+}

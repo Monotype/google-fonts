@@ -1,0 +1,91 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Philosopher-BoldItalic.ttf",
+                "type": "ttf",
+                "size": 112024,
+                "md5": "0cca90fab9791bc05ab4184043c0ff87",
+                "geometryMd5": "99ad9e46b7e7b02beac3cb50fe5b3a63"
+            },
+            "name": {
+                "family": "Philosopher",
+                "subFamily": "Bold Italic",
+                "fullName": "Philosopher Bold Italic",
+                "psName": "Philosopher-BoldItalic",
+                "versionText": "Version 2.000",
+                "copyright": "Copyright 2011 The Philosopher Project Authors (lemonad@jovanny.ru)",
+                "trademark": "Philosopher Italic is a trademark of Jovanny Lemonad."
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 553,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "PfEd",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Philosopher Bold Italic",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 5,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_324b9db0680c45898c28a1497356b871.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 8 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-24T19:06:07.876555Z",
+                        "orig_output": "validate_324b9db0680c45898c28a1497356b871.fontedit.OS_2.PANOSE.weight - ERROR - Value 8 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_324b9db0680c45898c28a1497356b871.GDEF.glyphClasses",
+                        "levelname": "ERROR",
+                        "message": "The following mark glyphs have nonzero advances: [541, 543]",
+                        "timestamp": "2020-09-24T19:06:07.938394Z",
+                        "orig_output": "validate_324b9db0680c45898c28a1497356b871.GDEF.glyphClasses - ERROR - The following mark glyphs have nonzero advances: [541, 543]",
+                        "msg_code": "V1102"
+                    },
+                    {
+                        "subroutine": "validate_324b9db0680c45898c28a1497356b871.glyf.glyph 496 ('ampersand').contours.contour 2",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-24T19:06:15.752305Z",
+                        "orig_output": "validate_324b9db0680c45898c28a1497356b871.glyf.glyph 496 ('ampersand').contours.contour 2 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_324b9db0680c45898c28a1497356b871.glyf.glyph 498 ('section').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-24T19:06:15.774853Z",
+                        "orig_output": "validate_324b9db0680c45898c28a1497356b871.glyf.glyph 498 ('section').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_324b9db0680c45898c28a1497356b871.hhea",
+                        "levelname": "ERROR",
+                        "message": "The minLeftSidebearing value (-482) does not match the expected value (-432)",
+                        "timestamp": "2020-09-24T19:06:18.162933Z",
+                        "orig_output": "validate_324b9db0680c45898c28a1497356b871.hhea - ERROR - The minLeftSidebearing value (-482) does not match the expected value (-432)",
+                        "msg_code": "E1402"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 131056,
+    "completedDate": "2020-09-24 19:08:16.011031"
+}

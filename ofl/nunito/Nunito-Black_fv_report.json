@@ -1,0 +1,77 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Nunito-Black.ttf",
+                "type": "ttf",
+                "size": 176816,
+                "md5": "4ec54b5d8412604e165e0dd3da2ee142",
+                "geometryMd5": "3b12c3cc86d6ba9339d0d039729f5e16"
+            },
+            "name": {
+                "family": "Nunito Black",
+                "subFamily": "Regular",
+                "fullName": "Nunito Black",
+                "psName": "Nunito-Black",
+                "versionText": "Version 3.504",
+                "copyright": "Copyright 2014 The Nunito Project Authors (https://github.com/googlefonts/NunitoFont)",
+                "trademark": "Nunito is a trademark of Vernon Adams and may be registered in certain jurisdictions.",
+                "typographicFamily": "Nunito",
+                "typographicSubFamily": "Black"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 1041,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "NeWT",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Nunito Black",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 3,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_cf597c97ae964f4186460487ff4d0422.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 10 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-25T09:34:28.789512Z",
+                        "orig_output": "validate_cf597c97ae964f4186460487ff4d0422.fontedit.OS_2.PANOSE.weight - ERROR - Value 10 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_cf597c97ae964f4186460487ff4d0422.glyf.glyph 512 ('ordfeminine').contours.contour 2",
+                        "levelname": "ERROR",
+                        "message": "Contour is degenerate (only two (x,y) locations).",
+                        "timestamp": "2020-09-25T09:34:38.062494Z",
+                        "orig_output": "validate_cf597c97ae964f4186460487ff4d0422.glyf.glyph 512 ('ordfeminine').contours.contour 2 - ERROR - Contour is degenerate (only two (x,y) locations).",
+                        "msg_code": "V1013"
+                    },
+                    {
+                        "subroutine": "validate_cf597c97ae964f4186460487ff4d0422.glyf.glyph 885 ('colonmonetary').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-25T09:34:42.834366Z",
+                        "orig_output": "validate_cf597c97ae964f4186460487ff4d0422.glyf.glyph 885 ('colonmonetary').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 298345,
+    "completedDate": "2020-09-25 09:39:23.227209"
+}

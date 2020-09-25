@@ -1,0 +1,77 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Padauk-Bold.ttf",
+                "type": "ttf",
+                "size": 428836,
+                "md5": "6ddd47c2fd77400e572d9d8d19b1e09b",
+                "geometryMd5": "af5969f67259ae82520855253b2542e4"
+            },
+            "name": {
+                "family": "Padauk",
+                "subFamily": "Bold",
+                "fullName": "Padauk Bold",
+                "psName": "Padauk-Bold",
+                "versionText": "Version 3.002",
+                "copyright": "Copyright 2016 SIL International, all rights reserved",
+                "trademark": "Unknown",
+                "typographicFamily": "Padauk",
+                "typographicSubFamily": "Bold"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 512,
+                "embedding": "Editable Embedding",
+                "font_vendor_id": "SIL ",
+                "font_vendor": "SIL International (SIL)"
+            },
+            "validation": {
+                "font_full_name": "Padauk Bold",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 3,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_ca8963686bb84cdd84f0aa398a69af2c.fontedit.GDEF.GDEF.ligcaret",
+                        "levelname": "ERROR",
+                        "message": "Offset count is zero but bytes remain.",
+                        "timestamp": "2020-09-24T12:34:14.790219Z",
+                        "orig_output": "validate_ca8963686bb84cdd84f0aa398a69af2c.fontedit.GDEF.GDEF.ligcaret - ERROR - Offset count is zero but bytes remain.",
+                        "msg_code": "V0106"
+                    },
+                    {
+                        "subroutine": "validate_ca8963686bb84cdd84f0aa398a69af2c.GDEF.glyphClasses",
+                        "levelname": "ERROR",
+                        "message": "The following mark glyphs have nonzero advances: [111, 112, 113, 114, 115, 116, 117, 118, 180, 181, 182, 183, 211, 212, 214, 217, 220, 223, 228, 230, 231, 232, 237, 238, 239, 240, 241, 242, 243, 244, 245, 246, 247, 248, 286, 287, 316, 318, 333, 334, 339, 346, 362, 384, 385, 430, 442, 455, 472, 473, 474, 486, 487, 488, 489, 500, 501, 504, 505, 506, 508, 509, 510, 511]",
+                        "timestamp": "2020-09-24T12:34:15.130495Z",
+                        "orig_output": "validate_ca8963686bb84cdd84f0aa398a69af2c.GDEF.glyphClasses - ERROR - The following mark glyphs have nonzero advances: [111, 112, 113, 114, 115, 116, 117, 118, 180, 181, 182, 183, 211, 212, 214, 217, 220, 223, 228, 230, 231, 232, 237, 238, 239, 240, 241, 242, 243, 244, 245, 246, 247, 248, 286, 287, 316, 318, 333, 334, 339, 346, 362, 384, 385, 430, 442, 455, 472, 473, 474, 486, 487, 488, 489, 500, 501, 504, 505, 506, 508, 509, 510, 511]",
+                        "msg_code": "V1102"
+                    },
+                    {
+                        "subroutine": "validate_ca8963686bb84cdd84f0aa398a69af2c.hints.call FDEF 8.call FDEF 7",
+                        "levelname": "ERROR",
+                        "message": "RCVT[] in FDEF 7 (PC 2) is attempting to read from CVT index 35, which does not exist!",
+                        "timestamp": "2020-09-24T12:34:27.793504Z",
+                        "orig_output": "validate_ca8963686bb84cdd84f0aa398a69af2c.hints.call FDEF 8.call FDEF 7 - ERROR - RCVT[] in FDEF 7 (PC 2) is attempting to read from CVT index 35, which does not exist!",
+                        "msg_code": "G0029"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 15488,
+    "completedDate": "2020-09-24 12:34:27.887981"
+}

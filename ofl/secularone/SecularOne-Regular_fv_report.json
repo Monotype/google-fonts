@@ -1,0 +1,75 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "SecularOne-Regular.ttf",
+                "type": "ttf",
+                "size": 59852,
+                "md5": "43ee19284dbc207d45c7debf795e46fc",
+                "geometryMd5": "b64eb552132d82aad0b559e112ae61fb"
+            },
+            "name": {
+                "family": "Secular One",
+                "subFamily": "Regular",
+                "fullName": "Secular One Regular",
+                "psName": "SecularOne-Regular",
+                "versionText": "Version 1.001",
+                "copyright": "Copyright 2016 Michal Sahar. All rights reserved.",
+                "trademark": "Secular is a tradmark of Michal Sahar"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 458,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "MCHL",
+                "font_vendor": "Michal Sahar"
+            },
+            "validation": {
+                "font_full_name": "Secular One Regular",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 3,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_0c5594d1e0e942cc8064c37a6705c7c0.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 5 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-25T06:38:01.535635Z",
+                        "orig_output": "validate_0c5594d1e0e942cc8064c37a6705c7c0.fontedit.OS_2.PANOSE.weight - ERROR - Value 5 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_0c5594d1e0e942cc8064c37a6705c7c0.gasp.up to 19 ppem",
+                        "levelname": "ERROR",
+                        "message": "v0 Smoothing flag (GASP_DOGRAY) set without corresponding v1 Symmetric Smoothing flag (GASP_SYMMETRIC_SMOOTHING).",
+                        "timestamp": "2020-09-25T06:38:02.919580Z",
+                        "orig_output": "validate_0c5594d1e0e942cc8064c37a6705c7c0.gasp.up to 19 ppem - ERROR - v0 Smoothing flag (GASP_DOGRAY) set without corresponding v1 Symmetric Smoothing flag (GASP_SYMMETRIC_SMOOTHING).",
+                        "msg_code": "V0992"
+                    },
+                    {
+                        "subroutine": "validate_0c5594d1e0e942cc8064c37a6705c7c0.glyf.glyph 398 ('ampersand').contours.contour 2",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-25T06:38:07.080025Z",
+                        "orig_output": "validate_0c5594d1e0e942cc8064c37a6705c7c0.glyf.glyph 398 ('ampersand').contours.contour 2 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 13656,
+    "completedDate": "2020-09-25 06:38:11.329140"
+}

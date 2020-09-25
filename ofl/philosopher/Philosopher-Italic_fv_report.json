@@ -1,0 +1,75 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Philosopher-Italic.ttf",
+                "type": "ttf",
+                "size": 112484,
+                "md5": "be9a7cfc989d42cb3ad6e73b8b4e9752",
+                "geometryMd5": "c11d1d1077e8189feee9888db664aef8"
+            },
+            "name": {
+                "family": "Philosopher",
+                "subFamily": "Italic",
+                "fullName": "Philosopher Italic",
+                "psName": "Philosopher-Italic",
+                "versionText": "Version 2.000",
+                "copyright": "Copyright 2011 The Philosopher Project Authors (lemonad@jovanny.ru)",
+                "trademark": "Philosopher Italic is a trademark of Jovanny Lemonad."
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 553,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "PfEd",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Philosopher Italic",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 3,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_06f82cf2d0f948c68c857d37f3ef8bff.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 5 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-24T18:47:50.315280Z",
+                        "orig_output": "validate_06f82cf2d0f948c68c857d37f3ef8bff.fontedit.OS_2.PANOSE.weight - ERROR - Value 5 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_06f82cf2d0f948c68c857d37f3ef8bff.GDEF.glyphClasses",
+                        "levelname": "ERROR",
+                        "message": "The following mark glyphs have nonzero advances: [541, 543]",
+                        "timestamp": "2020-09-24T18:47:50.373495Z",
+                        "orig_output": "validate_06f82cf2d0f948c68c857d37f3ef8bff.GDEF.glyphClasses - ERROR - The following mark glyphs have nonzero advances: [541, 543]",
+                        "msg_code": "V1102"
+                    },
+                    {
+                        "subroutine": "validate_06f82cf2d0f948c68c857d37f3ef8bff.hhea",
+                        "levelname": "ERROR",
+                        "message": "The minLeftSidebearing value (-469) does not match the expected value (-419)",
+                        "timestamp": "2020-09-24T18:47:59.426583Z",
+                        "orig_output": "validate_06f82cf2d0f948c68c857d37f3ef8bff.hhea - ERROR - The minLeftSidebearing value (-469) does not match the expected value (-419)",
+                        "msg_code": "E1402"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 131636,
+    "completedDate": "2020-09-24 18:49:57.821348"
+}

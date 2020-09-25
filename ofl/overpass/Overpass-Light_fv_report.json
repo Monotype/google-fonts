@@ -1,0 +1,93 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Overpass-Light.ttf",
+                "type": "ttf",
+                "size": 120452,
+                "md5": "d9227c3241501fd1c00d15dd4404818b",
+                "geometryMd5": "f3d676be6aadce0e715b8043c3338eb7"
+            },
+            "name": {
+                "family": "Overpass Light",
+                "subFamily": "Regular",
+                "fullName": "Overpass Light",
+                "psName": "Overpass-Light",
+                "versionText": "Version 3.000;DELV;Overpass; ttfautohint (v1.5)",
+                "copyright": "Copyright \u00a9 2016 by Red Hat, Inc. All rights reserved.",
+                "trademark": "Overpass is a trademark of Red Hat, Inc.",
+                "typographicFamily": "Overpass",
+                "typographicSubFamily": "Light"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 471,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "DELV",
+                "font_vendor": "Delve Fonts"
+            },
+            "validation": {
+                "font_full_name": "Overpass Light",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 5,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_08cc1376ad904e79b50aa872bbe15dd7.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 4 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-25T05:47:40.271318Z",
+                        "orig_output": "validate_08cc1376ad904e79b50aa872bbe15dd7.fontedit.OS_2.PANOSE.weight - ERROR - Value 4 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_08cc1376ad904e79b50aa872bbe15dd7.glyf.glyph 119 ('uni00B5').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate non-adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-25T05:47:42.623510Z",
+                        "orig_output": "validate_08cc1376ad904e79b50aa872bbe15dd7.glyf.glyph 119 ('uni00B5').contours.contour 0 - ERROR - Contour has duplicate non-adjacent points of differing on-curve states.",
+                        "msg_code": "V0297"
+                    },
+                    {
+                        "subroutine": "validate_08cc1376ad904e79b50aa872bbe15dd7.glyf.glyph 352 ('uni03BC').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate non-adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-25T05:47:46.044560Z",
+                        "orig_output": "validate_08cc1376ad904e79b50aa872bbe15dd7.glyf.glyph 352 ('uni03BC').contours.contour 0 - ERROR - Contour has duplicate non-adjacent points of differing on-curve states.",
+                        "msg_code": "V0297"
+                    },
+                    {
+                        "subroutine": "validate_08cc1376ad904e79b50aa872bbe15dd7.OS_2.unicodeRanges",
+                        "levelname": "ERROR",
+                        "message": "Font has non-BMP characters but surrogates bit not set.",
+                        "timestamp": "2020-09-25T05:47:41.127911Z",
+                        "orig_output": "validate_08cc1376ad904e79b50aa872bbe15dd7.OS_2.unicodeRanges - ERROR - Font has non-BMP characters but surrogates bit not set.",
+                        "msg_code": "E2122"
+                    },
+                    {
+                        "subroutine": "validate_08cc1376ad904e79b50aa872bbe15dd7.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 548, but is 559",
+                        "timestamp": "2020-09-25T05:47:41.320558Z",
+                        "orig_output": "validate_08cc1376ad904e79b50aa872bbe15dd7.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 548, but is 559",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 60544,
+    "completedDate": "2020-09-25 05:48:38.645194"
+}

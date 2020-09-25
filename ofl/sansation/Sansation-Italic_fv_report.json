@@ -1,0 +1,83 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Sansation-Italic.ttf",
+                "type": "ttf",
+                "size": 46380,
+                "md5": "816fd44e8b465216b1a3b33fb5700f39",
+                "geometryMd5": "9283a70de8109dfecc7f8b8f9f84ae1d"
+            },
+            "name": {
+                "family": "Sansation",
+                "subFamily": "Italic",
+                "fullName": "Sansation Italic",
+                "psName": "Sansation-Italic",
+                "versionText": "Version 1.301",
+                "copyright": "Copyright (c) 2011 by Bernd Montag, with Reserved Font Name 'Sansation'",
+                "trademark": "Unknown"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 526,
+                "embedding": "Editable Embedding",
+                "font_vendor_id": "HL  ",
+                "font_vendor": "High-Logic"
+            },
+            "validation": {
+                "font_full_name": "Sansation Italic",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 4,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_ac578e1cec54497fafb1e38d8394b50b.head",
+                        "levelname": "ERROR",
+                        "message": "The macStyle italic bit is True but post.italicAngle is   0.0",
+                        "timestamp": "2020-09-24T08:52:09.834734Z",
+                        "orig_output": "validate_ac578e1cec54497fafb1e38d8394b50b.head - ERROR - The macStyle italic bit is True but post.italicAngle is   0.0",
+                        "msg_code": "E1316"
+                    },
+                    {
+                        "subroutine": "validate_ac578e1cec54497fafb1e38d8394b50b.maxp",
+                        "levelname": "ERROR",
+                        "message": "The maxZones value should be 1, but is 0.",
+                        "timestamp": "2020-09-24T08:52:11.238074Z",
+                        "orig_output": "validate_ac578e1cec54497fafb1e38d8394b50b.maxp - ERROR - The maxZones value should be 1, but is 0.",
+                        "msg_code": "V0272"
+                    },
+                    {
+                        "subroutine": "validate_ac578e1cec54497fafb1e38d8394b50b.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 923, but is 904",
+                        "timestamp": "2020-09-24T08:52:04.609900Z",
+                        "orig_output": "validate_ac578e1cec54497fafb1e38d8394b50b.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 923, but is 904",
+                        "msg_code": "E2135"
+                    },
+                    {
+                        "subroutine": "validate_ac578e1cec54497fafb1e38d8394b50b.post",
+                        "levelname": "ERROR",
+                        "message": "Zero italic angle but head.macStyle.italic is True.",
+                        "timestamp": "2020-09-24T08:52:11.250872Z",
+                        "orig_output": "validate_ac578e1cec54497fafb1e38d8394b50b.post - ERROR - Zero italic angle but head.macStyle.italic is True.",
+                        "msg_code": "E2310"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 9020,
+    "completedDate": "2020-09-24 08:52:11.646474"
+}

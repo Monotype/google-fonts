@@ -1,0 +1,75 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Srisakdi-Regular.ttf",
+                "type": "ttf",
+                "size": 102340,
+                "md5": "ba1d593f3d55e36f1c236fbf79abf259",
+                "geometryMd5": "ec1bd8c3cbb5cefff0152b6950124090"
+            },
+            "name": {
+                "family": "Srisakdi",
+                "subFamily": "Regular",
+                "fullName": "Srisakdi Regular",
+                "psName": "Srisakdi-Regular",
+                "versionText": "Version 1.000; ttfautohint (v1.6)",
+                "copyright": "Copyright 2018 The Srisakdi Project Authors (https://github.com/cadsondemak/Srisakdi)",
+                "trademark": "Unknown"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 775,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "CDK ",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Srisakdi Regular",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 3,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_46a4db60844247b19e259ee6f527c8bf.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 5 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-24T18:56:15.382709Z",
+                        "orig_output": "validate_46a4db60844247b19e259ee6f527c8bf.fontedit.OS_2.PANOSE.weight - ERROR - Value 5 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_46a4db60844247b19e259ee6f527c8bf.maxp",
+                        "levelname": "ERROR",
+                        "message": "The maxZones value should be 1, but is 0.",
+                        "timestamp": "2020-09-24T18:56:36.138294Z",
+                        "orig_output": "validate_46a4db60844247b19e259ee6f527c8bf.maxp - ERROR - The maxZones value should be 1, but is 0.",
+                        "msg_code": "V0272"
+                    },
+                    {
+                        "subroutine": "validate_46a4db60844247b19e259ee6f527c8bf.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 535, but is 534",
+                        "timestamp": "2020-09-24T18:56:17.410785Z",
+                        "orig_output": "validate_46a4db60844247b19e259ee6f527c8bf.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 535, but is 534",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 24190,
+    "completedDate": "2020-09-24 18:56:37.038936"
+}

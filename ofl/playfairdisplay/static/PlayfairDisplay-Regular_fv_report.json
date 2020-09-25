@@ -1,0 +1,83 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "PlayfairDisplay-Regular.ttf",
+                "type": "ttf",
+                "size": 210208,
+                "md5": "2ec4a3528bb6b0bd79edf9a1dc601fc7",
+                "geometryMd5": "f502d9861528b0617a4298bccd75bc6c"
+            },
+            "name": {
+                "family": "Playfair Display",
+                "subFamily": "Regular",
+                "fullName": "Playfair Display Regular",
+                "psName": "PlayfairDisplay-Regular",
+                "versionText": "Version 1.200; ttfautohint (v1.6)",
+                "copyright": "Copyright 2017 The Playfair Display Project Authors (https://github.com/clauseggers/Playfair-Display), with Reserved Font Name \"Playfair Display\".",
+                "trademark": "Playfair is a trademark of Claus Eggers S\u00f8rensen."
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 1102,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "FTH ",
+                "font_vendor": "For the Hearts"
+            },
+            "validation": {
+                "font_full_name": "Playfair Display Regular",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 4,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_d1c466e190524e63ac9d13bd5d1714f1.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 5 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-24T20:54:07.848222Z",
+                        "orig_output": "validate_d1c466e190524e63ac9d13bd5d1714f1.fontedit.OS_2.PANOSE.weight - ERROR - Value 5 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_d1c466e190524e63ac9d13bd5d1714f1.glyf.glyph 226 ('dcaron')",
+                        "levelname": "ERROR",
+                        "message": "Bounds should be [47, -14, 624, 784], but are [48, -14, 624, 784].",
+                        "timestamp": "2020-09-24T20:54:13.403823Z",
+                        "orig_output": "validate_d1c466e190524e63ac9d13bd5d1714f1.glyf.glyph 226 ('dcaron') - ERROR - Bounds should be [47, -14, 624, 784], but are [48, -14, 624, 784].",
+                        "msg_code": "E1112"
+                    },
+                    {
+                        "subroutine": "validate_d1c466e190524e63ac9d13bd5d1714f1.glyf.glyph 227 ('dcroat')",
+                        "levelname": "ERROR",
+                        "message": "Bounds should be [47, -14, 572, 784], but are [48, -14, 572, 784].",
+                        "timestamp": "2020-09-24T20:54:13.418654Z",
+                        "orig_output": "validate_d1c466e190524e63ac9d13bd5d1714f1.glyf.glyph 227 ('dcroat') - ERROR - Bounds should be [47, -14, 572, 784], but are [48, -14, 572, 784].",
+                        "msg_code": "E1112"
+                    },
+                    {
+                        "subroutine": "validate_d1c466e190524e63ac9d13bd5d1714f1.glyf.glyph 875 ('asterisk').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-24T20:54:27.957001Z",
+                        "orig_output": "validate_d1c466e190524e63ac9d13bd5d1714f1.glyf.glyph 875 ('asterisk').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 132296,
+    "completedDate": "2020-09-24 20:56:16.918856"
+}

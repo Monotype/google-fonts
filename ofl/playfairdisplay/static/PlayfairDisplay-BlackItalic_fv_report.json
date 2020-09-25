@@ -1,0 +1,85 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "PlayfairDisplay-BlackItalic.ttf",
+                "type": "ttf",
+                "size": 209992,
+                "md5": "69272a6073c0d2d28870f55938ffebd5",
+                "geometryMd5": "a852399a0edcc3aa459cf5d0e4828415"
+            },
+            "name": {
+                "family": "Playfair Display Black",
+                "subFamily": "Italic",
+                "fullName": "Playfair Display Black Italic",
+                "psName": "PlayfairDisplay-BlackItalic",
+                "versionText": "Version 1.200; ttfautohint (v1.6)",
+                "copyright": "Copyright 2017 The Playfair Display Project Authors (https://github.com/clauseggers/Playfair-Display), with Reserved Font Name \"Playfair Display\".",
+                "trademark": "Playfair is a trademark of Claus Eggers S\u00f8rensen.",
+                "typographicFamily": "Playfair Display",
+                "typographicSubFamily": "Black Italic"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 1100,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "FTH ",
+                "font_vendor": "For the Hearts"
+            },
+            "validation": {
+                "font_full_name": "Playfair Display Black Italic",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 4,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_d1d4bb898b1a46d493843a36c950c4ea.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 10 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-24T20:30:24.435089Z",
+                        "orig_output": "validate_d1d4bb898b1a46d493843a36c950c4ea.fontedit.OS_2.PANOSE.weight - ERROR - Value 10 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_d1d4bb898b1a46d493843a36c950c4ea.glyf.glyph 335 ('germandbls').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-24T20:30:32.704518Z",
+                        "orig_output": "validate_d1d4bb898b1a46d493843a36c950c4ea.glyf.glyph 335 ('germandbls').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_d1d4bb898b1a46d493843a36c950c4ea.glyf.glyph 885 ('braceleft')",
+                        "levelname": "ERROR",
+                        "message": "Bounds should be [29, -189, 491, 782], but are [29, -188, 491, 782].",
+                        "timestamp": "2020-09-24T20:30:44.703402Z",
+                        "orig_output": "validate_d1d4bb898b1a46d493843a36c950c4ea.glyf.glyph 885 ('braceleft') - ERROR - Bounds should be [29, -189, 491, 782], but are [29, -188, 491, 782].",
+                        "msg_code": "E1112"
+                    },
+                    {
+                        "subroutine": "validate_d1d4bb898b1a46d493843a36c950c4ea.glyf.glyph 891 ('braceleft.case')",
+                        "levelname": "ERROR",
+                        "message": "Bounds should be [47, -75, 451, 782], but are [47, -74, 451, 782].",
+                        "timestamp": "2020-09-24T20:30:44.725745Z",
+                        "orig_output": "validate_d1d4bb898b1a46d493843a36c950c4ea.glyf.glyph 891 ('braceleft.case') - ERROR - Bounds should be [47, -75, 451, 782], but are [47, -74, 451, 782].",
+                        "msg_code": "E1112"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 130005,
+    "completedDate": "2020-09-24 20:32:30.651098"
+}

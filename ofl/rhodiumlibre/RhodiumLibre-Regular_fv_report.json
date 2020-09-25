@@ -1,0 +1,75 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "RhodiumLibre-Regular.ttf",
+                "type": "ttf",
+                "size": 233792,
+                "md5": "91e197f0dae289736f70461e0f9a38ad",
+                "geometryMd5": "dc87832a7543aa53c8950f2e4714418a"
+            },
+            "name": {
+                "family": "Rhodium Libre",
+                "subFamily": "Regular",
+                "fullName": "Rhodium Libre",
+                "psName": "RhodiumLibre-Regular",
+                "versionText": "Version 1.001; ttfautohint (v1.3)",
+                "copyright": "Copyright \u00a9 2015 by James Puckett. All rights reserved.",
+                "trademark": "Unknown"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 815,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "dtf ",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Rhodium Libre",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 3,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_aa41fe4c3f2e426e9a551acf43fa7b44.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 5 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-24T13:59:20.176686Z",
+                        "orig_output": "validate_aa41fe4c3f2e426e9a551acf43fa7b44.fontedit.OS_2.PANOSE.weight - ERROR - Value 5 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_aa41fe4c3f2e426e9a551acf43fa7b44.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2020-09-24T14:02:05.085741Z",
+                        "orig_output": "validate_aa41fe4c3f2e426e9a551acf43fa7b44.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
+                    },
+                    {
+                        "subroutine": "validate_aa41fe4c3f2e426e9a551acf43fa7b44.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 608, but is 607",
+                        "timestamp": "2020-09-24T13:59:22.764095Z",
+                        "orig_output": "validate_aa41fe4c3f2e426e9a551acf43fa7b44.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 608, but is 607",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 271480,
+    "completedDate": "2020-09-24 14:03:48.759187"
+}

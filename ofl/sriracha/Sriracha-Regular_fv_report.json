@@ -1,0 +1,83 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Sriracha-Regular.ttf",
+                "type": "ttf",
+                "size": 319896,
+                "md5": "67b50907aa9503e856c479bce7511d79",
+                "geometryMd5": "5b2776e7c00f8430f5ff15861a6fe1a1"
+            },
+            "name": {
+                "family": "Sriracha",
+                "subFamily": "Regular",
+                "fullName": "Sriracha",
+                "psName": "Sriracha-Regular",
+                "versionText": "Version 1.002g",
+                "copyright": "Copyright (c) 2015, Cadson Demak (info@cadsondemak.com), Copyright (c) 2014, Pablo Impallari (www.impallari.com|impallari@gmail.com)",
+                "trademark": "Unknown"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 965,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "GOOG",
+                "font_vendor": "Google"
+            },
+            "validation": {
+                "font_full_name": "Sriracha",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 4,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_4d107afcec4e44d2ac2a4f61dfc322be.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 5 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-25T05:30:12.343504Z",
+                        "orig_output": "validate_4d107afcec4e44d2ac2a4f61dfc322be.fontedit.OS_2.PANOSE.weight - ERROR - Value 5 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_4d107afcec4e44d2ac2a4f61dfc322be.glyf.glyph 249 ('H.ss01').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-25T05:30:23.786186Z",
+                        "orig_output": "validate_4d107afcec4e44d2ac2a4f61dfc322be.glyf.glyph 249 ('H.ss01').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_4d107afcec4e44d2ac2a4f61dfc322be.glyf.glyph 275 ('H.ss02').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-25T05:30:24.369273Z",
+                        "orig_output": "validate_4d107afcec4e44d2ac2a4f61dfc322be.glyf.glyph 275 ('H.ss02').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_4d107afcec4e44d2ac2a4f61dfc322be.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2020-09-25T05:34:29.607813Z",
+                        "orig_output": "validate_4d107afcec4e44d2ac2a4f61dfc322be.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 511571,
+    "completedDate": "2020-09-25 05:38:40.614921"
+}

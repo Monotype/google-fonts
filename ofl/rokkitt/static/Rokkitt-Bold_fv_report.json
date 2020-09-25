@@ -1,0 +1,67 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Rokkitt-Bold.ttf",
+                "type": "ttf",
+                "size": 88496,
+                "md5": "710b6ecc36a98dd9c3fb292f913438f3",
+                "geometryMd5": "bf64ab0f27f4aee3cab608c2195ca76a"
+            },
+            "name": {
+                "family": "Rokkitt",
+                "subFamily": "Bold",
+                "fullName": "Rokkitt Bold",
+                "psName": "Rokkitt-Bold",
+                "versionText": "Version 3.002",
+                "copyright": "Copyright 2016 The Rokkit Project Authors (contact@sansoxygen.com)",
+                "trademark": "Rokkitt is a trademark of Vernon Adams and may be registered in certain jurisdictions."
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 714,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "NEWT",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Rokkitt Bold",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 2,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_b10a3ce2c701400db6a7e0994259c5d1.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 8 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-25T02:50:50.401218Z",
+                        "orig_output": "validate_b10a3ce2c701400db6a7e0994259c5d1.fontedit.OS_2.PANOSE.weight - ERROR - Value 8 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_b10a3ce2c701400db6a7e0994259c5d1.glyf.glyph 600 ('lira').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-25T02:50:56.940059Z",
+                        "orig_output": "validate_b10a3ce2c701400db6a7e0994259c5d1.glyf.glyph 600 ('lira').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 77072,
+    "completedDate": "2020-09-25 02:52:05.122057"
+}

@@ -1,0 +1,83 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "RubikMonoOne-Regular.ttf",
+                "type": "ttf",
+                "size": 141088,
+                "md5": "28a12a64d3783d116aae4542233457c2",
+                "geometryMd5": "fe918b51e72a4e2ebb2a73fe50dd372c"
+            },
+            "name": {
+                "family": "Rubik Mono One",
+                "subFamily": "Regular",
+                "fullName": "Rubik Mono One Regular",
+                "psName": "RubikMonoOne-Regular",
+                "versionText": "Version 2.000",
+                "copyright": "Copyright 2015 The Rubik Project Authors (mail@hubertfischer.com)",
+                "trademark": "Unknown"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 683,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "PYRS",
+                "font_vendor": "PYRS Fontlab Ltd. / Made with FontLab"
+            },
+            "validation": {
+                "font_full_name": "Rubik Mono One Regular",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 4,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_1945eaf0847e4faeb804ead25b50079e.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 5 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-25T01:04:56.652669Z",
+                        "orig_output": "validate_1945eaf0847e4faeb804ead25b50079e.fontedit.OS_2.PANOSE.weight - ERROR - Value 5 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_1945eaf0847e4faeb804ead25b50079e.glyf.glyph 397 ('uni0475')",
+                        "levelname": "ERROR",
+                        "message": "Bounds should be [29, 0, 844, 700], but are [32, 0, 844, 700].",
+                        "timestamp": "2020-09-25T01:05:05.581782Z",
+                        "orig_output": "validate_1945eaf0847e4faeb804ead25b50079e.glyf.glyph 397 ('uni0475') - ERROR - Bounds should be [29, 0, 844, 700], but are [32, 0, 844, 700].",
+                        "msg_code": "E1112"
+                    },
+                    {
+                        "subroutine": "validate_1945eaf0847e4faeb804ead25b50079e.glyf.glyph 493 ('five').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-25T01:05:06.816039Z",
+                        "orig_output": "validate_1945eaf0847e4faeb804ead25b50079e.glyf.glyph 493 ('five').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_1945eaf0847e4faeb804ead25b50079e.post",
+                        "levelname": "ERROR",
+                        "message": "Header says non-isFixedPitch, but advances are constant.",
+                        "timestamp": "2020-09-25T01:06:08.424577Z",
+                        "orig_output": "validate_1945eaf0847e4faeb804ead25b50079e.post - ERROR - Header says non-isFixedPitch, but advances are constant.",
+                        "msg_code": "E2304"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 131933,
+    "completedDate": "2020-09-25 01:07:06.443515"
+}

@@ -1,0 +1,83 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Signika-Regular.ttf",
+                "type": "ttf",
+                "size": 340148,
+                "md5": "6edcc78b68b373bbd93b1838b3a152de",
+                "geometryMd5": "978b096515f7304d503318cb3a165255"
+            },
+            "name": {
+                "family": "Signika",
+                "subFamily": "Regular",
+                "fullName": "Signika Regular",
+                "psName": "Signika-Regular",
+                "versionText": "Version 2.000; ttfautohint (v1.8.3) -l 8 -r 50 -G 200 -x 9 -D latn -f none -a nnn -X \"\"",
+                "copyright": "Copyright 2018 The Signika Project Authors (https://github.com/googlefonts/Signika).",
+                "trademark": "Signika is a trademark of Anna Giedry\u015b."
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 1416,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "GOOG",
+                "font_vendor": "Google"
+            },
+            "validation": {
+                "font_full_name": "Signika Regular",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 4,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_1943f5828e69414ca27550a72e7ae210.glyf.glyph 1053 ('bullet.case')",
+                        "levelname": "ERROR",
+                        "message": "Bounds should be [220, 532, 679, 969], but are [220, 445, 679, 881].",
+                        "timestamp": "2020-09-24T07:09:54.461428Z",
+                        "orig_output": "validate_1943f5828e69414ca27550a72e7ae210.glyf.glyph 1053 ('bullet.case') - ERROR - Bounds should be [220, 532, 679, 969], but are [220, 445, 679, 881].",
+                        "msg_code": "E1112"
+                    },
+                    {
+                        "subroutine": "validate_1943f5828e69414ca27550a72e7ae210.glyf.glyph 1257 ('ico.settings2').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-24T07:10:01.123740Z",
+                        "orig_output": "validate_1943f5828e69414ca27550a72e7ae210.glyf.glyph 1257 ('ico.settings2').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_1943f5828e69414ca27550a72e7ae210.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2020-09-24T07:12:14.943354Z",
+                        "orig_output": "validate_1943f5828e69414ca27550a72e7ae210.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
+                    },
+                    {
+                        "subroutine": "validate_1943f5828e69414ca27550a72e7ae210.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 1259, but is 1260",
+                        "timestamp": "2020-09-24T07:09:41.630124Z",
+                        "orig_output": "validate_1943f5828e69414ca27550a72e7ae210.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 1259, but is 1260",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 275662,
+    "completedDate": "2020-09-24 07:14:04.381967"
+}

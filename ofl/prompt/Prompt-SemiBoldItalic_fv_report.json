@@ -1,0 +1,69 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Prompt-SemiBoldItalic.ttf",
+                "type": "ttf",
+                "size": 185108,
+                "md5": "c7da2b769af361aca4329fae99b80231",
+                "geometryMd5": "33fe572e91ab7d0ed3967715f4898ce5"
+            },
+            "name": {
+                "family": "Prompt SemiBold",
+                "subFamily": "Italic",
+                "fullName": "Prompt SemiBold Italic",
+                "psName": "Prompt-SemiBoldItalic",
+                "versionText": "Version 1.001",
+                "copyright": "Copyright (c) 2015, Cadson Demak (info@cadsondemak.com)",
+                "trademark": "Unknown",
+                "typographicFamily": "Prompt",
+                "typographicSubFamily": "SemiBold Italic"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 773,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "CDK ",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Prompt SemiBold Italic",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 2,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_6ef5e175aef744a1a7f506c46e6c5ece.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 7 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-24T12:44:23.938633Z",
+                        "orig_output": "validate_6ef5e175aef744a1a7f506c46e6c5ece.fontedit.OS_2.PANOSE.weight - ERROR - Value 7 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_6ef5e175aef744a1a7f506c46e6c5ece.glyf.glyph 602 ('dollar').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-24T12:44:31.101828Z",
+                        "orig_output": "validate_6ef5e175aef744a1a7f506c46e6c5ece.glyf.glyph 602 ('dollar').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 210070,
+    "completedDate": "2020-09-24 12:47:52.002931"
+}

@@ -1,0 +1,79 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Orbitron-Bold.ttf",
+                "type": "ttf",
+                "size": 46268,
+                "md5": "d44c127feb7f4a200732189240643a55",
+                "geometryMd5": "178e72fdd3bf9ffaebfceef1e8ae099d"
+            },
+            "name": {
+                "family": "Orbitron",
+                "subFamily": "Bold",
+                "fullName": "Orbitron Bold",
+                "psName": "Orbitron-Bold",
+                "versionText": "Version 2.000; ttfautohint (v1.8.2)",
+                "copyright": "Copyright 2018 The Orbitron Project Authors (https://github.com/theleagueof/orbitron)",
+                "trademark": "Unknown"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 263,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "NONE",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Orbitron Bold",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 3,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_33605e4084464fb2894d5a6f8cfca367.hints.glyph 256.FDEF 27.FDEF 21.FDEF 139.FDEF 79.FDEF 70.FDEF 6.call FDEF 5",
+                        "levelname": "ERROR",
+                        "message": "RCVT[] in FDEF 5 (PC 1) is attempting to read from CVT index 100, which does not exist!",
+                        "timestamp": "2020-09-24T09:42:47.762766Z",
+                        "orig_output": "validate_33605e4084464fb2894d5a6f8cfca367.hints.glyph 256.FDEF 27.FDEF 21.FDEF 139.FDEF 79.FDEF 70.FDEF 6.call FDEF 5 - ERROR - RCVT[] in FDEF 5 (PC 1) is attempting to read from CVT index 100, which does not exist!",
+                        "glyph": {
+                            "id": 256,
+                            "name": "uniE006"
+                        },
+                        "msg_code": "G0029"
+                    },
+                    {
+                        "subroutine": "validate_33605e4084464fb2894d5a6f8cfca367.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2020-09-24T09:42:31.005271Z",
+                        "orig_output": "validate_33605e4084464fb2894d5a6f8cfca367.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
+                    },
+                    {
+                        "subroutine": "validate_33605e4084464fb2894d5a6f8cfca367.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 676, but is 664",
+                        "timestamp": "2020-09-24T09:42:08.100576Z",
+                        "orig_output": "validate_33605e4084464fb2894d5a6f8cfca367.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 676, but is 664",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 43506,
+    "completedDate": "2020-09-24 09:42:48.516494"
+}

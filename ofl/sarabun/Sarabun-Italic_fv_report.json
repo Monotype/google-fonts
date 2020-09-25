@@ -1,0 +1,83 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Sarabun-Italic.ttf",
+                "type": "ttf",
+                "size": 93248,
+                "md5": "2a21870cc7454dd087a9bf57c54e87bd",
+                "geometryMd5": "3b7e01f63392eda585505ec1a51bf09e"
+            },
+            "name": {
+                "family": "Sarabun",
+                "subFamily": "Italic",
+                "fullName": "Sarabun Italic",
+                "psName": "Sarabun-Italic",
+                "versionText": "Version 1.000; ttfautohint (v1.6)",
+                "copyright": "Copyright 2018 The Sarabun Project Authors (https://github.com/cadsondemak/Sarabun)",
+                "trademark": "Unknown"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 777,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "CDK ",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Sarabun Italic",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 4,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_8d6cf57ff0054b8bafcf8735a657a96c.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 5 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-24T21:32:08.775528Z",
+                        "orig_output": "validate_8d6cf57ff0054b8bafcf8735a657a96c.fontedit.OS_2.PANOSE.weight - ERROR - Value 5 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_8d6cf57ff0054b8bafcf8735a657a96c.glyf.glyph 746 ('uni0E4C').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-24T21:32:20.009368Z",
+                        "orig_output": "validate_8d6cf57ff0054b8bafcf8735a657a96c.glyf.glyph 746 ('uni0E4C').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_8d6cf57ff0054b8bafcf8735a657a96c.maxp",
+                        "levelname": "ERROR",
+                        "message": "The maxZones value should be 1, but is 0.",
+                        "timestamp": "2020-09-24T21:32:24.823636Z",
+                        "orig_output": "validate_8d6cf57ff0054b8bafcf8735a657a96c.maxp - ERROR - The maxZones value should be 1, but is 0.",
+                        "msg_code": "V0272"
+                    },
+                    {
+                        "subroutine": "validate_8d6cf57ff0054b8bafcf8735a657a96c.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 548, but is 533",
+                        "timestamp": "2020-09-24T21:32:10.725485Z",
+                        "orig_output": "validate_8d6cf57ff0054b8bafcf8735a657a96c.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 548, but is 533",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 18409,
+    "completedDate": "2020-09-24 21:32:25.478764"
+}

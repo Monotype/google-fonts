@@ -1,0 +1,85 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Overpass-ExtraLightItalic.ttf",
+                "type": "ttf",
+                "size": 125188,
+                "md5": "e762af2fec4acb56b717de6a5a4c01e7",
+                "geometryMd5": "c433ef405928c3c78d506926a98aefc5"
+            },
+            "name": {
+                "family": "Overpass ExtraLight",
+                "subFamily": "Italic",
+                "fullName": "Overpass ExtraLight Italic",
+                "psName": "Overpass-ExtraLightItalic",
+                "versionText": "Version 3.000;DELV;Overpass; ttfautohint (v1.5)",
+                "copyright": "Copyright (c) 2016 by Red Hat, Inc. All rights reserved.",
+                "trademark": "Overpass is a trademark of Red Hat, Inc.",
+                "typographicFamily": "Overpass",
+                "typographicSubFamily": "ExtraLight Italic"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 471,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "DELV",
+                "font_vendor": "Delve Fonts"
+            },
+            "validation": {
+                "font_full_name": "Overpass ExtraLight Italic",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 4,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_9c3a3433bb764fdb93bed39506c3fbbe.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 3 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-25T04:57:29.789195Z",
+                        "orig_output": "validate_9c3a3433bb764fdb93bed39506c3fbbe.fontedit.OS_2.PANOSE.weight - ERROR - Value 3 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_9c3a3433bb764fdb93bed39506c3fbbe.OS_2.unicodeRanges",
+                        "levelname": "ERROR",
+                        "message": "Font has non-BMP characters but surrogates bit not set.",
+                        "timestamp": "2020-09-25T04:57:30.626808Z",
+                        "orig_output": "validate_9c3a3433bb764fdb93bed39506c3fbbe.OS_2.unicodeRanges - ERROR - Font has non-BMP characters but surrogates bit not set.",
+                        "msg_code": "E2122"
+                    },
+                    {
+                        "subroutine": "validate_9c3a3433bb764fdb93bed39506c3fbbe.OS_2.usWeightClass",
+                        "levelname": "ERROR",
+                        "message": "The usWeightClass value 275 is not valid",
+                        "timestamp": "2020-09-25T04:57:30.819406Z",
+                        "orig_output": "validate_9c3a3433bb764fdb93bed39506c3fbbe.OS_2.usWeightClass - ERROR - The usWeightClass value 275 is not valid",
+                        "msg_code": "E2133"
+                    },
+                    {
+                        "subroutine": "validate_9c3a3433bb764fdb93bed39506c3fbbe.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 527, but is 538",
+                        "timestamp": "2020-09-25T04:57:30.819675Z",
+                        "orig_output": "validate_9c3a3433bb764fdb93bed39506c3fbbe.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 527, but is 538",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 54001,
+    "completedDate": "2020-09-25 04:58:21.392206"
+}

@@ -1,0 +1,77 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Oswald-ExtraLight.ttf",
+                "type": "ttf",
+                "size": 91112,
+                "md5": "b889dd229ba5e378a85a2690d99b87e1",
+                "geometryMd5": "34392b0f3ecb8f1e11e33dfbfb2fd344"
+            },
+            "name": {
+                "family": "Oswald ExtraLight",
+                "subFamily": "Regular",
+                "fullName": "Oswald ExtraLight",
+                "psName": "Oswald-ExtraLight",
+                "versionText": "Version 4.100",
+                "copyright": "Copyright 2016 The Oswald Project Authors (https://github.com/googlefonts/OswaldFont)",
+                "trademark": "Unknown",
+                "typographicFamily": "Oswald",
+                "typographicSubFamily": "ExtraLight"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 768,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "newt",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Oswald ExtraLight",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 3,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_c90485f2f704420faf77314cf656336d.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 3 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-24T16:01:37.376480Z",
+                        "orig_output": "validate_c90485f2f704420faf77314cf656336d.fontedit.OS_2.PANOSE.weight - ERROR - Value 3 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_c90485f2f704420faf77314cf656336d.glyf.glyph 474 ('uni040E')",
+                        "levelname": "ERROR",
+                        "message": "Bounds should be [33, -94, 431, 982], but are [33, -93, 431, 982].",
+                        "timestamp": "2020-09-24T16:01:44.301651Z",
+                        "orig_output": "validate_c90485f2f704420faf77314cf656336d.glyf.glyph 474 ('uni040E') - ERROR - Bounds should be [33, -94, 431, 982], but are [33, -93, 431, 982].",
+                        "msg_code": "E1112"
+                    },
+                    {
+                        "subroutine": "validate_c90485f2f704420faf77314cf656336d.OS_2.usWeightClass",
+                        "levelname": "ERROR",
+                        "message": "The usWeightClass value 275 is not valid",
+                        "timestamp": "2020-09-24T16:01:39.326385Z",
+                        "orig_output": "validate_c90485f2f704420faf77314cf656336d.OS_2.usWeightClass - ERROR - The usWeightClass value 275 is not valid",
+                        "msg_code": "E2133"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 69588,
+    "completedDate": "2020-09-24 16:02:44.212030"
+}

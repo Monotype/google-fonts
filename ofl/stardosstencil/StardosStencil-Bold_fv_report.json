@@ -1,0 +1,82 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "StardosStencil-Bold.ttf",
+                "type": "ttf",
+                "size": 33044,
+                "md5": "2a29beaf1a25cb319f52799d4c4dff58",
+                "geometryMd5": "02b24f469e4ea946524bbe8eb6d680cc"
+            },
+            "name": {
+                "family": "Stardos Stencil",
+                "subFamily": "Bold",
+                "fullName": "Stardos Stencil Bold",
+                "psName": "StardosStencil-Bold",
+                "versionText": "Version 1.001",
+                "copyright": "Copyright (c) 2011 by vernon adams. All rights reserved.",
+                "trademark": "Unknown"
+            },
+            "format": {
+                "format": "TT"
+            },
+            "summary": {
+                "num_glyphs": 306,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "newt",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Stardos Stencil Bold",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 4,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_a77b9b84e7fa460c8bfa49d3f62cea0c.glyf.glyph 129 ('questiondown')",
+                        "levelname": "ERROR",
+                        "message": "Bounds should be [147, -225, 984, 1245], but are [147, -225, 985, 1245].",
+                        "timestamp": "2020-09-24T22:06:44.853074Z",
+                        "orig_output": "validate_a77b9b84e7fa460c8bfa49d3f62cea0c.glyf.glyph 129 ('questiondown') - ERROR - Bounds should be [147, -225, 984, 1245], but are [147, -225, 985, 1245].",
+                        "msg_code": "E1112"
+                    },
+                    {
+                        "subroutine": "validate_a77b9b84e7fa460c8bfa49d3f62cea0c.glyf.glyph 161 ('germandbls').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-24T22:06:45.148343Z",
+                        "orig_output": "validate_a77b9b84e7fa460c8bfa49d3f62cea0c.glyf.glyph 161 ('germandbls').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_a77b9b84e7fa460c8bfa49d3f62cea0c.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2020-09-24T22:06:50.449121Z",
+                        "orig_output": "validate_a77b9b84e7fa460c8bfa49d3f62cea0c.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
+                    },
+                    {
+                        "subroutine": "validate_a77b9b84e7fa460c8bfa49d3f62cea0c.OS_2.usMaxContext",
+                        "levelname": "ERROR",
+                        "message": "The usMaxContext should be 0, but is 1",
+                        "timestamp": "2020-09-24T22:06:42.846019Z",
+                        "orig_output": "validate_a77b9b84e7fa460c8bfa49d3f62cea0c.OS_2.usMaxContext - ERROR - The usMaxContext should be 0, but is 1",
+                        "msg_code": "V0831"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 11779,
+    "completedDate": "2020-09-24 22:06:51.028791"
+}

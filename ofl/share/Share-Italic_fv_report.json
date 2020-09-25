@@ -1,0 +1,67 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Share-Italic.ttf",
+                "type": "ttf",
+                "size": 76636,
+                "md5": "cd08b689c7e71667ecbb69000de6a19a",
+                "geometryMd5": "9f62698ee5b6b1020c9c8651f5c4d45a"
+            },
+            "name": {
+                "family": "Share",
+                "subFamily": "Italic",
+                "fullName": "Share Italic",
+                "psName": "Share-Italic",
+                "versionText": "Version 1.002",
+                "copyright": "Copyright (c) 2005-2011, Carrois Type Design (carrois.com), with Reserved Font Name \"Share\"",
+                "trademark": "Unknown"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 256,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "pyrs",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Share Italic",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 2,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_e51e0a1c1a184c8982c37d0f664146cf.head",
+                        "levelname": "ERROR",
+                        "message": "The macStyle italic bit is True but post.italicAngle is   0.0",
+                        "timestamp": "2020-09-25T09:07:34.728619Z",
+                        "orig_output": "validate_e51e0a1c1a184c8982c37d0f664146cf.head - ERROR - The macStyle italic bit is True but post.italicAngle is   0.0",
+                        "msg_code": "E1316"
+                    },
+                    {
+                        "subroutine": "validate_e51e0a1c1a184c8982c37d0f664146cf.post",
+                        "levelname": "ERROR",
+                        "message": "Zero italic angle but head.macStyle.italic is True.",
+                        "timestamp": "2020-09-25T09:07:36.827430Z",
+                        "orig_output": "validate_e51e0a1c1a184c8982c37d0f664146cf.post - ERROR - Zero italic angle but head.macStyle.italic is True.",
+                        "msg_code": "E2310"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 16394,
+    "completedDate": "2020-09-25 09:07:38.492358"
+}

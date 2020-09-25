@@ -1,0 +1,115 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "RokkittVFBeta.ttf",
+                "type": "ttf",
+                "size": 104156,
+                "md5": "c49c2f23fa76893b3d178a9115748639",
+                "geometryMd5": "a165b4a8465b434961cf8239c526f4c9"
+            },
+            "name": {
+                "family": "Rokkitt",
+                "subFamily": "Regular",
+                "fullName": "Rokkitt Regular",
+                "psName": "Rokkitt-Regular",
+                "versionText": "Version 3.002",
+                "copyright": "Copyright 2016 The Rokkit Project Authors (contact@sansoxygen.com)",
+                "trademark": "Rokkitt is a trademark of Vernon Adams and may be registered in certain jurisdictions."
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 714,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "NEWT",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Rokkitt Regular",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 8,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_3ccdad4bfd414ed5b49a6d1fb59afd49.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 5 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-24T19:01:55.732032Z",
+                        "orig_output": "validate_3ccdad4bfd414ed5b49a6d1fb59afd49.fontedit.OS_2.PANOSE.weight - ERROR - Value 5 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_3ccdad4bfd414ed5b49a6d1fb59afd49.glyf.glyph 338 ('uni0123')",
+                        "levelname": "ERROR",
+                        "message": "Bounds should be [-295, -188, 503, 656], but are [31, -188, 503, 656].",
+                        "timestamp": "2020-09-24T19:01:59.312365Z",
+                        "orig_output": "validate_3ccdad4bfd414ed5b49a6d1fb59afd49.glyf.glyph 338 ('uni0123') - ERROR - Bounds should be [-295, -188, 503, 656], but are [31, -188, 503, 656].",
+                        "msg_code": "E1112"
+                    },
+                    {
+                        "subroutine": "validate_3ccdad4bfd414ed5b49a6d1fb59afd49.glyf.glyph 659 ('uni02BB')",
+                        "levelname": "ERROR",
+                        "message": "Bounds should be [40, 380, 141, 591], but are [100, 380, 201, 591].",
+                        "timestamp": "2020-09-24T19:02:02.038888Z",
+                        "orig_output": "validate_3ccdad4bfd414ed5b49a6d1fb59afd49.glyf.glyph 659 ('uni02BB') - ERROR - Bounds should be [40, 380, 141, 591], but are [100, 380, 201, 591].",
+                        "msg_code": "E1112"
+                    },
+                    {
+                        "subroutine": "validate_3ccdad4bfd414ed5b49a6d1fb59afd49.head",
+                        "levelname": "ERROR",
+                        "message": "The calculated value for xMin (-295) exceeds the actual value -200",
+                        "timestamp": "2020-09-24T19:02:08.197424Z",
+                        "orig_output": "validate_3ccdad4bfd414ed5b49a6d1fb59afd49.head - ERROR - The calculated value for xMin (-295) exceeds the actual value -200",
+                        "msg_code": "E1326"
+                    },
+                    {
+                        "subroutine": "validate_3ccdad4bfd414ed5b49a6d1fb59afd49.hhea",
+                        "levelname": "ERROR",
+                        "message": "The minRightSidebearing value (-211) does not match the expected value (-316)",
+                        "timestamp": "2020-09-24T19:02:08.857420Z",
+                        "orig_output": "validate_3ccdad4bfd414ed5b49a6d1fb59afd49.hhea - ERROR - The minRightSidebearing value (-211) does not match the expected value (-316)",
+                        "msg_code": "E1403"
+                    },
+                    {
+                        "subroutine": "validate_3ccdad4bfd414ed5b49a6d1fb59afd49.hmtx",
+                        "levelname": "ERROR",
+                        "message": "The left sidebearing 31 does not match the glyph's xMin -295 (glyph 338)",
+                        "timestamp": "2020-09-24T19:02:08.858816Z",
+                        "orig_output": "validate_3ccdad4bfd414ed5b49a6d1fb59afd49.hmtx - ERROR - The left sidebearing 31 does not match the glyph's xMin -295 (glyph 338)",
+                        "msg_code": "V0933"
+                    },
+                    {
+                        "subroutine": "validate_3ccdad4bfd414ed5b49a6d1fb59afd49.hmtx",
+                        "levelname": "ERROR",
+                        "message": "The left sidebearing 100 does not match the glyph's xMin 40 (glyph 659)",
+                        "timestamp": "2020-09-24T19:02:08.860013Z",
+                        "orig_output": "validate_3ccdad4bfd414ed5b49a6d1fb59afd49.hmtx - ERROR - The left sidebearing 100 does not match the glyph's xMin 40 (glyph 659)",
+                        "msg_code": "V0933"
+                    },
+                    {
+                        "subroutine": "validate_3ccdad4bfd414ed5b49a6d1fb59afd49.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 529, but is 528",
+                        "timestamp": "2020-09-24T19:01:57.696871Z",
+                        "orig_output": "validate_3ccdad4bfd414ed5b49a6d1fb59afd49.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 529, but is 528",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 15859,
+    "completedDate": "2020-09-24 19:02:09.230641"
+}

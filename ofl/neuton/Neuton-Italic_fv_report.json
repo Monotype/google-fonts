@@ -1,0 +1,75 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Neuton-Italic.ttf",
+                "type": "ttf",
+                "size": 63292,
+                "md5": "45678307ca732ce41badf4ed4c2517f1",
+                "geometryMd5": "3b3b1766937c686827b08e6e26399ab6"
+            },
+            "name": {
+                "family": "Neuton",
+                "subFamily": "Italic",
+                "fullName": "Neuton Italic",
+                "psName": "Neuton-Italic",
+                "versionText": "Version 1.560",
+                "copyright": "Copyright 2010 The Neuton Project Authors (http://www.21326.info/), with Reserved Font Name \"Neuton\".",
+                "trademark": "Unknown"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 310,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "PfEd",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Neuton Italic",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 3,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_fb86c210c89a40f5a5d81b45dc609e4e.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 5 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-25T01:59:01.056821Z",
+                        "orig_output": "validate_fb86c210c89a40f5a5d81b45dc609e4e.fontedit.OS_2.PANOSE.weight - ERROR - Value 5 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_fb86c210c89a40f5a5d81b45dc609e4e.head",
+                        "levelname": "ERROR",
+                        "message": "The macStyle italic bit is True but post.italicAngle is   0.0",
+                        "timestamp": "2020-09-25T01:59:06.818685Z",
+                        "orig_output": "validate_fb86c210c89a40f5a5d81b45dc609e4e.head - ERROR - The macStyle italic bit is True but post.italicAngle is   0.0",
+                        "msg_code": "E1316"
+                    },
+                    {
+                        "subroutine": "validate_fb86c210c89a40f5a5d81b45dc609e4e.post",
+                        "levelname": "ERROR",
+                        "message": "Zero italic angle but head.macStyle.italic is True.",
+                        "timestamp": "2020-09-25T01:59:36.038523Z",
+                        "orig_output": "validate_fb86c210c89a40f5a5d81b45dc609e4e.post - ERROR - Zero italic angle but head.macStyle.italic is True.",
+                        "msg_code": "E2310"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 62604,
+    "completedDate": "2020-09-25 02:00:01.379659"
+}

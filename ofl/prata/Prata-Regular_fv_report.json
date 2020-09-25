@@ -1,0 +1,83 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Prata-Regular.ttf",
+                "type": "ttf",
+                "size": 101284,
+                "md5": "3456391b8e6ece475c79cf3f4f2887a1",
+                "geometryMd5": "a45abd76259a522262e36e5388a6f494"
+            },
+            "name": {
+                "family": "Prata",
+                "subFamily": "Regular",
+                "fullName": "Prata Regular",
+                "psName": "Prata-Regular",
+                "versionText": "Version 2.000",
+                "copyright": "Copyright 2011 The Prata Project Authors (contact@cyreal.org)",
+                "trademark": "Unknown"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 560,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "CYRE",
+                "font_vendor": "Cyreal"
+            },
+            "validation": {
+                "font_full_name": "Prata Regular",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 4,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_511c3194e6d145e6870fd68b8910a8a9.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 5 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-25T11:37:46.549117Z",
+                        "orig_output": "validate_511c3194e6d145e6870fd68b8910a8a9.fontedit.OS_2.PANOSE.weight - ERROR - Value 5 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_511c3194e6d145e6870fd68b8910a8a9.GDEF.glyphClasses",
+                        "levelname": "ERROR",
+                        "message": "The following mark glyphs have nonzero advances: [539, 540, 541, 542]",
+                        "timestamp": "2020-09-25T11:37:46.578894Z",
+                        "orig_output": "validate_511c3194e6d145e6870fd68b8910a8a9.GDEF.glyphClasses - ERROR - The following mark glyphs have nonzero advances: [539, 540, 541, 542]",
+                        "msg_code": "V1102"
+                    },
+                    {
+                        "subroutine": "validate_511c3194e6d145e6870fd68b8910a8a9.glyf.glyph 559 ('foundryicon').contours.contour 1",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-25T11:37:53.751201Z",
+                        "orig_output": "validate_511c3194e6d145e6870fd68b8910a8a9.glyf.glyph 559 ('foundryicon').contours.contour 1 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_511c3194e6d145e6870fd68b8910a8a9.hhea",
+                        "levelname": "ERROR",
+                        "message": "The minRightSidebearing value (-65) does not match the expected value (-92)",
+                        "timestamp": "2020-09-25T11:37:54.798992Z",
+                        "orig_output": "validate_511c3194e6d145e6870fd68b8910a8a9.hhea - ERROR - The minRightSidebearing value (-65) does not match the expected value (-92)",
+                        "msg_code": "E1403"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 65370,
+    "completedDate": "2020-09-25 11:38:50.369321"
+}
