@@ -1,0 +1,85 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "BarlowCondensed-SemiBold.ttf",
+                "type": "ttf",
+                "size": 109428,
+                "md5": "277d45807d4566da72975d342276bfa9",
+                "geometryMd5": "88d0a720a52a0a8fe7ae3791a604fe78"
+            },
+            "name": {
+                "family": "Barlow Condensed SemiBold",
+                "subFamily": "Regular",
+                "fullName": "Barlow Condensed SemiBold",
+                "psName": "BarlowCondensed-SemiBold",
+                "versionText": "Version 1.408",
+                "copyright": "Copyright 2017 The Barlow Project Authors (https://github.com/jpt/barlow)",
+                "trademark": "Unknown",
+                "typographicFamily": "Barlow Condensed",
+                "typographicSubFamily": "SemiBold"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 694,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "TRBY",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Barlow Condensed SemiBold",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 4,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_9b569f35499146a2ae1b31927dc8750a.fontedit.OS_2.PANOSE.proportion",
+                        "levelname": "ERROR",
+                        "message": "Value 6 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-25T01:59:29.585767Z",
+                        "orig_output": "validate_9b569f35499146a2ae1b31927dc8750a.fontedit.OS_2.PANOSE.proportion - ERROR - Value 6 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2108"
+                    },
+                    {
+                        "subroutine": "validate_9b569f35499146a2ae1b31927dc8750a.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 7 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-25T01:59:29.585898Z",
+                        "orig_output": "validate_9b569f35499146a2ae1b31927dc8750a.fontedit.OS_2.PANOSE.weight - ERROR - Value 7 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_9b569f35499146a2ae1b31927dc8750a.glyf.glyph 691 ('uni03020309').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-25T01:59:38.904573Z",
+                        "orig_output": "validate_9b569f35499146a2ae1b31927dc8750a.glyf.glyph 691 ('uni03020309').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_9b569f35499146a2ae1b31927dc8750a.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 418, but is 417",
+                        "timestamp": "2020-09-25T01:59:31.034928Z",
+                        "orig_output": "validate_9b569f35499146a2ae1b31927dc8750a.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 418, but is 417",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 78610,
+    "completedDate": "2020-09-25 02:00:45.894782"
+}

@@ -1,0 +1,75 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "BaiJamjuree-Bold.ttf",
+                "type": "ttf",
+                "size": 81840,
+                "md5": "c0eb432793d91442114b17fcec11df66",
+                "geometryMd5": "b4871bbc859d9510ce6175d220b37440"
+            },
+            "name": {
+                "family": "Bai Jamjuree",
+                "subFamily": "Bold",
+                "fullName": "Bai Jamjuree Bold",
+                "psName": "BaiJamjuree-Bold",
+                "versionText": "Version 1.000; ttfautohint (v1.6)",
+                "copyright": "Copyright 2018 Bai Jamjuree (https://github.com/cadsondemak/Bai-Jamjuree)",
+                "trademark": "Unknown"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 773,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "CDK ",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Bai Jamjuree Bold",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 3,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_eebd08721d2346d299edc232982e4d60.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 8 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-25T03:37:36.839021Z",
+                        "orig_output": "validate_eebd08721d2346d299edc232982e4d60.fontedit.OS_2.PANOSE.weight - ERROR - Value 8 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_eebd08721d2346d299edc232982e4d60.maxp",
+                        "levelname": "ERROR",
+                        "message": "The maxZones value should be 1, but is 0.",
+                        "timestamp": "2020-09-25T03:37:52.421579Z",
+                        "orig_output": "validate_eebd08721d2346d299edc232982e4d60.maxp - ERROR - The maxZones value should be 1, but is 0.",
+                        "msg_code": "V0272"
+                    },
+                    {
+                        "subroutine": "validate_eebd08721d2346d299edc232982e4d60.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 600, but is 584",
+                        "timestamp": "2020-09-25T03:37:38.846449Z",
+                        "orig_output": "validate_eebd08721d2346d299edc232982e4d60.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 600, but is 584",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 18001,
+    "completedDate": "2020-09-25 03:37:52.778496"
+}

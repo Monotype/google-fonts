@@ -1,0 +1,83 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "BarlowCondensed-BoldItalic.ttf",
+                "type": "ttf",
+                "size": 112196,
+                "md5": "c1e240346fc97a7cf5e11527be2c5235",
+                "geometryMd5": "989013b86cf013b2df6731b05a8ecdc2"
+            },
+            "name": {
+                "family": "Barlow Condensed",
+                "subFamily": "Bold Italic",
+                "fullName": "Barlow Condensed Bold Italic",
+                "psName": "BarlowCondensed-BoldItalic",
+                "versionText": "Version 1.408",
+                "copyright": "Copyright 2017 The Barlow Project Authors (https://github.com/jpt/barlow)",
+                "trademark": "Unknown"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 694,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "TRBY",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Barlow Condensed Bold Italic",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 4,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_8003ae4b47734bbc8c2bb15547ce0e7c.fontedit.OS_2.PANOSE.proportion",
+                        "levelname": "ERROR",
+                        "message": "Value 6 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-25T02:28:33.994674Z",
+                        "orig_output": "validate_8003ae4b47734bbc8c2bb15547ce0e7c.fontedit.OS_2.PANOSE.proportion - ERROR - Value 6 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2108"
+                    },
+                    {
+                        "subroutine": "validate_8003ae4b47734bbc8c2bb15547ce0e7c.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 8 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-25T02:28:33.994825Z",
+                        "orig_output": "validate_8003ae4b47734bbc8c2bb15547ce0e7c.fontedit.OS_2.PANOSE.weight - ERROR - Value 8 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_8003ae4b47734bbc8c2bb15547ce0e7c.glyf.glyph 197 ('b').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-25T02:28:39.694944Z",
+                        "orig_output": "validate_8003ae4b47734bbc8c2bb15547ce0e7c.glyf.glyph 197 ('b').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_8003ae4b47734bbc8c2bb15547ce0e7c.glyf.glyph 296 ('p').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-25T02:28:41.414554Z",
+                        "orig_output": "validate_8003ae4b47734bbc8c2bb15547ce0e7c.glyf.glyph 296 ('p').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 101967,
+    "completedDate": "2020-09-25 02:30:12.969584"
+}

@@ -1,0 +1,85 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "BarlowSemiCondensed-Light.ttf",
+                "type": "ttf",
+                "size": 104704,
+                "md5": "00e5d069182a93d7c94b1cc368e89418",
+                "geometryMd5": "12113c45171c2b9e0fafa94576cbc53d"
+            },
+            "name": {
+                "family": "Barlow Semi Condensed Light",
+                "subFamily": "Regular",
+                "fullName": "Barlow Semi Condensed Light",
+                "psName": "BarlowSemiCondensed-Light",
+                "versionText": "Version 1.408",
+                "copyright": "Copyright 2017 The Barlow Project Authors (https://github.com/jpt/barlow)",
+                "trademark": "Unknown",
+                "typographicFamily": "Barlow Semi Condensed",
+                "typographicSubFamily": "Light"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 694,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "TRBY",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Barlow Semi Condensed Light",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 4,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_f2b161cd9bb84b629bec8ea297d42ec4.fontedit.OS_2.PANOSE.proportion",
+                        "levelname": "ERROR",
+                        "message": "Value 6 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-24T14:17:59.667063Z",
+                        "orig_output": "validate_f2b161cd9bb84b629bec8ea297d42ec4.fontedit.OS_2.PANOSE.proportion - ERROR - Value 6 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2108"
+                    },
+                    {
+                        "subroutine": "validate_f2b161cd9bb84b629bec8ea297d42ec4.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 4 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-24T14:17:59.667268Z",
+                        "orig_output": "validate_f2b161cd9bb84b629bec8ea297d42ec4.fontedit.OS_2.PANOSE.weight - ERROR - Value 4 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_f2b161cd9bb84b629bec8ea297d42ec4.glyf.glyph 345 ('y').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-24T14:18:08.834845Z",
+                        "orig_output": "validate_f2b161cd9bb84b629bec8ea297d42ec4.glyf.glyph 345 ('y').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_f2b161cd9bb84b629bec8ea297d42ec4.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 450, but is 449",
+                        "timestamp": "2020-09-24T14:18:02.492730Z",
+                        "orig_output": "validate_f2b161cd9bb84b629bec8ea297d42ec4.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 450, but is 449",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 78970,
+    "completedDate": "2020-09-24 14:19:15.780209"
+}

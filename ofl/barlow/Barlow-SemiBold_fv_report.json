@@ -1,0 +1,77 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Barlow-SemiBold.ttf",
+                "type": "ttf",
+                "size": 108348,
+                "md5": "e1f2fbfbe3cc8b18508d1fffe5e14f76",
+                "geometryMd5": "6b6b4f78366b84e9ffd8fda55468ea5c"
+            },
+            "name": {
+                "family": "Barlow SemiBold",
+                "subFamily": "Regular",
+                "fullName": "Barlow SemiBold",
+                "psName": "Barlow-SemiBold",
+                "versionText": "Version 1.408",
+                "copyright": "Copyright 2017 The Barlow Project Authors (https://github.com/jpt/barlow)",
+                "trademark": "Unknown",
+                "typographicFamily": "Barlow",
+                "typographicSubFamily": "SemiBold"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 694,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "TRBY",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Barlow SemiBold",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 3,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_8a61bd364a854159ad9a6977ad6483fd.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 7 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-24T19:10:38.934453Z",
+                        "orig_output": "validate_8a61bd364a854159ad9a6977ad6483fd.fontedit.OS_2.PANOSE.weight - ERROR - Value 7 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_8a61bd364a854159ad9a6977ad6483fd.glyf.glyph 640 ('uni2113').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-24T19:10:49.471155Z",
+                        "orig_output": "validate_8a61bd364a854159ad9a6977ad6483fd.glyf.glyph 640 ('uni2113').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_8a61bd364a854159ad9a6977ad6483fd.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 523, but is 522",
+                        "timestamp": "2020-09-24T19:10:40.971391Z",
+                        "orig_output": "validate_8a61bd364a854159ad9a6977ad6483fd.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 523, but is 522",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 71995,
+    "completedDate": "2020-09-24 19:11:48.458794"
+}

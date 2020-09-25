@@ -1,0 +1,77 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Biryani-SemiBold.ttf",
+                "type": "ttf",
+                "size": 179216,
+                "md5": "a906add30258c2d3bbbc4be896189bd9",
+                "geometryMd5": "496fccafcdfab0085a9640cfeddd035b"
+            },
+            "name": {
+                "family": "Biryani SemiBold",
+                "subFamily": "Regular",
+                "fullName": "Biryani SemiBold",
+                "psName": "Biryani-SemiBold",
+                "versionText": "Version 1.004; ttfautohint (v1.1) -l 5 -r 5 -G 72 -x 0 -D latn -f none -w gGD -W -c",
+                "copyright": "Copyright (c) 2015 Dan Reynolds. Copyright (c) 2015 Mathieu Reguer",
+                "trademark": "Unknown",
+                "typographicFamily": "Biryani",
+                "typographicSubFamily": "SemiBold"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 878,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "toff",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Biryani SemiBold",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 3,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_b5beff94c7144088b41236ad343f6f69.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 7 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-25T05:40:33.924647Z",
+                        "orig_output": "validate_b5beff94c7144088b41236ad343f6f69.fontedit.OS_2.PANOSE.weight - ERROR - Value 7 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_b5beff94c7144088b41236ad343f6f69.GDEF.glyphClasses",
+                        "levelname": "ERROR",
+                        "message": "The following mark glyphs have nonzero advances: [815, 816, 850]",
+                        "timestamp": "2020-09-25T05:40:33.958568Z",
+                        "orig_output": "validate_b5beff94c7144088b41236ad343f6f69.GDEF.glyphClasses - ERROR - The following mark glyphs have nonzero advances: [815, 816, 850]",
+                        "msg_code": "V1102"
+                    },
+                    {
+                        "subroutine": "validate_b5beff94c7144088b41236ad343f6f69.hmtx",
+                        "levelname": "ERROR",
+                        "message": "The left sidebearing 52 does not match the glyph's xMin 51 (glyph 197)",
+                        "timestamp": "2020-09-25T05:40:58.249120Z",
+                        "orig_output": "validate_b5beff94c7144088b41236ad343f6f69.hmtx - ERROR - The left sidebearing 52 does not match the glyph's xMin 51 (glyph 197)",
+                        "msg_code": "V0933"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 114134,
+    "completedDate": "2020-09-25 05:42:24.906700"
+}

@@ -1,0 +1,83 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "BarlowSemiCondensed-Bold.ttf",
+                "type": "ttf",
+                "size": 111772,
+                "md5": "58f00093d5a153cdee006ef32afb69e3",
+                "geometryMd5": "1bf37762f4f87147f0fb6d7ae13f8058"
+            },
+            "name": {
+                "family": "Barlow Semi Condensed",
+                "subFamily": "Bold",
+                "fullName": "Barlow Semi Condensed Bold",
+                "psName": "BarlowSemiCondensed-Bold",
+                "versionText": "Version 1.408",
+                "copyright": "Copyright 2017 The Barlow Project Authors (https://github.com/jpt/barlow)",
+                "trademark": "Unknown"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 694,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "TRBY",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Barlow Semi Condensed Bold",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 4,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_db5badc502c84ef6827581a9ca88fd5c.fontedit.OS_2.PANOSE.proportion",
+                        "levelname": "ERROR",
+                        "message": "Value 6 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-24T15:54:53.217030Z",
+                        "orig_output": "validate_db5badc502c84ef6827581a9ca88fd5c.fontedit.OS_2.PANOSE.proportion - ERROR - Value 6 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2108"
+                    },
+                    {
+                        "subroutine": "validate_db5badc502c84ef6827581a9ca88fd5c.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 8 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-24T15:54:53.217190Z",
+                        "orig_output": "validate_db5badc502c84ef6827581a9ca88fd5c.fontedit.OS_2.PANOSE.weight - ERROR - Value 8 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_db5badc502c84ef6827581a9ca88fd5c.glyf.glyph 665 ('uni0328').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-24T15:55:04.165465Z",
+                        "orig_output": "validate_db5badc502c84ef6827581a9ca88fd5c.glyf.glyph 665 ('uni0328').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_db5badc502c84ef6827581a9ca88fd5c.glyf.glyph 680 ('ogonek').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-24T15:55:04.300150Z",
+                        "orig_output": "validate_db5badc502c84ef6827581a9ca88fd5c.glyf.glyph 680 ('ogonek').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 82024,
+    "completedDate": "2020-09-24 15:56:12.222557"
+}

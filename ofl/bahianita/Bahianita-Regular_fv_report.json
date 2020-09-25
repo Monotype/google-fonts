@@ -1,0 +1,75 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Bahianita-Regular.ttf",
+                "type": "ttf",
+                "size": 142668,
+                "md5": "d168a0734ff5993f75776bfbfde025bd",
+                "geometryMd5": "9f24e886ec21171fabc247f032b94e57"
+            },
+            "name": {
+                "family": "Bahianita",
+                "subFamily": "Regular",
+                "fullName": "Bahianita Regular",
+                "psName": "Bahianita-Regular",
+                "versionText": "Version 1.008",
+                "copyright": "Copyright 2018 The Bahianita Project Authors (https://github.com/Omnibus-Type/Bahiana/Bahianita)",
+                "trademark": "Bahianita is a trademark of Omnibus-Type."
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 1234,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "OMNI",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Bahianita Regular",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 3,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_cc62226ef4c8416992da76b9d643e378.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 5 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-24T12:33:07.891357Z",
+                        "orig_output": "validate_cc62226ef4c8416992da76b9d643e378.fontedit.OS_2.PANOSE.weight - ERROR - Value 5 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_cc62226ef4c8416992da76b9d643e378.glyf.glyph 761 ('ij.alt')",
+                        "levelname": "ERROR",
+                        "message": "Circular component at or below these glyphs: [1127]",
+                        "timestamp": "2020-09-24T12:33:15.682557Z",
+                        "orig_output": "validate_cc62226ef4c8416992da76b9d643e378.glyf.glyph 761 ('ij.alt') - ERROR - Circular component at or below these glyphs: [1127]",
+                        "msg_code": "E1118"
+                    },
+                    {
+                        "subroutine": "validate_cc62226ef4c8416992da76b9d643e378.maxp",
+                        "levelname": "ERROR",
+                        "message": "The following glyphs had improperly constructed composite information, and could not be used in validating the 'maxp' table: [1127]",
+                        "timestamp": "2020-09-24T12:33:28.447375Z",
+                        "orig_output": "validate_cc62226ef4c8416992da76b9d643e378.maxp - ERROR - The following glyphs had improperly constructed composite information, and could not be used in validating the 'maxp' table: [1127]",
+                        "msg_code": "V0555"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 67461,
+    "completedDate": "2020-09-24 12:34:12.377625"
+}

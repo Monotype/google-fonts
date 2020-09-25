@@ -1,0 +1,77 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Biryani-ExtraBold.ttf",
+                "type": "ttf",
+                "size": 178960,
+                "md5": "b10084abd824348dd5728a3c3430f871",
+                "geometryMd5": "22d0ea5e711929eeeab633f4f7650a38"
+            },
+            "name": {
+                "family": "Biryani ExtraBold",
+                "subFamily": "Regular",
+                "fullName": "Biryani ExtraBold",
+                "psName": "Biryani-ExtraBold",
+                "versionText": "Version 1.004; ttfautohint (v1.1) -l 5 -r 5 -G 72 -x 0 -D latn -f none -w gGD -W -c",
+                "copyright": "Copyright (c) 2015 Dan Reynolds. Copyright (c) 2015 Mathieu Reguer",
+                "trademark": "Unknown",
+                "typographicFamily": "Biryani",
+                "typographicSubFamily": "ExtraBold"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 878,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "toff",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Biryani ExtraBold",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 3,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_89cb28c7b7704819a10f2105f54e3815.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 9 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-25T05:24:25.767326Z",
+                        "orig_output": "validate_89cb28c7b7704819a10f2105f54e3815.fontedit.OS_2.PANOSE.weight - ERROR - Value 9 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_89cb28c7b7704819a10f2105f54e3815.GDEF.glyphClasses",
+                        "levelname": "ERROR",
+                        "message": "The following mark glyphs have nonzero advances: [815, 816, 850]",
+                        "timestamp": "2020-09-25T05:24:25.806615Z",
+                        "orig_output": "validate_89cb28c7b7704819a10f2105f54e3815.GDEF.glyphClasses - ERROR - The following mark glyphs have nonzero advances: [815, 816, 850]",
+                        "msg_code": "V1102"
+                    },
+                    {
+                        "subroutine": "validate_89cb28c7b7704819a10f2105f54e3815.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 581, but is 582",
+                        "timestamp": "2020-09-25T05:24:28.494729Z",
+                        "orig_output": "validate_89cb28c7b7704819a10f2105f54e3815.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 581, but is 582",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 109080,
+    "completedDate": "2020-09-25 05:26:12.868363"
+}

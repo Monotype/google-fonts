@@ -1,0 +1,2837 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv='content-type' content='text/html; charset=utf-8'>
+    <title>MT FontSniffer Report</title>
+    <style type="text/css">
+      body {
+        background-color: #fff;
+        color: #000;
+        font-family: "Kootenay Pro", Axel, "System Font", "Fira Sans", sans-serif;
+        line-height: 1.3em;
+        margin: 0;
+        padding: 1em;
+        font-size: 14px;
+      }
+      mark {
+        background-color: #fff990;
+        color: black;
+      }
+      h2 {
+        padding: 2em 0 0.2em 2.35em;
+        border-bottom: 2px solid #606060;
+        margin: 0;
+      }
+      h3 {
+        padding: 0.2em 0 0.3em 0;
+        margin: 0;
+      }
+      table {
+        border-collapse: collapse; 
+        margin: 1em 0; 
+        /* width: 100%; */
+        padding: 0;
+      }
+      table.togglemessages {
+        border: none; 
+        background-color: #f0f0f0;
+      }
+      td, th {
+        line-height: 1.3em; 
+        padding: 0.25em 0.5em; 
+        vertical-align: top;
+        text-align: left;
+      }
+      .summary th {
+        border-bottom: 1px solid #000;
+      }
+      td p, th p {
+        margin: 0 0 0em 0;
+        padding: 0;
+      }
+      td.num, th.num {
+        text-align: right;
+        width: 6em;
+      }
+      
+      td.time, th.time {
+        text-align: right;
+        width: 4.5em;
+        color: #c8c8c8;
+        font-size: 0.9em;
+        background-color: #fff;
+      }
+      
+      th.time p {
+        color: #d8d8d8;
+        padding-top: 0.5em;
+      }
+      
+      .summary {
+        width: auto;
+      }
+      
+      .summary tbody tr:nth-child(odd) {
+        background-color: #f8f8f8;
+      }
+      
+      .summary tbody tr:nth-last-child(1) {
+        background-color: #f0f0f0;
+      }
+      
+      .code {
+        font-weight: bold;
+        color: #fff;
+        width: 2em; 
+        text-align: center
+      }
+      
+      .results th {
+        border-radius: 0.0em;
+      }
+      
+      .results th button{
+        font-family: "Erler Dingbats", Arial;
+        line-height: 1.4em;
+        width: 2.6em;
+        padding-top: 0.2em;
+        margin-top: 0.2em;
+        background-color: rgba(255, 255, 255, 0.0);
+        border-radius: 0.0em;
+        border: 0px solid rgba(0, 0, 0, 0.3);
+      }
+
+      .A, .S, .E, .W, .I, .P {
+        width: 5em; 
+      }
+
+      tr.S {                                  color: hsl(  0,  0%,  90%) }
+      tr.S .code {                            color: hsl(  0,  0%,  90%) }
+      tr.S:nth-child(odd)        { background-color: hsl(  0,  0%,  10%) }
+      tr.S:nth-child(even)       { background-color: hsl(  0,  0%,  20%) }
+      tr.S:nth-child(odd)  .code { background-color: hsl(  0,  0%,  20%) }
+      tr.S:nth-child(even) .code { background-color: hsl(  0,  0%,  10%) }
+
+      tr.C {                                  color: hsl(  0,  0%,  90%) }
+      tr.C .code {                            color: hsl(  0,  0%,  90%) }
+      tr.C:nth-child(odd)        { background-color: hsl(  0,  100%,  20%) }
+      tr.C:nth-child(even)       { background-color: hsl(  0,  100%,  25%) }
+      tr.C:nth-child(odd)  .code { background-color: hsl(  0,  100%,  27%) }
+      tr.C:nth-child(even) .code { background-color: hsl(  0,  100%,  30%) }
+
+      tr.E {                                  color: #000 }
+      tr.E .code {                            color: #fff }
+      tr.E:nth-child(odd)        { background-color: hsl( 24,  100%, 95%) }
+      tr.E:nth-child(even)       { background-color: hsl( 24,  100%, 90%) }
+      tr.E:nth-child(odd)  .code { background-color: hsl( 24,  100%, 45%) }
+      tr.E:nth-child(even) .code { background-color: hsl( 24,  100%, 40%) }
+      
+      tr.W {                                  color: #000 }
+      tr.W .code {                            color: #fff }
+      tr.W:nth-child(odd)        { background-color: hsl( 50,  65%, 95%) }
+      tr.W:nth-child(even)       { background-color: hsl( 50,  65%, 90%) }
+      tr.W:nth-child(odd)  .code { background-color: hsl( 50,  65%, 52%) }
+      tr.W:nth-child(even) .code { background-color: hsl( 50,  65%, 48%) }
+      
+      tr.I {                                  color: #000 }
+      tr.I .code {                            color: #fff }
+      tr.I:nth-child(odd)        { background-color: hsl( 200,  50%, 95%) }
+      tr.I:nth-child(even)       { background-color: hsl( 200,  50%, 90%) }
+      tr.I:nth-child(odd)  .code { background-color: hsl( 200,  50%, 52%) }
+      tr.I:nth-child(even) .code { background-color: hsl( 200,  50%, 48%) }
+      
+      tr.P {                                  color: #000 }
+      tr.P .code {                            color: #fff }
+      tr.P:nth-child(odd)        { background-color: hsl( 130,  40%, 95%) }
+      tr.P:nth-child(even)       { background-color: hsl( 130,  40%, 90%) }
+      tr.P:nth-child(odd)  .code { background-color: hsl( 130,  40%, 60%) }
+      tr.P:nth-child(even) .code { background-color: hsl( 130,  40%, 55%) }
+      
+      tr.A {                                  color: hsl(  0,  0%,  50%) }
+      tr.A .code {                            color: hsl(  0,  0%,  50%) }
+      tr.A:nth-child(odd)        { background-color: hsl(  0,  0%,  75%) }
+      tr.A:nth-child(even)       { background-color: hsl(  0,  0%,  80%) }
+      tr.A:nth-child(odd)  .code { background-color: hsl(  0,  0%,  85%) }
+      tr.A:nth-child(even) .code { background-color: hsl(  0,  0%,  90%) }
+      
+      
+      /* Summary backgrounds */
+
+      th.S {
+        background: hsl(  0,  0%,  85%);
+      }
+      
+      th.A {
+        background: hsl(  0,  0%,  85%);
+      }
+      
+      th.E {
+        background: hsl( 24,  100%, 45%);
+      }
+      
+      th.I {
+        background: hsl( 200,  50%, 52%);
+      }
+      
+      th.P {
+        background: hsl( 130,  40%, 60%);
+      }
+      
+      th.W {
+        background: hsl( 50,  65%, 52%);
+      }
+      
+      
+      th.AE {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 24,  100%, 45%) 100%
+        );
+      }
+      
+      th.AI {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 200,  50%, 52%) 100%
+        );
+      }
+      
+      th.AP {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 130,  40%, 60%) 100%
+        );
+      }
+      
+      th.AW {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.EI {
+        background: linear-gradient(
+          90deg,
+          hsl( 24,  100%, 45%) 0%,
+          hsl( 200,  50%, 52%) 100%
+        );
+      }
+      
+      th.EP {
+        background: linear-gradient(
+          90deg,
+          hsl( 24,  100%, 45%) 0%,
+          hsl( 130,  40%, 60%) 100%
+        );
+      }
+      
+      th.EW {
+        background: linear-gradient(
+          90deg,
+          hsl( 24,  100%, 45%) 0%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.IP {
+        background: linear-gradient(
+          90deg,
+          hsl( 200,  50%, 52%) 0%,
+          hsl( 130,  40%, 60%) 100%
+        );
+      }
+      
+      th.IW {
+        background: linear-gradient(
+          90deg,
+          hsl( 200,  50%, 52%) 0%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.PW {
+        background: linear-gradient(
+          90deg,
+          hsl( 130,  40%, 60%) 0%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      
+      th.AEI {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 24,  100%, 45%) 50%,
+          hsl( 200,  50%, 52%) 100%
+        );
+      }
+      
+      th.AEP {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 24,  100%, 45%) 50%,
+          hsl( 130,  40%, 60%) 100%
+        );
+      }
+      
+      th.AEW {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 24,  100%, 45%) 50%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.AIP {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 200,  50%, 52%) 50%,
+          hsl( 130,  40%, 60%) 100%
+        );
+      }
+      
+      th.AIW {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 200,  50%, 52%) 50%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.APW {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 130,  40%, 60%) 50%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.EIP {
+        background: linear-gradient(
+          90deg,
+          hsl( 24,  100%, 45%) 0%,
+          hsl( 200,  50%, 52%) 50%,
+          hsl( 130,  40%, 60%) 100%
+        );
+      }
+      
+      th.EIW {
+        background: linear-gradient(
+          90deg,
+          hsl( 24,  100%, 45%) 0%,
+          hsl( 200,  50%, 52%) 50%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.IPW {
+        background: linear-gradient(
+          90deg,
+          hsl( 200,  50%, 52%) 0%,
+          hsl( 130,  40%, 60%) 50%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      
+      /* AEIPW */
+      
+      
+      th.AEIP {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 24,  100%, 45%) 33%,
+          hsl( 200,  50%, 52%) 66%,
+          hsl( 130,  40%, 60%) 100%
+        );
+      }
+      
+      th.AEIW {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 24,  100%, 45%) 33%,
+          hsl( 200,  50%, 52%) 66%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.AEPW {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 24,  100%, 45%) 33%,
+          hsl( 130,  40%, 60%) 66%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.AIPW {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 200,  50%, 52%) 33%,
+          hsl( 130,  40%, 60%) 66%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.EIPW {
+        background: linear-gradient(
+          90deg,
+          hsl( 24,  100%, 45%) 0%,
+          hsl( 200,  50%, 52%) 33%,
+          hsl( 130,  40%, 60%) 66%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      
+      th.AEIPW {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 24,  100%, 45%) 25%,
+          hsl( 200,  50%, 52%) 50%,
+          hsl( 130,  40%, 60%) 75%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      
+      .fontname {
+        width: 20em;
+      }
+      .table {
+        width: 2.5em;
+      }
+      .feature {
+        width: 7.5em;
+      }
+      .message {
+        /*width: 20em;*/
+      }
+      .detail {
+        width: 40em;
+      }
+      .detail p {
+      }
+      .name { background-color: #eee }
+      .name th { padding-top: 1em }
+
+    </style>
+    <script type='text/javascript'>
+      function toggle(toggle_class){
+        var elements = document.getElementsByTagName('tr')
+        for (var i = 0; i < elements.length; i++){
+          var e = elements[i]
+          if (e.className == toggle_class) {
+            if (e.style.display != 'none') {
+              e.style.display = 'none'
+            } else {
+              e.style.display = 'table-row'
+            }
+          }
+        }
+      }
+    </script>
+    
+    <script type='text/javascript'>
+      function toggle_detail(my_id){
+        var element = document.getElementById(my_id)
+        var buttoncell = document.getElementById(my_id+"_cell")
+        var button = document.getElementById(my_id+"_btn")
+        if (element.style.display != 'none') {
+          element.style.display = 'none'
+          buttoncell.style.borderRadius = '0.0em'
+          button.firstChild.data = '\u25bc'
+        } else {
+          element.style.display = ''
+          buttoncell.style.borderRadius = '0.0em 0.0em 0 0'
+          button.firstChild.data = '\u25b2'
+        }
+      }
+    </script>
+    
+    <script type='text/javascript'>
+      function toggle_all_results(){
+        var elements = document.getElementsByClassName('result_body')
+        for (var i = 0; i < elements.length; i++){
+          var e = elements[i]
+          if (e.style.display != 'none') {
+            e.style.display = 'none'
+          } else {
+            e.style.display = ''
+          }
+        }
+      }
+    </script>
+  </head>
+  <body onload="toggle_all_results()">
+    <h1>FontSniffer Report</h1>
+    <p>Library Project, start: 2020-09-24 - 07:31.14, end: 07:31.18</p>
+    <table class='togglemessages'>
+      <tr>
+        <td>Show messages:</td>
+        <td><input type='checkbox' checked name='P' id='itoggle' onclick='toggle("P");'>
+          <label for='itoggle'>Pass</label></td>
+        <td><input type='checkbox' checked name='I' id='itoggle' onclick='toggle("I");'>
+          <label for='itoggle'>Info</label></td>
+        <td><input type='checkbox' checked name='W' id='wtoggle'onclick='toggle("W");'>
+          <label for='wtoggle'>Warning</label></td>
+        <td><input type='checkbox' checked name='E' id='etoggle' onclick='toggle("E");'>
+          <label for='etoggle'>Error</label></td>
+        <td><input type='checkbox' checked name='C' id='ctoggle' onclick='toggle("C");'>
+          <label for='ctoggle'>Critical</label></td>
+          
+        <td><button onclick='toggle_all_results();'>Toggle all details</button></td>
+      </tr>
+    </table>
+    
+        <table class="fontlist">
+
+            <thead>
+                <tr><th>Font List</th></tr>
+            </thead>
+            <tbody>
+								<tr><td>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</td></tr>
+						</tbody>
+        </table>
+
+            <h2>Table Description</h2>
+            <table class="results">
+
+                <thead>
+                    <tr>
+                    <th class="A code" id="Table Description_cell">
+                    <button id="Table Description_btn" onclick='toggle_detail("Table Description");' title="Toggle details">&#x25bc;</button>
+                    </th>
+                    <th colspan="3"><h3>Table Description</h3></th></tr>
+                </thead>
+              <tbody id="Table Description" class="result_body">
+                    
+                <tr class="A">
+                    <td class="code"><p>Level</p></td>
+                    <td class="fontname"><p>Font Name</p></td>
+                    <td class="table"><p>Table</p></td>
+                    <td class="feature"><p>Feature/Item</p></td>
+                    <td class="message"><p>Description</p></td>
+                    <td class="detail"><p>Notes</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+              </tbody>
+            </table>				<h2>Table Version</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Table Version_cell">
+                <button id="Table Version_btn" onclick='toggle_detail("Table Version");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Table Version</h3></th></tr>
+            </thead>
+            <tbody id="Table Version" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>head</p></td>
+                    <td class="feature"><p>version</p></td>
+                    <td class="message"><p>head table version should be 1.0.</p></td>
+                    <td class="detail"><p>head table version is 1.0.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="W">
+                    <td class="code"><p>Warning</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>version</p></td>
+                    <td class="message"><p>OS/2 table version should be 4.</p></td>
+                    <td class="detail"><p>OS/2 table version is '3' but should be 4. Please verify agains job spec.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>post</p></td>
+                    <td class="feature"><p>format</p></td>
+                    <td class="message"><p>If not CFF, post table format should be 2.</p></td>
+                    <td class="detail"><p>Format is 2.0</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>OT Sanitizer</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="OT Sanitizer_cell">
+                <button id="OT Sanitizer_btn" onclick='toggle_detail("OT Sanitizer");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>OT Sanitizer</h3></th></tr>
+            </thead>
+            <tbody id="OT Sanitizer" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>-/-</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>OT Sanitizer</p></td>
+                    <td class="detail"><p>Passed:<br>&emsp;&emsp;&emsp;&emsp;Process start (TTF file)<br>&emsp;&emsp;&emsp;&emsp;&emsp;ProcessGeneric start<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Validating font<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Reading font<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Processing glyphs...<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Processing glyphs done<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Writing new font<br>&emsp;&emsp;&emsp;&emsp;&emsp;ProcessGeneric end<br>&emsp;&emsp;&emsp;&emsp;Process end<br>&emsp;&emsp;&emsp;&emsp;Process start (TTF file)<br>&emsp;&emsp;&emsp;&emsp;&emsp;ProcessGeneric start<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Validating font<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Reading font<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Processing glyphs...<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Processing glyphs done<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Writing new font<br>&emsp;&emsp;&emsp;&emsp;&emsp;ProcessGeneric end<br>&emsp;&emsp;&emsp;&emsp;Process end<br></p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Weight Class</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Weight Class_cell">
+                <button id="Weight Class_btn" onclick='toggle_detail("Weight Class");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Weight Class</h3></th></tr>
+            </thead>
+            <tbody id="Weight Class" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>usWeightClass</p></td>
+                    <td class="message"><p>OS/2 weight class should be greater then 250 otherwise it cause issues in MS PowerPoint.</p></td>
+                    <td class="detail"><p>OK: usWeightClass is '400'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>File Name</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="File Name_cell">
+                <button id="File Name_btn" onclick='toggle_detail("File Name");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>File Name</h3></th></tr>
+            </thead>
+            <tbody id="File Name" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>-/-</p></td>
+                    <td class="feature"><p>File Name</p></td>
+                    <td class="message"><p>File name should not be longer than 31 characters, otherwise style linking does not work in MS Word/Mac.</p></td>
+                    <td class="detail"><p>file name length is '25': 'BalooBhaijaan-Regular.ttf'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>-/-</p></td>
+                    <td class="feature"><p>File Name</p></td>
+                    <td class="message"><p>File name should not be longer than 31 characters, contain space and have more then one dot for ending.</p></td>
+                    <td class="detail"><p>Everything is fine: 'BalooBhaijaan-Regular.ttf'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Style Linking</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Style Linking_cell">
+                <button id="Style Linking_btn" onclick='toggle_detail("Style Linking");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Style Linking</h3></th></tr>
+            </thead>
+            <tbody id="Style Linking" class="result_body">
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>-/-</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Check if italic or upright.</p></td>
+                    <td class="detail"><p>It seems to be an upright font.<br>OS2.fsSelection.italic: False<br>head.macStyle.italic: False<br>post.header.italicAngle: 0.0</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>-/-</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Check if bold.</p></td>
+                    <td class="detail"><p>It seems to be not bold.<br>OS2.fsSelection.bold: False<br>head.macStyle.bold: False</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Empty Glyphs</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Empty Glyphs_cell">
+                <button id="Empty Glyphs_btn" onclick='toggle_detail("Empty Glyphs");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Empty Glyphs</h3></th></tr>
+            </thead>
+            <tbody id="Empty Glyphs" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>glyf</p></td>
+                    <td class="feature"><p>outline</p></td>
+                    <td class="message"><p>Unicodes should have outlines.</p></td>
+                    <td class="detail"><p>The following glyphs have no outlines, but this is correct:<br>Monotype NULL (uni0000)<br> (uni000D)<br>SPACE (uni0020)<br>NO-BREAK SPACE (uni00A0)<br>FIGURE SPACE (uni2007)<br>ARABIC LETTER MARK (uni061C)</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Supplementary NFC</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Supplementary NFC_cell">
+                <button id="Supplementary NFC_btn" onclick='toggle_detail("Supplementary NFC");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Supplementary NFC</h3></th></tr>
+            </thead>
+            <tbody id="Supplementary NFC" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>unicode</p></td>
+                    <td class="message"><p>Supplementary glyphs</p></td>
+                    <td class="detail"><p>No issues found.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Supplementary Glyphs</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Supplementary Glyphs_cell">
+                <button id="Supplementary Glyphs_btn" onclick='toggle_detail("Supplementary Glyphs");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Supplementary Glyphs</h3></th></tr>
+            </thead>
+            <tbody id="Supplementary Glyphs" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>unicode</p></td>
+                    <td class="message"><p>Supplementary glyphs</p></td>
+                    <td class="detail"><p>uni0022 (QUOTATION MARK) is present, and the following 'uni2033', too.<br>uni0027 (APOSTROPHE) is present, and the following 'uni2032', too.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Check against Base Glyph Advance Width</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Check against Base Glyph Advance Width_cell">
+                <button id="Check against Base Glyph Advance Width_btn" onclick='toggle_detail("Check against Base Glyph Advance Width");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Check against Base Glyph Advance Width</h3></th></tr>
+            </thead>
+            <tbody id="Check against Base Glyph Advance Width" class="result_body">
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>glyf</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Check if advance width match base glyph advance width. eg. if the width of iacute is the same like i.</p></td>
+                    <td class="detail"><p>No composits.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>hmtx</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Compare advance width against base glyph advance width (tolerance 2 units).</p></td>
+                    <td class="detail"><p>'Agrave' (ID 130): width is 627, base glyph ('A' (ID 36)) width is 627<br>'Aacute' (ID 131): width is 627, base glyph ('A' (ID 36)) width is 627<br>'Acircumflex' (ID 132): width is 627, base glyph ('A' (ID 36)) width is 627<br>'Atilde' (ID 133): width is 627, base glyph ('A' (ID 36)) width is 627<br>'Adieresis' (ID 134): width is 627, base glyph ('A' (ID 36)) width is 627<br>'Aring' (ID 135): width is 627, base glyph ('A' (ID 36)) width is 627<br>'Ccedilla' (ID 137): width is 571, base glyph ('C' (ID 38)) width is 571<br>'Icircumflex' (ID 144): width is 305, base glyph ('I' (ID 44)) width is 305<br>'Ograve' (ID 148): width is 703, base glyph ('O' (ID 50)) width is 703<br>'Oacute' (ID 149): width is 703, base glyph ('O' (ID 50)) width is 703<br>'Ocircumflex' (ID 150): width is 703, base glyph ('O' (ID 50)) width is 703<br>'Otilde' (ID 151): width is 703, base glyph ('O' (ID 50)) width is 703<br>'Odieresis' (ID 152): width is 703, base glyph ('O' (ID 50)) width is 703<br>'Ugrave' (ID 155): width is 664, base glyph ('U' (ID 56)) width is 664<br>'Uacute' (ID 156): width is 664, base glyph ('U' (ID 56)) width is 664<br>'Ucircumflex' (ID 157): width is 664, base glyph ('U' (ID 56)) width is 664<br>'Udieresis' (ID 158): width is 664, base glyph ('U' (ID 56)) width is 664<br>'Yacute' (ID 159): width is 574, base glyph ('Y' (ID 60)) width is 574<br>'agrave' (ID 162): width is 544, base glyph ('a' (ID 68)) width is 544<br>'aacute' (ID 163): width is 544, base glyph ('a' (ID 68)) width is 544<br>'acircumflex' (ID 164): width is 544, base glyph ('a' (ID 68)) width is 544<br>'atilde' (ID 165): width is 544, base glyph ('a' (ID 68)) width is 544<br>'adieresis' (ID 166): width is 544, base glyph ('a' (ID 68)) width is 544<br>'aring' (ID 167): width is 544, base glyph ('a' (ID 68)) width is 544<br>'egrave' (ID 170): width is 550, base glyph ('e' (ID 72)) width is 549<br>'eacute' (ID 171): width is 550, base glyph ('e' (ID 72)) width is 549<br>'ecircumflex' (ID 172): width is 550, base glyph ('e' (ID 72)) width is 549<br>'edieresis' (ID 173): width is 550, base glyph ('e' (ID 72)) width is 549<br>'iacute' (ID 175): width is 282, base glyph ('i' (ID 76)) width is 282<br>'ntilde' (ID 179): width is 583, base glyph ('n' (ID 81)) width is 583<br>'ograve' (ID 180): width is 586, base glyph ('o' (ID 82)) width is 586<br>'oacute' (ID 181): width is 586, base glyph ('o' (ID 82)) width is 586<br>'ocircumflex' (ID 182): width is 586, base glyph ('o' (ID 82)) width is 586<br>'otilde' (ID 183): width is 586, base glyph ('o' (ID 82)) width is 586<br>'odieresis' (ID 184): width is 586, base glyph ('o' (ID 82)) width is 586<br>'ugrave' (ID 187): width is 582, base glyph ('u' (ID 88)) width is 582<br>'uacute' (ID 188): width is 582, base glyph ('u' (ID 88)) width is 582<br>'ucircumflex' (ID 189): width is 582, base glyph ('u' (ID 88)) width is 582<br>'udieresis' (ID 190): width is 582, base glyph ('u' (ID 88)) width is 582<br>'yacute' (ID 191): width is 550, base glyph ('y' (ID 92)) width is 551<br>'ydieresis' (ID 193): width is 550, base glyph ('y' (ID 92)) width is 551<br>'Amacron' (ID 194): width is 627, base glyph ('A' (ID 36)) width is 627<br>'amacron' (ID 195): width is 544, base glyph ('a' (ID 68)) width is 544<br>'Abreve' (ID 196): width is 627, base glyph ('A' (ID 36)) width is 627<br>'abreve' (ID 197): width is 544, base glyph ('a' (ID 68)) width is 544<br>'Aogonek' (ID 198): width is 627, base glyph ('A' (ID 36)) width is 627<br>'aogonek' (ID 199): width is 544, base glyph ('a' (ID 68)) width is 544<br>'Cacute' (ID 200): width is 571, base glyph ('C' (ID 38)) width is 571<br>'Ccircumflex' (ID 202): width is 571, base glyph ('C' (ID 38)) width is 571<br>'Ccaron' (ID 206): width is 571, base glyph ('C' (ID 38)) width is 571<br>'emacron' (ID 213): width is 550, base glyph ('e' (ID 72)) width is 549<br>'ebreve' (ID 215): width is 550, base glyph ('e' (ID 72)) width is 549<br>'eogonek' (ID 219): width is 550, base glyph ('e' (ID 72)) width is 549<br>'ecaron' (ID 221): width is 550, base glyph ('e' (ID 72)) width is 549<br>'Gcircumflex' (ID 222): width is 664, base glyph ('G' (ID 42)) width is 664<br>'gcircumflex' (ID 223): width is 567, base glyph ('g' (ID 74)) width is 567<br>'Gbreve' (ID 224): width is 664, base glyph ('G' (ID 42)) width is 664<br>'gbreve' (ID 225): width is 567, base glyph ('g' (ID 74)) width is 567<br>'hcircumflex' (ID 231): width is 585, base glyph ('h' (ID 75)) width is 585<br>'iogonek' (ID 239): width is 282, base glyph ('i' (ID 76)) width is 282<br>'jcircumflex' (ID 243): width is 287, base glyph ('j' (ID 77)) width is 287<br>'Lacute' (ID 247): width is 513, base glyph ('L' (ID 47)) width is 513<br>'lacute' (ID 248): width is 280, base glyph ('l' (ID 79)) width is 280<br>'Lcaron' (ID 251): width is 513, base glyph ('L' (ID 47)) width is 513<br>'nacute' (ID 258): width is 583, base glyph ('n' (ID 81)) width is 583<br>'ncaron' (ID 262): width is 583, base glyph ('n' (ID 81)) width is 583<br>'Omacron' (ID 264): width is 703, base glyph ('O' (ID 50)) width is 703<br>'omacron' (ID 265): width is 586, base glyph ('o' (ID 82)) width is 586<br>'Ohungarumlaut' (ID 266): width is 703, base glyph ('O' (ID 50)) width is 703<br>'ohungarumlaut' (ID 267): width is 586, base glyph ('o' (ID 82)) width is 586<br>'racute' (ID 271): width is 411, base glyph ('r' (ID 85)) width is 411<br>'Sacute' (ID 276): width is 551, base glyph ('S' (ID 54)) width is 551<br>'sacute' (ID 277): width is 492, base glyph ('s' (ID 86)) width is 492<br>'Scircumflex' (ID 278): width is 551, base glyph ('S' (ID 54)) width is 551<br>'scircumflex' (ID 279): width is 492, base glyph ('s' (ID 86)) width is 492<br>'Scedilla' (ID 280): width is 551, base glyph ('S' (ID 54)) width is 551<br>'Scaron' (ID 282): width is 551, base glyph ('S' (ID 54)) width is 551<br>'scaron' (ID 283): width is 492, base glyph ('s' (ID 86)) width is 492<br>'Tcaron' (ID 286): width is 556, base glyph ('T' (ID 55)) width is 556<br>'Utilde' (ID 288): width is 664, base glyph ('U' (ID 56)) width is 664<br>'utilde' (ID 289): width is 582, base glyph ('u' (ID 88)) width is 582<br>'Umacron' (ID 290): width is 664, base glyph ('U' (ID 56)) width is 664<br>'umacron' (ID 291): width is 582, base glyph ('u' (ID 88)) width is 582<br>'Ubreve' (ID 292): width is 664, base glyph ('U' (ID 56)) width is 664<br>'ubreve' (ID 293): width is 582, base glyph ('u' (ID 88)) width is 582<br>'Uring' (ID 294): width is 664, base glyph ('U' (ID 56)) width is 664<br>'uring' (ID 295): width is 582, base glyph ('u' (ID 88)) width is 582<br>'Uhungarumlaut' (ID 296): width is 664, base glyph ('U' (ID 56)) width is 664<br>'Uogonek' (ID 298): width is 664, base glyph ('U' (ID 56)) width is 664<br>'uogonek' (ID 299): width is 582, base glyph ('u' (ID 88)) width is 582<br>'Ycircumflex' (ID 302): width is 574, base glyph ('Y' (ID 60)) width is 574<br>'ycircumflex' (ID 303): width is 550, base glyph ('y' (ID 92)) width is 551<br>'Ydieresis' (ID 304): width is 574, base glyph ('Y' (ID 60)) width is 574<br>'Zacute' (ID 305): width is 560, base glyph ('Z' (ID 61)) width is 560<br>'zacute' (ID 306): width is 481, base glyph ('z' (ID 93)) width is 481<br>'Zcaron' (ID 309): width is 560, base glyph ('Z' (ID 61)) width is 560<br>'zcaron' (ID 310): width is 481, base glyph ('z' (ID 93)) width is 481<br>'Gcaron' (ID 333): width is 664, base glyph ('G' (ID 42)) width is 664<br>'gcaron' (ID 334): width is 567, base glyph ('g' (ID 74)) width is 567<br>'Ygrave' (ID 513): width is 574, base glyph ('Y' (ID 60)) width is 574<br>'ygrave' (ID 514): width is 550, base glyph ('y' (ID 92)) width is 551</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>hmtx</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Compare advance width against base glyph advance width (tolerance 2 units).</p></td>
+                    <td class="detail"><p>'Igrave' (ID 142): width is 305, base glyph ('I' (ID 44)) width is 305<br>'Iacute' (ID 143): width is 305, base glyph ('I' (ID 44)) width is 305<br>'Idieresis' (ID 145): width is 305, base glyph ('I' (ID 44)) width is 305<br>'Oslash' (ID 154): width is 703, base glyph ('O' (ID 50)) width is 703<br>'igrave' (ID 174): width is 282, base glyph ('i' (ID 76)) width is 282<br>'icircumflex' (ID 176): width is 282, base glyph ('i' (ID 76)) width is 282<br>'idieresis' (ID 177): width is 282, base glyph ('i' (ID 76)) width is 282<br>'oslash' (ID 186): width is 586, base glyph ('o' (ID 82)) width is 586<br>'dcaron' (ID 209): width is 810, base glyph ('d' (ID 71)) width is 586<br>'Dcroat' (ID 210): width is 701, base glyph ('D' (ID 39)) width is 666<br>'dcroat' (ID 211): width is 592, base glyph ('d' (ID 71)) width is 586<br>'Hbar' (ID 232): width is 701, base glyph ('H' (ID 43)) width is 672<br>'hbar' (ID 233): width is 591, base glyph ('h' (ID 75)) width is 585<br>'Itilde' (ID 234): width is 305, base glyph ('I' (ID 44)) width is 305<br>'itilde' (ID 235): width is 282, base glyph ('i' (ID 76)) width is 282<br>'Imacron' (ID 236): width is 305, base glyph ('I' (ID 44)) width is 305<br>'imacron' (ID 237): width is 282, base glyph ('i' (ID 76)) width is 282<br>'Iogonek' (ID 238): width is 305, base glyph ('I' (ID 44)) width is 305<br>'lcaron' (ID 252): width is 504, base glyph ('l' (ID 79)) width is 280<br>'ldot' (ID 254): width is 514, base glyph ('l' (ID 79)) width is 280<br>'Lslash' (ID 255): width is 544, base glyph ('L' (ID 47)) width is 513<br>'lslash' (ID 256): width is 390, base glyph ('l' (ID 79)) width is 280<br>'scedilla' (ID 281): width is 492, base glyph ('s' (ID 86)) width is 492<br>'gravecomb' (ID 360): width is 302, base glyph ('grave' (ID 67)) width is 302<br>'tildecomb' (ID 363): width is 0, base glyph ('tilde' (ID 358)) width is 374</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="W">
+                    <td class="code"><p>Warning</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>hmtx</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Compare advance width against base glyph advance width (tolerance 2 units).</p></td>
+                    <td class="detail"><p>'Egrave' (ID 138): width is 541, base glyph ('E' (ID 40)) width is 548<br>'Eacute' (ID 139): width is 541, base glyph ('E' (ID 40)) width is 548<br>'Ecircumflex' (ID 140): width is 541, base glyph ('E' (ID 40)) width is 548<br>'Edieresis' (ID 141): width is 541, base glyph ('E' (ID 40)) width is 548<br>'Ntilde' (ID 147): width is 665, base glyph ('N' (ID 49)) width is 679<br>'ccedilla' (ID 169): width is 494, base glyph ('c' (ID 70)) width is 489<br>'cacute' (ID 201): width is 494, base glyph ('c' (ID 70)) width is 489<br>'ccircumflex' (ID 203): width is 494, base glyph ('c' (ID 70)) width is 489<br>'ccaron' (ID 207): width is 494, base glyph ('c' (ID 70)) width is 489<br>'Dcaron' (ID 208): width is 659, base glyph ('D' (ID 39)) width is 666<br>'Emacron' (ID 212): width is 541, base glyph ('E' (ID 40)) width is 548<br>'Ebreve' (ID 214): width is 541, base glyph ('E' (ID 40)) width is 548<br>'Eogonek' (ID 218): width is 541, base glyph ('E' (ID 40)) width is 548<br>'Ecaron' (ID 220): width is 541, base glyph ('E' (ID 40)) width is 548<br>'Hcircumflex' (ID 230): width is 643, base glyph ('H' (ID 43)) width is 672<br>'Jcircumflex' (ID 242): width is 408, base glyph ('J' (ID 45)) width is 412<br>'Ldot' (ID 253): width is 527, base glyph ('L' (ID 47)) width is 513<br>'Nacute' (ID 257): width is 665, base glyph ('N' (ID 49)) width is 679<br>'Ncaron' (ID 261): width is 665, base glyph ('N' (ID 49)) width is 679<br>'Racute' (ID 270): width is 602, base glyph ('R' (ID 53)) width is 609<br>'Rcaron' (ID 274): width is 602, base glyph ('R' (ID 53)) width is 609<br>'rcaron' (ID 275): width is 428, base glyph ('r' (ID 85)) width is 411<br>'tcaron' (ID 287): width is 628, base glyph ('t' (ID 87)) width is 400<br>'uhungarumlaut' (ID 297): width is 595, base glyph ('u' (ID 88)) width is 582<br>'Wcircumflex' (ID 300): width is 885, base glyph ('W' (ID 58)) width is 863<br>'wcircumflex' (ID 301): width is 800, base glyph ('w' (ID 90)) width is 791<br>'Wgrave' (ID 419): width is 885, base glyph ('W' (ID 58)) width is 863<br>'wgrave' (ID 420): width is 800, base glyph ('w' (ID 90)) width is 791<br>'Wacute' (ID 421): width is 885, base glyph ('W' (ID 58)) width is 863<br>'wacute' (ID 422): width is 800, base glyph ('w' (ID 90)) width is 791<br>'Wdieresis' (ID 423): width is 885, base glyph ('W' (ID 58)) width is 863<br>'wdieresis' (ID 424): width is 800, base glyph ('w' (ID 90)) width is 791</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Compare Advance Width hmtx and CFF table</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Compare Advance Width hmtx and CFF table_cell">
+                <button id="Compare Advance Width hmtx and CFF table_btn" onclick='toggle_detail("Compare Advance Width hmtx and CFF table");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Compare Advance Width hmtx and CFF table</h3></th></tr>
+            </thead>
+            <tbody id="Compare Advance Width hmtx and CFF table" class="result_body">
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>hmtx/CFF</p></td>
+                    <td class="feature"><p>Advance width</p></td>
+                    <td class="message"><p>Advance width of hmtx and CFF table should be the same (tolerance 2 units).</p></td>
+                    <td class="detail"><p>This is a TrueType font. This test is only for CFF.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Individual Glyphs</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Individual Glyphs_cell">
+                <button id="Individual Glyphs_btn" onclick='toggle_detail("Individual Glyphs");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Individual Glyphs</h3></th></tr>
+            </thead>
+            <tbody id="Individual Glyphs" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>post</p></td>
+                    <td class="feature"><p>PostScript names</p></td>
+                    <td class="message"><p>Check double NULL</p></td>
+                    <td class="detail"><p>Font only has one NULL: 'NULL'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>glyf</p></td>
+                    <td class="feature"><p>Contours</p></td>
+                    <td class="message"><p>.notdef should be TOFU.</p></td>
+                    <td class="detail"><p>.notdef is empty.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>uni200B</p></td>
+                    <td class="message"><p>Check ZERO WIDTH SPACE</p></td>
+                    <td class="detail"><p>Missing uni200B in cmap table.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>FEFF</p></td>
+                    <td class="message"><p>ZERO WIDTH NO-BREAK SPACE: Missing FEFF in cmap table.</p></td>
+                    <td class="detail"><p>Required for Monotype library. Please add unicode FEFF. Custom work refer to spec.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>00AD</p></td>
+                    <td class="message"><p>Soft hyphen 00AD in cmap table.</p></td>
+                    <td class="detail"><p>Soft hyphen is often used in web and in professional print publishing software like Adobe InDesign.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>hmtx</p></td>
+                    <td class="feature"><p>Index 3 and 98</p></td>
+                    <td class="message"><p>Advance width of nonbreakingspace (uni00A0) should match the space (uni0020) width.</p></td>
+                    <td class="detail"><p>OK: Advance width nonbreakingspace (uni00A0) does match the space (uni0020) width:<br>200 = 200</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>uni2009</p></td>
+                    <td class="message"><p>Advance width of 'thinspace' (uni2009) should be smaller than the width of space (uni0020).</p></td>
+                    <td class="detail"><p>Can not check, because no uni2009 in this font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>uni200A</p></td>
+                    <td class="message"><p>Advance width of 'hairspace' (uni200A) should be smaller than the width of space (uni0020).</p></td>
+                    <td class="detail"><p>Can not check, because no uni200A in this font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>uni2004</p></td>
+                    <td class="message"><p>Advance width of 'THREE-PER-EM SPACE' (uni2004) should be 1/3 of em-square.</p></td>
+                    <td class="detail"><p>Can not check, because no uni2004 in this font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>uni2005</p></td>
+                    <td class="message"><p>Advance width of 'FOUR-PER-EM SPACE' (uni2005) should be 1/4 of em-square.</p></td>
+                    <td class="detail"><p>Can not check, because no uni2005 in this font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>uni2006</p></td>
+                    <td class="message"><p>Advance width of 'SIX-PER-EM SPACE' (uni2006) should be 1/6 of em-square.</p></td>
+                    <td class="detail"><p>Can not check, because no uni2006 in this font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>uni2002</p></td>
+                    <td class="message"><p>Advance width of 'EN SPACE' (uni2002) should be 50%% of em-square.</p></td>
+                    <td class="detail"><p>Can not check, because no uni2002 in this font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>uni2003</p></td>
+                    <td class="message"><p>Advance width of 'EM SPACE' (uni2003) should be equal to UPM.</p></td>
+                    <td class="detail"><p>Can not check, because no uni2003 in this font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>uni2008</p></td>
+                    <td class="message"><p>Advance width of 'PUNCTUATION SPACE' (uni2008) should be equal to the 'period' advance width.</p></td>
+                    <td class="detail"><p>Can not check, because no uni2008 in this font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Nodes Close to Zones (CFF)</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Nodes Close to Zones (CFF)_cell">
+                <button id="Nodes Close to Zones (CFF)_btn" onclick='toggle_detail("Nodes Close to Zones (CFF)");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Nodes Close to Zones (CFF)</h3></th></tr>
+            </thead>
+            <tbody id="Nodes Close to Zones (CFF)" class="result_body">
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>CFF</p></td>
+                    <td class="feature"><p>Alignment Zones</p></td>
+                    <td class="message"><p>Check if nodes are close to a zone, but not in or touching it.</p></td>
+                    <td class="detail"><p>This is a TTF, but this test is only for CFF fonts.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Should be Composite (only .ttf)</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Should be Composite (only .ttf)_cell">
+                <button id="Should be Composite (only .ttf)_btn" onclick='toggle_detail("Should be Composite (only .ttf)");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Should be Composite (only .ttf)</h3></th></tr>
+            </thead>
+            <tbody id="Should be Composite (only .ttf)" class="result_body">
+                    
+                <tr class="W">
+                    <td class="code"><p>Warning</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>glyf</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Glyphs (LATIN) which chould be made from components (in many cases).<br>Please investigate and approve if correct.</p></td>
+                    <td class="detail"><p>'Aring' (uni00C5) (ID 135)<br>'fi' (uniFB01) (ID 617)<br>'fl' (uniFB02) (ID 618)</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>glyf</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Glyphs (LATIN) which chould be made from components (in many cases).<br>Please investigate and approve if correct.</p></td>
+                    <td class="detail"><p>'Aacute' (uni00C1) (ID 131)<br>'Abreve' (uni0102) (ID 196)<br>'Acircumflex' (uni00C2) (ID 132)<br>'Adieresis' (uni00C4) (ID 134)<br>'Agrave' (uni00C0) (ID 130)<br>'Amacron' (uni0100) (ID 194)<br>'Atilde' (uni00C3) (ID 133)<br>'Cacute' (uni0106) (ID 200)<br>'Ccaron' (uni010C) (ID 206)<br>'Ccircumflex' (uni0108) (ID 202)<br>'Cdotaccent' (uni010A) (ID 204)<br>'Dcaron' (uni010E) (ID 208)<br>'Dcroat' (uni0110) (ID 210)<br>'Eacute' (uni00C9) (ID 139)<br>'Ebreve' (uni0114) (ID 214)<br>'Ecaron' (uni011A) (ID 220)<br>'Ecircumflex' (uni00CA) (ID 140)<br>'Edieresis' (uni00CB) (ID 141)<br>'Edotaccent' (uni0116) (ID 216)<br>'Egrave' (uni00C8) (ID 138)<br>'Emacron' (uni0112) (ID 212)<br>'Gbreve' (uni011E) (ID 224)<br>'Gcircumflex' (uni011C) (ID 222)<br>'Gcommaaccent' (uni0122) (ID 228)<br>'Gdotaccent' (uni0120) (ID 226)<br>'Hcircumflex' (uni0124) (ID 230)<br>'Iacute' (uni00CD) (ID 143)<br>'Icircumflex' (uni00CE) (ID 144)<br>'Idieresis' (uni00CF) (ID 145)<br>'Idotaccent' (uni0130) (ID 240)<br>'Igrave' (uni00CC) (ID 142)<br>'Imacron' (uni012A) (ID 236)<br>'Itilde' (uni0128) (ID 234)<br>'Jcircumflex' (uni0134) (ID 242)<br>'Kcommaaccent' (uni0136) (ID 244)<br>'Lacute' (uni0139) (ID 247)<br>'Lcaron' (uni013D) (ID 251)<br>'Lcommaaccent' (uni013B) (ID 249)<br>'Ldot' (uni013F) (ID 253)<br>'Nacute' (uni0143) (ID 257)<br>'Ncaron' (uni0147) (ID 261)<br>'Ncommaaccent' (uni0145) (ID 259)<br>'Ntilde' (uni00D1) (ID 147)<br>'Oacute' (uni00D3) (ID 149)<br>'Ocircumflex' (uni00D4) (ID 150)<br>'Odieresis' (uni00D6) (ID 152)<br>'Ograve' (uni00D2) (ID 148)<br>'Ohungarumlaut' (uni0150) (ID 266)<br>'Omacron' (uni014C) (ID 264)<br>'Otilde' (uni00D5) (ID 151)<br>'Racute' (uni0154) (ID 270)<br>'Rcaron' (uni0158) (ID 274)<br>'Rcommaaccent' (uni0156) (ID 272)<br>'Scaron' (uni0160) (ID 282)<br>'Scircumflex' (uni015C) (ID 278)<br>'Scommaaccent' (uni0218) (ID 335)<br>'Tcaron' (uni0164) (ID 286)<br>'uni021A' (uni021A) (ID 337)<br>'Uacute' (uni00DA) (ID 156)<br>'Ubreve' (uni016C) (ID 292)<br>'Ucircumflex' (uni00DB) (ID 157)<br>'Udieresis' (uni00DC) (ID 158)<br>'Ugrave' (uni00D9) (ID 155)<br>'Uhungarumlaut' (uni0170) (ID 296)<br>'Umacron' (uni016A) (ID 290)<br>'Uring' (uni016E) (ID 294)<br>'Utilde' (uni0168) (ID 288)<br>'Wacute' (uni1E82) (ID 421)<br>'Wcircumflex' (uni0174) (ID 300)<br>'Wdieresis' (uni1E84) (ID 423)<br>'Wgrave' (uni1E80) (ID 419)<br>'Yacute' (uni00DD) (ID 159)<br>'Ycircumflex' (uni0176) (ID 302)<br>'Ydieresis' (uni0178) (ID 304)<br>'Ygrave' (uni1EF2) (ID 513)<br>'Zacute' (uni0179) (ID 305)<br>'Zcaron' (uni017D) (ID 309)<br>'Zdotaccent' (uni017B) (ID 307)<br>'aacute' (uni00E1) (ID 163)<br>'abreve' (uni0103) (ID 197)<br>'acircumflex' (uni00E2) (ID 164)<br>'adieresis' (uni00E4) (ID 166)<br>'agrave' (uni00E0) (ID 162)<br>'amacron' (uni0101) (ID 195)<br>'aring' (uni00E5) (ID 167)<br>'atilde' (uni00E3) (ID 165)<br>'cacute' (uni0107) (ID 201)<br>'ccaron' (uni010D) (ID 207)<br>'ccircumflex' (uni0109) (ID 203)<br>'cdotaccent' (uni010B) (ID 205)<br>'dcaron' (uni010F) (ID 209)<br>'eacute' (uni00E9) (ID 171)<br>'ebreve' (uni0115) (ID 215)<br>'ecaron' (uni011B) (ID 221)<br>'ecircumflex' (uni00EA) (ID 172)<br>'edieresis' (uni00EB) (ID 173)<br>'edotaccent' (uni0117) (ID 217)<br>'egrave' (uni00E8) (ID 170)<br>'emacron' (uni0113) (ID 213)<br>'gbreve' (uni011F) (ID 225)<br>'gcircumflex' (uni011D) (ID 223)<br>'gcommaaccent' (uni0123) (ID 229)<br>'gdotaccent' (uni0121) (ID 227)<br>'hcircumflex' (uni0125) (ID 231)<br>'iacute' (uni00ED) (ID 175)<br>'icircumflex' (uni00EE) (ID 176)<br>'idieresis' (uni00EF) (ID 177)<br>'igrave' (uni00EC) (ID 174)<br>'imacron' (uni012B) (ID 237)<br>'itilde' (uni0129) (ID 235)<br>'jcircumflex' (uni0135) (ID 243)<br>'kcommaaccent' (uni0137) (ID 245)<br>'lacute' (uni013A) (ID 248)<br>'lcaron' (uni013E) (ID 252)<br>'lcommaaccent' (uni013C) (ID 250)<br>'ldot' (uni0140) (ID 254)<br>'nacute' (uni0144) (ID 258)<br>'napostrophe' (uni0149) (ID 263)<br>'ncaron' (uni0148) (ID 262)<br>'ncommaaccent' (uni0146) (ID 260)<br>'ntilde' (uni00F1) (ID 179)<br>'oacute' (uni00F3) (ID 181)<br>'ocircumflex' (uni00F4) (ID 182)<br>'odieresis' (uni00F6) (ID 184)<br>'ograve' (uni00F2) (ID 180)<br>'ohungarumlaut' (uni0151) (ID 267)<br>'omacron' (uni014D) (ID 265)<br>'otilde' (uni00F5) (ID 183)<br>'racute' (uni0155) (ID 271)<br>'rcaron' (uni0159) (ID 275)<br>'rcommaaccent' (uni0157) (ID 273)<br>'sacute' (uni015B) (ID 277)<br>'scaron' (uni0161) (ID 283)<br>'scircumflex' (uni015D) (ID 279)<br>'scommaaccent' (uni0219) (ID 336)<br>'tcaron' (uni0165) (ID 287)<br>'uni021B' (uni021B) (ID 338)<br>'uacute' (uni00FA) (ID 188)<br>'ubreve' (uni016D) (ID 293)<br>'ucircumflex' (uni00FB) (ID 189)<br>'udieresis' (uni00FC) (ID 190)<br>'ugrave' (uni00F9) (ID 187)<br>'uhungarumlaut' (uni0171) (ID 297)<br>'umacron' (uni016B) (ID 291)<br>'uring' (uni016F) (ID 295)<br>'utilde' (uni0169) (ID 289)<br>'wacute' (uni1E83) (ID 422)<br>'wcircumflex' (uni0175) (ID 301)<br>'wdieresis' (uni1E85) (ID 424)<br>'wgrave' (uni1E81) (ID 420)<br>'yacute' (uni00FD) (ID 191)<br>'ycircumflex' (uni0177) (ID 303)<br>'ydieresis' (uni00FF) (ID 193)<br>'ygrave' (uni1EF3) (ID 514)<br>'zacute' (uni017A) (ID 306)<br>'zcaron' (uni017E) (ID 310)<br>'zdotaccent' (uni017C) (ID 308)</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>glyf</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Glyphs (FRACTIONS) which chould be made from components (in many cases).<br>Please investigate and approve if correct.</p></td>
+                    <td class="detail"><p>'onehalf' (uni00BD) (ID 127)<br>'onequarter' (uni00BC) (ID 126)<br>'threequarters' (uni00BE) (ID 128)<br>'oneeighth' (uni215B) (ID 585)<br>'threeeighths' (uni215C) (ID 586)<br>'fiveeighths' (uni215D) (ID 587)<br>'seveneighths' (uni215E) (ID 588)</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>glyf</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Glyphs (OTHER) which chould be made from components (in many cases).<br>Please investigate and approve if correct.</p></td>
+                    <td class="detail"><p>'uni00AD' (uni00AD) (ID 111)</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>glyf</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Glyphs (VIETNAMESE) which chould be made from components (in many cases).<br>Please investigate and approve if correct.</p></td>
+                    <td class="detail"><p>'uni1EAE' (uni1EAE) (ID 445)<br>'uni1EB6' (uni1EB6) (ID 453)<br>'uni1EB0' (uni1EB0) (ID 447)<br>'uni1EB2' (uni1EB2) (ID 449)<br>'uni1EB4' (uni1EB4) (ID 451)<br>'uni1EA4' (uni1EA4) (ID 435)<br>'uni1EAC' (uni1EAC) (ID 443)<br>'uni1EA6' (uni1EA6) (ID 437)<br>'uni1EA8' (uni1EA8) (ID 439)<br>'uni1EAA' (uni1EAA) (ID 441)<br>'uni1EA0' (uni1EA0) (ID 431)<br>'uni1EA2' (uni1EA2) (ID 433)<br>'uni1EBE' (uni1EBE) (ID 461)<br>'uni1EC6' (uni1EC6) (ID 469)<br>'uni1EC0' (uni1EC0) (ID 463)<br>'uni1EC2' (uni1EC2) (ID 465)<br>'uni1EC4' (uni1EC4) (ID 467)<br>'uni1EB8' (uni1EB8) (ID 455)<br>'uni1EBA' (uni1EBA) (ID 457)<br>'uni1EBC' (uni1EBC) (ID 459)<br>'uni1ECA' (uni1ECA) (ID 473)<br>'uni1EC8' (uni1EC8) (ID 471)<br>'uni1ED0' (uni1ED0) (ID 479)<br>'uni1ED8' (uni1ED8) (ID 487)<br>'uni1ED2' (uni1ED2) (ID 481)<br>'uni1ED4' (uni1ED4) (ID 483)<br>'uni1ED6' (uni1ED6) (ID 485)<br>'uni1ECC' (uni1ECC) (ID 475)<br>'uni1ECE' (uni1ECE) (ID 477)<br>'uni1EDA' (uni1EDA) (ID 489)<br>'uni1EE2' (uni1EE2) (ID 497)<br>'uni1EDC' (uni1EDC) (ID 491)<br>'uni1EDE' (uni1EDE) (ID 493)<br>'uni1EE0' (uni1EE0) (ID 495)<br>'uni1EE4' (uni1EE4) (ID 499)<br>'uni1EE6' (uni1EE6) (ID 501)<br>'uni1EE8' (uni1EE8) (ID 503)<br>'uni1EF0' (uni1EF0) (ID 511)<br>'uni1EEA' (uni1EEA) (ID 505)<br>'uni1EEC' (uni1EEC) (ID 507)<br>'uni1EEE' (uni1EEE) (ID 509)<br>'uni1EF4' (uni1EF4) (ID 515)<br>'uni1EF6' (uni1EF6) (ID 517)<br>'uni1EF6' (uni1EF6) (ID 517)<br>'uni1EF8' (uni1EF8) (ID 519)<br>'uni1EAF' (uni1EAF) (ID 446)<br>'uni1EB7' (uni1EB7) (ID 454)<br>'uni1EB1' (uni1EB1) (ID 448)<br>'uni1EB3' (uni1EB3) (ID 450)<br>'uni1EB5' (uni1EB5) (ID 452)<br>'uni1EA5' (uni1EA5) (ID 436)<br>'uni1EAD' (uni1EAD) (ID 444)<br>'uni1EA7' (uni1EA7) (ID 438)<br>'uni1EA9' (uni1EA9) (ID 440)<br>'uni1EAB' (uni1EAB) (ID 442)<br>'uni1EA1' (uni1EA1) (ID 432)<br>'uni1EA3' (uni1EA3) (ID 434)<br>'uni1EBF' (uni1EBF) (ID 462)<br>'uni1EC7' (uni1EC7) (ID 470)<br>'uni1EC1' (uni1EC1) (ID 464)<br>'uni1EC3' (uni1EC3) (ID 466)<br>'uni1EC5' (uni1EC5) (ID 468)<br>'uni1EB9' (uni1EB9) (ID 456)<br>'uni1EBB' (uni1EBB) (ID 458)<br>'uni1EBD' (uni1EBD) (ID 460)<br>'uni1ECB' (uni1ECB) (ID 474)<br>'uni1EC9' (uni1EC9) (ID 472)<br>'uni1ED1' (uni1ED1) (ID 480)<br>'uni1ED9' (uni1ED9) (ID 488)<br>'uni1ED3' (uni1ED3) (ID 482)<br>'uni1ED5' (uni1ED5) (ID 484)<br>'uni1ED7' (uni1ED7) (ID 486)<br>'uni1ECD' (uni1ECD) (ID 476)<br>'uni1ECF' (uni1ECF) (ID 478)<br>'uni1EDB' (uni1EDB) (ID 490)<br>'uni1EE3' (uni1EE3) (ID 498)<br>'uni1EDD' (uni1EDD) (ID 492)<br>'uni1EDF' (uni1EDF) (ID 494)<br>'uni1EE1' (uni1EE1) (ID 496)<br>'uni1EE5' (uni1EE5) (ID 500)<br>'uni1EE7' (uni1EE7) (ID 502)<br>'uni1EE9' (uni1EE9) (ID 504)<br>'uni1EF1' (uni1EF1) (ID 512)<br>'uni1EEB' (uni1EEB) (ID 506)<br>'uni1EED' (uni1EED) (ID 508)<br>'uni1EEF' (uni1EEF) (ID 510)<br>'uni1EF5' (uni1EF5) (ID 516)<br>'uni1EF7' (uni1EF7) (ID 518)<br>'uni1EF9' (uni1EF9) (ID 520)</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Should not be Composite (CFF)</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Should not be Composite (CFF)_cell">
+                <button id="Should not be Composite (CFF)_btn" onclick='toggle_detail("Should not be Composite (CFF)");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Should not be Composite (CFF)</h3></th></tr>
+            </thead>
+            <tbody id="Should not be Composite (CFF)" class="result_body">
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>CFF </p></td>
+                    <td class="feature"><p>Composite</p></td>
+                    <td class="message"><p>CFF font should not have any composite.</p></td>
+                    <td class="detail"><p>This is not a CFF font. Skipped this check.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Advance Width (zero or negative)</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Advance Width (zero or negative)_cell">
+                <button id="Advance Width (zero or negative)_btn" onclick='toggle_detail("Advance Width (zero or negative)");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Advance Width (zero or negative)</h3></th></tr>
+            </thead>
+            <tbody id="Advance Width (zero or negative)" class="result_body">
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>hmtx</p></td>
+                    <td class="feature"><p>advance</p></td>
+                    <td class="message"><p>Pull glyphs with advance width zero.</p></td>
+                    <td class="detail"><p>'NULL' (uni0000) (ID 1) = '0'.<br>'tildecomb' (uni0303) (ID 363) = '0'.<br>'ArabicLetterMark' (uni061C) (ID 628) = '0'.<br>'Zabar.ur' (uni064E) (ID 660) = '0'.<br>'Pesh.ur' (uni064F) (ID 661) = '0'.<br>'Zer.ur' (uni0650) (ID 662) = '0'.<br>'Tashdid.ur' (uni0651) (ID 663) = '0'.<br>'MaddaAbove.ur' (uni0653) (ID 664) = '0'.<br>'HamzaAbove.ur' (uni0654) (ID 665) = '0'.<br>'HamzaBelow.ur' (uni0655) (ID 666) = '0'.<br>'AlefSubscript.ur' (uni0656) (ID 667) = '0'.<br>'UltaPesh.ur' (uni0657) (ID 668) = '0'.<br>'AlefSuperscript.ur' (uni0670) (ID 672) = '0'.<br>'RTLMark' (uni200F) (ID 797) = '0'.<br>'Dot1.comp' (ID 801) = '0'.<br>'Dot2.comp' (ID 802) = '0'.<br>'Dot3Up.comp' (ID 803) = '0'.<br>'Dot3Down.comp' (ID 804) = '0'.<br>'Kaf.ar' (uni0643) (ID 813) = '0'.<br>'Fathatan.ur' (uni064B) (ID 835) = '0'.<br>'Dammatan.ur' (uni064C) (ID 836) = '0'.<br>'Kasratan.ur' (uni064D) (ID 837) = '0'.<br>'TashdidWithDammatan.ur' (uniFC5E) (ID 838) = '0'.<br>'TashdidWithKasratan.ur' (uniFC5F) (ID 839) = '0'.<br>'TashdidWithZabar.ur' (uniFC60) (ID 840) = '0'.<br>'TashdidWithPesh.ur' (uniFC61) (ID 841) = '0'.<br>'TashdidWithZer.ur' (uniFC62) (ID 842) = '0'.<br>'TashdidWithAlefSuperscript.ur' (uniFC63) (ID 843) = '0'.<br>'Sukun.ur' (uni0652) (ID 844) = '0'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>glyf</p></td>
+                    <td class="feature"><p>advance width</p></td>
+                    <td class="message"><p>Advance width should be zero.</p></td>
+                    <td class="detail"><p>The following glyphs (19) should have advance width 0:<br>'gravecomb' (uni0300) (ID 360) = '302'.<br>'acutecomb' (uni0301) (ID 361) = '298'.<br>'uni0302' (uni0302) (ID 362) = '348'.<br>'uni0304' (uni0304) (ID 364) = '321'.<br>'uni0306' (uni0306) (ID 365) = '336'.<br>'uni0307' (uni0307) (ID 366) = '206'.<br>'uni0308' (uni0308) (ID 367) = '397'.<br>'hookabovecomb' (uni0309) (ID 368) = '262'.<br>'uni030A' (uni030A) (ID 369) = '286'.<br>'uni030B' (uni030B) (ID 370) = '488'.<br>'uni030C' (uni030C) (ID 371) = '350'.<br>'uni031B' (uni031B) (ID 372) = '218'.<br>'dotbelowcomb' (uni0323) (ID 373) = '206'.<br>'uni0324' (uni0324) (ID 374) = '374'.<br>'uni0326' (uni0326) (ID 375) = '220'.<br>'uni0327' (uni0327) (ID 376) = '195'.<br>'uni0328' (uni0328) (ID 377) = '235'.<br>'uni032E' (uni032E) (ID 378) = '354'.<br>'uni0331' (uni0331) (ID 379) = '368'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Un/Necessary Tables</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Un/Necessary Tables_cell">
+                <button id="Un/Necessary Tables_btn" onclick='toggle_detail("Un/Necessary Tables");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Un/Necessary Tables</h3></th></tr>
+            </thead>
+            <tbody id="Un/Necessary Tables" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>-/-</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Unnecessary tables (private tables and embedded bitmap tables).</p></td>
+                    <td class="detail"><p>OK: No unnecessary tables.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>DSIG</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Necessary tables.</p></td>
+                    <td class="detail"><p>'DSIG' is in the font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>First Four Characters</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="First Four Characters_cell">
+                <button id="First Four Characters_btn" onclick='toggle_detail("First Four Characters");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>First Four Characters</h3></th></tr>
+            </thead>
+            <tbody id="First Four Characters" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>post</p></td>
+                    <td class="feature"><p>Index 0</p></td>
+                    <td class="message"><p>PostScript name should be ".notdef".</p></td>
+                    <td class="detail"><p>OK: Index 0 = ".notdef".</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>hmtx</p></td>
+                    <td class="feature"><p>Index 0</p></td>
+                    <td class="message"><p>'.notdef' advance width should not be 0.</p></td>
+                    <td class="detail"><p>OK: '.notdef' advance width is 223.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>post</p></td>
+                    <td class="feature"><p>Index 1</p></td>
+                    <td class="message"><p>PostScript name should be one of the names:<br>".null"<br>"null"<br>"NULL".</p></td>
+                    <td class="detail"><p>OK: Index 1 = "NULL".</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>glyf</p></td>
+                    <td class="feature"><p>Index 1</p></td>
+                    <td class="message"><p>'NULL' shoiuld have no contours.</p></td>
+                    <td class="detail"><p>'NULL' has 0 contours.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>hmtx</p></td>
+                    <td class="feature"><p>Index 1</p></td>
+                    <td class="message"><p>'NULL' should have an advance width of 0.</p></td>
+                    <td class="detail"><p>OK: 'NULL' has an advance width of 0.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>post</p></td>
+                    <td class="feature"><p>Index 2</p></td>
+                    <td class="message"><p>PostScript name should be one of the names:<br>"nonmarkingreturn"<br>"CR".</p></td>
+                    <td class="detail"><p>OK: Index 2 = "CR".</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>glyf</p></td>
+                    <td class="feature"><p>Index 2</p></td>
+                    <td class="message"><p>'CR' should have no contours.</p></td>
+                    <td class="detail"><p>OK: 'CR' has 0 contours.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>hmtx</p></td>
+                    <td class="feature"><p>Index 2</p></td>
+                    <td class="message"><p>Advance width of 'CR' should match the space width.</p></td>
+                    <td class="detail"><p>'CR' advance width '223' does not match the space width '200'.<br>If the width matches the original font's index 2 width, it does not need to be changed.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>post</p></td>
+                    <td class="feature"><p>Index 3</p></td>
+                    <td class="message"><p>PostScript name should be "space"</p></td>
+                    <td class="detail"><p>OK: Index 3 = "space".</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>glyf</p></td>
+                    <td class="feature"><p>Index 3</p></td>
+                    <td class="message"><p>'space' should have no contours.</p></td>
+                    <td class="detail"><p>OK: 'space' has 0 contours.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>OS/2 table</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="OS/2 table_cell">
+                <button id="OS/2 table_btn" onclick='toggle_detail("OS/2 table");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>OS/2 table</h3></th></tr>
+            </thead>
+            <tbody id="OS/2 table" class="result_body">
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>table version 3.</p></td>
+                    <td class="message"><p>'OS/2' table version should be 4.</p></td>
+                    <td class="detail"><p>'OS/2' table version is: 3. Verify that this is the version required.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>italic flag</p></td>
+                    <td class="message"><p>'OS/2' fsSelection italic flag should match the 'head' macStyle italic flag. They should be the same.</p></td>
+                    <td class="detail"><p>OK: They are the same.'OS/2' fsSelection italic flag is False and 'head' macStyle italic flag is False.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>usBreakChar</p></td>
+                    <td class="message"><p>'OS/2' usBreakChar should be 0x0020.</p></td>
+                    <td class="detail"><p>OK: 'OS/2' usBreakChar is 0x0020.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>usDefaultChar</p></td>
+                    <td class="message"><p>'OS/2' usDefaultChar should be 0x0000.</p></td>
+                    <td class="detail"><p>OK: 'OS/2' usDefaultChar is 0x0000.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>usFirstCharIndex</p></td>
+                    <td class="message"><p>'OS/2' usFirstCharIndex should be 0x0000</p></td>
+                    <td class="detail"><p>OK: 'OS/2' usFirstCharIndex is 0x0000.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>usLastCharIndex</p></td>
+                    <td class="message"><p>'OS/2' usLastCharIndex should be 0xFC63</p></td>
+                    <td class="detail"><p>OK: 'OS/2' usLastCharIndex is 0xFC63.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>Embedding Level</p></td>
+                    <td class="message"><p>For library fonts embedding level should be 'Preview & Print Embedding'.</p></td>
+                    <td class="detail"><p>Embedding Level is 'Embedding Level = Installable Embedding'. If custom font please check against job spec.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>fsType</p></td>
+                    <td class="message"><p>Pull 'OS/2' fsType.</p></td>
+                    <td class="detail"><p>embedding level: Embedding Level = Installable Embedding<br>no subsetting flag: False<br>bitmap embedding only flag: False</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>fvar table</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="fvar table_cell">
+                <button id="fvar table_btn" onclick='toggle_detail("fvar table");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>fvar table</h3></th></tr>
+            </thead>
+            <tbody id="fvar table" class="result_body">
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>fvar</p></td>
+                    <td class="feature"><p>variable font</p></td>
+                    <td class="message"><p>Variable font must have a fvar table.</p></td>
+                    <td class="detail"><p>This font is not a variable font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>STAT table</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="STAT table_cell">
+                <button id="STAT table_btn" onclick='toggle_detail("STAT table");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>STAT table</h3></th></tr>
+            </thead>
+            <tbody id="STAT table" class="result_body">
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>STAT</p></td>
+                    <td class="feature"><p>static font</p></td>
+                    <td class="message"><p>Variable font must have a STAT table.</p></td>
+                    <td class="detail"><p>No check of STAT table for static fonts included, yet. Static fonts do not need to have a STAT table. It is only recommended by Microsoft, not required.<br>More infos here:<br><a href='https://docs.microsoft.com/en-us/typography/opentype/spec/stat'>https://docs.microsoft.com/en-us/typography/opentype/spec/stat</a></p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Missing uni0000 and uni000D in cmap Table</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Missing uni0000 and uni000D in cmap Table_cell">
+                <button id="Missing uni0000 and uni000D in cmap Table_btn" onclick='toggle_detail("Missing uni0000 and uni000D in cmap Table");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Missing uni0000 and uni000D in cmap Table</h3></th></tr>
+            </thead>
+            <tbody id="Missing uni0000 and uni000D in cmap Table" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>cmap(0, 3, 0)</p></td>
+                    <td class="message"><p>Missing uni0000 and uni000D in cmap MS/BMP(0,3,0) and Unicode/2.0, BMP only(3,1,0).</p></td>
+                    <td class="detail"><p>cmap(0, 3, 0) contains U+0000</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>cmap(0, 3, 0)</p></td>
+                    <td class="message"><p>Missing uni0000 and uni000D in cmap MS/BMP(0,3,0) and Unicode/2.0, BMP only(3,1,0).</p></td>
+                    <td class="detail"><p>cmap(0, 3, 0) contains U+000D</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>cmap(3, 1, 0)</p></td>
+                    <td class="message"><p>Missing uni0000 and uni000D in cmap MS/BMP(0,3,0) and Unicode/2.0, BMP only(3,1,0).</p></td>
+                    <td class="detail"><p>cmap(3, 1, 0) contains U+0000</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>cmap(3, 1, 0)</p></td>
+                    <td class="message"><p>Missing uni0000 and uni000D in cmap MS/BMP(0,3,0) and Unicode/2.0, BMP only(3,1,0).</p></td>
+                    <td class="detail"><p>cmap(3, 1, 0) contains U+000D</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Obsolete Language Tag TUR</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Obsolete Language Tag TUR_cell">
+                <button id="Obsolete Language Tag TUR_btn" onclick='toggle_detail("Obsolete Language Tag TUR");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Obsolete Language Tag TUR</h3></th></tr>
+            </thead>
+            <tbody id="Obsolete Language Tag TUR" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>-/-</p></td>
+                    <td class="feature"><p>TRK</p></td>
+                    <td class="message"><p>Obsolete language tag 'TUR' should be TRK.</p></td>
+                    <td class="detail"><p>OK: No language tag 'TUR' in any table.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Name Table</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Name Table_cell">
+                <button id="Name Table_btn" onclick='toggle_detail("Name Table");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Name Table</h3></th></tr>
+            </thead>
+            <tbody id="Name Table" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac NID 1</p></td>
+                    <td class="message"><p>Mac NID 1, Family Name length shouldn't be longer then 31.</p></td>
+                    <td class="detail"><p>OK: NID 1 length is '14'<br>'Baloo Bhaijaan' </p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac NID 1</p></td>
+                    <td class="message"><p>Reserved word used in Family Name NID1 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 1 does not contain any of the following keywords: 'Regular, Bold, Roman'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac NID 1</p></td>
+                    <td class="message"><p>Reserved word used in Family Name NID1 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 1 does not contain any of the following keywords: 'Book, Ultra, Normal'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac NID 1</p></td>
+                    <td class="message"><p>Reserved word used in Family Name NID1 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 1 does not contain any of the following keywords: 'Roman'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac NID 1</p></td>
+                    <td class="message"><p>Reserved word used in Family Name NID1 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 1 does not contain any of the following keywords: 'Regular, Bold, Italic, Extra, Light, Black, Thin, Wide, Ultra'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac NID 1</p></td>
+                    <td class="message"><p>Should be camel case Family Name NID1</p></td>
+                    <td class="detail"><p>NID 1: OK. No camel case required.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac NID 1</p></td>
+                    <td class="message"><p>Check style extentions Family Name NID1</p></td>
+                    <td class="detail"><p>NID 1 does not contain any of the following beginnings: 'Ultra, Ex, X, Semi, Sm, Demi, Dm, Xtra, Extra'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name/OS/2</p></td>
+                    <td class="feature"><p>Mac NID 1</p></td>
+                    <td class="message"><p>Width Names Family Name NID1</p></td>
+                    <td class="detail"><p>OS/2 usWidthClass seems to be correct. Cannot find any specific width name in the name:<br>'Baloo Bhaijaan'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac NID 2</p></td>
+                    <td class="message"><p>Mac NID 2, Subfamily.</p></td>
+                    <td class="detail"><p>OK: NID 2 is 'Regular'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac NID 2</p></td>
+                    <td class="message"><p>Reserved word used in Subfamily Name NID2 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 2 does not contain any of the following keywords: 'Book, Ultra, Normal'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac NID 2</p></td>
+                    <td class="message"><p>Reserved word used in Subfamily Name NID2 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 2 does not contain any of the following keywords: 'Roman'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac NID 4</p></td>
+                    <td class="message"><p>Mac NID 4, Full Name length shouldn't be longer than 31.</p></td>
+                    <td class="detail"><p>OK: NID 4 length is '22'<br>'Baloo Bhaijaan Regular' </p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="W">
+                    <td class="code"><p>Warning</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac NID 4</p></td>
+                    <td class="message"><p>If NID 2 is 'Regular': Mac NID 4 = NID 1</p></td>
+                    <td class="detail"><p>NID 4 'Baloo Bhaijaan Regular' ≠ NID 1 'Baloo Bhaijaan'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac NID 4</p></td>
+                    <td class="message"><p>Reserved word used in Full Font Name NID4 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 4 does not contain any of the following keywords: 'Book, Ultra, Normal'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac NID 4</p></td>
+                    <td class="message"><p>Reserved word used in Full Font Name NID4 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 4 does not contain any of the following keywords: 'Roman'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac NID 4</p></td>
+                    <td class="message"><p>Should be camel case Full Font Name NID4</p></td>
+                    <td class="detail"><p>NID 4: OK. No camel case required.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac NID 4</p></td>
+                    <td class="message"><p>Check style extentions Full Font Name NID4</p></td>
+                    <td class="detail"><p>NID 4 does not contain any of the following beginnings: 'Ultra, Ex, X, Semi, Sm, Demi, Dm, Xtra, Extra'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name/OS/2</p></td>
+                    <td class="feature"><p>Mac NID 4</p></td>
+                    <td class="message"><p>Width Names Full Font Name NID4</p></td>
+                    <td class="detail"><p>OS/2 usWidthClass seems to be correct. Cannot find any specific width name in the name:<br>'Baloo Bhaijaan Regular'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name/head</p></td>
+                    <td class="feature"><p>Mac NID 5</p></td>
+                    <td class="message"><p>name table version should match head table fontRevision.</p></td>
+                    <td class="detail"><p>OK: name table version entry 'Version 1.443;PS 1.000;hotconv 16.6.51;makeotf.lib2.5.65220; ttfautohint (v1.6)' does match fontRevision 'Version 1.443'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac NID 6</p></td>
+                    <td class="message"><p>Mac NID 6, PostScript Name length shouldn't be longer then 27.<br>(Otherwise it may cause issues in MS Word.)</p></td>
+                    <td class="detail"><p>NID 6 length is '21'<br>'BalooBhaijaan-Regular' </p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac NID 6</p></td>
+                    <td class="message"><p>Mac NID 6, PostScript Name check for illegal characters.<br>Monotype uses NID 6 for creating CSS classes for their demo HTML. The following characters cause issues in the CSS code: '<br>, ,  , &, _, [, ], (, ), {, }, <, >, /, \, %'</p></td>
+                    <td class="detail"><p>NID 6 is 'BalooBhaijaan-Regular', Everything looks good.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac NID 6</p></td>
+                    <td class="message"><p>Mac NID 6, PostScript Name check for illegal characters.<br>'space' in NID 6 cause issues in fontbook for Mac.</p></td>
+                    <td class="detail"><p>NID 6 is 'BalooBhaijaan-Regular', Everything looks good.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac NID 6</p></td>
+                    <td class="message"><p>Reserved word used in PostScript Name NID6 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 6 does not contain any of the following keywords: 'Book, Ultra, Normal'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac NID 6</p></td>
+                    <td class="message"><p>Reserved word used in PostScript Name NID6 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 6 does not contain any of the following keywords: 'Roman'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac NID 6</p></td>
+                    <td class="message"><p>Should be camel case PostScript Name NID6</p></td>
+                    <td class="detail"><p>NID 6: OK. No camel case required.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 0 (3, 1, 1033, 0)</p></td>
+                    <td class="message"><p>MS NID 0, Copyright.</p></td>
+                    <td class="detail"><p>Please verify agains spec.<br>MS NID 0 is '﻿Copyright (c) 2015 Ek Type (www.ektype.in)'<br>It should follow this structure: '<mark>Copyright (c) XXXX - XXXX /entity/. All rights reserved.</mark>' </p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 1</p></td>
+                    <td class="message"><p>MS NID 1, Family Name length shouldn't be longer then 31.</p></td>
+                    <td class="detail"><p>OK: NID 1 length is '14'<br>'Baloo Bhaijaan' </p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 1</p></td>
+                    <td class="message"><p>Reserved word used in Family Name NID1 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 1 does not contain any of the following keywords: 'Regular, Bold, Roman'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 1</p></td>
+                    <td class="message"><p>Reserved word used in Family Name NID1 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 1 does not contain any of the following keywords: 'Book, Ultra, Normal'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 1</p></td>
+                    <td class="message"><p>Reserved word used in Family Name NID1 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 1 does not contain any of the following keywords: 'Roman'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 1</p></td>
+                    <td class="message"><p>Reserved word used in Family Name NID1 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 1 does not contain any of the following keywords: 'Regular, Bold, Italic, Extra, Light, Black, Thin, Wide, Ultra'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 1</p></td>
+                    <td class="message"><p>Should be camel case Family Name NID1</p></td>
+                    <td class="detail"><p>NID 1: OK. No camel case required.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 1</p></td>
+                    <td class="message"><p>Check style extentions Family Name NID1</p></td>
+                    <td class="detail"><p>NID 1 does not contain any of the following beginnings: 'Ultra, Ex, X, Semi, Sm, Demi, Dm, Xtra, Extra'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name/OS/2</p></td>
+                    <td class="feature"><p>MS NID 1</p></td>
+                    <td class="message"><p>Width Names Family Name NID1</p></td>
+                    <td class="detail"><p>OS/2 usWidthClass seems to be correct. Cannot find any specific width name in the name:<br>'Baloo Bhaijaan'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 2</p></td>
+                    <td class="message"><p>MS NID 2, Subfamily.</p></td>
+                    <td class="detail"><p>OK: NID 2 is 'Regular'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 2</p></td>
+                    <td class="message"><p>Reserved word used in Subfamily Name NID2 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 2 does not contain any of the following keywords: 'Book, Ultra, Normal'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 2</p></td>
+                    <td class="message"><p>Reserved word used in Subfamily Name NID2 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 2 does not contain any of the following keywords: 'Roman'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 4</p></td>
+                    <td class="message"><p>MS NID 4, Full Name length shouldn't be longer than 31.</p></td>
+                    <td class="detail"><p>OK: NID 4 length is '22'<br>'Baloo Bhaijaan Regular' </p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="W">
+                    <td class="code"><p>Warning</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 4</p></td>
+                    <td class="message"><p>If NID 2 is 'Regular': MS NID 4 = NID 1</p></td>
+                    <td class="detail"><p>NID 4 'Baloo Bhaijaan Regular' ≠ NID 1 'Baloo Bhaijaan'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 4</p></td>
+                    <td class="message"><p>Reserved word used in Full Font Name NID4 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 4 does not contain any of the following keywords: 'Book, Ultra, Normal'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 4</p></td>
+                    <td class="message"><p>Reserved word used in Full Font Name NID4 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 4 does not contain any of the following keywords: 'Roman'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 4</p></td>
+                    <td class="message"><p>Should be camel case Full Font Name NID4</p></td>
+                    <td class="detail"><p>NID 4: OK. No camel case required.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 4</p></td>
+                    <td class="message"><p>Check style extentions Full Font Name NID4</p></td>
+                    <td class="detail"><p>NID 4 does not contain any of the following beginnings: 'Ultra, Ex, X, Semi, Sm, Demi, Dm, Xtra, Extra'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name/OS/2</p></td>
+                    <td class="feature"><p>MS NID 4</p></td>
+                    <td class="message"><p>Width Names Full Font Name NID4</p></td>
+                    <td class="detail"><p>OS/2 usWidthClass seems to be correct. Cannot find any specific width name in the name:<br>'Baloo Bhaijaan Regular'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name/head</p></td>
+                    <td class="feature"><p>MS NID 5</p></td>
+                    <td class="message"><p>name table version should match head table fontRevision.</p></td>
+                    <td class="detail"><p>OK: name table version entry 'Version 1.443;PS 1.000;hotconv 16.6.51;makeotf.lib2.5.65220; ttfautohint (v1.6)' does match fontRevision 'Version 1.443'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 6</p></td>
+                    <td class="message"><p>MS NID 6, PostScript Name length shouldn't be longer then 27.<br>(Otherwise it may cause issues in MS Word.)</p></td>
+                    <td class="detail"><p>NID 6 length is '21'<br>'BalooBhaijaan-Regular' </p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 6</p></td>
+                    <td class="message"><p>MS NID 6, PostScript Name check for illegal characters.<br>Monotype uses NID 6 for creating CSS classes for their demo HTML. The following characters cause issues in the CSS code: '<br>, ,  , &, _, [, ], (, ), {, }, <, >, /, \, %'</p></td>
+                    <td class="detail"><p>NID 6 is 'BalooBhaijaan-Regular', Everything looks good.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 6</p></td>
+                    <td class="message"><p>MS NID 6, PostScript Name check for illegal characters.<br>'space' in NID 6 cause issues in fontbook for Mac.</p></td>
+                    <td class="detail"><p>NID 6 is 'BalooBhaijaan-Regular', Everything looks good.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 6</p></td>
+                    <td class="message"><p>Reserved word used in PostScript Name NID6 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 6 does not contain any of the following keywords: 'Book, Ultra, Normal'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 6</p></td>
+                    <td class="message"><p>Reserved word used in PostScript Name NID6 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 6 does not contain any of the following keywords: 'Roman'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 6</p></td>
+                    <td class="message"><p>Should be camel case PostScript Name NID6</p></td>
+                    <td class="detail"><p>NID 6: OK. No camel case required.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 8</p></td>
+                    <td class="message"><p>Manufactur (NID 8) should be Monotype IP</p></td>
+                    <td class="detail"><p>MS NID 8 is 'Ek Type', but should be one of these: 'Monotype Imaging Inc.', 'Monotype Imaging Inc', 'Monotype ITC Inc.', 'Monotype Hong Kong Limited', 'Monotype Limited', 'Monotype KK', 'Monotype Solutions India Private Limited', 'Monotype GmbH', 'MyFonts Inc.', 'MyFonts Inc', 'Fontsmith Ltd.', 'Fontsmith Ltd'.<br></p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 11</p></td>
+                    <td class="message"><p>MS NID 11, URL Vendor should be 'http://www.monotype.com'. </p></td>
+                    <td class="detail"><p>NID 11 is www.ektype.in, but should be http://www.monotype.com. Please verify against job spec.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 12</p></td>
+                    <td class="message"><p>MS NID 12, URL Vendor should be 'http://www.monotype.com'. </p></td>
+                    <td class="detail"><p>NID 12 is www.ektype.in, but should be http://www.monotype.com. Please verify against job spec.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 8/13</p></td>
+                    <td class="message"><p>License text</p></td>
+                    <td class="detail"><p>Cannot check license text because of unkown entity 'Ek Type' (NID8). Please verify against job spec.<br>MS NID 13 is:<br>This Font Software is licensed under the SIL Open Font License, Version 1.1. This license is available with a FAQ at: http://scripts.sil.org/OFL<br>, most common Monotype license test is:<br>This <mark>font software is the property of Monotype Imaging Inc., or one of its affiliated entities (collectively, Monotype) and its use by you is covered under the terms of a license agreement. You have obtained this font software either directly from Monotype or together with software distributed by one of the licensees of Monotype. This software is a valuable asset of Monotype. Unless you have entered into a specific license agreement granting you additional rights, your use of this software is limited by the terms of the actual license agreement you have entered into with Monotype. You may not copy or distribute this software. If you have any questions concerning your rights you should review the license agreement you received with the software. You can learn more about Monotype by clicking here: www.monotype.com.</mark></p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 14</p></td>
+                    <td class="message"><p>MS NID 14, URL Vendor should be 'http://www.monotype.com'. </p></td>
+                    <td class="detail"><p>NID 14 is http://scripts.sil.org/OFL, but should be http://www.monotype.com. Please verify against job spec.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 1</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are the same.<br>Mac is: 'Baloo Bhaijaan'<br>MS is: 'Baloo Bhaijaan'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 2</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are the same.<br>Mac is: 'Regular'<br>MS is: 'Regular'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 3</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are the same.<br>Mac is: '1.443;EKTF;BalooBhaijaan'<br>MS is: '1.443;EKTF;BalooBhaijaan'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 4</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are the same.<br>Mac is: 'Baloo Bhaijaan Regular'<br>MS is: 'Baloo Bhaijaan Regular'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 5</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are the same.<br>Mac is: 'Version 1.443;PS 1.000;hotconv 16.6.51;makeotf.lib2.5.65220; ttfautohint (v1.6)'<br>MS is: 'Version 1.443;PS 1.000;hotconv 16.6.51;makeotf.lib2.5.65220; ttfautohint (v1.6)'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 6</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are the same.<br>Mac is: 'BalooBhaijaan-Regular'<br>MS is: 'BalooBhaijaan-Regular'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 0</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: 'No entry.'<br>MS [3, 1, 1033] is: '<mark>﻿Copyright (c) 2015 Ek Type (www.ektype.in)</mark>'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 8</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: '<mark>No entry.</mark>'<br>MS [3, 1, 1033] is: 'Ek Type'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 9</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: 'No entry.'<br>MS [3, 1, 1033] is: '<mark>Devika Bhansali and Ek Type</mark>'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 11</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: 'No entry.'<br>MS [3, 1, 1033] is: '<mark>www.ektype.in</mark>'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 12</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: 'No entry.'<br>MS [3, 1, 1033] is: '<mark>www.ektype.in</mark>'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 13</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: 'No entry.'<br>MS [3, 1, 1033] is: '<mark>This Font Software is licensed under the SIL Open Font License, Version 1.1. This license is available with a FAQ at: http://scripts.sil.org/OFL</mark>'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 14</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: 'No entry.'<br>MS [3, 1, 1033] is: '<mark>http://scripts.sil.org/OFL</mark>'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Macintosh NID 0 (Mac/Roman/English)</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Macintosh NID 0, Copyright' (Mac/Roman/English)</p></td>
+                    <td class="detail"><p>Copyright NID 0 (Mac/Roman/English) is missing.<br>Please verify agains spec. It might be ok if it's a symbol font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Macintosh NID 1 (Mac/Roman/English)</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Macintosh NID 1, Family Name' (Mac/Roman/English)</p></td>
+                    <td class="detail"><p>Family Name is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Macintosh NID 2 (Mac/Roman/English)</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Macintosh NID 2, Subfamily Name' (Mac/Roman/English)</p></td>
+                    <td class="detail"><p>Subfamily Name is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Macintosh NID 3 (Mac/Roman/English)</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Macintosh NID 3, Unique Font Identifier' (Mac/Roman/English)</p></td>
+                    <td class="detail"><p>Unique Font Identifier is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Macintosh NID 4 (Mac/Roman/English)</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Macintosh NID 4, Full Font Name' (Mac/Roman/English)</p></td>
+                    <td class="detail"><p>Full Font Name is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Macintosh NID 5 (Mac/Roman/English)</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Macintosh NID 5, Version' (Mac/Roman/English)</p></td>
+                    <td class="detail"><p>Version is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Macintosh NID 6 (Mac/Roman/English)</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Macintosh NID 6, PostScript Name' (Mac/Roman/English)</p></td>
+                    <td class="detail"><p>PostScript Name is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Macintosh NID 7 (Mac/Roman/English)</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Macintosh NID 7, Trademark' (Mac/Roman/English)</p></td>
+                    <td class="detail"><p>Trademark NID 7 (Mac/Roman/English) is missing.<br>Please verify agains spec. It might be ok if it's a symbol font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Macintosh NID 8 (Mac/Roman/English)</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Macintosh NID 8, Manufacturer' (Mac/Roman/English)</p></td>
+                    <td class="detail"><p>Manufacturer NID 8 (Mac/Roman/English) is missing.<br>Please verify agains spec. It might be ok if it's a symbol font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Macintosh NID 9 (Mac/Roman/English)</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Macintosh NID 9, Designer' (Mac/Roman/English)</p></td>
+                    <td class="detail"><p>Designer NID 9 (Mac/Roman/English) is missing.<br>Please verify agains spec. It might be ok if it's a symbol font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Macintosh NID 10 (Mac/Roman/English)</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Macintosh NID 10, Description' (Mac/Roman/English)</p></td>
+                    <td class="detail"><p>Description NID 10 (Mac/Roman/English) is missing.<br>Please verify agains spec. It might be ok if it's a symbol font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Macintosh NID 11 (Mac/Roman/English)</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Macintosh NID 11, Vendor URL' (Mac/Roman/English)</p></td>
+                    <td class="detail"><p>Vendor URL NID 11 (Mac/Roman/English) is missing.<br>Please verify agains spec. It might be ok if it's a symbol font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Macintosh NID 13 (Mac/Roman/English)</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Macintosh NID 13, License Text' (Mac/Roman/English)</p></td>
+                    <td class="detail"><p>License Text NID 13 (Mac/Roman/English) is missing.<br>Please verify agains spec. It might be ok if it's a symbol font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Macintosh NID 14 (Mac/Roman/English)</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Macintosh NID 14, License URL' (Mac/Roman/English)</p></td>
+                    <td class="detail"><p>License URL NID 14 (Mac/Roman/English) is missing.<br>Please verify agains spec. It might be ok if it's a symbol font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Macintosh NID 16 (Mac/Roman/English)</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Macintosh NID 16, Typographic Family Name' (Mac/Roman/English)</p></td>
+                    <td class="detail"><p>Typographic Family Name NID 16 (Mac/Roman/English) is missing.<br>Please verify agains spec. It might be ok if it's a symbol font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Macintosh NID 17 (Mac/Roman/English)</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Macintosh NID 17, Typographic Subfamily Name' (Mac/Roman/English)</p></td>
+                    <td class="detail"><p>Typographic Subfamily Name NID 17 (Mac/Roman/English) is missing.<br>Please verify agains spec. It might be ok if it's a symbol font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 0 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 0, Copyright' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Copyright is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 1 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 1, Family Name' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Family Name is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 2 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 2, Subfamily Name' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Subfamily Name is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 3 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 3, Unique Font Identifier' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Unique Font Identifier is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 4 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 4, Full Font Name' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Full Font Name is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 5 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 5, Version' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Version is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 6 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 6, PostScript Name' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>PostScript Name is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 7 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 7, Trademark' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Trademark NID 7 (MS/BMP/English (U.S.)) is missing.<br>Please verify agains spec. It might be ok if it's a symbol font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 8 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 8, Manufacturer' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Manufacturer is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 9 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 9, Designer' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Designer is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 10 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 10, Description' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Description NID 10 (MS/BMP/English (U.S.)) is missing.<br>Please verify agains spec. It might be ok if it's a symbol font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 11 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 11, Vendor URL' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Vendor URL is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 13 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 13, License Text' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>License Text is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 14 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 14, License URL' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>License URL is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 16 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 16, Typographic Family Name' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Typographic Family Name NID 16 (MS/BMP/English (U.S.)) is missing.<br>Please verify agains spec. It might be ok if it's a symbol font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 17 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 17, Typographic Subfamily Name' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Typographic Subfamily Name NID 17 (MS/BMP/English (U.S.)) is missing.<br>Please verify agains spec. It might be ok if it's a symbol font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Underline Position and Thickness</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Underline Position and Thickness_cell">
+                <button id="Underline Position and Thickness_btn" onclick='toggle_detail("Underline Position and Thickness");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Underline Position and Thickness</h3></th></tr>
+            </thead>
+            <tbody id="Underline Position and Thickness" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>post</p></td>
+                    <td class="feature"><p>underline position and thickness</p></td>
+                    <td class="message"><p>underlinePosition should be a negative and underlineThickness not 0 or negative.</p></td>
+                    <td class="detail"><p>underlinePosition is '-75'.<br>underlineThicknes is '50'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Kerning (kern Table and GPOS Kerning)</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Kerning (kern Table and GPOS Kerning)_cell">
+                <button id="Kerning (kern Table and GPOS Kerning)_btn" onclick='toggle_detail("Kerning (kern Table and GPOS Kerning)");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Kerning (kern Table and GPOS Kerning)</h3></th></tr>
+            </thead>
+            <tbody id="Kerning (kern Table and GPOS Kerning)" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>GPOS</p></td>
+                    <td class="feature"><p>kern</p></td>
+                    <td class="message"><p>Simple check if kern feature in GPOS table.</p></td>
+                    <td class="detail"><p>The font has GPOS kerning.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>kern</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Check if 'kern' table in font.</p></td>
+                    <td class="detail"><p>Font has no 'kern' table. Please verify if font requires kern table or if only GPOS kerning should be in font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>kern/GPOS</p></td>
+                    <td class="feature"><p>kern</p></td>
+                    <td class="message"><p>'kern' table and 'GPOS' kerning.</p></td>
+                    <td class="detail"><p>Font has GPOS kerning and no 'kern' table.<br>Verify with the spec or PM what is required.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Vendor ID</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Vendor ID_cell">
+                <button id="Vendor ID_btn" onclick='toggle_detail("Vendor ID");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Vendor ID</h3></th></tr>
+            </thead>
+            <tbody id="Vendor ID" class="result_body">
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>achVendID</p></td>
+                    <td class="message"><p>Vendor ID should be 'MONO'</p></td>
+                    <td class="detail"><p>Vendor ID is 'EKTF'. Please change to 'MONO'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Vertical Metrics</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Vertical Metrics_cell">
+                <button id="Vertical Metrics_btn" onclick='toggle_detail("Vertical Metrics");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Vertical Metrics</h3></th></tr>
+            </thead>
+            <tbody id="Vertical Metrics" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2 and head</p></td>
+                    <td class="feature"><p>sTypeAsc/Desc and unitsPerEm</p></td>
+                    <td class="message"><p>The result of sTypoAscender – sTypoDescender should match or exceed the unitsPerEm value.</p></td>
+                    <td class="detail"><p>The result of sTypoAscender – sTypoDescender (1507) match or exceed the unitsPerEm value (1000).</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>hhea</p></td>
+                    <td class="feature"><p>Vertical Metrics</p></td>
+                    <td class="message"><p>Pull hhea Metrics</p></td>
+                    <td class="detail"><p>hhea.ascent: 1050<br>hhea.descent: -457<br>hhea.lineGap: 0</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>Vertical Metrics</p></td>
+                    <td class="message"><p>Pull OS/2 sTypo Metrics</p></td>
+                    <td class="detail"><p>OS2.sTypoAscender: 1050<br>OS2.sTypoDescender: -457<br>OS2.sTypoLineGap: 0</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>Vertical Metrics</p></td>
+                    <td class="message"><p>Pull OS/2 usWin Metrics</p></td>
+                    <td class="detail"><p>OS2.usWinAscent: 1050<br>OS2.usWinDescent: 457</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>xAvgCharWidth</p></td>
+                    <td class="message"><p>Get 'OS/2' xAvgCharWidth.</p></td>
+                    <td class="detail"><p>xAvgCharWidth = 560.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>hhea</p></td>
+                    <td class="feature"><p>advanceWidthMax</p></td>
+                    <td class="message"><p>Get advanceWidthMax.</p></td>
+                    <td class="detail"><p>advanceWidthMax = 1378.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>hhea</p></td>
+                    <td class="feature"><p>xMin, yMin, xMax, yMax</p></td>
+                    <td class="message"><p>Get xMin, yMin, xMax, yMax.</p></td>
+                    <td class="detail"><p>xMin: -490<br>yMin: -457<br>xMax: 1435<br>yMax: 1050<br></p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>sTypoAscender</p></td>
+                    <td class="message"><p>Vertical Metrics 'sTypoAscender' shouldn't be negative.</p></td>
+                    <td class="detail"><p>sTypoAscender = '1050'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>sTypoDescender</p></td>
+                    <td class="message"><p>Vertical Metrics 'sTypoDescender' should be negative.</p></td>
+                    <td class="detail"><p>sTypoDescender = '-457'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>sTypoLineGap</p></td>
+                    <td class="message"><p>Vertical Metrics 'sTypoLineGap' shouldn't be negative.</p></td>
+                    <td class="detail"><p>sTypoLineGap = '0'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>usWinAscent</p></td>
+                    <td class="message"><p>Vertical Metrics 'usWinAscent' shouldn't be negative.</p></td>
+                    <td class="detail"><p>usWinAscent = '1050'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>usWinDescent</p></td>
+                    <td class="message"><p>Vertical Metrics 'usWinDescent' shouldn't be negative.</p></td>
+                    <td class="detail"><p>usWinDescent = '457'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>hhea</p></td>
+                    <td class="feature"><p>ascent</p></td>
+                    <td class="message"><p>Vertical Metrics 'ascent' shouldn't be negative.</p></td>
+                    <td class="detail"><p>ascent = '1050'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>hhea</p></td>
+                    <td class="feature"><p>descent</p></td>
+                    <td class="message"><p>Vertical Metrics 'descent' should be negative.</p></td>
+                    <td class="detail"><p>descent = '-457'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>hhea</p></td>
+                    <td class="feature"><p>lineGap</p></td>
+                    <td class="message"><p>Vertical Metrics 'lineGap' shouldn't be negative.</p></td>
+                    <td class="detail"><p>lineGap = '0'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>gasp Table</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="gasp Table_cell">
+                <button id="gasp Table_btn" onclick='toggle_detail("gasp Table");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>gasp Table</h3></th></tr>
+            </thead>
+            <tbody id="gasp Table" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>gasp</p></td>
+                    <td class="feature"><p>Version</p></td>
+                    <td class="message"><p>gasp table verison should be 1.</p></td>
+                    <td class="detail"><p>Verison = 1</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>gasp</p></td>
+                    <td class="feature"><p>Default</p></td>
+                    <td class="message"><p>Pull gasp table Default.</p></td>
+                    <td class="detail"><p>Grid-fit = True, Do gray = True, Symmetric grid-fit = True, Symmetric smoothing = True</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>gasp</p></td>
+                    <td class="feature"><p>Default</p></td>
+                    <td class="message"><p>Check gasp table Default.</p></td>
+                    <td class="detail"><p>gasp table default is:<br>Grid-fit = True, Do gray = True, Symmetric grid-fit = True, Symmetric smoothing = True<br>and should be:<br>Grid-fit = True, Do gray = True, Symmetric grid-fit = True, Symmetric smoothing = True</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>PostScript names</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="PostScript names_cell">
+                <button id="PostScript names_btn" onclick='toggle_detail("PostScript names");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>PostScript names</h3></th></tr>
+            </thead>
+            <tbody id="PostScript names" class="result_body">
+                    
+                <tr class="W">
+                    <td class="code"><p>Warning</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>post</p></td>
+                    <td class="feature"><p>PostScript names</p></td>
+                    <td class="message"><p>Postscript names should not be longer then 29 characters. May cause issues in PDF.</p></td>
+                    <td class="detail"><p>Is longer:<br>'TashdidWithAlefSuperscript.ur'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>post</p></td>
+                    <td class="feature"><p>PostScript names</p></td>
+                    <td class="message"><p>Postscript names should not be longer then 29 characters. May cause issues in PDF.</p></td>
+                    <td class="detail"><p>OK:<br>'.notdef<br>NULL<br>CR<br>space<br>exclam<br>quotedbl<br>numbersign<br>dollar<br>percent<br>ampersand<br>quotesingle<br>parenleft<br>parenright<br>asterisk<br>plus<br>comma<br>hyphen<br>period<br>slash<br>zero<br>one<br>two<br>three<br>four<br>five<br>six<br>seven<br>eight<br>nine<br>colon<br>semicolon<br>less<br>equal<br>greater<br>question<br>at<br>A<br>B<br>C<br>D<br>E<br>F<br>G<br>H<br>I<br>J<br>K<br>L<br>M<br>N<br>O<br>P<br>Q<br>R<br>S<br>T<br>U<br>V<br>W<br>X<br>Y<br>Z<br>bracketleft<br>backslash<br>bracketright<br>asciicircum<br>underscore<br>grave<br>a<br>b<br>c<br>d<br>e<br>f<br>g<br>h<br>i<br>j<br>k<br>l<br>m<br>n<br>o<br>p<br>q<br>r<br>s<br>t<br>u<br>v<br>w<br>x<br>y<br>z<br>braceleft<br>bar<br>braceright<br>asciitilde<br>uni00A0<br>exclamdown<br>cent<br>sterling<br>currency<br>yen<br>brokenbar<br>section<br>dieresis<br>copyright<br>ordfeminine<br>guillemotleft<br>logicalnot<br>uni00AD<br>registered<br>macron<br>degree<br>plusminus<br>twosuperior<br>threesuperior<br>acute<br>mu<br>paragraph<br>periodcentered<br>cedilla<br>onesuperior<br>ordmasculine<br>guillemotright<br>onequarter<br>onehalf<br>threequarters<br>questiondown<br>Agrave<br>Aacute<br>Acircumflex<br>Atilde<br>Adieresis<br>Aring<br>AE<br>Ccedilla<br>Egrave<br>Eacute<br>Ecircumflex<br>Edieresis<br>Igrave<br>Iacute<br>Icircumflex<br>Idieresis<br>Eth<br>Ntilde<br>Ograve<br>Oacute<br>Ocircumflex<br>Otilde<br>Odieresis<br>multiply<br>Oslash<br>Ugrave<br>Uacute<br>Ucircumflex<br>Udieresis<br>Yacute<br>Thorn<br>germandbls<br>agrave<br>aacute<br>acircumflex<br>atilde<br>adieresis<br>aring<br>ae<br>ccedilla<br>egrave<br>eacute<br>ecircumflex<br>edieresis<br>igrave<br>iacute<br>icircumflex<br>idieresis<br>eth<br>ntilde<br>ograve<br>oacute<br>ocircumflex<br>otilde<br>odieresis<br>divide<br>oslash<br>ugrave<br>uacute<br>ucircumflex<br>udieresis<br>yacute<br>thorn<br>ydieresis<br>Amacron<br>amacron<br>Abreve<br>abreve<br>Aogonek<br>aogonek<br>Cacute<br>cacute<br>Ccircumflex<br>ccircumflex<br>Cdotaccent<br>cdotaccent<br>Ccaron<br>ccaron<br>Dcaron<br>dcaron<br>Dcroat<br>dcroat<br>Emacron<br>emacron<br>Ebreve<br>ebreve<br>Edotaccent<br>edotaccent<br>Eogonek<br>eogonek<br>Ecaron<br>ecaron<br>Gcircumflex<br>gcircumflex<br>Gbreve<br>gbreve<br>Gdotaccent<br>gdotaccent<br>Gcommaaccent<br>gcommaaccent<br>Hcircumflex<br>hcircumflex<br>Hbar<br>hbar<br>Itilde<br>itilde<br>Imacron<br>imacron<br>Iogonek<br>iogonek<br>Idotaccent<br>dotlessi<br>Jcircumflex<br>jcircumflex<br>Kcommaaccent<br>kcommaaccent<br>kgreenlandic<br>Lacute<br>lacute<br>Lcommaaccent<br>lcommaaccent<br>Lcaron<br>lcaron<br>Ldot<br>ldot<br>Lslash<br>lslash<br>Nacute<br>nacute<br>Ncommaaccent<br>ncommaaccent<br>Ncaron<br>ncaron<br>napostrophe<br>Omacron<br>omacron<br>Ohungarumlaut<br>ohungarumlaut<br>OE<br>oe<br>Racute<br>racute<br>Rcommaaccent<br>rcommaaccent<br>Rcaron<br>rcaron<br>Sacute<br>sacute<br>Scircumflex<br>scircumflex<br>Scedilla<br>scedilla<br>Scaron<br>scaron<br>Tcommaaccent<br>tcommaaccent<br>Tcaron<br>tcaron<br>Utilde<br>utilde<br>Umacron<br>umacron<br>Ubreve<br>ubreve<br>Uring<br>uring<br>Uhungarumlaut<br>uhungarumlaut<br>Uogonek<br>uogonek<br>Wcircumflex<br>wcircumflex<br>Ycircumflex<br>ycircumflex<br>Ydieresis<br>Zacute<br>zacute<br>Zdotaccent<br>zdotaccent<br>Zcaron<br>zcaron<br>uni018F<br>florin<br>Ohorn<br>ohorn<br>Uhorn<br>uhorn<br>uni01CD<br>uni01CE<br>uni01CF<br>uni01D0<br>uni01D1<br>uni01D2<br>uni01D3<br>uni01D4<br>uni01D5<br>uni01D6<br>uni01D7<br>uni01D8<br>uni01D9<br>uni01DA<br>uni01DB<br>uni01DC<br>Gcaron<br>gcaron<br>Scommaaccent<br>scommaaccent<br>uni021A<br>uni021B<br>uni0237<br>uni0251<br>uni0259<br>uni0261<br>uni02BB<br>uni02BC<br>uni02BE<br>uni02BF<br>circumflex<br>caron<br>uni02C8<br>uni02C9<br>uni02CA<br>uni02CB<br>uni02CC<br>breve<br>dotaccent<br>ring<br>ogonek<br>tilde<br>hungarumlaut<br>gravecomb<br>acutecomb<br>uni0302<br>tildecomb<br>uni0304<br>uni0306<br>uni0307<br>uni0308<br>hookabovecomb<br>uni030A<br>uni030B<br>uni030C<br>uni031B<br>dotbelowcomb<br>uni0324<br>uni0326<br>uni0327<br>uni0328<br>uni032E<br>uni0331<br>pi<br>uni1E0C<br>uni1E0D<br>uni1E0E<br>uni1E0F<br>uni1E20<br>uni1E21<br>uni1E24<br>uni1E25<br>uni1E2A<br>uni1E2B<br>uni1E36<br>uni1E37<br>uni1E38<br>uni1E39<br>uni1E3A<br>uni1E3B<br>uni1E42<br>uni1E43<br>uni1E44<br>uni1E45<br>uni1E46<br>uni1E47<br>uni1E48<br>uni1E49<br>uni1E5A<br>uni1E5B<br>uni1E5C<br>uni1E5D<br>uni1E5E<br>uni1E5F<br>uni1E60<br>uni1E61<br>uni1E62<br>uni1E63<br>uni1E6C<br>uni1E6D<br>uni1E6E<br>uni1E6F<br>Wgrave<br>wgrave<br>Wacute<br>wacute<br>Wdieresis<br>wdieresis<br>uni1E8E<br>uni1E8F<br>uni1E92<br>uni1E93<br>uni1E97<br>uni1E9E<br>uni1EA0<br>uni1EA1<br>uni1EA2<br>uni1EA3<br>uni1EA4<br>uni1EA5<br>uni1EA6<br>uni1EA7<br>uni1EA8<br>uni1EA9<br>uni1EAA<br>uni1EAB<br>uni1EAC<br>uni1EAD<br>uni1EAE<br>uni1EAF<br>uni1EB0<br>uni1EB1<br>uni1EB2<br>uni1EB3<br>uni1EB4<br>uni1EB5<br>uni1EB6<br>uni1EB7<br>uni1EB8<br>uni1EB9<br>uni1EBA<br>uni1EBB<br>uni1EBC<br>uni1EBD<br>uni1EBE<br>uni1EBF<br>uni1EC0<br>uni1EC1<br>uni1EC2<br>uni1EC3<br>uni1EC4<br>uni1EC5<br>uni1EC6<br>uni1EC7<br>uni1EC8<br>uni1EC9<br>uni1ECA<br>uni1ECB<br>uni1ECC<br>uni1ECD<br>uni1ECE<br>uni1ECF<br>uni1ED0<br>uni1ED1<br>uni1ED2<br>uni1ED3<br>uni1ED4<br>uni1ED5<br>uni1ED6<br>uni1ED7<br>uni1ED8<br>uni1ED9<br>uni1EDA<br>uni1EDB<br>uni1EDC<br>uni1EDD<br>uni1EDE<br>uni1EDF<br>uni1EE0<br>uni1EE1<br>uni1EE2<br>uni1EE3<br>uni1EE4<br>uni1EE5<br>uni1EE6<br>uni1EE7<br>uni1EE8<br>uni1EE9<br>uni1EEA<br>uni1EEB<br>uni1EEC<br>uni1EED<br>uni1EEE<br>uni1EEF<br>uni1EF0<br>uni1EF1<br>Ygrave<br>ygrave<br>uni1EF4<br>uni1EF5<br>uni1EF6<br>uni1EF7<br>uni1EF8<br>uni1EF9<br>uni2007<br>uni2010<br>figuredash<br>endash<br>emdash<br>uni2015<br>quoteleft<br>quoteright<br>quotesinglbase<br>quotedblleft<br>quotedblright<br>quotedblbase<br>dagger<br>daggerdbl<br>bullet<br>ellipsis<br>perthousand<br>uni2032<br>uni2033<br>guilsinglleft<br>guilsinglright<br>fraction<br>zero.superior<br>four.superior<br>five.superior<br>six.superior<br>seven.superior<br>eight.superior<br>nine.superior<br>parenleft.superior<br>parenright.superior<br>n.superior<br>zero.inferior<br>one.inferior<br>two.inferior<br>three.inferior<br>four.inferior<br>five.inferior<br>six.inferior<br>seven.inferior<br>eight.inferior<br>nine.inferior<br>parenleft.inferior<br>parenright.inferior<br>colonmonetary<br>lira<br>uni20A6<br>peseta<br>dong<br>Euro<br>uni20B1<br>uni20B2<br>uni20B5<br>uni20B9<br>uni20BA<br>uni20BD<br>afii61289<br>uni2117<br>uni2120<br>trademark<br>Omega<br>estimated<br>onethird<br>twothirds<br>oneeighth<br>threeeighths<br>fiveeighths<br>seveneighths<br>uni2190<br>arrowup<br>uni2192<br>arrowdown<br>partialdiff<br>Delta<br>product<br>summation<br>minus<br>uni2215<br>radical<br>infinity<br>integral<br>approxequal<br>notequal<br>lessequal<br>greaterequal<br>uni25A0<br>triagup<br>uni25B3<br>uni25B6<br>uni25B7<br>triagdn<br>uni25BD<br>uni25C0<br>uni25C1<br>uni25C6<br>lozenge<br>fi<br>fl<br>DiaComma<br>capgrave<br>capacute<br>caphungarumlaut<br>capring<br>capcircumflex<br>capcaron<br>Comma.ur<br>Semicolon.ur<br>ArabicLetterMark<br>Questionmark.ur<br>Hamza.ur<br>AlefMadda.ur<br>AlefHamzaAbove.ur<br>AlefHamzaBelow.ur<br>YeChotiHamza.ur<br>Alef.ur<br>Beh.ur<br>Teh.ur<br>Seh.ur<br>Jeem.ur<br>HahBari.ur<br>Khah.ur<br>Dal.ur<br>Zal.ur<br>Reh.ur<br>Zeh.ur<br>Seen.ur<br>Sheen.ur<br>Swad.ur<br>Zwad.ur<br>Toe.ur<br>Zoe.ur<br>Ain.ur<br>Ghain.ur<br>Feh.ur<br>Qaf.ur<br>Lam.ur<br>Meem.ur<br>Noon.ur<br>Waw.ur<br>Zabar.ur<br>Pesh.ur<br>Zer.ur<br>Tashdid.ur<br>MaddaAbove.ur<br>HamzaAbove.ur<br>HamzaBelow.ur<br>AlefSubscript.ur<br>UltaPesh.ur<br>Percent.ur<br>DecimalSeparater.ur<br>ThousandsSeparater.ur<br>AlefSuperscript.ur<br>Tteh.ur<br>Peh.ur<br>Tcheh.ur<br>Ddal.ur<br>Rreh.ur<br>Jeh.ur<br>Kaf.ur<br>Gaf.ur<br>NoonGhunnah.ur<br>HehDochashmi.ur<br>HehGoal.ur<br>HehGoalHamzaAbove.ur<br>TehMarbutaGoal.ur<br>YeChoti.ur<br>YeBari.ur<br>YeBariHamzaAbove.ur<br>Fullstop.ur<br>Zero.ur<br>One.ur<br>Two.ur<br>Three.ur<br>Four.ur<br>Five.ur<br>Six.ur<br>Seven.ur<br>Eight.ur<br>Nine.ur<br>Alef.fina.ur<br>Beh.fina.ur<br>Peh.fina.ur<br>Teh.fina.ur<br>Tteh.fina.ur<br>Seh.fina.ur<br>Jeem.fina.ur<br>Tcheh.fina.ur<br>Tcheh.fina.ext.ur<br>HahBari.fina.ur<br>Khah.fina.ur<br>Dal.fina.ur<br>Ddal.fina.ur<br>Zal.fina.ur<br>Reh.fina.ur<br>Rreh.fina.ur<br>Zeh.fina.ur<br>Jeh.fina.ur<br>Seen.fina.ur<br>Sheen.fina.ur<br>Swad.fina.ur<br>Zwad.fina.ur<br>Toe.fina.ur<br>Zoe.fina.ur<br>Ain.fina.ur<br>Ghain.fina.ur<br>Feh.fina.ur<br>Qaf.fina.ur<br>Gaf.fina.ur<br>Kaf.fina.ur<br>Lam.fina.ur<br>Meem.fina.ur<br>Noon.fina.ur<br>NoonGhunnah.fina.ur<br>Waw.fina.ur<br>HehGoal.fina.ur<br>TehMarbuta.fina.ur<br>HehDochashmi.fina.ur<br>YeChoti.fina.ur<br>YeBari.fina.ur<br>YeBariHamzaAbove.fina.ur<br>Beh.init.ur<br>Peh.init.ur<br>Teh.init.ur<br>Tteh.init.ur<br>Seh.init.ur<br>Jeem.init.ur<br>Tcheh.init.ur<br>HahBari.init.ur<br>Khah.init.ur<br>Seen.init.ur<br>Sheen.init.ur<br>Swad.init.ur<br>Zwad.init.ur<br>Toe.init.ur<br>Zoe.init.ur<br>Ain.init.ur<br>Ghain.init.ur<br>Feh.init.ur<br>Qaf.init.ur<br>Gaf.init.ur<br>Kaf.init.ur<br>Lam.init.ur<br>Meem.init.ur<br>Noon.init.ur<br>HehGoal.init.ur<br>HehDochashmi.init.ur<br>YeChoti.init.ur<br>Beh.medi.ur<br>Peh.medi.ur<br>Teh.medi.ur<br>Tteh.medi.ur<br>Seh.medi.ur<br>Jeem.medi.ur<br>Tcheh.medi.ur<br>HahBari.medi.ur<br>Khah.medi.ur<br>Seen.medi.ur<br>Sheen.medi.ur<br>Swad.medi.ur<br>Zwad.medi.ur<br>Toe.medi.ur<br>Zoe.medi.ur<br>Ain.medi.ur<br>Ghain.medi.ur<br>Feh.medi.ur<br>Qaf.medi.ur<br>Gaf.medi.ur<br>Kaf.medi.ur<br>Lam.medi.ur<br>Meem.medi.ur<br>Noon.medi.ur<br>HehGoal.medi.ur<br>HehDochashmi.medi.ur<br>YeChoti.medi.ur<br>LamAlef.ur<br>LamAlef.fina.ur<br>RTLMark<br>uni25CC<br>ZWNJ<br>ZWJ<br>Dot1.comp<br>Dot2.comp<br>Dot3Up.comp<br>Dot3Down.comp<br>Beh.comp<br>Beh.fina.comp<br>Beh.init.comp<br>Beh.medi.comp<br>gafline.ur<br>smalltoe.ur<br>WawHamza.ur<br>TehMarbuta.ar<br>Kaf.ar<br>Kaf.fina.ar<br>Heh.ar<br>AlefMaksura.ar<br>Yeh.ar<br>Yeh.fina.ar<br>Veh.ar<br>Veh.fina.ar<br>Veh.init.ar<br>Veh.medi.ar<br>HehYehAbove.ar<br>Zero.ar<br>One.ar<br>Two.ar<br>Three.ar<br>Four.ar<br>Five.ar<br>Six.ar<br>Seven.ar<br>Eight.ar<br>Nine.ar<br>FivePointedStar.ar<br>Fathatan.ur<br>Dammatan.ur<br>Kasratan.ur<br>TashdidWithDammatan.ur<br>TashdidWithKasratan.ur<br>TashdidWithZabar.ur<br>TashdidWithPesh.ur<br>TashdidWithZer.ur<br>Sukun.ur<br>Tatweel.ur'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>OT Features</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="OT Features_cell">
+                <button id="OT Features_btn" onclick='toggle_detail("OT Features");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>OT Features</h3></th></tr>
+            </thead>
+            <tbody id="OT Features" class="result_body">
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Baloo Bhaijaan Regular (BalooBhaijaan-Regular.ttf)</p></td>
+                    <td class="table"><p>GSUB</p></td>
+                    <td class="feature"><p>sinf</p></td>
+                    <td class="message"><p>If there is a feature subs, then the sinf feature should be there, too. Otherwise InDesign will mark it not existing.</p></td>
+                    <td class="detail"><p>There is a subs feature in the font, but the sinf is missing. Please investigate.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>
+    </body>
+</html>

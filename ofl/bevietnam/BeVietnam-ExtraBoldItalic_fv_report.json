@@ -1,0 +1,77 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "BeVietnam-ExtraBoldItalic.ttf",
+                "type": "ttf",
+                "size": 92544,
+                "md5": "e284707a74453da0de53dcbad07a3342",
+                "geometryMd5": "8068dfcc5f92673aa91bc00ba87d8a32"
+            },
+            "name": {
+                "family": "Be Vietnam ExtraBold",
+                "subFamily": "Italic",
+                "fullName": "Be Vietnam ExtraBold Italic",
+                "psName": "BeVietnam-ExtraBoldItalic",
+                "versionText": "Version 3.000",
+                "copyright": "Copyright 2019 The Bevietnam Project Authors (https://github.com/bettergui/beVietnam)",
+                "trademark": "Unknown",
+                "typographicFamily": "Be Vietnam",
+                "typographicSubFamily": "ExtraBold Italic"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 649,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "UKWN",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Be Vietnam ExtraBold Italic",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 3,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_780bc5575f714790be58a1d801f74aa3.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 9 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-24T07:47:34.417444Z",
+                        "orig_output": "validate_780bc5575f714790be58a1d801f74aa3.fontedit.OS_2.PANOSE.weight - ERROR - Value 9 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_780bc5575f714790be58a1d801f74aa3.glyf.glyph 466 ('three').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-24T07:47:41.854192Z",
+                        "orig_output": "validate_780bc5575f714790be58a1d801f74aa3.glyf.glyph 466 ('three').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_780bc5575f714790be58a1d801f74aa3.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2020-09-24T07:48:18.388420Z",
+                        "orig_output": "validate_780bc5575f714790be58a1d801f74aa3.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 88078,
+    "completedDate": "2020-09-24 07:48:59.731517"
+}

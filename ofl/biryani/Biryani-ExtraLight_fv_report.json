@@ -1,0 +1,85 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Biryani-ExtraLight.ttf",
+                "type": "ttf",
+                "size": 177264,
+                "md5": "30356c2414c20d8eae3ee8dc2fd88a06",
+                "geometryMd5": "68400e0e95a5eca50e9b2e383912e685"
+            },
+            "name": {
+                "family": "Biryani ExtraLight",
+                "subFamily": "Regular",
+                "fullName": "Biryani ExtraLight",
+                "psName": "Biryani-ExtraLight",
+                "versionText": "Version 1.004; ttfautohint (v1.1) -l 5 -r 5 -G 72 -x 0 -D latn -f none -w gGD -W -c",
+                "copyright": "Copyright (c) 2015 Dan Reynolds. Copyright (c) 2015 Mathieu Reguer",
+                "trademark": "Unknown",
+                "typographicFamily": "Biryani",
+                "typographicSubFamily": "ExtraLight"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 868,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "toff",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Biryani ExtraLight",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 4,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_9b246e0818e949c0ab1bfa72c8bc16b7.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 3 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-25T05:30:29.500347Z",
+                        "orig_output": "validate_9b246e0818e949c0ab1bfa72c8bc16b7.fontedit.OS_2.PANOSE.weight - ERROR - Value 3 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_9b246e0818e949c0ab1bfa72c8bc16b7.GDEF.glyphClasses",
+                        "levelname": "ERROR",
+                        "message": "The following mark glyphs have nonzero advances: [805, 806, 840]",
+                        "timestamp": "2020-09-25T05:30:29.532848Z",
+                        "orig_output": "validate_9b246e0818e949c0ab1bfa72c8bc16b7.GDEF.glyphClasses - ERROR - The following mark glyphs have nonzero advances: [805, 806, 840]",
+                        "msg_code": "V1102"
+                    },
+                    {
+                        "subroutine": "validate_9b246e0818e949c0ab1bfa72c8bc16b7.OS_2.usWeightClass",
+                        "levelname": "ERROR",
+                        "message": "The usWeightClass value 275 is not valid",
+                        "timestamp": "2020-09-25T05:30:31.522430Z",
+                        "orig_output": "validate_9b246e0818e949c0ab1bfa72c8bc16b7.OS_2.usWeightClass - ERROR - The usWeightClass value 275 is not valid",
+                        "msg_code": "E2133"
+                    },
+                    {
+                        "subroutine": "validate_9b246e0818e949c0ab1bfa72c8bc16b7.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 544, but is 545",
+                        "timestamp": "2020-09-25T05:30:31.522817Z",
+                        "orig_output": "validate_9b246e0818e949c0ab1bfa72c8bc16b7.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 544, but is 545",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 105310,
+    "completedDate": "2020-09-25 05:32:12.565725"
+}

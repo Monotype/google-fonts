@@ -1,0 +1,85 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Biryani-Light.ttf",
+                "type": "ttf",
+                "size": 180716,
+                "md5": "33ce134a75534b6b699cf056a0a1c165",
+                "geometryMd5": "d642c81dd7edf91362b5aa3cdf613d8f"
+            },
+            "name": {
+                "family": "Biryani Light",
+                "subFamily": "Regular",
+                "fullName": "Biryani Light",
+                "psName": "Biryani-Light",
+                "versionText": "Version 1.004; ttfautohint (v1.1) -l 5 -r 5 -G 72 -x 0 -D latn -f none -w gGD -W -c",
+                "copyright": "Copyright (c) 2015 Dan Reynolds. Copyright (c) 2015 Mathieu Reguer",
+                "trademark": "Unknown",
+                "typographicFamily": "Biryani",
+                "typographicSubFamily": "Light"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 878,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "toff",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Biryani Light",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 4,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_b7407b392296427485376ca3114b017b.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 4 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-25T05:02:28.327680Z",
+                        "orig_output": "validate_b7407b392296427485376ca3114b017b.fontedit.OS_2.PANOSE.weight - ERROR - Value 4 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_b7407b392296427485376ca3114b017b.GDEF.glyphClasses",
+                        "levelname": "ERROR",
+                        "message": "The following mark glyphs have nonzero advances: [815, 816, 850]",
+                        "timestamp": "2020-09-25T05:02:28.407043Z",
+                        "orig_output": "validate_b7407b392296427485376ca3114b017b.GDEF.glyphClasses - ERROR - The following mark glyphs have nonzero advances: [815, 816, 850]",
+                        "msg_code": "V1102"
+                    },
+                    {
+                        "subroutine": "validate_b7407b392296427485376ca3114b017b.glyf.glyph 612 ('uni0935094D0072').contours.contour 1",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-25T05:02:46.762226Z",
+                        "orig_output": "validate_b7407b392296427485376ca3114b017b.glyf.glyph 612 ('uni0935094D0072').contours.contour 1 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_b7407b392296427485376ca3114b017b.hmtx",
+                        "levelname": "ERROR",
+                        "message": "The left sidebearing 8 does not match the glyph's xMin 7 (glyph 46)",
+                        "timestamp": "2020-09-25T05:02:53.989037Z",
+                        "orig_output": "validate_b7407b392296427485376ca3114b017b.hmtx - ERROR - The left sidebearing 8 does not match the glyph's xMin 7 (glyph 46)",
+                        "msg_code": "V0933"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 91533,
+    "completedDate": "2020-09-25 05:03:57.224008"
+}

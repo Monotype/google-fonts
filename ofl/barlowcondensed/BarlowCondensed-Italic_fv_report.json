@@ -1,0 +1,91 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "BarlowCondensed-Italic.ttf",
+                "type": "ttf",
+                "size": 109856,
+                "md5": "606a9899e68914feefed7a104ec92557",
+                "geometryMd5": "f0834ae1ce58e586233d2d1c5727db38"
+            },
+            "name": {
+                "family": "Barlow Condensed",
+                "subFamily": "Italic",
+                "fullName": "Barlow Condensed Italic",
+                "psName": "BarlowCondensed-Italic",
+                "versionText": "Version 1.408",
+                "copyright": "Copyright 2017 The Barlow Project Authors (https://github.com/jpt/barlow)",
+                "trademark": "Unknown"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 694,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "TRBY",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Barlow Condensed Italic",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 5,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_1c0241cda5f645f2b3f55025f29fa0f2.fontedit.OS_2.PANOSE.proportion",
+                        "levelname": "ERROR",
+                        "message": "Value 6 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-25T01:35:42.029498Z",
+                        "orig_output": "validate_1c0241cda5f645f2b3f55025f29fa0f2.fontedit.OS_2.PANOSE.proportion - ERROR - Value 6 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2108"
+                    },
+                    {
+                        "subroutine": "validate_1c0241cda5f645f2b3f55025f29fa0f2.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 5 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-25T01:35:42.029668Z",
+                        "orig_output": "validate_1c0241cda5f645f2b3f55025f29fa0f2.fontedit.OS_2.PANOSE.weight - ERROR - Value 5 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_1c0241cda5f645f2b3f55025f29fa0f2.glyf.glyph 292 ('oslash').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-25T01:35:47.481736Z",
+                        "orig_output": "validate_1c0241cda5f645f2b3f55025f29fa0f2.glyf.glyph 292 ('oslash').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_1c0241cda5f645f2b3f55025f29fa0f2.glyf.glyph 589 ('currency').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-25T01:35:52.274878Z",
+                        "orig_output": "validate_1c0241cda5f645f2b3f55025f29fa0f2.glyf.glyph 589 ('currency').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_1c0241cda5f645f2b3f55025f29fa0f2.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 386, but is 385",
+                        "timestamp": "2020-09-25T01:35:43.757887Z",
+                        "orig_output": "validate_1c0241cda5f645f2b3f55025f29fa0f2.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 386, but is 385",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 82626,
+    "completedDate": "2020-09-25 01:37:02.097659"
+}

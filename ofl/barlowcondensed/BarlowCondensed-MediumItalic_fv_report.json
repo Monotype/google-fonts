@@ -1,0 +1,85 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "BarlowCondensed-MediumItalic.ttf",
+                "type": "ttf",
+                "size": 110340,
+                "md5": "dc67cb6e0592b6e65f95deb0e9153028",
+                "geometryMd5": "6cf3894940b65889cff08a6f1f4c622e"
+            },
+            "name": {
+                "family": "Barlow Condensed Medium",
+                "subFamily": "Italic",
+                "fullName": "Barlow Condensed Medium Italic",
+                "psName": "BarlowCondensed-MediumItalic",
+                "versionText": "Version 1.408",
+                "copyright": "Copyright 2017 The Barlow Project Authors (https://github.com/jpt/barlow)",
+                "trademark": "Unknown",
+                "typographicFamily": "Barlow Condensed",
+                "typographicSubFamily": "Medium Italic"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 694,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "TRBY",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Barlow Condensed Medium Italic",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 4,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_57351663af384475a7eba9e976b1c689.fontedit.OS_2.PANOSE.proportion",
+                        "levelname": "ERROR",
+                        "message": "Value 6 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-25T03:39:02.504229Z",
+                        "orig_output": "validate_57351663af384475a7eba9e976b1c689.fontedit.OS_2.PANOSE.proportion - ERROR - Value 6 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2108"
+                    },
+                    {
+                        "subroutine": "validate_57351663af384475a7eba9e976b1c689.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 6 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-25T03:39:02.504423Z",
+                        "orig_output": "validate_57351663af384475a7eba9e976b1c689.fontedit.OS_2.PANOSE.weight - ERROR - Value 6 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_57351663af384475a7eba9e976b1c689.glyf.glyph 196 ('ae').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-25T03:39:07.388685Z",
+                        "orig_output": "validate_57351663af384475a7eba9e976b1c689.glyf.glyph 196 ('ae').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_57351663af384475a7eba9e976b1c689.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 397, but is 396",
+                        "timestamp": "2020-09-25T03:39:04.840049Z",
+                        "orig_output": "validate_57351663af384475a7eba9e976b1c689.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 397, but is 396",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 86602,
+    "completedDate": "2020-09-25 03:40:26.603630"
+}

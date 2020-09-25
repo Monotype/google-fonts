@@ -1,0 +1,77 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Barlow-Black.ttf",
+                "type": "ttf",
+                "size": 111116,
+                "md5": "8a710f3e68ec5f25a8426b2cab41e7d7",
+                "geometryMd5": "987ba31f74255df2a5c9777896bc8cbc"
+            },
+            "name": {
+                "family": "Barlow Black",
+                "subFamily": "Regular",
+                "fullName": "Barlow Black",
+                "psName": "Barlow-Black",
+                "versionText": "Version 1.408",
+                "copyright": "Copyright 2017 The Barlow Project Authors (https://github.com/jpt/barlow)",
+                "trademark": "Unknown",
+                "typographicFamily": "Barlow",
+                "typographicSubFamily": "Black"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 694,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "TRBY",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Barlow Black",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 3,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_3001b39a416442f481b3672f38ae2d13.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 10 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-24T20:09:39.937116Z",
+                        "orig_output": "validate_3001b39a416442f481b3672f38ae2d13.fontedit.OS_2.PANOSE.weight - ERROR - Value 10 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_3001b39a416442f481b3672f38ae2d13.glyf.glyph 491 ('two').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-24T20:09:47.760108Z",
+                        "orig_output": "validate_3001b39a416442f481b3672f38ae2d13.glyf.glyph 491 ('two').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_3001b39a416442f481b3672f38ae2d13.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 537, but is 536",
+                        "timestamp": "2020-09-24T20:09:41.745986Z",
+                        "orig_output": "validate_3001b39a416442f481b3672f38ae2d13.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 537, but is 536",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 80567,
+    "completedDate": "2020-09-24 20:10:57.651197"
+}

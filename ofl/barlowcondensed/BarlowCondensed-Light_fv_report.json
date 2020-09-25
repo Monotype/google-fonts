@@ -1,0 +1,93 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "BarlowCondensed-Light.ttf",
+                "type": "ttf",
+                "size": 101996,
+                "md5": "80c23e258d50fcbb21e8a1301ab08c81",
+                "geometryMd5": "5f53b281d7c50530e93c5301b81ab8ac"
+            },
+            "name": {
+                "family": "Barlow Condensed Light",
+                "subFamily": "Regular",
+                "fullName": "Barlow Condensed Light",
+                "psName": "BarlowCondensed-Light",
+                "versionText": "Version 1.408",
+                "copyright": "Copyright 2017 The Barlow Project Authors (https://github.com/jpt/barlow)",
+                "trademark": "Unknown",
+                "typographicFamily": "Barlow Condensed",
+                "typographicSubFamily": "Light"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 694,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "TRBY",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Barlow Condensed Light",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 5,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_5c9e582ba09f40dda98a31c9bc018864.fontedit.OS_2.PANOSE.proportion",
+                        "levelname": "ERROR",
+                        "message": "Value 6 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-25T03:16:19.752162Z",
+                        "orig_output": "validate_5c9e582ba09f40dda98a31c9bc018864.fontedit.OS_2.PANOSE.proportion - ERROR - Value 6 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2108"
+                    },
+                    {
+                        "subroutine": "validate_5c9e582ba09f40dda98a31c9bc018864.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 4 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-25T03:16:19.752359Z",
+                        "orig_output": "validate_5c9e582ba09f40dda98a31c9bc018864.fontedit.OS_2.PANOSE.weight - ERROR - Value 4 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_5c9e582ba09f40dda98a31c9bc018864.glyf.glyph 664 ('uni0327').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-25T03:16:29.446279Z",
+                        "orig_output": "validate_5c9e582ba09f40dda98a31c9bc018864.glyf.glyph 664 ('uni0327').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_5c9e582ba09f40dda98a31c9bc018864.glyf.glyph 673 ('cedilla').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-25T03:16:29.483175Z",
+                        "orig_output": "validate_5c9e582ba09f40dda98a31c9bc018864.glyf.glyph 673 ('cedilla').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_5c9e582ba09f40dda98a31c9bc018864.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 390, but is 389",
+                        "timestamp": "2020-09-25T03:16:20.803202Z",
+                        "orig_output": "validate_5c9e582ba09f40dda98a31c9bc018864.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 390, but is 389",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 58046,
+    "completedDate": "2020-09-25 03:17:15.511006"
+}

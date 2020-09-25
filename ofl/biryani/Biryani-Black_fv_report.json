@@ -1,0 +1,77 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Biryani-Black.ttf",
+                "type": "ttf",
+                "size": 178060,
+                "md5": "c25dfcee9ba154245bd3a699d886bb0c",
+                "geometryMd5": "7fd60af9001be9a1145d9effc2157232"
+            },
+            "name": {
+                "family": "Biryani Black",
+                "subFamily": "Regular",
+                "fullName": "Biryani Black",
+                "psName": "Biryani-Black",
+                "versionText": "Version 1.004; ttfautohint (v1.1) -l 5 -r 5 -G 72 -x 0 -D latn -f none -w gGD -W -c",
+                "copyright": "Copyright (c) 2015 Dan Reynolds. Copyright (c) 2015 Mathieu Reguer",
+                "trademark": "Unknown",
+                "typographicFamily": "Biryani",
+                "typographicSubFamily": "Black"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 878,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "toff",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Biryani Black",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 3,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_43b93c123f5a444e98eab446d721a47b.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 10 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-25T05:48:41.397917Z",
+                        "orig_output": "validate_43b93c123f5a444e98eab446d721a47b.fontedit.OS_2.PANOSE.weight - ERROR - Value 10 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_43b93c123f5a444e98eab446d721a47b.GDEF.glyphClasses",
+                        "levelname": "ERROR",
+                        "message": "The following mark glyphs have nonzero advances: [815, 816, 850]",
+                        "timestamp": "2020-09-25T05:48:41.457533Z",
+                        "orig_output": "validate_43b93c123f5a444e98eab446d721a47b.GDEF.glyphClasses - ERROR - The following mark glyphs have nonzero advances: [815, 816, 850]",
+                        "msg_code": "V1102"
+                    },
+                    {
+                        "subroutine": "validate_43b93c123f5a444e98eab446d721a47b.glyf.glyph 585 ('uni0927094D0930').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-25T05:49:01.562487Z",
+                        "orig_output": "validate_43b93c123f5a444e98eab446d721a47b.glyf.glyph 585 ('uni0927094D0930').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 111252,
+    "completedDate": "2020-09-25 05:50:29.918981"
+}

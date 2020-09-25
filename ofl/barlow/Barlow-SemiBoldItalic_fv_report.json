@@ -1,0 +1,85 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Barlow-SemiBoldItalic.ttf",
+                "type": "ttf",
+                "size": 111820,
+                "md5": "8dd841ee97f81a6edadecb307bc85777",
+                "geometryMd5": "e9a23ef2ea383830ad25d79cce3e319a"
+            },
+            "name": {
+                "family": "Barlow SemiBold",
+                "subFamily": "Italic",
+                "fullName": "Barlow SemiBold Italic",
+                "psName": "Barlow-SemiBoldItalic",
+                "versionText": "Version 1.408",
+                "copyright": "Copyright 2017 The Barlow Project Authors (https://github.com/jpt/barlow)",
+                "trademark": "Unknown",
+                "typographicFamily": "Barlow",
+                "typographicSubFamily": "SemiBold Italic"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 694,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "TRBY",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Barlow SemiBold Italic",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 4,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_b3781b9fba094032a2c25e2f548e6911.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 7 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-24T19:23:15.508536Z",
+                        "orig_output": "validate_b3781b9fba094032a2c25e2f548e6911.fontedit.OS_2.PANOSE.weight - ERROR - Value 7 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_b3781b9fba094032a2c25e2f548e6911.glyf.glyph 491 ('two').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-24T19:23:23.188258Z",
+                        "orig_output": "validate_b3781b9fba094032a2c25e2f548e6911.glyf.glyph 491 ('two').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_b3781b9fba094032a2c25e2f548e6911.glyf.glyph 640 ('uni2113').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-24T19:23:25.269159Z",
+                        "orig_output": "validate_b3781b9fba094032a2c25e2f548e6911.glyf.glyph 640 ('uni2113').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_b3781b9fba094032a2c25e2f548e6911.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 507, but is 506",
+                        "timestamp": "2020-09-24T19:23:17.201678Z",
+                        "orig_output": "validate_b3781b9fba094032a2c25e2f548e6911.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 507, but is 506",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 79620,
+    "completedDate": "2020-09-24 19:24:31.796960"
+}

@@ -1,0 +1,91 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "BarlowSemiCondensed-BoldItalic.ttf",
+                "type": "ttf",
+                "size": 115020,
+                "md5": "34f65cf82832d55ba063a7ef09b6e80b",
+                "geometryMd5": "53763119759cb8aeec1a0882f76a06fd"
+            },
+            "name": {
+                "family": "Barlow Semi Condensed",
+                "subFamily": "Bold Italic",
+                "fullName": "Barlow Semi Condensed Bold Italic",
+                "psName": "BarlowSemiCondensed-BoldItalic",
+                "versionText": "Version 1.408",
+                "copyright": "Copyright 2017 The Barlow Project Authors (https://github.com/jpt/barlow)",
+                "trademark": "Unknown"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 694,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "TRBY",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Barlow Semi Condensed Bold Italic",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 5,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_042c6a62d9e841e797a5c495cf340dcb.fontedit.OS_2.PANOSE.proportion",
+                        "levelname": "ERROR",
+                        "message": "Value 6 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-24T15:59:44.408335Z",
+                        "orig_output": "validate_042c6a62d9e841e797a5c495cf340dcb.fontedit.OS_2.PANOSE.proportion - ERROR - Value 6 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2108"
+                    },
+                    {
+                        "subroutine": "validate_042c6a62d9e841e797a5c495cf340dcb.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 8 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-24T15:59:44.408499Z",
+                        "orig_output": "validate_042c6a62d9e841e797a5c495cf340dcb.fontedit.OS_2.PANOSE.weight - ERROR - Value 8 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_042c6a62d9e841e797a5c495cf340dcb.glyf.glyph 302 ('s').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-24T15:59:50.333755Z",
+                        "orig_output": "validate_042c6a62d9e841e797a5c495cf340dcb.glyf.glyph 302 ('s').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_042c6a62d9e841e797a5c495cf340dcb.glyf.glyph 305 ('scedilla').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-24T15:59:50.365588Z",
+                        "orig_output": "validate_042c6a62d9e841e797a5c495cf340dcb.glyf.glyph 305 ('scedilla').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_042c6a62d9e841e797a5c495cf340dcb.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 464, but is 463",
+                        "timestamp": "2020-09-24T15:59:45.705526Z",
+                        "orig_output": "validate_042c6a62d9e841e797a5c495cf340dcb.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 464, but is 463",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 100725,
+    "completedDate": "2020-09-24 16:01:22.537600"
+}

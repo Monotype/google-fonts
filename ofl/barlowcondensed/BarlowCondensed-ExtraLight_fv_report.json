@@ -1,0 +1,93 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "BarlowCondensed-ExtraLight.ttf",
+                "type": "ttf",
+                "size": 101172,
+                "md5": "0e9f5c210aa140b716ed7fe7f587c2d9",
+                "geometryMd5": "3595351e77bfd4f80bcac1ea3e489cd6"
+            },
+            "name": {
+                "family": "Barlow Condensed ExtraLight",
+                "subFamily": "Regular",
+                "fullName": "Barlow Condensed ExtraLight",
+                "psName": "BarlowCondensed-ExtraLight",
+                "versionText": "Version 1.408",
+                "copyright": "Copyright 2017 The Barlow Project Authors (https://github.com/jpt/barlow)",
+                "trademark": "Unknown",
+                "typographicFamily": "Barlow Condensed",
+                "typographicSubFamily": "ExtraLight"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 694,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "TRBY",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Barlow Condensed ExtraLight",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 5,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_93d49fe7c6fd42178743df2adc5b54c2.fontedit.OS_2.PANOSE.proportion",
+                        "levelname": "ERROR",
+                        "message": "Value 6 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-25T02:45:49.831114Z",
+                        "orig_output": "validate_93d49fe7c6fd42178743df2adc5b54c2.fontedit.OS_2.PANOSE.proportion - ERROR - Value 6 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2108"
+                    },
+                    {
+                        "subroutine": "validate_93d49fe7c6fd42178743df2adc5b54c2.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 3 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-25T02:45:49.831362Z",
+                        "orig_output": "validate_93d49fe7c6fd42178743df2adc5b54c2.fontedit.OS_2.PANOSE.weight - ERROR - Value 3 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_93d49fe7c6fd42178743df2adc5b54c2.glyf.glyph 673 ('cedilla').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-25T02:46:00.954178Z",
+                        "orig_output": "validate_93d49fe7c6fd42178743df2adc5b54c2.glyf.glyph 673 ('cedilla').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_93d49fe7c6fd42178743df2adc5b54c2.OS_2.usWeightClass",
+                        "levelname": "ERROR",
+                        "message": "The usWeightClass value 275 is not valid",
+                        "timestamp": "2020-09-25T02:45:51.554537Z",
+                        "orig_output": "validate_93d49fe7c6fd42178743df2adc5b54c2.OS_2.usWeightClass - ERROR - The usWeightClass value 275 is not valid",
+                        "msg_code": "E2133"
+                    },
+                    {
+                        "subroutine": "validate_93d49fe7c6fd42178743df2adc5b54c2.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 384, but is 383",
+                        "timestamp": "2020-09-25T02:45:51.554850Z",
+                        "orig_output": "validate_93d49fe7c6fd42178743df2adc5b54c2.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 384, but is 383",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 68851,
+    "completedDate": "2020-09-25 02:46:56.069197"
+}

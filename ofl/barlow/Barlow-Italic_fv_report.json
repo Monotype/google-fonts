@@ -1,0 +1,75 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Barlow-Italic.ttf",
+                "type": "ttf",
+                "size": 109624,
+                "md5": "91902124b2fb364546629dafef03251f",
+                "geometryMd5": "fadaad86ece1398ffb2f1588b6e5f243"
+            },
+            "name": {
+                "family": "Barlow",
+                "subFamily": "Italic",
+                "fullName": "Barlow Italic",
+                "psName": "Barlow-Italic",
+                "versionText": "Version 1.408",
+                "copyright": "Copyright 2017 The Barlow Project Authors (https://github.com/jpt/barlow)",
+                "trademark": "Unknown"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 694,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "TRBY",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Barlow Italic",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 3,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_13eb8fa1541c40ab91cabe66fd922e83.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 5 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-24T18:56:39.773525Z",
+                        "orig_output": "validate_13eb8fa1541c40ab91cabe66fd922e83.fontedit.OS_2.PANOSE.weight - ERROR - Value 5 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_13eb8fa1541c40ab91cabe66fd922e83.glyf.glyph 589 ('currency').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-24T18:56:47.902638Z",
+                        "orig_output": "validate_13eb8fa1541c40ab91cabe66fd922e83.glyf.glyph 589 ('currency').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_13eb8fa1541c40ab91cabe66fd922e83.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 498, but is 497",
+                        "timestamp": "2020-09-24T18:56:40.926686Z",
+                        "orig_output": "validate_13eb8fa1541c40ab91cabe66fd922e83.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 498, but is 497",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 78976,
+    "completedDate": "2020-09-24 18:57:55.896921"
+}
