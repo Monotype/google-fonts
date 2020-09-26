@@ -1,0 +1,2417 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv='content-type' content='text/html; charset=utf-8'>
+    <title>MT FontSniffer Report</title>
+    <style type="text/css">
+      body {
+        background-color: #fff;
+        color: #000;
+        font-family: "Kootenay Pro", Axel, "System Font", "Fira Sans", sans-serif;
+        line-height: 1.3em;
+        margin: 0;
+        padding: 1em;
+        font-size: 14px;
+      }
+      mark {
+        background-color: #fff990;
+        color: black;
+      }
+      h2 {
+        padding: 2em 0 0.2em 2.35em;
+        border-bottom: 2px solid #606060;
+        margin: 0;
+      }
+      h3 {
+        padding: 0.2em 0 0.3em 0;
+        margin: 0;
+      }
+      table {
+        border-collapse: collapse; 
+        margin: 1em 0; 
+        /* width: 100%; */
+        padding: 0;
+      }
+      table.togglemessages {
+        border: none; 
+        background-color: #f0f0f0;
+      }
+      td, th {
+        line-height: 1.3em; 
+        padding: 0.25em 0.5em; 
+        vertical-align: top;
+        text-align: left;
+      }
+      .summary th {
+        border-bottom: 1px solid #000;
+      }
+      td p, th p {
+        margin: 0 0 0em 0;
+        padding: 0;
+      }
+      td.num, th.num {
+        text-align: right;
+        width: 6em;
+      }
+      
+      td.time, th.time {
+        text-align: right;
+        width: 4.5em;
+        color: #c8c8c8;
+        font-size: 0.9em;
+        background-color: #fff;
+      }
+      
+      th.time p {
+        color: #d8d8d8;
+        padding-top: 0.5em;
+      }
+      
+      .summary {
+        width: auto;
+      }
+      
+      .summary tbody tr:nth-child(odd) {
+        background-color: #f8f8f8;
+      }
+      
+      .summary tbody tr:nth-last-child(1) {
+        background-color: #f0f0f0;
+      }
+      
+      .code {
+        font-weight: bold;
+        color: #fff;
+        width: 2em; 
+        text-align: center
+      }
+      
+      .results th {
+        border-radius: 0.0em;
+      }
+      
+      .results th button{
+        font-family: "Erler Dingbats", Arial;
+        line-height: 1.4em;
+        width: 2.6em;
+        padding-top: 0.2em;
+        margin-top: 0.2em;
+        background-color: rgba(255, 255, 255, 0.0);
+        border-radius: 0.0em;
+        border: 0px solid rgba(0, 0, 0, 0.3);
+      }
+
+      .A, .S, .E, .W, .I, .P {
+        width: 5em; 
+      }
+
+      tr.S {                                  color: hsl(  0,  0%,  90%) }
+      tr.S .code {                            color: hsl(  0,  0%,  90%) }
+      tr.S:nth-child(odd)        { background-color: hsl(  0,  0%,  10%) }
+      tr.S:nth-child(even)       { background-color: hsl(  0,  0%,  20%) }
+      tr.S:nth-child(odd)  .code { background-color: hsl(  0,  0%,  20%) }
+      tr.S:nth-child(even) .code { background-color: hsl(  0,  0%,  10%) }
+
+      tr.C {                                  color: hsl(  0,  0%,  90%) }
+      tr.C .code {                            color: hsl(  0,  0%,  90%) }
+      tr.C:nth-child(odd)        { background-color: hsl(  0,  100%,  20%) }
+      tr.C:nth-child(even)       { background-color: hsl(  0,  100%,  25%) }
+      tr.C:nth-child(odd)  .code { background-color: hsl(  0,  100%,  27%) }
+      tr.C:nth-child(even) .code { background-color: hsl(  0,  100%,  30%) }
+
+      tr.E {                                  color: #000 }
+      tr.E .code {                            color: #fff }
+      tr.E:nth-child(odd)        { background-color: hsl( 24,  100%, 95%) }
+      tr.E:nth-child(even)       { background-color: hsl( 24,  100%, 90%) }
+      tr.E:nth-child(odd)  .code { background-color: hsl( 24,  100%, 45%) }
+      tr.E:nth-child(even) .code { background-color: hsl( 24,  100%, 40%) }
+      
+      tr.W {                                  color: #000 }
+      tr.W .code {                            color: #fff }
+      tr.W:nth-child(odd)        { background-color: hsl( 50,  65%, 95%) }
+      tr.W:nth-child(even)       { background-color: hsl( 50,  65%, 90%) }
+      tr.W:nth-child(odd)  .code { background-color: hsl( 50,  65%, 52%) }
+      tr.W:nth-child(even) .code { background-color: hsl( 50,  65%, 48%) }
+      
+      tr.I {                                  color: #000 }
+      tr.I .code {                            color: #fff }
+      tr.I:nth-child(odd)        { background-color: hsl( 200,  50%, 95%) }
+      tr.I:nth-child(even)       { background-color: hsl( 200,  50%, 90%) }
+      tr.I:nth-child(odd)  .code { background-color: hsl( 200,  50%, 52%) }
+      tr.I:nth-child(even) .code { background-color: hsl( 200,  50%, 48%) }
+      
+      tr.P {                                  color: #000 }
+      tr.P .code {                            color: #fff }
+      tr.P:nth-child(odd)        { background-color: hsl( 130,  40%, 95%) }
+      tr.P:nth-child(even)       { background-color: hsl( 130,  40%, 90%) }
+      tr.P:nth-child(odd)  .code { background-color: hsl( 130,  40%, 60%) }
+      tr.P:nth-child(even) .code { background-color: hsl( 130,  40%, 55%) }
+      
+      tr.A {                                  color: hsl(  0,  0%,  50%) }
+      tr.A .code {                            color: hsl(  0,  0%,  50%) }
+      tr.A:nth-child(odd)        { background-color: hsl(  0,  0%,  75%) }
+      tr.A:nth-child(even)       { background-color: hsl(  0,  0%,  80%) }
+      tr.A:nth-child(odd)  .code { background-color: hsl(  0,  0%,  85%) }
+      tr.A:nth-child(even) .code { background-color: hsl(  0,  0%,  90%) }
+      
+      
+      /* Summary backgrounds */
+
+      th.S {
+        background: hsl(  0,  0%,  85%);
+      }
+      
+      th.A {
+        background: hsl(  0,  0%,  85%);
+      }
+      
+      th.E {
+        background: hsl( 24,  100%, 45%);
+      }
+      
+      th.I {
+        background: hsl( 200,  50%, 52%);
+      }
+      
+      th.P {
+        background: hsl( 130,  40%, 60%);
+      }
+      
+      th.W {
+        background: hsl( 50,  65%, 52%);
+      }
+      
+      
+      th.AE {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 24,  100%, 45%) 100%
+        );
+      }
+      
+      th.AI {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 200,  50%, 52%) 100%
+        );
+      }
+      
+      th.AP {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 130,  40%, 60%) 100%
+        );
+      }
+      
+      th.AW {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.EI {
+        background: linear-gradient(
+          90deg,
+          hsl( 24,  100%, 45%) 0%,
+          hsl( 200,  50%, 52%) 100%
+        );
+      }
+      
+      th.EP {
+        background: linear-gradient(
+          90deg,
+          hsl( 24,  100%, 45%) 0%,
+          hsl( 130,  40%, 60%) 100%
+        );
+      }
+      
+      th.EW {
+        background: linear-gradient(
+          90deg,
+          hsl( 24,  100%, 45%) 0%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.IP {
+        background: linear-gradient(
+          90deg,
+          hsl( 200,  50%, 52%) 0%,
+          hsl( 130,  40%, 60%) 100%
+        );
+      }
+      
+      th.IW {
+        background: linear-gradient(
+          90deg,
+          hsl( 200,  50%, 52%) 0%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.PW {
+        background: linear-gradient(
+          90deg,
+          hsl( 130,  40%, 60%) 0%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      
+      th.AEI {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 24,  100%, 45%) 50%,
+          hsl( 200,  50%, 52%) 100%
+        );
+      }
+      
+      th.AEP {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 24,  100%, 45%) 50%,
+          hsl( 130,  40%, 60%) 100%
+        );
+      }
+      
+      th.AEW {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 24,  100%, 45%) 50%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.AIP {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 200,  50%, 52%) 50%,
+          hsl( 130,  40%, 60%) 100%
+        );
+      }
+      
+      th.AIW {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 200,  50%, 52%) 50%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.APW {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 130,  40%, 60%) 50%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.EIP {
+        background: linear-gradient(
+          90deg,
+          hsl( 24,  100%, 45%) 0%,
+          hsl( 200,  50%, 52%) 50%,
+          hsl( 130,  40%, 60%) 100%
+        );
+      }
+      
+      th.EIW {
+        background: linear-gradient(
+          90deg,
+          hsl( 24,  100%, 45%) 0%,
+          hsl( 200,  50%, 52%) 50%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.IPW {
+        background: linear-gradient(
+          90deg,
+          hsl( 200,  50%, 52%) 0%,
+          hsl( 130,  40%, 60%) 50%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      
+      /* AEIPW */
+      
+      
+      th.AEIP {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 24,  100%, 45%) 33%,
+          hsl( 200,  50%, 52%) 66%,
+          hsl( 130,  40%, 60%) 100%
+        );
+      }
+      
+      th.AEIW {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 24,  100%, 45%) 33%,
+          hsl( 200,  50%, 52%) 66%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.AEPW {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 24,  100%, 45%) 33%,
+          hsl( 130,  40%, 60%) 66%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.AIPW {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 200,  50%, 52%) 33%,
+          hsl( 130,  40%, 60%) 66%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.EIPW {
+        background: linear-gradient(
+          90deg,
+          hsl( 24,  100%, 45%) 0%,
+          hsl( 200,  50%, 52%) 33%,
+          hsl( 130,  40%, 60%) 66%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      
+      th.AEIPW {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 24,  100%, 45%) 25%,
+          hsl( 200,  50%, 52%) 50%,
+          hsl( 130,  40%, 60%) 75%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      
+      .fontname {
+        width: 20em;
+      }
+      .table {
+        width: 2.5em;
+      }
+      .feature {
+        width: 7.5em;
+      }
+      .message {
+        /*width: 20em;*/
+      }
+      .detail {
+        width: 40em;
+      }
+      .detail p {
+      }
+      .name { background-color: #eee }
+      .name th { padding-top: 1em }
+
+    </style>
+    <script type='text/javascript'>
+      function toggle(toggle_class){
+        var elements = document.getElementsByTagName('tr')
+        for (var i = 0; i < elements.length; i++){
+          var e = elements[i]
+          if (e.className == toggle_class) {
+            if (e.style.display != 'none') {
+              e.style.display = 'none'
+            } else {
+              e.style.display = 'table-row'
+            }
+          }
+        }
+      }
+    </script>
+    
+    <script type='text/javascript'>
+      function toggle_detail(my_id){
+        var element = document.getElementById(my_id)
+        var buttoncell = document.getElementById(my_id+"_cell")
+        var button = document.getElementById(my_id+"_btn")
+        if (element.style.display != 'none') {
+          element.style.display = 'none'
+          buttoncell.style.borderRadius = '0.0em'
+          button.firstChild.data = '\u25bc'
+        } else {
+          element.style.display = ''
+          buttoncell.style.borderRadius = '0.0em 0.0em 0 0'
+          button.firstChild.data = '\u25b2'
+        }
+      }
+    </script>
+    
+    <script type='text/javascript'>
+      function toggle_all_results(){
+        var elements = document.getElementsByClassName('result_body')
+        for (var i = 0; i < elements.length; i++){
+          var e = elements[i]
+          if (e.style.display != 'none') {
+            e.style.display = 'none'
+          } else {
+            e.style.display = ''
+          }
+        }
+      }
+    </script>
+  </head>
+  <body onload="toggle_all_results()">
+    <h1>FontSniffer Report</h1>
+    <p>Library Project, start: 2020-09-26 - 08:34.34, end: 08:34.42</p>
+    <table class='togglemessages'>
+      <tr>
+        <td>Show messages:</td>
+        <td><input type='checkbox' checked name='P' id='itoggle' onclick='toggle("P");'>
+          <label for='itoggle'>Pass</label></td>
+        <td><input type='checkbox' checked name='I' id='itoggle' onclick='toggle("I");'>
+          <label for='itoggle'>Info</label></td>
+        <td><input type='checkbox' checked name='W' id='wtoggle'onclick='toggle("W");'>
+          <label for='wtoggle'>Warning</label></td>
+        <td><input type='checkbox' checked name='E' id='etoggle' onclick='toggle("E");'>
+          <label for='etoggle'>Error</label></td>
+        <td><input type='checkbox' checked name='C' id='ctoggle' onclick='toggle("C");'>
+          <label for='ctoggle'>Critical</label></td>
+          
+        <td><button onclick='toggle_all_results();'>Toggle all details</button></td>
+      </tr>
+    </table>
+    
+        <table class="fontlist">
+
+            <thead>
+                <tr><th>Font List</th></tr>
+            </thead>
+            <tbody>
+								<tr><td>Gotu Regular (Gotu-Regular.ttf)</td></tr>
+						</tbody>
+        </table>
+
+            <h2>Table Description</h2>
+            <table class="results">
+
+                <thead>
+                    <tr>
+                    <th class="A code" id="Table Description_cell">
+                    <button id="Table Description_btn" onclick='toggle_detail("Table Description");' title="Toggle details">&#x25bc;</button>
+                    </th>
+                    <th colspan="3"><h3>Table Description</h3></th></tr>
+                </thead>
+              <tbody id="Table Description" class="result_body">
+                    
+                <tr class="A">
+                    <td class="code"><p>Level</p></td>
+                    <td class="fontname"><p>Font Name</p></td>
+                    <td class="table"><p>Table</p></td>
+                    <td class="feature"><p>Feature/Item</p></td>
+                    <td class="message"><p>Description</p></td>
+                    <td class="detail"><p>Notes</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+              </tbody>
+            </table>				<h2>Table Version</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Table Version_cell">
+                <button id="Table Version_btn" onclick='toggle_detail("Table Version");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Table Version</h3></th></tr>
+            </thead>
+            <tbody id="Table Version" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>head</p></td>
+                    <td class="feature"><p>version</p></td>
+                    <td class="message"><p>head table version should be 1.0.</p></td>
+                    <td class="detail"><p>head table version is 1.0.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="W">
+                    <td class="code"><p>Warning</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>version</p></td>
+                    <td class="message"><p>OS/2 table version should be 4.</p></td>
+                    <td class="detail"><p>OS/2 table version is '3' but should be 4. Please verify agains job spec.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>post</p></td>
+                    <td class="feature"><p>format</p></td>
+                    <td class="message"><p>If not CFF, post table format should be 2.</p></td>
+                    <td class="detail"><p>Format is 2.0</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>OT Sanitizer</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="OT Sanitizer_cell">
+                <button id="OT Sanitizer_btn" onclick='toggle_detail("OT Sanitizer");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>OT Sanitizer</h3></th></tr>
+            </thead>
+            <tbody id="OT Sanitizer" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>-/-</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>OT Sanitizer</p></td>
+                    <td class="detail"><p>Passed:<br>&emsp;&emsp;&emsp;&emsp;Process start (TTF file)<br>&emsp;&emsp;&emsp;&emsp;&emsp;ProcessGeneric start<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Validating font<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Reading font<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Processing glyphs...<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; 1000<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Processing glyphs done<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Writing new font<br>&emsp;&emsp;&emsp;&emsp;&emsp;ProcessGeneric end<br>&emsp;&emsp;&emsp;&emsp;Process end<br>&emsp;&emsp;&emsp;&emsp;Process start (TTF file)<br>&emsp;&emsp;&emsp;&emsp;&emsp;ProcessGeneric start<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Validating font<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Reading font<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Processing glyphs...<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; 1000<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Processing glyphs done<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Writing new font<br>&emsp;&emsp;&emsp;&emsp;&emsp;ProcessGeneric end<br>&emsp;&emsp;&emsp;&emsp;Process end<br></p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Weight Class</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Weight Class_cell">
+                <button id="Weight Class_btn" onclick='toggle_detail("Weight Class");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Weight Class</h3></th></tr>
+            </thead>
+            <tbody id="Weight Class" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>usWeightClass</p></td>
+                    <td class="message"><p>OS/2 weight class should be greater then 250 otherwise it cause issues in MS PowerPoint.</p></td>
+                    <td class="detail"><p>OK: usWeightClass is '400'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>File Name</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="File Name_cell">
+                <button id="File Name_btn" onclick='toggle_detail("File Name");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>File Name</h3></th></tr>
+            </thead>
+            <tbody id="File Name" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>-/-</p></td>
+                    <td class="feature"><p>File Name</p></td>
+                    <td class="message"><p>File name should not be longer than 31 characters, otherwise style linking does not work in MS Word/Mac.</p></td>
+                    <td class="detail"><p>file name length is '16': 'Gotu-Regular.ttf'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>-/-</p></td>
+                    <td class="feature"><p>File Name</p></td>
+                    <td class="message"><p>File name should not be longer than 31 characters, contain space and have more then one dot for ending.</p></td>
+                    <td class="detail"><p>Everything is fine: 'Gotu-Regular.ttf'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Style Linking</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Style Linking_cell">
+                <button id="Style Linking_btn" onclick='toggle_detail("Style Linking");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Style Linking</h3></th></tr>
+            </thead>
+            <tbody id="Style Linking" class="result_body">
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>-/-</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Check if italic or upright.</p></td>
+                    <td class="detail"><p>It seems to be an upright font.<br>OS2.fsSelection.italic: False<br>head.macStyle.italic: False<br>post.header.italicAngle: 0.0</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>-/-</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Check if bold.</p></td>
+                    <td class="detail"><p>It seems to be not bold.<br>OS2.fsSelection.bold: False<br>head.macStyle.bold: False</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Empty Glyphs</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Empty Glyphs_cell">
+                <button id="Empty Glyphs_btn" onclick='toggle_detail("Empty Glyphs");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Empty Glyphs</h3></th></tr>
+            </thead>
+            <tbody id="Empty Glyphs" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>glyf</p></td>
+                    <td class="feature"><p>outline</p></td>
+                    <td class="message"><p>Unicodes should have outlines.</p></td>
+                    <td class="detail"><p>The following glyphs have no outlines, but this is correct:<br>Monotype NULL (uni0000)<br> (uni000D)<br>SPACE (uni0020)<br>NO-BREAK SPACE (uni00A0)<br>FIGURE SPACE (uni2007)<br>HAIR SPACE (uni200A)<br>PUNCTUATION SPACE (uni2008)<br>THIN SPACE (uni2009)<br>ZERO WIDTH SPACE (uni200B)<br> (uni007F)<br>ZERO WIDTH NON-JOINER (uni200C)<br>ZERO WIDTH JOINER (uni200D)</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Supplementary NFC</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Supplementary NFC_cell">
+                <button id="Supplementary NFC_btn" onclick='toggle_detail("Supplementary NFC");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Supplementary NFC</h3></th></tr>
+            </thead>
+            <tbody id="Supplementary NFC" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>unicode</p></td>
+                    <td class="message"><p>Supplementary glyphs</p></td>
+                    <td class="detail"><p>No issues found.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Supplementary Glyphs</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Supplementary Glyphs_cell">
+                <button id="Supplementary Glyphs_btn" onclick='toggle_detail("Supplementary Glyphs");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Supplementary Glyphs</h3></th></tr>
+            </thead>
+            <tbody id="Supplementary Glyphs" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>unicode</p></td>
+                    <td class="message"><p>Supplementary glyphs</p></td>
+                    <td class="detail"><p>uni0022 (QUOTATION MARK) is present, and the following 'uni2033', too.<br>uni0027 (APOSTROPHE) is present, and the following 'uni2032', too.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Check against Base Glyph Advance Width</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Check against Base Glyph Advance Width_cell">
+                <button id="Check against Base Glyph Advance Width_btn" onclick='toggle_detail("Check against Base Glyph Advance Width");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Check against Base Glyph Advance Width</h3></th></tr>
+            </thead>
+            <tbody id="Check against Base Glyph Advance Width" class="result_body">
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>glyf</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Check if advance width match base glyph advance width. eg. if the width of iacute is the same like i.</p></td>
+                    <td class="detail"><p>No composits.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>hmtx</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Compare advance width against base glyph advance width (tolerance 2 units).</p></td>
+                    <td class="detail"><p>'Agrave' (ID 127): width is 679, base glyph ('A' (ID 36)) width is 679<br>'Aacute' (ID 128): width is 679, base glyph ('A' (ID 36)) width is 679<br>'Acircumflex' (ID 129): width is 679, base glyph ('A' (ID 36)) width is 679<br>'Atilde' (ID 130): width is 679, base glyph ('A' (ID 36)) width is 679<br>'Adieresis' (ID 131): width is 679, base glyph ('A' (ID 36)) width is 679<br>'Aring' (ID 132): width is 679, base glyph ('A' (ID 36)) width is 679<br>'Ccedilla' (ID 134): width is 705, base glyph ('C' (ID 38)) width is 705<br>'Egrave' (ID 135): width is 628, base glyph ('E' (ID 40)) width is 628<br>'Eacute' (ID 136): width is 628, base glyph ('E' (ID 40)) width is 628<br>'Ecircumflex' (ID 137): width is 628, base glyph ('E' (ID 40)) width is 628<br>'Edieresis' (ID 138): width is 628, base glyph ('E' (ID 40)) width is 628<br>'Icircumflex' (ID 141): width is 304, base glyph ('I' (ID 44)) width is 304<br>'Ntilde' (ID 144): width is 773, base glyph ('N' (ID 49)) width is 773<br>'Ograve' (ID 145): width is 820, base glyph ('O' (ID 50)) width is 820<br>'Oacute' (ID 146): width is 820, base glyph ('O' (ID 50)) width is 820<br>'Ocircumflex' (ID 147): width is 820, base glyph ('O' (ID 50)) width is 820<br>'Otilde' (ID 148): width is 820, base glyph ('O' (ID 50)) width is 820<br>'Odieresis' (ID 149): width is 820, base glyph ('O' (ID 50)) width is 820<br>'Ugrave' (ID 152): width is 763, base glyph ('U' (ID 56)) width is 763<br>'Uacute' (ID 153): width is 763, base glyph ('U' (ID 56)) width is 763<br>'Ucircumflex' (ID 154): width is 763, base glyph ('U' (ID 56)) width is 763<br>'Udieresis' (ID 155): width is 763, base glyph ('U' (ID 56)) width is 763<br>'Yacute' (ID 156): width is 669, base glyph ('Y' (ID 60)) width is 669<br>'agrave' (ID 159): width is 568, base glyph ('a' (ID 68)) width is 568<br>'aacute' (ID 160): width is 568, base glyph ('a' (ID 68)) width is 568<br>'acircumflex' (ID 161): width is 568, base glyph ('a' (ID 68)) width is 568<br>'atilde' (ID 162): width is 568, base glyph ('a' (ID 68)) width is 568<br>'adieresis' (ID 163): width is 568, base glyph ('a' (ID 68)) width is 568<br>'aring' (ID 164): width is 568, base glyph ('a' (ID 68)) width is 568<br>'ccedilla' (ID 166): width is 549, base glyph ('c' (ID 70)) width is 549<br>'egrave' (ID 167): width is 556, base glyph ('e' (ID 72)) width is 556<br>'eacute' (ID 168): width is 556, base glyph ('e' (ID 72)) width is 556<br>'ecircumflex' (ID 169): width is 556, base glyph ('e' (ID 72)) width is 556<br>'edieresis' (ID 170): width is 556, base glyph ('e' (ID 72)) width is 556<br>'iacute' (ID 172): width is 268, base glyph ('i' (ID 76)) width is 268<br>'ntilde' (ID 176): width is 633, base glyph ('n' (ID 81)) width is 633<br>'ograve' (ID 177): width is 628, base glyph ('o' (ID 82)) width is 628<br>'oacute' (ID 178): width is 628, base glyph ('o' (ID 82)) width is 628<br>'ocircumflex' (ID 179): width is 628, base glyph ('o' (ID 82)) width is 628<br>'otilde' (ID 180): width is 628, base glyph ('o' (ID 82)) width is 628<br>'odieresis' (ID 181): width is 628, base glyph ('o' (ID 82)) width is 628<br>'ugrave' (ID 184): width is 624, base glyph ('u' (ID 88)) width is 624<br>'uacute' (ID 185): width is 624, base glyph ('u' (ID 88)) width is 624<br>'ucircumflex' (ID 186): width is 624, base glyph ('u' (ID 88)) width is 624<br>'udieresis' (ID 187): width is 624, base glyph ('u' (ID 88)) width is 624<br>'yacute' (ID 188): width is 570, base glyph ('y' (ID 92)) width is 570<br>'ydieresis' (ID 190): width is 570, base glyph ('y' (ID 92)) width is 570<br>'Amacron' (ID 191): width is 679, base glyph ('A' (ID 36)) width is 679<br>'amacron' (ID 192): width is 568, base glyph ('a' (ID 68)) width is 568<br>'Abreve' (ID 193): width is 679, base glyph ('A' (ID 36)) width is 679<br>'abreve' (ID 194): width is 568, base glyph ('a' (ID 68)) width is 568<br>'Aogonek' (ID 195): width is 679, base glyph ('A' (ID 36)) width is 679<br>'aogonek' (ID 196): width is 568, base glyph ('a' (ID 68)) width is 568<br>'Cacute' (ID 197): width is 705, base glyph ('C' (ID 38)) width is 705<br>'cacute' (ID 198): width is 549, base glyph ('c' (ID 70)) width is 549<br>'Ccircumflex' (ID 199): width is 705, base glyph ('C' (ID 38)) width is 705<br>'ccircumflex' (ID 200): width is 549, base glyph ('c' (ID 70)) width is 549<br>'Ccaron' (ID 203): width is 705, base glyph ('C' (ID 38)) width is 705<br>'ccaron' (ID 204): width is 549, base glyph ('c' (ID 70)) width is 549<br>'Dcaron' (ID 205): width is 771, base glyph ('D' (ID 39)) width is 771<br>'Emacron' (ID 209): width is 628, base glyph ('E' (ID 40)) width is 628<br>'emacron' (ID 210): width is 556, base glyph ('e' (ID 72)) width is 556<br>'Ebreve' (ID 211): width is 628, base glyph ('E' (ID 40)) width is 628<br>'ebreve' (ID 212): width is 556, base glyph ('e' (ID 72)) width is 556<br>'Eogonek' (ID 215): width is 628, base glyph ('E' (ID 40)) width is 628<br>'eogonek' (ID 216): width is 556, base glyph ('e' (ID 72)) width is 556<br>'Ecaron' (ID 217): width is 628, base glyph ('E' (ID 40)) width is 628<br>'ecaron' (ID 218): width is 556, base glyph ('e' (ID 72)) width is 556<br>'Gcircumflex' (ID 219): width is 771, base glyph ('G' (ID 42)) width is 771<br>'gcircumflex' (ID 220): width is 571, base glyph ('g' (ID 74)) width is 571<br>'Gbreve' (ID 221): width is 771, base glyph ('G' (ID 42)) width is 771<br>'gbreve' (ID 222): width is 571, base glyph ('g' (ID 74)) width is 571<br>'Hcircumflex' (ID 225): width is 783, base glyph ('H' (ID 43)) width is 783<br>'hcircumflex' (ID 226): width is 637, base glyph ('h' (ID 75)) width is 637<br>'iogonek' (ID 234): width is 268, base glyph ('i' (ID 76)) width is 268<br>'Jcircumflex' (ID 236): width is 312, base glyph ('J' (ID 45)) width is 312<br>'jcircumflex' (ID 237): width is 271, base glyph ('j' (ID 77)) width is 271<br>'Lacute' (ID 239): width is 584, base glyph ('L' (ID 47)) width is 584<br>'lacute' (ID 240): width is 269, base glyph ('l' (ID 79)) width is 269<br>'Lcaron' (ID 241): width is 584, base glyph ('L' (ID 47)) width is 584<br>'Ldot' (ID 243): width is 584, base glyph ('L' (ID 47)) width is 584<br>'Nacute' (ID 254): width is 773, base glyph ('N' (ID 49)) width is 773<br>'nacute' (ID 255): width is 633, base glyph ('n' (ID 81)) width is 633<br>'Ncaron' (ID 258): width is 773, base glyph ('N' (ID 49)) width is 773<br>'ncaron' (ID 259): width is 633, base glyph ('n' (ID 81)) width is 633<br>'Omacron' (ID 261): width is 820, base glyph ('O' (ID 50)) width is 820<br>'omacron' (ID 262): width is 628, base glyph ('o' (ID 82)) width is 628<br>'Ohungarumlaut' (ID 263): width is 820, base glyph ('O' (ID 50)) width is 820<br>'ohungarumlaut' (ID 264): width is 628, base glyph ('o' (ID 82)) width is 628<br>'Racute' (ID 267): width is 678, base glyph ('R' (ID 53)) width is 678<br>'racute' (ID 268): width is 477, base glyph ('r' (ID 85)) width is 477<br>'Rcaron' (ID 271): width is 678, base glyph ('R' (ID 53)) width is 678<br>'rcaron' (ID 272): width is 477, base glyph ('r' (ID 85)) width is 477<br>'Sacute' (ID 273): width is 639, base glyph ('S' (ID 54)) width is 639<br>'sacute' (ID 274): width is 519, base glyph ('s' (ID 86)) width is 519<br>'Scircumflex' (ID 275): width is 639, base glyph ('S' (ID 54)) width is 639<br>'scircumflex' (ID 276): width is 519, base glyph ('s' (ID 86)) width is 519<br>'Scedilla' (ID 277): width is 639, base glyph ('S' (ID 54)) width is 639<br>'Scaron' (ID 279): width is 639, base glyph ('S' (ID 54)) width is 639<br>'scaron' (ID 280): width is 519, base glyph ('s' (ID 86)) width is 519<br>'Tcaron' (ID 283): width is 630, base glyph ('T' (ID 55)) width is 630<br>'tcaron' (ID 284): width is 427, base glyph ('t' (ID 87)) width is 427<br>'Utilde' (ID 285): width is 763, base glyph ('U' (ID 56)) width is 763<br>'utilde' (ID 286): width is 624, base glyph ('u' (ID 88)) width is 624<br>'Umacron' (ID 287): width is 763, base glyph ('U' (ID 56)) width is 763<br>'umacron' (ID 288): width is 624, base glyph ('u' (ID 88)) width is 624<br>'Ubreve' (ID 289): width is 763, base glyph ('U' (ID 56)) width is 763<br>'ubreve' (ID 290): width is 624, base glyph ('u' (ID 88)) width is 624<br>'Uring' (ID 291): width is 763, base glyph ('U' (ID 56)) width is 763<br>'uring' (ID 292): width is 624, base glyph ('u' (ID 88)) width is 624<br>'Uhungarumlaut' (ID 293): width is 763, base glyph ('U' (ID 56)) width is 763<br>'Uogonek' (ID 295): width is 763, base glyph ('U' (ID 56)) width is 763<br>'Wcircumflex' (ID 297): width is 1005, base glyph ('W' (ID 58)) width is 1005<br>'wcircumflex' (ID 298): width is 863, base glyph ('w' (ID 90)) width is 863<br>'Ycircumflex' (ID 299): width is 669, base glyph ('Y' (ID 60)) width is 669<br>'ycircumflex' (ID 300): width is 570, base glyph ('y' (ID 92)) width is 570<br>'Ydieresis' (ID 301): width is 669, base glyph ('Y' (ID 60)) width is 669<br>'Zacute' (ID 302): width is 639, base glyph ('Z' (ID 61)) width is 639<br>'zacute' (ID 303): width is 503, base glyph ('z' (ID 93)) width is 503<br>'Zcaron' (ID 306): width is 639, base glyph ('Z' (ID 61)) width is 639<br>'zcaron' (ID 307): width is 503, base glyph ('z' (ID 93)) width is 503<br>'Gcaron' (ID 314): width is 771, base glyph ('G' (ID 42)) width is 771<br>'gcaron' (ID 315): width is 571, base glyph ('g' (ID 74)) width is 571<br>'Wgrave' (ID 318): width is 1005, base glyph ('W' (ID 58)) width is 1005<br>'wgrave' (ID 319): width is 863, base glyph ('w' (ID 90)) width is 863<br>'Wacute' (ID 320): width is 1005, base glyph ('W' (ID 58)) width is 1005<br>'wacute' (ID 321): width is 863, base glyph ('w' (ID 90)) width is 863<br>'Wdieresis' (ID 322): width is 1005, base glyph ('W' (ID 58)) width is 1005<br>'wdieresis' (ID 323): width is 863, base glyph ('w' (ID 90)) width is 863<br>'Ygrave' (ID 324): width is 669, base glyph ('Y' (ID 60)) width is 669<br>'ygrave' (ID 325): width is 570, base glyph ('y' (ID 92)) width is 570<br>'Obreve' (ID 428): width is 820, base glyph ('O' (ID 50)) width is 820<br>'obreve' (ID 429): width is 628, base glyph ('o' (ID 82)) width is 628<br>'aeacute' (ID 431): width is 906, base glyph ('ae' (ID 165)) width is 906<br>'Tbar' (ID 432): width is 630, base glyph ('T' (ID 55)) width is 630<br>'tbar' (ID 433): width is 427, base glyph ('t' (ID 87)) width is 427<br>'Ibreve' (ID 436): width is 304, base glyph ('I' (ID 44)) width is 304<br>'Aringacute' (ID 457): width is 679, base glyph ('A' (ID 36)) width is 679<br>'aringacute' (ID 571): width is 568, base glyph ('a' (ID 68)) width is 568</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>hmtx</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Compare advance width against base glyph advance width (tolerance 2 units).</p></td>
+                    <td class="detail"><p>'Igrave' (ID 139): width is 304, base glyph ('I' (ID 44)) width is 304<br>'Iacute' (ID 140): width is 304, base glyph ('I' (ID 44)) width is 304<br>'Idieresis' (ID 142): width is 304, base glyph ('I' (ID 44)) width is 304<br>'Oslash' (ID 151): width is 820, base glyph ('O' (ID 50)) width is 820<br>'igrave' (ID 171): width is 267, base glyph ('i' (ID 76)) width is 268<br>'icircumflex' (ID 173): width is 268, base glyph ('i' (ID 76)) width is 268<br>'idieresis' (ID 174): width is 268, base glyph ('i' (ID 76)) width is 268<br>'oslash' (ID 183): width is 628, base glyph ('o' (ID 82)) width is 628<br>'dcaron' (ID 206): width is 765, base glyph ('d' (ID 71)) width is 634<br>'Dcroat' (ID 207): width is 790, base glyph ('D' (ID 39)) width is 771<br>'dcroat' (ID 208): width is 634, base glyph ('d' (ID 71)) width is 634<br>'Hbar' (ID 227): width is 783, base glyph ('H' (ID 43)) width is 783<br>'hbar' (ID 228): width is 637, base glyph ('h' (ID 75)) width is 637<br>'Itilde' (ID 229): width is 304, base glyph ('I' (ID 44)) width is 304<br>'itilde' (ID 230): width is 271, base glyph ('i' (ID 76)) width is 268<br>'Imacron' (ID 231): width is 304, base glyph ('I' (ID 44)) width is 304<br>'imacron' (ID 232): width is 268, base glyph ('i' (ID 76)) width is 268<br>'Iogonek' (ID 233): width is 304, base glyph ('I' (ID 44)) width is 304<br>'lcaron' (ID 242): width is 399, base glyph ('l' (ID 79)) width is 269<br>'ldot' (ID 244): width is 334, base glyph ('l' (ID 79)) width is 269<br>'Lslash' (ID 250): width is 584, base glyph ('L' (ID 47)) width is 584<br>'lslash' (ID 251): width is 295, base glyph ('l' (ID 79)) width is 269<br>'scedilla' (ID 278): width is 519, base glyph ('s' (ID 86)) width is 519<br>'gravecomb' (ID 334): width is 314, base glyph ('grave' (ID 67)) width is 346<br>'tildecomb' (ID 336): width is 388, base glyph ('tilde' (ID 332)) width is 388<br>'oslashacute' (ID 427): width is 628, base glyph ('o' (ID 82)) width is 628<br>'ibreve' (ID 437): width is 271, base glyph ('i' (ID 76)) width is 268</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="W">
+                    <td class="code"><p>Warning</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>hmtx</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Compare advance width against base glyph advance width (tolerance 2 units).</p></td>
+                    <td class="detail"><p>'uhungarumlaut' (ID 294): width is 631, base glyph ('u' (ID 88)) width is 624<br>'uogonek' (ID 296): width is 629, base glyph ('u' (ID 88)) width is 624<br>'Oslashacute' (ID 426): width is 808, base glyph ('O' (ID 50)) width is 820<br>'AEacute' (ID 430): width is 1037, base glyph ('AE' (ID 133)) width is 1042</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Compare Advance Width hmtx and CFF table</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Compare Advance Width hmtx and CFF table_cell">
+                <button id="Compare Advance Width hmtx and CFF table_btn" onclick='toggle_detail("Compare Advance Width hmtx and CFF table");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Compare Advance Width hmtx and CFF table</h3></th></tr>
+            </thead>
+            <tbody id="Compare Advance Width hmtx and CFF table" class="result_body">
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>hmtx/CFF</p></td>
+                    <td class="feature"><p>Advance width</p></td>
+                    <td class="message"><p>Advance width of hmtx and CFF table should be the same (tolerance 2 units).</p></td>
+                    <td class="detail"><p>This is a TrueType font. This test is only for CFF.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Individual Glyphs</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Individual Glyphs_cell">
+                <button id="Individual Glyphs_btn" onclick='toggle_detail("Individual Glyphs");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Individual Glyphs</h3></th></tr>
+            </thead>
+            <tbody id="Individual Glyphs" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>post</p></td>
+                    <td class="feature"><p>PostScript names</p></td>
+                    <td class="message"><p>Check double NULL</p></td>
+                    <td class="detail"><p>Font only has one NULL: 'NULL'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="W">
+                    <td class="code"><p>Warning</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>glyf</p></td>
+                    <td class="feature"><p>Contours</p></td>
+                    <td class="message"><p>.notdef should be TOFU.</p></td>
+                    <td class="detail"><p>.notdef has 5 contours. It looks like it is a TOFU with a cross.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>hmtx</p></td>
+                    <td class="feature"><p>Advance</p></td>
+                    <td class="message"><p>ZERO WIDTH SPACE advance width should be 0</p></td>
+                    <td class="detail"><p>Advance width is '0'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>FEFF</p></td>
+                    <td class="message"><p>ZERO WIDTH NO-BREAK SPACE: Missing FEFF in cmap table.</p></td>
+                    <td class="detail"><p>Required for Monotype library. Please add unicode FEFF. Custom work refer to spec.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>00AD</p></td>
+                    <td class="message"><p>Soft hyphen 00AD in cmap table.</p></td>
+                    <td class="detail"><p>Soft hyphen is often used in web and in professional print publishing software like Adobe InDesign.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>hmtx</p></td>
+                    <td class="feature"><p>Index 3 and 98</p></td>
+                    <td class="message"><p>Advance width of nonbreakingspace (uni00A0) should match the space (uni0020) width.</p></td>
+                    <td class="detail"><p>OK: Advance width nonbreakingspace (uni00A0) does match the space (uni0020) width:<br>265 = 265</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>hmtx</p></td>
+                    <td class="feature"><p>Index 3 and 671</p></td>
+                    <td class="message"><p>Advance width of 'thinspace' (uni2009) should be smaller than the advance width of 'space' (uni0020).</p></td>
+                    <td class="detail"><p>Advance width 'thinspace' 160 is 60% (tolarance 10 units) of 'space' 265.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="W">
+                    <td class="code"><p>Warning</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>hmtx</p></td>
+                    <td class="feature"><p>Index 3 and 669</p></td>
+                    <td class="message"><p>Advance width of 'hairspace' (uni200A) should be smaller than the advance width of 'space' (uni0020).</p></td>
+                    <td class="detail"><p>Advance width 'hairspace' 60 is smaller than 'space' 265, but should be 30% of space '79.5'. Please verify if this is intend to be like it is.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>uni2004</p></td>
+                    <td class="message"><p>Advance width of 'THREE-PER-EM SPACE' (uni2004) should be 1/3 of em-square.</p></td>
+                    <td class="detail"><p>Can not check, because no uni2004 in this font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>uni2005</p></td>
+                    <td class="message"><p>Advance width of 'FOUR-PER-EM SPACE' (uni2005) should be 1/4 of em-square.</p></td>
+                    <td class="detail"><p>Can not check, because no uni2005 in this font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>uni2006</p></td>
+                    <td class="message"><p>Advance width of 'SIX-PER-EM SPACE' (uni2006) should be 1/6 of em-square.</p></td>
+                    <td class="detail"><p>Can not check, because no uni2006 in this font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>uni2002</p></td>
+                    <td class="message"><p>Advance width of 'EN SPACE' (uni2002) should be 50%% of em-square.</p></td>
+                    <td class="detail"><p>Can not check, because no uni2002 in this font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>uni2003</p></td>
+                    <td class="message"><p>Advance width of 'EM SPACE' (uni2003) should be equal to UPM.</p></td>
+                    <td class="detail"><p>Can not check, because no uni2003 in this font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>hmtx</p></td>
+                    <td class="feature"><p>Index 670</p></td>
+                    <td class="message"><p>Advance width of 'PUNCTUATION SPACE' (uni2008) should be equal to the 'period' advance width.</p></td>
+                    <td class="detail"><p>Advance width of 'PUNCTUATION SPACE' (uni2008) is '224' equal to the 'period' advance width (tolerance 5 units).</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Nodes Close to Zones (CFF)</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Nodes Close to Zones (CFF)_cell">
+                <button id="Nodes Close to Zones (CFF)_btn" onclick='toggle_detail("Nodes Close to Zones (CFF)");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Nodes Close to Zones (CFF)</h3></th></tr>
+            </thead>
+            <tbody id="Nodes Close to Zones (CFF)" class="result_body">
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>CFF</p></td>
+                    <td class="feature"><p>Alignment Zones</p></td>
+                    <td class="message"><p>Check if nodes are close to a zone, but not in or touching it.</p></td>
+                    <td class="detail"><p>This is a TTF, but this test is only for CFF fonts.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Should be Composite (only .ttf)</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Should be Composite (only .ttf)_cell">
+                <button id="Should be Composite (only .ttf)_btn" onclick='toggle_detail("Should be Composite (only .ttf)");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Should be Composite (only .ttf)</h3></th></tr>
+            </thead>
+            <tbody id="Should be Composite (only .ttf)" class="result_body">
+                    
+                <tr class="W">
+                    <td class="code"><p>Warning</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>glyf</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Glyphs (LATIN) which chould be made from components (in many cases).<br>Please investigate and approve if correct.</p></td>
+                    <td class="detail"><p>'Aring' (uni00C5) (ID 132)<br>'f_f' (uniFB00) (ID 423)<br>'f_f_i' (uniFB03) (ID 424)<br>'f_f_l' (uniFB04) (ID 425)<br>'fi' (uniFB01) (ID 417)<br>'fl' (uniFB02) (ID 418)</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>glyf</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Glyphs (LATIN) which chould be made from components (in many cases).<br>Please investigate and approve if correct.</p></td>
+                    <td class="detail"><p>'Aacute' (uni00C1) (ID 128)<br>'Abreve' (uni0102) (ID 193)<br>'Acircumflex' (uni00C2) (ID 129)<br>'Adieresis' (uni00C4) (ID 131)<br>'Agrave' (uni00C0) (ID 127)<br>'Amacron' (uni0100) (ID 191)<br>'Aringacute' (uni01FA) (ID 457)<br>'Atilde' (uni00C3) (ID 130)<br>'AEacute' (uni01FC) (ID 430)<br>'Cacute' (uni0106) (ID 197)<br>'Ccaron' (uni010C) (ID 203)<br>'Ccircumflex' (uni0108) (ID 199)<br>'Cdotaccent' (uni010A) (ID 201)<br>'Dcaron' (uni010E) (ID 205)<br>'Dcroat' (uni0110) (ID 207)<br>'Eacute' (uni00C9) (ID 136)<br>'Ebreve' (uni0114) (ID 211)<br>'Ecaron' (uni011A) (ID 217)<br>'Ecircumflex' (uni00CA) (ID 137)<br>'Edieresis' (uni00CB) (ID 138)<br>'Edotaccent' (uni0116) (ID 213)<br>'Egrave' (uni00C8) (ID 135)<br>'Emacron' (uni0112) (ID 209)<br>'Gbreve' (uni011E) (ID 221)<br>'Gcircumflex' (uni011C) (ID 219)<br>'uni0122' (uni0122) (ID 245)<br>'Gdotaccent' (uni0120) (ID 223)<br>'Hcircumflex' (uni0124) (ID 225)<br>'IJ' (uni0132) (ID 438)<br>'Iacute' (uni00CD) (ID 140)<br>'Ibreve' (uni012C) (ID 436)<br>'Icircumflex' (uni00CE) (ID 141)<br>'Idieresis' (uni00CF) (ID 142)<br>'Idotaccent' (uni0130) (ID 235)<br>'Igrave' (uni00CC) (ID 139)<br>'Imacron' (uni012A) (ID 231)<br>'Itilde' (uni0128) (ID 229)<br>'Jcircumflex' (uni0134) (ID 236)<br>'uni0136' (uni0136) (ID 248)<br>'Lacute' (uni0139) (ID 239)<br>'Lcaron' (uni013D) (ID 241)<br>'uni013B' (uni013B) (ID 252)<br>'Ldot' (uni013F) (ID 243)<br>'Nacute' (uni0143) (ID 254)<br>'Ncaron' (uni0147) (ID 258)<br>'uni0145' (uni0145) (ID 256)<br>'Ntilde' (uni00D1) (ID 144)<br>'Oacute' (uni00D3) (ID 146)<br>'Obreve' (uni014E) (ID 428)<br>'Ocircumflex' (uni00D4) (ID 147)<br>'Odieresis' (uni00D6) (ID 149)<br>'Ograve' (uni00D2) (ID 145)<br>'Ohungarumlaut' (uni0150) (ID 263)<br>'Omacron' (uni014C) (ID 261)<br>'Oslashacute' (uni01FE) (ID 426)<br>'Otilde' (uni00D5) (ID 148)<br>'Racute' (uni0154) (ID 267)<br>'Rcaron' (uni0158) (ID 271)<br>'uni0156' (uni0156) (ID 269)<br>'Scaron' (uni0160) (ID 279)<br>'Scircumflex' (uni015C) (ID 275)<br>'uni0218' (uni0218) (ID 316)<br>'Tcaron' (uni0164) (ID 283)<br>'uni021A' (uni021A) (ID 281)<br>'Uacute' (uni00DA) (ID 153)<br>'Ubreve' (uni016C) (ID 289)<br>'Ucircumflex' (uni00DB) (ID 154)<br>'Udieresis' (uni00DC) (ID 155)<br>'Ugrave' (uni00D9) (ID 152)<br>'Uhungarumlaut' (uni0170) (ID 293)<br>'Umacron' (uni016A) (ID 287)<br>'Uring' (uni016E) (ID 291)<br>'Utilde' (uni0168) (ID 285)<br>'Wacute' (uni1E82) (ID 320)<br>'Wcircumflex' (uni0174) (ID 297)<br>'Wdieresis' (uni1E84) (ID 322)<br>'Wgrave' (uni1E80) (ID 318)<br>'Yacute' (uni00DD) (ID 156)<br>'Ycircumflex' (uni0176) (ID 299)<br>'Ydieresis' (uni0178) (ID 301)<br>'Ygrave' (uni1EF2) (ID 324)<br>'Zacute' (uni0179) (ID 302)<br>'Zcaron' (uni017D) (ID 306)<br>'Zdotaccent' (uni017B) (ID 304)<br>'aacute' (uni00E1) (ID 160)<br>'abreve' (uni0103) (ID 194)<br>'acircumflex' (uni00E2) (ID 161)<br>'adieresis' (uni00E4) (ID 163)<br>'agrave' (uni00E0) (ID 159)<br>'amacron' (uni0101) (ID 192)<br>'aring' (uni00E5) (ID 164)<br>'aringacute' (uni01FB) (ID 571)<br>'atilde' (uni00E3) (ID 162)<br>'aeacute' (uni01FD) (ID 431)<br>'cacute' (uni0107) (ID 198)<br>'ccaron' (uni010D) (ID 204)<br>'ccircumflex' (uni0109) (ID 200)<br>'cdotaccent' (uni010B) (ID 202)<br>'dcaron' (uni010F) (ID 206)<br>'eacute' (uni00E9) (ID 168)<br>'ebreve' (uni0115) (ID 212)<br>'ecaron' (uni011B) (ID 218)<br>'ecircumflex' (uni00EA) (ID 169)<br>'edieresis' (uni00EB) (ID 170)<br>'edotaccent' (uni0117) (ID 214)<br>'egrave' (uni00E8) (ID 167)<br>'emacron' (uni0113) (ID 210)<br>'gbreve' (uni011F) (ID 222)<br>'gcircumflex' (uni011D) (ID 220)<br>'uni0123' (uni0123) (ID 246)<br>'gdotaccent' (uni0121) (ID 224)<br>'hcircumflex' (uni0125) (ID 226)<br>'iacute' (uni00ED) (ID 172)<br>'ibreve' (uni012D) (ID 437)<br>'icircumflex' (uni00EE) (ID 173)<br>'idieresis' (uni00EF) (ID 174)<br>'igrave' (uni00EC) (ID 171)<br>'ij' (uni0133) (ID 439)<br>'imacron' (uni012B) (ID 232)<br>'itilde' (uni0129) (ID 230)<br>'jcircumflex' (uni0135) (ID 237)<br>'uni0137' (uni0137) (ID 249)<br>'lacute' (uni013A) (ID 240)<br>'lcaron' (uni013E) (ID 242)<br>'uni013C' (uni013C) (ID 253)<br>'ldot' (uni0140) (ID 244)<br>'nacute' (uni0144) (ID 255)<br>'napostrophe' (uni0149) (ID 260)<br>'ncaron' (uni0148) (ID 259)<br>'uni0146' (uni0146) (ID 257)<br>'ntilde' (uni00F1) (ID 176)<br>'oacute' (uni00F3) (ID 178)<br>'obreve' (uni014F) (ID 429)<br>'ocircumflex' (uni00F4) (ID 179)<br>'odieresis' (uni00F6) (ID 181)<br>'ograve' (uni00F2) (ID 177)<br>'ohungarumlaut' (uni0151) (ID 264)<br>'omacron' (uni014D) (ID 262)<br>'oslashacute' (uni01FF) (ID 427)<br>'otilde' (uni00F5) (ID 180)<br>'racute' (uni0155) (ID 268)<br>'rcaron' (uni0159) (ID 272)<br>'uni0157' (uni0157) (ID 270)<br>'sacute' (uni015B) (ID 274)<br>'scaron' (uni0161) (ID 280)<br>'scircumflex' (uni015D) (ID 276)<br>'uni0219' (uni0219) (ID 317)<br>'tcaron' (uni0165) (ID 284)<br>'uni021B' (uni021B) (ID 282)<br>'uacute' (uni00FA) (ID 185)<br>'ubreve' (uni016D) (ID 290)<br>'ucircumflex' (uni00FB) (ID 186)<br>'udieresis' (uni00FC) (ID 187)<br>'ugrave' (uni00F9) (ID 184)<br>'uhungarumlaut' (uni0171) (ID 294)<br>'umacron' (uni016B) (ID 288)<br>'uring' (uni016F) (ID 292)<br>'utilde' (uni0169) (ID 286)<br>'wacute' (uni1E83) (ID 321)<br>'wcircumflex' (uni0175) (ID 298)<br>'wdieresis' (uni1E85) (ID 323)<br>'wgrave' (uni1E81) (ID 319)<br>'yacute' (uni00FD) (ID 188)<br>'ycircumflex' (uni0177) (ID 300)<br>'ydieresis' (uni00FF) (ID 190)<br>'ygrave' (uni1EF3) (ID 325)<br>'zacute' (uni017A) (ID 303)<br>'zcaron' (uni017E) (ID 307)<br>'zdotaccent' (uni017C) (ID 305)</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>glyf</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Glyphs (FRACTIONS) which chould be made from components (in many cases).<br>Please investigate and approve if correct.</p></td>
+                    <td class="detail"><p>'onehalf' (uni00BD) (ID 758)<br>'onequarter' (uni00BC) (ID 757)<br>'threequarters' (uni00BE) (ID 759)<br>'oneeighth' (uni215B) (ID 762)<br>'threeeighths' (uni215C) (ID 763)<br>'fiveeighths' (uni215D) (ID 764)<br>'seveneighths' (uni215E) (ID 765)</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>glyf</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Glyphs (OTHER) which chould be made from components (in many cases).<br>Please investigate and approve if correct.</p></td>
+                    <td class="detail"><p>'uni00AD' (uni00AD) (ID 111)</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>glyf</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Glyphs (VIETNAMESE) which chould be made from components (in many cases).<br>Please investigate and approve if correct.</p></td>
+                    <td class="detail"><p>'uni1EAE' (uni1EAE) (ID 442)<br>'uni1EB6' (uni1EB6) (ID 443)<br>'uni1EB0' (uni1EB0) (ID 444)<br>'uni1EB2' (uni1EB2) (ID 445)<br>'uni1EB4' (uni1EB4) (ID 446)<br>'uni1EA4' (uni1EA4) (ID 448)<br>'uni1EAC' (uni1EAC) (ID 449)<br>'uni1EA6' (uni1EA6) (ID 450)<br>'uni1EA8' (uni1EA8) (ID 451)<br>'uni1EAA' (uni1EAA) (ID 452)<br>'uni1EA0' (uni1EA0) (ID 454)<br>'uni1EA2' (uni1EA2) (ID 455)<br>'uni1EBE' (uni1EBE) (ID 464)<br>'uni1EC6' (uni1EC6) (ID 465)<br>'uni1EC0' (uni1EC0) (ID 466)<br>'uni1EC2' (uni1EC2) (ID 467)<br>'uni1EC4' (uni1EC4) (ID 468)<br>'uni1EB8' (uni1EB8) (ID 470)<br>'uni1EBA' (uni1EBA) (ID 471)<br>'uni1EBC' (uni1EBC) (ID 475)<br>'uni1ECA' (uni1ECA) (ID 482)<br>'uni1EC8' (uni1EC8) (ID 483)<br>'uni1ED0' (uni1ED0) (ID 497)<br>'uni1ED8' (uni1ED8) (ID 498)<br>'uni1ED2' (uni1ED2) (ID 499)<br>'uni1ED4' (uni1ED4) (ID 500)<br>'uni1ED6' (uni1ED6) (ID 501)<br>'uni1ECC' (uni1ECC) (ID 505)<br>'uni1ECE' (uni1ECE) (ID 506)<br>'uni1EDA' (uni1EDA) (ID 507)<br>'uni1EE2' (uni1EE2) (ID 508)<br>'uni1EDC' (uni1EDC) (ID 509)<br>'uni1EDE' (uni1EDE) (ID 510)<br>'uni1EE0' (uni1EE0) (ID 511)<br>'uni1EE4' (uni1EE4) (ID 540)<br>'uni1EE6' (uni1EE6) (ID 541)<br>'uni1EE8' (uni1EE8) (ID 542)<br>'uni1EF0' (uni1EF0) (ID 543)<br>'uni1EEA' (uni1EEA) (ID 544)<br>'uni1EEC' (uni1EEC) (ID 545)<br>'uni1EEE' (uni1EEE) (ID 546)<br>'uni1EF4' (uni1EF4) (ID 551)<br>'uni1EF6' (uni1EF6) (ID 552)<br>'uni1EF6' (uni1EF6) (ID 552)<br>'uni1EF8' (uni1EF8) (ID 554)<br>'uni1EAF' (uni1EAF) (ID 556)<br>'uni1EB7' (uni1EB7) (ID 557)<br>'uni1EB1' (uni1EB1) (ID 558)<br>'uni1EB3' (uni1EB3) (ID 559)<br>'uni1EB5' (uni1EB5) (ID 560)<br>'uni1EA5' (uni1EA5) (ID 562)<br>'uni1EAD' (uni1EAD) (ID 563)<br>'uni1EA7' (uni1EA7) (ID 564)<br>'uni1EA9' (uni1EA9) (ID 565)<br>'uni1EAB' (uni1EAB) (ID 566)<br>'uni1EA1' (uni1EA1) (ID 568)<br>'uni1EA3' (uni1EA3) (ID 569)<br>'uni1EBF' (uni1EBF) (ID 577)<br>'uni1EC7' (uni1EC7) (ID 578)<br>'uni1EC1' (uni1EC1) (ID 579)<br>'uni1EC3' (uni1EC3) (ID 580)<br>'uni1EC5' (uni1EC5) (ID 581)<br>'uni1EB9' (uni1EB9) (ID 583)<br>'uni1EBB' (uni1EBB) (ID 584)<br>'uni1EBD' (uni1EBD) (ID 588)<br>'uni1ECB' (uni1ECB) (ID 596)<br>'uni1EC9' (uni1EC9) (ID 597)<br>'uni1ED1' (uni1ED1) (ID 610)<br>'uni1ED9' (uni1ED9) (ID 611)<br>'uni1ED3' (uni1ED3) (ID 612)<br>'uni1ED5' (uni1ED5) (ID 613)<br>'uni1ED7' (uni1ED7) (ID 614)<br>'uni1ECD' (uni1ECD) (ID 618)<br>'uni1ECF' (uni1ECF) (ID 619)<br>'uni1EDB' (uni1EDB) (ID 620)<br>'uni1EE3' (uni1EE3) (ID 621)<br>'uni1EDD' (uni1EDD) (ID 622)<br>'uni1EDF' (uni1EDF) (ID 623)<br>'uni1EE1' (uni1EE1) (ID 624)<br>'uni1EE5' (uni1EE5) (ID 652)<br>'uni1EE7' (uni1EE7) (ID 653)<br>'uni1EE9' (uni1EE9) (ID 654)<br>'uni1EF1' (uni1EF1) (ID 655)<br>'uni1EEB' (uni1EEB) (ID 656)<br>'uni1EED' (uni1EED) (ID 657)<br>'uni1EEF' (uni1EEF) (ID 658)<br>'uni1EF5' (uni1EF5) (ID 663)<br>'uni1EF7' (uni1EF7) (ID 664)<br>'uni1EF9' (uni1EF9) (ID 666)</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Should not be Composite (CFF)</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Should not be Composite (CFF)_cell">
+                <button id="Should not be Composite (CFF)_btn" onclick='toggle_detail("Should not be Composite (CFF)");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Should not be Composite (CFF)</h3></th></tr>
+            </thead>
+            <tbody id="Should not be Composite (CFF)" class="result_body">
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>CFF </p></td>
+                    <td class="feature"><p>Composite</p></td>
+                    <td class="message"><p>CFF font should not have any composite.</p></td>
+                    <td class="detail"><p>This is not a CFF font. Skipped this check.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Advance Width (zero or negative)</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Advance Width (zero or negative)_cell">
+                <button id="Advance Width (zero or negative)_btn" onclick='toggle_detail("Advance Width (zero or negative)");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Advance Width (zero or negative)</h3></th></tr>
+            </thead>
+            <tbody id="Advance Width (zero or negative)" class="result_body">
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>hmtx</p></td>
+                    <td class="feature"><p>advance</p></td>
+                    <td class="message"><p>Pull glyphs with advance width zero.</p></td>
+                    <td class="detail"><p>'NULL' (uni0000) (ID 1) = '0'.<br>'periodcentered.loclCAT.case' (ID 382) = '0'.<br>'uni200B' (uni200B) (ID 672) = '0'.<br>'DEL' (uni007F) (ID 673) = '0'.<br>'uni0900' (uni0900) (ID 788) = '0'.<br>'Chandrabindu.dv' (uni0901) (ID 789) = '0'.<br>'Bindu.dv' (uni0902) (ID 790) = '0'.<br>'uni093A' (uni093A) (ID 846) = '0'.<br>'Nukta.dv' (uni093C) (ID 848) = '0'.<br>'matraU.dv' (uni0941) (ID 853) = '0'.<br>'matraUu.dv' (uni0942) (ID 854) = '0'.<br>'matraRu.dv' (uni0943) (ID 855) = '0'.<br>'matraRuu.dv' (uni0944) (ID 856) = '0'.<br>'Chandra.dv' (uni0945) (ID 857) = '0'.<br>'matraShortE.dv' (uni0946) (ID 858) = '0'.<br>'matraE.dv' (uni0947) (ID 859) = '0'.<br>'matraAi.dv' (uni0948) (ID 860) = '0'.<br>'Halant.dv' (uni094D) (ID 865) = '0'.<br>'Udatta.dv' (uni0951) (ID 869) = '0'.<br>'Anudatta.dv' (uni0952) (ID 870) = '0'.<br>'uni0953' (uni0953) (ID 871) = '0'.<br>'uni0954' (uni0954) (ID 872) = '0'.<br>'uni0955' (uni0955) (ID 873) = '0'.<br>'uni0956' (uni0956) (ID 874) = '0'.<br>'uni0957' (uni0957) (ID 875) = '0'.<br>'matraLru.dv' (uni0962) (ID 886) = '0'.<br>'matraLruu.dv' (uni0963) (ID 887) = '0'.<br>'matraUsmall.dv' (ID 1459) = '0'.<br>'matraUusmall.dv' (ID 1460) = '0'.<br>'matraRusmall.dv' (ID 1461) = '0'.<br>'matraLrusmall.dv' (ID 1462) = '0'.<br>'Vattu.dv' (ID 1463) = '0'.<br>'VattumatraU.dv' (ID 1464) = '0'.<br>'VattumatraUu.dv' (ID 1465) = '0'.<br>'Binduone.dv' (ID 1466) = '0'.<br>'Chandrabinduone.dv' (ID 1467) = '0'.<br>'Reph.dv' (ID 1468) = '0'.<br>'RephBindu.dv' (ID 1469) = '0'.<br>'RephChandrabindu.dv' (ID 1470) = '0'.<br>'matraEBindu.dv' (ID 1471) = '0'.<br>'matraEChandrabindu.dv' (ID 1472) = '0'.<br>'matraEReph.dv' (ID 1473) = '0'.<br>'matraERephBindu.dv' (ID 1474) = '0'.<br>'matraERephChandrabindu.dv' (ID 1475) = '0'.<br>'matraAiBindu.dv' (ID 1476) = '0'.<br>'matraAiChandrabindu.dv' (ID 1477) = '0'.<br>'matraAiReph.dv' (ID 1478) = '0'.<br>'matraAiRephBindu.dv' (ID 1479) = '0'.<br>'matraAiRephChandrabindu.dv' (ID 1480) = '0'.<br>'matraShortEBindu.dv' (ID 1496) = '0'.<br>'matraShortEChandrabindu.dv' (ID 1497) = '0'.<br>'matraShortEReph.dv' (ID 1498) = '0'.<br>'matraShortERephBindu.dv' (ID 1499) = '0'.<br>'matraShortERephChandrabindu.dv' (ID 1500) = '0'.<br>'Rephone.dv' (ID 1506) = '0'.<br>'RephBinduone.dv' (ID 1507) = '0'.<br>'RephChandrabinduone.dv' (ID 1508) = '0'.<br>'matraEone.dv' (ID 1509) = '0'.<br>'matraEoneBindu.dv' (ID 1510) = '0'.<br>'matraEoneReph.dv' (ID 1511) = '0'.<br>'matraEoneRephBindu.dv' (ID 1512) = '0'.<br>'matraEoneRephChandrabindu.dv' (ID 1513) = '0'.<br>'matraAione.dv' (ID 1514) = '0'.<br>'matraAioneBindu.dv' (ID 1515) = '0'.<br>'matraAioneReph.dv' (ID 1516) = '0'.<br>'matraAioneRephBindu.dv' (ID 1517) = '0'.<br>'matraAioneRephChandrabindu.dv' (ID 1518) = '0'.<br>'matraEoneChandrabindu.dv' (ID 1519) = '0'.<br>'matraAioneChandrabindu.dv' (ID 1520) = '0'.<br>'dummy1' (ID 1637) = '0'.<br>'ZWNJ' (uni200C) (ID 1640) = '0'.<br>'ZWJ' (uni200D) (ID 1641) = '0'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>glyf</p></td>
+                    <td class="feature"><p>advance width</p></td>
+                    <td class="message"><p>Advance width should be zero.</p></td>
+                    <td class="detail"><p>The following glyphs (23) should have advance width 0:<br>'gravecomb' (uni0300) (ID 334) = '314'.<br>'acutecomb' (uni0301) (ID 335) = '310'.<br>'tildecomb' (uni0303) (ID 336) = '388'.<br>'hookabovecomb' (uni0309) (ID 337) = '273'.<br>'dotbelowcomb' (uni0323) (ID 338) = '120'.<br>'uni0308' (uni0308) (ID 355) = '388'.<br>'uni0307' (uni0307) (ID 356) = '120'.<br>'uni030B' (uni030B) (ID 357) = '286'.<br>'uni0302' (uni0302) (ID 358) = '361'.<br>'uni030C' (uni030C) (ID 359) = '381'.<br>'uni0306' (uni0306) (ID 361) = '349'.<br>'uni030A' (uni030A) (ID 362) = '215'.<br>'uni0304' (uni0304) (ID 363) = '292'.<br>'uni030F' (uni030F) (ID 364) = '483'.<br>'uni0311' (uni0311) (ID 365) = '353'.<br>'uni0312' (uni0312) (ID 366) = '202'.<br>'uni031B' (uni031B) (ID 367) = '228'.<br>'uni0324' (uni0324) (ID 368) = '388'.<br>'uni0326' (uni0326) (ID 369) = '123'.<br>'uni0327' (uni0327) (ID 370) = '204'.<br>'uni0328' (uni0328) (ID 371) = '245'.<br>'uni032E' (uni032E) (ID 372) = '325'.<br>'uni0331' (uni0331) (ID 373) = '334'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Un/Necessary Tables</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Un/Necessary Tables_cell">
+                <button id="Un/Necessary Tables_btn" onclick='toggle_detail("Un/Necessary Tables");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Un/Necessary Tables</h3></th></tr>
+            </thead>
+            <tbody id="Un/Necessary Tables" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>-/-</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Unnecessary tables (private tables and embedded bitmap tables).</p></td>
+                    <td class="detail"><p>OK: No unnecessary tables.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>DSIG</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Necessary tables.</p></td>
+                    <td class="detail"><p>'DSIG' is in the font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>First Four Characters</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="First Four Characters_cell">
+                <button id="First Four Characters_btn" onclick='toggle_detail("First Four Characters");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>First Four Characters</h3></th></tr>
+            </thead>
+            <tbody id="First Four Characters" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>post</p></td>
+                    <td class="feature"><p>Index 0</p></td>
+                    <td class="message"><p>PostScript name should be ".notdef".</p></td>
+                    <td class="detail"><p>OK: Index 0 = ".notdef".</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>hmtx</p></td>
+                    <td class="feature"><p>Index 0</p></td>
+                    <td class="message"><p>'.notdef' advance width should not be 0.</p></td>
+                    <td class="detail"><p>OK: '.notdef' advance width is 813.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>post</p></td>
+                    <td class="feature"><p>Index 1</p></td>
+                    <td class="message"><p>PostScript name should be one of the names:<br>".null"<br>"null"<br>"NULL".</p></td>
+                    <td class="detail"><p>OK: Index 1 = "NULL".</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>glyf</p></td>
+                    <td class="feature"><p>Index 1</p></td>
+                    <td class="message"><p>'NULL' shoiuld have no contours.</p></td>
+                    <td class="detail"><p>'NULL' has 0 contours.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>hmtx</p></td>
+                    <td class="feature"><p>Index 1</p></td>
+                    <td class="message"><p>'NULL' should have an advance width of 0.</p></td>
+                    <td class="detail"><p>OK: 'NULL' has an advance width of 0.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>post</p></td>
+                    <td class="feature"><p>Index 2</p></td>
+                    <td class="message"><p>PostScript name should be one of the names:<br>"nonmarkingreturn"<br>"CR".</p></td>
+                    <td class="detail"><p>Index 2 = "uni000D". Check that character is the correct glyph.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>post</p></td>
+                    <td class="feature"><p>Index 3</p></td>
+                    <td class="message"><p>PostScript name should be "space"</p></td>
+                    <td class="detail"><p>OK: Index 3 = "space".</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>glyf</p></td>
+                    <td class="feature"><p>Index 3</p></td>
+                    <td class="message"><p>'space' should have no contours.</p></td>
+                    <td class="detail"><p>OK: 'space' has 0 contours.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>OS/2 table</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="OS/2 table_cell">
+                <button id="OS/2 table_btn" onclick='toggle_detail("OS/2 table");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>OS/2 table</h3></th></tr>
+            </thead>
+            <tbody id="OS/2 table" class="result_body">
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>table version 3.</p></td>
+                    <td class="message"><p>'OS/2' table version should be 4.</p></td>
+                    <td class="detail"><p>'OS/2' table version is: 3. Verify that this is the version required.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>italic flag</p></td>
+                    <td class="message"><p>'OS/2' fsSelection italic flag should match the 'head' macStyle italic flag. They should be the same.</p></td>
+                    <td class="detail"><p>OK: They are the same.'OS/2' fsSelection italic flag is False and 'head' macStyle italic flag is False.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>usBreakChar</p></td>
+                    <td class="message"><p>'OS/2' usBreakChar should be 0x0020.</p></td>
+                    <td class="detail"><p>OK: 'OS/2' usBreakChar is 0x0020.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>usDefaultChar</p></td>
+                    <td class="message"><p>'OS/2' usDefaultChar should be 0x0000.</p></td>
+                    <td class="detail"><p>OK: 'OS/2' usDefaultChar is 0x0000.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>usFirstCharIndex</p></td>
+                    <td class="message"><p>'OS/2' usFirstCharIndex should be 0x0000</p></td>
+                    <td class="detail"><p>OK: 'OS/2' usFirstCharIndex is 0x0000.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>usLastCharIndex</p></td>
+                    <td class="message"><p>'OS/2' usLastCharIndex should be 0xFB04</p></td>
+                    <td class="detail"><p>OK: 'OS/2' usLastCharIndex is 0xFB04.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>Embedding Level</p></td>
+                    <td class="message"><p>For library fonts embedding level should be 'Preview & Print Embedding'.</p></td>
+                    <td class="detail"><p>Embedding Level is 'Embedding Level = Installable Embedding'. If custom font please check against job spec.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>fsType</p></td>
+                    <td class="message"><p>Pull 'OS/2' fsType.</p></td>
+                    <td class="detail"><p>embedding level: Embedding Level = Installable Embedding<br>no subsetting flag: False<br>bitmap embedding only flag: False</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>fvar table</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="fvar table_cell">
+                <button id="fvar table_btn" onclick='toggle_detail("fvar table");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>fvar table</h3></th></tr>
+            </thead>
+            <tbody id="fvar table" class="result_body">
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>fvar</p></td>
+                    <td class="feature"><p>variable font</p></td>
+                    <td class="message"><p>Variable font must have a fvar table.</p></td>
+                    <td class="detail"><p>This font is not a variable font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>STAT table</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="STAT table_cell">
+                <button id="STAT table_btn" onclick='toggle_detail("STAT table");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>STAT table</h3></th></tr>
+            </thead>
+            <tbody id="STAT table" class="result_body">
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>STAT</p></td>
+                    <td class="feature"><p>static font</p></td>
+                    <td class="message"><p>Variable font must have a STAT table.</p></td>
+                    <td class="detail"><p>No check of STAT table for static fonts included, yet. Static fonts do not need to have a STAT table. It is only recommended by Microsoft, not required.<br>More infos here:<br><a href='https://docs.microsoft.com/en-us/typography/opentype/spec/stat'>https://docs.microsoft.com/en-us/typography/opentype/spec/stat</a></p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Missing uni0000 and uni000D in cmap Table</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Missing uni0000 and uni000D in cmap Table_cell">
+                <button id="Missing uni0000 and uni000D in cmap Table_btn" onclick='toggle_detail("Missing uni0000 and uni000D in cmap Table");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Missing uni0000 and uni000D in cmap Table</h3></th></tr>
+            </thead>
+            <tbody id="Missing uni0000 and uni000D in cmap Table" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>cmap(0, 3, 0)</p></td>
+                    <td class="message"><p>Missing uni0000 and uni000D in cmap MS/BMP(0,3,0) and Unicode/2.0, BMP only(3,1,0).</p></td>
+                    <td class="detail"><p>cmap(0, 3, 0) contains U+0000</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>cmap(0, 3, 0)</p></td>
+                    <td class="message"><p>Missing uni0000 and uni000D in cmap MS/BMP(0,3,0) and Unicode/2.0, BMP only(3,1,0).</p></td>
+                    <td class="detail"><p>cmap(0, 3, 0) contains U+000D</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>cmap(3, 1, 0)</p></td>
+                    <td class="message"><p>Missing uni0000 and uni000D in cmap MS/BMP(0,3,0) and Unicode/2.0, BMP only(3,1,0).</p></td>
+                    <td class="detail"><p>cmap(3, 1, 0) contains U+0000</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>cmap(3, 1, 0)</p></td>
+                    <td class="message"><p>Missing uni0000 and uni000D in cmap MS/BMP(0,3,0) and Unicode/2.0, BMP only(3,1,0).</p></td>
+                    <td class="detail"><p>cmap(3, 1, 0) contains U+000D</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Obsolete Language Tag TUR</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Obsolete Language Tag TUR_cell">
+                <button id="Obsolete Language Tag TUR_btn" onclick='toggle_detail("Obsolete Language Tag TUR");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Obsolete Language Tag TUR</h3></th></tr>
+            </thead>
+            <tbody id="Obsolete Language Tag TUR" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>-/-</p></td>
+                    <td class="feature"><p>TRK</p></td>
+                    <td class="message"><p>Obsolete language tag 'TUR' should be TRK.</p></td>
+                    <td class="detail"><p>OK: No language tag 'TUR' in any table.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Name Table</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Name Table_cell">
+                <button id="Name Table_btn" onclick='toggle_detail("Name Table");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Name Table</h3></th></tr>
+            </thead>
+            <tbody id="Name Table" class="result_body">
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 0</p></td>
+                    <td class="message"><p>MS NID 0, Copyright.</p></td>
+                    <td class="detail"><p>There is something wrong: <br>'Copyright (c) 2016, Ek Type. All rights reserved.'<br>Please verify against spec. It should follow this structure:<br>'Copyright (c) XXXX - XXXX /entity/. All rights reserved.'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 1</p></td>
+                    <td class="message"><p>MS NID 1, Family Name length shouldn't be longer then 31.</p></td>
+                    <td class="detail"><p>OK: NID 1 length is '4'<br>'Gotu' </p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 1</p></td>
+                    <td class="message"><p>Reserved word used in Family Name NID1 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 1 does not contain any of the following keywords: 'Regular, Bold, Roman'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 1</p></td>
+                    <td class="message"><p>Reserved word used in Family Name NID1 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 1 does not contain any of the following keywords: 'Book, Ultra, Normal'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 1</p></td>
+                    <td class="message"><p>Reserved word used in Family Name NID1 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 1 does not contain any of the following keywords: 'Roman'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 1</p></td>
+                    <td class="message"><p>Reserved word used in Family Name NID1 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 1 does not contain any of the following keywords: 'Regular, Bold, Italic, Extra, Light, Black, Thin, Wide, Ultra'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 1</p></td>
+                    <td class="message"><p>Should be camel case Family Name NID1</p></td>
+                    <td class="detail"><p>NID 1: OK. No camel case required.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 1</p></td>
+                    <td class="message"><p>Check style extentions Family Name NID1</p></td>
+                    <td class="detail"><p>NID 1 does not contain any of the following beginnings: 'Dm, Semi, Ultra, Ex, X, Xtra, Demi, Sm, Extra'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>name/OS/2</p></td>
+                    <td class="feature"><p>MS NID 1</p></td>
+                    <td class="message"><p>Width Names Family Name NID1</p></td>
+                    <td class="detail"><p>OS/2 usWidthClass seems to be correct. Cannot find any specific width name in the name:<br>'Gotu'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 2</p></td>
+                    <td class="message"><p>MS NID 2, Subfamily.</p></td>
+                    <td class="detail"><p>OK: NID 2 is 'Regular'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 2</p></td>
+                    <td class="message"><p>Reserved word used in Subfamily Name NID2 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 2 does not contain any of the following keywords: 'Book, Ultra, Normal'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 2</p></td>
+                    <td class="message"><p>Reserved word used in Subfamily Name NID2 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 2 does not contain any of the following keywords: 'Roman'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 4</p></td>
+                    <td class="message"><p>MS NID 4, Full Name length shouldn't be longer than 31.</p></td>
+                    <td class="detail"><p>OK: NID 4 length is '4'<br>'Gotu' </p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 4</p></td>
+                    <td class="message"><p>If NID 2 is 'Regular': MS NID 4 = NID 1</p></td>
+                    <td class="detail"><p>NID 4 'Gotu' = NID 1 'Gotu'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 4</p></td>
+                    <td class="message"><p>Reserved word used in Full Font Name NID4 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 4 does not contain any of the following keywords: 'Book, Ultra, Normal'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 4</p></td>
+                    <td class="message"><p>Reserved word used in Full Font Name NID4 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 4 does not contain any of the following keywords: 'Roman'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 4</p></td>
+                    <td class="message"><p>Should be camel case Full Font Name NID4</p></td>
+                    <td class="detail"><p>NID 4: OK. No camel case required.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 4</p></td>
+                    <td class="message"><p>Check style extentions Full Font Name NID4</p></td>
+                    <td class="detail"><p>NID 4 does not contain any of the following beginnings: 'Dm, Semi, Ultra, Ex, X, Xtra, Demi, Sm, Extra'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>name/OS/2</p></td>
+                    <td class="feature"><p>MS NID 4</p></td>
+                    <td class="message"><p>Width Names Full Font Name NID4</p></td>
+                    <td class="detail"><p>OS/2 usWidthClass seems to be correct. Cannot find any specific width name in the name:<br>'Gotu'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>name/head</p></td>
+                    <td class="feature"><p>MS NID 5</p></td>
+                    <td class="message"><p>name table version should match head table fontRevision.</p></td>
+                    <td class="detail"><p>OK: name table version entry 'Version 2.320;hotconv 1.0.109;makeotfexe 2.5.65596; ttfautohint (v1.8.1)' does match fontRevision 'Version 2.32'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 6</p></td>
+                    <td class="message"><p>MS NID 6, PostScript Name length shouldn't be longer then 27.<br>(Otherwise it may cause issues in MS Word.)</p></td>
+                    <td class="detail"><p>NID 6 length is '12'<br>'Gotu-Regular' </p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 6</p></td>
+                    <td class="message"><p>MS NID 6, PostScript Name check for illegal characters.<br>Monotype uses NID 6 for creating CSS classes for their demo HTML. The following characters cause issues in the CSS code: '<br>, ,  , &, _, [, ], (, ), {, }, <, >, /, \, %'</p></td>
+                    <td class="detail"><p>NID 6 is 'Gotu-Regular', Everything looks good.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 6</p></td>
+                    <td class="message"><p>MS NID 6, PostScript Name check for illegal characters.<br>'space' in NID 6 cause issues in fontbook for Mac.</p></td>
+                    <td class="detail"><p>NID 6 is 'Gotu-Regular', Everything looks good.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 6</p></td>
+                    <td class="message"><p>Reserved word used in PostScript Name NID6 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 6 does not contain any of the following keywords: 'Book, Ultra, Normal'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 6</p></td>
+                    <td class="message"><p>Reserved word used in PostScript Name NID6 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 6 does not contain any of the following keywords: 'Roman'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 6</p></td>
+                    <td class="message"><p>Should be camel case PostScript Name NID6</p></td>
+                    <td class="detail"><p>NID 6: OK. No camel case required.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 8</p></td>
+                    <td class="message"><p>Manufactur (NID 8) should be Monotype IP</p></td>
+                    <td class="detail"><p>MS NID 8 is 'Ek Type', but should be one of these: 'Monotype Imaging Inc.', 'Monotype Imaging Inc', 'Monotype ITC Inc.', 'Monotype Hong Kong Limited', 'Monotype Limited', 'Monotype KK', 'Monotype Solutions India Private Limited', 'Monotype GmbH', 'MyFonts Inc.', 'MyFonts Inc', 'Fontsmith Ltd.', 'Fontsmith Ltd'.<br></p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 11</p></td>
+                    <td class="message"><p>MS NID 11, URL Vendor should be 'http://www.monotype.com'. </p></td>
+                    <td class="detail"><p>NID 11 is www.ektype.in, but should be http://www.monotype.com. Please verify against job spec.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 12</p></td>
+                    <td class="message"><p>MS NID 12, URL Vendor should be 'http://www.monotype.com'. </p></td>
+                    <td class="detail"><p>NID 12 is www.ektype.in, but should be http://www.monotype.com. Please verify against job spec.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 8/13</p></td>
+                    <td class="message"><p>License text</p></td>
+                    <td class="detail"><p>Cannot check license text because of unkown entity 'Ek Type' (NID8). Please verify against job spec.<br>MS NID 13 is:<br>This Font Software is licensed under the SIL Open Font License, Version 1.1. This license is available with a FAQ at: http://scripts.sil.org/OFL<br>, most common Monotype license test is:<br>This <mark>font software is the property of Monotype Imaging Inc., or one of its affiliated entities (collectively, Monotype) and its use by you is covered under the terms of a license agreement. You have obtained this font software either directly from Monotype or together with software distributed by one of the licensees of Monotype. This software is a valuable asset of Monotype. Unless you have entered into a specific license agreement granting you additional rights, your use of this software is limited by the terms of the actual license agreement you have entered into with Monotype. You may not copy or distribute this software. If you have any questions concerning your rights you should review the license agreement you received with the software. You can learn more about Monotype by clicking here: www.monotype.com.</mark></p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 14</p></td>
+                    <td class="message"><p>MS NID 14, URL Vendor should be 'http://www.monotype.com'. </p></td>
+                    <td class="detail"><p>NID 14 is http://scripts.sil.org/OFL, but should be http://www.monotype.com. Please verify against job spec.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 0</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: 'No entry.'<br>MS [3, 1, 1033] is: '<mark>Copyright (c) 2016, Ek Type. All rights reserved</mark>.'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 1</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: '<mark>No entry.</mark>'<br>MS [3, 1, 1033] is: 'Gotu'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 2</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: '<mark>No entry.</mark>'<br>MS [3, 1, 1033] is: 'Regular'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 3</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: 'No entry.'<br>MS [3, 1, 1033] is: '<mark>2.320;EKTF;Gotu</mark>'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 4</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: '<mark>No entry.</mark>'<br>MS [3, 1, 1033] is: 'Gotu'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 5</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: 'No entry.'<br>MS [3, 1, 1033] is: '<mark>Version 2.320;hotconv 1.0.109;makeotfexe 2.5.65596; ttfautohint (v1.8.1)</mark>'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 6</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: 'No entry.'<br>MS [3, 1, 1033] is: '<mark>Gotu-Regular</mark>'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 8</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: '<mark>No entry.</mark>'<br>MS [3, 1, 1033] is: 'Ek Type'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 9</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: 'No entry.'<br>MS [3, 1, 1033] is: '<mark>Sarang Kulkarni & Kailash Malviya</mark>'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 11</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: 'No entry.'<br>MS [3, 1, 1033] is: '<mark>www.ektype.in</mark>'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 12</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: 'No entry.'<br>MS [3, 1, 1033] is: '<mark>www.ektype.in</mark>'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 13</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: 'No entry.'<br>MS [3, 1, 1033] is: '<mark>This Font Software is licensed under the SIL Open Font License, Version 1.1. This license is available with a FAQ at: http://scripts.sil.org/OFL</mark>'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 14</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: 'No entry.'<br>MS [3, 1, 1033] is: '<mark>http://scripts.sil.org/OFL</mark>'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 0 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 0, Copyright' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Copyright is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 1 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 1, Family Name' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Family Name is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 2 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 2, Subfamily Name' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Subfamily Name is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 3 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 3, Unique Font Identifier' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Unique Font Identifier is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 4 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 4, Full Font Name' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Full Font Name is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 5 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 5, Version' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Version is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 6 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 6, PostScript Name' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>PostScript Name is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 7 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 7, Trademark' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Trademark NID 7 (MS/BMP/English (U.S.)) is missing.<br>Please verify agains spec. It might be ok if it's a symbol font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 8 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 8, Manufacturer' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Manufacturer is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 9 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 9, Designer' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Designer is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 10 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 10, Description' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Description NID 10 (MS/BMP/English (U.S.)) is missing.<br>Please verify agains spec. It might be ok if it's a symbol font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 11 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 11, Vendor URL' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Vendor URL is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 13 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 13, License Text' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>License Text is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 14 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 14, License URL' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>License URL is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 16 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 16, Typographic Family Name' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Typographic Family Name NID 16 (MS/BMP/English (U.S.)) is missing.<br>Please verify agains spec. It might be ok if it's a symbol font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 17 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 17, Typographic Subfamily Name' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Typographic Subfamily Name NID 17 (MS/BMP/English (U.S.)) is missing.<br>Please verify agains spec. It might be ok if it's a symbol font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Underline Position and Thickness</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Underline Position and Thickness_cell">
+                <button id="Underline Position and Thickness_btn" onclick='toggle_detail("Underline Position and Thickness");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Underline Position and Thickness</h3></th></tr>
+            </thead>
+            <tbody id="Underline Position and Thickness" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>post</p></td>
+                    <td class="feature"><p>underline position and thickness</p></td>
+                    <td class="message"><p>underlinePosition should be a negative and underlineThickness not 0 or negative.</p></td>
+                    <td class="detail"><p>underlinePosition is '-75'.<br>underlineThicknes is '50'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Kerning (kern Table and GPOS Kerning)</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Kerning (kern Table and GPOS Kerning)_cell">
+                <button id="Kerning (kern Table and GPOS Kerning)_btn" onclick='toggle_detail("Kerning (kern Table and GPOS Kerning)");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Kerning (kern Table and GPOS Kerning)</h3></th></tr>
+            </thead>
+            <tbody id="Kerning (kern Table and GPOS Kerning)" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>GPOS</p></td>
+                    <td class="feature"><p>kern</p></td>
+                    <td class="message"><p>Simple check if kern feature in GPOS table.</p></td>
+                    <td class="detail"><p>The font has GPOS kerning.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>kern</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Check if 'kern' table in font.</p></td>
+                    <td class="detail"><p>Font has no 'kern' table. Please verify if font requires kern table or if only GPOS kerning should be in font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>kern/GPOS</p></td>
+                    <td class="feature"><p>kern</p></td>
+                    <td class="message"><p>'kern' table and 'GPOS' kerning.</p></td>
+                    <td class="detail"><p>Font has GPOS kerning and no 'kern' table.<br>Verify with the spec or PM what is required.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Vendor ID</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Vendor ID_cell">
+                <button id="Vendor ID_btn" onclick='toggle_detail("Vendor ID");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Vendor ID</h3></th></tr>
+            </thead>
+            <tbody id="Vendor ID" class="result_body">
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>achVendID</p></td>
+                    <td class="message"><p>Vendor ID should be 'MONO'</p></td>
+                    <td class="detail"><p>Vendor ID is 'EKTF'. Please change to 'MONO'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Vertical Metrics</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Vertical Metrics_cell">
+                <button id="Vertical Metrics_btn" onclick='toggle_detail("Vertical Metrics");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Vertical Metrics</h3></th></tr>
+            </thead>
+            <tbody id="Vertical Metrics" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2 and head</p></td>
+                    <td class="feature"><p>sTypeAsc/Desc and unitsPerEm</p></td>
+                    <td class="message"><p>The result of sTypoAscender – sTypoDescender should match or exceed the unitsPerEm value.</p></td>
+                    <td class="detail"><p>The result of sTypoAscender – sTypoDescender (1660) match or exceed the unitsPerEm value (1000).</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>hhea</p></td>
+                    <td class="feature"><p>Vertical Metrics</p></td>
+                    <td class="message"><p>Pull hhea Metrics</p></td>
+                    <td class="detail"><p>hhea.ascent: 1115<br>hhea.descent: -545<br>hhea.lineGap: 0</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>Vertical Metrics</p></td>
+                    <td class="message"><p>Pull OS/2 sTypo Metrics</p></td>
+                    <td class="detail"><p>OS2.sTypoAscender: 1115<br>OS2.sTypoDescender: -545<br>OS2.sTypoLineGap: 0</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>Vertical Metrics</p></td>
+                    <td class="message"><p>Pull OS/2 usWin Metrics</p></td>
+                    <td class="detail"><p>OS2.usWinAscent: 1124<br>OS2.usWinDescent: 545</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>xAvgCharWidth</p></td>
+                    <td class="message"><p>Get 'OS/2' xAvgCharWidth.</p></td>
+                    <td class="detail"><p>xAvgCharWidth = 787.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>hhea</p></td>
+                    <td class="feature"><p>advanceWidthMax</p></td>
+                    <td class="message"><p>Get advanceWidthMax.</p></td>
+                    <td class="detail"><p>advanceWidthMax = 2550.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>hhea</p></td>
+                    <td class="feature"><p>xMin, yMin, xMax, yMax</p></td>
+                    <td class="message"><p>Get xMin, yMin, xMax, yMax.</p></td>
+                    <td class="detail"><p>xMin: -595<br>yMin: -543<br>xMax: 2709<br>yMax: 1124<br></p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>sTypoAscender</p></td>
+                    <td class="message"><p>Vertical Metrics 'sTypoAscender' shouldn't be negative.</p></td>
+                    <td class="detail"><p>sTypoAscender = '1115'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>sTypoDescender</p></td>
+                    <td class="message"><p>Vertical Metrics 'sTypoDescender' should be negative.</p></td>
+                    <td class="detail"><p>sTypoDescender = '-545'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>sTypoLineGap</p></td>
+                    <td class="message"><p>Vertical Metrics 'sTypoLineGap' shouldn't be negative.</p></td>
+                    <td class="detail"><p>sTypoLineGap = '0'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>usWinAscent</p></td>
+                    <td class="message"><p>Vertical Metrics 'usWinAscent' shouldn't be negative.</p></td>
+                    <td class="detail"><p>usWinAscent = '1124'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>usWinDescent</p></td>
+                    <td class="message"><p>Vertical Metrics 'usWinDescent' shouldn't be negative.</p></td>
+                    <td class="detail"><p>usWinDescent = '545'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>hhea</p></td>
+                    <td class="feature"><p>ascent</p></td>
+                    <td class="message"><p>Vertical Metrics 'ascent' shouldn't be negative.</p></td>
+                    <td class="detail"><p>ascent = '1115'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>hhea</p></td>
+                    <td class="feature"><p>descent</p></td>
+                    <td class="message"><p>Vertical Metrics 'descent' should be negative.</p></td>
+                    <td class="detail"><p>descent = '-545'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>hhea</p></td>
+                    <td class="feature"><p>lineGap</p></td>
+                    <td class="message"><p>Vertical Metrics 'lineGap' shouldn't be negative.</p></td>
+                    <td class="detail"><p>lineGap = '0'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>gasp Table</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="gasp Table_cell">
+                <button id="gasp Table_btn" onclick='toggle_detail("gasp Table");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>gasp Table</h3></th></tr>
+            </thead>
+            <tbody id="gasp Table" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>gasp</p></td>
+                    <td class="feature"><p>Version</p></td>
+                    <td class="message"><p>gasp table verison should be 1.</p></td>
+                    <td class="detail"><p>Verison = 1</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>gasp</p></td>
+                    <td class="feature"><p>Default</p></td>
+                    <td class="message"><p>Pull gasp table Default.</p></td>
+                    <td class="detail"><p>Grid-fit = True, Do gray = True, Symmetric grid-fit = True, Symmetric smoothing = True</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>gasp</p></td>
+                    <td class="feature"><p>Default</p></td>
+                    <td class="message"><p>Check gasp table Default.</p></td>
+                    <td class="detail"><p>gasp table default is:<br>Grid-fit = True, Do gray = True, Symmetric grid-fit = True, Symmetric smoothing = True<br>and should be:<br>Grid-fit = True, Do gray = True, Symmetric grid-fit = True, Symmetric smoothing = True</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>PostScript names</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="PostScript names_cell">
+                <button id="PostScript names_btn" onclick='toggle_detail("PostScript names");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>PostScript names</h3></th></tr>
+            </thead>
+            <tbody id="PostScript names" class="result_body">
+                    
+                <tr class="W">
+                    <td class="code"><p>Warning</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>post</p></td>
+                    <td class="feature"><p>PostScript names</p></td>
+                    <td class="message"><p>Postscript names should not be longer then 29 characters. May cause issues in PDF.</p></td>
+                    <td class="detail"><p>Is longer:<br>'matraShortERephChandrabindu.dv<br>matraShortORephChandrabindu.dv<br>matraAioneRephChandrabindu.dv<br>matraIiRephChandrabinduone.dv<br>matraIiRephChandrabindutwo.dv<br>matraIRephBindutwentythree.dv'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>post</p></td>
+                    <td class="feature"><p>PostScript names</p></td>
+                    <td class="message"><p>Postscript names should not be longer then 29 characters. May cause issues in PDF.</p></td>
+                    <td class="detail"><p>OK:<br>'.notdef<br>NULL<br>uni000D<br>space<br>exclam<br>quotedbl<br>numbersign<br>dollar<br>percent<br>ampersand<br>quotesingle<br>parenleft<br>parenright<br>asterisk<br>plus<br>comma<br>hyphen<br>period<br>slash<br>zero<br>one<br>two<br>three<br>four<br>five<br>six<br>seven<br>eight<br>nine<br>colon<br>semicolon<br>less<br>equal<br>greater<br>question<br>at<br>A<br>B<br>C<br>D<br>E<br>F<br>G<br>H<br>I<br>J<br>K<br>L<br>M<br>N<br>O<br>P<br>Q<br>R<br>S<br>T<br>U<br>V<br>W<br>X<br>Y<br>Z<br>bracketleft<br>backslash<br>bracketright<br>asciicircum<br>underscore<br>grave<br>a<br>b<br>c<br>d<br>e<br>f<br>g<br>h<br>i<br>j<br>k<br>l<br>m<br>n<br>o<br>p<br>q<br>r<br>s<br>t<br>u<br>v<br>w<br>x<br>y<br>z<br>braceleft<br>bar<br>braceright<br>asciitilde<br>uni00A0<br>exclamdown<br>cent<br>sterling<br>currency<br>yen<br>brokenbar<br>section<br>dieresis<br>copyright<br>ordfeminine<br>guillemotleft<br>logicalnot<br>uni00AD<br>registered<br>macron<br>degree<br>plusminus<br>two.superior<br>three.superior<br>acute<br>uni00B5<br>paragraph<br>periodcentered<br>cedilla<br>one.superior<br>ordmasculine<br>guillemotright<br>questiondown<br>Agrave<br>Aacute<br>Acircumflex<br>Atilde<br>Adieresis<br>Aring<br>AE<br>Ccedilla<br>Egrave<br>Eacute<br>Ecircumflex<br>Edieresis<br>Igrave<br>Iacute<br>Icircumflex<br>Idieresis<br>Eth<br>Ntilde<br>Ograve<br>Oacute<br>Ocircumflex<br>Otilde<br>Odieresis<br>multiply<br>Oslash<br>Ugrave<br>Uacute<br>Ucircumflex<br>Udieresis<br>Yacute<br>Thorn<br>germandbls<br>agrave<br>aacute<br>acircumflex<br>atilde<br>adieresis<br>aring<br>ae<br>ccedilla<br>egrave<br>eacute<br>ecircumflex<br>edieresis<br>igrave<br>iacute<br>icircumflex<br>idieresis<br>eth<br>ntilde<br>ograve<br>oacute<br>ocircumflex<br>otilde<br>odieresis<br>divide<br>oslash<br>ugrave<br>uacute<br>ucircumflex<br>udieresis<br>yacute<br>thorn<br>ydieresis<br>Amacron<br>amacron<br>Abreve<br>abreve<br>Aogonek<br>aogonek<br>Cacute<br>cacute<br>Ccircumflex<br>ccircumflex<br>Cdotaccent<br>cdotaccent<br>Ccaron<br>ccaron<br>Dcaron<br>dcaron<br>Dcroat<br>dcroat<br>Emacron<br>emacron<br>Ebreve<br>ebreve<br>Edotaccent<br>edotaccent<br>Eogonek<br>eogonek<br>Ecaron<br>ecaron<br>Gcircumflex<br>gcircumflex<br>Gbreve<br>gbreve<br>Gdotaccent<br>gdotaccent<br>Hcircumflex<br>hcircumflex<br>Hbar<br>hbar<br>Itilde<br>itilde<br>Imacron<br>imacron<br>Iogonek<br>iogonek<br>Idotaccent<br>Jcircumflex<br>jcircumflex<br>kgreenlandic<br>Lacute<br>lacute<br>Lcaron<br>lcaron<br>Ldot<br>ldot<br>uni0122<br>uni0123<br>dotlessi<br>uni0136<br>uni0137<br>Lslash<br>lslash<br>uni013B<br>uni013C<br>Nacute<br>nacute<br>uni0145<br>uni0146<br>Ncaron<br>ncaron<br>napostrophe<br>Omacron<br>omacron<br>Ohungarumlaut<br>ohungarumlaut<br>OE<br>oe<br>Racute<br>racute<br>uni0156<br>uni0157<br>Rcaron<br>rcaron<br>Sacute<br>sacute<br>Scircumflex<br>scircumflex<br>Scedilla<br>scedilla<br>Scaron<br>scaron<br>uni021A<br>uni021B<br>Tcaron<br>tcaron<br>Utilde<br>utilde<br>Umacron<br>umacron<br>Ubreve<br>ubreve<br>Uring<br>uring<br>Uhungarumlaut<br>uhungarumlaut<br>Uogonek<br>uogonek<br>Wcircumflex<br>wcircumflex<br>Ycircumflex<br>ycircumflex<br>Ydieresis<br>Zacute<br>zacute<br>Zdotaccent<br>zdotaccent<br>Zcaron<br>zcaron<br>uni0259<br>florin<br>Ohorn<br>ohorn<br>Uhorn<br>uhorn<br>Gcaron<br>gcaron<br>uni0218<br>uni0219<br>Wgrave<br>wgrave<br>Wacute<br>wacute<br>Wdieresis<br>wdieresis<br>Ygrave<br>ygrave<br>circumflex<br>caron<br>breve<br>dotaccent<br>ring<br>ogonek<br>tilde<br>hungarumlaut<br>gravecomb<br>acutecomb<br>tildecomb<br>hookabovecomb<br>dotbelowcomb<br>capgrave<br>capacute<br>caphungarumlaut<br>capring<br>capcircumflex<br>capcaron<br>capdblgrave<br>uni02BC<br>uni02BB<br>uni02C9<br>uni02CB<br>uni02BF<br>uni02BE<br>uni02CA<br>uni02CC<br>uni02C8<br>uni0308<br>uni0307<br>uni030B<br>uni0302<br>uni030C<br>uni030C.alt<br>uni0306<br>uni030A<br>uni0304<br>uni030F<br>uni0311<br>uni0312<br>uni031B<br>uni0324<br>uni0326<br>uni0327<br>uni0328<br>uni032E<br>uni0331<br>acute.vit<br>grave.vit<br>tilde.vit<br>circumflex.vit<br>caron.vit<br>hook.vit<br>breve.vit<br>periodcentered.loclCAT<br>periodcentered.loclCAT.case<br>figuredash<br>endash<br>emdash<br>uni2015<br>uni2010<br>quoteleft<br>quoteright<br>quotesinglbase<br>quotedblleft<br>quotedblright<br>quotedblbase<br>dagger<br>daggerdbl<br>bullet<br>ellipsis<br>perthousand<br>guilsinglleft<br>guilsinglright<br>fraction<br>trademark<br>estimated<br>pi<br>partialdiff<br>product<br>summation<br>minus<br>radical<br>infinity<br>integral<br>approxequal<br>notequal<br>lessequal<br>greaterequal<br>lozenge<br>fi<br>fl<br>f_h<br>f_k<br>f_f_j<br>f_j<br>f_f<br>f_f_i<br>f_f_l<br>Oslashacute<br>oslashacute<br>Obreve<br>obreve<br>AEacute<br>aeacute<br>Tbar<br>tbar<br>Eng<br>eng<br>Ibreve<br>ibreve<br>IJ<br>ij<br>Iacute_J.loclNLD<br>iacute_j.loclNLD<br>uni1EAE<br>uni1EB6<br>uni1EB0<br>uni1EB2<br>uni1EB4<br>uni01CD<br>uni1EA4<br>uni1EAC<br>uni1EA6<br>uni1EA8<br>uni1EAA<br>uni0200<br>uni1EA0<br>uni1EA2<br>uni0202<br>Aringacute<br>uni1E08<br>uni01C4<br>uni1E0C<br>uni1E0E<br>uni01C5<br>uni1E1C<br>uni1EBE<br>uni1EC6<br>uni1EC0<br>uni1EC2<br>uni1EC4<br>uni0204<br>uni1EB8<br>uni1EBA<br>uni0206<br>uni1E16<br>uni1E14<br>uni1EBC<br>uni1E20<br>uni1E2A<br>uni1E24<br>uni01CF<br>uni0208<br>uni1E2E<br>uni1ECA<br>uni1EC8<br>uni020A<br>uni01C7<br>uni1E36<br>uni1E38<br>uni01C8<br>uni1E3A<br>uni1E42<br>uni01CA<br>uni1E44<br>uni1E46<br>uni01CB<br>uni1E48<br>uni01D1<br>uni1ED0<br>uni1ED8<br>uni1ED2<br>uni1ED4<br>uni1ED6<br>uni020C<br>uni022A<br>uni0230<br>uni1ECC<br>uni1ECE<br>uni1EDA<br>uni1EE2<br>uni1EDC<br>uni1EDE<br>uni1EE0<br>uni020E<br>uni1E52<br>uni1E50<br>uni01EA<br>uni1E4C<br>uni1E4E<br>uni022C<br>uni0210<br>uni1E5A<br>uni1E5C<br>uni0212<br>uni1E5E<br>uni1E64<br>uni1E66<br>uni1E60<br>uni1E62<br>uni1E68<br>uni1E9E<br>uni018F<br>uni0162<br>uni1E6C<br>uni1E6E<br>uni01D3<br>uni0214<br>uni01D7<br>uni01D9<br>uni01DB<br>uni01D5<br>uni1EE4<br>uni1EE6<br>uni1EE8<br>uni1EF0<br>uni1EEA<br>uni1EEC<br>uni1EEE<br>uni0216<br>uni1E7A<br>uni1E78<br>uni1E8E<br>uni1EF4<br>uni1EF6<br>uni0232<br>uni1EF8<br>uni1E92<br>uni1EAF<br>uni1EB7<br>uni1EB1<br>uni1EB3<br>uni1EB5<br>uni01CE<br>uni1EA5<br>uni1EAD<br>uni1EA7<br>uni1EA9<br>uni1EAB<br>uni0201<br>uni1EA1<br>uni1EA3<br>uni0203<br>aringacute<br>uni1E09<br>uni1E0D<br>uni1E0F<br>uni01C6<br>uni1E1D<br>uni1EBF<br>uni1EC7<br>uni1EC1<br>uni1EC3<br>uni1EC5<br>uni0205<br>uni1EB9<br>uni1EBB<br>uni0207<br>uni1E17<br>uni1E15<br>uni1EBD<br>uni1E21<br>uni1E2B<br>uni1E25<br>uni01D0<br>uni0209<br>uni1E2F<br>i.loclTRK<br>uni1ECB<br>uni1EC9<br>uni020B<br>uni0237<br>uni1E37<br>uni1E39<br>uni01C9<br>uni1E3B<br>uni1E43<br>uni1E45<br>uni1E47<br>uni01CC<br>uni1E49<br>uni01D2<br>uni1ED1<br>uni1ED9<br>uni1ED3<br>uni1ED5<br>uni1ED7<br>uni020D<br>uni022B<br>uni0231<br>uni1ECD<br>uni1ECF<br>uni1EDB<br>uni1EE3<br>uni1EDD<br>uni1EDF<br>uni1EE1<br>uni020F<br>uni1E53<br>uni1E51<br>uni01EB<br>uni1E4D<br>uni1E4F<br>uni022D<br>uni0211<br>uni1E5B<br>uni1E5D<br>uni0213<br>uni1E5F<br>uni1E65<br>uni1E67<br>uni1E61<br>uni1E63<br>uni1E69<br>uni0163<br>uni1E97<br>uni1E6D<br>uni1E6F<br>uni01D4<br>uni0215<br>uni01D8<br>uni01DA<br>uni01DC<br>uni01D6<br>uni1EE5<br>uni1EE7<br>uni1EE9<br>uni1EF1<br>uni1EEB<br>uni1EED<br>uni1EEF<br>uni0217<br>uni1E7B<br>uni1E79<br>uni1E8F<br>uni1EF5<br>uni1EF7<br>uni0233<br>uni1EF9<br>uni1E93<br>uni2007<br>uni200A<br>uni2008<br>uni2009<br>uni200B<br>DEL<br>uni20B5<br>colonmonetary<br>Euro<br>lira<br>peseta<br>dong<br>franc<br>uni20B2<br>uni20AD<br>uni20BA<br>uni20BC<br>uni20A6<br>uni20B1<br>uni20BD<br>uni20B9<br>uni20A9<br>uni20AA<br>uni20AE<br>uni2219<br>uni2215<br>emptyset<br>uni2126<br>uni2206<br>arrowup<br>arrowright<br>arrowdown<br>arrowleft<br>uni2117<br>minute<br>second<br>uni2113<br>uni2116<br>uni2120<br>zerooldstyle<br>oneoldstyle<br>twooldstyle<br>threeoldstyle<br>fouroldstyle<br>fiveoldstyle<br>sixoldstyle<br>sevenoldstyle<br>eightoldstyle<br>nineoldstyle<br>tabularzero<br>tabularone<br>tabulartwo<br>tabularthree<br>tabularfour<br>tabularfive<br>tabularsix<br>tabularseven<br>tabulareight<br>tabularnine<br>zero.subs<br>one.subs<br>two.subs<br>three.subs<br>four.subs<br>five.subs<br>six.subs<br>seven.subs<br>eight.subs<br>nine.subs<br>zero.dnom<br>one.dnom<br>two.dnom<br>three.dnom<br>four.dnom<br>five.dnom<br>six.dnom<br>seven.dnom<br>eight.dnom<br>nine.dnom<br>zero.numr<br>one.numr<br>two.numr<br>three.numr<br>four.numr<br>five.numr<br>six.numr<br>seven.numr<br>eight.numr<br>nine.numr<br>onequarter<br>onehalf<br>threequarters<br>onethird<br>twothird<br>oneeighth<br>threeeighths<br>fiveeighths<br>seveneighths<br>zero.superior<br>four.superior<br>five.superior<br>six.superior<br>seven.superior<br>eight.superior<br>nine.superior<br>parenleft.superior<br>parenright.superior<br>n.superior<br>zero.inferior<br>one.inferior<br>two.inferior<br>three.inferior<br>four.inferior<br>five.inferior<br>six.inferior<br>seven.inferior<br>eight.inferior<br>nine.inferior<br>parenleft.inferior<br>parenright.inferior<br>uni0900<br>Chandrabindu.dv<br>Bindu.dv<br>Visarga.dv<br>vowelShortA.dv<br>vowelA.dv<br>vowelAa.dv<br>vowelI.dv<br>vowelIi.dv<br>vowelU.dv<br>vowelUu.dv<br>vowelRu.dv<br>vowelLru.dv<br>vowelChandraE.dv<br>vowelShortE.dv<br>vowelE.dv<br>vowelAi.dv<br>vowelChandraO.dv<br>vowelShortO.dv<br>vowelO.dv<br>vowelAu.dv<br>Ka.dv<br>Kha.dv<br>Ga.dv<br>Gha.dv<br>Nga.dv<br>Ca.dv<br>Cha.dv<br>Ja.dv<br>Jha.dv<br>Nya.dv<br>Tta.dv<br>Ttha.dv<br>Dda.dv<br>Ddha.dv<br>Nna.dv<br>Ta.dv<br>Tha.dv<br>Da.dv<br>Dha.dv<br>Na.dv<br>NaNukta.dv<br>Pa.dv<br>Pha.dv<br>Ba.dv<br>Bha.dv<br>Ma.dv<br>Ya.dv<br>Ra.dv<br>RaNukta.dv<br>La.dv<br>Lla.dv<br>LlaNukta.dv<br>Va.dv<br>Sha.dv<br>Ssa.dv<br>Sa.dv<br>Ha.dv<br>uni093A<br>uni093B<br>Nukta.dv<br>Avagraha.dv<br>matraA.dv<br>matraI.dv<br>matraIi.dv<br>matraU.dv<br>matraUu.dv<br>matraRu.dv<br>matraRuu.dv<br>Chandra.dv<br>matraShortE.dv<br>matraE.dv<br>matraAi.dv<br>matraAChandra.dv<br>matraShortO.dv<br>matraO.dv<br>matraAu.dv<br>Halant.dv<br>uni094E<br>matraShortAu.dv<br>Om.dv<br>Udatta.dv<br>Anudatta.dv<br>uni0953<br>uni0954<br>uni0955<br>uni0956<br>uni0957<br>KaNukta.dv<br>KhaNukta.dv<br>GaNukta.dv<br>JaNukta.dv<br>DdaNukta.dv<br>DdhaNukta.dv<br>PhaNukta.dv<br>YaNukta.dv<br>vowelRuu.dv<br>vowelLruu.dv<br>matraLru.dv<br>matraLruu.dv<br>Danda.dv<br>Doubledanda.dv<br>Shunya.dv<br>Ek.dv<br>Don.dv<br>Teen.dv<br>Chaar.dv<br>Paach.dv<br>Saha.dv<br>Saat.dv<br>Aath.dv<br>Nau.dv<br>uni0970<br>uni0971<br>vowelChandraA.dv<br>uni0973<br>uni0974<br>uni0975<br>uni0976<br>uni0977<br>uni0978<br>uni0979<br>uni097A<br>uni097B<br>uni097C<br>uni097D<br>uni097E<br>uni097F<br>KaSsa.dv<br>JaNya.dv<br>Sha.MAR.dv<br>La.MAR.dv<br>Paanch.dv<br>Aanth.dv<br>vowelIiBindu.dv<br>KamatraLru.dv<br>KamatraLruu.dv<br>PamatraLru.dv<br>PamatraLruu.dv<br>DamatraRu.dv<br>RamatraU.dv<br>RamatraUu.dv<br>ShamatraRu.dv<br>HamatraRu.dv<br>KaSsamatraU.dv<br>JaNyamatraU.dv<br>KaRa.dv<br>KhaRa.dv<br>GaRa.dv<br>GhaRa.dv<br>CaRa.dv<br>JaRa.dv<br>JhaRa.dv<br>NyaRa.dv<br>NnaRa.dv<br>TaRa.dv<br>ThaRa.dv<br>DaRa.dv<br>DhaRa.dv<br>NaRa.dv<br>PaRa.dv<br>PhaRa.dv<br>BaRa.dv<br>BhaRa.dv<br>MaRa.dv<br>YaRa.dv<br>LaRa.dv<br>VaRa.dv<br>ShaRa.dv<br>SsaRa.dv<br>SaRa.dv<br>HaRa.dv<br>KaNuktaRa.dv<br>KhaNuktaRa.dv<br>GaNuktaRa.dv<br>JaNuktaRa.dv<br>PhaNuktaRa.dv<br>YaNuktaRa.dv<br>ChaRaYa.dv<br>TtaTtaYa.dv<br>TthaTthaYa.dv<br>DdaDdaYa.dv<br>DdhaRaYa.dv<br>DaDaYa.dv<br>DaDhaYa.dv<br>DaBhaYa.dv<br>DaRaYa.dv<br>DaVaYa.dv<br>DhaNaYa.dv<br>NaNaYa.dv<br>BhaRaYa.dv<br>ShaRaYa.dv<br>SsaTtaYa.dv<br>SsaTthaYa.dv<br>ChaYa.dv<br>ChaVa.dv<br>NgaKa.dv<br>NgaGa.dv<br>NgaMa.dv<br>NgaYa.dv<br>NyaCa.dv<br>NyaJa.dv<br>TtaTta.dv<br>TtaTtha.dv<br>TtaYa.dv<br>TtaVa.dv<br>TthaTtha.dv<br>TthaYa.dv<br>DdaDda.dv<br>DdaDdha.dv<br>DdaYa.dv<br>DdhaDdha.dv<br>DdhaYa.dv<br>DaGa.dv<br>DaDa.dv<br>DaDha.dv<br>DaNa.dv<br>DaBa.dv<br>DaBha.dv<br>DaMa.dv<br>DaYa.dv<br>DaVa.dv<br>KaSsaMaYa.dv<br>KaSaPaRa.dv<br>KaSaPaLa.dv<br>NaSaKaRa.dv<br>TaSaNaYa.dv<br>NaPhaLaYa.dv<br>NaTaRaYa.dv<br>NaSaMaYa.dv<br>BaSaTta.dv<br>KaTaYa.dv<br>KaTaRa.dv<br>KaTaVa.dv<br>KaPaRa.dv<br>KaVaYa.dv<br>KaSsaMa.dv<br>KaSsaYa.dv<br>KaSsaVa.dv<br>KaSaTta.dv<br>KaSaDda.dv<br>KaSaTa.dv<br>KaSaPa.dv<br>GaDhaVa.dv<br>GaDhaYa.dv<br>GaNaYa.dv<br>GaBhaYa.dv<br>GaRaYa.dv<br>CaChaVa.dv<br>JaJaNya.dv<br>JaJaYa.dv<br>JaJaVa.dv<br>JaNyaYa.dv<br>TaKaYa.dv<br>TaKaRa.dv<br>TaKaVa.dv<br>TaKaSsa.dv<br>TaKhaNa.dv<br>TaKhaRa.dv<br>TaTaYa.dv<br>TaTaVa.dv<br>TaNaYa.dv<br>TaPaRa.dv<br>TaPaLa.dv<br>TaMaYa.dv<br>TaRaYa.dv<br>TaSaPha.dv<br>TaSaNa.dv<br>TaSaYa.dv<br>TaSaVa.dv<br>NaKaSa.dv<br>NaTaYa.dv<br>NaTaRa.dv<br>NaTaSa.dv<br>NaThaYa.dv<br>NaThaVa.dv<br>NaDaRa.dv<br>NaDaVa.dv<br>NaDhaYa.dv<br>NaDhaRa.dv<br>NaDhaVa.dv<br>NaPaRa.dv<br>NaBhaYa.dv<br>NaBhaVa.dv<br>NaMaYa.dv<br>NaVaHa.dv<br>NaSaTta.dv<br>NaSaYa.dv<br>NaHaYa.dv<br>PaTaYa.dv<br>BaJaYa.dv<br>BaDhaVa.dv<br>BaBhaRa.dv<br>BaLaYa.dv<br>MaPaRa.dv<br>MaBaYa.dv<br>MaBaRa.dv<br>MaBhaYa.dv<br>MaBhaRa.dv<br>MaBhaVa.dv<br>LaKaYa.dv<br>LaThaYa.dv<br>LaDaRa.dv<br>LaLaYa.dv<br>LaVaDda.dv<br>LaHaYa.dv<br>SsaKaRa.dv<br>SsaNnaYa.dv<br>SsaPaRa.dv<br>SsaMaYa.dv<br>SaKaRa.dv<br>SaKaVa.dv<br>SaTaYa.dv<br>SaTaRa.dv<br>SaTaVa.dv<br>SaThaYa.dv<br>SaPaRa.dv<br>SaMaYa.dv<br>HaMaYa.dv<br>KaKa.dv<br>KaKha.dv<br>KaCa.dv<br>KaJa.dv<br>KaJha.dv<br>KaTta.dv<br>KaNna.dv<br>KaTa.dv<br>KaTha.dv<br>KaDa.dv<br>KaNa.dv<br>KaPa.dv<br>KaPha.dv<br>KaMa.dv<br>KaYa.dv<br>KaLa.dv<br>KaVa.dv<br>KaSha.dv<br>KaSa.dv<br>KhaKha.dv<br>KhaTa.dv<br>KhaNa.dv<br>KhaMa.dv<br>KhaYa.dv<br>KhaVa.dv<br>KhaSha.dv<br>GaGa.dv<br>GaGha.dv<br>GaJa.dv<br>GaNna.dv<br>GaDa.dv<br>GaDha.dv<br>GaNa.dv<br>GaBa.dv<br>GaBha.dv<br>GaMa.dv<br>GaYa.dv<br>GaLa.dv<br>GaVa.dv<br>GaSa.dv<br>GhaNa.dv<br>GhaMa.dv<br>GhaYa.dv<br>CaCa.dv<br>CaCha.dv<br>CaNa.dv<br>CaMa.dv<br>CaYa.dv<br>JaKa.dv<br>JaJa.dv<br>JaJha.dv<br>JaTta.dv<br>JaDda.dv<br>JaTa.dv<br>JaDa.dv<br>JaNa.dv<br>JaBa.dv<br>JaMa.dv<br>JaYa.dv<br>JaVa.dv<br>JhaNa.dv<br>JhaMa.dv<br>JhaYa.dv<br>NyaCha.dv<br>NyaSha.dv<br>NnaTta.dv<br>NnaTtha.dv<br>NnaDda.dv<br>NnaDdha.dv<br>NnaNna.dv<br>NnaMa.dv<br>NnaYa.dv<br>NnaVa.dv<br>TaKa.dv<br>TaKha.dv<br>TaTa.dv<br>TaTha.dv<br>TaNa.dv<br>TaPa.dv<br>TaPha.dv<br>TaMa.dv<br>TaYa.dv<br>TaLa.dv<br>TaVa.dv<br>TaSa.dv<br>ThaYa.dv<br>ThaVa.dv<br>DhaNa.dv<br>DhaMa.dv<br>DhaYa.dv<br>DhaVa.dv<br>NaKa.dv<br>NaGa.dv<br>NaCa.dv<br>NaCha.dv<br>NaJa.dv<br>NaTta.dv<br>NaDda.dv<br>NaTa.dv<br>NaTha.dv<br>NaDa.dv<br>NaDha.dv<br>NaNa.dv<br>NaPa.dv<br>NaPha.dv<br>NaBha.dv<br>NaMa.dv<br>NaYa.dv<br>NaVa.dv<br>NaSha.dv<br>NaSa.dv<br>NaHa.dv<br>PaCha.dv<br>PaTta.dv<br>PaTa.dv<br>PaNa.dv<br>PaPa.dv<br>PaPha.dv<br>PaMa.dv<br>PaYa.dv<br>PaLa.dv<br>PaVa.dv<br>PaSha.dv<br>PaSa.dv<br>PhaJa.dv<br>PhaTta.dv<br>PhaTa.dv<br>PhaTha.dv<br>PhaPa.dv<br>PhaPha.dv<br>PhaYa.dv<br>PhaLa.dv<br>PhaSha.dv<br>BaJa.dv<br>BaJha.dv<br>BaDda.dv<br>BaTa.dv<br>BaDa.dv<br>BaDha.dv<br>BaNa.dv<br>BaBa.dv<br>BaBha.dv<br>BaYa.dv<br>BaLa.dv<br>BaVa.dv<br>BaSha.dv<br>BaSa.dv<br>BaJaNukta.dv<br>BhaYa.dv<br>BhaLa.dv<br>BhaVa.dv<br>MaTa.dv<br>MaDa.dv<br>MaNa.dv<br>MaPa.dv<br>MaPha.dv<br>MaBa.dv<br>MaBha.dv<br>MaMa.dv<br>MaYa.dv<br>MaLa.dv<br>MaVa.dv<br>MaSha.dv<br>MaSa.dv<br>MaHa.dv<br>YaYa.dv<br>RaNuktaYa.dv<br>RaNuktaHa.dv<br>LaKa.dv<br>LaKha.dv<br>LaGa.dv<br>LaCa.dv<br>LaJa.dv<br>LaTta.dv<br>LaTtha.dv<br>LaDda.dv<br>LaDdha.dv<br>LaTa.dv<br>LaTha.dv<br>LaDa.dv<br>LaPa.dv<br>LaPha.dv<br>LaBa.dv<br>LaBha.dv<br>LaMa.dv<br>LaYa.dv<br>LaLa.dv<br>LaVa.dv<br>LaSha.dv<br>LaSa.dv<br>LaHa.dv<br>LaJaNukta.dv<br>LlaYa.dv<br>LlaLla.dv<br>VaDda.dv<br>VaYa.dv<br>VaLa.dv<br>VaVa.dv<br>VaHa.dv<br>ShaKa.dv<br>ShaCa.dv<br>ShaCha.dv<br>ShaTta.dv<br>ShaTa.dv<br>ShaNa.dv<br>ShaMa.dv<br>ShaYa.dv<br>ShaLa.dv<br>ShaVa.dv<br>ShaSha.dv<br>ShaKaNukta.dv<br>SsaKa.dv<br>SsaTta.dv<br>SsaTtha.dv<br>SsaNna.dv<br>SsaPa.dv<br>SsaPha.dv<br>SsaMa.dv<br>SsaYa.dv<br>SsaVa.dv<br>SsaSsa.dv<br>SaKa.dv<br>SaKha.dv<br>SaJa.dv<br>SaTta.dv<br>SaTa.dv<br>SaTha.dv<br>SaDa.dv<br>SaNa.dv<br>SaPa.dv<br>SaPha.dv<br>SaBa.dv<br>SaMa.dv<br>SaYa.dv<br>SaLa.dv<br>SaVa.dv<br>SaSa.dv<br>HaNna.dv<br>HaNa.dv<br>HaMa.dv<br>HaYa.dv<br>HaLa.dv<br>HaVa.dv<br>KaNuktaTa.dv<br>KaNuktaPha.dv<br>KaNuktaBa.dv<br>KaNuktaMa.dv<br>KaNuktaKaNukta.dv<br>KaNuktaPhaNukta.dv<br>KhaNuktaTa.dv<br>KhaNuktaMa.dv<br>KhaNuktaYa.dv<br>KhaNuktaVa.dv<br>KhaNuktaSha.dv<br>KhaNuktaSa.dv<br>JaNuktaYa.dv<br>JaNuktaJaNukta.dv<br>PhaNuktaTa.dv<br>PhaNuktaSa.dv<br>PhaNuktaJaNukta.dv<br>PhaNuktaPhaNukta.dv<br>KaSha.MAR.dv<br>KhaSha.MAR.dv<br>NyaSha.MAR.dv<br>NaSha.MAR.dv<br>PaSha.MAR.dv<br>PhaSha.MAR.dv<br>BaSha.MAR.dv<br>MaSha.MAR.dv<br>LaSha.MAR.dv<br>ShaKa.MAR.dv<br>ShaCha.MAR.dv<br>ShaTta.MAR.dv<br>ShaTa.MAR.dv<br>ShaMa.MAR.dv<br>ShaYa.MAR.dv<br>ShaVa.MAR.dv<br>ShaSha.MAR.dv<br>ShaKaNukta.MAR.dv<br>KhaNuktaSha.MAR.dv<br>ShaHalant.MAR.dv<br>LaRa.MAR.dv<br>KaSaPaLa.MAR.dv<br>TaPaLa.MAR.dv<br>KaLa.MAR.dv<br>GaLa.MAR.dv<br>TaLa.MAR.dv<br>PaLa.MAR.dv<br>PhaLa.MAR.dv<br>BaLa.MAR.dv<br>BhaLa.MAR.dv<br>MaLa.MAR.dv<br>LaLa.MAR.dv<br>VaLa.MAR.dv<br>ShaLa.MAR.dv<br>SaLa.MAR.dv<br>HaLa.MAR.dv<br>KaHalant.dv<br>KhaHalant.dv<br>GaHalant.dv<br>GhaHalant.dv<br>CaHalant.dv<br>JaHalant.dv<br>JhaHalant.dv<br>NyaHalant.dv<br>NnaHalant.dv<br>TaHalant.dv<br>ThaHalant.dv<br>DhaHalant.dv<br>NaHalant.dv<br>NaNuktaHalant.dv<br>PaHalant.dv<br>PhaHalant.dv<br>BaHalant.dv<br>BhaHalant.dv<br>MaHalant.dv<br>YaHalant.dv<br>RaNuktaHalant.dv<br>LaHalant.dv<br>LlaHalant.dv<br>LlaNuktaHalant.dv<br>VaHalant.dv<br>ShaHalant.dv<br>SsaHalant.dv<br>SaHalant.dv<br>HaHalant.dv<br>KaNuktaHalant.dv<br>KhaNuktaHalant.dv<br>GaNuktaHalant.dv<br>JaNuktaHalant.dv<br>PhaNuktaHalant.dv<br>YaNuktaHalant.dv<br>KaSsaHalant.dv<br>JaNyaHalant.dv<br>KaRaHalant.dv<br>GhaRaHalant.dv<br>TaRaHalant.dv<br>DhaRaHalant.dv<br>PaRaHalant.dv<br>VaRaHalant.dv<br>ShaRaHalant.dv<br>SsaRaHalant.dv<br>SaRaHalant.dv<br>GaRaHalant.dv<br>DaRaHalant.dv<br>BhaRaHalant.dv<br>KaSsaMaHalant.dv<br>TaTaHalant.dv<br>NaBhaHalant.dv<br>NaSaHalant.dv<br>MaBhaHalant.dv<br>LaBhaHalant.dv<br>matraUsmall.dv<br>matraUusmall.dv<br>matraRusmall.dv<br>matraLrusmall.dv<br>Vattu.dv<br>VattumatraU.dv<br>VattumatraUu.dv<br>Binduone.dv<br>Chandrabinduone.dv<br>Reph.dv<br>RephBindu.dv<br>RephChandrabindu.dv<br>matraEBindu.dv<br>matraEChandrabindu.dv<br>matraEReph.dv<br>matraERephBindu.dv<br>matraERephChandrabindu.dv<br>matraAiBindu.dv<br>matraAiChandrabindu.dv<br>matraAiReph.dv<br>matraAiRephBindu.dv<br>matraAiRephChandrabindu.dv<br>matraABindu.dv<br>matraAChandrabindu.dv<br>matraAReph.dv<br>matraARephBindu.dv<br>matraARephChandrabindu.dv<br>matraOBindu.dv<br>matraOChandrabindu.dv<br>matraOReph.dv<br>matraORephBindu.dv<br>matraORephChandrabindu.dv<br>matraAuBindu.dv<br>matraAuChandrabindu.dv<br>matraAuReph.dv<br>matraAuRephBindu.dv<br>matraAuRephChandrabindu.dv<br>matraShortEBindu.dv<br>matraShortEChandrabindu.dv<br>matraShortEReph.dv<br>matraShortERephBindu.dv<br>matraShortOBindu.dv<br>matraShortOChandrabindu.dv<br>matraShortOReph.dv<br>matraShortORephBindu.dv<br>Rephone.dv<br>RephBinduone.dv<br>RephChandrabinduone.dv<br>matraEone.dv<br>matraEoneBindu.dv<br>matraEoneReph.dv<br>matraEoneRephBindu.dv<br>matraEoneRephChandrabindu.dv<br>matraAione.dv<br>matraAioneBindu.dv<br>matraAioneReph.dv<br>matraAioneRephBindu.dv<br>matraEoneChandrabindu.dv<br>matraAioneChandrabindu.dv<br>matraIiBindu.dv<br>matraIiChandrabindu.dv<br>matraIiReph.dv<br>matraIiRephBindu.dv<br>matraIiRephChandrabindu.dv<br>matraIione.dv<br>matraIiBinduone.dv<br>matraIiChandrabinduone.dv<br>matraIiRephone.dv<br>matraIiRephBinduone.dv<br>matraIitwo.dv<br>matraIiBindutwo.dv<br>matraIiChandrabindutwo.dv<br>matraIiRephtwo.dv<br>matraIiRephBindutwo.dv<br>matraIi3.dv<br>matraIiBindu3.dv<br>matraIiChandrabindu3.dv<br>matraIiReph3.dv<br>matraIiRephBindu3.dv<br>matraIiRephChandrabindu3.dv<br>matraIi4.dv<br>matraIiBindu4.dv<br>matraIiChandrabindu4.dv<br>matraIiReph4.dv<br>matraIiRephBindu4.dv<br>matraIiRephChandrabindu4.dv<br>matraIi5.dv<br>matraIiBindu5.dv<br>matraIiChandrabindu5.dv<br>matraIiReph5.dv<br>matraIiRephBindu5.dv<br>matraIiRephChandrabindu5.dv<br>matraIone.dv<br>matraItwo.dv<br>matraIthree.dv<br>matraIfour.dv<br>matraIfive.dv<br>matraIsix.dv<br>matraIseven.dv<br>matraIeight.dv<br>matraInine.dv<br>matraIten.dv<br>matraIeleven.dv<br>matraItwelve.dv<br>matraIthirteen.dv<br>matraIfourteen.dv<br>matraIfifteen.dv<br>matraIsixteen.dv<br>matraIseventeen.dv<br>matraIeighteen.dv<br>matraInineteen.dv<br>matraItwenty.dv<br>matraItwentyone.dv<br>matraItwentytwo.dv<br>matraItwentythree.dv<br>matraItwentyfour.dv<br>matraItwentyfive.dv<br>matraItwentysix.dv<br>matraIReph.dv<br>matraIRephone.dv<br>matraIRephtwo.dv<br>matraIRephthree.dv<br>matraIRephfour.dv<br>matraIRephfive.dv<br>matraIRephsix.dv<br>matraIRephseven.dv<br>matraIRepheight.dv<br>matraIRephnine.dv<br>matraIRephten.dv<br>matraIRepheleven.dv<br>matraIRephtwelve.dv<br>matraIRephthirteen.dv<br>matraIRephfourteen.dv<br>matraIRephfifteen.dv<br>matraIRephsixteen.dv<br>matraIRephseventeen.dv<br>matraIRepheighteen.dv<br>matraIRephnineteen.dv<br>matraIRephtwenty.dv<br>matraIRephtwentyone.dv<br>matraIRephtwentytwo.dv<br>matraIRephtwentythree.dv<br>matraIRephtwentyfour.dv<br>matraIRephtwentyfive.dv<br>matraIRephtwentysix.dv<br>matraIRephBindu.dv<br>matraIRephBinduone.dv<br>matraIRephBindutwo.dv<br>matraIRephBinduthree.dv<br>matraIRephBindufour.dv<br>matraIRephBindufive.dv<br>matraIRephBindusix.dv<br>matraIRephBinduseven.dv<br>matraIRephBindueight.dv<br>matraIRephBindunine.dv<br>matraIRephBinduten.dv<br>matraIRephBindueleven.dv<br>matraIRephBindutwelve.dv<br>matraIRephBinduthirteen.dv<br>matraIRephBindufourteen.dv<br>matraIRephBindufifteen.dv<br>matraIRephBindusixteen.dv<br>matraIRephBinduseventeen.dv<br>matraIRephBindueighteen.dv<br>matraIRephBindunineteen.dv<br>matraIRephBindutwenty.dv<br>matraIRephBindutwentyone.dv<br>matraIRephBindutwentytwo.dv<br>matraIRephBindutwentyfour.dv<br>matraIRephBindutwentyfive.dv<br>matraIRephBindutwentysix.dv<br>uniA8FB<br>dummy1<br>Swastik<br>uni25CC<br>ZWNJ<br>ZWJ<br>EkType'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>OT Features</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="OT Features_cell">
+                <button id="OT Features_btn" onclick='toggle_detail("OT Features");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>OT Features</h3></th></tr>
+            </thead>
+            <tbody id="OT Features" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>GSUB</p></td>
+                    <td class="feature"><p>sinf</p></td>
+                    <td class="message"><p>If there is a feature subs, then the sinf feature should be there, too. Otherwise InDesign will mark it not existing.</p></td>
+                    <td class="detail"><p>OK: There is a subs and sinf feature in the font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="W">
+                    <td class="code"><p>Warning</p></td>
+                    <td class="fontname"><p>Gotu Regular (Gotu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Friendly Name</p></td>
+                    <td class="message"><p>Check if Stylistic Set has friendly name.</p></td>
+                    <td class="detail"><p>Friendly Stylistc Set Name is missing for: 'ss01'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>
+    </body>
+</html>
