@@ -1,0 +1,82 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "tisaoffcserifpro-thinitalic.ttf",
+                "type": "ttf",
+                "size": 232764,
+                "md5": "6f2d2a0344850ac8445fc9f9ecb7910c",
+                "geometryMd5": "2b110d0de1a1ed11e2700194599aa97b"
+            },
+            "name": {
+                "family": "Tisa Offc Serif Pro Thin",
+                "subFamily": "Italic",
+                "fullName": "Tisa Offc Serif Pro Thin Italic",
+                "psName": "TisaOffcSerifProThin-Italic",
+                "versionText": "Version 7.52;O365",
+                "copyright": "2009, 2015 Mitja Miklavcic published by FSI FontShop International GmbH",
+                "trademark": "Tisa is a trademark of FSI FontShop International GmbH"
+            },
+            "format": {
+                "format": "TT"
+            },
+            "summary": {
+                "num_glyphs": 575,
+                "embedding": "Preview & Print Embedding",
+                "font_vendor_id": "MONO",
+                "font_vendor": "Monotype"
+            },
+            "validation": {
+                "font_full_name": "Tisa Offc Serif Pro Thin Italic",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 4,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_e3f6bf6cb4424d41912121b10b772cd5.gasp.up to 20 ppem",
+                        "levelname": "ERROR",
+                        "message": "v0 Smoothing flag (GASP_DOGRAY) set without corresponding v1 Symmetric Smoothing flag (GASP_SYMMETRIC_SMOOTHING).",
+                        "timestamp": "2020-09-25T17:17:30.802303Z",
+                        "orig_output": "validate_e3f6bf6cb4424d41912121b10b772cd5.gasp.up to 20 ppem - ERROR - v0 Smoothing flag (GASP_DOGRAY) set without corresponding v1 Symmetric Smoothing flag (GASP_SYMMETRIC_SMOOTHING).",
+                        "msg_code": "V0992"
+                    },
+                    {
+                        "subroutine": "validate_e3f6bf6cb4424d41912121b10b772cd5.OS_2.usLastCharIndex",
+                        "levelname": "ERROR",
+                        "message": "The usLastCharIndex should be 0xFEFF, but is 0xFDFC",
+                        "timestamp": "2020-09-25T17:17:30.223593Z",
+                        "orig_output": "validate_e3f6bf6cb4424d41912121b10b772cd5.OS_2.usLastCharIndex - ERROR - The usLastCharIndex should be 0xFEFF, but is 0xFDFC",
+                        "msg_code": "E2131"
+                    },
+                    {
+                        "subroutine": "validate_e3f6bf6cb4424d41912121b10b772cd5.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 501, but is 499",
+                        "timestamp": "2020-09-25T17:17:30.588591Z",
+                        "orig_output": "validate_e3f6bf6cb4424d41912121b10b772cd5.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 501, but is 499",
+                        "msg_code": "E2135"
+                    },
+                    {
+                        "subroutine": "validate_e3f6bf6cb4424d41912121b10b772cd5.post",
+                        "levelname": "ERROR",
+                        "message": "The slope of the hhea caretSlopeRise/Run deviates from the italic angle of -6.0 by more than 0.5 degrees.",
+                        "timestamp": "2020-09-25T17:17:51.022664Z",
+                        "orig_output": "validate_e3f6bf6cb4424d41912121b10b772cd5.post - ERROR - The slope of the hhea caretSlopeRise/Run deviates from the italic angle of -6.0 by more than 0.5 degrees.",
+                        "msg_code": "E2307"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 33106,
+    "completedDate": "2020-09-25 17:17:55.502827"
+}

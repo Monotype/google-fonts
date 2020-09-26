@@ -1,0 +1,76 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "GillSansCondUltraBoNova.ttf",
+                "type": "ttf",
+                "size": 62380,
+                "md5": "e37f693154338882f0ece2e5b6ccab9c",
+                "geometryMd5": "efd69413e21f0b7cda779b79aef0a126"
+            },
+            "name": {
+                "family": "Gill Sans Nova Cond Ultra Bold",
+                "subFamily": "Regular",
+                "fullName": "Gill Sans Nova Cond Ultra Bold",
+                "psName": "GillSansNova-CondUltraBold",
+                "versionText": "Version 1.02;O365",
+                "copyright": "\u00a9 2014 The Monotype Corporation. All Rights Reserved. ",
+                "trademark": "Gill Sans is a trademark of The Monotype Corporation.",
+                "typographicFamily": "Gill Sans Nova",
+                "typographicSubFamily": "Cond Ultra Bold"
+            },
+            "format": {
+                "format": "TT"
+            },
+            "summary": {
+                "num_glyphs": 536,
+                "embedding": "Editable Embedding",
+                "font_vendor_id": "MONO",
+                "font_vendor": "Monotype"
+            },
+            "validation": {
+                "font_full_name": "Gill Sans Nova Cond Ultra Bold",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 3,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_0bc93091fdd846cfa11fa6eb28a5d16a.head",
+                        "levelname": "ERROR",
+                        "message": "The macStyle bold bit is False but the OS/2 fsSelection bold bit is True",
+                        "timestamp": "2020-09-25T19:00:36.872809Z",
+                        "orig_output": "validate_0bc93091fdd846cfa11fa6eb28a5d16a.head - ERROR - The macStyle bold bit is False but the OS/2 fsSelection bold bit is True",
+                        "msg_code": "E1312"
+                    },
+                    {
+                        "subroutine": "validate_0bc93091fdd846cfa11fa6eb28a5d16a.OS_2.fsSelection",
+                        "levelname": "ERROR",
+                        "message": "The fsSelection doesn't match the subfamily 'name' entry",
+                        "timestamp": "2020-09-25T19:00:30.943313Z",
+                        "orig_output": "validate_0bc93091fdd846cfa11fa6eb28a5d16a.OS_2.fsSelection - ERROR - The fsSelection doesn't match the subfamily 'name' entry",
+                        "msg_code": "E2100"
+                    },
+                    {
+                        "subroutine": "validate_0bc93091fdd846cfa11fa6eb28a5d16a.OS_2.fsSelection.bold",
+                        "levelname": "ERROR",
+                        "message": "Bold bit in fsSelection doesn't match head macStyle",
+                        "timestamp": "2020-09-25T19:00:30.943528Z",
+                        "orig_output": "validate_0bc93091fdd846cfa11fa6eb28a5d16a.OS_2.fsSelection.bold - ERROR - Bold bit in fsSelection doesn't match head macStyle",
+                        "msg_code": "E2143"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 17728,
+    "completedDate": "2020-09-25 19:00:44.254860"
+}

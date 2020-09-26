@@ -1,0 +1,93 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "seguisli.ttf",
+                "type": "ttf",
+                "size": 458216,
+                "md5": "d6fa4f5493ab41d60e25da24c4bf9c1c",
+                "geometryMd5": "8e03a319c131d1d42393edb5124f461c"
+            },
+            "name": {
+                "family": "Segoe UI Semilight",
+                "subFamily": "Italic",
+                "fullName": "Segoe UI Semilight Italic",
+                "psName": "SegoeUI-SemilightItalic",
+                "versionText": "Version 5.32;O365",
+                "copyright": "\u00a9 2018 Microsoft Corporation. All Rights Reserved.",
+                "trademark": "Segoe is a trademark of the Microsoft group of companies.",
+                "typographicFamily": "Segoe UI",
+                "typographicSubFamily": "Semilight Italic"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 3437,
+                "embedding": "Editable Embedding",
+                "font_vendor_id": "MS  ",
+                "font_vendor": "Microsoft Corp."
+            },
+            "validation": {
+                "font_full_name": "Segoe UI Semilight Italic",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 5,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_41c94f28d8dd426b9514a69aa48e4584.fontedit.OS_2.fsselection",
+                        "levelname": "ERROR",
+                        "message": "Reserved bits [8] set to 1 (expected 0).",
+                        "timestamp": "2020-09-25T16:04:56.771276Z",
+                        "orig_output": "validate_41c94f28d8dd426b9514a69aa48e4584.fontedit.OS_2.fsselection - ERROR - Reserved bits [8] set to 1 (expected 0).",
+                        "msg_code": "E2101"
+                    },
+                    {
+                        "subroutine": "validate_41c94f28d8dd426b9514a69aa48e4584.gasp.up to 17 ppem",
+                        "levelname": "ERROR",
+                        "message": "v0 Smoothing flag (GASP_DOGRAY) set without corresponding v1 Symmetric Smoothing flag (GASP_SYMMETRIC_SMOOTHING).",
+                        "timestamp": "2020-09-25T16:05:43.376537Z",
+                        "orig_output": "validate_41c94f28d8dd426b9514a69aa48e4584.gasp.up to 17 ppem - ERROR - v0 Smoothing flag (GASP_DOGRAY) set without corresponding v1 Symmetric Smoothing flag (GASP_SYMMETRIC_SMOOTHING).",
+                        "msg_code": "V0992"
+                    },
+                    {
+                        "subroutine": "validate_41c94f28d8dd426b9514a69aa48e4584.GDEF.glyphClasses",
+                        "levelname": "ERROR",
+                        "message": "The following mark glyphs have nonzero advances: [580, 581, 582, 583, 584, 585, 586, 587, 588, 589, 590, 591, 592, 593, 594, 595, 596, 597, 598, 1157, 1158, 1533, 1534, 1535, 1536, 1537, 1538, 1691, 1754]",
+                        "timestamp": "2020-09-25T16:05:18.516632Z",
+                        "orig_output": "validate_41c94f28d8dd426b9514a69aa48e4584.GDEF.glyphClasses - ERROR - The following mark glyphs have nonzero advances: [580, 581, 582, 583, 584, 585, 586, 587, 588, 589, 590, 591, 592, 593, 594, 595, 596, 597, 598, 1157, 1158, 1533, 1534, 1535, 1536, 1537, 1538, 1691, 1754]",
+                        "msg_code": "V1102"
+                    },
+                    {
+                        "subroutine": "validate_41c94f28d8dd426b9514a69aa48e4584.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2020-09-25T16:07:11.925293Z",
+                        "orig_output": "validate_41c94f28d8dd426b9514a69aa48e4584.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
+                    },
+                    {
+                        "subroutine": "validate_41c94f28d8dd426b9514a69aa48e4584.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 1112, but is 1101",
+                        "timestamp": "2020-09-25T16:05:21.950899Z",
+                        "orig_output": "validate_41c94f28d8dd426b9514a69aa48e4584.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 1112, but is 1101",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 170507,
+    "completedDate": "2020-09-25 16:07:44.394959"
+}

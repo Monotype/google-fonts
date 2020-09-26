@@ -1,0 +1,2867 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv='content-type' content='text/html; charset=utf-8'>
+    <title>MT FontSniffer Report</title>
+    <style type="text/css">
+      body {
+        background-color: #fff;
+        color: #000;
+        font-family: "Kootenay Pro", Axel, "System Font", "Fira Sans", sans-serif;
+        line-height: 1.3em;
+        margin: 0;
+        padding: 1em;
+        font-size: 14px;
+      }
+      mark {
+        background-color: #fff990;
+        color: black;
+      }
+      h2 {
+        padding: 2em 0 0.2em 2.35em;
+        border-bottom: 2px solid #606060;
+        margin: 0;
+      }
+      h3 {
+        padding: 0.2em 0 0.3em 0;
+        margin: 0;
+      }
+      table {
+        border-collapse: collapse; 
+        margin: 1em 0; 
+        /* width: 100%; */
+        padding: 0;
+      }
+      table.togglemessages {
+        border: none; 
+        background-color: #f0f0f0;
+      }
+      td, th {
+        line-height: 1.3em; 
+        padding: 0.25em 0.5em; 
+        vertical-align: top;
+        text-align: left;
+      }
+      .summary th {
+        border-bottom: 1px solid #000;
+      }
+      td p, th p {
+        margin: 0 0 0em 0;
+        padding: 0;
+      }
+      td.num, th.num {
+        text-align: right;
+        width: 6em;
+      }
+      
+      td.time, th.time {
+        text-align: right;
+        width: 4.5em;
+        color: #c8c8c8;
+        font-size: 0.9em;
+        background-color: #fff;
+      }
+      
+      th.time p {
+        color: #d8d8d8;
+        padding-top: 0.5em;
+      }
+      
+      .summary {
+        width: auto;
+      }
+      
+      .summary tbody tr:nth-child(odd) {
+        background-color: #f8f8f8;
+      }
+      
+      .summary tbody tr:nth-last-child(1) {
+        background-color: #f0f0f0;
+      }
+      
+      .code {
+        font-weight: bold;
+        color: #fff;
+        width: 2em; 
+        text-align: center
+      }
+      
+      .results th {
+        border-radius: 0.0em;
+      }
+      
+      .results th button{
+        font-family: "Erler Dingbats", Arial;
+        line-height: 1.4em;
+        width: 2.6em;
+        padding-top: 0.2em;
+        margin-top: 0.2em;
+        background-color: rgba(255, 255, 255, 0.0);
+        border-radius: 0.0em;
+        border: 0px solid rgba(0, 0, 0, 0.3);
+      }
+
+      .A, .S, .E, .W, .I, .P {
+        width: 5em; 
+      }
+
+      tr.S {                                  color: hsl(  0,  0%,  90%) }
+      tr.S .code {                            color: hsl(  0,  0%,  90%) }
+      tr.S:nth-child(odd)        { background-color: hsl(  0,  0%,  10%) }
+      tr.S:nth-child(even)       { background-color: hsl(  0,  0%,  20%) }
+      tr.S:nth-child(odd)  .code { background-color: hsl(  0,  0%,  20%) }
+      tr.S:nth-child(even) .code { background-color: hsl(  0,  0%,  10%) }
+
+      tr.C {                                  color: hsl(  0,  0%,  90%) }
+      tr.C .code {                            color: hsl(  0,  0%,  90%) }
+      tr.C:nth-child(odd)        { background-color: hsl(  0,  100%,  20%) }
+      tr.C:nth-child(even)       { background-color: hsl(  0,  100%,  25%) }
+      tr.C:nth-child(odd)  .code { background-color: hsl(  0,  100%,  27%) }
+      tr.C:nth-child(even) .code { background-color: hsl(  0,  100%,  30%) }
+
+      tr.E {                                  color: #000 }
+      tr.E .code {                            color: #fff }
+      tr.E:nth-child(odd)        { background-color: hsl( 24,  100%, 95%) }
+      tr.E:nth-child(even)       { background-color: hsl( 24,  100%, 90%) }
+      tr.E:nth-child(odd)  .code { background-color: hsl( 24,  100%, 45%) }
+      tr.E:nth-child(even) .code { background-color: hsl( 24,  100%, 40%) }
+      
+      tr.W {                                  color: #000 }
+      tr.W .code {                            color: #fff }
+      tr.W:nth-child(odd)        { background-color: hsl( 50,  65%, 95%) }
+      tr.W:nth-child(even)       { background-color: hsl( 50,  65%, 90%) }
+      tr.W:nth-child(odd)  .code { background-color: hsl( 50,  65%, 52%) }
+      tr.W:nth-child(even) .code { background-color: hsl( 50,  65%, 48%) }
+      
+      tr.I {                                  color: #000 }
+      tr.I .code {                            color: #fff }
+      tr.I:nth-child(odd)        { background-color: hsl( 200,  50%, 95%) }
+      tr.I:nth-child(even)       { background-color: hsl( 200,  50%, 90%) }
+      tr.I:nth-child(odd)  .code { background-color: hsl( 200,  50%, 52%) }
+      tr.I:nth-child(even) .code { background-color: hsl( 200,  50%, 48%) }
+      
+      tr.P {                                  color: #000 }
+      tr.P .code {                            color: #fff }
+      tr.P:nth-child(odd)        { background-color: hsl( 130,  40%, 95%) }
+      tr.P:nth-child(even)       { background-color: hsl( 130,  40%, 90%) }
+      tr.P:nth-child(odd)  .code { background-color: hsl( 130,  40%, 60%) }
+      tr.P:nth-child(even) .code { background-color: hsl( 130,  40%, 55%) }
+      
+      tr.A {                                  color: hsl(  0,  0%,  50%) }
+      tr.A .code {                            color: hsl(  0,  0%,  50%) }
+      tr.A:nth-child(odd)        { background-color: hsl(  0,  0%,  75%) }
+      tr.A:nth-child(even)       { background-color: hsl(  0,  0%,  80%) }
+      tr.A:nth-child(odd)  .code { background-color: hsl(  0,  0%,  85%) }
+      tr.A:nth-child(even) .code { background-color: hsl(  0,  0%,  90%) }
+      
+      
+      /* Summary backgrounds */
+
+      th.S {
+        background: hsl(  0,  0%,  85%);
+      }
+      
+      th.A {
+        background: hsl(  0,  0%,  85%);
+      }
+      
+      th.E {
+        background: hsl( 24,  100%, 45%);
+      }
+      
+      th.I {
+        background: hsl( 200,  50%, 52%);
+      }
+      
+      th.P {
+        background: hsl( 130,  40%, 60%);
+      }
+      
+      th.W {
+        background: hsl( 50,  65%, 52%);
+      }
+      
+      
+      th.AE {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 24,  100%, 45%) 100%
+        );
+      }
+      
+      th.AI {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 200,  50%, 52%) 100%
+        );
+      }
+      
+      th.AP {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 130,  40%, 60%) 100%
+        );
+      }
+      
+      th.AW {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.EI {
+        background: linear-gradient(
+          90deg,
+          hsl( 24,  100%, 45%) 0%,
+          hsl( 200,  50%, 52%) 100%
+        );
+      }
+      
+      th.EP {
+        background: linear-gradient(
+          90deg,
+          hsl( 24,  100%, 45%) 0%,
+          hsl( 130,  40%, 60%) 100%
+        );
+      }
+      
+      th.EW {
+        background: linear-gradient(
+          90deg,
+          hsl( 24,  100%, 45%) 0%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.IP {
+        background: linear-gradient(
+          90deg,
+          hsl( 200,  50%, 52%) 0%,
+          hsl( 130,  40%, 60%) 100%
+        );
+      }
+      
+      th.IW {
+        background: linear-gradient(
+          90deg,
+          hsl( 200,  50%, 52%) 0%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.PW {
+        background: linear-gradient(
+          90deg,
+          hsl( 130,  40%, 60%) 0%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      
+      th.AEI {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 24,  100%, 45%) 50%,
+          hsl( 200,  50%, 52%) 100%
+        );
+      }
+      
+      th.AEP {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 24,  100%, 45%) 50%,
+          hsl( 130,  40%, 60%) 100%
+        );
+      }
+      
+      th.AEW {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 24,  100%, 45%) 50%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.AIP {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 200,  50%, 52%) 50%,
+          hsl( 130,  40%, 60%) 100%
+        );
+      }
+      
+      th.AIW {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 200,  50%, 52%) 50%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.APW {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 130,  40%, 60%) 50%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.EIP {
+        background: linear-gradient(
+          90deg,
+          hsl( 24,  100%, 45%) 0%,
+          hsl( 200,  50%, 52%) 50%,
+          hsl( 130,  40%, 60%) 100%
+        );
+      }
+      
+      th.EIW {
+        background: linear-gradient(
+          90deg,
+          hsl( 24,  100%, 45%) 0%,
+          hsl( 200,  50%, 52%) 50%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.IPW {
+        background: linear-gradient(
+          90deg,
+          hsl( 200,  50%, 52%) 0%,
+          hsl( 130,  40%, 60%) 50%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      
+      /* AEIPW */
+      
+      
+      th.AEIP {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 24,  100%, 45%) 33%,
+          hsl( 200,  50%, 52%) 66%,
+          hsl( 130,  40%, 60%) 100%
+        );
+      }
+      
+      th.AEIW {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 24,  100%, 45%) 33%,
+          hsl( 200,  50%, 52%) 66%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.AEPW {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 24,  100%, 45%) 33%,
+          hsl( 130,  40%, 60%) 66%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.AIPW {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 200,  50%, 52%) 33%,
+          hsl( 130,  40%, 60%) 66%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.EIPW {
+        background: linear-gradient(
+          90deg,
+          hsl( 24,  100%, 45%) 0%,
+          hsl( 200,  50%, 52%) 33%,
+          hsl( 130,  40%, 60%) 66%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      
+      th.AEIPW {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 24,  100%, 45%) 25%,
+          hsl( 200,  50%, 52%) 50%,
+          hsl( 130,  40%, 60%) 75%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      
+      .fontname {
+        width: 20em;
+      }
+      .table {
+        width: 2.5em;
+      }
+      .feature {
+        width: 7.5em;
+      }
+      .message {
+        /*width: 20em;*/
+      }
+      .detail {
+        width: 40em;
+      }
+      .detail p {
+      }
+      .name { background-color: #eee }
+      .name th { padding-top: 1em }
+
+    </style>
+    <script type='text/javascript'>
+      function toggle(toggle_class){
+        var elements = document.getElementsByTagName('tr')
+        for (var i = 0; i < elements.length; i++){
+          var e = elements[i]
+          if (e.className == toggle_class) {
+            if (e.style.display != 'none') {
+              e.style.display = 'none'
+            } else {
+              e.style.display = 'table-row'
+            }
+          }
+        }
+      }
+    </script>
+    
+    <script type='text/javascript'>
+      function toggle_detail(my_id){
+        var element = document.getElementById(my_id)
+        var buttoncell = document.getElementById(my_id+"_cell")
+        var button = document.getElementById(my_id+"_btn")
+        if (element.style.display != 'none') {
+          element.style.display = 'none'
+          buttoncell.style.borderRadius = '0.0em'
+          button.firstChild.data = '\u25bc'
+        } else {
+          element.style.display = ''
+          buttoncell.style.borderRadius = '0.0em 0.0em 0 0'
+          button.firstChild.data = '\u25b2'
+        }
+      }
+    </script>
+    
+    <script type='text/javascript'>
+      function toggle_all_results(){
+        var elements = document.getElementsByClassName('result_body')
+        for (var i = 0; i < elements.length; i++){
+          var e = elements[i]
+          if (e.style.display != 'none') {
+            e.style.display = 'none'
+          } else {
+            e.style.display = ''
+          }
+        }
+      }
+    </script>
+  </head>
+  <body onload="toggle_all_results()">
+    <h1>FontSniffer Report</h1>
+    <p>Library Project, start: 2020-09-25 - 16:31.34, end: 16:31.38</p>
+    <table class='togglemessages'>
+      <tr>
+        <td>Show messages:</td>
+        <td><input type='checkbox' checked name='P' id='itoggle' onclick='toggle("P");'>
+          <label for='itoggle'>Pass</label></td>
+        <td><input type='checkbox' checked name='I' id='itoggle' onclick='toggle("I");'>
+          <label for='itoggle'>Info</label></td>
+        <td><input type='checkbox' checked name='W' id='wtoggle'onclick='toggle("W");'>
+          <label for='wtoggle'>Warning</label></td>
+        <td><input type='checkbox' checked name='E' id='etoggle' onclick='toggle("E");'>
+          <label for='etoggle'>Error</label></td>
+        <td><input type='checkbox' checked name='C' id='ctoggle' onclick='toggle("C");'>
+          <label for='ctoggle'>Critical</label></td>
+          
+        <td><button onclick='toggle_all_results();'>Toggle all details</button></td>
+      </tr>
+    </table>
+    
+        <table class="fontlist">
+
+            <thead>
+                <tr><th>Font List</th></tr>
+            </thead>
+            <tbody>
+								<tr><td>Nyala Regular (nyala.ttf)</td></tr>
+						</tbody>
+        </table>
+
+            <h2>Table Description</h2>
+            <table class="results">
+
+                <thead>
+                    <tr>
+                    <th class="A code" id="Table Description_cell">
+                    <button id="Table Description_btn" onclick='toggle_detail("Table Description");' title="Toggle details">&#x25bc;</button>
+                    </th>
+                    <th colspan="3"><h3>Table Description</h3></th></tr>
+                </thead>
+              <tbody id="Table Description" class="result_body">
+                    
+                <tr class="A">
+                    <td class="code"><p>Level</p></td>
+                    <td class="fontname"><p>Font Name</p></td>
+                    <td class="table"><p>Table</p></td>
+                    <td class="feature"><p>Feature/Item</p></td>
+                    <td class="message"><p>Description</p></td>
+                    <td class="detail"><p>Notes</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+              </tbody>
+            </table>				<h2>Table Version</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Table Version_cell">
+                <button id="Table Version_btn" onclick='toggle_detail("Table Version");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Table Version</h3></th></tr>
+            </thead>
+            <tbody id="Table Version" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>head</p></td>
+                    <td class="feature"><p>version</p></td>
+                    <td class="message"><p>head table version should be 1.0.</p></td>
+                    <td class="detail"><p>head table version is 1.0.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="W">
+                    <td class="code"><p>Warning</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>version</p></td>
+                    <td class="message"><p>OS/2 table version should be 4.</p></td>
+                    <td class="detail"><p>OS/2 table version is '3' but should be 4. Please verify agains job spec.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>post</p></td>
+                    <td class="feature"><p>format</p></td>
+                    <td class="message"><p>If not CFF, post table format should be 2.</p></td>
+                    <td class="detail"><p>Post table format is 3.0 but should be 2 (except for CJK fonts). Please investigate.<br>More infos here:<br><a href='https://docs.microsoft.com/en-us/typography/opentype/spec/post'>https://docs.microsoft.com/en-us/typography/opentype/spec/post</a></p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>OT Sanitizer</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="OT Sanitizer_cell">
+                <button id="OT Sanitizer_btn" onclick='toggle_detail("OT Sanitizer");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>OT Sanitizer</h3></th></tr>
+            </thead>
+            <tbody id="OT Sanitizer" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>-/-</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>OT Sanitizer</p></td>
+                    <td class="detail"><p>Passed:<br>&emsp;&emsp;&emsp;&emsp;Process start (TTF file)<br>&emsp;&emsp;&emsp;&emsp;&emsp;ProcessGeneric start<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Validating font<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Reading font<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Processing glyphs...<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; 1000<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Processing glyphs done<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Writing new font<br>&emsp;&emsp;&emsp;&emsp;&emsp;ProcessGeneric end<br>&emsp;&emsp;&emsp;&emsp;Process end<br>&emsp;&emsp;&emsp;&emsp;Process start (TTF file)<br>&emsp;&emsp;&emsp;&emsp;&emsp;ProcessGeneric start<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Validating font<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Reading font<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Processing glyphs...<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; 1000<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Processing glyphs done<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Writing new font<br>&emsp;&emsp;&emsp;&emsp;&emsp;ProcessGeneric end<br>&emsp;&emsp;&emsp;&emsp;Process end<br></p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Weight Class</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Weight Class_cell">
+                <button id="Weight Class_btn" onclick='toggle_detail("Weight Class");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Weight Class</h3></th></tr>
+            </thead>
+            <tbody id="Weight Class" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>usWeightClass</p></td>
+                    <td class="message"><p>OS/2 weight class should be greater then 250 otherwise it cause issues in MS PowerPoint.</p></td>
+                    <td class="detail"><p>OK: usWeightClass is '400'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>File Name</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="File Name_cell">
+                <button id="File Name_btn" onclick='toggle_detail("File Name");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>File Name</h3></th></tr>
+            </thead>
+            <tbody id="File Name" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>-/-</p></td>
+                    <td class="feature"><p>File Name</p></td>
+                    <td class="message"><p>File name should not be longer than 31 characters, otherwise style linking does not work in MS Word/Mac.</p></td>
+                    <td class="detail"><p>file name length is '9': 'nyala.ttf'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>-/-</p></td>
+                    <td class="feature"><p>File Name</p></td>
+                    <td class="message"><p>File name should not be longer than 31 characters, contain space and have more then one dot for ending.</p></td>
+                    <td class="detail"><p>Everything is fine: 'nyala.ttf'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Style Linking</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Style Linking_cell">
+                <button id="Style Linking_btn" onclick='toggle_detail("Style Linking");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Style Linking</h3></th></tr>
+            </thead>
+            <tbody id="Style Linking" class="result_body">
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>-/-</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Check if italic or upright.</p></td>
+                    <td class="detail"><p>It seems to be an upright font.<br>OS2.fsSelection.italic: False<br>head.macStyle.italic: False<br>post.header.italicAngle: 0.0</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>-/-</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Check if bold.</p></td>
+                    <td class="detail"><p>It seems to be not bold.<br>OS2.fsSelection.bold: False<br>head.macStyle.bold: False</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Empty Glyphs</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Empty Glyphs_cell">
+                <button id="Empty Glyphs_btn" onclick='toggle_detail("Empty Glyphs");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Empty Glyphs</h3></th></tr>
+            </thead>
+            <tbody id="Empty Glyphs" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>glyf</p></td>
+                    <td class="feature"><p>outline</p></td>
+                    <td class="message"><p>Unicodes should have outlines.</p></td>
+                    <td class="detail"><p>The following glyphs have no outlines, but this is correct:<br>SPACE (uni0020)<br>NO-BREAK SPACE (uni00A0)</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Supplementary NFC</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Supplementary NFC_cell">
+                <button id="Supplementary NFC_btn" onclick='toggle_detail("Supplementary NFC");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Supplementary NFC</h3></th></tr>
+            </thead>
+            <tbody id="Supplementary NFC" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>unicode</p></td>
+                    <td class="message"><p>Supplementary glyphs</p></td>
+                    <td class="detail"><p>No issues found.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Supplementary Glyphs</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Supplementary Glyphs_cell">
+                <button id="Supplementary Glyphs_btn" onclick='toggle_detail("Supplementary Glyphs");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Supplementary Glyphs</h3></th></tr>
+            </thead>
+            <tbody id="Supplementary Glyphs" class="result_body">
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>unicode</p></td>
+                    <td class="message"><p>Supplementary glyphs</p></td>
+                    <td class="detail"><p>Can be added as double encoded character(s):<br>uni0022 (QUOTATION MARK) is present, but 'uni2033' is missing.<br>uni0027 (APOSTROPHE) is present, but 'uni2032' is missing.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Check against Base Glyph Advance Width</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Check against Base Glyph Advance Width_cell">
+                <button id="Check against Base Glyph Advance Width_btn" onclick='toggle_detail("Check against Base Glyph Advance Width");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Check against Base Glyph Advance Width</h3></th></tr>
+            </thead>
+            <tbody id="Check against Base Glyph Advance Width" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>hmtx</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Compare advance width against base glyph advance width (tolerance 2 units).</p></td>
+                    <td class="detail"><p>'U+01FC' (ID 446): width is 1529, base glyph ('U+00C6' (ID 445)) width is 1529<br>'U+0106' (ID 447): width is 1181, base glyph ('U+0043' (ID 411)) width is 1181<br>'U+0108' (ID 448): width is 1181, base glyph ('U+0043' (ID 411)) width is 1181<br>'U+010C' (ID 449): width is 1181, base glyph ('U+0043' (ID 411)) width is 1181<br>'450' (ID 450): width is 1181, base glyph ('U+0043' (ID 411)) width is 1181<br>'U+010A' (ID 451): width is 1181, base glyph ('U+0043' (ID 411)) width is 1181<br>'453' (ID 453): width is 1181, base glyph ('U+0043' (ID 411)) width is 1181<br>'454' (ID 454): width is 1181, base glyph ('U+0043' (ID 411)) width is 1181<br>'U+010E' (ID 455): width is 1282, base glyph ('U+0044' (ID 412)) width is 1282<br>'U+1E0C' (ID 456): width is 1282, base glyph ('U+0044' (ID 412)) width is 1282<br>'U+0110' (ID 457): width is 1295, base glyph ('U+00D0' (ID 557)) width is 1295<br>'U+00C8' (ID 458): width is 975, base glyph ('U+0045' (ID 413)) width is 975<br>'U+00C9' (ID 459): width is 975, base glyph ('U+0045' (ID 413)) width is 975<br>'U+00CA' (ID 460): width is 975, base glyph ('U+0045' (ID 413)) width is 975<br>'U+011A' (ID 461): width is 975, base glyph ('U+0045' (ID 413)) width is 975<br>'U+00CB' (ID 462): width is 975, base glyph ('U+0045' (ID 413)) width is 975<br>'U+0112' (ID 463): width is 975, base glyph ('U+0045' (ID 413)) width is 975<br>'U+0114' (ID 464): width is 975, base glyph ('U+0045' (ID 413)) width is 975<br>'U+0116' (ID 465): width is 975, base glyph ('U+0045' (ID 413)) width is 975<br>'467' (ID 467): width is 975, base glyph ('U+0045' (ID 413)) width is 975<br>'468' (ID 468): width is 1257, base glyph ('U+0047' (ID 415)) width is 1257<br>'U+011C' (ID 469): width is 1257, base glyph ('U+0047' (ID 415)) width is 1257<br>'470' (ID 470): width is 1257, base glyph ('U+0047' (ID 415)) width is 1257<br>'U+011E' (ID 471): width is 1257, base glyph ('U+0047' (ID 415)) width is 1257<br>'U+0120' (ID 472): width is 1257, base glyph ('U+0047' (ID 415)) width is 1257<br>'U+0122' (ID 473): width is 1257, base glyph ('U+0047' (ID 415)) width is 1257<br>'474' (ID 474): width is 1275, base glyph ('U+0048' (ID 416)) width is 1275<br>'U+0124' (ID 475): width is 1275, base glyph ('U+0048' (ID 416)) width is 1275<br>'476' (ID 476): width is 1275, base glyph ('U+0048' (ID 416)) width is 1275<br>'U+1E2A' (ID 477): width is 1275, base glyph ('U+0048' (ID 416)) width is 1275<br>'U+1E24' (ID 478): width is 1275, base glyph ('U+0048' (ID 416)) width is 1275<br>'U+00CC' (ID 480): width is 506, base glyph ('U+0049' (ID 417)) width is 506<br>'U+00CD' (ID 481): width is 506, base glyph ('U+0049' (ID 417)) width is 506<br>'U+00CE' (ID 482): width is 506, base glyph ('U+0049' (ID 417)) width is 506<br>'U+0128' (ID 483): width is 506, base glyph ('U+0049' (ID 417)) width is 506<br>'U+00CF' (ID 484): width is 506, base glyph ('U+0049' (ID 417)) width is 506<br>'U+012A' (ID 485): width is 506, base glyph ('U+0049' (ID 417)) width is 506<br>'U+012C' (ID 486): width is 506, base glyph ('U+0049' (ID 417)) width is 506<br>'U+0130' (ID 487): width is 506, base glyph ('U+0049' (ID 417)) width is 506<br>'489' (ID 489): width is 506, base glyph ('U+0049' (ID 417)) width is 506<br>'U+0134' (ID 491): width is 465, base glyph ('U+004A' (ID 418)) width is 465<br>'U+1E30' (ID 492): width is 1102, base glyph ('U+004B' (ID 419)) width is 1102<br>'U+0136' (ID 493): width is 1102, base glyph ('U+004B' (ID 419)) width is 1102<br>'U+1E34' (ID 494): width is 1102, base glyph ('U+004B' (ID 419)) width is 1102<br>'U+0139' (ID 495): width is 920, base glyph ('U+004C' (ID 420)) width is 920<br>'U+013D' (ID 496): width is 920, base glyph ('U+004C' (ID 420)) width is 920<br>'U+013B' (ID 497): width is 920, base glyph ('U+004C' (ID 420)) width is 920<br>'U+0143' (ID 500): width is 1220, base glyph ('U+004E' (ID 422)) width is 1220<br>'U+0147' (ID 501): width is 1220, base glyph ('U+004E' (ID 422)) width is 1220<br>'U+00D1' (ID 502): width is 1220, base glyph ('U+004E' (ID 422)) width is 1220<br>'U+0145' (ID 503): width is 1220, base glyph ('U+004E' (ID 422)) width is 1220<br>'U+00D2' (ID 504): width is 1350, base glyph ('U+004F' (ID 423)) width is 1350<br>'U+00D3' (ID 505): width is 1350, base glyph ('U+004F' (ID 423)) width is 1350<br>'U+00D4' (ID 506): width is 1350, base glyph ('U+004F' (ID 423)) width is 1350<br>'U+00D5' (ID 507): width is 1350, base glyph ('U+004F' (ID 423)) width is 1350<br>'U+00D6' (ID 508): width is 1350, base glyph ('U+004F' (ID 423)) width is 1350<br>'U+014C' (ID 509): width is 1350, base glyph ('U+004F' (ID 423)) width is 1350<br>'U+014E' (ID 510): width is 1350, base glyph ('U+004F' (ID 423)) width is 1350<br>'U+0150' (ID 511): width is 1350, base glyph ('U+004F' (ID 423)) width is 1350<br>'U+01FE' (ID 513): width is 1350, base glyph ('U+00D8' (ID 512)) width is 1350<br>'U+1E56' (ID 515): width is 963, base glyph ('U+0050' (ID 424)) width is 963<br>'516' (ID 516): width is 963, base glyph ('U+0050' (ID 424)) width is 963<br>'517' (ID 517): width is 1350, base glyph ('U+0051' (ID 425)) width is 1350<br>'518' (ID 518): width is 1350, base glyph ('U+0051' (ID 425)) width is 1350<br>'U+0154' (ID 519): width is 1077, base glyph ('U+0052' (ID 426)) width is 1077<br>'U+0158' (ID 520): width is 1077, base glyph ('U+0052' (ID 426)) width is 1077<br>'U+0156' (ID 521): width is 1077, base glyph ('U+0052' (ID 426)) width is 1077<br>'U+015A' (ID 522): width is 924, base glyph ('U+0053' (ID 427)) width is 924<br>'U+015C' (ID 523): width is 924, base glyph ('U+0053' (ID 427)) width is 924<br>'U+0160' (ID 524): width is 924, base glyph ('U+0053' (ID 427)) width is 924<br>'U+1E60' (ID 525): width is 924, base glyph ('U+0053' (ID 427)) width is 924<br>'U+0218' (ID 527): width is 924, base glyph ('U+0053' (ID 427)) width is 924<br>'U+1E62' (ID 528): width is 924, base glyph ('U+0053' (ID 427)) width is 924<br>'U+0164' (ID 529): width is 1092, base glyph ('U+0054' (ID 428)) width is 1092<br>'U+021A' (ID 530): width is 1092, base glyph ('U+0054' (ID 428)) width is 1092<br>'U+1E6C' (ID 531): width is 1092, base glyph ('U+0054' (ID 428)) width is 1092<br>'U+00D9' (ID 533): width is 1225, base glyph ('U+0055' (ID 429)) width is 1225<br>'U+00DA' (ID 534): width is 1225, base glyph ('U+0055' (ID 429)) width is 1225<br>'U+00DB' (ID 535): width is 1225, base glyph ('U+0055' (ID 429)) width is 1225<br>'U+0168' (ID 536): width is 1225, base glyph ('U+0055' (ID 429)) width is 1225<br>'U+00DC' (ID 537): width is 1225, base glyph ('U+0055' (ID 429)) width is 1225<br>'U+016A' (ID 538): width is 1225, base glyph ('U+0055' (ID 429)) width is 1225<br>'U+016C' (ID 539): width is 1225, base glyph ('U+0055' (ID 429)) width is 1225<br>'U+016E' (ID 540): width is 1225, base glyph ('U+0055' (ID 429)) width is 1225<br>'U+0170' (ID 541): width is 1225, base glyph ('U+0055' (ID 429)) width is 1225<br>'U+1E80' (ID 543): width is 1668, base glyph ('U+0057' (ID 431)) width is 1668<br>'U+1E82' (ID 544): width is 1668, base glyph ('U+0057' (ID 431)) width is 1668<br>'U+0174' (ID 545): width is 1668, base glyph ('U+0057' (ID 431)) width is 1668<br>'U+1E84' (ID 546): width is 1668, base glyph ('U+0057' (ID 431)) width is 1668<br>'U+1EF2' (ID 547): width is 986, base glyph ('U+0059' (ID 433)) width is 986<br>'U+00DD' (ID 548): width is 986, base glyph ('U+0059' (ID 433)) width is 986<br>'U+0176' (ID 549): width is 986, base glyph ('U+0059' (ID 433)) width is 986<br>'U+0178' (ID 550): width is 986, base glyph ('U+0059' (ID 433)) width is 986<br>'U+00E0' (ID 585): width is 811, base glyph ('U+0061' (ID 559)) width is 811<br>'U+00E1' (ID 586): width is 811, base glyph ('U+0061' (ID 559)) width is 811<br>'U+00E2' (ID 587): width is 811, base glyph ('U+0061' (ID 559)) width is 811<br>'U+00E3' (ID 588): width is 811, base glyph ('U+0061' (ID 559)) width is 811<br>'U+00E4' (ID 589): width is 811, base glyph ('U+0061' (ID 559)) width is 811<br>'U+0101' (ID 590): width is 811, base glyph ('U+0061' (ID 559)) width is 811<br>'U+0103' (ID 591): width is 811, base glyph ('U+0061' (ID 559)) width is 811<br>'U+00E5' (ID 592): width is 811, base glyph ('U+0061' (ID 559)) width is 811<br>'U+01FB' (ID 593): width is 811, base glyph ('U+0061' (ID 559)) width is 811<br>'U+01FD' (ID 596): width is 1249, base glyph ('U+00E6' (ID 595)) width is 1249<br>'U+0107' (ID 597): width is 786, base glyph ('U+0063' (ID 561)) width is 786<br>'U+0109' (ID 598): width is 786, base glyph ('U+0063' (ID 561)) width is 786<br>'U+010D' (ID 599): width is 786, base glyph ('U+0063' (ID 561)) width is 786<br>'600' (ID 600): width is 786, base glyph ('U+0063' (ID 561)) width is 786<br>'U+010B' (ID 601): width is 786, base glyph ('U+0063' (ID 561)) width is 786<br>'603' (ID 603): width is 786, base glyph ('U+0063' (ID 561)) width is 786<br>'604' (ID 604): width is 786, base glyph ('U+0063' (ID 561)) width is 786<br>'U+1E0D' (ID 606): width is 956, base glyph ('U+0064' (ID 562)) width is 956<br>'U+00E8' (ID 608): width is 801, base glyph ('U+0065' (ID 563)) width is 801<br>'U+00E9' (ID 609): width is 801, base glyph ('U+0065' (ID 563)) width is 801<br>'U+00EA' (ID 610): width is 801, base glyph ('U+0065' (ID 563)) width is 801<br>'U+011B' (ID 611): width is 801, base glyph ('U+0065' (ID 563)) width is 801<br>'U+00EB' (ID 612): width is 801, base glyph ('U+0065' (ID 563)) width is 801<br>'U+0113' (ID 613): width is 801, base glyph ('U+0065' (ID 563)) width is 801<br>'U+0115' (ID 614): width is 801, base glyph ('U+0065' (ID 563)) width is 801<br>'U+0117' (ID 615): width is 801, base glyph ('U+0065' (ID 563)) width is 801<br>'617' (ID 617): width is 801, base glyph ('U+0065' (ID 563)) width is 801<br>'618' (ID 618): width is 894, base glyph ('U+0067' (ID 565)) width is 894<br>'U+011D' (ID 619): width is 894, base glyph ('U+0067' (ID 565)) width is 894<br>'620' (ID 620): width is 894, base glyph ('U+0067' (ID 565)) width is 894<br>'U+011F' (ID 621): width is 894, base glyph ('U+0067' (ID 565)) width is 894<br>'U+0121' (ID 622): width is 894, base glyph ('U+0067' (ID 565)) width is 894<br>'U+0123' (ID 623): width is 894, base glyph ('U+0067' (ID 565)) width is 894<br>'624' (ID 624): width is 964, base glyph ('U+0068' (ID 566)) width is 964<br>'U+0125' (ID 625): width is 964, base glyph ('U+0068' (ID 566)) width is 964<br>'626' (ID 626): width is 964, base glyph ('U+0068' (ID 566)) width is 964<br>'U+1E2B' (ID 627): width is 964, base glyph ('U+0068' (ID 566)) width is 964<br>'U+1E25' (ID 628): width is 964, base glyph ('U+0068' (ID 566)) width is 964<br>'U+00EC' (ID 630): width is 458, base glyph ('U+0131' (ID 639)) width is 458<br>'U+00ED' (ID 631): width is 458, base glyph ('U+0131' (ID 639)) width is 458<br>'U+00EE' (ID 632): width is 458, base glyph ('U+0131' (ID 639)) width is 458<br>'U+0129' (ID 633): width is 458, base glyph ('U+0131' (ID 639)) width is 458<br>'U+00EF' (ID 634): width is 458, base glyph ('U+0131' (ID 639)) width is 458<br>'U+012B' (ID 635): width is 458, base glyph ('U+0131' (ID 639)) width is 458<br>'U+012D' (ID 636): width is 458, base glyph ('U+0131' (ID 639)) width is 458<br>'638' (ID 638): width is 458, base glyph ('U+0069' (ID 567)) width is 458<br>'U+1E31' (ID 642): width is 866, base glyph ('U+006B' (ID 569)) width is 866<br>'U+0137' (ID 643): width is 866, base glyph ('U+006B' (ID 569)) width is 866<br>'U+1E35' (ID 644): width is 866, base glyph ('U+006B' (ID 569)) width is 866<br>'U+013A' (ID 646): width is 443, base glyph ('U+006C' (ID 570)) width is 443<br>'U+013C' (ID 648): width is 443, base glyph ('U+006C' (ID 570)) width is 443<br>'U+0144' (ID 651): width is 979, base glyph ('U+006E' (ID 572)) width is 979<br>'U+0148' (ID 652): width is 979, base glyph ('U+006E' (ID 572)) width is 979<br>'U+00F1' (ID 653): width is 979, base glyph ('U+006E' (ID 572)) width is 979<br>'U+0146' (ID 654): width is 979, base glyph ('U+006E' (ID 572)) width is 979<br>'U+00F2' (ID 656): width is 910, base glyph ('U+006F' (ID 573)) width is 910<br>'U+00F3' (ID 657): width is 910, base glyph ('U+006F' (ID 573)) width is 910<br>'U+00F4' (ID 658): width is 910, base glyph ('U+006F' (ID 573)) width is 910<br>'U+00F5' (ID 659): width is 910, base glyph ('U+006F' (ID 573)) width is 910<br>'U+00F6' (ID 660): width is 910, base glyph ('U+006F' (ID 573)) width is 910<br>'U+014D' (ID 661): width is 910, base glyph ('U+006F' (ID 573)) width is 910<br>'U+014F' (ID 662): width is 910, base glyph ('U+006F' (ID 573)) width is 910<br>'U+0151' (ID 663): width is 910, base glyph ('U+006F' (ID 573)) width is 910<br>'U+01FF' (ID 665): width is 910, base glyph ('U+00F8' (ID 664)) width is 910<br>'U+1E57' (ID 667): width is 984, base glyph ('U+0070' (ID 574)) width is 984<br>'668' (ID 668): width is 984, base glyph ('U+0070' (ID 574)) width is 984<br>'669' (ID 669): width is 954, base glyph ('U+0071' (ID 575)) width is 954<br>'670' (ID 670): width is 954, base glyph ('U+0071' (ID 575)) width is 954<br>'U+021B' (ID 684): width is 614, base glyph ('U+0074' (ID 578)) width is 614<br>'U+1E6D' (ID 685): width is 614, base glyph ('U+0074' (ID 578)) width is 614<br>'U+00F9' (ID 687): width is 983, base glyph ('U+0075' (ID 579)) width is 983<br>'U+00FA' (ID 688): width is 983, base glyph ('U+0075' (ID 579)) width is 983<br>'U+00FB' (ID 689): width is 983, base glyph ('U+0075' (ID 579)) width is 983<br>'U+0169' (ID 690): width is 983, base glyph ('U+0075' (ID 579)) width is 983<br>'U+00FC' (ID 691): width is 983, base glyph ('U+0075' (ID 579)) width is 983<br>'U+016B' (ID 692): width is 983, base glyph ('U+0075' (ID 579)) width is 983<br>'U+016D' (ID 693): width is 983, base glyph ('U+0075' (ID 579)) width is 983<br>'U+016F' (ID 694): width is 983, base glyph ('U+0075' (ID 579)) width is 983<br>'U+0171' (ID 695): width is 983, base glyph ('U+0075' (ID 579)) width is 983<br>'U+1E81' (ID 697): width is 1288, base glyph ('U+0077' (ID 581)) width is 1288<br>'U+1E83' (ID 698): width is 1288, base glyph ('U+0077' (ID 581)) width is 1288<br>'U+0175' (ID 699): width is 1288, base glyph ('U+0077' (ID 581)) width is 1288<br>'U+1E85' (ID 700): width is 1288, base glyph ('U+0077' (ID 581)) width is 1288<br>'U+1EF3' (ID 701): width is 817, base glyph ('U+0079' (ID 583)) width is 817<br>'U+00FD' (ID 702): width is 817, base glyph ('U+0079' (ID 583)) width is 817<br>'U+0177' (ID 703): width is 817, base glyph ('U+0079' (ID 583)) width is 817<br>'U+00FF' (ID 704): width is 817, base glyph ('U+0079' (ID 583)) width is 817<br>'720' (ID 720): width is 1479, base glyph ('719' (ID 719)) width is 1479<br>'721' (ID 721): width is 1479, base glyph ('719' (ID 719)) width is 1479<br>'722' (ID 722): width is 1479, base glyph ('719' (ID 719)) width is 1479<br>'723' (ID 723): width is 1479, base glyph ('719' (ID 719)) width is 1479<br>'726' (ID 726): width is 1989, base glyph ('725' (ID 725)) width is 1989<br>'727' (ID 727): width is 1989, base glyph ('725' (ID 725)) width is 1989<br>'728' (ID 728): width is 1989, base glyph ('725' (ID 725)) width is 1989<br>'729' (ID 729): width is 1989, base glyph ('725' (ID 725)) width is 1989<br>'733' (ID 733): width is 948, base glyph ('U+FB01' (ID 731)) width is 948<br>'736' (ID 736): width is 1458, base glyph ('U+FB03' (ID 734)) width is 1458<br>'740' (ID 740): width is 1381, base glyph ('739' (ID 739)) width is 1381<br>'741' (ID 741): width is 1381, base glyph ('739' (ID 739)) width is 1381<br>'742' (ID 742): width is 1381, base glyph ('739' (ID 739)) width is 1381<br>'744' (ID 744): width is 1891, base glyph ('743' (ID 743)) width is 1891<br>'745' (ID 745): width is 1891, base glyph ('743' (ID 743)) width is 1891<br>'746' (ID 746): width is 1891, base glyph ('743' (ID 743)) width is 1891<br>'748' (ID 748): width is 958, base glyph ('U+FB02' (ID 747)) width is 958<br>'749' (ID 749): width is 958, base glyph ('U+FB02' (ID 747)) width is 958<br>'751' (ID 751): width is 1468, base glyph ('U+FB04' (ID 750)) width is 1468<br>'752' (ID 752): width is 1468, base glyph ('U+FB04' (ID 750)) width is 1468<br>'755' (ID 755): width is 1513, base glyph ('U+0040' (ID 754)) width is 1513<br>'U+003B' (ID 757): width is 379, base glyph ('U+002E' (ID 759)) width is 379<br>'U+003A' (ID 758): width is 379, base glyph ('U+002E' (ID 759)) width is 379<br>'762' (ID 762): width is 605, base glyph ('U+00AD' (ID 761)) width is 605<br>'765' (ID 765): width is 468, base glyph ('U+00A1' (ID 764)) width is 468<br>'778' (ID 778): width is 417, base glyph ('U+2039' (ID 776)) width is 417<br>'779' (ID 779): width is 417, base glyph ('U+203A' (ID 777)) width is 417<br>'786' (ID 786): width is 188, base glyph ('U+007C' (ID 785)) width is 188<br>'788' (ID 788): width is 1024, base glyph ('U+2013' (ID 787)) width is 1024<br>'790' (ID 790): width is 2048, base glyph ('U+2014' (ID 789)) width is 2048<br>'796' (ID 796): width is 666, base glyph ('U+0028' (ID 794)) width is 666<br>'797' (ID 797): width is 666, base glyph ('U+0029' (ID 795)) width is 666<br>'800' (ID 800): width is 643, base glyph ('U+005B' (ID 798)) width is 643<br>'801' (ID 801): width is 643, base glyph ('U+005D' (ID 799)) width is 643<br>'804' (ID 804): width is 643, base glyph ('U+007B' (ID 802)) width is 643<br>'805' (ID 805): width is 623, base glyph ('U+007D' (ID 803)) width is 623<br>'U+02BC' (ID 863): width is 380, base glyph ('U+2019' (ID 771)) width is 380<br>'U+1392' (ID 1020): width is 697, base glyph ('U+1367' (ID 327)) width is 697</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="W">
+                    <td class="code"><p>Warning</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>hmtx</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Compare advance width against base glyph advance width (tolerance 2 units).</p></td>
+                    <td class="detail"><p>'U+00C0' (ID 435): width is 1170, base glyph ('U+0041' (ID 409)) width is 1139<br>'U+00C1' (ID 436): width is 1170, base glyph ('U+0041' (ID 409)) width is 1139<br>'U+00C2' (ID 437): width is 1170, base glyph ('U+0041' (ID 409)) width is 1139<br>'U+00C3' (ID 438): width is 1170, base glyph ('U+0041' (ID 409)) width is 1139<br>'U+00C4' (ID 439): width is 1170, base glyph ('U+0041' (ID 409)) width is 1139<br>'U+0100' (ID 440): width is 1170, base glyph ('U+0041' (ID 409)) width is 1139<br>'U+0102' (ID 441): width is 1170, base glyph ('U+0041' (ID 409)) width is 1139<br>'U+00C5' (ID 442): width is 1170, base glyph ('U+0041' (ID 409)) width is 1139<br>'U+0132' (ID 490): width is 971, base glyph ('U+0049' (ID 417)) width is 506<br>'U+013F' (ID 499): width is 940, base glyph ('U+004C' (ID 420)) width is 920<br>'U+0179' (ID 551): width is 1059, base glyph ('U+005A' (ID 434)) width is 1029<br>'U+017D' (ID 552): width is 1059, base glyph ('U+005A' (ID 434)) width is 1029<br>'U+017B' (ID 553): width is 1059, base glyph ('U+005A' (ID 434)) width is 1029<br>'U+1E92' (ID 554): width is 1059, base glyph ('U+005A' (ID 434)) width is 1029<br>'U+010F' (ID 605): width is 1169, base glyph ('U+0064' (ID 562)) width is 956<br>'U+0133' (ID 640): width is 916, base glyph ('U+0069' (ID 567)) width is 458<br>'U+013E' (ID 647): width is 656, base glyph ('U+006C' (ID 570)) width is 443<br>'U+0140' (ID 650): width is 622, base glyph ('U+006C' (ID 570)) width is 443<br>'U+0149' (ID 655): width is 1099, base glyph ('U+2019' (ID 771)) width is 380<br>'U+0155' (ID 671): width is 726, base glyph ('U+0072' (ID 576)) width is 706<br>'U+0159' (ID 672): width is 726, base glyph ('U+0072' (ID 576)) width is 706<br>'U+0157' (ID 673): width is 726, base glyph ('U+0072' (ID 576)) width is 706<br>'U+015B' (ID 674): width is 711, base glyph ('U+0073' (ID 577)) width is 706<br>'U+015D' (ID 675): width is 711, base glyph ('U+0073' (ID 577)) width is 706<br>'U+0161' (ID 676): width is 711, base glyph ('U+0073' (ID 577)) width is 706<br>'U+1E61' (ID 677): width is 711, base glyph ('U+0073' (ID 577)) width is 706<br>'U+0219' (ID 679): width is 711, base glyph ('U+0073' (ID 577)) width is 706<br>'U+1E63' (ID 680): width is 711, base glyph ('U+0073' (ID 577)) width is 706<br>'U+0165' (ID 683): width is 663, base glyph ('U+0074' (ID 578)) width is 614<br>'U+017A' (ID 705): width is 813, base glyph ('U+007A' (ID 584)) width is 818<br>'U+017E' (ID 706): width is 813, base glyph ('U+007A' (ID 584)) width is 818<br>'U+017C' (ID 707): width is 813, base glyph ('U+007A' (ID 584)) width is 818<br>'U+1E93' (ID 708): width is 813, base glyph ('U+007A' (ID 584)) width is 818<br>'768' (ID 768): width is 751, base glyph ('U+00BF' (ID 767)) width is 742<br>'U+201C' (ID 772): width is 640, base glyph ('U+2018' (ID 770)) width is 380<br>'U+201D' (ID 773): width is 640, base glyph ('U+2019' (ID 771)) width is 380<br>'U+201E' (ID 775): width is 640, base glyph ('U+201A' (ID 774)) width is 380<br>'U+00AB' (ID 780): width is 712, base glyph ('U+2039' (ID 776)) width is 417<br>'U+00BB' (ID 781): width is 712, base glyph ('U+203A' (ID 777)) width is 417<br>'782' (ID 782): width is 712, base glyph ('U+2039' (ID 776)) width is 417<br>'783' (ID 783): width is 712, base glyph ('U+203A' (ID 777)) width is 417<br>'U+2219' (ID 792): width is 419, base glyph ('U+002E' (ID 759)) width is 379<br>'793' (ID 793): width is 419, base glyph ('U+002E' (ID 759)) width is 379<br>'U+00BC' (ID 829): width is 1140, base glyph ('U+00B9' (ID 825)) width is 403<br>'U+00BD' (ID 830): width is 1273, base glyph ('U+00B9' (ID 825)) width is 403<br>'U+00BE' (ID 831): width is 1371, base glyph ('U+00B3' (ID 827)) width is 634<br>'U+0022' (ID 845): width is 621, base glyph ('U+0027' (ID 844)) width is 341<br>'U+02BB' (ID 862): width is 370, base glyph ('U+2018' (ID 770)) width is 380<br>'U+0300' (ID 868): width is 0, base glyph ('U+0060' (ID 867)) width is 500<br>'U+0301' (ID 870): width is 0, base glyph ('U+00B4' (ID 869)) width is 500<br>'U+0302' (ID 872): width is 0, base glyph ('U+02C6' (ID 871)) width is 500<br>'U+030C' (ID 874): width is 0, base glyph ('U+02C7' (ID 873)) width is 500<br>'U+0303' (ID 877): width is 0, base glyph ('U+02DC' (ID 876)) width is 500<br>'U+0308' (ID 879): width is 0, base glyph ('U+00A8' (ID 878)) width is 500<br>'U+0304' (ID 881): width is 0, base glyph ('U+02C9' (ID 880)) width is 500<br>'U+0306' (ID 883): width is 0, base glyph ('U+02D8' (ID 882)) width is 500<br>'U+030A' (ID 885): width is 0, base glyph ('U+02DA' (ID 884)) width is 500<br>'U+030B' (ID 887): width is 0, base glyph ('U+02DD' (ID 886)) width is 500<br>'U+0307' (ID 889): width is 0, base glyph ('U+02D9' (ID 888)) width is 500<br>'U+0327' (ID 891): width is 0, base glyph ('U+00B8' (ID 890)) width is 500<br>'U+0328' (ID 897): width is 0, base glyph ('U+02DB' (ID 896)) width is 500</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Compare Advance Width hmtx and CFF table</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Compare Advance Width hmtx and CFF table_cell">
+                <button id="Compare Advance Width hmtx and CFF table_btn" onclick='toggle_detail("Compare Advance Width hmtx and CFF table");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Compare Advance Width hmtx and CFF table</h3></th></tr>
+            </thead>
+            <tbody id="Compare Advance Width hmtx and CFF table" class="result_body">
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>hmtx/CFF</p></td>
+                    <td class="feature"><p>Advance width</p></td>
+                    <td class="message"><p>Advance width of hmtx and CFF table should be the same (tolerance 2 units).</p></td>
+                    <td class="detail"><p>This is a TrueType font. This test is only for CFF.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Individual Glyphs</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Individual Glyphs_cell">
+                <button id="Individual Glyphs_btn" onclick='toggle_detail("Individual Glyphs");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Individual Glyphs</h3></th></tr>
+            </thead>
+            <tbody id="Individual Glyphs" class="result_body">
+                    
+                <tr class="W">
+                    <td class="code"><p>Warning</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>post</p></td>
+                    <td class="feature"><p></p></td>
+                    <td class="message"><p>Check if tables are present: 'post' table if ttf, 'CFF ' table if otf.</p></td>
+                    <td class="detail"><p>CANNOT check double NULL names. Format 3.0 post table.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>uni200B</p></td>
+                    <td class="message"><p>Check ZERO WIDTH SPACE</p></td>
+                    <td class="detail"><p>Missing uni200B in cmap table.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>FEFF</p></td>
+                    <td class="message"><p>ZERO WIDTH NO-BREAK SPACE: Missing FEFF in cmap table.</p></td>
+                    <td class="detail"><p>Required for Monotype library. Please add unicode FEFF. Custom work refer to spec.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>00AD</p></td>
+                    <td class="message"><p>Soft hyphen 00AD in cmap table.</p></td>
+                    <td class="detail"><p>Soft hyphen is often used in web and in professional print publishing software like Adobe InDesign.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>hmtx</p></td>
+                    <td class="feature"><p>Index 3 and 3</p></td>
+                    <td class="message"><p>Advance width of nonbreakingspace (uni00A0) should match the space (uni0020) width.</p></td>
+                    <td class="detail"><p>OK: Advance width nonbreakingspace (uni00A0) does match the space (uni0020) width:<br>600 = 600</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>uni2009</p></td>
+                    <td class="message"><p>Advance width of 'thinspace' (uni2009) should be smaller than the width of space (uni0020).</p></td>
+                    <td class="detail"><p>Can not check, because no uni2009 in this font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>uni200A</p></td>
+                    <td class="message"><p>Advance width of 'hairspace' (uni200A) should be smaller than the width of space (uni0020).</p></td>
+                    <td class="detail"><p>Can not check, because no uni200A in this font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>uni2004</p></td>
+                    <td class="message"><p>Advance width of 'THREE-PER-EM SPACE' (uni2004) should be 1/3 of em-square.</p></td>
+                    <td class="detail"><p>Can not check, because no uni2004 in this font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>uni2005</p></td>
+                    <td class="message"><p>Advance width of 'FOUR-PER-EM SPACE' (uni2005) should be 1/4 of em-square.</p></td>
+                    <td class="detail"><p>Can not check, because no uni2005 in this font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>uni2006</p></td>
+                    <td class="message"><p>Advance width of 'SIX-PER-EM SPACE' (uni2006) should be 1/6 of em-square.</p></td>
+                    <td class="detail"><p>Can not check, because no uni2006 in this font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>uni2002</p></td>
+                    <td class="message"><p>Advance width of 'EN SPACE' (uni2002) should be 50%% of em-square.</p></td>
+                    <td class="detail"><p>Can not check, because no uni2002 in this font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>uni2003</p></td>
+                    <td class="message"><p>Advance width of 'EM SPACE' (uni2003) should be equal to UPM.</p></td>
+                    <td class="detail"><p>Can not check, because no uni2003 in this font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>uni2008</p></td>
+                    <td class="message"><p>Advance width of 'PUNCTUATION SPACE' (uni2008) should be equal to the 'period' advance width.</p></td>
+                    <td class="detail"><p>Can not check, because no uni2008 in this font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Nodes Close to Zones (CFF)</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Nodes Close to Zones (CFF)_cell">
+                <button id="Nodes Close to Zones (CFF)_btn" onclick='toggle_detail("Nodes Close to Zones (CFF)");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Nodes Close to Zones (CFF)</h3></th></tr>
+            </thead>
+            <tbody id="Nodes Close to Zones (CFF)" class="result_body">
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>CFF</p></td>
+                    <td class="feature"><p>Alignment Zones</p></td>
+                    <td class="message"><p>Check if nodes are close to a zone, but not in or touching it.</p></td>
+                    <td class="detail"><p>This is a TTF, but this test is only for CFF fonts.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Should be Composite (only .ttf)</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Should be Composite (only .ttf)_cell">
+                <button id="Should be Composite (only .ttf)_btn" onclick='toggle_detail("Should be Composite (only .ttf)");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Should be Composite (only .ttf)</h3></th></tr>
+            </thead>
+            <tbody id="Should be Composite (only .ttf)" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>glyf</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Glyphs (LATIN) which are made from components.<br>Great.</p></td>
+                    <td class="detail"><p>'U+00C1' (uni00C1) (ID 436)<br>'U+0102' (uni0102) (ID 441)<br>'U+00C2' (uni00C2) (ID 437)<br>'U+00C4' (uni00C4) (ID 439)<br>'U+00C0' (uni00C0) (ID 435)<br>'U+0100' (uni0100) (ID 440)<br>'U+00C5' (uni00C5) (ID 442)<br>'U+00C3' (uni00C3) (ID 438)<br>'U+01FC' (uni01FC) (ID 446)<br>'U+0106' (uni0106) (ID 447)<br>'U+010C' (uni010C) (ID 449)<br>'U+0108' (uni0108) (ID 448)<br>'U+010A' (uni010A) (ID 451)<br>'U+010E' (uni010E) (ID 455)<br>'U+0110' (uni0110) (ID 457)<br>'U+00C9' (uni00C9) (ID 459)<br>'U+0114' (uni0114) (ID 464)<br>'U+011A' (uni011A) (ID 461)<br>'U+00CA' (uni00CA) (ID 460)<br>'U+00CB' (uni00CB) (ID 462)<br>'U+0116' (uni0116) (ID 465)<br>'U+00C8' (uni00C8) (ID 458)<br>'U+0112' (uni0112) (ID 463)<br>'U+011E' (uni011E) (ID 471)<br>'U+011C' (uni011C) (ID 469)<br>'U+0122' (uni0122) (ID 473)<br>'U+0120' (uni0120) (ID 472)<br>'U+0124' (uni0124) (ID 475)<br>'U+0132' (uni0132) (ID 490)<br>'U+00CD' (uni00CD) (ID 481)<br>'U+012C' (uni012C) (ID 486)<br>'U+00CE' (uni00CE) (ID 482)<br>'U+00CF' (uni00CF) (ID 484)<br>'U+0130' (uni0130) (ID 487)<br>'U+00CC' (uni00CC) (ID 480)<br>'U+012A' (uni012A) (ID 485)<br>'U+0128' (uni0128) (ID 483)<br>'U+0134' (uni0134) (ID 491)<br>'U+0136' (uni0136) (ID 493)<br>'U+0139' (uni0139) (ID 495)<br>'U+013D' (uni013D) (ID 496)<br>'U+013B' (uni013B) (ID 497)<br>'U+013F' (uni013F) (ID 499)<br>'U+0143' (uni0143) (ID 500)<br>'U+0147' (uni0147) (ID 501)<br>'U+0145' (uni0145) (ID 503)<br>'U+00D1' (uni00D1) (ID 502)<br>'U+00D3' (uni00D3) (ID 505)<br>'U+014E' (uni014E) (ID 510)<br>'U+00D4' (uni00D4) (ID 506)<br>'U+00D6' (uni00D6) (ID 508)<br>'U+00D2' (uni00D2) (ID 504)<br>'U+0150' (uni0150) (ID 511)<br>'U+014C' (uni014C) (ID 509)<br>'U+01FE' (uni01FE) (ID 513)<br>'U+00D5' (uni00D5) (ID 507)<br>'U+0154' (uni0154) (ID 519)<br>'U+0158' (uni0158) (ID 520)<br>'U+0156' (uni0156) (ID 521)<br>'U+0160' (uni0160) (ID 524)<br>'U+015C' (uni015C) (ID 523)<br>'U+0218' (uni0218) (ID 527)<br>'U+0164' (uni0164) (ID 529)<br>'U+021A' (uni021A) (ID 530)<br>'U+00DA' (uni00DA) (ID 534)<br>'U+016C' (uni016C) (ID 539)<br>'U+00DB' (uni00DB) (ID 535)<br>'U+00DC' (uni00DC) (ID 537)<br>'U+00D9' (uni00D9) (ID 533)<br>'U+0170' (uni0170) (ID 541)<br>'U+016A' (uni016A) (ID 538)<br>'U+016E' (uni016E) (ID 540)<br>'U+0168' (uni0168) (ID 536)<br>'U+1E82' (uni1E82) (ID 544)<br>'U+0174' (uni0174) (ID 545)<br>'U+1E84' (uni1E84) (ID 546)<br>'U+1E80' (uni1E80) (ID 543)<br>'U+00DD' (uni00DD) (ID 548)<br>'U+0176' (uni0176) (ID 549)<br>'U+0178' (uni0178) (ID 550)<br>'U+1EF2' (uni1EF2) (ID 547)<br>'U+0179' (uni0179) (ID 551)<br>'U+017D' (uni017D) (ID 552)<br>'U+017B' (uni017B) (ID 553)<br>'U+00E1' (uni00E1) (ID 586)<br>'U+0103' (uni0103) (ID 591)<br>'U+00E2' (uni00E2) (ID 587)<br>'U+00E4' (uni00E4) (ID 589)<br>'U+00E0' (uni00E0) (ID 585)<br>'U+0101' (uni0101) (ID 590)<br>'U+00E5' (uni00E5) (ID 592)<br>'U+01FB' (uni01FB) (ID 593)<br>'U+00E3' (uni00E3) (ID 588)<br>'U+01FD' (uni01FD) (ID 596)<br>'U+0107' (uni0107) (ID 597)<br>'U+010D' (uni010D) (ID 599)<br>'U+0109' (uni0109) (ID 598)<br>'U+010B' (uni010B) (ID 601)<br>'U+010F' (uni010F) (ID 605)<br>'U+00E9' (uni00E9) (ID 609)<br>'U+0115' (uni0115) (ID 614)<br>'U+011B' (uni011B) (ID 611)<br>'U+00EA' (uni00EA) (ID 610)<br>'U+00EB' (uni00EB) (ID 612)<br>'U+0117' (uni0117) (ID 615)<br>'U+00E8' (uni00E8) (ID 608)<br>'U+0113' (uni0113) (ID 613)<br>'U+011F' (uni011F) (ID 621)<br>'U+011D' (uni011D) (ID 619)<br>'U+0123' (uni0123) (ID 623)<br>'U+0121' (uni0121) (ID 622)<br>'U+0125' (uni0125) (ID 625)<br>'U+00ED' (uni00ED) (ID 631)<br>'U+012D' (uni012D) (ID 636)<br>'U+00EE' (uni00EE) (ID 632)<br>'U+00EF' (uni00EF) (ID 634)<br>'U+00EC' (uni00EC) (ID 630)<br>'U+0133' (uni0133) (ID 640)<br>'U+012B' (uni012B) (ID 635)<br>'U+0129' (uni0129) (ID 633)<br>'U+0137' (uni0137) (ID 643)<br>'U+013A' (uni013A) (ID 646)<br>'U+013E' (uni013E) (ID 647)<br>'U+013C' (uni013C) (ID 648)<br>'U+0140' (uni0140) (ID 650)<br>'U+0144' (uni0144) (ID 651)<br>'U+0149' (uni0149) (ID 655)<br>'U+0148' (uni0148) (ID 652)<br>'U+0146' (uni0146) (ID 654)<br>'U+00F1' (uni00F1) (ID 653)<br>'U+00F3' (uni00F3) (ID 657)<br>'U+014F' (uni014F) (ID 662)<br>'U+00F4' (uni00F4) (ID 658)<br>'U+00F6' (uni00F6) (ID 660)<br>'U+00F2' (uni00F2) (ID 656)<br>'U+0151' (uni0151) (ID 663)<br>'U+014D' (uni014D) (ID 661)<br>'U+01FF' (uni01FF) (ID 665)<br>'U+00F5' (uni00F5) (ID 659)<br>'U+0155' (uni0155) (ID 671)<br>'U+0159' (uni0159) (ID 672)<br>'U+0157' (uni0157) (ID 673)<br>'U+015B' (uni015B) (ID 674)<br>'U+0161' (uni0161) (ID 676)<br>'U+015D' (uni015D) (ID 675)<br>'U+0219' (uni0219) (ID 679)<br>'U+0165' (uni0165) (ID 683)<br>'U+021B' (uni021B) (ID 684)<br>'U+00FA' (uni00FA) (ID 688)<br>'U+016D' (uni016D) (ID 693)<br>'U+00FB' (uni00FB) (ID 689)<br>'U+00FC' (uni00FC) (ID 691)<br>'U+00F9' (uni00F9) (ID 687)<br>'U+0171' (uni0171) (ID 695)<br>'U+016B' (uni016B) (ID 692)<br>'U+016F' (uni016F) (ID 694)<br>'U+0169' (uni0169) (ID 690)<br>'U+1E83' (uni1E83) (ID 698)<br>'U+0175' (uni0175) (ID 699)<br>'U+1E85' (uni1E85) (ID 700)<br>'U+1E81' (uni1E81) (ID 697)<br>'U+00FD' (uni00FD) (ID 702)<br>'U+0177' (uni0177) (ID 703)<br>'U+00FF' (uni00FF) (ID 704)<br>'U+1EF3' (uni1EF3) (ID 701)<br>'U+017A' (uni017A) (ID 705)<br>'U+017E' (uni017E) (ID 706)<br>'U+017C' (uni017C) (ID 707)</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>glyf</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Glyphs (FRACTIONS) which are made from components.<br>Great.</p></td>
+                    <td class="detail"><p>'U+00BD' (uni00BD) (ID 830)<br>'U+00BC' (uni00BC) (ID 829)<br>'U+00BE' (uni00BE) (ID 831)</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="W">
+                    <td class="code"><p>Warning</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>glyf</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Glyphs (LATIN) which chould be made from components (in many cases).<br>Please investigate and approve if correct.</p></td>
+                    <td class="detail"><p>'U+FB00' (uniFB00) (ID 718)<br>'U+FB03' (uniFB03) (ID 734)<br>'U+FB04' (uniFB04) (ID 750)<br>'U+FB01' (uniFB01) (ID 731)<br>'U+FB02' (uniFB02) (ID 747)</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>glyf</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Glyphs (LATIN) which chould be made from components (in many cases).<br>Please investigate and approve if correct.</p></td>
+                    <td class="detail"><p>'U+01FA' (uni01FA) (ID 443)<br>'U+0135' (uni0135) (ID 641)</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>glyf</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Glyphs (OTHER) which chould be made from components (in many cases).<br>Please investigate and approve if correct.</p></td>
+                    <td class="detail"><p>'U+00AD' (uni00AD) (ID 761)</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Should not be Composite (CFF)</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Should not be Composite (CFF)_cell">
+                <button id="Should not be Composite (CFF)_btn" onclick='toggle_detail("Should not be Composite (CFF)");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Should not be Composite (CFF)</h3></th></tr>
+            </thead>
+            <tbody id="Should not be Composite (CFF)" class="result_body">
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>CFF </p></td>
+                    <td class="feature"><p>Composite</p></td>
+                    <td class="message"><p>CFF font should not have any composite.</p></td>
+                    <td class="detail"><p>This is not a CFF font. Skipped this check.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Advance Width (zero or negative)</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Advance Width (zero or negative)_cell">
+                <button id="Advance Width (zero or negative)_btn" onclick='toggle_detail("Advance Width (zero or negative)");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Advance Width (zero or negative)</h3></th></tr>
+            </thead>
+            <tbody id="Advance Width (zero or negative)" class="result_body">
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>hmtx</p></td>
+                    <td class="feature"><p>advance</p></td>
+                    <td class="message"><p>Pull glyphs with advance width zero.</p></td>
+                    <td class="detail"><p>Index 1 = '0'.<br>Index 2 = '0'.<br>'U+0300' (uni0300) (ID 868) = '0'.<br>'U+0301' (uni0301) (ID 870) = '0'.<br>'U+0302' (uni0302) (ID 872) = '0'.<br>'U+030C' (uni030C) (ID 874) = '0'.<br>'U+0303' (uni0303) (ID 877) = '0'.<br>'U+0308' (uni0308) (ID 879) = '0'.<br>'U+0304' (uni0304) (ID 881) = '0'.<br>'U+0306' (uni0306) (ID 883) = '0'.<br>'U+030A' (uni030A) (ID 885) = '0'.<br>'U+030B' (uni030B) (ID 887) = '0'.<br>'U+0307' (uni0307) (ID 889) = '0'.<br>'U+0327' (uni0327) (ID 891) = '0'.<br>'U+0326' (uni0326) (ID 892) = '0'.<br>Index 893 = '0'.<br>'U+0331' (uni0331) (ID 894) = '0'.<br>'U+032E' (uni032E) (ID 895) = '0'.<br>'U+0328' (uni0328) (ID 897) = '0'.<br>'U+0323' (uni0323) (ID 898) = '0'.<br>Index 899 = '0'.<br>Index 900 = '0'.<br>Index 901 = '0'.<br>Index 902 = '0'.<br>Index 903 = '0'.<br>Index 904 = '0'.<br>Index 905 = '0'.<br>Index 906 = '0'.<br>Index 907 = '0'.<br>Index 908 = '0'.<br>Index 909 = '0'.<br>'U+135F' (uni135F) (ID 1016) = '0'.<br>'U+135D' (uni135D) (ID 1028) = '0'.<br>'U+135E' (uni135E) (ID 1029) = '0'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>glyf</p></td>
+                    <td class="feature"><p>advance width</p></td>
+                    <td class="message"><p>Advance width should be zero.</p></td>
+                    <td class="detail"><p>The following glyphs (1) should have advance width 0:<br>'U+0315' (uni0315) (ID 875) = '213'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Un/Necessary Tables</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Un/Necessary Tables_cell">
+                <button id="Un/Necessary Tables_btn" onclick='toggle_detail("Un/Necessary Tables");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Un/Necessary Tables</h3></th></tr>
+            </thead>
+            <tbody id="Un/Necessary Tables" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>-/-</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Unnecessary tables (private tables and embedded bitmap tables).</p></td>
+                    <td class="detail"><p>OK: No unnecessary tables.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>DSIG</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Necessary tables.</p></td>
+                    <td class="detail"><p>'DSIG' is missing. Please investigate.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>First Four Characters</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="First Four Characters_cell">
+                <button id="First Four Characters_btn" onclick='toggle_detail("First Four Characters");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>First Four Characters</h3></th></tr>
+            </thead>
+            <tbody id="First Four Characters" class="result_body">
+                    
+                <tr class="W">
+                    <td class="code"><p>Warning</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>post</p></td>
+                    <td class="feature"><p></p></td>
+                    <td class="message"><p>Check if tables are present: 'post' table if ttf, 'CFF ' table if otf.</p></td>
+                    <td class="detail"><p>CANNOT check first four glyphs names. Format 3.0 post table.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>-/-</p></td>
+                    <td class="feature"><p>Index 0: </p></td>
+                    <td class="message"><p>0                 (bestname)</p></td>
+                    <td class="detail"><p>Glyph has contour: True</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>-/-</p></td>
+                    <td class="feature"><p>Index 1: </p></td>
+                    <td class="message"><p>1                 (bestname)</p></td>
+                    <td class="detail"><p>Glyph has contour: False</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>-/-</p></td>
+                    <td class="feature"><p>Index 2: </p></td>
+                    <td class="message"><p>2                 (bestname)</p></td>
+                    <td class="detail"><p>Glyph has contour: False</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>-/-</p></td>
+                    <td class="feature"><p>Index 3: </p></td>
+                    <td class="message"><p>U+00A0            (bestname)</p></td>
+                    <td class="detail"><p>Glyph has contour: False</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>OS/2 table</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="OS/2 table_cell">
+                <button id="OS/2 table_btn" onclick='toggle_detail("OS/2 table");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>OS/2 table</h3></th></tr>
+            </thead>
+            <tbody id="OS/2 table" class="result_body">
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>table version 3.</p></td>
+                    <td class="message"><p>'OS/2' table version should be 4.</p></td>
+                    <td class="detail"><p>'OS/2' table version is: 3. Verify that this is the version required.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>italic flag</p></td>
+                    <td class="message"><p>'OS/2' fsSelection italic flag should match the 'head' macStyle italic flag. They should be the same.</p></td>
+                    <td class="detail"><p>OK: They are the same.'OS/2' fsSelection italic flag is False and 'head' macStyle italic flag is False.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>Panose Normal</p></td>
+                    <td class="message"><p>Because 'OS/2' fsSelection italic flag is False and 'head' macStyle italic flag is False the OS/2 panose array form flag should be a 'Normal' entry.</p></td>
+                    <td class="detail"><p>OK: 'OS/2' panose array form flag is a 'Normal' entry.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>usBreakChar</p></td>
+                    <td class="message"><p>'OS/2' usBreakChar should be 0x0020.</p></td>
+                    <td class="detail"><p>OK: 'OS/2' usBreakChar is 0x0020.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>usDefaultChar</p></td>
+                    <td class="message"><p>'OS/2' usDefaultChar should be 0x0000.</p></td>
+                    <td class="detail"><p>OK: 'OS/2' usDefaultChar is 0x0000.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>usFirstCharIndex</p></td>
+                    <td class="message"><p>'OS/2' usFirstCharIndex should be 0x0020</p></td>
+                    <td class="detail"><p>OK: 'OS/2' usFirstCharIndex is 0x0020.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>usLastCharIndex</p></td>
+                    <td class="message"><p>'OS/2' usLastCharIndex should be 0xFB04</p></td>
+                    <td class="detail"><p>OK: 'OS/2' usLastCharIndex is 0xFB04.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>Embedding Level</p></td>
+                    <td class="message"><p>For library fonts embedding level should be 'Preview & Print Embedding'.</p></td>
+                    <td class="detail"><p>Embedding Level is 'Embedding Level = Editable Embedding'. If custom font please check against job spec.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>fsType</p></td>
+                    <td class="message"><p>Pull 'OS/2' fsType.</p></td>
+                    <td class="detail"><p>embedding level: Embedding Level = Editable Embedding<br>no subsetting flag: False<br>bitmap embedding only flag: False</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>fvar table</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="fvar table_cell">
+                <button id="fvar table_btn" onclick='toggle_detail("fvar table");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>fvar table</h3></th></tr>
+            </thead>
+            <tbody id="fvar table" class="result_body">
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>fvar</p></td>
+                    <td class="feature"><p>variable font</p></td>
+                    <td class="message"><p>Variable font must have a fvar table.</p></td>
+                    <td class="detail"><p>This font is not a variable font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>STAT table</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="STAT table_cell">
+                <button id="STAT table_btn" onclick='toggle_detail("STAT table");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>STAT table</h3></th></tr>
+            </thead>
+            <tbody id="STAT table" class="result_body">
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>STAT</p></td>
+                    <td class="feature"><p>static font</p></td>
+                    <td class="message"><p>Variable font must have a STAT table.</p></td>
+                    <td class="detail"><p>No check of STAT table for static fonts included, yet. Static fonts do not need to have a STAT table. It is only recommended by Microsoft, not required.<br>More infos here:<br><a href='https://docs.microsoft.com/en-us/typography/opentype/spec/stat'>https://docs.microsoft.com/en-us/typography/opentype/spec/stat</a></p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Missing uni0000 and uni000D in cmap Table</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Missing uni0000 and uni000D in cmap Table_cell">
+                <button id="Missing uni0000 and uni000D in cmap Table_btn" onclick='toggle_detail("Missing uni0000 and uni000D in cmap Table");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Missing uni0000 and uni000D in cmap Table</h3></th></tr>
+            </thead>
+            <tbody id="Missing uni0000 and uni000D in cmap Table" class="result_body">
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>cmap(0, 3, 0)</p></td>
+                    <td class="message"><p>Missing uni0000 and uni000D in cmap MS/BMP(0,3,0) and Unicode/2.0, BMP only(3,1,0).</p></td>
+                    <td class="detail"><p>Please verify with spec or Project Manager if uni0000 is required, if so: PLEASE ADD.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>cmap(0, 3, 0)</p></td>
+                    <td class="message"><p>Missing uni0000 and uni000D in cmap MS/BMP(0,3,0) and Unicode/2.0, BMP only(3,1,0).</p></td>
+                    <td class="detail"><p>Please verify with spec or Project Manager if uni000D is required, if so: PLEASE ADD.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>cmap(3, 1, 0)</p></td>
+                    <td class="message"><p>Missing uni0000 and uni000D in cmap MS/BMP(0,3,0) and Unicode/2.0, BMP only(3,1,0).</p></td>
+                    <td class="detail"><p>Please verify with spec or Project Manager if uni0000 is required, if so: PLEASE ADD.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>cmap(3, 1, 0)</p></td>
+                    <td class="message"><p>Missing uni0000 and uni000D in cmap MS/BMP(0,3,0) and Unicode/2.0, BMP only(3,1,0).</p></td>
+                    <td class="detail"><p>Please verify with spec or Project Manager if uni000D is required, if so: PLEASE ADD.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Obsolete Language Tag TUR</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Obsolete Language Tag TUR_cell">
+                <button id="Obsolete Language Tag TUR_btn" onclick='toggle_detail("Obsolete Language Tag TUR");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Obsolete Language Tag TUR</h3></th></tr>
+            </thead>
+            <tbody id="Obsolete Language Tag TUR" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>-/-</p></td>
+                    <td class="feature"><p>TRK</p></td>
+                    <td class="message"><p>Obsolete language tag 'TUR' should be TRK.</p></td>
+                    <td class="detail"><p>OK: No language tag 'TUR' in any table.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Name Table</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Name Table_cell">
+                <button id="Name Table_btn" onclick='toggle_detail("Name Table");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Name Table</h3></th></tr>
+            </thead>
+            <tbody id="Name Table" class="result_body">
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac NID 0 (1, 0, 0, 0)</p></td>
+                    <td class="message"><p>Mac NID 0, Copyright.</p></td>
+                    <td class="detail"><p>Please verify agains spec.<br>Mac NID 0 is '© 2018 Microsoft Corporation. All Rights Reserved.'<br>It should follow this structure: '<mark>Copyright (c) XXXX - XXXX /entity/. All rights r</mark>eserved.' </p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac NID 1</p></td>
+                    <td class="message"><p>Mac NID 1, Family Name length shouldn't be longer then 31.</p></td>
+                    <td class="detail"><p>OK: NID 1 length is '5'<br>'Nyala' </p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac NID 1</p></td>
+                    <td class="message"><p>Reserved word used in Family Name NID1 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 1 does not contain any of the following keywords: 'Regular, Bold, Roman'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac NID 1</p></td>
+                    <td class="message"><p>Reserved word used in Family Name NID1 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 1 does not contain any of the following keywords: 'Book, Ultra, Normal'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac NID 1</p></td>
+                    <td class="message"><p>Reserved word used in Family Name NID1 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 1 does not contain any of the following keywords: 'Roman'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac NID 1</p></td>
+                    <td class="message"><p>Reserved word used in Family Name NID1 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 1 does not contain any of the following keywords: 'Regular, Bold, Italic, Extra, Light, Black, Thin, Wide, Ultra'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac NID 1</p></td>
+                    <td class="message"><p>Should be camel case Family Name NID1</p></td>
+                    <td class="detail"><p>NID 1: OK. No camel case required.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac NID 1</p></td>
+                    <td class="message"><p>Check style extentions Family Name NID1</p></td>
+                    <td class="detail"><p>NID 1 does not contain any of the following beginnings: 'Ex, Extra, X, Xtra, Demi, Dm, Ultra, Sm, Semi'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name/OS/2</p></td>
+                    <td class="feature"><p>Mac NID 1</p></td>
+                    <td class="message"><p>Width Names Family Name NID1</p></td>
+                    <td class="detail"><p>OS/2 usWidthClass seems to be correct. Cannot find any specific width name in the name:<br>'Nyala'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac NID 2</p></td>
+                    <td class="message"><p>Mac NID 2, Subfamily.</p></td>
+                    <td class="detail"><p>OK: NID 2 is 'Regular'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac NID 2</p></td>
+                    <td class="message"><p>Reserved word used in Subfamily Name NID2 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 2 does not contain any of the following keywords: 'Book, Ultra, Normal'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac NID 2</p></td>
+                    <td class="message"><p>Reserved word used in Subfamily Name NID2 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 2 does not contain any of the following keywords: 'Roman'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac NID 4</p></td>
+                    <td class="message"><p>Mac NID 4, Full Name length shouldn't be longer than 31.</p></td>
+                    <td class="detail"><p>OK: NID 4 length is '5'<br>'Nyala' </p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac NID 4</p></td>
+                    <td class="message"><p>If NID 2 is 'Regular': Mac NID 4 = NID 1</p></td>
+                    <td class="detail"><p>NID 4 'Nyala' = NID 1 'Nyala'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac NID 4</p></td>
+                    <td class="message"><p>Reserved word used in Full Font Name NID4 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 4 does not contain any of the following keywords: 'Book, Ultra, Normal'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac NID 4</p></td>
+                    <td class="message"><p>Reserved word used in Full Font Name NID4 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 4 does not contain any of the following keywords: 'Roman'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac NID 4</p></td>
+                    <td class="message"><p>Should be camel case Full Font Name NID4</p></td>
+                    <td class="detail"><p>NID 4: OK. No camel case required.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac NID 4</p></td>
+                    <td class="message"><p>Check style extentions Full Font Name NID4</p></td>
+                    <td class="detail"><p>NID 4 does not contain any of the following beginnings: 'Ex, Extra, X, Xtra, Demi, Dm, Ultra, Sm, Semi'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name/OS/2</p></td>
+                    <td class="feature"><p>Mac NID 4</p></td>
+                    <td class="message"><p>Width Names Full Font Name NID4</p></td>
+                    <td class="detail"><p>OS/2 usWidthClass seems to be correct. Cannot find any specific width name in the name:<br>'Nyala'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name/head</p></td>
+                    <td class="feature"><p>Mac NID 5</p></td>
+                    <td class="message"><p>name table version should match head table fontRevision.</p></td>
+                    <td class="detail"><p>OK: name table version entry 'Version 5.04;O365' does match fontRevision 'Version 5.04'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac NID 6</p></td>
+                    <td class="message"><p>Mac NID 6, PostScript Name length shouldn't be longer then 27.<br>(Otherwise it may cause issues in MS Word.)</p></td>
+                    <td class="detail"><p>NID 6 length is '13'<br>'Nyala-Regular' </p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac NID 6</p></td>
+                    <td class="message"><p>Mac NID 6, PostScript Name check for illegal characters.<br>Monotype uses NID 6 for creating CSS classes for their demo HTML. The following characters cause issues in the CSS code: '<br>, ,  , &, _, [, ], (, ), {, }, <, >, /, \, %'</p></td>
+                    <td class="detail"><p>NID 6 is 'Nyala-Regular', Everything looks good.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac NID 6</p></td>
+                    <td class="message"><p>Mac NID 6, PostScript Name check for illegal characters.<br>'space' in NID 6 cause issues in fontbook for Mac.</p></td>
+                    <td class="detail"><p>NID 6 is 'Nyala-Regular', Everything looks good.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac NID 6</p></td>
+                    <td class="message"><p>Reserved word used in PostScript Name NID6 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 6 does not contain any of the following keywords: 'Book, Ultra, Normal'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac NID 6</p></td>
+                    <td class="message"><p>Reserved word used in PostScript Name NID6 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 6 does not contain any of the following keywords: 'Roman'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac NID 6</p></td>
+                    <td class="message"><p>Should be camel case PostScript Name NID6</p></td>
+                    <td class="detail"><p>NID 6: OK. No camel case required.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac NID 7</p></td>
+                    <td class="message"><p>Test Trademark</p></td>
+                    <td class="detail"><p>Current trademark entry is:<br>'Nyala is either a registered trademark or a trademark of Microsoft Corporation in the United States and/or other countries.'<br>Trademark does not follow Monotype standards.<br>Please verify agains spec.<br>More infos here:<br><a href=https://docs.google.com/spreadsheets/d/1dFPdFvhchjlgDCUftS7G1OHmG8yeW5b2NZDqca-Hups/edit#gid=1989209356>Monotype Manufacturing Settings (google doc)</a><br></p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac NID 8</p></td>
+                    <td class="message"><p>Manufactur (NID 8) should be Monotype IP</p></td>
+                    <td class="detail"><p>Mac NID 8 is 'Tiro Typeworks', but should be one of these: 'Monotype Imaging Inc.', 'Monotype Imaging Inc', 'Monotype ITC Inc.', 'Monotype Hong Kong Limited', 'Monotype Limited', 'Monotype KK', 'Monotype Solutions India Private Limited', 'Monotype GmbH', 'MyFonts Inc.', 'MyFonts Inc', 'Fontsmith Ltd.', 'Fontsmith Ltd'.<br></p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac NID 12</p></td>
+                    <td class="message"><p>Mac NID 12, URL Vendor should be 'http://www.monotype.com'. </p></td>
+                    <td class="detail"><p>NID 12 is http://www.tiro.com, but should be http://www.monotype.com. Please verify against job spec.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac NID 8/13</p></td>
+                    <td class="message"><p>License text</p></td>
+                    <td class="detail"><p>Cannot check license text because of unkown entity 'Tiro Typeworks' (NID8). Please verify against job spec.<br>Mac NID 13 is:<br>Microsoft supplied font. You may use this font to create, display, and print content as permitted by the license terms or terms of use, of the Microsoft product, service, or content in which this font was included. You may only (i) embed this font in content as permitted by the embedding restrictions included in this font; and (ii) temporarily download this font to a printer or other output device to help print content. Any other use is prohibited.<br>, most common Monotype license test is:<br><mark>This font software is the property of Monotype Imaging Inc., or one of its affiliated entities (collectively, Monotype) and its use by you is covered under the terms of a license agreement. You have obtained this font software either directly from Monotype or together with software distributed by one of the licensees of Monotype. This software is a valuable asset of Monotype. Unless you have entered into a specific license agreement granting you additional rights, your use of this software is limited by the terms of the actual license agreement you have entered into with Monotype. You may not copy or distribute this software. If you have any questions concerning your rights you should review the license agreement you received with the software. You can learn more about Monotype by clicking here: www.monotype.com</mark>.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 0 (3, 1, 1033, 0)</p></td>
+                    <td class="message"><p>MS NID 0, Copyright.</p></td>
+                    <td class="detail"><p>Please verify agains spec.<br>MS NID 0 is '© 2018 Microsoft Corporation. All Rights Reserved.'<br>It should follow this structure: '<mark>Copyright (c) XXXX - XXXX /entity/. All rights r</mark>eserved.' </p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 1</p></td>
+                    <td class="message"><p>MS NID 1, Family Name length shouldn't be longer then 31.</p></td>
+                    <td class="detail"><p>OK: NID 1 length is '5'<br>'Nyala' </p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 1</p></td>
+                    <td class="message"><p>Reserved word used in Family Name NID1 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 1 does not contain any of the following keywords: 'Regular, Bold, Roman'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 1</p></td>
+                    <td class="message"><p>Reserved word used in Family Name NID1 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 1 does not contain any of the following keywords: 'Book, Ultra, Normal'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 1</p></td>
+                    <td class="message"><p>Reserved word used in Family Name NID1 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 1 does not contain any of the following keywords: 'Roman'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 1</p></td>
+                    <td class="message"><p>Reserved word used in Family Name NID1 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 1 does not contain any of the following keywords: 'Regular, Bold, Italic, Extra, Light, Black, Thin, Wide, Ultra'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 1</p></td>
+                    <td class="message"><p>Should be camel case Family Name NID1</p></td>
+                    <td class="detail"><p>NID 1: OK. No camel case required.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 1</p></td>
+                    <td class="message"><p>Check style extentions Family Name NID1</p></td>
+                    <td class="detail"><p>NID 1 does not contain any of the following beginnings: 'Ex, Extra, X, Xtra, Demi, Dm, Ultra, Sm, Semi'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name/OS/2</p></td>
+                    <td class="feature"><p>MS NID 1</p></td>
+                    <td class="message"><p>Width Names Family Name NID1</p></td>
+                    <td class="detail"><p>OS/2 usWidthClass seems to be correct. Cannot find any specific width name in the name:<br>'Nyala'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 2</p></td>
+                    <td class="message"><p>MS NID 2, Subfamily.</p></td>
+                    <td class="detail"><p>OK: NID 2 is 'Regular'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 2</p></td>
+                    <td class="message"><p>Reserved word used in Subfamily Name NID2 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 2 does not contain any of the following keywords: 'Book, Ultra, Normal'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 2</p></td>
+                    <td class="message"><p>Reserved word used in Subfamily Name NID2 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 2 does not contain any of the following keywords: 'Roman'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 4</p></td>
+                    <td class="message"><p>MS NID 4, Full Name length shouldn't be longer than 31.</p></td>
+                    <td class="detail"><p>OK: NID 4 length is '5'<br>'Nyala' </p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 4</p></td>
+                    <td class="message"><p>If NID 2 is 'Regular': MS NID 4 = NID 1</p></td>
+                    <td class="detail"><p>NID 4 'Nyala' = NID 1 'Nyala'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 4</p></td>
+                    <td class="message"><p>Reserved word used in Full Font Name NID4 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 4 does not contain any of the following keywords: 'Book, Ultra, Normal'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 4</p></td>
+                    <td class="message"><p>Reserved word used in Full Font Name NID4 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 4 does not contain any of the following keywords: 'Roman'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 4</p></td>
+                    <td class="message"><p>Should be camel case Full Font Name NID4</p></td>
+                    <td class="detail"><p>NID 4: OK. No camel case required.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 4</p></td>
+                    <td class="message"><p>Check style extentions Full Font Name NID4</p></td>
+                    <td class="detail"><p>NID 4 does not contain any of the following beginnings: 'Ex, Extra, X, Xtra, Demi, Dm, Ultra, Sm, Semi'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name/OS/2</p></td>
+                    <td class="feature"><p>MS NID 4</p></td>
+                    <td class="message"><p>Width Names Full Font Name NID4</p></td>
+                    <td class="detail"><p>OS/2 usWidthClass seems to be correct. Cannot find any specific width name in the name:<br>'Nyala'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name/head</p></td>
+                    <td class="feature"><p>MS NID 5</p></td>
+                    <td class="message"><p>name table version should match head table fontRevision.</p></td>
+                    <td class="detail"><p>OK: name table version entry 'Version 5.04;O365' does match fontRevision 'Version 5.04'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 6</p></td>
+                    <td class="message"><p>MS NID 6, PostScript Name length shouldn't be longer then 27.<br>(Otherwise it may cause issues in MS Word.)</p></td>
+                    <td class="detail"><p>NID 6 length is '13'<br>'Nyala-Regular' </p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 6</p></td>
+                    <td class="message"><p>MS NID 6, PostScript Name check for illegal characters.<br>Monotype uses NID 6 for creating CSS classes for their demo HTML. The following characters cause issues in the CSS code: '<br>, ,  , &, _, [, ], (, ), {, }, <, >, /, \, %'</p></td>
+                    <td class="detail"><p>NID 6 is 'Nyala-Regular', Everything looks good.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 6</p></td>
+                    <td class="message"><p>MS NID 6, PostScript Name check for illegal characters.<br>'space' in NID 6 cause issues in fontbook for Mac.</p></td>
+                    <td class="detail"><p>NID 6 is 'Nyala-Regular', Everything looks good.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 6</p></td>
+                    <td class="message"><p>Reserved word used in PostScript Name NID6 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 6 does not contain any of the following keywords: 'Book, Ultra, Normal'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 6</p></td>
+                    <td class="message"><p>Reserved word used in PostScript Name NID6 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 6 does not contain any of the following keywords: 'Roman'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 6</p></td>
+                    <td class="message"><p>Should be camel case PostScript Name NID6</p></td>
+                    <td class="detail"><p>NID 6: OK. No camel case required.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 7</p></td>
+                    <td class="message"><p>Test Trademark</p></td>
+                    <td class="detail"><p>Current trademark entry is:<br>'Nyala is either a registered trademark or a trademark of Microsoft Corporation in the United States and/or other countries.'<br>Trademark does not follow Monotype standards.<br>Please verify agains spec.<br>More infos here:<br><a href=https://docs.google.com/spreadsheets/d/1dFPdFvhchjlgDCUftS7G1OHmG8yeW5b2NZDqca-Hups/edit#gid=1989209356>Monotype Manufacturing Settings (google doc)</a><br></p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 8</p></td>
+                    <td class="message"><p>Manufactur (NID 8) should be Monotype IP</p></td>
+                    <td class="detail"><p>MS NID 8 is 'Tiro Typeworks', but should be one of these: 'Monotype Imaging Inc.', 'Monotype Imaging Inc', 'Monotype ITC Inc.', 'Monotype Hong Kong Limited', 'Monotype Limited', 'Monotype KK', 'Monotype Solutions India Private Limited', 'Monotype GmbH', 'MyFonts Inc.', 'MyFonts Inc', 'Fontsmith Ltd.', 'Fontsmith Ltd'.<br></p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 11</p></td>
+                    <td class="message"><p>MS NID 11, URL Vendor should be 'http://www.monotype.com'. </p></td>
+                    <td class="detail"><p>NID 11 is http://www.microsoft.com/typography, but should be http://www.monotype.com. Please verify against job spec.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 12</p></td>
+                    <td class="message"><p>MS NID 12, URL Vendor should be 'http://www.monotype.com'. </p></td>
+                    <td class="detail"><p>NID 12 is http://www.tiro.com, but should be http://www.monotype.com. Please verify against job spec.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 8/13</p></td>
+                    <td class="message"><p>License text</p></td>
+                    <td class="detail"><p>Cannot check license text because of unkown entity 'Tiro Typeworks' (NID8). Please verify against job spec.<br>MS NID 13 is:<br>Microsoft supplied font. You may use this font to create, display, and print content as permitted by the license terms or terms of use, of the Microsoft product, service, or content in which this font was included. You may only (i) embed this font in content as permitted by the embedding restrictions included in this font; and (ii) temporarily download this font to a printer or other output device to help print content. Any other use is prohibited.<br>, most common Monotype license test is:<br><mark>This font software is the property of Monotype Imaging Inc., or one of its affiliated entities (collectively, Monotype) and its use by you is covered under the terms of a license agreement. You have obtained this font software either directly from Monotype or together with software distributed by one of the licensees of Monotype. This software is a valuable asset of Monotype. Unless you have entered into a specific license agreement granting you additional rights, your use of this software is limited by the terms of the actual license agreement you have entered into with Monotype. You may not copy or distribute this software. If you have any questions concerning your rights you should review the license agreement you received with the software. You can learn more about Monotype by clicking here: www.monotype.com</mark>.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 14</p></td>
+                    <td class="message"><p>MS NID 14, URL Vendor should be 'http://www.monotype.com'. </p></td>
+                    <td class="detail"><p>NID 14 is http://www.microsoft.com/typography/fonts, but should be http://www.monotype.com. Please verify against job spec.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 0</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are the same.<br>Mac is: '© 2018 Microsoft Corporation. All Rights Reserved.'<br>MS is: '© 2018 Microsoft Corporation. All Rights Reserved.'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 1</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are the same.<br>Mac is: 'Nyala'<br>MS is: 'Nyala'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 2</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are the same.<br>Mac is: 'Regular'<br>MS is: 'Regular'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 3</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are the same.<br>Mac is: 'Microsoft: Nyala Regular'<br>MS is: 'Microsoft: Nyala Regular'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 4</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are the same.<br>Mac is: 'Nyala'<br>MS is: 'Nyala'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 5</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are the same.<br>Mac is: 'Version 5.04;O365'<br>MS is: 'Version 5.04;O365'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 6</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are the same.<br>Mac is: 'Nyala-Regular'<br>MS is: 'Nyala-Regular'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 7</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are the same.<br>Mac is: 'Nyala is either a registered trademark or a trademark of Microsoft Corporation in the United States and/or other countries.'<br>MS is: 'Nyala is either a registered trademark or a trademark of Microsoft Corporation in the United States and/or other countries.'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 8</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are the same.<br>Mac is: 'Tiro Typeworks'<br>MS is: 'Tiro Typeworks'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 9</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are the same.<br>Mac is: 'John Hudson and Geraldine Wade'<br>MS is: 'John Hudson and Geraldine Wade'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 10</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are the same.<br>Mac is: 'The Nyala typeface is named for the mountain nyala (tragelaphus buxtoni) a species of great African antelope native to the highlands of Ethiopia. The Ethiopic characters were designed by John Hudson, based on initial drawings by Geraldine Wade. The Latin characters were designed by John Hudson, and harmonise with the Ethiopic to facilitate the typesetting of texts including un-transliterated foreign names, technical terms, etc.'<br>MS is: 'The Nyala typeface is named for the mountain nyala (tragelaphus buxtoni) a species of great African antelope native to the highlands of Ethiopia. The Ethiopic characters were designed by John Hudson, based on initial drawings by Geraldine Wade. The Latin characters were designed by John Hudson, and harmonise with the Ethiopic to facilitate the typesetting of texts including un-transliterated foreign names, technical terms, etc.'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 12</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are the same.<br>Mac is: 'http://www.tiro.com'<br>MS is: 'http://www.tiro.com'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 13</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are the same.<br>Mac is: 'Microsoft supplied font. You may use this font to create, display, and print content as permitted by the license terms or terms of use, of the Microsoft product, service, or content in which this font was included. You may only (i) embed this font in content as permitted by the embedding restrictions included in this font; and (ii) temporarily download this font to a printer or other output device to help print content. Any other use is prohibited.'<br>MS is: 'Microsoft supplied font. You may use this font to create, display, and print content as permitted by the license terms or terms of use, of the Microsoft product, service, or content in which this font was included. You may only (i) embed this font in content as permitted by the embedding restrictions included in this font; and (ii) temporarily download this font to a printer or other output device to help print content. Any other use is prohibited.'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 11</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: 'No entry.'<br>MS [3, 1, 1033] is: '<mark>http://www.microsoft.com/typography</mark>'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 14</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: 'No entry.'<br>MS [3, 1, 1033] is: '<mark>http://www.microsoft.com/typography/fonts</mark>'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Macintosh NID 0 (Mac/Roman/English)</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Macintosh NID 0, Copyright' (Mac/Roman/English)</p></td>
+                    <td class="detail"><p>Copyright is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Macintosh NID 1 (Mac/Roman/English)</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Macintosh NID 1, Family Name' (Mac/Roman/English)</p></td>
+                    <td class="detail"><p>Family Name is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Macintosh NID 2 (Mac/Roman/English)</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Macintosh NID 2, Subfamily Name' (Mac/Roman/English)</p></td>
+                    <td class="detail"><p>Subfamily Name is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Macintosh NID 3 (Mac/Roman/English)</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Macintosh NID 3, Unique Font Identifier' (Mac/Roman/English)</p></td>
+                    <td class="detail"><p>Unique Font Identifier is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Macintosh NID 4 (Mac/Roman/English)</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Macintosh NID 4, Full Font Name' (Mac/Roman/English)</p></td>
+                    <td class="detail"><p>Full Font Name is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Macintosh NID 5 (Mac/Roman/English)</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Macintosh NID 5, Version' (Mac/Roman/English)</p></td>
+                    <td class="detail"><p>Version is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Macintosh NID 6 (Mac/Roman/English)</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Macintosh NID 6, PostScript Name' (Mac/Roman/English)</p></td>
+                    <td class="detail"><p>PostScript Name is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Macintosh NID 7 (Mac/Roman/English)</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Macintosh NID 7, Trademark' (Mac/Roman/English)</p></td>
+                    <td class="detail"><p>Trademark is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Macintosh NID 8 (Mac/Roman/English)</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Macintosh NID 8, Manufacturer' (Mac/Roman/English)</p></td>
+                    <td class="detail"><p>Manufacturer is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Macintosh NID 9 (Mac/Roman/English)</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Macintosh NID 9, Designer' (Mac/Roman/English)</p></td>
+                    <td class="detail"><p>Designer is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Macintosh NID 10 (Mac/Roman/English)</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Macintosh NID 10, Description' (Mac/Roman/English)</p></td>
+                    <td class="detail"><p>Description is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Macintosh NID 11 (Mac/Roman/English)</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Macintosh NID 11, Vendor URL' (Mac/Roman/English)</p></td>
+                    <td class="detail"><p>Vendor URL NID 11 (Mac/Roman/English) is missing.<br>Please verify agains spec. It might be ok if it's a symbol font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Macintosh NID 13 (Mac/Roman/English)</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Macintosh NID 13, License Text' (Mac/Roman/English)</p></td>
+                    <td class="detail"><p>License Text is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Macintosh NID 14 (Mac/Roman/English)</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Macintosh NID 14, License URL' (Mac/Roman/English)</p></td>
+                    <td class="detail"><p>License URL NID 14 (Mac/Roman/English) is missing.<br>Please verify agains spec. It might be ok if it's a symbol font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Macintosh NID 16 (Mac/Roman/English)</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Macintosh NID 16, Typographic Family Name' (Mac/Roman/English)</p></td>
+                    <td class="detail"><p>Typographic Family Name NID 16 (Mac/Roman/English) is missing.<br>Please verify agains spec. It might be ok if it's a symbol font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Macintosh NID 17 (Mac/Roman/English)</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Macintosh NID 17, Typographic Subfamily Name' (Mac/Roman/English)</p></td>
+                    <td class="detail"><p>Typographic Subfamily Name NID 17 (Mac/Roman/English) is missing.<br>Please verify agains spec. It might be ok if it's a symbol font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 0 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 0, Copyright' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Copyright is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 1 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 1, Family Name' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Family Name is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 2 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 2, Subfamily Name' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Subfamily Name is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 3 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 3, Unique Font Identifier' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Unique Font Identifier is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 4 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 4, Full Font Name' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Full Font Name is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 5 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 5, Version' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Version is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 6 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 6, PostScript Name' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>PostScript Name is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 7 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 7, Trademark' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Trademark is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 8 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 8, Manufacturer' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Manufacturer is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 9 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 9, Designer' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Designer is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 10 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 10, Description' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Description is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 11 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 11, Vendor URL' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Vendor URL is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 13 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 13, License Text' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>License Text is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 14 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 14, License URL' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>License URL is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 16 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 16, Typographic Family Name' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Typographic Family Name NID 16 (MS/BMP/English (U.S.)) is missing.<br>Please verify agains spec. It might be ok if it's a symbol font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 17 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 17, Typographic Subfamily Name' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Typographic Subfamily Name NID 17 (MS/BMP/English (U.S.)) is missing.<br>Please verify agains spec. It might be ok if it's a symbol font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Underline Position and Thickness</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Underline Position and Thickness_cell">
+                <button id="Underline Position and Thickness_btn" onclick='toggle_detail("Underline Position and Thickness");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Underline Position and Thickness</h3></th></tr>
+            </thead>
+            <tbody id="Underline Position and Thickness" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>post</p></td>
+                    <td class="feature"><p>underline position and thickness</p></td>
+                    <td class="message"><p>underlinePosition should be a negative and underlineThickness not 0 or negative.</p></td>
+                    <td class="detail"><p>underlinePosition is '-175'.<br>underlineThicknes is '50'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Kerning (kern Table and GPOS Kerning)</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Kerning (kern Table and GPOS Kerning)_cell">
+                <button id="Kerning (kern Table and GPOS Kerning)_btn" onclick='toggle_detail("Kerning (kern Table and GPOS Kerning)");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Kerning (kern Table and GPOS Kerning)</h3></th></tr>
+            </thead>
+            <tbody id="Kerning (kern Table and GPOS Kerning)" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>GPOS</p></td>
+                    <td class="feature"><p>kern</p></td>
+                    <td class="message"><p>Simple check if kern feature in GPOS table.</p></td>
+                    <td class="detail"><p>The font has GPOS kerning.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>kern</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Check if 'kern' table in font.</p></td>
+                    <td class="detail"><p>Font has no 'kern' table. Please verify if font requires kern table or if only GPOS kerning should be in font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>kern/GPOS</p></td>
+                    <td class="feature"><p>kern</p></td>
+                    <td class="message"><p>'kern' table and 'GPOS' kerning.</p></td>
+                    <td class="detail"><p>Font has GPOS kerning and no 'kern' table.<br>Verify with the spec or PM what is required.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Vendor ID</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Vendor ID_cell">
+                <button id="Vendor ID_btn" onclick='toggle_detail("Vendor ID");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Vendor ID</h3></th></tr>
+            </thead>
+            <tbody id="Vendor ID" class="result_body">
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>achVendID</p></td>
+                    <td class="message"><p>Vendor ID should be 'MONO'</p></td>
+                    <td class="detail"><p>Vendor ID is 'MS  '. Please change to 'MONO'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Vertical Metrics</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Vertical Metrics_cell">
+                <button id="Vertical Metrics_btn" onclick='toggle_detail("Vertical Metrics");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Vertical Metrics</h3></th></tr>
+            </thead>
+            <tbody id="Vertical Metrics" class="result_body">
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>OS/2 and head</p></td>
+                    <td class="feature"><p>sTypeAsc/Desc and unitsPerEm</p></td>
+                    <td class="message"><p>The result of sTypoAscender – sTypoDescender should match or exceed the unitsPerEm value.</p></td>
+                    <td class="detail"><p>The result of sTypoAscender – sTypoDescender (1884) should match or exceed the unitsPerEm value (2048), but it is smaller. Consciously?</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>hhea</p></td>
+                    <td class="feature"><p>Vertical Metrics</p></td>
+                    <td class="message"><p>Pull hhea Metrics</p></td>
+                    <td class="detail"><p>hhea.ascent: 1660<br>hhea.descent: -480<br>hhea.lineGap: 0</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>Vertical Metrics</p></td>
+                    <td class="message"><p>Pull OS/2 sTypo Metrics</p></td>
+                    <td class="detail"><p>OS2.sTypoAscender: 1536<br>OS2.sTypoDescender: -348<br>OS2.sTypoLineGap: 256</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>Vertical Metrics</p></td>
+                    <td class="message"><p>Pull OS/2 usWin Metrics</p></td>
+                    <td class="detail"><p>OS2.usWinAscent: 1660<br>OS2.usWinDescent: 480</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>xAvgCharWidth</p></td>
+                    <td class="message"><p>Get 'OS/2' xAvgCharWidth.</p></td>
+                    <td class="detail"><p>xAvgCharWidth = 1144.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>hhea</p></td>
+                    <td class="feature"><p>advanceWidthMax</p></td>
+                    <td class="message"><p>Get advanceWidthMax.</p></td>
+                    <td class="detail"><p>advanceWidthMax = 2660.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>hhea</p></td>
+                    <td class="feature"><p>xMin, yMin, xMax, yMax</p></td>
+                    <td class="message"><p>Get xMin, yMin, xMax, yMax.</p></td>
+                    <td class="detail"><p>xMin: -962<br>yMin: -534<br>xMax: 2620<br>yMax: 1829<br></p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>sTypoAscender</p></td>
+                    <td class="message"><p>Vertical Metrics 'sTypoAscender' shouldn't be negative.</p></td>
+                    <td class="detail"><p>sTypoAscender = '1536'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>sTypoDescender</p></td>
+                    <td class="message"><p>Vertical Metrics 'sTypoDescender' should be negative.</p></td>
+                    <td class="detail"><p>sTypoDescender = '-348'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>sTypoLineGap</p></td>
+                    <td class="message"><p>Vertical Metrics 'sTypoLineGap' shouldn't be negative.</p></td>
+                    <td class="detail"><p>sTypoLineGap = '256'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>usWinAscent</p></td>
+                    <td class="message"><p>Vertical Metrics 'usWinAscent' shouldn't be negative.</p></td>
+                    <td class="detail"><p>usWinAscent = '1660'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>usWinDescent</p></td>
+                    <td class="message"><p>Vertical Metrics 'usWinDescent' shouldn't be negative.</p></td>
+                    <td class="detail"><p>usWinDescent = '480'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>hhea</p></td>
+                    <td class="feature"><p>ascent</p></td>
+                    <td class="message"><p>Vertical Metrics 'ascent' shouldn't be negative.</p></td>
+                    <td class="detail"><p>ascent = '1660'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>hhea</p></td>
+                    <td class="feature"><p>descent</p></td>
+                    <td class="message"><p>Vertical Metrics 'descent' should be negative.</p></td>
+                    <td class="detail"><p>descent = '-480'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>hhea</p></td>
+                    <td class="feature"><p>lineGap</p></td>
+                    <td class="message"><p>Vertical Metrics 'lineGap' shouldn't be negative.</p></td>
+                    <td class="detail"><p>lineGap = '0'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>gasp Table</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="gasp Table_cell">
+                <button id="gasp Table_btn" onclick='toggle_detail("gasp Table");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>gasp Table</h3></th></tr>
+            </thead>
+            <tbody id="gasp Table" class="result_body">
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>gasp</p></td>
+                    <td class="feature"><p>Version</p></td>
+                    <td class="message"><p>gasp table verison should be 1.</p></td>
+                    <td class="detail"><p>Verison = 0</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>gasp</p></td>
+                    <td class="feature"><p>Default</p></td>
+                    <td class="message"><p>Pull gasp table Default.</p></td>
+                    <td class="detail"><p>Grid-fit = True, Do gray = True</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>gasp</p></td>
+                    <td class="feature"><p>Default</p></td>
+                    <td class="message"><p>Check gasp table Default.</p></td>
+                    <td class="detail"><p>gasp table default is:<br>Grid-fit = True, Do gray = True<br>and should be:<br>Grid-fit = True, Do gray = True, Symmetric grid-fit = True, Symmetric smoothing = True</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>gasp</p></td>
+                    <td class="feature"><p>subtable</p></td>
+                    <td class="message"><p>Pull gasp subtable: '8'</p></td>
+                    <td class="detail"><p>Do gray = True</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>head</p></td>
+                    <td class="feature"><p>lowestRecPPEM</p></td>
+                    <td class="message"><p>Monotype standard for lowestRecPPEM is '9'.</p></td>
+                    <td class="detail"><p>lowestRecPPEM is '9', but should be '9'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>gasp</p></td>
+                    <td class="feature"><p>subtable</p></td>
+                    <td class="message"><p>gasp subtable value should be one less than lowestRecPPEM (head table).</p></td>
+                    <td class="detail"><p>gasp subtable is '8' and should be '8'.<br>(head table lowestRecPPEM is '9')</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>gasp</p></td>
+                    <td class="feature"><p>subtable</p></td>
+                    <td class="message"><p>Monotype standard for gasp table.</p></td>
+                    <td class="detail"><p>gasp subtable '8' is<br>'Do gray = True'<br>equal to MT standard<br>'Do gray = True, Symmetric smoothing = True'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>PostScript names</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="PostScript names_cell">
+                <button id="PostScript names_btn" onclick='toggle_detail("PostScript names");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>PostScript names</h3></th></tr>
+            </thead>
+            <tbody id="PostScript names" class="result_body">
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Nyala Regular (nyala.ttf)</p></td>
+                    <td class="table"><p>post</p></td>
+                    <td class="feature"><p>PostScript names</p></td>
+                    <td class="message"><p>Postscript names should not be longer then 29 characters. May cause issues in PDF.</p></td>
+                    <td class="detail"><p>Font has no PostScript names.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>OT Features</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="OT Features_cell">
+                <button id="OT Features_btn" onclick='toggle_detail("OT Features");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>OT Features</h3></th></tr>
+            </thead>
+            <tbody id="OT Features" class="result_body">
+                      </tbody>
+            </table>
+    </body>
+</html>

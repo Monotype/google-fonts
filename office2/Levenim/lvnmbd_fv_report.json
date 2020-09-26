@@ -1,0 +1,71 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "lvnmbd.ttf",
+                "type": "ttf",
+                "size": 81260,
+                "md5": "61416f818fe342b0bb1636779b8e55d9",
+                "geometryMd5": "30b835f795b357c37f602a566e0900e0"
+            },
+            "name": {
+                "family": "Levenim MT",
+                "subFamily": "Bold",
+                "fullName": "Levenim MT Bold",
+                "psName": "LevenimMT-Bold",
+                "versionText": "Version 6.01;O365",
+                "copyright": "\u00a9 2014 The Monotype Corporation. All Rights Reserved.\r\n\r\nHebrew OpenType Layout logic copyright \u00a9 2003 & 2007, Ralph Hancock & John Hudson. This layout logic for Biblical Hebrew is open source software under the MIT License; see embedded license description for details.",
+                "trademark": "Unknown"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 384,
+                "embedding": "Editable Embedding",
+                "font_vendor_id": "    ",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Levenim MT Bold",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 2,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_f2be9afb8653427ba888dc5942658937.hints.glyph 65",
+                        "levelname": "ERROR",
+                        "message": "DELTAP2[] in Glyph 65 hints (PC 6) expected stack length of at least 1, but found length 0. This is a stack underflow!",
+                        "timestamp": "2020-09-25T17:32:29.403608Z",
+                        "orig_output": "validate_f2be9afb8653427ba888dc5942658937.hints.glyph 65 - ERROR - DELTAP2[] in Glyph 65 hints (PC 6) expected stack length of at least 1, but found length 0. This is a stack underflow!",
+                        "glyph": {
+                            "id": 65,
+                            "name": "u 005E"
+                        },
+                        "msg_code": "E6046"
+                    },
+                    {
+                        "subroutine": "validate_f2be9afb8653427ba888dc5942658937.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 1173, but is 1012",
+                        "timestamp": "2020-09-25T17:32:20.762306Z",
+                        "orig_output": "validate_f2be9afb8653427ba888dc5942658937.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 1173, but is 1012",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 14372,
+    "completedDate": "2020-09-25 17:32:31.214888"
+}

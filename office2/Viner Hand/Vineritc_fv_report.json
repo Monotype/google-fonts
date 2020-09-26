@@ -1,0 +1,70 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Vineritc.ttf",
+                "type": "ttf",
+                "size": 99436,
+                "md5": "d40d8f6ef79f3de1977de6fa8937f0be",
+                "geometryMd5": "273650772901ca1daa97289d3f39a4c6"
+            },
+            "name": {
+                "family": "Viner Hand ITC",
+                "subFamily": "Regular",
+                "fullName": "Viner Hand ITC",
+                "psName": "VinerHandITC",
+                "versionText": "Version 1.06;O365",
+                "copyright": "Copyright (c) International Typeface Corporation 1996.  Portions Copyright (c) Microsoft Corporation 1996.  All rights reserved.",
+                "trademark": "ITC Viner Hand is a Trademark of International Typeface Corporation."
+            },
+            "format": {
+                "format": "TT"
+            },
+            "summary": {
+                "num_glyphs": 251,
+                "embedding": "Editable Embedding",
+                "font_vendor_id": "ITC ",
+                "font_vendor": "ITC"
+            },
+            "validation": {
+                "font_full_name": "Viner Hand ITC",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 2,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_04183d241508406bac171ba50be981e2.hints.glyph 165",
+                        "levelname": "ERROR",
+                        "message": "DELTAP1[] in Glyph 165 hints (PC 31) expected stack length of at least 1, but found length 0. This is a stack underflow!",
+                        "timestamp": "2020-09-25T19:13:25.969550Z",
+                        "orig_output": "validate_04183d241508406bac171ba50be981e2.hints.glyph 165 - ERROR - DELTAP1[] in Glyph 165 hints (PC 31) expected stack length of at least 1, but found length 0. This is a stack underflow!",
+                        "glyph": {
+                            "id": 165,
+                            "name": "u 221A"
+                        },
+                        "msg_code": "E6046"
+                    },
+                    {
+                        "subroutine": "validate_04183d241508406bac171ba50be981e2.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 1191, but is 0",
+                        "timestamp": "2020-09-25T19:11:29.148213Z",
+                        "orig_output": "validate_04183d241508406bac171ba50be981e2.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 1191, but is 0",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 120079,
+    "completedDate": "2020-09-25 19:13:26.204119"
+}

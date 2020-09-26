@@ -1,0 +1,71 @@
+﻿{
+    "processed": [],
+    "skipped": [
+        {
+            "file": {
+                "name": "laouib.ttf",
+                "type": "ttf",
+                "size": 77188,
+                "md5": "7185bbffa2f97b4c55f119560821ff9c",
+                "geometryMd5": "e3edff081c6711c881af6c5c93a0318c"
+            },
+            "error": {
+                "init": "Opcode_nonpush(160)\nTraceback (most recent call last):\n  File \"/fvs/venv/lib/python3.7/site-packages/fontvalidator/fontvalidation.py\", line 525, in __init__\n    _validate(self.editor, **val_kw)\n  File \"/fvs/venv/lib/python3.7/site-packages/fontvalidator/fontvalidation.py\", line 174, in _validate\n    r = v.validate() and r\n  File \"/fvs/venv/lib/python3.7/site-packages/fontio3/h3/validate_tt.py\", line 870, in validate\n    ok = self._doPrepStep(**kwArgs)\n  File \"/fvs/venv/lib/python3.7/site-packages/fontio3/h3/validate_tt.py\", line 344, in _doPrepStep\n    ok = state.run(logger=logger, **kwArgs)\n  File \"/fvs/venv/lib/python3.7/site-packages/fontio3/h3/state_tt.py\", line 1085, in run\n    if not self.step(**kwArgs):\n  File \"/fvs/venv/lib/python3.7/site-packages/fontio3/h3/state_tt.py\", line 1270, in step\n    (func, dKW) = dt[opObj]\nKeyError: Opcode_nonpush(160)\n",
+                "raise": true
+            },
+            "name": {
+                "family": "Lao UI",
+                "subFamily": "Bold",
+                "fullName": "Lao UI Bold",
+                "psName": "LaoUI-Bold",
+                "versionText": "Version 5.06;O365",
+                "copyright": "\u00a9 2018 Microsoft Corporation. All Rights Reserved.",
+                "trademark": "Segoe is a trademark of the Microsoft group of companies."
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 317,
+                "embedding": "Editable Embedding",
+                "font_vendor_id": "MS  ",
+                "font_vendor": "Microsoft Corp."
+            },
+            "validation": {
+                "font_full_name": "Lao UI Bold",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 2,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_8dc436c66b904de7a49e75f9b0fd692d.gasp.up to 19 ppem",
+                        "levelname": "ERROR",
+                        "message": "v0 Smoothing flag (GASP_DOGRAY) set without corresponding v1 Symmetric Smoothing flag (GASP_SYMMETRIC_SMOOTHING).",
+                        "timestamp": "2020-09-25T21:49:43.198861Z",
+                        "orig_output": "validate_8dc436c66b904de7a49e75f9b0fd692d.gasp.up to 19 ppem - ERROR - v0 Smoothing flag (GASP_DOGRAY) set without corresponding v1 Symmetric Smoothing flag (GASP_SYMMETRIC_SMOOTHING).",
+                        "msg_code": "V0992"
+                    },
+                    {
+                        "subroutine": "validate_8dc436c66b904de7a49e75f9b0fd692d.maxp",
+                        "levelname": "ERROR",
+                        "message": "Encountered an error during validation: KeyError: Opcode_nonpush(160)",
+                        "timestamp": "2020-09-25T21:49:49.333251Z",
+                        "orig_output": "validate_8dc436c66b904de7a49e75f9b0fd692d.maxp - ERROR - Encountered an error during validation: KeyError: Opcode_nonpush(160)",
+                        "msg_code": "V0246"
+                    }
+                ]
+            }
+        }
+    ],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 15205,
+    "completedDate": "2020-09-25 21:49:49.802801"
+}

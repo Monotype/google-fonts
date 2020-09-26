@@ -1,0 +1,67 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "comicz.ttf",
+                "type": "ttf",
+                "size": 216716,
+                "md5": "486920202b749f044c509517c7c27629",
+                "geometryMd5": "80db3f7cedb68bd6ae9807c0b5b8f2e7"
+            },
+            "name": {
+                "family": "Comic Sans MS",
+                "subFamily": "Bold Italic",
+                "fullName": "Comic Sans MS Bold Italic",
+                "psName": "ComicSansMS-BoldItalic",
+                "versionText": "Version 5.14;O365",
+                "copyright": "\u00a9 2018 Microsoft Corporation. All Rights Reserved.",
+                "trademark": "Comic Sans is a trademark of the Microsoft group of companies."
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 1141,
+                "embedding": "Editable Embedding",
+                "font_vendor_id": "MS  ",
+                "font_vendor": "Microsoft Corp."
+            },
+            "validation": {
+                "font_full_name": "Comic Sans MS Bold Italic",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 2,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_8ae103fdcb374d2abda425660f6cd137.fontedit.OS_2.PANOSE.tool",
+                        "levelname": "ERROR",
+                        "message": "Value 15 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-25T19:53:28.882862Z",
+                        "orig_output": "validate_8ae103fdcb374d2abda425660f6cd137.fontedit.OS_2.PANOSE.tool - ERROR - Value 15 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "G0001"
+                    },
+                    {
+                        "subroutine": "validate_8ae103fdcb374d2abda425660f6cd137.glyf.glyph 1075 ('1075').contours.contour 2",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-25T19:54:09.177049Z",
+                        "orig_output": "validate_8ae103fdcb374d2abda425660f6cd137.glyf.glyph 1075 ('1075').contours.contour 2 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 77611,
+    "completedDate": "2020-09-25 19:54:43.318918"
+}

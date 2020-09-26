@@ -1,0 +1,83 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Constani.TTF",
+                "type": "ttf",
+                "size": 441256,
+                "md5": "0362d8a1a67dd5073a71ccf250c55556",
+                "geometryMd5": "26622d8cca7cffe5c3c679da06583bd8"
+            },
+            "name": {
+                "family": "Constantia",
+                "subFamily": "Italic",
+                "fullName": "Constantia Italic",
+                "psName": "Constantia-Italic",
+                "versionText": "Version 5.93;O365",
+                "copyright": "\u00a9 2009 Microsoft Corporation. All Rights Reserved.",
+                "trademark": "Constantia is either a registered trademark or a trademark of Microsoft Corporation in the United States and/or other countries."
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 1208,
+                "embedding": "Editable Embedding",
+                "font_vendor_id": "MS  ",
+                "font_vendor": "Microsoft Corp."
+            },
+            "validation": {
+                "font_full_name": "Constantia Italic",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 4,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_0e9a3fca85ba45da92ac49f5c51e270d.fontedit.kern.format0",
+                        "levelname": "ERROR",
+                        "message": "Insufficient bytes for pair data.",
+                        "timestamp": "2020-09-25T16:17:46.095540Z",
+                        "orig_output": "validate_0e9a3fca85ba45da92ac49f5c51e270d.fontedit.kern.format0 - ERROR - Insufficient bytes for pair data.",
+                        "msg_code": "V0136"
+                    },
+                    {
+                        "subroutine": "validate_0e9a3fca85ba45da92ac49f5c51e270d.gasp.up to 22 ppem",
+                        "levelname": "ERROR",
+                        "message": "v0 Smoothing flag (GASP_DOGRAY) set without corresponding v1 Symmetric Smoothing flag (GASP_SYMMETRIC_SMOOTHING).",
+                        "timestamp": "2020-09-25T16:17:53.724080Z",
+                        "orig_output": "validate_0e9a3fca85ba45da92ac49f5c51e270d.gasp.up to 22 ppem - ERROR - v0 Smoothing flag (GASP_DOGRAY) set without corresponding v1 Symmetric Smoothing flag (GASP_SYMMETRIC_SMOOTHING).",
+                        "msg_code": "V0992"
+                    },
+                    {
+                        "subroutine": "validate_0e9a3fca85ba45da92ac49f5c51e270d.GDEF.glyphClasses",
+                        "levelname": "ERROR",
+                        "message": "The following mark glyphs have nonzero advances: [446]",
+                        "timestamp": "2020-09-25T16:17:46.098505Z",
+                        "orig_output": "validate_0e9a3fca85ba45da92ac49f5c51e270d.GDEF.glyphClasses - ERROR - The following mark glyphs have nonzero advances: [446]",
+                        "msg_code": "V1102"
+                    },
+                    {
+                        "subroutine": "validate_0e9a3fca85ba45da92ac49f5c51e270d.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 1160, but is 1093",
+                        "timestamp": "2020-09-25T16:17:53.620905Z",
+                        "orig_output": "validate_0e9a3fca85ba45da92ac49f5c51e270d.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 1160, but is 1093",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 45813,
+    "completedDate": "2020-09-25 16:18:27.914150"
+}

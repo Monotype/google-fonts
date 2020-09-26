@@ -1,0 +1,85 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "seguisb.ttf",
+                "type": "ttf",
+                "size": 962100,
+                "md5": "991ae2ec9c1a09da61f146cb1140857e",
+                "geometryMd5": "f05cc3a08f2bca79ea7f842c3e0aa761"
+            },
+            "name": {
+                "family": "Segoe UI Semibold",
+                "subFamily": "Regular",
+                "fullName": "Segoe UI Semibold",
+                "psName": "SegoeUI-Semibold",
+                "versionText": "Version 5.62;O365",
+                "copyright": "\u00a9 2018 Microsoft Corporation. All Rights Reserved. \r\n\r\nHebrew OpenType Layout logic copyright \u00a9 2003 & 2007, Ralph Hancock & John Hudson. This layout logic for Biblical Hebrew is open source software under the MIT License; see embedded license description for details.",
+                "trademark": "Segoe is a trademark of the Microsoft group of companies.",
+                "typographicFamily": "Segoe UI",
+                "typographicSubFamily": "Semibold"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 5271,
+                "embedding": "Editable Embedding",
+                "font_vendor_id": "MS  ",
+                "font_vendor": "Microsoft Corp."
+            },
+            "validation": {
+                "font_full_name": "Segoe UI Semibold",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 4,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_0685374164c945dda0b9085a261b95db.fontedit.GPOS.GPOS.lookuplist.lookup 41.lookup.subtable 0.marktobase",
+                        "levelname": "ERROR",
+                        "message": "The number of classes should be 1 (based on the actual values in the MarkRecords), but is actually 2.",
+                        "timestamp": "2020-09-25T15:48:47.595190Z",
+                        "orig_output": "validate_0685374164c945dda0b9085a261b95db.fontedit.GPOS.GPOS.lookuplist.lookup 41.lookup.subtable 0.marktobase - ERROR - The number of classes should be 1 (based on the actual values in the MarkRecords), but is actually 2.",
+                        "msg_code": "V0343"
+                    },
+                    {
+                        "subroutine": "validate_0685374164c945dda0b9085a261b95db.GDEF.glyphClasses",
+                        "levelname": "ERROR",
+                        "message": "The following mark glyphs have nonzero advances: [580, 581, 582, 583, 1533, 1534, 1537, 1538, 1691, 3550, 3551, 5008, 5009, 5010, 5011, 5012, 5013, 5014, 5015, 5016, 5017, 5018, 5019, 5020, 5021, 5022, 5023]",
+                        "timestamp": "2020-09-25T15:49:35.387378Z",
+                        "orig_output": "validate_0685374164c945dda0b9085a261b95db.GDEF.glyphClasses - ERROR - The following mark glyphs have nonzero advances: [580, 581, 582, 583, 1533, 1534, 1537, 1538, 1691, 3550, 3551, 5008, 5009, 5010, 5011, 5012, 5013, 5014, 5015, 5016, 5017, 5018, 5019, 5020, 5021, 5022, 5023]",
+                        "msg_code": "V1102"
+                    },
+                    {
+                        "subroutine": "validate_0685374164c945dda0b9085a261b95db.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2020-09-25T15:53:12.059137Z",
+                        "orig_output": "validate_0685374164c945dda0b9085a261b95db.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
+                    },
+                    {
+                        "subroutine": "validate_0685374164c945dda0b9085a261b95db.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 1222, but is 1157",
+                        "timestamp": "2020-09-25T15:49:40.641629Z",
+                        "orig_output": "validate_0685374164c945dda0b9085a261b95db.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 1222, but is 1157",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 338015,
+    "completedDate": "2020-09-25 15:54:21.156479"
+}

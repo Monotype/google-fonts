@@ -1,0 +1,67 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "verdanaz.ttf",
+                "type": "ttf",
+                "size": 222328,
+                "md5": "d4ed7c424577bbdc58e46f8981329f83",
+                "geometryMd5": "9fa33361ad25e185ae8ef474a8bf16af"
+            },
+            "name": {
+                "family": "Verdana",
+                "subFamily": "Bold Italic",
+                "fullName": "Verdana Bold Italic",
+                "psName": "Verdana-BoldItalic",
+                "versionText": "Version 5.33;O365",
+                "copyright": "\u00a9 2016 Microsoft Corporation. All Rights Reserved.",
+                "trademark": "Verdana is a trademark of the Microsoft group of companies."
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 1397,
+                "embedding": "Editable Embedding",
+                "font_vendor_id": "MS  ",
+                "font_vendor": "Microsoft Corp."
+            },
+            "validation": {
+                "font_full_name": "Verdana Bold Italic",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 2,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_4819217b8927491a9684ccb7eb1ab4fe.kern.[0]",
+                        "levelname": "ERROR",
+                        "message": "For a Microsoft font, all glyphs in a format 0 'kern' subtable must have Unicodes. These glyphs do not: [981, 982, 989, 995, 1000, 1007, 1008, 1019, 1033, 1034]",
+                        "timestamp": "2020-09-25T21:55:19.802162Z",
+                        "orig_output": "validate_4819217b8927491a9684ccb7eb1ab4fe.kern.[0] - ERROR - For a Microsoft font, all glyphs in a format 0 'kern' subtable must have Unicodes. These glyphs do not: [981, 982, 989, 995, 1000, 1007, 1008, 1019, 1033, 1034]",
+                        "msg_code": "V0613"
+                    },
+                    {
+                        "subroutine": "validate_4819217b8927491a9684ccb7eb1ab4fe.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 1436, but is 1163",
+                        "timestamp": "2020-09-25T21:54:55.118900Z",
+                        "orig_output": "validate_4819217b8927491a9684ccb7eb1ab4fe.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 1436, but is 1163",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 70910,
+    "completedDate": "2020-09-25 21:55:42.903020"
+}

@@ -1,0 +1,75 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "comici.ttf",
+                "type": "ttf",
+                "size": 219172,
+                "md5": "8197a06f02517ad3d1d4e744066a7c7f",
+                "geometryMd5": "d88d85081a3c2467c51c4db942d160b4"
+            },
+            "name": {
+                "family": "Comic Sans MS",
+                "subFamily": "Italic",
+                "fullName": "Comic Sans MS Italic",
+                "psName": "ComicSansMS-Italic",
+                "versionText": "Version 5.14;O365",
+                "copyright": "\u00a9 2018 Microsoft Corporation. All Rights Reserved.",
+                "trademark": "Comic Sans is a trademark of the Microsoft group of companies."
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 1141,
+                "embedding": "Editable Embedding",
+                "font_vendor_id": "MS  ",
+                "font_vendor": "Microsoft Corp."
+            },
+            "validation": {
+                "font_full_name": "Comic Sans MS Italic",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 3,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_3adeb3b3018141dcb94db6e183b30656.fontedit.OS_2.PANOSE.tool",
+                        "levelname": "ERROR",
+                        "message": "Value 15 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2020-09-25T15:52:41.819637Z",
+                        "orig_output": "validate_3adeb3b3018141dcb94db6e183b30656.fontedit.OS_2.PANOSE.tool - ERROR - Value 15 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "G0001"
+                    },
+                    {
+                        "subroutine": "validate_3adeb3b3018141dcb94db6e183b30656.glyf.glyph 1075 ('1075').contours.contour 2",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-25T15:53:20.587818Z",
+                        "orig_output": "validate_3adeb3b3018141dcb94db6e183b30656.glyf.glyph 1075 ('1075').contours.contour 2 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_3adeb3b3018141dcb94db6e183b30656.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 1326, but is 1325",
+                        "timestamp": "2020-09-25T15:52:57.489096Z",
+                        "orig_output": "validate_3adeb3b3018141dcb94db6e183b30656.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 1326, but is 1325",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 67611,
+    "completedDate": "2020-09-25 15:53:45.829776"
+}

@@ -1,0 +1,77 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "VerdanaPro-Italic.ttf",
+                "type": "ttf",
+                "size": 174936,
+                "md5": "c50bbba52b9346ed3a192b4e16783db4",
+                "geometryMd5": "648805c4ad27dfa45c8af7fbe12ed372"
+            },
+            "name": {
+                "family": "Verdana Pro",
+                "subFamily": "Italic",
+                "fullName": "Verdana Pro Italic",
+                "psName": "VerdanaPro-Italic",
+                "versionText": "Version 6.13;O365",
+                "copyright": "\u00a9 2017 Microsoft Corporation. All Rights Reserved.",
+                "trademark": "Verdana is a trademark of the Microsoft group of companies.",
+                "typographicFamily": "Verdana Pro",
+                "typographicSubFamily": "Italic"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 1040,
+                "embedding": "Editable Embedding",
+                "font_vendor_id": "MS  ",
+                "font_vendor": "Microsoft Corp."
+            },
+            "validation": {
+                "font_full_name": "Verdana Pro Italic",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 3,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_c472c5066cb84e2c9b9222fbc0565e91.gasp.up to 17 ppem",
+                        "levelname": "ERROR",
+                        "message": "v0 Smoothing flag (GASP_DOGRAY) set without corresponding v1 Symmetric Smoothing flag (GASP_SYMMETRIC_SMOOTHING).",
+                        "timestamp": "2020-09-25T19:26:36.546981Z",
+                        "orig_output": "validate_c472c5066cb84e2c9b9222fbc0565e91.gasp.up to 17 ppem - ERROR - v0 Smoothing flag (GASP_DOGRAY) set without corresponding v1 Symmetric Smoothing flag (GASP_SYMMETRIC_SMOOTHING).",
+                        "msg_code": "V0992"
+                    },
+                    {
+                        "subroutine": "validate_c472c5066cb84e2c9b9222fbc0565e91.OS_2.usFirstCharIndex",
+                        "levelname": "ERROR",
+                        "message": "The usFirstCharIndex should be 0x0000, but is 0x0020",
+                        "timestamp": "2020-09-25T19:26:31.929166Z",
+                        "orig_output": "validate_c472c5066cb84e2c9b9222fbc0565e91.OS_2.usFirstCharIndex - ERROR - The usFirstCharIndex should be 0x0000, but is 0x0020",
+                        "msg_code": "E2130"
+                    },
+                    {
+                        "subroutine": "validate_c472c5066cb84e2c9b9222fbc0565e91.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 1269, but is 1264",
+                        "timestamp": "2020-09-25T19:26:32.382388Z",
+                        "orig_output": "validate_c472c5066cb84e2c9b9222fbc0565e91.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 1269, but is 1264",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 36404,
+    "completedDate": "2020-09-25 19:26:53.519829"
+}

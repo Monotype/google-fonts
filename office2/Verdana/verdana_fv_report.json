@@ -1,0 +1,79 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "verdana.ttf",
+                "type": "ttf",
+                "size": 235764,
+                "md5": "38dfc383c7ad60dfbe5d5ceabde3b42e",
+                "geometryMd5": "d66f39f3e18e1b0125356166387a020a"
+            },
+            "name": {
+                "family": "Verdana",
+                "subFamily": "Regular",
+                "fullName": "Verdana",
+                "psName": "Verdana",
+                "versionText": "Version 5.33;O365",
+                "copyright": "\u00a9 2016 Microsoft Corporation. All Rights Reserved.",
+                "trademark": "Verdana is a trademark of the Microsoft group of companies."
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 1397,
+                "embedding": "Editable Embedding",
+                "font_vendor_id": "MS  ",
+                "font_vendor": "Microsoft Corp."
+            },
+            "validation": {
+                "font_full_name": "Verdana",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 3,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_89e1e1c66c6744748d9ececb0aaf3dc7.gasp.up to 17 ppem",
+                        "levelname": "ERROR",
+                        "message": "v0 Smoothing flag (GASP_DOGRAY) set without corresponding v1 Symmetric Smoothing flag (GASP_SYMMETRIC_SMOOTHING).",
+                        "timestamp": "2020-09-25T21:58:08.534189Z",
+                        "orig_output": "validate_89e1e1c66c6744748d9ececb0aaf3dc7.gasp.up to 17 ppem - ERROR - v0 Smoothing flag (GASP_DOGRAY) set without corresponding v1 Symmetric Smoothing flag (GASP_SYMMETRIC_SMOOTHING).",
+                        "msg_code": "V0992"
+                    },
+                    {
+                        "subroutine": "validate_89e1e1c66c6744748d9ececb0aaf3dc7.hints.glyph 46",
+                        "levelname": "ERROR",
+                        "message": "MDRP[m<rGr] in Glyph 46 hints (PC 62) has the freedom and projection vectors orthogonal!",
+                        "timestamp": "2020-09-25T21:58:37.153420Z",
+                        "orig_output": "validate_89e1e1c66c6744748d9ececb0aaf3dc7.hints.glyph 46 - ERROR - MDRP[m<rGr] in Glyph 46 hints (PC 62) has the freedom and projection vectors orthogonal!",
+                        "glyph": {
+                            "id": 46,
+                            "name": "u 004B"
+                        },
+                        "msg_code": "W6010"
+                    },
+                    {
+                        "subroutine": "validate_89e1e1c66c6744748d9ececb0aaf3dc7.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 1283, but is 1041",
+                        "timestamp": "2020-09-25T21:57:52.421382Z",
+                        "orig_output": "validate_89e1e1c66c6744748d9ececb0aaf3dc7.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 1283, but is 1041",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 82409,
+    "completedDate": "2020-09-25 21:58:52.698231"
+}

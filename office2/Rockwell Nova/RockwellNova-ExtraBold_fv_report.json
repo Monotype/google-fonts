@@ -1,0 +1,76 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "RockwellNova-ExtraBold.ttf",
+                "type": "ttf",
+                "size": 66668,
+                "md5": "51c968031e6f2332b842c90450ce7db7",
+                "geometryMd5": "a76d98015eb827ce582c9ffe0fd0e4f0"
+            },
+            "name": {
+                "family": "Rockwell Nova Extra Bold",
+                "subFamily": "Regular",
+                "fullName": "Rockwell Nova Extra Bold",
+                "psName": "RockwellNova-ExtraBold",
+                "versionText": "Version 1.02;O365",
+                "copyright": "\u00a9 2014 The Monotype Corporation. All Rights Reserved.",
+                "trademark": "Rockwell is a trademark of The Monotype Corporation.",
+                "typographicFamily": "Rockwell Nova",
+                "typographicSubFamily": "Extra Bold"
+            },
+            "format": {
+                "format": "TT"
+            },
+            "summary": {
+                "num_glyphs": 540,
+                "embedding": "Editable Embedding",
+                "font_vendor_id": "MONO",
+                "font_vendor": "Monotype"
+            },
+            "validation": {
+                "font_full_name": "Rockwell Nova Extra Bold",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 3,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_f2e0064e7c3c457c95c43f59e3bf6c40.head",
+                        "levelname": "ERROR",
+                        "message": "The macStyle bold bit is False but the OS/2 fsSelection bold bit is True",
+                        "timestamp": "2020-09-25T18:00:48.976051Z",
+                        "orig_output": "validate_f2e0064e7c3c457c95c43f59e3bf6c40.head - ERROR - The macStyle bold bit is False but the OS/2 fsSelection bold bit is True",
+                        "msg_code": "E1312"
+                    },
+                    {
+                        "subroutine": "validate_f2e0064e7c3c457c95c43f59e3bf6c40.OS_2.fsSelection",
+                        "levelname": "ERROR",
+                        "message": "The fsSelection doesn't match the subfamily 'name' entry",
+                        "timestamp": "2020-09-25T18:00:36.319146Z",
+                        "orig_output": "validate_f2e0064e7c3c457c95c43f59e3bf6c40.OS_2.fsSelection - ERROR - The fsSelection doesn't match the subfamily 'name' entry",
+                        "msg_code": "E2100"
+                    },
+                    {
+                        "subroutine": "validate_f2e0064e7c3c457c95c43f59e3bf6c40.OS_2.fsSelection.bold",
+                        "levelname": "ERROR",
+                        "message": "Bold bit in fsSelection doesn't match head macStyle",
+                        "timestamp": "2020-09-25T18:00:36.319316Z",
+                        "orig_output": "validate_f2e0064e7c3c457c95c43f59e3bf6c40.OS_2.fsSelection.bold - ERROR - Bold bit in fsSelection doesn't match head macStyle",
+                        "msg_code": "E2143"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 30390,
+    "completedDate": "2020-09-25 18:00:58.758778"
+}

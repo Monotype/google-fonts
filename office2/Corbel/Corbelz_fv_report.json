@@ -1,0 +1,83 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Corbelz.ttf",
+                "type": "ttf",
+                "size": 286072,
+                "md5": "1769a202bd198a6341a6f9a737bd4378",
+                "geometryMd5": "d0dfcfb9dae381873583d2e23c15bda4"
+            },
+            "name": {
+                "family": "Corbel",
+                "subFamily": "Bold Italic",
+                "fullName": "Corbel Bold Italic",
+                "psName": "Corbel-BoldItalic",
+                "versionText": "Version 6.00;O365",
+                "copyright": "\u00a9 2017 Microsoft Corporation. All rights reserved.",
+                "trademark": "Corbel is a trademark of the Microsoft group of companies."
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 1285,
+                "embedding": "Editable Embedding",
+                "font_vendor_id": "MS  ",
+                "font_vendor": "Microsoft Corp."
+            },
+            "validation": {
+                "font_full_name": "Corbel Bold Italic",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 4,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_1a9d63a12f784c63b07d2e22c507c75c.fontedit.kern.format0",
+                        "levelname": "ERROR",
+                        "message": "Insufficient bytes for pair data.",
+                        "timestamp": "2020-09-25T16:08:30.349909Z",
+                        "orig_output": "validate_1a9d63a12f784c63b07d2e22c507c75c.fontedit.kern.format0 - ERROR - Insufficient bytes for pair data.",
+                        "msg_code": "V0136"
+                    },
+                    {
+                        "subroutine": "validate_1a9d63a12f784c63b07d2e22c507c75c.gasp.up to 16 ppem",
+                        "levelname": "ERROR",
+                        "message": "v0 Smoothing flag (GASP_DOGRAY) set without corresponding v1 Symmetric Smoothing flag (GASP_SYMMETRIC_SMOOTHING).",
+                        "timestamp": "2020-09-25T16:08:38.262490Z",
+                        "orig_output": "validate_1a9d63a12f784c63b07d2e22c507c75c.gasp.up to 16 ppem - ERROR - v0 Smoothing flag (GASP_DOGRAY) set without corresponding v1 Symmetric Smoothing flag (GASP_SYMMETRIC_SMOOTHING).",
+                        "msg_code": "V0992"
+                    },
+                    {
+                        "subroutine": "validate_1a9d63a12f784c63b07d2e22c507c75c.GDEF.glyphClasses",
+                        "levelname": "ERROR",
+                        "message": "The following mark glyphs have nonzero advances: [436, 479, 818, 987, 988, 989, 990, 991, 992, 993, 994, 995, 996, 997, 998, 999, 1000, 1001, 1002, 1003, 1004, 1005, 1006, 1007, 1008, 1009, 1010, 1011, 1012, 1013, 1014]",
+                        "timestamp": "2020-09-25T16:08:30.369695Z",
+                        "orig_output": "validate_1a9d63a12f784c63b07d2e22c507c75c.GDEF.glyphClasses - ERROR - The following mark glyphs have nonzero advances: [436, 479, 818, 987, 988, 989, 990, 991, 992, 993, 994, 995, 996, 997, 998, 999, 1000, 1001, 1002, 1003, 1004, 1005, 1006, 1007, 1008, 1009, 1010, 1011, 1012, 1013, 1014]",
+                        "msg_code": "V1102"
+                    },
+                    {
+                        "subroutine": "validate_1a9d63a12f784c63b07d2e22c507c75c.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 1119, but is 1111",
+                        "timestamp": "2020-09-25T16:08:38.162440Z",
+                        "orig_output": "validate_1a9d63a12f784c63b07d2e22c507c75c.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 1119, but is 1111",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 52445,
+    "completedDate": "2020-09-25 16:09:18.934807"
+}

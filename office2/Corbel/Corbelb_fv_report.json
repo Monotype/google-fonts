@@ -1,0 +1,83 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Corbelb.ttf",
+                "type": "ttf",
+                "size": 281384,
+                "md5": "31a71007ef18e072dba569ab303dca44",
+                "geometryMd5": "8fa07c36a81d87da986a61c56e1bdc13"
+            },
+            "name": {
+                "family": "Corbel",
+                "subFamily": "Bold",
+                "fullName": "Corbel Bold",
+                "psName": "Corbel-Bold",
+                "versionText": "Version 6.00;O365",
+                "copyright": "\u00a9 2017 Microsoft Corporation. All rights reserved.",
+                "trademark": "Corbel is a trademark of the Microsoft group of companies."
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 1285,
+                "embedding": "Editable Embedding",
+                "font_vendor_id": "MS  ",
+                "font_vendor": "Microsoft Corp."
+            },
+            "validation": {
+                "font_full_name": "Corbel Bold",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 4,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_faa171c012a14875b799b19b9d9633a2.fontedit.kern.format0",
+                        "levelname": "ERROR",
+                        "message": "Insufficient bytes for pair data.",
+                        "timestamp": "2020-09-25T16:02:55.623152Z",
+                        "orig_output": "validate_faa171c012a14875b799b19b9d9633a2.fontedit.kern.format0 - ERROR - Insufficient bytes for pair data.",
+                        "msg_code": "V0136"
+                    },
+                    {
+                        "subroutine": "validate_faa171c012a14875b799b19b9d9633a2.gasp.up to 16 ppem",
+                        "levelname": "ERROR",
+                        "message": "v0 Smoothing flag (GASP_DOGRAY) set without corresponding v1 Symmetric Smoothing flag (GASP_SYMMETRIC_SMOOTHING).",
+                        "timestamp": "2020-09-25T16:03:05.409812Z",
+                        "orig_output": "validate_faa171c012a14875b799b19b9d9633a2.gasp.up to 16 ppem - ERROR - v0 Smoothing flag (GASP_DOGRAY) set without corresponding v1 Symmetric Smoothing flag (GASP_SYMMETRIC_SMOOTHING).",
+                        "msg_code": "V0992"
+                    },
+                    {
+                        "subroutine": "validate_faa171c012a14875b799b19b9d9633a2.GDEF.glyphClasses",
+                        "levelname": "ERROR",
+                        "message": "The following mark glyphs have nonzero advances: [436, 479, 987, 988, 989, 990, 991, 992, 993, 994, 995, 996, 997, 998, 999, 1000, 1001, 1002, 1003, 1004, 1005, 1006, 1007, 1008, 1009, 1010, 1011, 1012, 1013, 1014]",
+                        "timestamp": "2020-09-25T16:02:55.645523Z",
+                        "orig_output": "validate_faa171c012a14875b799b19b9d9633a2.GDEF.glyphClasses - ERROR - The following mark glyphs have nonzero advances: [436, 479, 987, 988, 989, 990, 991, 992, 993, 994, 995, 996, 997, 998, 999, 1000, 1001, 1002, 1003, 1004, 1005, 1006, 1007, 1008, 1009, 1010, 1011, 1012, 1013, 1014]",
+                        "msg_code": "V1102"
+                    },
+                    {
+                        "subroutine": "validate_faa171c012a14875b799b19b9d9633a2.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 1140, but is 1131",
+                        "timestamp": "2020-09-25T16:03:05.215257Z",
+                        "orig_output": "validate_faa171c012a14875b799b19b9d9633a2.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 1140, but is 1131",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 49221,
+    "completedDate": "2020-09-25 16:03:41.105369"
+}

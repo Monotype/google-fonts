@@ -1,0 +1,99 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Kartikab.TTF",
+                "type": "ttf",
+                "size": 119220,
+                "md5": "7c41a724bc4bd24cbfb9509bf11b3ea4",
+                "geometryMd5": "ab91b26e7fb250b48117d71c3b5dedf8"
+            },
+            "name": {
+                "family": "Kartika",
+                "subFamily": "Bold",
+                "fullName": "Kartika Bold",
+                "psName": "Kartika-Bold",
+                "versionText": "Version 6.90;O365",
+                "copyright": "\u00a9 2015 Microsoft Corporation. All Rights Reserved.",
+                "trademark": "Unknown"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 467,
+                "embedding": "Editable Embedding",
+                "font_vendor_id": "MS  ",
+                "font_vendor": "Microsoft Corp."
+            },
+            "validation": {
+                "font_full_name": "Kartika Bold",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 6,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_5272143d7c5d46269cf6e9d7e9aec6c9.fontedit.hdmx",
+                        "levelname": "ERROR",
+                        "message": "Expected a Device record size of 472, but got 468",
+                        "timestamp": "2020-09-25T16:18:54.935648Z",
+                        "orig_output": "validate_5272143d7c5d46269cf6e9d7e9aec6c9.fontedit.hdmx - ERROR - Expected a Device record size of 472, but got 468",
+                        "msg_code": "E1204"
+                    },
+                    {
+                        "subroutine": "validate_5272143d7c5d46269cf6e9d7e9aec6c9.fontedit.hdmx.[0].ppemdict",
+                        "levelname": "ERROR",
+                        "message": "The size of the device record is too small for the number of glyphs in the font.",
+                        "timestamp": "2020-09-25T16:18:54.935806Z",
+                        "orig_output": "validate_5272143d7c5d46269cf6e9d7e9aec6c9.fontedit.hdmx.[0].ppemdict - ERROR - The size of the device record is too small for the number of glyphs in the font.",
+                        "msg_code": "V0892"
+                    },
+                    {
+                        "subroutine": "validate_5272143d7c5d46269cf6e9d7e9aec6c9.fontedit.LTSH",
+                        "levelname": "ERROR",
+                        "message": "Font has 467 glyphs, but table count is 464",
+                        "timestamp": "2020-09-25T16:18:54.890015Z",
+                        "orig_output": "validate_5272143d7c5d46269cf6e9d7e9aec6c9.fontedit.LTSH - ERROR - Font has 467 glyphs, but table count is 464",
+                        "msg_code": "E1800"
+                    },
+                    {
+                        "subroutine": "validate_5272143d7c5d46269cf6e9d7e9aec6c9.hmtx",
+                        "levelname": "ERROR",
+                        "message": "The left sidebearing 174 does not match the glyph's xMin 151 (glyph 145)",
+                        "timestamp": "2020-09-25T16:19:17.607128Z",
+                        "orig_output": "validate_5272143d7c5d46269cf6e9d7e9aec6c9.hmtx - ERROR - The left sidebearing 174 does not match the glyph's xMin 151 (glyph 145)",
+                        "msg_code": "V0933"
+                    },
+                    {
+                        "subroutine": "validate_5272143d7c5d46269cf6e9d7e9aec6c9.OS_2.usLastCharIndex",
+                        "levelname": "ERROR",
+                        "message": "The usLastCharIndex should be 0x25CC, but is 0xFB02",
+                        "timestamp": "2020-09-25T16:19:00.076530Z",
+                        "orig_output": "validate_5272143d7c5d46269cf6e9d7e9aec6c9.OS_2.usLastCharIndex - ERROR - The usLastCharIndex should be 0x25CC, but is 0xFB02",
+                        "msg_code": "E2131"
+                    },
+                    {
+                        "subroutine": "validate_5272143d7c5d46269cf6e9d7e9aec6c9.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 1723, but is 1722",
+                        "timestamp": "2020-09-25T16:19:00.489156Z",
+                        "orig_output": "validate_5272143d7c5d46269cf6e9d7e9aec6c9.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 1723, but is 1722",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 37528,
+    "completedDate": "2020-09-25 16:19:30.246783"
+}

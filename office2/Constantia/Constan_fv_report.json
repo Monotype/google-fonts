@@ -1,0 +1,83 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Constan.TTF",
+                "type": "ttf",
+                "size": 440836,
+                "md5": "1e79a598f4dae9a16c72c121941642e3",
+                "geometryMd5": "69947c657c4455e3907ab362303fa511"
+            },
+            "name": {
+                "family": "Constantia",
+                "subFamily": "Regular",
+                "fullName": "Constantia",
+                "psName": "Constantia",
+                "versionText": "Version 5.93;O365",
+                "copyright": "\u00a9 2012 Microsoft Corporation. All Rights Reserved.",
+                "trademark": "Constantia is either a registered trademark or a trademark of Microsoft Corporation in the United States and/or other countries."
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 1204,
+                "embedding": "Editable Embedding",
+                "font_vendor_id": "MS  ",
+                "font_vendor": "Microsoft Corp."
+            },
+            "validation": {
+                "font_full_name": "Constantia",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 4,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_8d00055ece364819af91ef296767f870.fontedit.kern.format0",
+                        "levelname": "ERROR",
+                        "message": "Insufficient bytes for pair data.",
+                        "timestamp": "2020-09-25T16:07:56.887415Z",
+                        "orig_output": "validate_8d00055ece364819af91ef296767f870.fontedit.kern.format0 - ERROR - Insufficient bytes for pair data.",
+                        "msg_code": "V0136"
+                    },
+                    {
+                        "subroutine": "validate_8d00055ece364819af91ef296767f870.gasp.up to 22 ppem",
+                        "levelname": "ERROR",
+                        "message": "v0 Smoothing flag (GASP_DOGRAY) set without corresponding v1 Symmetric Smoothing flag (GASP_SYMMETRIC_SMOOTHING).",
+                        "timestamp": "2020-09-25T16:08:04.887982Z",
+                        "orig_output": "validate_8d00055ece364819af91ef296767f870.gasp.up to 22 ppem - ERROR - v0 Smoothing flag (GASP_DOGRAY) set without corresponding v1 Symmetric Smoothing flag (GASP_SYMMETRIC_SMOOTHING).",
+                        "msg_code": "V0992"
+                    },
+                    {
+                        "subroutine": "validate_8d00055ece364819af91ef296767f870.GDEF.glyphClasses",
+                        "levelname": "ERROR",
+                        "message": "The following mark glyphs have nonzero advances: [446]",
+                        "timestamp": "2020-09-25T16:07:56.901757Z",
+                        "orig_output": "validate_8d00055ece364819af91ef296767f870.GDEF.glyphClasses - ERROR - The following mark glyphs have nonzero advances: [446]",
+                        "msg_code": "V1102"
+                    },
+                    {
+                        "subroutine": "validate_8d00055ece364819af91ef296767f870.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 1177, but is 1110",
+                        "timestamp": "2020-09-25T16:08:04.790566Z",
+                        "orig_output": "validate_8d00055ece364819af91ef296767f870.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 1177, but is 1110",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 42194,
+    "completedDate": "2020-09-25 16:08:35.206609"
+}

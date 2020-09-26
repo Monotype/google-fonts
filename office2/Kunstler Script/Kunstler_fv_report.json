@@ -1,0 +1,70 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Kunstler.ttf",
+                "type": "ttf",
+                "size": 58428,
+                "md5": "f2545338e54d9f90234a6de0bf257f55",
+                "geometryMd5": "7024fde7cfb6deca1a614c85fb3d49c0"
+            },
+            "name": {
+                "family": "Kunstler Script",
+                "subFamily": "Regular",
+                "fullName": "Kunstler Script",
+                "psName": "KunstlerScript",
+                "versionText": "Version 1.06;O365",
+                "copyright": "Typeface: URW Software, Copyright (c) 1995 by URW. Data: Copyright (c) 1995 Microsoft Corporation. All rights reserved.",
+                "trademark": "Unknown"
+            },
+            "format": {
+                "format": "TT"
+            },
+            "summary": {
+                "num_glyphs": 250,
+                "embedding": "Editable Embedding",
+                "font_vendor_id": "URW ",
+                "font_vendor": "URW++"
+            },
+            "validation": {
+                "font_full_name": "Kunstler Script",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 2,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_b4ae178932cc43639c9cfc4aa5e3ec69.hints.glyph 137",
+                        "levelname": "ERROR",
+                        "message": "DELTAP1[] in Glyph 137 hints (PC 98) expected stack length of at least 1, but found length 0. This is a stack underflow!",
+                        "timestamp": "2020-09-25T17:45:37.872962Z",
+                        "orig_output": "validate_b4ae178932cc43639c9cfc4aa5e3ec69.hints.glyph 137 - ERROR - DELTAP1[] in Glyph 137 hints (PC 98) expected stack length of at least 1, but found length 0. This is a stack underflow!",
+                        "glyph": {
+                            "id": 137,
+                            "name": "u 00DF"
+                        },
+                        "msg_code": "E6046"
+                    },
+                    {
+                        "subroutine": "validate_b4ae178932cc43639c9cfc4aa5e3ec69.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 930, but is 503",
+                        "timestamp": "2020-09-25T17:45:31.460225Z",
+                        "orig_output": "validate_b4ae178932cc43639c9cfc4aa5e3ec69.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 930, but is 503",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 9984,
+    "completedDate": "2020-09-25 17:45:38.389027"
+}

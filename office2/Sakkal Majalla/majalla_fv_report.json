@@ -1,0 +1,99 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "majalla.ttf",
+                "type": "ttf",
+                "size": 364380,
+                "md5": "95613c126b042ea1d3592bad5a312c7c",
+                "geometryMd5": "0f67e3dc1ff59222d30fc7606086cc36"
+            },
+            "name": {
+                "family": "Sakkal Majalla",
+                "subFamily": "Regular",
+                "fullName": "Sakkal Majalla",
+                "psName": "SakkalMajalla",
+                "versionText": "Version 6.85;O365",
+                "copyright": "\u00a9 2015 Microsoft Corporation. All Rights Reserved. Portions \u00a9 2014 Mamoun Sakkal, Sakkal Design.",
+                "trademark": "Sakkal Majalla is either a registered trademark or a trademark of Mamoun Sakkal, Sakkal Design."
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 2922,
+                "embedding": "Editable Embedding",
+                "font_vendor_id": "SKKL",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Sakkal Majalla",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 6,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_fd3adcde4f5e4a25946d575e704e6169.gasp.up to 14 ppem",
+                        "levelname": "ERROR",
+                        "message": "v0 Smoothing flag (GASP_DOGRAY) set without corresponding v1 Symmetric Smoothing flag (GASP_SYMMETRIC_SMOOTHING).",
+                        "timestamp": "2020-09-25T19:23:41.246223Z",
+                        "orig_output": "validate_fd3adcde4f5e4a25946d575e704e6169.gasp.up to 14 ppem - ERROR - v0 Smoothing flag (GASP_DOGRAY) set without corresponding v1 Symmetric Smoothing flag (GASP_SYMMETRIC_SMOOTHING).",
+                        "msg_code": "V0992"
+                    },
+                    {
+                        "subroutine": "validate_fd3adcde4f5e4a25946d575e704e6169.GDEF.glyphClasses",
+                        "levelname": "ERROR",
+                        "message": "The following mark glyphs have nonzero advances: [1371, 2645]",
+                        "timestamp": "2020-09-25T19:23:28.560914Z",
+                        "orig_output": "validate_fd3adcde4f5e4a25946d575e704e6169.GDEF.glyphClasses - ERROR - The following mark glyphs have nonzero advances: [1371, 2645]",
+                        "msg_code": "V1102"
+                    },
+                    {
+                        "subroutine": "validate_fd3adcde4f5e4a25946d575e704e6169.glyf.glyph 2262 ('2262')",
+                        "levelname": "ERROR",
+                        "message": "Bounds should be [-263, -55, 206, 714], but are [-264, -55, 205, 713].",
+                        "timestamp": "2020-09-25T19:24:13.553038Z",
+                        "orig_output": "validate_fd3adcde4f5e4a25946d575e704e6169.glyf.glyph 2262 ('2262') - ERROR - Bounds should be [-263, -55, 206, 714], but are [-264, -55, 205, 713].",
+                        "msg_code": "E1112"
+                    },
+                    {
+                        "subroutine": "validate_fd3adcde4f5e4a25946d575e704e6169.GPOS.features.[b'mark0007', b'mark0008', b'mark0009', b'mark0010', b'mark0011'].[0]",
+                        "levelname": "ERROR",
+                        "message": "The ligature glyph 1491 has an inconsistent number of input components.",
+                        "timestamp": "2020-09-25T19:23:29.245177Z",
+                        "orig_output": "validate_fd3adcde4f5e4a25946d575e704e6169.GPOS.features.[b'mark0007', b'mark0008', b'mark0009', b'mark0010', b'mark0011'].[0] - ERROR - The ligature glyph 1491 has an inconsistent number of input components.",
+                        "msg_code": "Vxxxx"
+                    },
+                    {
+                        "subroutine": "validate_fd3adcde4f5e4a25946d575e704e6169.OS_2.usMaxContext",
+                        "levelname": "ERROR",
+                        "message": "The usMaxContext should be 21, but is 20",
+                        "timestamp": "2020-09-25T19:23:31.812951Z",
+                        "orig_output": "validate_fd3adcde4f5e4a25946d575e704e6169.OS_2.usMaxContext - ERROR - The usMaxContext should be 21, but is 20",
+                        "msg_code": "V0831"
+                    },
+                    {
+                        "subroutine": "validate_fd3adcde4f5e4a25946d575e704e6169.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 1046, but is 1039",
+                        "timestamp": "2020-09-25T19:23:31.813677Z",
+                        "orig_output": "validate_fd3adcde4f5e4a25946d575e704e6169.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 1046, but is 1039",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 158207,
+    "completedDate": "2020-09-25 19:25:46.771046"
+}
