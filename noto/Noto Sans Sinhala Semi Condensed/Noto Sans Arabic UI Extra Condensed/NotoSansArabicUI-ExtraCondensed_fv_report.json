@@ -1,0 +1,85 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "NotoSansArabicUI-ExtraCondensed.ttf",
+                "type": "ttf",
+                "size": 138612,
+                "md5": "0cc8c93ca1dad7d579ecf50e3ceb591f",
+                "geometryMd5": "5691a53c868ea505d9f9ef567b8a4907"
+            },
+            "name": {
+                "family": "Noto Sans Arabic UI XCn",
+                "subFamily": "Regular",
+                "fullName": "Noto Sans Arabic UI ExtraCondensed",
+                "psName": "NotoSansArabicUI-ExtraCondensed",
+                "versionText": "Version 2.000;GOOG;noto-source:20170915:90ef993387c0",
+                "copyright": "Copyright 2016 Google Inc. All Rights Reserved.",
+                "trademark": "Noto is a trademark of Google Inc.",
+                "typographicFamily": "Noto Sans Arabic UI",
+                "typographicSubFamily": "ExtraCondensed"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 1620,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "GOOG",
+                "font_vendor": "Google"
+            },
+            "validation": {
+                "font_full_name": "Noto Sans Arabic UI ExtraCondensed",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 4,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_06445ec6176c4af7a733084cd41067b3.glyf.glyph 1444 ('uni08E3')",
+                        "levelname": "ERROR",
+                        "message": "Bounds should be [38, 1460, 259, 1684], but are [38, -276, 259, -52].",
+                        "timestamp": "2020-09-26T15:08:23.292540Z",
+                        "orig_output": "validate_06445ec6176c4af7a733084cd41067b3.glyf.glyph 1444 ('uni08E3') - ERROR - Bounds should be [38, 1460, 259, 1684], but are [38, -276, 259, -52].",
+                        "msg_code": "E1112"
+                    },
+                    {
+                        "subroutine": "validate_06445ec6176c4af7a733084cd41067b3.head",
+                        "levelname": "ERROR",
+                        "message": "The calculated value for yMax (1684) exceeds the actual value 1046",
+                        "timestamp": "2020-09-26T15:08:31.912836Z",
+                        "orig_output": "validate_06445ec6176c4af7a733084cd41067b3.head - ERROR - The calculated value for yMax (1684) exceeds the actual value 1046",
+                        "msg_code": "E1326"
+                    },
+                    {
+                        "subroutine": "validate_06445ec6176c4af7a733084cd41067b3.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2020-09-26T15:08:44.144900Z",
+                        "orig_output": "validate_06445ec6176c4af7a733084cd41067b3.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
+                    },
+                    {
+                        "subroutine": "validate_06445ec6176c4af7a733084cd41067b3.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 674, but is 675",
+                        "timestamp": "2020-09-26T15:08:04.205939Z",
+                        "orig_output": "validate_06445ec6176c4af7a733084cd41067b3.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 674, but is 675",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 46553,
+    "completedDate": "2020-09-26 15:08:45.228291"
+}

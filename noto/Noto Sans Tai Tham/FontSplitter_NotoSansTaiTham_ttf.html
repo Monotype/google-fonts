@@ -1,0 +1,3057 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv='content-type' content='text/html; charset=utf-8'>
+    <meta name="code" content="Olli Meier">
+    <title>MT FontSplitter</title>
+    <style type="text/css">
+      body {
+        /*background-color: #fff; #fdfdfb;*/
+        color: #131313;
+        font-family: "Kootenay Pro", Axel, "System Font", "Fira Sans", sans-serif;
+        /*line-height: 1.3em;*/
+        margin: 0;
+        /*padding: 1em;*/
+        font-size: 14px;
+        /*padding-right: 50px;*/
+        /*background: linear-gradient(to bottom, #383838, white);*/
+      }
+
+    table {width:100%;}
+    tr {margin: 10px;}
+    td {border: 1px solid #fff; /*#fdfdfb;*/}
+/*
+    table th, table td {
+    overflow: scroll !important;
+    white-space: nowrap;
+}
+*/
+
+    mark {
+        background-color: #fff990;
+        color: black;
+        opacity: 0.7;
+    }
+
+    .containerMain {
+        position: absolute;
+        z-index: 2;
+        /*top:-2000px;*/
+        left: 15px; 
+        background-color: white;
+        overflow: scroll;
+        width: calc(100% - 15px);
+    }
+
+
+    .containerCSScode {
+        overflow: scroll;
+        position: absolute;
+        z-index: 1;
+        top:0px;
+        padding-top: 200px;
+        padding-left: 20px;
+        width: 100%;
+        background-color: #383838;
+    }
+
+    .cssButton {
+        z-index: 3;
+        position: fixed;
+        top: 49%;
+    }
+
+    .cssButtonStyle {
+        /*text-align: center;*/
+        /*text-transform: uppercase;*/
+        transform-origin: left bottom 0;
+        /*writing-mode:tb-rl;*/
+        -webkit-transform:rotate(-90deg);
+        -moz-transform:rotate(-90deg);
+        -o-transform: rotate(-90deg);
+        -ms-transform:rotate(-90deg);
+        transform: rotate(-90deg);
+        white-space:nowrap;
+        display:block;
+        /*bottom:0;
+        width:20px;
+        height:20px;*/
+
+    }
+
+    .comment{color:#FCD833}
+    .rule{color:#009FE3}
+    .element{color:#FFF}
+    .keyword{color:#E50051}
+    .prop{color:#FF9700}
+    .whitetext{color:#FFF}
+    /*.deepgray{background-color:#383838}*/
+    .darkgray{background-color: #787878}
+    .darkgray_text{color:#BBB}
+    .lightgray{background-color:rgb(252,252,252)}
+    .lightgray_text{color:rgb(252,252,252)}
+    .gray_text{color:lightgrey}
+
+    pre{font-family:Consolas,Courier,monospace;
+        /*font-size:.81em;*/
+        line-height:1.1em;
+        margin:0;
+        /*padding:1em;*/
+        border:0;
+        -webkit-touch-callout:text!important;
+        -webkit-user-select:text!important;
+        -khtml-user-select:text!important;
+        -moz-user-select:text!important;
+        -ms-user-select:text!important;
+        user-select:text!important
+    }
+    .gradientBG {
+        background:
+            linear-gradient(
+                limegreen,
+                transparent
+            ),
+            linear-gradient(
+                90deg,
+                skyblue,
+                transparent
+            ),
+            linear-gradient(
+                -90deg,
+                coral,
+                transparent
+            );
+            
+        background-blend-mode: screen;
+        }
+
+    .linearGradientBG{
+        background:
+            repeating-linear-gradient(
+                -45deg,
+                transparent,
+                transparent 25%,
+                tomato 0,
+                tomato 50%
+            ),
+            repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 25%,
+                dodgerblue 0,
+                dodgerblue 50%
+            ), wheat;
+
+        background-size: 10em 10em;
+        background-blend-mode: multiply;
+    }
+
+    .linearGradient2BG{
+        background:
+            repeating-linear-gradient(
+                50deg,
+                #F7A37B,
+                #F7A37B 1em,
+                #FFDEA8 1em,
+                #FFDEA8 2em,
+                #D0E4B0 2em,
+                #D0E4B0 3em,
+                #7CC5D0 3em,
+                #7CC5D0 4em,
+                #00A2E1 4em,
+                #00A2E1 5em,
+                #0085C8 5em,
+                #0085C8 6em
+            ),
+            repeating-linear-gradient(
+                -50deg,
+                #F7A37B,
+                #F7A37B 1em,
+                #FFDEA8 1em,
+                #FFDEA8 2em,
+                #D0E4B0 2em,
+                #D0E4B0 3em,
+                #7CC5D0 3em,
+                #7CC5D0 4em,
+                #00A2E1 4em,
+                #00A2E1 5em,
+                #0085C8 5em,
+                #0085C8 6em
+            );
+            
+        background-blend-mode: multiply;
+    }
+
+    .character {
+        line-height: 1.45em;
+        font-size:2.5em;
+        		display:inline-block;
+width:1.45em;
+white-space: pre;
+        min-width:1.45em;
+        height:1.45em;
+        text-align:center;
+        /*margin:-1px -1px -1px -4px;*/
+        background-color: #fff; /*#fdfdfb;*/
+        border:1px solid #efefef;/*#FAF7F5;*/ 
+        /*overflow: scroll !important;*/
+        white-space: nowrap;
+        font-size: 30px;
+    }
+
+    .characterZoom {
+        display:inline-block;
+        white-space: pre;
+        text-align:center;
+        background-color: #fff; /*#fdfdfb;*/
+        border:10px solid #efefef;/*#FAF7F5;*/ 
+        white-space: nowrap;
+        font-size: 35vh;
+        z-index:1000; 
+        width:50%; 
+        height:50%;
+        position: fixed; 
+        left: 25%; 
+        top:25%; 
+        display: none;"
+    }
+
+    .characterUniRanges{
+        font-size:2.5em;
+        display:inline-block;
+        /*width:1.45em;*/
+        min-width:2em;
+        height:2em;
+        text-align:center;
+        margin:-0px -0px -1px -4px;
+        background-color:#fff;
+        border:1px solid rgb(240,240,240); 
+        white-space: pre;
+    }
+
+    .characterUniRanges[title-B]:active {
+        z-index: 999;
+      content: attr(title-B);
+      position: relative;
+        background:#B3D4FC;
+        font-size: 20.5em;
+        display:inline-block;
+        /*width:10.45em;*/
+        min-width:500px;
+        height:500px;
+        text-align:center;
+        margin:-0px -0px -1px -4px;
+        border:1px solid rgb(240,240,240); 
+        white-space: pre;
+    }
+
+    [data-title] {
+      transition-timing-function: ease-in;
+          transition: 0.4s;
+      position: relative;
+    }
+
+    [data-title]:hover::before {
+      content: attr(data-title);
+      position: absolute;
+      z-index: 999;
+      bottom: -26px;
+      display: inline-block;
+      padding: 3px 6px;
+      border-radius: 2px;
+      background: #000;
+      color: #fff;
+      font-size: 12px;
+      font-family: sans-serif;
+      white-space: nowrap;
+      left: -20px;
+    }
+
+    [data-title]:hover::after {
+          z-index: 999;
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 8px;
+      display: inline-block;
+      color: #fff;
+      border: 8px solid transparent;    
+      border-bottom: 8px solid #000;
+    }
+
+    .characterMetaData {
+        line-height: 1.45em;
+        font-size:2.5em;
+        		display:inline-block;
+width:1.45em;
+white-space: pre;
+        max-width:1.45em !important;
+        min-width:1.45em;
+        height:1.45em;
+        text-align:center;
+        /*margin:-1px -1px -1px -4px;*/
+        background-color: #fff; /*#fdfdfb;*/
+        border:1px solid #efefef;/*#FAF7F5;*/ 
+        /*overflow: scroll !important;*/
+        white-space: nowrap;
+        font-size: 30px;
+    }
+
+    .characterFix {
+        font-size:2.5em;
+        		display:inline-block;
+width:1.45em;
+white-space: pre;
+        min-width:1.45em;
+        height:1.45em;
+        text-align:center;
+        /*margin:-1px -1px -1px -4px;*/
+        background-color: #fff; /*#fdfdfb;*/
+        border:1px solid #efefef;/*#FAF7F5;*/
+        overflow-x: scroll !important;
+        white-space: nowrap;
+        font-size: 30px;
+    }
+
+    .characterFontNames {
+        font-size:2.5em;
+        		display:inline-block;
+width:1.45em;
+white-space: pre;
+        min-width: 1.45em;
+        height:1.45em;
+        text-align:center;
+        /*margin:-1px -1px -1px -4px;*/
+        background-color: #fff; /*#fdfdfb;*/
+        border: 1px solid #fff; /*#fdfdfb;*/ 
+        position: -webkit-sticky;
+        position: sticky;
+        white-space: pre !important;
+        font-size: 30px;
+    }
+
+    .buttonBlack {
+        background-color: #131313;
+        border: 1px solid #fff; /*#fdfdfb;*/
+        color: #fff; /*#fdfdfb;*/
+        padding: 5px 15px;
+        text-align: center;
+        /*text-decoration: none;*/
+        display: inline-block;
+        margin: 1px 1px;
+        cursor: pointer;
+        border-radius: 0.0em;
+
+    }
+
+    .features-head {
+        content:"";
+        display:inline-block;
+        float:left;
+        width:100%;
+        border-bottom:1px solid rgb(240,240,240);
+        padding-top:10px;
+        margin-top:30px; 
+        margin-bottom:10px
+    }
+
+    input {
+        /*width: 44px;
+        height: 23px;
+        background-color: buttonface;*/
+        cursor: default;
+        border-width: 0px;
+        border-style: solid;
+        border-color: ; #fff; /*#fdfdfb;*//*rgb(169, 169, 169);*/
+        border-image: initial;
+        padding: 0px opx;
+    }
+
+    .inputColor{
+        width: 25px;
+        height: 29px;
+        cursor: default;
+        border: none;
+    }
+
+    button {
+        border: 0;
+        height: 100%;
+        /*width: 100%;*/
+        padding: 5px 15px;
+        text-align: center;
+        /*text-decoration: none;*/
+        display: inline-block;
+        margin: 1px 1px;
+        cursor: pointer;
+        border-radius: 0.0em;
+        vertical-align: top;
+        background: #fff; /*#fdfdfb;*/
+        outline: none;
+    }
+
+    .buttonBorder {
+        border: 0;
+        height: 100%;
+        /*width: 100%;*/
+        padding: 5px 15px;
+        text-align: center;
+        /*text-decoration: none;*/
+        display: inline-block;
+        margin: 1px 1px;
+        cursor: pointer;
+        border-radius: 0.0em;
+        vertical-align: top;
+        background: #fff; /*#fdfdfb;*/
+        outline: none;
+        border:1px solid #efefef;/*#FAF7F5;*/
+    }
+
+    .buttonOT {
+        border:1px solid #efefef;/*#FAF7F5;*/
+        width: 40px;
+        padding: 5px 5px;
+    }
+    .buttonExtra{
+        vertical-align: bottom;
+        line-height: 2em;
+
+        border: 0;
+        height: 100%;
+        /*width: 100%;*/
+        padding: 5px 15px;
+        text-align: center;
+        /*text-decoration: none;*/
+        display: inline-block;
+        margin: 1px 1px;
+        cursor: pointer;
+        border-radius: 0.0em;
+        background: #fff; /*#fdfdfb;*/
+        outline: none;
+    }
+
+    select {
+        border: 0;
+        height: 100%;
+        width: 100%;
+        padding: 5px 15px;
+        text-align: center;
+        /*text-decoration: none;*/
+        display: inline-block;
+        margin: 1px 1px;
+        cursor: pointer;
+        border-radius: 0.0em;
+        vertical-align: top;
+        background: #131313;
+        color: #fff; /*#fdfdfb;*/
+    }
+
+    .selectSampleText {
+        border: 0;
+        height: 100%;
+        width: 200px;
+        /*padding: 5px 15px;*/
+        text-align: center;
+        /*text-decoration: none;*/
+        display: inline-block;
+        margin: 5px 1px;
+        cursor: pointer;
+        border-radius: 0.0em;
+        vertical-align: top;
+        background: #fff; /*#fdfdfb;*/
+        color: #131313;
+    }
+
+    .textTop {vertical-align: top;}
+    .compareBoxes{word-break: break-all;}
+
+    .flyingFont{
+        font-size: 300px;
+        text-align: center;
+        /*text-transform: uppercase;*/
+        width: 100%;
+    }
+
+    .flyingFont1{
+        color: #FF4136/*#131313*/; 
+        z-index: 900; 
+        position: absolute;
+    }
+    .flyingFont2{
+        /*-webkit-text-stroke-width: 2px;
+           -webkit-text-stroke-color: #FF4136;
+           -webkit-text-fill-color: transparent;*/
+        z-index: 899; 
+        position: absolute;
+           opacity: .5;
+           margin-top: 10px;
+           margin-left: 10px;
+    }
+    .flyingFont3{
+        /*-webkit-text-stroke-width: 2px;
+           -webkit-text-stroke-color: #FF4136;
+           -webkit-text-fill-color: transparent;*/
+        z-index: 898; 
+        position: absolute;
+           opacity: .2;
+           margin-top: 20px;
+           margin-left: 20px;
+    }
+
+    .buttonToggle {
+        border: 0;
+        /*background-color: #131313;*/
+        /*color: #fff; /*#fdfdfb;*/*/
+        text-align: center;
+        /*text-decoration: none;*/
+        display: inline-block;
+        margin: 1px 1px;
+        cursor: pointer;
+        border-radius: 0.0em;
+    }
+
+    button:hover, .selectSampleText:hover {background-color: #131313; color: #fff; /*#fdfdfb;*/}
+    .buttonOT:hover {background-color: #131313; color: #fff; /*#fdfdfb;*/}
+    .buttonExtra:hover {background-color: #fff; /*#fdfdfb;*/ color: #131313;}
+
+    hr { border: 0; height: 1px; background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0));}
+
+    .underline {text-decoration: underline; text-decoration-color: #131313; color: hsl(  0,  0%,  95%); overflow: hidden;} /* for the future: text-underline-offset: from-font; text-decoration-width: from-font; */
+    .strikeout {text-decoration: line-through; text-decoration-color: #131313; color: hsl(  0,  0%,  95%); overflow: hidden;} 
+
+    .character:hover {background:#B3D4FC}
+    .characterUniRanges:hover {background:#B3D4FC}
+    /*.characterUniRanges:active {
+        background:#B3D4FC;
+        font-size: 20.5em;
+        display:inline-block;
+        /*width:10.45em;*/
+        min-width:500px;
+        height:500px;
+        text-align:center;
+        margin:-0px -0px -1px -4px;
+        border:1px solid rgb(240,240,240); 
+        white-space: pre;
+    }
+    */
+    .characterFix:hover {background:#B3D4FC}
+    .character_name {/*padding-top: 5px; padding-left: 25px;*/}
+    
+    @keyframes blinkblink {
+        0% 100%   {background-color: hsl( 24,  100%, 50%); }
+        50% {background-color: hsl( 24,  100%, 45%); }
+    }
+
+    .serious {animation: blinkblink 0.9s ease-in-out 0s infinite;}
+    .critical {background-color: hsl( 0,  100%, 20%); color: hsl( 0,  0%, 90%);}
+    .error {background-color: hsl( 24,  100%, 45%); color: hsl( 24,  100%, 70%);}
+    .warning {background-color: hsl( 50,  65%, 52%); color: hsl( 50,  65%, 70%);}
+    .info {background-color: #f9f7f6;/*hsl(  0,  0%,  95%);*/ color: hsl(  0,  0%,  70%);}
+
+    .extra {background-color: hsl( 200,  50%, 95%);}
+    .extra_info {background-color: hsl( 200,  50%, 96%); color: hsl( 200,  50%, 80%);}
+
+    .colLeft {
+        width: 50%;
+        padding-left: 25px;
+        text-align: right;
+        padding-right: 25px;
+        vertical-align: text-top;
+    }
+
+    .header {
+      text-transform: none;
+      text-decoration: none;
+      background-color: #fff; /*#fdfdfb;*/
+      text-align: left;
+      color: #131313;
+      position: fixed;
+      padding: 15px 15px 0px 0px;
+      width: 100%;
+      box-shadow: 0px 0px 5px #888888;
+      z-index: 99;
+    }
+
+    .header1 {
+      text-transform: none;
+      text-decoration: none;
+      background-color: #fff; /*#fdfdfb;*/
+      text-align: left;
+      color: #131313;
+      position: fixed;
+      padding: 15px 15px 0px 0px;
+      width: 100%;
+      z-index: 99;
+    }
+    
+    .header:hover  { opacity: 0.95; }
+    .header1:hover  { opacity: 0.95; }
+
+
+    .splitter{width:100%; font-weight: bold;}
+    .center{text-align: center;}
+    .left{text-align: left;}
+    .content{padding-top: 500px;}
+    .sampleBig {/*font-size: 50px !important*/; color:#fff; /*#fdfdfb;*/ padding: 20px 50px 20px 50px; }
+    .sampleWaterfall {padding: 20px 50px 20px 20px;}
+    .waterfallOverflow {white-space:nowrap; overflow: hidden; text-overflow: clip; }
+    .sampleContent {/*empty*/ font-size: 30px;}
+    .compareBoxCSS {vertical-align: top; font-size: 30px;}
+    .blackBG {background-color: #131313;}
+
+    .defaultFont {font-size: 30px;}
+    .infoFont {font-family: "Kootenay Pro", Axel, "System Font", "Fira Sans", sans-serif; font-size: 14px; vertical-align: 5px;}
+    
+    .hidden {display:none;}
+    .sliderbar {vertical-align: 4px;}
+
+    /* Slider design Start */
+
+    .inputRangeCompareBox {
+      padding-bottom: 7px !important;
+      padding-left: 10px;
+    }
+
+    .inputNumberCompareBox{
+        max-width: 50px;
+    }
+
+    input[type=range] {
+      padding-bottom: 3px;
+      -webkit-appearance: none;
+      /*position: relative*/
+    }
+
+    input[type=range]::-webkit-slider-runnable-track {
+      width: 300px;
+      height: 2px;
+      border: none;
+      border-radius: 3px;
+      border: 1px solid #131313;
+    }
+
+    input[type=range]::-moz-range-track {
+      background-color: #131313;
+    }
+
+    input::-moz-range-thumb {
+        background-color: #fff; /*#fdfdfb;*/
+        border: solid 2px #131313;
+        border-radius: 0;
+        height: 10px;
+        width: 10px;
+      }
+
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      border: none;
+      height: 12px;
+      width: 12px;
+      border-radius: 510%;
+      background: #fff; /*#fdfdfb;*/
+      border: 2px solid #131313;
+      margin-top: -5px;
+      cursor: pointer
+    }
+
+    input[type=range]:focus {
+      outline: none
+    }
+
+    /* Slider design End */
+
+    .infoToggle {border-bottom:1px solid #efefef;/*#FAF7F5;*/}
+    .colLeftToggle {
+        width: 50%;
+        padding-left: 25px;
+        text-align: right;
+        padding-right: 25px;
+        vertical-align: mittle;
+    }
+
+    td.rotateSAVE {*/height: 140px;*/ white-space: nowrap; /*float: left;*/ }
+    td.rotate > div {-webkit-transform: rotate(270deg); transform: rotate(270deg); width: 30px;}
+    td.rotate > div > span {/*padding: 5px 10px;*/}
+
+
+    
+        .ccmp {-webkit-font-feature-settings: "ccmp" 1; -moz-font-feature-settings: "ccmp" 1; -moz-font-feature-settings: "ccmp=1"; -ms-font-feature-settings: "ccmp" 1; -o-font-feature-settings: "ccmp" 1;}
+        
+        .dist {-webkit-font-feature-settings: "dist" 1; -moz-font-feature-settings: "dist" 1; -moz-font-feature-settings: "dist=1"; -ms-font-feature-settings: "dist" 1; -o-font-feature-settings: "dist" 1;}
+        
+        .mkmk {-webkit-font-feature-settings: "mkmk" 1; -moz-font-feature-settings: "mkmk" 1; -moz-font-feature-settings: "mkmk=1"; -ms-font-feature-settings: "mkmk" 1; -o-font-feature-settings: "mkmk" 1;}
+        
+        .mark {-webkit-font-feature-settings: "mark" 1; -moz-font-feature-settings: "mark" 1; -moz-font-feature-settings: "mark=1"; -ms-font-feature-settings: "mark" 1; -o-font-feature-settings: "mark" 1;}
+        
+
+    
+		@font-face {font-family: 'om_NotoSansTaiThamRegularttf'; src: url('NotoSansTaiTham-Regular.ttf');}
+	.om_NotoSansTaiThamRegularttf {font-family: 'om_NotoSansTaiThamRegularttf'; /*font-size: 30px;*/}
+
+    
+
+    /*.animationON {animation: LooperOne 5.0s ease-in-out 0s infinite;}
+    .animationOFF {/*empty*/}*/
+
+
+    </style>
+
+  </head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <body style="-webkit-print-color-adjust:exact;" id="body_all" onload="functionAddSupportedFeatures('mark'),functionAddSupportedFeatures('mkmk')">
+
+      <div id="zoom_characters" class="characterZoom" onclick="mUp()"></div>
+
+    <div class="header1 center" style="z-index:999; ">
+            Monotype
+        <table class="splitter">
+          <tr>
+            <td class="center">F</td>
+            <td class="center">O</td>
+            <td class="center">N</td>
+            <td class="center">T</td>
+            <td class="center">S</td>
+            <td class="center">P</td>
+            <td class="center">L</td>
+            <td class="center">I</td>
+            <td class="center">T</td>
+            <td class="center">T</td>
+            <td class="center">E</td>
+            <td class="center">R</td>
+          </tr>
+        </table>
+        <br>
+    </div>
+
+       <div class="header center">
+        <table style="width:100%">
+            <tbody id="otFeature" >
+                <td>
+                    <!-- OT feature buttons -->
+                    <table>
+		<tr>
+			<td class="colLeft">Select HTML Language</td><td class="left">
+		<select onchange="functionChangeLanguage(this.value)" class="selectSampleText">		<option value=>Default</option>
+			</select>
+			</td>
+		</tr>
+		<tr>
+			<td class="colLeft">South-Asian alphasyllabary (Indic/Brahmic) Features</td><td class="left">
+		<button class="buttonOT" data-title="Distances" id="dist_btn" onclick="functionAddSupportedFeatures('dist')">dist</button>
+
+			</td>
+		</tr>
+		<tr>
+			<td class="colLeft">Positioning Features</td><td class="left">
+		<button class="buttonOT" data-title="Glyph Composition / Decomposition" id="ccmp_btn" onclick="functionAddSupportedFeatures('ccmp')">ccmp</button>
+		<button class="buttonOT" data-title="Mark Positioning" id="mark_btn" onclick="functionAddSupportedFeatures('mark')">mark</button>
+		<button class="buttonOT" data-title="Mark to Mark Positioning" id="mkmk_btn" onclick="functionAddSupportedFeatures('mkmk')">mkmk</button>
+		<button class="buttonOT" data-title="Distances" id="dist_btn" onclick="functionAddSupportedFeatures('dist')">dist</button>
+
+			</td>
+		</tr>
+</table>
+
+                    <!-- fonts size slider
+                    <table>
+                        <tr>
+                        <td class="colLeft">Font Size</td><td class="left"><input type="range" min="0.5" max="20" value="2.5" step=".01" id="slider" /></td>
+                        </tr>
+                    </table>
+                     -->
+
+                    <!-- axis variable fonts -->
+                    
+
+                </td>
+            </tbody>
+
+            <th><button class="buttonExtra" id="otFeature_btn" onclick='functionShowHeader(".header", "otFeature");' title="Toggle details">&#x25bc;</button>
+            </th>
+        </table>
+    </div>  
+
+<div id="cssCodeForCustomerPreview" class="containerCSScode deepgray whitetext">
+<pre>
+
+<span class="comment">/* first assign web font */</span>
+
+<span class="rule">@font-face</span> {
+    <span class="keyword">font-family</span>: 'Noto Sans Tai Tham'; 
+    <span class="prop">src</span>: <span class="prop">url</span>('../NotoSansTaiTham-Regular.ttf') <span class="prop">format</span>('truetype');
+    }
+
+<span class="comment">/* go on with normal style definitions */</span>
+<span class="rule">body</span> {
+    <span class="keyword">font-family</span>: 'Noto Sans Tai Tham'; <span class="comment">/* this is only an example for one style */</span>
+    <span class="featurestring">
+    <span class="comment">/* setup OpenType features */</span>
+    <span class="keyword">font-feature-settings: </span><span id="w3cfeatures"></span>;
+
+    <span class="comment">/* vendor prefixes */</span>
+    <span class="keyword">-webkit-font-feature-settings: </span><span id="webkitfeatures"></span>;
+    <span class="keyword">-moz-font-feature-settings: </span><span id="mozfeatures-up-to-14"></span>;
+    <span class="keyword">-moz-font-feature-settings: </span><span id="mozfeatures"></span>;
+    <span class="keyword">-ms-font-feature-settings: </span><span id="msfeatures"></span>;
+    <span class="keyword">-o-font-feature-settings: </span><span id="ofeatures"></span>;
+    
+}
+    
+
+<span class="comment">/* language tag */</span>
+<code><</code><span class="keyword">html</span><span class="prop"> lang</span>=<span class="rule">"<span id="htmlLangTag"></span>"</span><code>></code>
+
+...
+
+<code><</code>/<span class="keyword">html</span><code>></code>
+
+</pre>
+</div>
+
+
+<div id="containerMainID" class="containerMain" onscroll="scrollXNamesFunc()">
+
+    <div class="cssButton">
+        <a class="cssButtonStyle whitetext" onclick="functionShowCSSCode('.containerMain')" href="#" style="text-decoration:None;"> 
+            css code
+        </a>
+    </div>
+
+    <div id="showFontNames" class="content" style="background: white; opacity: 0; transition: opacity 1s ease-in-out; position: fixed; z-index: -1; width:100%;">
+        <table style="width:100%; border-bottom: 1px solid #FAF7F5;">
+            <tr>
+                <td class="colLeft">
+                </td>
+                <td class="rotate characterFontNames defaultFont"><div><span class="infoFont"> </span></div></td>
+				<td class="rotate characterFontNames om_NotoSansTaiThamRegularttf"><div><span>Noto Sans Tai Tham</span></div></td>
+				
+            </tr>
+        </table>
+    </div>
+
+    <div id="showFontNames_div" class="center" style="position: fixed; bottom: -50px; z-index:998; width:100%;">
+        <button class="buttonBlack" id="showFontNames_btn" onclick='showhide_div("showFontNames", "font names");' title="Toggle details">show font names</button>
+    </div>
+
+    <div id="varFont" class="content">
+
+        <table>
+            <tr>
+                <td class="colLeft">
+                <!-- <a href="#splitterContent">Character Set Compare</a> https://css-tricks.com/snippets/jquery/smooth-scrolling/ -->
+                2020-09-26 - 14:34.08
+                <br>
+                14:34.10
+                <br>
+                <button class="buttonBorder" onClick="window.print()">
+                Print this page
+                </button>
+                </td>
+                <td class="rotate characterFontNames defaultFont"><div><span class="infoFont"> </span></div></td>
+				<td class="rotate characterFontNames om_NotoSansTaiThamRegularttf"><div><span>Noto Sans Tai Tham</span></div></td>
+				
+            </tr>
+        </table>
+
+            
+		<hr>
+		<table>
+<tr>
+<td class="colLeft">Format<br>(by file ending)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Tai Tham" data-original-title=".ttf"><span class="infoFont">.ttf</span></td>
+</tr>
+<tr>
+<td class="colLeft">Outline Flavour<br>(CFF or glyf table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Tai Tham" data-original-title="OT TTF"><span class="infoFont">OT TTF</span></td>
+</tr>
+<tr>
+<td class="colLeft">Number of Glyphs<br>(maxp table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Tai Tham" data-original-title="232"><span class="infoFont">232</span></td>
+</tr>
+<tr>
+<td class="colLeft">Weight Class<br>(OS/2 table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont " title="Noto Sans Tai Tham" data-original-title="400"><span class="infoFont">400</span></td>
+</tr>
+<tr>
+<td class="colLeft">Width Class<br>(OS/2 table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont " title="Noto Sans Tai Tham" data-original-title="5"><span class="infoFont">5</span></td>
+</tr>
+<tr>
+<td class="colLeft">Units per Em<br>(head table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Tai Tham" data-original-title="2048"><div><span class="infoFont">2048</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">Font Revision<br>(head table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Tai Tham" data-original-title="1.04"><div><span class="infoFont">1.04</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">OS/2 Table Version<br></td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Tai Tham" data-original-title="4"><div><span class="infoFont">4</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">sTypeAscender<br>(OS/2 table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Tai Tham" data-original-title="2189"><div><span class="infoFont">2189</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">sTypeDescender<br>(OS/2 table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Tai Tham" data-original-title="-1000"><div><span class="infoFont">-1000</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">sTypeLineGap<br>(OS/2 table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Tai Tham" data-original-title="0"><div><span class="infoFont">0</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">usWinAscent<br>(OS/2 table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Tai Tham" data-original-title="2189"><div><span class="infoFont">2189</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">usWinDescent<br>(OS/2 table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Tai Tham" data-original-title="1000"><div><span class="infoFont">1000</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">Ascender<br>(hhea table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Tai Tham" data-original-title="2189"><div><span class="infoFont">2189</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">Descender<br>(hhea table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Tai Tham" data-original-title="-1000"><div><span class="infoFont">-1000</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">LineGap<br>(hhea table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Tai Tham" data-original-title="0"><div><span class="infoFont">0</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">post table format<br>(post table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Tai Tham" data-original-title="2.0"><div><span class="infoFont">2.0</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">Underline Position<br>(post table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Tai Tham" data-original-title="-154"><div><span class="infoFont">-154</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">Underline Thickness<br>(post table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Tai Tham" data-original-title="102"><div><span class="infoFont">102</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">Hgo<br>visual check underline</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData om_NotoSansTaiThamRegularttf underline" title="Noto Sans Tai Tham" data-original-title="Hgo">Hgo</td>
+</tr>
+<tr>
+<td class="colLeft">yStrikeoutPosition<br>(OS/2 table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Tai Tham" data-original-title="512"><div><span class="infoFont">512</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">yStrikeoutSize<br>(OS/2 table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Tai Tham" data-original-title="102"><div><span class="infoFont">102</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">strikeout<br>visual check</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData om_NotoSansTaiThamRegularttf strikeout" title="Noto Sans Tai Tham" data-original-title="Hgo">Hgo</td>
+</tr>
+<tr>
+<td class="colLeft">Italic Flag<br>(OS/2 table fsSelection)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Tai Tham" data-original-title="False"><div><span class="infoFont">False</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">Italic Angle<br>(post table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterFix defaultFont" title="Noto Sans Tai Tham" data-original-title="0.0"><div><span class="infoFont">0.0</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">Panose: Family<br>(Value 1)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterFix defaultFont" title="Noto Sans Tai Tham" data-original-title="Latin Text"><div><span class="infoFont">Latin Text</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">Panose: Serif<br>(Value 2)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterFix defaultFont" title="Noto Sans Tai Tham" data-original-title="Normal Sans"><div><span class="infoFont">Normal Sans</span></div></td>
+</tr>
+
+		</table>
+
+
+            
+
+            
+            <hr>
+            <table id="compareBoxID">
+            <tr id="tableTR" class="textTop sampleBig blackBG compareBoxes">
+
+            <button class="buttonBorder" title="add column" onclick="functionBoxAdd()">+</button>
+            <button class="buttonBorder" title="remove column" onclick="functionBoxRemove()">-</button>
+            <select id="mySelectSampleText" onchange="functionSelectSampleText('mySelectSampleText')" class="selectSampleText">
+
+            <option value='Default Sample'>Default Sample</option><option value='All Unicodes'>All Unicodes</option>
+
+            </select>
+            <input type="color" class="inputColor" value="#82e5fe" title="Background Color" onchange="functionGetColorBG(this.value, '.compareBoxes')">
+            <input type="color" class="inputColor" value="#ff79ad" title="Text Color" onchange="functionGetColorText(this.value, '.compareBoxes')">
+            <button class="buttonBorder" title="Swap Colors" onclick="functionSwapColorTextBG('.compareBoxes')">&#x02B14</button>
+            <button class="buttonBorder" title="have fun, change background" onclick="functionGetRandomBG(['gradientBG', 'linearGradientBG', 'linearGradient2BG', 'blackBG'])">∞</button>
+            <input type="range" class="inputRangeCompareBox" title="Text Size" min="0.5" max="100" value="30" step=".01" id="sliderCompareBoxCSS"/>
+            <input type="number" class="inputNumberCompareBox" value="30" step="1" id="numberCompareBoxCSS"/>
+            <button class="buttonOT" id="leftcompareBox_btn" title="text alignment left" onclick="functionTextAlignment('compareBoxID', 'left')">L</button>
+            <button class="buttonOT" id="centercompareBox_btn" title="text alignment center" onclick="functionTextAlignment('compareBoxID', 'center')">C</button>
+            <button class="buttonOT" id="rightcompareBox_btn" title="text alignment right" onclick="functionTextAlignment('compareBoxID', 'right')">R</button>
+            <span style="vertical-align: super; color: #efefef;">|</span>
+            <button class="buttonOT" id="left-to-rightcompareBox_btn" title="reading direction: left to right" onclick="functionReadDirection('compareBoxID', 'left-to-right')">LR</button>
+            <button class="buttonOT" id="right-to-leftcompareBox_btn" title="reading direction: right to left" onclick="functionReadDirection('compareBoxID', 'right-to-left')">RL</button>
+            <!--<button class="buttonOT" id="top-to-downcompareBox_btn" title="reading direction: top to down" onclick="functionReadDirection('compareBoxID', 'top-to-down')">TD</button>-->
+            <button class="buttonBlack" id="hintingOnOff_btn" onclick="hintingOnOff('.compareBoxes', 'hintingOnOff');" title="activate/deactivate hinting">hinting on</button>
+            
+<td id="myBox" class="compareBox om_NotoSansTaiThamRegularttf"><select id="mySelect" name="myBox" onchange="functionSelect('mySelect')"><option value='om_NotoSansTaiThamRegularttf'>Noto Sans Tai Tham (ttf)</option>
+</select>
+
+<span id="myBoxContent" contenteditable="true" class="compareBoxCSS ">1234567890 xozszn HOZD 1/3 @ 1a ;#& ? % $ € ! In August of 2016, four unlikely collaborators in the world of type, fonts and font technology stood on a stage at the ATypI conference in Warsaw, Poland. The collaborators were Apple, Microsoft, Adobe and Google. Together they announced the publishing of OpenType 1.8, an update to the now ubiquitous font standard which was originally an amalgam of Apple & Microsoft’s TrueType, and Adobe’s PostScript font formats. The OpenType 1.8 announcement, ATypI, Warsaw, Poland, September 14, 2016.</span></td>
+
+</tr>
+            </table>
+    
+
+            
+		<hr>
+		<table>
+<thead><tr><tr>
+<td class="colLeft">Copyright<br>NID0 Windows (3, 1, 1033, 0)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 0)_btn" onclick='toggle_detail("(3, 1, 1033, 0)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 0)0')" onMouseOut="hover('(3, 1, 1033, 0)0')" class="character defaultFont " title="Noto Sans Tai Tham" data-original-title="(3, 1, 1033, 0)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 0)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Tai Tham"><td onMouseOver="hover('(3, 1, 1033, 0)0')" onMouseOut="hover('(3, 1, 1033, 0)0')" id="(3, 1, 1033, 0)0" class="infoToggle" colspan="1">Copyright 2013 Google Inc. All Rights Reserved.</td></tr></tbody><tr>
+<td class="colLeft">Family Name<br>NID1 Windows (3, 1, 1033, 1)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 1)_btn" onclick='toggle_detail("(3, 1, 1033, 1)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 1)0')" onMouseOut="hover('(3, 1, 1033, 1)0')" class="character defaultFont " title="Noto Sans Tai Tham" data-original-title="(3, 1, 1033, 1)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 1)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID 1 and 2 together should be unique within the family.</td><tr class="" title="Noto Sans Tai Tham"><td onMouseOver="hover('(3, 1, 1033, 1)0')" onMouseOut="hover('(3, 1, 1033, 1)0')" id="(3, 1, 1033, 1)0" class="infoToggle" colspan="1">NID1: 'Noto Sans Tai Tham' + NID2: 'Regular'</td></tr></tbody><tr>
+<td class="colLeft">Subfamily Name<br>NID2 Windows (3, 1, 1033, 2)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 2)_btn" onclick='toggle_detail("(3, 1, 1033, 2)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 2)0')" onMouseOut="hover('(3, 1, 1033, 2)0')" class="character defaultFont " title="Noto Sans Tai Tham" data-original-title="(3, 1, 1033, 2)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 2)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be 'Regular', 'Italic', 'Bold' or 'Bold Italic'.</td><tr class="" title="Noto Sans Tai Tham"><td onMouseOver="hover('(3, 1, 1033, 2)0')" onMouseOut="hover('(3, 1, 1033, 2)0')" id="(3, 1, 1033, 2)0" class="infoToggle" colspan="1">Regular</td></tr></tbody><tr>
+<td class="colLeft">Unique Font Identifier<br>NID3 Windows (3, 1, 1033, 3)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 3)_btn" onclick='toggle_detail("(3, 1, 1033, 3)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 3)0')" onMouseOut="hover('(3, 1, 1033, 3)0')" class="character defaultFont " title="Noto Sans Tai Tham" data-original-title="(3, 1, 1033, 3)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 3)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be DIFFERENT within the family.</td><tr class="" title="Noto Sans Tai Tham"><td onMouseOver="hover('(3, 1, 1033, 3)0')" onMouseOut="hover('(3, 1, 1033, 3)0')" id="(3, 1, 1033, 3)0" class="infoToggle" colspan="1">Monotype Imaging - Noto Sans Tai Tham</td></tr></tbody><tr>
+<td class="colLeft">Full Font Name<br>NID4 Windows (3, 1, 1033, 4)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 4)_btn" onclick='toggle_detail("(3, 1, 1033, 4)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 4)0')" onMouseOut="hover('(3, 1, 1033, 4)0')" class="character defaultFont " title="Noto Sans Tai Tham" data-original-title="(3, 1, 1033, 4)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 4)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be DIFFERENT within the family.</td><tr class="" title="Noto Sans Tai Tham"><td onMouseOver="hover('(3, 1, 1033, 4)0')" onMouseOut="hover('(3, 1, 1033, 4)0')" id="(3, 1, 1033, 4)0" class="infoToggle" colspan="1">Noto Sans Tai Tham</td></tr></tbody><tr>
+<td class="colLeft">Version<br>NID5 Windows (3, 1, 1033, 5)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 5)_btn" onclick='toggle_detail("(3, 1, 1033, 5)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 5)0')" onMouseOut="hover('(3, 1, 1033, 5)0')" class="character defaultFont " title="Noto Sans Tai Tham" data-original-title="(3, 1, 1033, 5)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 5)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Tai Tham"><td onMouseOver="hover('(3, 1, 1033, 5)0')" onMouseOut="hover('(3, 1, 1033, 5)0')" id="(3, 1, 1033, 5)0" class="infoToggle" colspan="1">Version 1.04 uh</td></tr></tbody><tr>
+<td class="colLeft">PostScript Name<br>NID6 Windows (3, 1, 1033, 6)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 6)_btn" onclick='toggle_detail("(3, 1, 1033, 6)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 6)0')" onMouseOut="hover('(3, 1, 1033, 6)0')" class="character defaultFont " title="Noto Sans Tai Tham" data-original-title="(3, 1, 1033, 6)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 6)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be DIFFERENT within the family.</td><tr class="" title="Noto Sans Tai Tham"><td onMouseOver="hover('(3, 1, 1033, 6)0')" onMouseOut="hover('(3, 1, 1033, 6)0')" id="(3, 1, 1033, 6)0" class="infoToggle" colspan="1">NotoSansTaiTham</td></tr></tbody><tr>
+<td class="colLeft">Trademark<br>NID7 Windows (3, 1, 1033, 7)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 7)_btn" onclick='toggle_detail("(3, 1, 1033, 7)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 7)0')" onMouseOut="hover('(3, 1, 1033, 7)0')" class="character defaultFont " title="Noto Sans Tai Tham" data-original-title="(3, 1, 1033, 7)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 7)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Tai Tham"><td onMouseOver="hover('(3, 1, 1033, 7)0')" onMouseOut="hover('(3, 1, 1033, 7)0')" id="(3, 1, 1033, 7)0" class="infoToggle" colspan="1">Noto is a trademark of Google Inc.</td></tr></tbody><tr>
+<td class="colLeft">Manufacturer<br>NID8 Windows (3, 1, 1033, 8)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 8)_btn" onclick='toggle_detail("(3, 1, 1033, 8)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 8)0')" onMouseOut="hover('(3, 1, 1033, 8)0')" class="character defaultFont " title="Noto Sans Tai Tham" data-original-title="(3, 1, 1033, 8)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 8)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Tai Tham"><td onMouseOver="hover('(3, 1, 1033, 8)0')" onMouseOut="hover('(3, 1, 1033, 8)0')" id="(3, 1, 1033, 8)0" class="infoToggle" colspan="1">Monotype Imaging Inc.</td></tr></tbody><tr>
+<td class="colLeft">Designer<br>NID9 Windows (3, 1, 1033, 9)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 9)_btn" onclick='toggle_detail("(3, 1, 1033, 9)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 9)0')" onMouseOut="hover('(3, 1, 1033, 9)0')" class="character defaultFont " title="Noto Sans Tai Tham" data-original-title="(3, 1, 1033, 9)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 9)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Tai Tham"><td onMouseOver="hover('(3, 1, 1033, 9)0')" onMouseOut="hover('(3, 1, 1033, 9)0')" id="(3, 1, 1033, 9)0" class="infoToggle" colspan="1">Monotype Design Team</td></tr></tbody><tr>
+<td class="colLeft">Description<br>NID10 Windows (3, 1, 1033, 10)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 10)_btn" onclick='toggle_detail("(3, 1, 1033, 10)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 10)0')" onMouseOut="hover('(3, 1, 1033, 10)0')" class="character defaultFont " title="Noto Sans Tai Tham" data-original-title="(3, 1, 1033, 10)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 10)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Tai Tham"><td onMouseOver="hover('(3, 1, 1033, 10)0')" onMouseOut="hover('(3, 1, 1033, 10)0')" id="(3, 1, 1033, 10)0" class="infoToggle" colspan="1">Data unhinted. Designed by Monotype design team.</td></tr></tbody><tr>
+<td class="colLeft">Vendor URL<br>NID11 Windows (3, 1, 1033, 11)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 11)_btn" onclick='toggle_detail("(3, 1, 1033, 11)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 11)0')" onMouseOut="hover('(3, 1, 1033, 11)0')" class="character defaultFont " title="Noto Sans Tai Tham" data-original-title="(3, 1, 1033, 11)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 11)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Tai Tham"><td onMouseOver="hover('(3, 1, 1033, 11)0')" onMouseOut="hover('(3, 1, 1033, 11)0')" id="(3, 1, 1033, 11)0" class="infoToggle" colspan="1">http://www.google.com/get/noto/</td></tr></tbody><tr>
+<td class="colLeft">Designer URL<br>NID12 Windows (3, 1, 1033, 12)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 12)_btn" onclick='toggle_detail("(3, 1, 1033, 12)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 12)0')" onMouseOut="hover('(3, 1, 1033, 12)0')" class="character defaultFont " title="Noto Sans Tai Tham" data-original-title="(3, 1, 1033, 12)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 12)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Tai Tham"><td onMouseOver="hover('(3, 1, 1033, 12)0')" onMouseOut="hover('(3, 1, 1033, 12)0')" id="(3, 1, 1033, 12)0" class="infoToggle" colspan="1">http://www.monotype.com/studio</td></tr></tbody><tr>
+<td class="colLeft">License Text<br>NID13 Windows (3, 1, 1033, 13)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 13)_btn" onclick='toggle_detail("(3, 1, 1033, 13)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 13)0')" onMouseOut="hover('(3, 1, 1033, 13)0')" class="character defaultFont " title="Noto Sans Tai Tham" data-original-title="(3, 1, 1033, 13)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 13)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Tai Tham"><td onMouseOver="hover('(3, 1, 1033, 13)0')" onMouseOut="hover('(3, 1, 1033, 13)0')" id="(3, 1, 1033, 13)0" class="infoToggle" colspan="1">This Font Software is licensed under the SIL Open Font License, Version 1.1. This Font Software is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the SIL Open Font License for the specific language, permissions and limitations governing your use of this Font Software.</td></tr></tbody><tr>
+<td class="colLeft">License URL<br>NID14 Windows (3, 1, 1033, 14)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 14)_btn" onclick='toggle_detail("(3, 1, 1033, 14)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 14)0')" onMouseOut="hover('(3, 1, 1033, 14)0')" class="character defaultFont " title="Noto Sans Tai Tham" data-original-title="(3, 1, 1033, 14)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 14)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Tai Tham"><td onMouseOver="hover('(3, 1, 1033, 14)0')" onMouseOut="hover('(3, 1, 1033, 14)0')" id="(3, 1, 1033, 14)0" class="infoToggle" colspan="1">http://scripts.sil.org/OFL</td></tr></tbody>
+		</table>
+
+
+            
+
+            
+
+        <!-- big text on black backround -->
+            
+
+            
+
+            
+
+            
+		<hr>
+		<table id="splitterContent">
+<tr>
+<td class="colLeft"><br>uni0000</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0000', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0000">&#x0000</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x0000', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni0000">&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft"><br>uni000D</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x000d', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni000d">&#x000d</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x000d', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni000d">&#x000d</td>
+</tr>
+<tr>
+<td class="colLeft">SPACE<br>uni0020</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0020', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0020">&#x0020</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x0020', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni0020">&#x0020</td>
+</tr>
+<tr>
+<td class="colLeft">NO-BREAK SPACE<br>uni00A0</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x00a0', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni00a0">&#x00a0</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x00a0', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni00a0">&#x00a0</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM LETTER HIGH KA<br>uni1A20</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a20', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a20">&#x1a20</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a20', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a20">&#x1a20</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM LETTER HIGH KHA<br>uni1A21</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a21', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a21">&#x1a21</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a21', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a21">&#x1a21</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM LETTER HIGH KXA<br>uni1A22</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a22', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a22">&#x1a22</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a22', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a22">&#x1a22</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM LETTER LOW KA<br>uni1A23</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a23', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a23">&#x1a23</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a23', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a23">&#x1a23</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM LETTER LOW KXA<br>uni1A24</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a24', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a24">&#x1a24</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a24', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a24">&#x1a24</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM LETTER LOW KHA<br>uni1A25</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a25', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a25">&#x1a25</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a25', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a25">&#x1a25</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM LETTER NGA<br>uni1A26</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a26', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a26">&#x1a26</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a26', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a26">&#x1a26</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM LETTER HIGH CA<br>uni1A27</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a27', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a27">&#x1a27</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a27', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a27">&#x1a27</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM LETTER HIGH CHA<br>uni1A28</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a28', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a28">&#x1a28</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a28', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a28">&#x1a28</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM LETTER LOW CA<br>uni1A29</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a29', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a29">&#x1a29</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a29', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a29">&#x1a29</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM LETTER LOW SA<br>uni1A2A</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a2a', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a2a">&#x1a2a</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a2a', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a2a">&#x1a2a</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM LETTER LOW CHA<br>uni1A2B</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a2b', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a2b">&#x1a2b</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a2b', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a2b">&#x1a2b</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM LETTER NYA<br>uni1A2C</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a2c', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a2c">&#x1a2c</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a2c', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a2c">&#x1a2c</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM LETTER RATA<br>uni1A2D</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a2d', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a2d">&#x1a2d</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a2d', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a2d">&#x1a2d</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM LETTER HIGH RATHA<br>uni1A2E</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a2e', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a2e">&#x1a2e</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a2e', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a2e">&#x1a2e</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM LETTER DA<br>uni1A2F</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a2f', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a2f">&#x1a2f</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a2f', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a2f">&#x1a2f</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM LETTER LOW RATHA<br>uni1A30</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a30', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a30">&#x1a30</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a30', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a30">&#x1a30</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM LETTER RANA<br>uni1A31</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a31', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a31">&#x1a31</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a31', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a31">&#x1a31</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM LETTER HIGH TA<br>uni1A32</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a32', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a32">&#x1a32</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a32', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a32">&#x1a32</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM LETTER HIGH THA<br>uni1A33</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a33', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a33">&#x1a33</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a33', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a33">&#x1a33</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM LETTER LOW TA<br>uni1A34</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a34', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a34">&#x1a34</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a34', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a34">&#x1a34</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM LETTER LOW THA<br>uni1A35</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a35', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a35">&#x1a35</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a35', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a35">&#x1a35</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM LETTER NA<br>uni1A36</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a36', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a36">&#x1a36</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a36', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a36">&#x1a36</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM LETTER BA<br>uni1A37</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a37', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a37">&#x1a37</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a37', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a37">&#x1a37</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM LETTER HIGH PA<br>uni1A38</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a38', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a38">&#x1a38</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a38', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a38">&#x1a38</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM LETTER HIGH PHA<br>uni1A39</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a39', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a39">&#x1a39</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a39', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a39">&#x1a39</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM LETTER HIGH FA<br>uni1A3A</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a3a', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a3a">&#x1a3a</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a3a', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a3a">&#x1a3a</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM LETTER LOW PA<br>uni1A3B</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a3b', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a3b">&#x1a3b</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a3b', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a3b">&#x1a3b</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM LETTER LOW FA<br>uni1A3C</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a3c', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a3c">&#x1a3c</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a3c', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a3c">&#x1a3c</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM LETTER LOW PHA<br>uni1A3D</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a3d', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a3d">&#x1a3d</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a3d', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a3d">&#x1a3d</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM LETTER MA<br>uni1A3E</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a3e', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a3e">&#x1a3e</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a3e', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a3e">&#x1a3e</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM LETTER LOW YA<br>uni1A3F</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a3f', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a3f">&#x1a3f</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a3f', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a3f">&#x1a3f</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM LETTER HIGH YA<br>uni1A40</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a40', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a40">&#x1a40</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a40', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a40">&#x1a40</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM LETTER RA<br>uni1A41</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a41', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a41">&#x1a41</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a41', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a41">&#x1a41</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM LETTER RUE<br>uni1A42</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a42', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a42">&#x1a42</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a42', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a42">&#x1a42</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM LETTER LA<br>uni1A43</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a43', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a43">&#x1a43</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a43', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a43">&#x1a43</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM LETTER LUE<br>uni1A44</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a44', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a44">&#x1a44</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a44', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a44">&#x1a44</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM LETTER WA<br>uni1A45</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a45', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a45">&#x1a45</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a45', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a45">&#x1a45</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM LETTER HIGH SHA<br>uni1A46</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a46', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a46">&#x1a46</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a46', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a46">&#x1a46</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM LETTER HIGH SSA<br>uni1A47</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a47', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a47">&#x1a47</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a47', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a47">&#x1a47</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM LETTER HIGH SA<br>uni1A48</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a48', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a48">&#x1a48</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a48', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a48">&#x1a48</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM LETTER HIGH HA<br>uni1A49</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a49', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a49">&#x1a49</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a49', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a49">&#x1a49</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM LETTER LLA<br>uni1A4A</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a4a', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a4a">&#x1a4a</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a4a', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a4a">&#x1a4a</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM LETTER A<br>uni1A4B</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a4b', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a4b">&#x1a4b</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a4b', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a4b">&#x1a4b</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM LETTER LOW HA<br>uni1A4C</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a4c', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a4c">&#x1a4c</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a4c', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a4c">&#x1a4c</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM LETTER I<br>uni1A4D</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a4d', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a4d">&#x1a4d</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a4d', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a4d">&#x1a4d</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM LETTER II<br>uni1A4E</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a4e', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a4e">&#x1a4e</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a4e', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a4e">&#x1a4e</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM LETTER U<br>uni1A4F</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a4f', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a4f">&#x1a4f</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a4f', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a4f">&#x1a4f</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM LETTER UU<br>uni1A50</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a50', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a50">&#x1a50</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a50', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a50">&#x1a50</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM LETTER EE<br>uni1A51</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a51', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a51">&#x1a51</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a51', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a51">&#x1a51</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM LETTER OO<br>uni1A52</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a52', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a52">&#x1a52</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a52', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a52">&#x1a52</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM LETTER LAE<br>uni1A53</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a53', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a53">&#x1a53</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a53', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a53">&#x1a53</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM LETTER GREAT SA<br>uni1A54</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a54', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a54">&#x1a54</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a54', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a54">&#x1a54</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM CONSONANT SIGN MEDIAL RA<br>uni1A55</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a55', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a55">&#x1a55</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a55', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a55">&#x1a55</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM CONSONANT SIGN MEDIAL LA<br>uni1A56</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a56', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a56">&#x1a56</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a56', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a56">&#x1a56</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM CONSONANT SIGN LA TANG LAI<br>uni1A57</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a57', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a57">&#x1a57</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a57', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a57">&#x1a57</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM SIGN MAI KANG LAI<br>uni1A58</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a58', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a58">&#x1a58</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a58', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a58">&#x1a58</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM CONSONANT SIGN FINAL NGA<br>uni1A59</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a59', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a59">&#x1a59</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a59', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a59">&#x1a59</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM CONSONANT SIGN LOW PA<br>uni1A5A</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a5a', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a5a">&#x1a5a</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a5a', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a5a">&#x1a5a</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM CONSONANT SIGN HIGH RATHA OR LOW PA<br>uni1A5B</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a5b', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a5b">&#x1a5b</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a5b', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a5b">&#x1a5b</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM CONSONANT SIGN MA<br>uni1A5C</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a5c', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a5c">&#x1a5c</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a5c', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a5c">&#x1a5c</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM CONSONANT SIGN BA<br>uni1A5D</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a5d', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a5d">&#x1a5d</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a5d', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a5d">&#x1a5d</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM CONSONANT SIGN SA<br>uni1A5E</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a5e', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a5e">&#x1a5e</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a5e', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a5e">&#x1a5e</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM SIGN SAKOT<br>uni1A60</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a60', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a60">&#x1a60</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a60', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a60">&#x1a60</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM VOWEL SIGN A<br>uni1A61</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a61', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a61">&#x1a61</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a61', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a61">&#x1a61</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM VOWEL SIGN MAI SAT<br>uni1A62</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a62', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a62">&#x1a62</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a62', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a62">&#x1a62</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM VOWEL SIGN AA<br>uni1A63</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a63', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a63">&#x1a63</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a63', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a63">&#x1a63</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM VOWEL SIGN TALL AA<br>uni1A64</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a64', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a64">&#x1a64</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a64', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a64">&#x1a64</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM VOWEL SIGN I<br>uni1A65</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a65', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a65">&#x1a65</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a65', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a65">&#x1a65</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM VOWEL SIGN II<br>uni1A66</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a66', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a66">&#x1a66</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a66', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a66">&#x1a66</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM VOWEL SIGN UE<br>uni1A67</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a67', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a67">&#x1a67</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a67', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a67">&#x1a67</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM VOWEL SIGN UUE<br>uni1A68</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a68', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a68">&#x1a68</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a68', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a68">&#x1a68</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM VOWEL SIGN U<br>uni1A69</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a69', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a69">&#x1a69</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a69', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a69">&#x1a69</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM VOWEL SIGN UU<br>uni1A6A</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a6a', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a6a">&#x1a6a</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a6a', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a6a">&#x1a6a</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM VOWEL SIGN O<br>uni1A6B</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a6b', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a6b">&#x1a6b</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a6b', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a6b">&#x1a6b</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM VOWEL SIGN OA BELOW<br>uni1A6C</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a6c', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a6c">&#x1a6c</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a6c', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a6c">&#x1a6c</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM VOWEL SIGN OY<br>uni1A6D</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a6d', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a6d">&#x1a6d</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a6d', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a6d">&#x1a6d</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM VOWEL SIGN E<br>uni1A6E</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a6e', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a6e">&#x1a6e</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a6e', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a6e">&#x1a6e</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM VOWEL SIGN AE<br>uni1A6F</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a6f', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a6f">&#x1a6f</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a6f', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a6f">&#x1a6f</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM VOWEL SIGN OO<br>uni1A70</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a70', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a70">&#x1a70</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a70', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a70">&#x1a70</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM VOWEL SIGN AI<br>uni1A71</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a71', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a71">&#x1a71</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a71', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a71">&#x1a71</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM VOWEL SIGN THAM AI<br>uni1A72</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a72', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a72">&#x1a72</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a72', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a72">&#x1a72</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM VOWEL SIGN OA ABOVE<br>uni1A73</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a73', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a73">&#x1a73</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a73', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a73">&#x1a73</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM SIGN MAI KANG<br>uni1A74</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a74', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a74">&#x1a74</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a74', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a74">&#x1a74</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM SIGN TONE-1<br>uni1A75</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a75', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a75">&#x1a75</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a75', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a75">&#x1a75</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM SIGN TONE-2<br>uni1A76</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a76', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a76">&#x1a76</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a76', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a76">&#x1a76</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM SIGN KHUEN TONE-3<br>uni1A77</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a77', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a77">&#x1a77</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a77', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a77">&#x1a77</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM SIGN KHUEN TONE-4<br>uni1A78</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a78', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a78">&#x1a78</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a78', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a78">&#x1a78</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM SIGN KHUEN TONE-5<br>uni1A79</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a79', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a79">&#x1a79</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a79', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a79">&#x1a79</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM SIGN RA HAAM<br>uni1A7A</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a7a', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a7a">&#x1a7a</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a7a', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a7a">&#x1a7a</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM SIGN MAI SAM<br>uni1A7B</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a7b', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a7b">&#x1a7b</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a7b', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a7b">&#x1a7b</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM SIGN KHUEN-LUE KARAN<br>uni1A7C</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a7c', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a7c">&#x1a7c</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a7c', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a7c">&#x1a7c</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM COMBINING CRYPTOGRAMMIC DOT<br>uni1A7F</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a7f', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a7f">&#x1a7f</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a7f', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a7f">&#x1a7f</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM HORA DIGIT ZERO<br>uni1A80</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a80', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a80">&#x1a80</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a80', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a80">&#x1a80</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM HORA DIGIT ONE<br>uni1A81</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a81', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a81">&#x1a81</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a81', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a81">&#x1a81</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM HORA DIGIT TWO<br>uni1A82</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a82', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a82">&#x1a82</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a82', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a82">&#x1a82</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM HORA DIGIT THREE<br>uni1A83</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a83', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a83">&#x1a83</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a83', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a83">&#x1a83</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM HORA DIGIT FOUR<br>uni1A84</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a84', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a84">&#x1a84</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a84', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a84">&#x1a84</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM HORA DIGIT FIVE<br>uni1A85</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a85', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a85">&#x1a85</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a85', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a85">&#x1a85</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM HORA DIGIT SIX<br>uni1A86</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a86', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a86">&#x1a86</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a86', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a86">&#x1a86</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM HORA DIGIT SEVEN<br>uni1A87</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a87', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a87">&#x1a87</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a87', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a87">&#x1a87</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM HORA DIGIT EIGHT<br>uni1A88</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a88', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a88">&#x1a88</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a88', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a88">&#x1a88</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM HORA DIGIT NINE<br>uni1A89</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a89', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a89">&#x1a89</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a89', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a89">&#x1a89</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM THAM DIGIT ZERO<br>uni1A90</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a90', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a90">&#x1a90</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a90', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a90">&#x1a90</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM THAM DIGIT ONE<br>uni1A91</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a91', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a91">&#x1a91</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a91', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a91">&#x1a91</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM THAM DIGIT TWO<br>uni1A92</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a92', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a92">&#x1a92</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a92', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a92">&#x1a92</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM THAM DIGIT THREE<br>uni1A93</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a93', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a93">&#x1a93</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a93', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a93">&#x1a93</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM THAM DIGIT FOUR<br>uni1A94</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a94', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a94">&#x1a94</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a94', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a94">&#x1a94</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM THAM DIGIT FIVE<br>uni1A95</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a95', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a95">&#x1a95</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a95', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a95">&#x1a95</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM THAM DIGIT SIX<br>uni1A96</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a96', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a96">&#x1a96</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a96', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a96">&#x1a96</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM THAM DIGIT SEVEN<br>uni1A97</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a97', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a97">&#x1a97</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a97', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a97">&#x1a97</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM THAM DIGIT EIGHT<br>uni1A98</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a98', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a98">&#x1a98</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a98', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a98">&#x1a98</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM THAM DIGIT NINE<br>uni1A99</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1a99', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1a99">&#x1a99</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1a99', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1a99">&#x1a99</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM SIGN WIANG<br>uni1AA0</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1aa0', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1aa0">&#x1aa0</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1aa0', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1aa0">&#x1aa0</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM SIGN WIANGWAAK<br>uni1AA1</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1aa1', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1aa1">&#x1aa1</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1aa1', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1aa1">&#x1aa1</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM SIGN SAWAN<br>uni1AA2</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1aa2', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1aa2">&#x1aa2</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1aa2', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1aa2">&#x1aa2</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM SIGN KEOW<br>uni1AA3</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1aa3', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1aa3">&#x1aa3</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1aa3', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1aa3">&#x1aa3</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM SIGN HOY<br>uni1AA4</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1aa4', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1aa4">&#x1aa4</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1aa4', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1aa4">&#x1aa4</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM SIGN DOKMAI<br>uni1AA5</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1aa5', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1aa5">&#x1aa5</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1aa5', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1aa5">&#x1aa5</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM SIGN REVERSED ROTATED RANA<br>uni1AA6</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1aa6', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1aa6">&#x1aa6</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1aa6', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1aa6">&#x1aa6</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM SIGN MAI YAMOK<br>uni1AA7</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1aa7', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1aa7">&#x1aa7</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1aa7', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1aa7">&#x1aa7</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM SIGN KAAN<br>uni1AA8</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1aa8', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1aa8">&#x1aa8</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1aa8', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1aa8">&#x1aa8</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM SIGN KAANKUU<br>uni1AA9</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1aa9', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1aa9">&#x1aa9</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1aa9', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1aa9">&#x1aa9</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM SIGN SATKAAN<br>uni1AAA</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1aaa', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1aaa">&#x1aaa</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1aaa', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1aaa">&#x1aaa</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM SIGN SATKAANKUU<br>uni1AAB</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1aab', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1aab">&#x1aab</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1aab', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1aab">&#x1aab</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM SIGN HANG<br>uni1AAC</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1aac', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1aac">&#x1aac</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1aac', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1aac">&#x1aac</td>
+</tr>
+<tr>
+<td class="colLeft">TAI THAM SIGN CAANG<br>uni1AAD</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1aad', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1aad">&#x1aad</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x1aad', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1aad">&#x1aad</td>
+</tr>
+<tr>
+<td class="colLeft">ZERO WIDTH SPACE<br>uni200B</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x200b', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni200b">&#x200b</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x200b', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni200b">&#x200b</td>
+</tr>
+<tr>
+<td class="colLeft">ZERO WIDTH NON-JOINER<br>uni200C</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x200c', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni200c">&#x200c</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x200c', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni200c">&#x200c</td>
+</tr>
+<tr>
+<td class="colLeft">ZERO WIDTH JOINER<br>uni200D</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x200d', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni200d">&#x200d</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x200d', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni200d">&#x200d</td>
+</tr>
+<tr>
+<td class="colLeft">BULLET OPERATOR<br>uni2219</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2219', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2219">&#x2219</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x2219', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni2219">&#x2219</td>
+</tr>
+<tr>
+<td class="colLeft">DOTTED CIRCLE<br>uni25CC</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x25cc', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni25cc">&#x25cc</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#x25cc', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni25cc">&#x25cc</td>
+</tr>
+<tr>
+<td class="colLeft">ZERO WIDTH NO-BREAK SPACE<br>uniFEFF</td>
+<td class="character defaultFont info" onmousedown="mDown('&#xfeff', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="unifeff">&#xfeff</td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('&#xfeff', ['om_NotoSansTaiThamRegularttf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="unifeff">&#xfeff</td>
+</tr>
+
+		</table>
+
+
+            
+		<hr>
+		<table id="splitterContent_unencoded">
+<tr>
+<td class="colLeft"><br></td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title=" "></td>
+<td class="character om_NotoSansTaiThamRegularttf " onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', ''])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title=" "></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A20.alt<br>Ending "alt" ≠ OT Feature (cannot display this character) feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A20.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf warning" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A20.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A21.alt<br>Ending "alt" ≠ OT Feature (cannot display this character) feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A21.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf warning" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A21.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A22.alt<br>Ending "alt" ≠ OT Feature (cannot display this character) feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A22.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf warning" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A22.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A23.alt<br>Ending "alt" ≠ OT Feature (cannot display this character) feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A23.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf warning" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A23.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A24.alt<br>Ending "alt" ≠ OT Feature (cannot display this character) feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A24.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf warning" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A24.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A25.alt<br>Ending "alt" ≠ OT Feature (cannot display this character) feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A25.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf warning" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A25.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A26.alt<br>Ending "alt" ≠ OT Feature (cannot display this character) feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A26.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf warning" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A26.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A27.alt<br>Ending "alt" ≠ OT Feature (cannot display this character) feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A27.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf warning" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A27.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A28.alt<br>Ending "alt" ≠ OT Feature (cannot display this character) feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A28.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf warning" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A28.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A29.alt<br>Ending "alt" ≠ OT Feature (cannot display this character) feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A29.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf warning" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A29.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A2A.alt<br>Ending "alt" ≠ OT Feature (cannot display this character) feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A2A.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf warning" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A2A.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A2B.alt<br>Ending "alt" ≠ OT Feature (cannot display this character) feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A2B.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf warning" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A2B.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A2C.alt<br>Ending "alt" ≠ OT Feature (cannot display this character) feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A2C.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf warning" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A2C.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A2D.alt<br>Ending "alt" ≠ OT Feature (cannot display this character) feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A2D.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf warning" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A2D.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A2E.alt<br>Ending "alt" ≠ OT Feature (cannot display this character) feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A2E.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf warning" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A2E.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A2F.alt<br>Ending "alt" ≠ OT Feature (cannot display this character) feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A2F.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf warning" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A2F.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A30.alt<br>Ending "alt" ≠ OT Feature (cannot display this character) feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A30.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf warning" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A30.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A31.alt<br>Ending "alt" ≠ OT Feature (cannot display this character) feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A31.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf warning" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A31.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A32.alt<br>Ending "alt" ≠ OT Feature (cannot display this character) feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A32.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf warning" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A32.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A33.alt<br>Ending "alt" ≠ OT Feature (cannot display this character) feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A33.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf warning" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A33.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A34.alt<br>Ending "alt" ≠ OT Feature (cannot display this character) feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A34.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf warning" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A34.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A35.alt<br>Ending "alt" ≠ OT Feature (cannot display this character) feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A35.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf warning" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A35.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A36.alt<br>Ending "alt" ≠ OT Feature (cannot display this character) feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A36.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf warning" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A36.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A37.alt<br>Ending "alt" ≠ OT Feature (cannot display this character) feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A37.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf warning" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A37.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A38.alt<br>Ending "alt" ≠ OT Feature (cannot display this character) feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A38.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf warning" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A38.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A39.alt<br>Ending "alt" ≠ OT Feature (cannot display this character) feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A39.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf warning" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A39.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A3A.alt<br>Ending "alt" ≠ OT Feature (cannot display this character) feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A3A.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf warning" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A3A.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A3B.alt<br>Ending "alt" ≠ OT Feature (cannot display this character) feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A3B.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf warning" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A3B.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A3C.alt<br>Ending "alt" ≠ OT Feature (cannot display this character) feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A3C.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf warning" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A3C.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A3D.alt<br>Ending "alt" ≠ OT Feature (cannot display this character) feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A3D.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf warning" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A3D.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A3E.alt<br>Ending "alt" ≠ OT Feature (cannot display this character) feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A3E.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf warning" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A3E.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A3F.alt<br>Ending "alt" ≠ OT Feature (cannot display this character) feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A3F.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf warning" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A3F.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A40.alt<br>Ending "alt" ≠ OT Feature (cannot display this character) feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A40.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf warning" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A40.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A41.alt<br>Ending "alt" ≠ OT Feature (cannot display this character) feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A41.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf warning" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A41.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A42.alt<br>Ending "alt" ≠ OT Feature (cannot display this character) feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A42.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf warning" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A42.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A43.alt<br>Ending "alt" ≠ OT Feature (cannot display this character) feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A43.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf warning" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A43.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A44.alt<br>Ending "alt" ≠ OT Feature (cannot display this character) feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A44.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf warning" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A44.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A45.alt<br>Ending "alt" ≠ OT Feature (cannot display this character) feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A45.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf warning" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A45.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A46.alt<br>Ending "alt" ≠ OT Feature (cannot display this character) feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A46.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf warning" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A46.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A47.alt<br>Ending "alt" ≠ OT Feature (cannot display this character) feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A47.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf warning" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A47.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A48.alt<br>Ending "alt" ≠ OT Feature (cannot display this character) feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A48.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf warning" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A48.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A49.alt<br>Ending "alt" ≠ OT Feature (cannot display this character) feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A49.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf warning" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A49.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A4A.alt<br>Ending "alt" ≠ OT Feature (cannot display this character) feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A4A.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf warning" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A4A.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A4B.alt<br>Ending "alt" ≠ OT Feature (cannot display this character) feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A4B.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf warning" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A4B.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A4C.alt<br>Ending "alt" ≠ OT Feature (cannot display this character) feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A4C.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf warning" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A4C.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A20.blwf<br>blwf feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A20.blwf blwf feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf blwf" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'blwf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A20.blwf blwf feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A21.blwf<br>blwf feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A21.blwf blwf feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf blwf" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'blwf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A21.blwf blwf feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A22.blwf<br>blwf feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A22.blwf blwf feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf blwf" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'blwf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A22.blwf blwf feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A23.blwf<br>blwf feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A23.blwf blwf feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf blwf" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'blwf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A23.blwf blwf feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A24.blwf<br>blwf feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A24.blwf blwf feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf blwf" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'blwf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A24.blwf blwf feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A25.blwf<br>blwf feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A25.blwf blwf feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf blwf" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'blwf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A25.blwf blwf feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A26.blwf<br>blwf feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A26.blwf blwf feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf blwf" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'blwf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A26.blwf blwf feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A27.blwf<br>blwf feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A27.blwf blwf feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf blwf" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'blwf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A27.blwf blwf feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A28.blwf<br>blwf feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A28.blwf blwf feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf blwf" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'blwf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A28.blwf blwf feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A29.blwf<br>blwf feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A29.blwf blwf feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf blwf" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'blwf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A29.blwf blwf feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A2A.blwf<br>blwf feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A2A.blwf blwf feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf blwf" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'blwf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A2A.blwf blwf feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A2B.blwf<br>blwf feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A2B.blwf blwf feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf blwf" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'blwf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A2B.blwf blwf feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A2C.blwf<br>blwf feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A2C.blwf blwf feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf blwf" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'blwf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A2C.blwf blwf feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A2D.blwf<br>blwf feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A2D.blwf blwf feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf blwf" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'blwf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A2D.blwf blwf feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A2E.blwf<br>blwf feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A2E.blwf blwf feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf blwf" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'blwf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A2E.blwf blwf feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A2F.blwf<br>blwf feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A2F.blwf blwf feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf blwf" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'blwf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A2F.blwf blwf feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A30.blwf<br>blwf feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A30.blwf blwf feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf blwf" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'blwf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A30.blwf blwf feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A31.blwf<br>blwf feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A31.blwf blwf feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf blwf" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'blwf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A31.blwf blwf feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A32.blwf<br>blwf feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A32.blwf blwf feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf blwf" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'blwf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A32.blwf blwf feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A33.blwf<br>blwf feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A33.blwf blwf feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf blwf" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'blwf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A33.blwf blwf feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A34.blwf<br>blwf feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A34.blwf blwf feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf blwf" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'blwf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A34.blwf blwf feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A35.blwf<br>blwf feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A35.blwf blwf feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf blwf" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'blwf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A35.blwf blwf feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A36.blwf<br>blwf feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A36.blwf blwf feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf blwf" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'blwf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A36.blwf blwf feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A37.blwf<br>blwf feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A37.blwf blwf feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf blwf" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'blwf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A37.blwf blwf feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A38.blwf<br>blwf feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A38.blwf blwf feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf blwf" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'blwf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A38.blwf blwf feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A39.blwf<br>blwf feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A39.blwf blwf feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf blwf" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'blwf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A39.blwf blwf feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A3A.blwf<br>blwf feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A3A.blwf blwf feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf blwf" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'blwf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A3A.blwf blwf feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A3B.blwf<br>blwf feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A3B.blwf blwf feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf blwf" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'blwf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A3B.blwf blwf feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A3C.blwf<br>blwf feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A3C.blwf blwf feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf blwf" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'blwf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A3C.blwf blwf feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A3D.blwf<br>blwf feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A3D.blwf blwf feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf blwf" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'blwf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A3D.blwf blwf feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A3E.blwf<br>blwf feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A3E.blwf blwf feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf blwf" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'blwf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A3E.blwf blwf feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A3F.blwf<br>blwf feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A3F.blwf blwf feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf blwf" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'blwf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A3F.blwf blwf feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A40.blwf<br>blwf feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A40.blwf blwf feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf blwf" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'blwf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A40.blwf blwf feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A41.blwf<br>blwf feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A41.blwf blwf feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf blwf" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'blwf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A41.blwf blwf feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A42.blwf<br>blwf feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A42.blwf blwf feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf blwf" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'blwf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A42.blwf blwf feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A43.blwf<br>blwf feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A43.blwf blwf feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf blwf" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'blwf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A43.blwf blwf feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A44.blwf<br>blwf feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A44.blwf blwf feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf blwf" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'blwf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A44.blwf blwf feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A45.blwf<br>blwf feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A45.blwf blwf feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf blwf" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'blwf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A45.blwf blwf feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A46.blwf<br>blwf feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A46.blwf blwf feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf blwf" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'blwf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A46.blwf blwf feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A47.blwf<br>blwf feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A47.blwf blwf feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf blwf" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'blwf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A47.blwf blwf feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A48.blwf<br>blwf feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A48.blwf blwf feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf blwf" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'blwf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A48.blwf blwf feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A49.blwf<br>blwf feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A49.blwf blwf feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf blwf" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'blwf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A49.blwf blwf feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A4A.blwf<br>blwf feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A4A.blwf blwf feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf blwf" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'blwf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A4A.blwf blwf feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A4B.blwf<br>blwf feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A4B.blwf blwf feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf blwf" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'blwf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A4B.blwf blwf feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A4C.blwf<br>blwf feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A4C.blwf blwf feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf blwf" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'blwf'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A4C.blwf blwf feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1A551A6E<br>It might be two unicodes: 1A55 + 1A6E (most Arabic ccmp feature)</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1A55&#x1A6E', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A551A6E It might be two unicodes: 1A55 + 1A6E (most Arabic ccmp feature)">&#x1A55&#x1A6E</td>
+<td class="character om_NotoSansTaiThamRegularttf warning" onmousedown="mDown('&#x1A55&#x1A6E', ['om_NotoSansTaiThamRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A551A6E It might be two unicodes: 1A55 + 1A6E (most Arabic ccmp feature)">&#x1A55&#x1A6E</td>
+</tr>
+<tr>
+<td class="colLeft">uni1A551A6F<br>It might be two unicodes: 1A55 + 1A6F (most Arabic ccmp feature)</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1A55&#x1A6F', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A551A6F It might be two unicodes: 1A55 + 1A6F (most Arabic ccmp feature)">&#x1A55&#x1A6F</td>
+<td class="character om_NotoSansTaiThamRegularttf warning" onmousedown="mDown('&#x1A55&#x1A6F', ['om_NotoSansTaiThamRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A551A6F It might be two unicodes: 1A55 + 1A6F (most Arabic ccmp feature)">&#x1A55&#x1A6F</td>
+</tr>
+<tr>
+<td class="colLeft">uni1A551A70<br>It might be two unicodes: 1A55 + 1A70 (most Arabic ccmp feature)</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1A55&#x1A70', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A551A70 It might be two unicodes: 1A55 + 1A70 (most Arabic ccmp feature)">&#x1A55&#x1A70</td>
+<td class="character om_NotoSansTaiThamRegularttf warning" onmousedown="mDown('&#x1A55&#x1A70', ['om_NotoSansTaiThamRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A551A70 It might be two unicodes: 1A55 + 1A70 (most Arabic ccmp feature)">&#x1A55&#x1A70</td>
+</tr>
+<tr>
+<td class="colLeft">uni1A551A71<br>It might be two unicodes: 1A55 + 1A71 (most Arabic ccmp feature)</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1A55&#x1A71', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A551A71 It might be two unicodes: 1A55 + 1A71 (most Arabic ccmp feature)">&#x1A55&#x1A71</td>
+<td class="character om_NotoSansTaiThamRegularttf warning" onmousedown="mDown('&#x1A55&#x1A71', ['om_NotoSansTaiThamRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A551A71 It might be two unicodes: 1A55 + 1A71 (most Arabic ccmp feature)">&#x1A55&#x1A71</td>
+</tr>
+<tr>
+<td class="colLeft">uni1A551A72<br>It might be two unicodes: 1A55 + 1A72 (most Arabic ccmp feature)</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1A55&#x1A72', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A551A72 It might be two unicodes: 1A55 + 1A72 (most Arabic ccmp feature)">&#x1A55&#x1A72</td>
+<td class="character om_NotoSansTaiThamRegularttf warning" onmousedown="mDown('&#x1A55&#x1A72', ['om_NotoSansTaiThamRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A551A72 It might be two unicodes: 1A55 + 1A72 (most Arabic ccmp feature)">&#x1A55&#x1A72</td>
+</tr>
+<tr>
+<td class="colLeft">uni1A5B.alt<br>Ending "alt" ≠ OT Feature (cannot display this character) feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1A5B.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+<td class="character om_NotoSansTaiThamRegularttf warning" onmousedown="mDown('', ['om_NotoSansTaiThamRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Tai Tham" data-original-title="uni1A5B.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+</tr>
+
+		</table>
+
+
+
+    </div>
+    </div>
+
+
+    <script type="text/javascript">
+
+    //var elementCustomerPreview = document.getElementById("cssCodeForCustomerPreview");
+    //console.log('element.height: ', elementCustomerPreview.offsetHeight)
+    //$('.containerMain').css("top", '-' + elementCustomerPreview.offsetHeight + 'px')
+
+    var elementCustomerPreview = document.getElementById("containerMainID");
+    console.log('element.height: ', elementCustomerPreview.offsetHeight)
+    $('.containerCSScode').css("height", elementCustomerPreview.offsetHeight -200 + 'px')
+
+    var elementHeader = document.getElementById('otFeature');
+    console.log('element.height: ', elementHeader.offsetHeight)
+    divHeight = elementHeader.offsetHeight - 50
+    $('.header').css("top", '-' + divHeight + 'px')
+
+    //document.getElementById("varFont").style.color = "blue";
+
+    $('.sampleContent').on('blur keyup paste input', function() {$(".sampleContent").not(this).html($(this).html());});
+
+    
+    $('#slider').on('change',function(){
+    var val = $(this).val();
+    $(".om_NotoSansTaiThamRegularttf").css("font-size",(val+"em"));
+    $(".colLeft").css("width",(50 - (val*2)) +"%");
+    });
+
+    
+
+    function toggle_detail(my_id){
+        var element = document.getElementById(my_id)
+        //var buttoncell = document.getElementById(my_id+"_cell")
+        var button = document.getElementById(my_id+"_btn")
+        if (element.style.display != 'none') {
+          element.style.display = 'none'; //$("#" + my_id).slideUp(); smooth in/out does not work currently
+          button.innerHTML = '▼';
+        } else {
+          element.style.display = ''; //$("#" + my_id).slideDown(); smooth in/out does not work currently
+          button.innerHTML = '▲';
+        }
+    }
+
+    function showhide_div(my_id, buttomName){
+        var element = document.getElementById(my_id)
+        //var buttoncell = document.getElementById(my_id+"_cell")
+        var button = document.getElementById(my_id+"_btn")
+        if (element.style.opacity != '0') {
+          element.style.opacity = '0'; 
+          setTimeout(function () {
+            element.style.zIndex = '-1';
+            }, 1000);
+          button.innerHTML = 'show ' + buttomName;
+        } else {
+          element.style.opacity = '1';
+          element.style.zIndex = '998';
+          button.innerHTML = 'hide ' + buttomName;
+        }
+    }
+
+    function hover(my_id){
+        var element = document.getElementById(my_id)
+        if (element.style.background != '') {
+          element.style.background = '';
+          element.style.color = ''; 
+        } else {
+          element.style.background = '#B3D4FC';
+          element.style.color = 'black'; 
+        }
+    }
+
+    var HTMLCodeCompareBoxes = '1234567890 xozszn HOZD 1/3 @ 1a ;#& ? % $ € ! In August of 2016, four unlikely collaborators in the world of type, fonts and font technology stood on a stage at the ATypI conference in Warsaw, Poland. The collaborators were Apple, Microsoft, Adobe and Google. Together they announced the publishing of OpenType 1.8, an update to the now ubiquitous font standard which was originally an amalgam of Apple & Microsoft’s TrueType, and Adobe’s PostScript font formats. The OpenType 1.8 announcement, ATypI, Warsaw, Poland, September 14, 2016.'
+    var fontWeightsDict = {'Noto Sans Tai Tham (ttf)':'om_NotoSansTaiThamRegularttf'};
+
+    var sampleTexts = {'All Unicodes': '\x00 \r   \xa0 ᨠ ᨡ ᨢ ᨣ ᨤ ᨥ ᨦ ᨧ ᨨ ᨩ ᨪ ᨫ ᨬ ᨭ ᨮ ᨯ ᨰ ᨱ ᨲ ᨳ ᨴ ᨵ ᨶ ᨷ ᨸ ᨹ ᨺ ᨻ ᨼ ᨽ ᨾ ᨿ ᩀ ᩁ ᩂ ᩃ ᩄ ᩅ ᩆ ᩇ ᩈ ᩉ ᩊ ᩋ ᩌ ᩍ ᩎ ᩏ ᩐ ᩑ ᩒ ᩓ ᩔ ᩕ ᩖ ᩗ ᩘ ᩙ ᩚ ᩛ ᩜ ᩝ ᩞ ᩠ ᩡ ᩢ ᩣ ᩤ ᩥ ᩦ ᩧ ᩨ ᩩ ᩪ ᩫ ᩬ ᩭ ᩮ ᩯ ᩰ ᩱ ᩲ ᩳ ᩴ ᩵ ᩶ ᩷ ᩸ ᩹ ᩺ ᩻ ᩼ ᩿ ᪀ ᪁ ᪂ ᪃ ᪄ ᪅ ᪆ ᪇ ᪈ ᪉ ᪐ ᪑ ᪒ ᪓ ᪔ ᪕ ᪖ ᪗ ᪘ ᪙ ᪠ ᪡ ᪢ ᪣ ᪤ ᪥ ᪦ ᪧ ᪨ ᪩ ᪪ ᪫ ᪬ ᪭ \u200b \u200c \u200d ∙ ◌ \ufeff', 'Default Sample': '1234567890 xozszn HOZD 1/3 @ 1a ;#& ? % $ € ! In August of 2016, four unlikely collaborators in the world of type, fonts and font technology stood on a stage at the ATypI conference in Warsaw, Poland. The collaborators were Apple, Microsoft, Adobe and Google. Together they announced the publishing of OpenType 1.8, an update to the now ubiquitous font standard which was originally an amalgam of Apple & Microsoft’s TrueType, and Adobe’s PostScript font formats. The OpenType 1.8 announcement, ATypI, Warsaw, Poland, September 14, 2016.'}
+
+    var clicks = 0;
+    var arrList = [];
+    var mySpanIDList = [];
+
+    var supported_features = [];
+
+    function functionAddSupportedFeatures(item){
+        var button = document.getElementById(item+"_btn")
+        if (supported_features.includes(item) === true){
+            button.style.color = 'black';
+            button.style.backgroundColor = 'white';
+            var index = supported_features.indexOf(item);
+            if (index > -1) {
+                supported_features.splice(index, 1);
+            }
+        }
+        else { 
+            button.style.color = 'white';
+            button.style.backgroundColor = 'black';
+            supported_features.push(item);
+        }
+        functionSetCSSFeatureCode(supported_features)
+    }
+
+    function functionChangeLanguage(item){
+        document.documentElement.lang = item;
+        $("#htmlLangTag").html(item);
+        if (['ar', 'fa', 'ur'].indexOf(item) >= 0) {
+            document.getElementById('compareBoxID').dir = 'rtl';
+            functionReadDirection('compareBoxID', 'right-to-left');
+        } else {
+            document.getElementById('compareBoxID').dir = '';
+            functionReadDirection('compareBoxID', 'left-to-right')
+        }
+
+    }
+
+
+    function functionSetCSSFeatureCode(arr){
+        var supported_features = arr;
+        var default_features =  ['mark', 'mkmk']; //['kern', 'vkrn', 'liga', 'clig', 'calt', 'mark', 'mkmk', 'rvrm' ];
+
+        var cssCode_features = "";//font-feature-settings:
+        var moz_features = "";
+        
+
+        var arrayLength = supported_features.length;
+        for (var i = 0; i < arrayLength; i++) {
+            var item = supported_features[i];
+            cssCode_features += "'" + item + "' 1,";
+            moz_features += item + "=1,";
+        }
+
+        var defaultLength = default_features.length;
+        for (var i = 0; i < defaultLength; i++) {
+            var item = default_features[i];
+            if (supported_features.includes(item) === false){
+                cssCode_features += "'" + item + "' 0,";
+                moz_features += item + "=0,";
+            }
+        }
+
+        var stringLength = cssCode_features.length;
+        if (cssCode_features[stringLength-1] === ','){
+            var cleanedCSS = cssCode_features.substring(',', stringLength - 1);
+        } else {
+            var cleanedCSS = cssCode_features;
+        }
+
+        var element = document.getElementById('body_all');
+        element.style.fontFeatureSettings = cleanedCSS;
+
+        var stringLength = moz_features.length;
+        if (moz_features[stringLength-1] === ','){
+            var cleanedCSSmoz_features = moz_features.substring(',', stringLength - 1);
+        } else {
+            var cleanedCSSmoz_features = moz_features;
+        }
+
+        console.log('cleanedCSS: ', cleanedCSS)
+        var webkit_features = cleanedCSS 
+
+        $("#w3cfeatures").html(webkit_features);
+        $("#webkitfeatures").html(webkit_features);
+        $("#mozfeatures-up-to-14").html(webkit_features);
+        $("#mozfeatures").html(cleanedCSSmoz_features);
+        $("#msfeatures").html(webkit_features);
+        $("#ofeatures").html(webkit_features);
+
+      };
+
+
+    function functionBoxAdd() {
+
+        clicks += 1;
+        //arrList.push(clicks.toString())
+        console.log(arrList)
+        //var tdID = 'myTD_' + clicks;
+        //arrList.push(tdID.toString())
+        
+        //var x = document.createElement("TD");
+        //x.setAttribute("id", tdID);
+        //document.getElementById("tableTR").appendChild(x);
+
+        //var optionID = 'myOption_' + clicks;
+        //var d1 = document.createElement("DIV");
+        //d1.setAttribute("id", optionID);
+        //document.getElementById(tdID).appendChild(d1);
+
+        //var copyTextID = 'myText_' + clicks;
+        //var d2 = document.createElement("DIV");
+        //d2.setAttribute("id", copyTextID);
+        //d2.setAttribute("contenteditable", 'true');
+        //document.getElementById(tdID).appendChild(d2);
+        //var SampleText = document.createTextNode(HTMLCodeCompareBoxes);
+        //document.getElementById(copyTextID).innerHTML = HTMLCodeCompareBoxes;
+
+        var nameID = 'myBox_' + clicks;
+        arrList.push(nameID.toString())
+        var x = document.createElement("TD");
+        x.setAttribute("id", nameID);
+        //x.setAttribute("contenteditable", 'true');
+
+
+         var selectID = 'mySelect_' + clicks;
+         var s = document.createElement("SELECT");
+         s.setAttribute("id", selectID);
+         s.setAttribute("name", nameID);
+         s.setAttribute("onchange", "functionSelect('" + selectID + "')");
+
+         var arrListFontname = [];
+         var arrListCSSName = [];
+         lenClicks = 0;
+
+         for(fontName in fontWeightsDict){
+                 lenClicks += 1;
+                 arrListFontname.push(fontName.toString())
+                  var fontCSScode = fontWeightsDict[fontName];
+                  arrListCSSName.push(fontCSScode.toString())
+
+                  var z = document.createElement("option");
+                z.setAttribute("value", fontCSScode);
+                if (clicks + 1 == lenClicks){
+                    var FontSelected = arrListCSSName[lenClicks-1]; //minus one because array starts with zero
+                    z.setAttribute("selected", 'selected');
+                }
+                var t = document.createTextNode(fontName);
+                z.appendChild(t);
+                s.appendChild(z);
+                console.log(arrListFontname[-1])
+        }
+
+        var numberFonts = Object.keys(fontWeightsDict).length;
+        if (numberFonts <= clicks){var FontSelected = arrListCSSName[0];}
+        
+        x.setAttribute("class", "compareBox "+FontSelected);
+        document.getElementById("tableTR").appendChild(x);
+
+
+        //document.getElementById(nameID).appendChild(z);
+        document.getElementById(nameID).appendChild(s);
+
+        //var SampleText = document.createTextNode(HTMLCodeCompareBoxes);
+        var mySpanID = 'myBoxContent_' + clicks;
+        mySpanIDList.push(mySpanID.toString())
+        var span = document.createElement("SPAN");
+        span.setAttribute("id", mySpanID);
+        span.setAttribute("contenteditable", 'true');
+        span.setAttribute("class", 'compareBoxCSS');
+
+        var compareBoxFontSize = document.getElementById("myBoxContent").style.fontSize;
+        //console.log('Font-Size: ', compareBoxFontSize)
+        span.setAttribute("style", "font-size: " + compareBoxFontSize);
+
+        var getSampleText = document.getElementById('myBoxContent').innerHTML
+        //var mySampleText = document.getElementById('mySelectSampleText').value;
+        //var getSampleText = sampleTexts[mySampleText];
+        span.innerHTML = getSampleText;
+
+        //var sp = document.createTextNode(getSampleText);
+        //span.appendChild(sp);
+
+        document.getElementById(nameID).appendChild(span);
+     
+    }
+     
+    function functionBoxRemove() {
+        var item = arrList.pop() ;
+        //var nameID2 = 'myBox_' + (item);
+
+        if (item != 'myBox'){
+            var x = document.getElementById(item);
+            document.getElementById("tableTR").removeChild(x);
+        }
+
+        var index = mySpanIDList.length;
+        if (index > 1){
+            var listIndex = index -1;
+            mySpanIDList.splice(listIndex, 1);
+        }
+
+    }
+
+    var allBoxBG = arrList;
+    allBoxBG.push('myBox'); //first fixed box
+    function functionBoxBG(){
+        for (var item in allBoxBG){
+            console.log(allBoxBG[item])
+            var element = document.getElementById(allBoxBG[item])
+            if (element.style.backgroundColor != "white"){
+                element.style.backgroundColor = "white";
+                element.style.color = 'black';
+            } else {
+                element.style.backgroundColor = "black";
+                element.style.color = 'white';                
+            }
+        }
+    }
+
+    //$('#myBox').on('blur keyup paste input', function() {
+    //    var sampleText = document.getElementById('myBox').innerHTML;
+    //    for (var item in arrList){
+    //        var element = document.getElementById(arrList[item]);
+    //        element.innerHTML = sampleText;
+    //    }
+    //});
+
+    function functionSelect(selectID) {
+        console.log(selectID)
+        //var box = document.getElementById(selectID).parentElement; //.nodeName;
+        var CSScode = document.getElementById(selectID).value;
+        var boxID = document.getElementById(selectID).name;
+        console.log(CSScode)
+        console.log(boxID)
+        //document.getElementById(boxID).classList.add(value);
+        //box.classList.add(value);
+        document.getElementById(boxID).classList = CSScode;
+    }
+
+    mySpanIDList.push('myBoxContent'); //first add "fixed box"
+    function functionSelectSampleText(mySelectSampleText){
+        console.log('LISTE mySpanIDList::::', mySpanIDList)
+        var mySampleText = document.getElementById(mySelectSampleText).value;
+        var sampleText = sampleTexts[mySampleText];
+        for (var item in mySpanIDList){
+            document.getElementById(mySpanIDList[item]).innerHTML = sampleText;
+        }
+
+    }
+
+    function functionGetColorBG(item, CSSClass){
+        $(CSSClass).css('background-color', item);
+    }
+
+    function functionGetColorText(item, CSSClass){
+        $(CSSClass).css('color', item);
+    }
+
+    function functionSwapColorTextBG(CSSClass){
+        var colorText = $(CSSClass).css('color');
+        var colorBG = $(CSSClass).css('backgroundColor');
+        $(CSSClass).css('background-color', colorText);
+        $(CSSClass).css('color', colorBG);
+
+    }
+
+    $('.compareBoxCSS').on('blur keyup paste input', function() {$(".compareBoxCSS").not(this).html($(this).html());});
+
+    $('#sliderCompareBoxCSS').on('change',function(){
+        var val = $(this).val();
+        $(".compareBoxCSS").css("font-size",(val+"px"));
+        
+        document.getElementById("numberCompareBoxCSS").value = val;
+    });
+
+    $('#numberCompareBoxCSS').on('change',function(){
+        var val = $(this).val();
+        $(".compareBoxCSS").css("font-size",(val+"px"));
+        
+        document.getElementById("sliderCompareBoxCSS").value = val;
+    });
+
+    $('#sliderSampleContent').on('change',function(){
+        var val = $(this).val();
+        $(".sampleContent").css("font-size",(val+"px"));
+        if (val <= 30){
+            $(".sampleContent").css("padding",(val+"px 50px "+ val+"px 50px"));
+        } else {
+            $(".sampleContent").css("padding",("30px 50px 30px 50px"));              
+        }        
+        document.getElementById("numberSampleContent").value = val;
+    });
+
+    $('#numberSampleContent').on('change',function(){
+        var val = $(this).val();
+        $(".sampleContent").css("font-size",(val+"px"));
+        if (val <= 30){
+            $(".sampleContent").css("padding",(val+"px 50px "+ val+"px 50px"));
+        } else {
+            $(".sampleContent").css("padding",("30px 50px 30px 50px"));              
+        }           
+        document.getElementById("sliderSampleContent").value = val;
+    });
+
+    clicksBG = 0;
+    function functionGetRandomBG(cssItem){
+        
+        var arrListCSSClasses = [];
+        var numberCSSClasses = Object.keys(cssItem).length;
+        var cssClasses = document.getElementById("tableTR").className;
+
+        var oldCSSClasses = cssClasses.split(' ');
+
+        for (var item in cssItem){
+            if (item == clicksBG){
+                oldCSSClasses.push(cssItem[clicksBG]);
+            } else {
+                var index = oldCSSClasses.indexOf(cssItem[item]);
+                if (index > -1) {
+                    oldCSSClasses.splice(index, 1);
+                }
+                
+            }
+        }
+
+        var newClassNames = oldCSSClasses.join(' ')
+
+        document.getElementById("tableTR").className = newClassNames;
+        
+        clicksBG += 1;
+
+        if (clicksBG === 4){
+            clicksBG = 0;
+        }
+        
+
+    }
+
+    function functionShowCSSCode(CSSClass){
+        if ($(CSSClass).css("left") == '15px'){
+            $(CSSClass).css("transition-timing-function", "ease-in");
+            $(CSSClass).css("transition", "0.4s");
+            $(CSSClass).css("left", "80%");
+        } else {
+            $(CSSClass).css("left", "15px");
+        }
+    }
+
+    function functionShowHeader(CSSClass, my_id){
+        //var element = document.getElementById(my_id)
+        //var buttoncell = document.getElementById(my_id+"_cell")
+
+        var button = document.getElementById(my_id+"_btn");
+        if (button.innerHTML != '▼') {
+            $(CSSClass).css("top", '-' + divHeight + 'px');
+            button.innerHTML = '▼';
+        } else {
+          //$("#" + my_id).slideDown();
+            $(CSSClass).css("transition-timing-function", "ease-in");
+            $(CSSClass).css("transition", "0.4s");
+          $(CSSClass).css("top", "50px");
+          button.innerHTML = '▲';
+        }
+
+    }
+
+        /*function myFunctionAnimate(my_id, CSSClassList){
+            var button = document.getElementById(my_id+"_btn");
+            if (button.innerHTML === 'Play') {
+                button.innerHTML = 'Pause';
+                var countingUp = 1;
+                var minValue = document.getElementById(my_id).min;
+                var maxValue = document.getElementById(my_id).max;
+                var value = document.getElementById(my_id).value;
+                var i = Math.round(value);
+                var speed = Math.round(1000/maxValue);
+                myTimer = setInterval(function() {
+                    console.log(maxValue)
+                    i = i + (1 * countingUp);
+
+                    if (i == maxValue || i == minValue)
+                    {
+                        countingUp *= -1;
+                    }
+
+                    console.log(i)
+                  document.getElementById(my_id).value = i;
+                  document.getElementById(my_id+"_range").innerHTML = i;
+                  //om_AvenirNextVariableRomanttfWeight_showValue(i, CSSClassList)
+                  
+                }, speed);
+
+            } else {
+                button.innerHTML = 'Play';
+                clearInterval(myTimer);
+            }
+        }*/
+
+        
+
+        function functionTextAlignment(ID, item){
+            textAligment = ['left', 'center', 'right'];
+            console.log('ID: ', ID)
+            nameID = ID.replace('ID', '');
+            console.log('nameID: ', nameID)
+            console.log('item: ', item)
+
+            buttonName = item + nameID + "_btn";
+
+            console.log('buttonName: ', buttonName)
+
+            var button = document.getElementById(buttonName);
+            button.style.backgroundColor = 'black';
+            button.style.color = 'white';
+
+            $('#' +ID).css("text-align", item);
+
+            var textAligmentLength = textAligment.length;
+            for (var i = 0; i < textAligmentLength; i++) {
+                var itemLoop = textAligment[i];
+                if (itemLoop != item){
+                    otherButtonName = itemLoop + nameID + "_btn";
+                    console.log('otherButtonName: ', otherButtonName)
+                    var otherButton = document.getElementById(otherButtonName);
+                    otherButton.style.backgroundColor = 'white';
+                    otherButton.style.color = 'black';
+
+                }
+            }
+        }
+
+        function functionReadDirection(ID, item){
+            textAligment = ['left-to-right', 'right-to-left', 'top-to-down'];
+            console.log('ID: ', ID)
+            nameID = ID.replace('ID', '');
+            console.log('nameID: ', nameID)
+            console.log('item: ', item)
+
+            buttonName = item + nameID + "_btn";
+
+            console.log('buttonName: ', buttonName)
+
+            var button = document.getElementById(buttonName);
+            button.style.backgroundColor = 'black';
+            button.style.color = 'white';
+
+            if (item === 'right-to-left'){document.getElementById('compareBoxID').dir = 'rtl';}
+            if (item === 'left-to-right'){document.getElementById('compareBoxID').dir = '';}
+
+            // if (item === 'top-to-down'){
+            //     document.getElementById('compareBoxID').dir = '';
+
+            //     //var elt = document.documentElement
+            //     var elt = document.getElementById(ID);
+            //     elt.setAttribute("style", "writing-mode: vertical-rl;");
+            //     //$("body").css("writing-mode", 'vertical-rl;');
+            //     //document.documentElement.css("writing-mode", 'vertical-rl;');
+
+            //     /* writing-mode: vertical-rl; */
+            // }            
+
+            var textAligmentLength = textAligment.length;
+            for (var i = 0; i < textAligmentLength; i++) {
+                var itemLoop = textAligment[i];
+                if (itemLoop != item){
+                    otherButtonName = itemLoop + nameID + "_btn";
+                    console.log('otherButtonName: ', otherButtonName)
+                    var otherButton = document.getElementById(otherButtonName);
+                    otherButton.style.backgroundColor = 'white';
+                    otherButton.style.color = 'black';
+
+                }
+            }
+        }
+
+    function functionTest(CSSClass){
+            $(CSSClass).css("transition-timing-function", "ease-in");
+            $(CSSClass).css("transition", "1.4s");
+            $(CSSClass).css("transform", 'translate3d(0px,0px,0px)');
+    }
+
+
+    delta = 0;
+    beta = 0;
+    lastPos = null;
+
+    function clearBeta() {
+      beta = 0;
+    }
+
+    window.onscroll = function(){
+
+        function clear() {
+          lastPos = null;
+          delta = 0;
+        }
+
+        newPos = window.scrollY;
+        if ( lastPos != null ){
+          delta = newPos - lastPos;
+        }
+        lastPos = newPos;
+
+        //console.log(100 - delta)
+        //console.log('newPos: ', newPos)
+
+        if (delta < 0){if (beta < (delta * -1)){beta = (delta * 6)} }
+        if (delta > 0){if (beta < delta){beta = delta} }
+
+        //console.log('beta: ', beta)
+
+        setTimeout(clear, 500);
+        setTimeout(clearBeta, 500);
+
+        //console.log(100 - Pos)
+      //var distanz =  window.scrollY
+      //console.log('distanz: ', distanz);
+      //console.log( 'PositivVal: ', PositivVal );
+      //console.log(Int(distanz))
+      $('.flyingFont1').css("transform", 'translate3d(0px,' + (beta * -1) + 'px,0px)');
+      $('.flyingFont2').css("transform", 'translate3d(0px,' + (beta * -2) + 'px,0px)');
+      $('.flyingFont3').css("transform", 'translate3d(0px,' + (beta * -3) + 'px,0px)');
+    };
+
+
+    window.addEventListener("scroll", functionTest('.flyingFont1'), false);
+    window.addEventListener("scroll", functionTest('.flyingFont2'), false);
+    window.addEventListener("scroll", functionTest('.flyingFont3'), false);
+
+    $('.flyingFont').on('blur keyup paste input', function() {$(".flyingFont").not(this).html($(this).html());});
+
+    function adjustHeightOfTwoDiv(div1_ID, div2_ID){
+        var offsetHeight = document.getElementById(div1_ID).offsetHeight;
+        document.getElementById(div2_ID).style.height = offsetHeight + 'px';
+    } 
+
+    $('.flyingFont1').on('blur keyup paste input', function() {adjustHeightOfTwoDiv('flyingFont_ID1', 'flyingFont_ID0')});
+
+    function mDown(UID, CSSClassFontList) {
+        var obj = document.getElementById('zoom_characters');
+        obj.style.display = 'block';
+
+        var w = window.innerWidth;
+        var h = window.innerHeight;
+
+        if (w < h){
+            var nW = w / 2;
+            var nH = nW;
+
+        } else {
+            var nW = h / 2;
+            var nH = nW;
+        }
+        var top = (h - nH) / 2;
+        var left = (w - nW) / 2;
+
+        obj.style.height = nH + 'px';
+        obj.style.top = top + 'px';
+        obj.style.width = nW + 'px';
+        obj.style.left = left + 'px';        
+        obj.innerHTML = UID;
+        
+        var arrayLength = CSSClassFontList.length;
+        for (var i = 0; i < arrayLength; i++) {
+            var item = CSSClassFontList[i];
+            obj.classList.add(item);
+        }
+
+
+        
+
+        
+
+
+    }
+
+    function mUp() {
+        var obj = document.getElementById('zoom_characters');
+        obj.innerHTML = '';
+        obj.style.display = 'none';
+        obj.className = "characterZoom";
+    }
+
+    var prevScrollpos = window.pageYOffset;
+    window.onscroll = function() {
+    var currentScrollPos = window.pageYOffset;
+    if (prevScrollpos > currentScrollPos) {
+        document.getElementById("showFontNames_div").style.bottom = "-50px";
+        } else {
+            document.getElementById("showFontNames_div").style.bottom = "0";
+        }
+        prevScrollpos = currentScrollPos;
+    }
+
+    function scrollXNamesFunc() {
+        var elmnt = document.getElementById("containerMainID");
+        var x = elmnt.scrollLeft;
+        $('#showFontNames').css({
+            'left': 15 - x
+        });
+    }
+
+    function hintingOnOff(CSSClass, my_id){
+        var button = document.getElementById(my_id+"_btn");
+        var elements = document.getElementsByClassName('compareBox')
+
+        if (button.innerHTML != 'hinting on') {
+            Array.prototype.filter.call(elements, function(el){
+                el.style.transform = 'rotate(0.0deg)';
+                el.style.transformOrigin = 'top left';
+            });
+
+            button.className = "buttonBlack";
+            button.innerHTML = 'hinting on';
+            button.style.backgroundColor = 'black';
+
+        } else {
+            Array.prototype.filter.call(elements, function(el){
+                el.style.transform = 'rotate(0.03deg)';
+                el.style.transformOrigin = 'top center';
+            });
+
+            button.innerHTML = 'hinting off';
+            button.className = ".buttonBorder";
+
+            button.style.backgroundColor = 'red';
+
+        }
+
+    }
+
+    </script>
+
+  </body>
+</html>
+

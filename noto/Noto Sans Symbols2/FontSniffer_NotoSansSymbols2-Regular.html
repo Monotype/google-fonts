@@ -1,0 +1,2387 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv='content-type' content='text/html; charset=utf-8'>
+    <title>MT FontSniffer Report</title>
+    <style type="text/css">
+      body {
+        background-color: #fff;
+        color: #000;
+        font-family: "Kootenay Pro", Axel, "System Font", "Fira Sans", sans-serif;
+        line-height: 1.3em;
+        margin: 0;
+        padding: 1em;
+        font-size: 14px;
+      }
+      mark {
+        background-color: #fff990;
+        color: black;
+      }
+      h2 {
+        padding: 2em 0 0.2em 2.35em;
+        border-bottom: 2px solid #606060;
+        margin: 0;
+      }
+      h3 {
+        padding: 0.2em 0 0.3em 0;
+        margin: 0;
+      }
+      table {
+        border-collapse: collapse; 
+        margin: 1em 0; 
+        /* width: 100%; */
+        padding: 0;
+      }
+      table.togglemessages {
+        border: none; 
+        background-color: #f0f0f0;
+      }
+      td, th {
+        line-height: 1.3em; 
+        padding: 0.25em 0.5em; 
+        vertical-align: top;
+        text-align: left;
+      }
+      .summary th {
+        border-bottom: 1px solid #000;
+      }
+      td p, th p {
+        margin: 0 0 0em 0;
+        padding: 0;
+      }
+      td.num, th.num {
+        text-align: right;
+        width: 6em;
+      }
+      
+      td.time, th.time {
+        text-align: right;
+        width: 4.5em;
+        color: #c8c8c8;
+        font-size: 0.9em;
+        background-color: #fff;
+      }
+      
+      th.time p {
+        color: #d8d8d8;
+        padding-top: 0.5em;
+      }
+      
+      .summary {
+        width: auto;
+      }
+      
+      .summary tbody tr:nth-child(odd) {
+        background-color: #f8f8f8;
+      }
+      
+      .summary tbody tr:nth-last-child(1) {
+        background-color: #f0f0f0;
+      }
+      
+      .code {
+        font-weight: bold;
+        color: #fff;
+        width: 2em; 
+        text-align: center
+      }
+      
+      .results th {
+        border-radius: 0.0em;
+      }
+      
+      .results th button{
+        font-family: "Erler Dingbats", Arial;
+        line-height: 1.4em;
+        width: 2.6em;
+        padding-top: 0.2em;
+        margin-top: 0.2em;
+        background-color: rgba(255, 255, 255, 0.0);
+        border-radius: 0.0em;
+        border: 0px solid rgba(0, 0, 0, 0.3);
+      }
+
+      .A, .S, .E, .W, .I, .P {
+        width: 5em; 
+      }
+
+      tr.S {                                  color: hsl(  0,  0%,  90%) }
+      tr.S .code {                            color: hsl(  0,  0%,  90%) }
+      tr.S:nth-child(odd)        { background-color: hsl(  0,  0%,  10%) }
+      tr.S:nth-child(even)       { background-color: hsl(  0,  0%,  20%) }
+      tr.S:nth-child(odd)  .code { background-color: hsl(  0,  0%,  20%) }
+      tr.S:nth-child(even) .code { background-color: hsl(  0,  0%,  10%) }
+
+      tr.C {                                  color: hsl(  0,  0%,  90%) }
+      tr.C .code {                            color: hsl(  0,  0%,  90%) }
+      tr.C:nth-child(odd)        { background-color: hsl(  0,  100%,  20%) }
+      tr.C:nth-child(even)       { background-color: hsl(  0,  100%,  25%) }
+      tr.C:nth-child(odd)  .code { background-color: hsl(  0,  100%,  27%) }
+      tr.C:nth-child(even) .code { background-color: hsl(  0,  100%,  30%) }
+
+      tr.E {                                  color: #000 }
+      tr.E .code {                            color: #fff }
+      tr.E:nth-child(odd)        { background-color: hsl( 24,  100%, 95%) }
+      tr.E:nth-child(even)       { background-color: hsl( 24,  100%, 90%) }
+      tr.E:nth-child(odd)  .code { background-color: hsl( 24,  100%, 45%) }
+      tr.E:nth-child(even) .code { background-color: hsl( 24,  100%, 40%) }
+      
+      tr.W {                                  color: #000 }
+      tr.W .code {                            color: #fff }
+      tr.W:nth-child(odd)        { background-color: hsl( 50,  65%, 95%) }
+      tr.W:nth-child(even)       { background-color: hsl( 50,  65%, 90%) }
+      tr.W:nth-child(odd)  .code { background-color: hsl( 50,  65%, 52%) }
+      tr.W:nth-child(even) .code { background-color: hsl( 50,  65%, 48%) }
+      
+      tr.I {                                  color: #000 }
+      tr.I .code {                            color: #fff }
+      tr.I:nth-child(odd)        { background-color: hsl( 200,  50%, 95%) }
+      tr.I:nth-child(even)       { background-color: hsl( 200,  50%, 90%) }
+      tr.I:nth-child(odd)  .code { background-color: hsl( 200,  50%, 52%) }
+      tr.I:nth-child(even) .code { background-color: hsl( 200,  50%, 48%) }
+      
+      tr.P {                                  color: #000 }
+      tr.P .code {                            color: #fff }
+      tr.P:nth-child(odd)        { background-color: hsl( 130,  40%, 95%) }
+      tr.P:nth-child(even)       { background-color: hsl( 130,  40%, 90%) }
+      tr.P:nth-child(odd)  .code { background-color: hsl( 130,  40%, 60%) }
+      tr.P:nth-child(even) .code { background-color: hsl( 130,  40%, 55%) }
+      
+      tr.A {                                  color: hsl(  0,  0%,  50%) }
+      tr.A .code {                            color: hsl(  0,  0%,  50%) }
+      tr.A:nth-child(odd)        { background-color: hsl(  0,  0%,  75%) }
+      tr.A:nth-child(even)       { background-color: hsl(  0,  0%,  80%) }
+      tr.A:nth-child(odd)  .code { background-color: hsl(  0,  0%,  85%) }
+      tr.A:nth-child(even) .code { background-color: hsl(  0,  0%,  90%) }
+      
+      
+      /* Summary backgrounds */
+
+      th.S {
+        background: hsl(  0,  0%,  85%);
+      }
+      
+      th.A {
+        background: hsl(  0,  0%,  85%);
+      }
+      
+      th.E {
+        background: hsl( 24,  100%, 45%);
+      }
+      
+      th.I {
+        background: hsl( 200,  50%, 52%);
+      }
+      
+      th.P {
+        background: hsl( 130,  40%, 60%);
+      }
+      
+      th.W {
+        background: hsl( 50,  65%, 52%);
+      }
+      
+      
+      th.AE {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 24,  100%, 45%) 100%
+        );
+      }
+      
+      th.AI {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 200,  50%, 52%) 100%
+        );
+      }
+      
+      th.AP {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 130,  40%, 60%) 100%
+        );
+      }
+      
+      th.AW {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.EI {
+        background: linear-gradient(
+          90deg,
+          hsl( 24,  100%, 45%) 0%,
+          hsl( 200,  50%, 52%) 100%
+        );
+      }
+      
+      th.EP {
+        background: linear-gradient(
+          90deg,
+          hsl( 24,  100%, 45%) 0%,
+          hsl( 130,  40%, 60%) 100%
+        );
+      }
+      
+      th.EW {
+        background: linear-gradient(
+          90deg,
+          hsl( 24,  100%, 45%) 0%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.IP {
+        background: linear-gradient(
+          90deg,
+          hsl( 200,  50%, 52%) 0%,
+          hsl( 130,  40%, 60%) 100%
+        );
+      }
+      
+      th.IW {
+        background: linear-gradient(
+          90deg,
+          hsl( 200,  50%, 52%) 0%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.PW {
+        background: linear-gradient(
+          90deg,
+          hsl( 130,  40%, 60%) 0%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      
+      th.AEI {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 24,  100%, 45%) 50%,
+          hsl( 200,  50%, 52%) 100%
+        );
+      }
+      
+      th.AEP {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 24,  100%, 45%) 50%,
+          hsl( 130,  40%, 60%) 100%
+        );
+      }
+      
+      th.AEW {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 24,  100%, 45%) 50%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.AIP {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 200,  50%, 52%) 50%,
+          hsl( 130,  40%, 60%) 100%
+        );
+      }
+      
+      th.AIW {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 200,  50%, 52%) 50%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.APW {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 130,  40%, 60%) 50%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.EIP {
+        background: linear-gradient(
+          90deg,
+          hsl( 24,  100%, 45%) 0%,
+          hsl( 200,  50%, 52%) 50%,
+          hsl( 130,  40%, 60%) 100%
+        );
+      }
+      
+      th.EIW {
+        background: linear-gradient(
+          90deg,
+          hsl( 24,  100%, 45%) 0%,
+          hsl( 200,  50%, 52%) 50%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.IPW {
+        background: linear-gradient(
+          90deg,
+          hsl( 200,  50%, 52%) 0%,
+          hsl( 130,  40%, 60%) 50%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      
+      /* AEIPW */
+      
+      
+      th.AEIP {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 24,  100%, 45%) 33%,
+          hsl( 200,  50%, 52%) 66%,
+          hsl( 130,  40%, 60%) 100%
+        );
+      }
+      
+      th.AEIW {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 24,  100%, 45%) 33%,
+          hsl( 200,  50%, 52%) 66%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.AEPW {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 24,  100%, 45%) 33%,
+          hsl( 130,  40%, 60%) 66%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.AIPW {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 200,  50%, 52%) 33%,
+          hsl( 130,  40%, 60%) 66%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.EIPW {
+        background: linear-gradient(
+          90deg,
+          hsl( 24,  100%, 45%) 0%,
+          hsl( 200,  50%, 52%) 33%,
+          hsl( 130,  40%, 60%) 66%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      
+      th.AEIPW {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 24,  100%, 45%) 25%,
+          hsl( 200,  50%, 52%) 50%,
+          hsl( 130,  40%, 60%) 75%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      
+      .fontname {
+        width: 20em;
+      }
+      .table {
+        width: 2.5em;
+      }
+      .feature {
+        width: 7.5em;
+      }
+      .message {
+        /*width: 20em;*/
+      }
+      .detail {
+        width: 40em;
+      }
+      .detail p {
+      }
+      .name { background-color: #eee }
+      .name th { padding-top: 1em }
+
+    </style>
+    <script type='text/javascript'>
+      function toggle(toggle_class){
+        var elements = document.getElementsByTagName('tr')
+        for (var i = 0; i < elements.length; i++){
+          var e = elements[i]
+          if (e.className == toggle_class) {
+            if (e.style.display != 'none') {
+              e.style.display = 'none'
+            } else {
+              e.style.display = 'table-row'
+            }
+          }
+        }
+      }
+    </script>
+    
+    <script type='text/javascript'>
+      function toggle_detail(my_id){
+        var element = document.getElementById(my_id)
+        var buttoncell = document.getElementById(my_id+"_cell")
+        var button = document.getElementById(my_id+"_btn")
+        if (element.style.display != 'none') {
+          element.style.display = 'none'
+          buttoncell.style.borderRadius = '0.0em'
+          button.firstChild.data = '\u25bc'
+        } else {
+          element.style.display = ''
+          buttoncell.style.borderRadius = '0.0em 0.0em 0 0'
+          button.firstChild.data = '\u25b2'
+        }
+      }
+    </script>
+    
+    <script type='text/javascript'>
+      function toggle_all_results(){
+        var elements = document.getElementsByClassName('result_body')
+        for (var i = 0; i < elements.length; i++){
+          var e = elements[i]
+          if (e.style.display != 'none') {
+            e.style.display = 'none'
+          } else {
+            e.style.display = ''
+          }
+        }
+      }
+    </script>
+  </head>
+  <body onload="toggle_all_results()">
+    <h1>FontSniffer Report</h1>
+    <p>Library Project, start: 2020-09-26 - 14:28.32, end: 14:28.43</p>
+    <table class='togglemessages'>
+      <tr>
+        <td>Show messages:</td>
+        <td><input type='checkbox' checked name='P' id='itoggle' onclick='toggle("P");'>
+          <label for='itoggle'>Pass</label></td>
+        <td><input type='checkbox' checked name='I' id='itoggle' onclick='toggle("I");'>
+          <label for='itoggle'>Info</label></td>
+        <td><input type='checkbox' checked name='W' id='wtoggle'onclick='toggle("W");'>
+          <label for='wtoggle'>Warning</label></td>
+        <td><input type='checkbox' checked name='E' id='etoggle' onclick='toggle("E");'>
+          <label for='etoggle'>Error</label></td>
+        <td><input type='checkbox' checked name='C' id='ctoggle' onclick='toggle("C");'>
+          <label for='ctoggle'>Critical</label></td>
+          
+        <td><button onclick='toggle_all_results();'>Toggle all details</button></td>
+      </tr>
+    </table>
+    
+        <table class="fontlist">
+
+            <thead>
+                <tr><th>Font List</th></tr>
+            </thead>
+            <tbody>
+								<tr><td>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</td></tr>
+						</tbody>
+        </table>
+
+            <h2>Table Description</h2>
+            <table class="results">
+
+                <thead>
+                    <tr>
+                    <th class="A code" id="Table Description_cell">
+                    <button id="Table Description_btn" onclick='toggle_detail("Table Description");' title="Toggle details">&#x25bc;</button>
+                    </th>
+                    <th colspan="3"><h3>Table Description</h3></th></tr>
+                </thead>
+              <tbody id="Table Description" class="result_body">
+                    
+                <tr class="A">
+                    <td class="code"><p>Level</p></td>
+                    <td class="fontname"><p>Font Name</p></td>
+                    <td class="table"><p>Table</p></td>
+                    <td class="feature"><p>Feature/Item</p></td>
+                    <td class="message"><p>Description</p></td>
+                    <td class="detail"><p>Notes</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+              </tbody>
+            </table>				<h2>Table Version</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Table Version_cell">
+                <button id="Table Version_btn" onclick='toggle_detail("Table Version");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Table Version</h3></th></tr>
+            </thead>
+            <tbody id="Table Version" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>head</p></td>
+                    <td class="feature"><p>version</p></td>
+                    <td class="message"><p>head table version should be 1.0.</p></td>
+                    <td class="detail"><p>head table version is 1.0.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>version</p></td>
+                    <td class="message"><p>OS/2 table version should be 4.</p></td>
+                    <td class="detail"><p>OS/2 table version is 4.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>post</p></td>
+                    <td class="feature"><p>format</p></td>
+                    <td class="message"><p>If not CFF, post table format should be 2.</p></td>
+                    <td class="detail"><p>Format is 2.0</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>OT Sanitizer</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="OT Sanitizer_cell">
+                <button id="OT Sanitizer_btn" onclick='toggle_detail("OT Sanitizer");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>OT Sanitizer</h3></th></tr>
+            </thead>
+            <tbody id="OT Sanitizer" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>-/-</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>OT Sanitizer</p></td>
+                    <td class="detail"><p>Passed:<br>&emsp;&emsp;&emsp;&emsp;Process start (TTF file)<br>&emsp;&emsp;&emsp;&emsp;&emsp;ProcessGeneric start<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Validating font<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Reading font<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Processing glyphs...<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; 1000<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; 2000<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Processing glyphs done<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Writing new font<br>&emsp;&emsp;&emsp;&emsp;&emsp;ProcessGeneric end<br>&emsp;&emsp;&emsp;&emsp;Process end<br>&emsp;&emsp;&emsp;&emsp;Process start (TTF file)<br>&emsp;&emsp;&emsp;&emsp;&emsp;ProcessGeneric start<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Validating font<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Reading font<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Processing glyphs...<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; 1000<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; 2000<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Processing glyphs done<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Writing new font<br>&emsp;&emsp;&emsp;&emsp;&emsp;ProcessGeneric end<br>&emsp;&emsp;&emsp;&emsp;Process end<br></p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Weight Class</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Weight Class_cell">
+                <button id="Weight Class_btn" onclick='toggle_detail("Weight Class");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Weight Class</h3></th></tr>
+            </thead>
+            <tbody id="Weight Class" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>usWeightClass</p></td>
+                    <td class="message"><p>OS/2 weight class should be greater then 250 otherwise it cause issues in MS PowerPoint.</p></td>
+                    <td class="detail"><p>OK: usWeightClass is '400'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>File Name</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="File Name_cell">
+                <button id="File Name_btn" onclick='toggle_detail("File Name");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>File Name</h3></th></tr>
+            </thead>
+            <tbody id="File Name" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>-/-</p></td>
+                    <td class="feature"><p>File Name</p></td>
+                    <td class="message"><p>File name should not be longer than 31 characters, otherwise style linking does not work in MS Word/Mac.</p></td>
+                    <td class="detail"><p>file name length is '28': 'NotoSansSymbols2-Regular.ttf'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>-/-</p></td>
+                    <td class="feature"><p>File Name</p></td>
+                    <td class="message"><p>File name should not be longer than 31 characters, contain space and have more then one dot for ending.</p></td>
+                    <td class="detail"><p>Everything is fine: 'NotoSansSymbols2-Regular.ttf'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Style Linking</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Style Linking_cell">
+                <button id="Style Linking_btn" onclick='toggle_detail("Style Linking");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Style Linking</h3></th></tr>
+            </thead>
+            <tbody id="Style Linking" class="result_body">
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>-/-</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Check if italic or upright.</p></td>
+                    <td class="detail"><p>It seems to be an upright font.<br>OS2.fsSelection.italic: False<br>head.macStyle.italic: False<br>post.header.italicAngle: 0.0</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>-/-</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Check if bold.</p></td>
+                    <td class="detail"><p>It seems to be not bold.<br>OS2.fsSelection.bold: False<br>head.macStyle.bold: False</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Empty Glyphs</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Empty Glyphs_cell">
+                <button id="Empty Glyphs_btn" onclick='toggle_detail("Empty Glyphs");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Empty Glyphs</h3></th></tr>
+            </thead>
+            <tbody id="Empty Glyphs" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>glyf</p></td>
+                    <td class="feature"><p>outline</p></td>
+                    <td class="message"><p>Unicodes should have outlines.</p></td>
+                    <td class="detail"><p>The following glyphs have no outlines, but this is correct:<br>Monotype NULL (uni0000)<br> (uni000D)<br>SPACE (uni0020)<br>NO-BREAK SPACE (uni00A0)<br> (uni007F)<br> (uni0001)<br> (uni0002)<br> (uni0003)<br> (uni0004)<br> (uni0005)<br> (uni0006)<br> (uni0007)<br> (uni0008)<br> (uni0009)<br> (uni0010)<br> (uni0011)<br> (uni0012)<br> (uni0013)<br> (uni0014)<br> (uni0015)<br> (uni0016)<br> (uni0017)<br> (uni0018)<br> (uni0019)<br> (uni0080)<br> (uni0081)<br> (uni0082)<br> (uni0083)<br> (uni0084)<br> (uni0085)<br> (uni0086)<br> (uni0087)<br> (uni0088)<br> (uni0089)<br> (uni0090)<br> (uni0091)<br> (uni0092)<br> (uni0093)<br> (uni0094)<br> (uni0095)<br> (uni0096)<br> (uni0097)<br> (uni0098)<br> (uni0099)<br> (uni009C)<br> (uni009E)<br> (uni009F)<br> (uni009D)<br> (uni009B)<br> (uni009A)<br> (uni001E)<br> (uni001C)<br> (uni001F)<br> (uni001D)<br> (uni001B)<br> (uni001A)<br> (uni008E)<br> (uni008C)<br> (uni008F)<br> (uni008D)<br> (uni008B)<br> (uni008A)<br> (uni000E)<br> (uni000B)<br> (uni000F)<br> (uni000C)<br> (uni000A)</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>glyf</p></td>
+                    <td class="feature"><p>outline</p></td>
+                    <td class="message"><p>Unicodes should have outlines.</p></td>
+                    <td class="detail"><p>The following glyphs (1) should have outlines:<br>BRAILLE PATTERN BLANK (uni2800)</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Supplementary NFC</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Supplementary NFC_cell">
+                <button id="Supplementary NFC_btn" onclick='toggle_detail("Supplementary NFC");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Supplementary NFC</h3></th></tr>
+            </thead>
+            <tbody id="Supplementary NFC" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>unicode</p></td>
+                    <td class="message"><p>Supplementary glyphs</p></td>
+                    <td class="detail"><p>No issues found.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Supplementary Glyphs</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Supplementary Glyphs_cell">
+                <button id="Supplementary Glyphs_btn" onclick='toggle_detail("Supplementary Glyphs");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Supplementary Glyphs</h3></th></tr>
+            </thead>
+            <tbody id="Supplementary Glyphs" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>unicode</p></td>
+                    <td class="message"><p>Supplementary glyphs</p></td>
+                    <td class="detail"><p>No issues found.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Check against Base Glyph Advance Width</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Check against Base Glyph Advance Width_cell">
+                <button id="Check against Base Glyph Advance Width_btn" onclick='toggle_detail("Check against Base Glyph Advance Width");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Check against Base Glyph Advance Width</h3></th></tr>
+            </thead>
+            <tbody id="Check against Base Glyph Advance Width" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>hmtx</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Compare advance width against base glyph advance width (tolerance 2 units).</p></td>
+                    <td class="detail"><p>'uni25E5' (ID 263): width is 700, base glyph ('uni25E2' (ID 264)) width is 700<br>'uni25E3' (ID 265): width is 700, base glyph ('uni25E2' (ID 264)) width is 700<br>'uni25E4' (ID 266): width is 700, base glyph ('uni25E2' (ID 264)) width is 700<br>'uni25F9' (ID 267): width is 700, base glyph ('uni25FF' (ID 268)) width is 700<br>'uni25FA' (ID 269): width is 700, base glyph ('uni25FF' (ID 268)) width is 700<br>'uni25F8' (ID 270): width is 700, base glyph ('uni25FF' (ID 268)) width is 700<br>'uni23F7' (ID 486): width is 586, base glyph ('uni23F4' (ID 488)) width is 586<br>'uni23F5' (ID 491): width is 586, base glyph ('uni23F4' (ID 488)) width is 586<br>'uni23F6' (ID 495): width is 586, base glyph ('uni23F4' (ID 488)) width is 586<br>'pedestrian_gobliquestroke-phaistosDisc' (ID 1952): width is 833, base glyph ('u101D0' (ID 1951)) width is 833<br>'plumedHead_gobliquestroke-phaistosDisc' (ID 1954): width is 655, base glyph ('u101D1' (ID 1953)) width is 655<br>'tattooedHead_gobliquestroke-phaistosDisc' (ID 1956): width is 499, base glyph ('u101D2' (ID 1955)) width is 499<br>'captive_gobliquestroke-phaistosDisc' (ID 1958): width is 515, base glyph ('u101D3' (ID 1957)) width is 515<br>'child_gobliquestroke-phaistosDisc' (ID 1960): width is 493, base glyph ('u101D4' (ID 1959)) width is 493<br>'woman_gobliquestroke-phaistosDisc' (ID 1962): width is 486, base glyph ('u101D5' (ID 1961)) width is 486<br>'helmet_gobliquestroke-phaistosDisc' (ID 1964): width is 446, base glyph ('u101D6' (ID 1963)) width is 446<br>'gauntlet_gobliquestroke-phaistosDisc' (ID 1966): width is 558, base glyph ('u101D7' (ID 1965)) width is 558<br>'tiara_gobliquestroke-phaistosDisc' (ID 1968): width is 457, base glyph ('u101D8' (ID 1967)) width is 457<br>'arrow_gobliquestroke-phaistosDisc' (ID 1970): width is 323, base glyph ('u101D9' (ID 1969)) width is 323<br>'bow_gobliquestroke-phaistosDisc' (ID 1972): width is 307, base glyph ('u101DA' (ID 1971)) width is 307<br>'shield_gobliquestroke-phaistosDisc' (ID 1974): width is 634, base glyph ('u101DB' (ID 1973)) width is 634<br>'club_gobliquestroke-phaistosDisc' (ID 1976): width is 276, base glyph ('u101DC' (ID 1975)) width is 276<br>'manacles_gobliquestroke-phaistosDisc' (ID 1978): width is 501, base glyph ('u101DD' (ID 1977)) width is 501<br>'mattock_gobliquestroke-phaistosDisc' (ID 1980): width is 582, base glyph ('u101DE' (ID 1979)) width is 582<br>'saw_gobliquestroke-phaistosDisc' (ID 1982): width is 342, base glyph ('u101DF' (ID 1981)) width is 342<br>'lid_gobliquestroke-phaistosDisc' (ID 1984): width is 353, base glyph ('u101E0' (ID 1983)) width is 353<br>'boomerang_gobliquestroke-phaistosDisc' (ID 1986): width is 640, base glyph ('u101E1' (ID 1985)) width is 640<br>'carpentryPlane_gobliquestroke-phaistosDisc' (ID 1988): width is 583, base glyph ('u101E2' (ID 1987)) width is 583<br>'dolium_gobliquestroke-phaistosDisc' (ID 1990): width is 470, base glyph ('u101E3' (ID 1989)) width is 470<br>'comb_gobliquestroke-phaistosDisc' (ID 1992): width is 649, base glyph ('u101E4' (ID 1991)) width is 649<br>'sling_gobliquestroke-phaistosDisc' (ID 1994): width is 467, base glyph ('u101E5' (ID 1993)) width is 467<br>'column_gobliquestroke-phaistosDisc' (ID 1996): width is 276, base glyph ('u101E6' (ID 1995)) width is 276<br>'beehive_gobliquestroke-phaistosDisc' (ID 1998): width is 715, base glyph ('u101E7' (ID 1997)) width is 715<br>'ship_gobliquestroke-phaistosDisc' (ID 2000): width is 530, base glyph ('u101E8' (ID 1999)) width is 530<br>'horn_gobliquestroke-phaistosDisc' (ID 2002): width is 315, base glyph ('u101E9' (ID 2001)) width is 315<br>'hide_gobliquestroke-phaistosDisc' (ID 2004): width is 601, base glyph ('u101EA' (ID 2003)) width is 601<br>'bullsLeg_gobliquestroke-phaistosDisc' (ID 2006): width is 481, base glyph ('u101EB' (ID 2005)) width is 481<br>'cat_gobliquestroke-phaistosDisc' (ID 2008): width is 542, base glyph ('u101EC' (ID 2007)) width is 542<br>'ram_gobliquestroke-phaistosDisc' (ID 2010): width is 653, base glyph ('u101ED' (ID 2009)) width is 653<br>'eagle_gobliquestroke-phaistosDisc' (ID 2012): width is 648, base glyph ('u101EE' (ID 2011)) width is 648<br>'dove_gobliquestroke-phaistosDisc' (ID 2014): width is 586, base glyph ('u101EF' (ID 2013)) width is 586<br>'tunny_gobliquestroke-phaistosDisc' (ID 2016): width is 400, base glyph ('u101F0' (ID 2015)) width is 400<br>'bee_gobliquestroke-phaistosDisc' (ID 2018): width is 587, base glyph ('u101F1' (ID 2017)) width is 587<br>'planeTree_gobliquestroke-phaistosDisc' (ID 2020): width is 508, base glyph ('u101F2' (ID 2019)) width is 508<br>'vine_gobliquestroke-phaistosDisc' (ID 2022): width is 492, base glyph ('u101F3' (ID 2021)) width is 492<br>'papyrus_gobliquestroke-phaistosDisc' (ID 2024): width is 351, base glyph ('u101F4' (ID 2023)) width is 351<br>'rosette_gobliquestroke-phaistosDisc' (ID 2026): width is 627, base glyph ('u101F5' (ID 2025)) width is 627<br>'lily_gobliquestroke-phaistosDisc' (ID 2028): width is 423, base glyph ('u101F6' (ID 2027)) width is 423<br>'oxBack_gobliquestroke-phaistosDisc' (ID 2030): width is 493, base glyph ('u101F7' (ID 2029)) width is 493<br>'flute_gobliquestroke-phaistosDisc' (ID 2032): width is 370, base glyph ('u101F8' (ID 2031)) width is 370<br>'grater_gobliquestroke-phaistosDisc' (ID 2034): width is 459, base glyph ('u101F9' (ID 2033)) width is 459<br>'strainer_gobliquestroke-phaistosDisc' (ID 2036): width is 761, base glyph ('u101FA' (ID 2035)) width is 761<br>'axe_gobliquestroke-phaistosDisc' (ID 2038): width is 602, base glyph ('u101FB' (ID 2037)) width is 602<br>'wavyBand_gobliquestroke-phaistosDisc' (ID 2040): width is 369, base glyph ('u101FC' (ID 2039)) width is 369<br>'zero_20E3' (ID 2044): width is 1102, base glyph ('zero' (ID 70)) width is 1102<br>'one_20E3' (ID 2045): width is 1102, base glyph ('one' (ID 71)) width is 1102<br>'two_20E3' (ID 2046): width is 1102, base glyph ('two' (ID 72)) width is 1102<br>'three_20E3' (ID 2047): width is 1102, base glyph ('three' (ID 73)) width is 1102<br>'four_20E3' (ID 2048): width is 1102, base glyph ('four' (ID 74)) width is 1102<br>'five_20E3' (ID 2049): width is 1102, base glyph ('five' (ID 75)) width is 1102<br>'six_20E3' (ID 2050): width is 1102, base glyph ('six' (ID 76)) width is 1102<br>'seven_20E3' (ID 2051): width is 1102, base glyph ('seven' (ID 77)) width is 1102<br>'eight_20E3' (ID 2052): width is 1102, base glyph ('eight' (ID 78)) width is 1102<br>'nine_20E3' (ID 2053): width is 1102, base glyph ('nine' (ID 79)) width is 1102<br>'asterisk_20E3' (ID 2113): width is 1102, base glyph ('asterisk' (ID 80)) width is 1102<br>'numbersign_20E3' (ID 2114): width is 1102, base glyph ('numbersign' (ID 81)) width is 1102<br>'dotCirc_gobliquestr-phaistosDisc' (ID 2214): width is 894, base glyph ('uni25CC' (ID 186)) width is 894<br>'u102e1_u102e0' (ID 2250): width is 713, base glyph ('u102e1' (ID 1868)) width is 713<br>'u102e2_u102e0' (ID 2251): width is 1058, base glyph ('u102e2' (ID 1869)) width is 1058<br>'u102e3_u102e0' (ID 2252): width is 1511, base glyph ('u102e3' (ID 1870)) width is 1511<br>'u102e4_u102e0' (ID 2253): width is 754, base glyph ('u102e4' (ID 1871)) width is 754<br>'u102e5_u102e0' (ID 2254): width is 646, base glyph ('u102e5' (ID 1872)) width is 646<br>'u102e6_u102e0' (ID 2255): width is 1002, base glyph ('u102e6' (ID 1873)) width is 1002<br>'u102e7_u102e0' (ID 2256): width is 605, base glyph ('u102e7' (ID 1874)) width is 605<br>'u102e8_u102e0' (ID 2257): width is 615, base glyph ('u102e8' (ID 1875)) width is 615<br>'u102e9_u102e0' (ID 2258): width is 683, base glyph ('u102e9' (ID 1876)) width is 683<br>'u102ea_u102e0' (ID 2259): width is 563, base glyph ('u102ea' (ID 1877)) width is 563<br>'u102eb_u102e0' (ID 2260): width is 909, base glyph ('u102eb' (ID 1878)) width is 909<br>'u102ec_u102e0' (ID 2261): width is 752, base glyph ('u102ec' (ID 1879)) width is 752<br>'u102ed_u102e0' (ID 2262): width is 950, base glyph ('u102ed' (ID 1880)) width is 950<br>'u102ee_u102e0' (ID 2263): width is 855, base glyph ('u102ee' (ID 1881)) width is 855<br>'u102ef_u102e0' (ID 2264): width is 761, base glyph ('u102ef' (ID 1882)) width is 761<br>'u102f0_u102e0' (ID 2265): width is 668, base glyph ('u102f0' (ID 1883)) width is 668<br>'u102f1_u102e0' (ID 2266): width is 1020, base glyph ('u102f1' (ID 1884)) width is 1020<br>'u102f2_u102e0' (ID 2267): width is 797, base glyph ('u102f2' (ID 1885)) width is 797<br>'u102f3_u102e0' (ID 2268): width is 974, base glyph ('u102f3' (ID 1886)) width is 974<br>'u102f4_u102e0' (ID 2269): width is 1231, base glyph ('u102f4' (ID 1887)) width is 1231<br>'u102f5_u102e0' (ID 2270): width is 911, base glyph ('u102f5' (ID 1888)) width is 911<br>'u102f6_u102e0' (ID 2271): width is 796, base glyph ('u102f6' (ID 1889)) width is 796<br>'u102f7_u102e0' (ID 2272): width is 941, base glyph ('u102f7' (ID 1890)) width is 941<br>'u102f8_u102e0' (ID 2273): width is 960, base glyph ('u102f8' (ID 1891)) width is 960<br>'u102f9_u102e0' (ID 2274): width is 949, base glyph ('u102f9' (ID 1892)) width is 949<br>'u102fa_u102e0' (ID 2275): width is 995, base glyph ('u102fa' (ID 1893)) width is 995<br>'u102fb_u102e0' (ID 2276): width is 890, base glyph ('u102fb' (ID 1894)) width is 890</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="W">
+                    <td class="code"><p>Warning</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>hmtx</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Compare advance width against base glyph advance width (tolerance 2 units).</p></td>
+                    <td class="detail"><p>'dottedCircle_u102e0' (ID 2042): width is 894, base glyph ('u102e0' (ID 1867)) width is 0<br>'dottedCircle_enclosingscreencomb' (ID 2043): width is 1842, base glyph ('uni25CC' (ID 186)) width is 894<br>'space_20E3' (ID 2115): width is 1102, base glyph ('uni20E3' (ID 1519)) width is 0<br>'space_enclosingscreencomb' (ID 2116): width is 1842, base glyph ('uni20E2' (ID 2212)) width is 0<br>'space_u102e0' (ID 2117): width is 639, base glyph ('u102e0' (ID 1867)) width is 0<br>'sp_gobliquestr-phaistosDisc' (ID 2215): width is 232, base glyph ('u101FD' (ID 2213)) width is 0</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Compare Advance Width hmtx and CFF table</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Compare Advance Width hmtx and CFF table_cell">
+                <button id="Compare Advance Width hmtx and CFF table_btn" onclick='toggle_detail("Compare Advance Width hmtx and CFF table");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Compare Advance Width hmtx and CFF table</h3></th></tr>
+            </thead>
+            <tbody id="Compare Advance Width hmtx and CFF table" class="result_body">
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>hmtx/CFF</p></td>
+                    <td class="feature"><p>Advance width</p></td>
+                    <td class="message"><p>Advance width of hmtx and CFF table should be the same (tolerance 2 units).</p></td>
+                    <td class="detail"><p>This is a TrueType font. This test is only for CFF.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Individual Glyphs</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Individual Glyphs_cell">
+                <button id="Individual Glyphs_btn" onclick='toggle_detail("Individual Glyphs");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Individual Glyphs</h3></th></tr>
+            </thead>
+            <tbody id="Individual Glyphs" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>post</p></td>
+                    <td class="feature"><p>PostScript names</p></td>
+                    <td class="message"><p>Check double NULL</p></td>
+                    <td class="detail"><p>Font only has one NULL: 'NULL'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>glyf</p></td>
+                    <td class="feature"><p>Contours</p></td>
+                    <td class="message"><p>.notdef should be TOFU.</p></td>
+                    <td class="detail"><p>.notdef has 2 contours. It looks like it is a TOFU.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>uni200B</p></td>
+                    <td class="message"><p>Check ZERO WIDTH SPACE</p></td>
+                    <td class="detail"><p>Missing uni200B in cmap table.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>FEFF</p></td>
+                    <td class="message"><p>ZERO WIDTH NO-BREAK SPACE: Missing FEFF in cmap table.</p></td>
+                    <td class="detail"><p>Required for Monotype library. Please add unicode FEFF. Custom work refer to spec.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="W">
+                    <td class="code"><p>Warning</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>00AD</p></td>
+                    <td class="message"><p>Soft hyphen 00AD in cmap table.</p></td>
+                    <td class="detail"><p>Missing Soft hyphen 00AD in cmap table. Soft hyphen is often used in web and in professional print publishing software like Adobe InDesign.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>hmtx</p></td>
+                    <td class="feature"><p>Index 3 and 97</p></td>
+                    <td class="message"><p>Advance width of nonbreakingspace (uni00A0) should match the space (uni0020) width.</p></td>
+                    <td class="detail"><p>OK: Advance width nonbreakingspace (uni00A0) does match the space (uni0020) width:<br>260 = 260</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>uni2009</p></td>
+                    <td class="message"><p>Advance width of 'thinspace' (uni2009) should be smaller than the width of space (uni0020).</p></td>
+                    <td class="detail"><p>Can not check, because no uni2009 in this font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>uni200A</p></td>
+                    <td class="message"><p>Advance width of 'hairspace' (uni200A) should be smaller than the width of space (uni0020).</p></td>
+                    <td class="detail"><p>Can not check, because no uni200A in this font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>uni2004</p></td>
+                    <td class="message"><p>Advance width of 'THREE-PER-EM SPACE' (uni2004) should be 1/3 of em-square.</p></td>
+                    <td class="detail"><p>Can not check, because no uni2004 in this font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>uni2005</p></td>
+                    <td class="message"><p>Advance width of 'FOUR-PER-EM SPACE' (uni2005) should be 1/4 of em-square.</p></td>
+                    <td class="detail"><p>Can not check, because no uni2005 in this font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>uni2006</p></td>
+                    <td class="message"><p>Advance width of 'SIX-PER-EM SPACE' (uni2006) should be 1/6 of em-square.</p></td>
+                    <td class="detail"><p>Can not check, because no uni2006 in this font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>uni2002</p></td>
+                    <td class="message"><p>Advance width of 'EN SPACE' (uni2002) should be 50%% of em-square.</p></td>
+                    <td class="detail"><p>Can not check, because no uni2002 in this font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>uni2003</p></td>
+                    <td class="message"><p>Advance width of 'EM SPACE' (uni2003) should be equal to UPM.</p></td>
+                    <td class="detail"><p>Can not check, because no uni2003 in this font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>uni2008</p></td>
+                    <td class="message"><p>Advance width of 'PUNCTUATION SPACE' (uni2008) should be equal to the 'period' advance width.</p></td>
+                    <td class="detail"><p>Can not check, because no uni2008 in this font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Nodes Close to Zones (CFF)</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Nodes Close to Zones (CFF)_cell">
+                <button id="Nodes Close to Zones (CFF)_btn" onclick='toggle_detail("Nodes Close to Zones (CFF)");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Nodes Close to Zones (CFF)</h3></th></tr>
+            </thead>
+            <tbody id="Nodes Close to Zones (CFF)" class="result_body">
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>CFF</p></td>
+                    <td class="feature"><p>Alignment Zones</p></td>
+                    <td class="message"><p>Check if nodes are close to a zone, but not in or touching it.</p></td>
+                    <td class="detail"><p>This is a TTF, but this test is only for CFF fonts.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Should be Composite (only .ttf)</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Should be Composite (only .ttf)_cell">
+                <button id="Should be Composite (only .ttf)_btn" onclick='toggle_detail("Should be Composite (only .ttf)");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Should be Composite (only .ttf)</h3></th></tr>
+            </thead>
+            <tbody id="Should be Composite (only .ttf)" class="result_body">
+                      </tbody>
+            </table>				<h2>Should not be Composite (CFF)</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Should not be Composite (CFF)_cell">
+                <button id="Should not be Composite (CFF)_btn" onclick='toggle_detail("Should not be Composite (CFF)");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Should not be Composite (CFF)</h3></th></tr>
+            </thead>
+            <tbody id="Should not be Composite (CFF)" class="result_body">
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>CFF </p></td>
+                    <td class="feature"><p>Composite</p></td>
+                    <td class="message"><p>CFF font should not have any composite.</p></td>
+                    <td class="detail"><p>This is not a CFF font. Skipped this check.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Advance Width (zero or negative)</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Advance Width (zero or negative)_cell">
+                <button id="Advance Width (zero or negative)_btn" onclick='toggle_detail("Advance Width (zero or negative)");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Advance Width (zero or negative)</h3></th></tr>
+            </thead>
+            <tbody id="Advance Width (zero or negative)" class="result_body">
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>hmtx</p></td>
+                    <td class="feature"><p>advance</p></td>
+                    <td class="message"><p>Pull glyphs with advance width zero.</p></td>
+                    <td class="detail"><p>'NULL' (uni0000) (ID 1) = '0'.<br>'DEL' (uni007F) (ID 98) = '0'.<br>'uni20E3' (uni20E3) (ID 1519) = '0'.<br>'uni0001' (uni0001) (ID 1828) = '0'.<br>'uni0002' (uni0002) (ID 1829) = '0'.<br>'uni0003' (uni0003) (ID 1830) = '0'.<br>'uni0004' (uni0004) (ID 1831) = '0'.<br>'uni0005' (uni0005) (ID 1832) = '0'.<br>'uni0006' (uni0006) (ID 1833) = '0'.<br>'uni0007' (uni0007) (ID 1834) = '0'.<br>'uni0008' (uni0008) (ID 1835) = '0'.<br>'uni0010' (uni0010) (ID 1837) = '0'.<br>'uni0011' (uni0011) (ID 1838) = '0'.<br>'uni0012' (uni0012) (ID 1839) = '0'.<br>'uni0013' (uni0013) (ID 1840) = '0'.<br>'uni0014' (uni0014) (ID 1841) = '0'.<br>'uni0015' (uni0015) (ID 1842) = '0'.<br>'uni0016' (uni0016) (ID 1843) = '0'.<br>'uni0017' (uni0017) (ID 1844) = '0'.<br>'uni0018' (uni0018) (ID 1845) = '0'.<br>'uni0019' (uni0019) (ID 1846) = '0'.<br>'uni0080' (uni0080) (ID 1847) = '0'.<br>'uni0081' (uni0081) (ID 1848) = '0'.<br>'uni0082' (uni0082) (ID 1849) = '0'.<br>'uni0083' (uni0083) (ID 1850) = '0'.<br>'uni0084' (uni0084) (ID 1851) = '0'.<br>'uni0085' (uni0085) (ID 1852) = '0'.<br>'uni0086' (uni0086) (ID 1853) = '0'.<br>'uni0087' (uni0087) (ID 1854) = '0'.<br>'uni0088' (uni0088) (ID 1855) = '0'.<br>'uni0089' (uni0089) (ID 1856) = '0'.<br>'uni0090' (uni0090) (ID 1857) = '0'.<br>'uni0091' (uni0091) (ID 1858) = '0'.<br>'uni0092' (uni0092) (ID 1859) = '0'.<br>'uni0093' (uni0093) (ID 1860) = '0'.<br>'uni0094' (uni0094) (ID 1861) = '0'.<br>'uni0095' (uni0095) (ID 1862) = '0'.<br>'uni0096' (uni0096) (ID 1863) = '0'.<br>'uni0097' (uni0097) (ID 1864) = '0'.<br>'uni0098' (uni0098) (ID 1865) = '0'.<br>'uni0099' (uni0099) (ID 1866) = '0'.<br>'u102e0' (uni102E0) (ID 1867) = '0'.<br>'uni20E2' (uni20E2) (ID 2212) = '0'.<br>'u101FD' (uni101FD) (ID 2213) = '0'.<br>'uni009C' (uni009C) (ID 2227) = '0'.<br>'uni009E' (uni009E) (ID 2228) = '0'.<br>'uni009F' (uni009F) (ID 2229) = '0'.<br>'uni009D' (uni009D) (ID 2230) = '0'.<br>'uni009B' (uni009B) (ID 2231) = '0'.<br>'uni009A' (uni009A) (ID 2232) = '0'.<br>'uni001E' (uni001E) (ID 2233) = '0'.<br>'uni001C' (uni001C) (ID 2234) = '0'.<br>'uni001F' (uni001F) (ID 2235) = '0'.<br>'uni001D' (uni001D) (ID 2236) = '0'.<br>'uni001B' (uni001B) (ID 2237) = '0'.<br>'uni001A' (uni001A) (ID 2238) = '0'.<br>'uni008E' (uni008E) (ID 2239) = '0'.<br>'uni008C' (uni008C) (ID 2240) = '0'.<br>'uni008F' (uni008F) (ID 2241) = '0'.<br>'uni008D' (uni008D) (ID 2242) = '0'.<br>'uni008B' (uni008B) (ID 2243) = '0'.<br>'uni008A' (uni008A) (ID 2244) = '0'.<br>'uni000E' (uni000E) (ID 2245) = '0'.<br>'uni000B' (uni000B) (ID 2246) = '0'.<br>'uni000F' (uni000F) (ID 2247) = '0'.<br>'uni000C' (uni000C) (ID 2248) = '0'.<br>'uni000A' (uni000A) (ID 2249) = '0'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Un/Necessary Tables</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Un/Necessary Tables_cell">
+                <button id="Un/Necessary Tables_btn" onclick='toggle_detail("Un/Necessary Tables");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Un/Necessary Tables</h3></th></tr>
+            </thead>
+            <tbody id="Un/Necessary Tables" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>-/-</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Unnecessary tables (private tables and embedded bitmap tables).</p></td>
+                    <td class="detail"><p>OK: No unnecessary tables.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>DSIG</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Necessary tables.</p></td>
+                    <td class="detail"><p>'DSIG' is missing. Please investigate.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>First Four Characters</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="First Four Characters_cell">
+                <button id="First Four Characters_btn" onclick='toggle_detail("First Four Characters");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>First Four Characters</h3></th></tr>
+            </thead>
+            <tbody id="First Four Characters" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>post</p></td>
+                    <td class="feature"><p>Index 0</p></td>
+                    <td class="message"><p>PostScript name should be ".notdef".</p></td>
+                    <td class="detail"><p>OK: Index 0 = ".notdef".</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>hmtx</p></td>
+                    <td class="feature"><p>Index 0</p></td>
+                    <td class="message"><p>'.notdef' advance width should not be 0.</p></td>
+                    <td class="detail"><p>OK: '.notdef' advance width is 600.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>post</p></td>
+                    <td class="feature"><p>Index 1</p></td>
+                    <td class="message"><p>PostScript name should be one of the names:<br>".null"<br>"null"<br>"NULL".</p></td>
+                    <td class="detail"><p>OK: Index 1 = "NULL".</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>glyf</p></td>
+                    <td class="feature"><p>Index 1</p></td>
+                    <td class="message"><p>'NULL' shoiuld have no contours.</p></td>
+                    <td class="detail"><p>'NULL' has 0 contours.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>hmtx</p></td>
+                    <td class="feature"><p>Index 1</p></td>
+                    <td class="message"><p>'NULL' should have an advance width of 0.</p></td>
+                    <td class="detail"><p>OK: 'NULL' has an advance width of 0.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>post</p></td>
+                    <td class="feature"><p>Index 2</p></td>
+                    <td class="message"><p>PostScript name should be one of the names:<br>"nonmarkingreturn"<br>"CR".</p></td>
+                    <td class="detail"><p>OK: Index 2 = "CR".</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>glyf</p></td>
+                    <td class="feature"><p>Index 2</p></td>
+                    <td class="message"><p>'CR' should have no contours.</p></td>
+                    <td class="detail"><p>OK: 'CR' has 0 contours.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>hmtx</p></td>
+                    <td class="feature"><p>Index 2</p></td>
+                    <td class="message"><p>Advance width of 'CR' should match the space width.</p></td>
+                    <td class="detail"><p>OK: 'CR' advance width does match the space width:<br>260 = 260</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>post</p></td>
+                    <td class="feature"><p>Index 3</p></td>
+                    <td class="message"><p>PostScript name should be "space"</p></td>
+                    <td class="detail"><p>OK: Index 3 = "space".</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>glyf</p></td>
+                    <td class="feature"><p>Index 3</p></td>
+                    <td class="message"><p>'space' should have no contours.</p></td>
+                    <td class="detail"><p>OK: 'space' has 0 contours.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>glyf</p></td>
+                    <td class="feature"><p></p></td>
+                    <td class="message"><p>The first four glyph indices are correct.</p></td>
+                    <td class="detail"><p>.notdef<br>NULL<br>CR<br>space</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>OS/2 table</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="OS/2 table_cell">
+                <button id="OS/2 table_btn" onclick='toggle_detail("OS/2 table");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>OS/2 table</h3></th></tr>
+            </thead>
+            <tbody id="OS/2 table" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>table version 4.</p></td>
+                    <td class="message"><p>'OS/2' table version should be 4.</p></td>
+                    <td class="detail"><p>OK: 'OS/2' table version is: 4.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>useTypoMetrics</p></td>
+                    <td class="message"><p>If the hhea metrics match the usWin metrics, it does not matter what the sTypo metrics are the fsSelection useTypoMetrics flag should be False.</p></td>
+                    <td class="detail"><p>OK: fsSelection useTypoMetrics flag should be False and is False.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>name and OS/2</p></td>
+                    <td class="feature"><p>MS and Mac NID 21/22 + WWS</p></td>
+                    <td class="message"><p>If MS and Mac NID 21 and 22 is not set, 'OS/2' fsSelection flag for WWS should be True.</p></td>
+                    <td class="detail"><p>OK: Mac/Mac NID 21/22 is not set and 'OS/2' fsSelection flag for WWS is True.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>italic flag</p></td>
+                    <td class="message"><p>'OS/2' fsSelection italic flag should match the 'head' macStyle italic flag. They should be the same.</p></td>
+                    <td class="detail"><p>OK: They are the same.'OS/2' fsSelection italic flag is False and 'head' macStyle italic flag is False.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>Panose Normal</p></td>
+                    <td class="message"><p>Because 'OS/2' fsSelection italic flag is False and 'head' macStyle italic flag is False the OS/2 panose array form flag should be a 'Normal' entry.</p></td>
+                    <td class="detail"><p>OK: 'OS/2' panose array form flag is a 'Normal' entry.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>usBreakChar</p></td>
+                    <td class="message"><p>'OS/2' usBreakChar should be 0x0020.</p></td>
+                    <td class="detail"><p>OK: 'OS/2' usBreakChar is 0x0020.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>usDefaultChar</p></td>
+                    <td class="message"><p>'OS/2' usDefaultChar should be 0x0000.</p></td>
+                    <td class="detail"><p>OK: 'OS/2' usDefaultChar is 0x0000.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>usFirstCharIndex</p></td>
+                    <td class="message"><p>'OS/2' usFirstCharIndex should be 0x0000</p></td>
+                    <td class="detail"><p>OK: 'OS/2' usFirstCharIndex is 0x0000.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>usLastCharIndex</p></td>
+                    <td class="message"><p>'OS/2' usLastCharIndex should be 0xFFFF</p></td>
+                    <td class="detail"><p>OK: 'OS/2' usLastCharIndex is 0xFFFF.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>Embedding Level</p></td>
+                    <td class="message"><p>For library fonts embedding level should be 'Preview & Print Embedding'.</p></td>
+                    <td class="detail"><p>Embedding Level is 'Embedding Level = Installable Embedding'. If custom font please check against job spec.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>fsType</p></td>
+                    <td class="message"><p>Pull 'OS/2' fsType.</p></td>
+                    <td class="detail"><p>embedding level: Embedding Level = Installable Embedding<br>no subsetting flag: False<br>bitmap embedding only flag: False</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>fvar table</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="fvar table_cell">
+                <button id="fvar table_btn" onclick='toggle_detail("fvar table");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>fvar table</h3></th></tr>
+            </thead>
+            <tbody id="fvar table" class="result_body">
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>fvar</p></td>
+                    <td class="feature"><p>variable font</p></td>
+                    <td class="message"><p>Variable font must have a fvar table.</p></td>
+                    <td class="detail"><p>This font is not a variable font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>STAT table</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="STAT table_cell">
+                <button id="STAT table_btn" onclick='toggle_detail("STAT table");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>STAT table</h3></th></tr>
+            </thead>
+            <tbody id="STAT table" class="result_body">
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>STAT</p></td>
+                    <td class="feature"><p>static font</p></td>
+                    <td class="message"><p>Variable font must have a STAT table.</p></td>
+                    <td class="detail"><p>No check of STAT table for static fonts included, yet. Static fonts do not need to have a STAT table. It is only recommended by Microsoft, not required.<br>More infos here:<br><a href='https://docs.microsoft.com/en-us/typography/opentype/spec/stat'>https://docs.microsoft.com/en-us/typography/opentype/spec/stat</a></p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Missing uni0000 and uni000D in cmap Table</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Missing uni0000 and uni000D in cmap Table_cell">
+                <button id="Missing uni0000 and uni000D in cmap Table_btn" onclick='toggle_detail("Missing uni0000 and uni000D in cmap Table");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Missing uni0000 and uni000D in cmap Table</h3></th></tr>
+            </thead>
+            <tbody id="Missing uni0000 and uni000D in cmap Table" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>cmap(0, 3, 0)</p></td>
+                    <td class="message"><p>Missing uni0000 and uni000D in cmap MS/BMP(0,3,0) and Unicode/2.0, BMP only(3,1,0).</p></td>
+                    <td class="detail"><p>cmap(0, 3, 0) contains U+0000</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>cmap(0, 3, 0)</p></td>
+                    <td class="message"><p>Missing uni0000 and uni000D in cmap MS/BMP(0,3,0) and Unicode/2.0, BMP only(3,1,0).</p></td>
+                    <td class="detail"><p>cmap(0, 3, 0) contains U+000D</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>cmap(3, 1, 0)</p></td>
+                    <td class="message"><p>Missing uni0000 and uni000D in cmap MS/BMP(0,3,0) and Unicode/2.0, BMP only(3,1,0).</p></td>
+                    <td class="detail"><p>cmap(3, 1, 0) contains U+0000</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>cmap(3, 1, 0)</p></td>
+                    <td class="message"><p>Missing uni0000 and uni000D in cmap MS/BMP(0,3,0) and Unicode/2.0, BMP only(3,1,0).</p></td>
+                    <td class="detail"><p>cmap(3, 1, 0) contains U+000D</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Obsolete Language Tag TUR</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Obsolete Language Tag TUR_cell">
+                <button id="Obsolete Language Tag TUR_btn" onclick='toggle_detail("Obsolete Language Tag TUR");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Obsolete Language Tag TUR</h3></th></tr>
+            </thead>
+            <tbody id="Obsolete Language Tag TUR" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>-/-</p></td>
+                    <td class="feature"><p>TRK</p></td>
+                    <td class="message"><p>Obsolete language tag 'TUR' should be TRK.</p></td>
+                    <td class="detail"><p>OK: No language tag 'TUR' in any table.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Name Table</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Name Table_cell">
+                <button id="Name Table_btn" onclick='toggle_detail("Name Table");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Name Table</h3></th></tr>
+            </thead>
+            <tbody id="Name Table" class="result_body">
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 0 (3, 1, 1033, 0)</p></td>
+                    <td class="message"><p>MS NID 0, Copyright.</p></td>
+                    <td class="detail"><p>Please verify agains spec.<br>MS NID 0 is 'Copyright 2017 Google Inc. All Rights Reserved.'<br>It should follow this structure: 'Copyright <mark>(c) XXXX - XXXX /entity/. All rights r</mark>eserved.' </p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 1</p></td>
+                    <td class="message"><p>MS NID 1, Family Name length shouldn't be longer then 31.</p></td>
+                    <td class="detail"><p>OK: NID 1 length is '18'<br>'Noto Sans Symbols2' </p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 1</p></td>
+                    <td class="message"><p>Reserved word used in Family Name NID1 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 1 does not contain any of the following keywords: 'Regular, Bold, Roman'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 1</p></td>
+                    <td class="message"><p>Reserved word used in Family Name NID1 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 1 does not contain any of the following keywords: 'Book, Ultra, Normal'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 1</p></td>
+                    <td class="message"><p>Reserved word used in Family Name NID1 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 1 does not contain any of the following keywords: 'Roman'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 1</p></td>
+                    <td class="message"><p>Reserved word used in Family Name NID1 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 1 does not contain any of the following keywords: 'Regular, Bold, Italic, Extra, Light, Black, Thin, Wide, Ultra'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 1</p></td>
+                    <td class="message"><p>Should be camel case Family Name NID1</p></td>
+                    <td class="detail"><p>NID 1: OK. No camel case required.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 1</p></td>
+                    <td class="message"><p>Check style extentions Family Name NID1</p></td>
+                    <td class="detail"><p>NID 1 does not contain any of the following beginnings: 'X, Semi, Dm, Xtra, Demi, Extra, Sm, Ex, Ultra'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>name/OS/2</p></td>
+                    <td class="feature"><p>MS NID 1</p></td>
+                    <td class="message"><p>Width Names Family Name NID1</p></td>
+                    <td class="detail"><p>OS/2 usWidthClass seems to be correct. Cannot find any specific width name in the name:<br>'Noto Sans Symbols2'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 2</p></td>
+                    <td class="message"><p>MS NID 2, Subfamily.</p></td>
+                    <td class="detail"><p>OK: NID 2 is 'Regular'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 2</p></td>
+                    <td class="message"><p>Reserved word used in Subfamily Name NID2 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 2 does not contain any of the following keywords: 'Book, Ultra, Normal'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 2</p></td>
+                    <td class="message"><p>Reserved word used in Subfamily Name NID2 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 2 does not contain any of the following keywords: 'Roman'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 4</p></td>
+                    <td class="message"><p>MS NID 4, Full Name length shouldn't be longer than 31.</p></td>
+                    <td class="detail"><p>OK: NID 4 length is '26'<br>'Noto Sans Symbols2 Regular' </p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="W">
+                    <td class="code"><p>Warning</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 4</p></td>
+                    <td class="message"><p>If NID 2 is 'Regular': MS NID 4 = NID 1</p></td>
+                    <td class="detail"><p>NID 4 'Noto Sans Symbols2 Regular' ≠ NID 1 'Noto Sans Symbols2'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 4</p></td>
+                    <td class="message"><p>Reserved word used in Full Font Name NID4 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 4 does not contain any of the following keywords: 'Book, Ultra, Normal'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 4</p></td>
+                    <td class="message"><p>Reserved word used in Full Font Name NID4 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 4 does not contain any of the following keywords: 'Roman'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 4</p></td>
+                    <td class="message"><p>Should be camel case Full Font Name NID4</p></td>
+                    <td class="detail"><p>NID 4: OK. No camel case required.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 4</p></td>
+                    <td class="message"><p>Check style extentions Full Font Name NID4</p></td>
+                    <td class="detail"><p>NID 4 does not contain any of the following beginnings: 'X, Semi, Dm, Xtra, Demi, Extra, Sm, Ex, Ultra'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>name/OS/2</p></td>
+                    <td class="feature"><p>MS NID 4</p></td>
+                    <td class="message"><p>Width Names Full Font Name NID4</p></td>
+                    <td class="detail"><p>OS/2 usWidthClass seems to be correct. Cannot find any specific width name in the name:<br>'Noto Sans Symbols2 Regular'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>name/head</p></td>
+                    <td class="feature"><p>MS NID 5</p></td>
+                    <td class="message"><p>name table version should match head table fontRevision.</p></td>
+                    <td class="detail"><p>OK: name table version entry 'Version 2.000;GOOG;noto-source:20170915:90ef993387c0' does match fontRevision 'Version 2.0'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 6</p></td>
+                    <td class="message"><p>MS NID 6, PostScript Name length shouldn't be longer then 27.<br>(Otherwise it may cause issues in MS Word.)</p></td>
+                    <td class="detail"><p>NID 6 length is '24'<br>'NotoSansSymbols2-Regular' </p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 6</p></td>
+                    <td class="message"><p>MS NID 6, PostScript Name check for illegal characters.<br>Monotype uses NID 6 for creating CSS classes for their demo HTML. The following characters cause issues in the CSS code: '<br>, ,  , &, _, [, ], (, ), {, }, <, >, /, \, %'</p></td>
+                    <td class="detail"><p>NID 6 is 'NotoSansSymbols2-Regular', Everything looks good.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 6</p></td>
+                    <td class="message"><p>MS NID 6, PostScript Name check for illegal characters.<br>'space' in NID 6 cause issues in fontbook for Mac.</p></td>
+                    <td class="detail"><p>NID 6 is 'NotoSansSymbols2-Regular', Everything looks good.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 6</p></td>
+                    <td class="message"><p>Reserved word used in PostScript Name NID6 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 6 does not contain any of the following keywords: 'Book, Ultra, Normal'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 6</p></td>
+                    <td class="message"><p>Reserved word used in PostScript Name NID6 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 6 does not contain any of the following keywords: 'Roman'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 6</p></td>
+                    <td class="message"><p>Should be camel case PostScript Name NID6</p></td>
+                    <td class="detail"><p>NID 6: OK. No camel case required.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 7</p></td>
+                    <td class="message"><p>Test Trademark</p></td>
+                    <td class="detail"><p><b>Current trademark is:</b><br>'Noto is a trademark of Google Inc.'<br><b>but what do think about this</b><br>'Noto is a trademark of <mark>Fontsmith Ltd and may be registered in certain jurisdictions</mark>.'<br><br>(This is automatically generated and might be wrong. Must be confirmed by legal)</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 8</p></td>
+                    <td class="message"><p>Manufactur (NID 8) should be Monotype IP</p></td>
+                    <td class="detail"><p>OK: MS NID 8 is 'Monotype Imaging Inc.'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 11</p></td>
+                    <td class="message"><p>MS NID 11, URL Vendor should be 'http://www.monotype.com'. </p></td>
+                    <td class="detail"><p>NID 11 is http://www.google.com/get/noto/, but should be http://www.monotype.com. Please verify against job spec.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 12</p></td>
+                    <td class="message"><p>MS NID 12, URL Vendor should be 'http://www.monotype.com'. </p></td>
+                    <td class="detail"><p>NID 12 is http://www.monotype.com/studio, but should be http://www.monotype.com. Please verify against job spec.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 8/13</p></td>
+                    <td class="message"><p>License text if Manufactur (NID 8) is one of these 'Monotype Imaging Inc.', 'Monotype Imaging Inc', 'Monotype ITC Inc.', 'Monotype Hong Kong Limited', 'Monotype Limited', 'Monotype KK', 'Monotype Solutions India Private Limited'</p></td>
+                    <td class="detail"><p>Please verify against job spec.<br><b>MS NID 13 is:</b><br>This Font Software is licensed under the SIL Open Font License, Version 1.1. This Font Software is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the SIL Open Font License for the specific language, permissions and limitations governing your use of this Font Software.<br><b>but should be:</b><br>This <mark>font software is the property of Monotype Imaging Inc., or one of its affiliated entities (collectively, Monotype) and its use by you is covered under the terms of a license agreement. You have obtained this font software either directly from Monotype or together with software distributed by one of the licensees of Monotype. This software is a valuable asset of Monotype. Unless you have entered into a specific license agreement granting you additional rights, your use of this software is limited by the terms of the actual license agreement you have entered into with Monotype. You may not copy or distribute this software. If you have any questions concerning your rights you should review the license agreement you received with the software. You can learn more about Monotype by clicking here: www.monotype.com</mark>.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 14</p></td>
+                    <td class="message"><p>MS NID 14, URL Vendor should be 'http://www.monotype.com'. </p></td>
+                    <td class="detail"><p>NID 14 is http://scripts.sil.org/OFL, but should be http://www.monotype.com. Please verify against job spec.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 0</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: 'No entry.'<br>MS [3, 1, 1033] is: '<mark>Copyright 2017 Google Inc. All Rights Reserved</mark>.'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 1</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: 'No entry.'<br>MS [3, 1, 1033] is: 'No<mark>to Sans Symbols2</mark>'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 2</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: '<mark>No entry.</mark>'<br>MS [3, 1, 1033] is: 'Regular'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 3</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: 'No entry.'<br>MS [3, 1, 1033] is: '<mark>2.000;GOOG;NotoSansSymbols2-Regular</mark>'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 4</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: 'No entry.'<br>MS [3, 1, 1033] is: 'No<mark>to Sans Symbols2 Regular</mark>'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 5</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: 'No entry.'<br>MS [3, 1, 1033] is: '<mark>Version 2.000;GOOG;noto-source:20170915:90ef993387c0</mark>'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 6</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: 'No entry.'<br>MS [3, 1, 1033] is: 'No<mark>toSansSymbols2-Regular</mark>'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 7</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: 'No entry.'<br>MS [3, 1, 1033] is: 'No<mark>to is a trademark of Google Inc</mark>.'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 8</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: 'No entry.'<br>MS [3, 1, 1033] is: '<mark>Monotype Imaging Inc</mark>.'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 9</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: 'No entry.'<br>MS [3, 1, 1033] is: '<mark>Monotype Design Team</mark>'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 10</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: 'No entry.'<br>MS [3, 1, 1033] is: '<mark>Designed by Monotype design team</mark>.'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 11</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: 'No entry.'<br>MS [3, 1, 1033] is: '<mark>http://www.google.com/get/noto/</mark>'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 12</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: 'No entry.'<br>MS [3, 1, 1033] is: '<mark>http://www.monotype.com/studio</mark>'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 13</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: 'No entry.'<br>MS [3, 1, 1033] is: '<mark>This Font Software is licensed under the SIL Open Font License, Version 1.1. This Font Software is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the SIL Open Font License for the specific language, permissions and limitations governing your use of this Font Software</mark>.'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 14</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: 'No entry.'<br>MS [3, 1, 1033] is: '<mark>http://scripts.sil.org/OFL</mark>'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 0 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 0, Copyright' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Copyright is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 1 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 1, Family Name' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Family Name is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 2 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 2, Subfamily Name' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Subfamily Name is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 3 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 3, Unique Font Identifier' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Unique Font Identifier is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 4 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 4, Full Font Name' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Full Font Name is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 5 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 5, Version' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Version is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 6 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 6, PostScript Name' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>PostScript Name is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 7 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 7, Trademark' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Trademark is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 8 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 8, Manufacturer' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Manufacturer is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 9 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 9, Designer' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Designer is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 10 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 10, Description' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Description is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 11 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 11, Vendor URL' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Vendor URL is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 13 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 13, License Text' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>License Text is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 14 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 14, License URL' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>License URL is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 16 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 16, Typographic Family Name' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Typographic Family Name NID 16 (MS/BMP/English (U.S.)) is missing.<br>Please verify agains spec. It might be ok if it's a symbol font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 17 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 17, Typographic Subfamily Name' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Typographic Subfamily Name NID 17 (MS/BMP/English (U.S.)) is missing.<br>Please verify agains spec. It might be ok if it's a symbol font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Underline Position and Thickness</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Underline Position and Thickness_cell">
+                <button id="Underline Position and Thickness_btn" onclick='toggle_detail("Underline Position and Thickness");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Underline Position and Thickness</h3></th></tr>
+            </thead>
+            <tbody id="Underline Position and Thickness" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>post</p></td>
+                    <td class="feature"><p>underline position and thickness</p></td>
+                    <td class="message"><p>underlinePosition should be a negative and underlineThickness not 0 or negative.</p></td>
+                    <td class="detail"><p>underlinePosition is '-100'.<br>underlineThicknes is '50'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Kerning (kern Table and GPOS Kerning)</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Kerning (kern Table and GPOS Kerning)_cell">
+                <button id="Kerning (kern Table and GPOS Kerning)_btn" onclick='toggle_detail("Kerning (kern Table and GPOS Kerning)");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Kerning (kern Table and GPOS Kerning)</h3></th></tr>
+            </thead>
+            <tbody id="Kerning (kern Table and GPOS Kerning)" class="result_body">
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>GPOS</p></td>
+                    <td class="feature"><p>kern</p></td>
+                    <td class="message"><p>Simple check if kern feature in GPOS table.</p></td>
+                    <td class="detail"><p>GPOS table does not have kerning feature. Please investigate if this meets requirements.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>kern</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Check if 'kern' table in font.</p></td>
+                    <td class="detail"><p>Font has no 'kern' table. Please verify if font requires kern table or if only GPOS kerning should be in font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Vendor ID</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Vendor ID_cell">
+                <button id="Vendor ID_btn" onclick='toggle_detail("Vendor ID");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Vendor ID</h3></th></tr>
+            </thead>
+            <tbody id="Vendor ID" class="result_body">
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>achVendID</p></td>
+                    <td class="message"><p>Vendor ID should be 'MONO'</p></td>
+                    <td class="detail"><p>Vendor ID is 'GOOG'. Please change to 'MONO'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Vertical Metrics</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Vertical Metrics_cell">
+                <button id="Vertical Metrics_btn" onclick='toggle_detail("Vertical Metrics");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Vertical Metrics</h3></th></tr>
+            </thead>
+            <tbody id="Vertical Metrics" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2 and head</p></td>
+                    <td class="feature"><p>sTypeAsc/Desc and unitsPerEm</p></td>
+                    <td class="message"><p>The result of sTypoAscender – sTypoDescender should match or exceed the unitsPerEm value.</p></td>
+                    <td class="detail"><p>The result of sTypoAscender – sTypoDescender (1699) match or exceed the unitsPerEm value (1000).</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>hhea</p></td>
+                    <td class="feature"><p>Vertical Metrics</p></td>
+                    <td class="message"><p>Pull hhea Metrics</p></td>
+                    <td class="detail"><p>hhea.ascent: 1069<br>hhea.descent: -630<br>hhea.lineGap: 0</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>Vertical Metrics</p></td>
+                    <td class="message"><p>Pull OS/2 sTypo Metrics</p></td>
+                    <td class="detail"><p>OS2.sTypoAscender: 1069<br>OS2.sTypoDescender: -630<br>OS2.sTypoLineGap: 0</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>Vertical Metrics</p></td>
+                    <td class="message"><p>Pull OS/2 usWin Metrics</p></td>
+                    <td class="detail"><p>OS2.usWinAscent: 1069<br>OS2.usWinDescent: 630</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>xAvgCharWidth</p></td>
+                    <td class="message"><p>Get 'OS/2' xAvgCharWidth.</p></td>
+                    <td class="detail"><p>xAvgCharWidth = 792.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>hhea</p></td>
+                    <td class="feature"><p>advanceWidthMax</p></td>
+                    <td class="message"><p>Get advanceWidthMax.</p></td>
+                    <td class="detail"><p>advanceWidthMax = 1842.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>hhea</p></td>
+                    <td class="feature"><p>xMin, yMin, xMax, yMax</p></td>
+                    <td class="message"><p>Get xMin, yMin, xMax, yMax.</p></td>
+                    <td class="detail"><p>xMin: -870<br>yMin: -622<br>xMax: 1791<br>yMax: 1069<br></p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>sTypoAscender</p></td>
+                    <td class="message"><p>Vertical Metrics 'sTypoAscender' shouldn't be negative.</p></td>
+                    <td class="detail"><p>sTypoAscender = '1069'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>sTypoDescender</p></td>
+                    <td class="message"><p>Vertical Metrics 'sTypoDescender' should be negative.</p></td>
+                    <td class="detail"><p>sTypoDescender = '-630'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>sTypoLineGap</p></td>
+                    <td class="message"><p>Vertical Metrics 'sTypoLineGap' shouldn't be negative.</p></td>
+                    <td class="detail"><p>sTypoLineGap = '0'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>usWinAscent</p></td>
+                    <td class="message"><p>Vertical Metrics 'usWinAscent' shouldn't be negative.</p></td>
+                    <td class="detail"><p>usWinAscent = '1069'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>usWinDescent</p></td>
+                    <td class="message"><p>Vertical Metrics 'usWinDescent' shouldn't be negative.</p></td>
+                    <td class="detail"><p>usWinDescent = '630'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>hhea</p></td>
+                    <td class="feature"><p>ascent</p></td>
+                    <td class="message"><p>Vertical Metrics 'ascent' shouldn't be negative.</p></td>
+                    <td class="detail"><p>ascent = '1069'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>hhea</p></td>
+                    <td class="feature"><p>descent</p></td>
+                    <td class="message"><p>Vertical Metrics 'descent' should be negative.</p></td>
+                    <td class="detail"><p>descent = '-630'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>hhea</p></td>
+                    <td class="feature"><p>lineGap</p></td>
+                    <td class="message"><p>Vertical Metrics 'lineGap' shouldn't be negative.</p></td>
+                    <td class="detail"><p>lineGap = '0'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>gasp Table</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="gasp Table_cell">
+                <button id="gasp Table_btn" onclick='toggle_detail("gasp Table");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>gasp Table</h3></th></tr>
+            </thead>
+            <tbody id="gasp Table" class="result_body">
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>gasp</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Check gasp table.</p></td>
+                    <td class="detail"><p>No gasp table in font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>PostScript names</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="PostScript names_cell">
+                <button id="PostScript names_btn" onclick='toggle_detail("PostScript names");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>PostScript names</h3></th></tr>
+            </thead>
+            <tbody id="PostScript names" class="result_body">
+                    
+                <tr class="W">
+                    <td class="code"><p>Warning</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>post</p></td>
+                    <td class="feature"><p>PostScript names</p></td>
+                    <td class="message"><p>Postscript names should not be longer then 29 characters. May cause issues in PDF.</p></td>
+                    <td class="detail"><p>Is longer:<br>'pedestrian_gobliquestroke-phaistosDisc<br>plumedHead_gobliquestroke-phaistosDisc<br>tattooedHead_gobliquestroke-phaistosDisc<br>captive_gobliquestroke-phaistosDisc<br>child_gobliquestroke-phaistosDisc<br>woman_gobliquestroke-phaistosDisc<br>helmet_gobliquestroke-phaistosDisc<br>gauntlet_gobliquestroke-phaistosDisc<br>tiara_gobliquestroke-phaistosDisc<br>arrow_gobliquestroke-phaistosDisc<br>bow_gobliquestroke-phaistosDisc<br>shield_gobliquestroke-phaistosDisc<br>club_gobliquestroke-phaistosDisc<br>manacles_gobliquestroke-phaistosDisc<br>mattock_gobliquestroke-phaistosDisc<br>saw_gobliquestroke-phaistosDisc<br>lid_gobliquestroke-phaistosDisc<br>boomerang_gobliquestroke-phaistosDisc<br>carpentryPlane_gobliquestroke-phaistosDisc<br>dolium_gobliquestroke-phaistosDisc<br>comb_gobliquestroke-phaistosDisc<br>sling_gobliquestroke-phaistosDisc<br>column_gobliquestroke-phaistosDisc<br>beehive_gobliquestroke-phaistosDisc<br>ship_gobliquestroke-phaistosDisc<br>horn_gobliquestroke-phaistosDisc<br>hide_gobliquestroke-phaistosDisc<br>bullsLeg_gobliquestroke-phaistosDisc<br>cat_gobliquestroke-phaistosDisc<br>ram_gobliquestroke-phaistosDisc<br>eagle_gobliquestroke-phaistosDisc<br>dove_gobliquestroke-phaistosDisc<br>tunny_gobliquestroke-phaistosDisc<br>bee_gobliquestroke-phaistosDisc<br>planeTree_gobliquestroke-phaistosDisc<br>vine_gobliquestroke-phaistosDisc<br>papyrus_gobliquestroke-phaistosDisc<br>rosette_gobliquestroke-phaistosDisc<br>lily_gobliquestroke-phaistosDisc<br>oxBack_gobliquestroke-phaistosDisc<br>flute_gobliquestroke-phaistosDisc<br>grater_gobliquestroke-phaistosDisc<br>strainer_gobliquestroke-phaistosDisc<br>axe_gobliquestroke-phaistosDisc<br>wavyBand_gobliquestroke-phaistosDisc<br>dottedCircle_enclosingscreencomb<br>dotCirc_gobliquestr-phaistosDisc'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Symbols2 Regular (NotoSansSymbols2-Regular.ttf)</p></td>
+                    <td class="table"><p>post</p></td>
+                    <td class="feature"><p>PostScript names</p></td>
+                    <td class="message"><p>Postscript names should not be longer then 29 characters. May cause issues in PDF.</p></td>
+                    <td class="detail"><p>OK:<br>'.notdef<br>NULL<br>CR<br>space<br>dotmath<br>lozenge<br>uni4DC0<br>uni4DC1<br>uni4DC2<br>uni4DC3<br>uni4DC4<br>uni4DC5<br>uni4DC6<br>uni4DC7<br>uni4DC8<br>uni4DC9<br>uni4DCA<br>uni4DCB<br>uni4DCC<br>uni4DCD<br>uni4DCE<br>uni4DCF<br>uni4DD0<br>uni4DD1<br>uni4DD2<br>uni4DD3<br>uni4DD4<br>uni4DD5<br>uni4DD6<br>uni4DD7<br>uni4DD8<br>uni4DD9<br>uni4DDA<br>uni4DDB<br>uni4DDC<br>uni4DDD<br>uni4DDE<br>uni4DDF<br>uni4DE0<br>uni4DE1<br>uni4DE2<br>uni4DE3<br>uni4DE4<br>uni4DE5<br>uni4DE6<br>uni4DE7<br>uni4DE8<br>uni4DE9<br>uni4DEA<br>uni4DEB<br>uni4DEC<br>uni4DED<br>uni4DEE<br>uni4DEF<br>uni4DF0<br>uni4DF1<br>uni4DF2<br>uni4DF3<br>uni4DF4<br>uni4DF5<br>uni4DF6<br>uni4DF7<br>uni4DF8<br>uni4DF9<br>uni4DFA<br>uni4DFB<br>uni4DFC<br>uni4DFD<br>uni4DFE<br>uni4DFF<br>zero<br>one<br>two<br>three<br>four<br>five<br>six<br>seven<br>eight<br>nine<br>asterisk<br>numbersign<br>bullet<br>uni2770<br>uni276E<br>uni2771<br>uni276F<br>uni2772<br>uni2773<br>uni276A<br>uni276B<br>uni2774<br>uni276C<br>uni2768<br>uni2769<br>uni2775<br>uni276D<br>uni00A0<br>DEL<br>uni29EB<br>uni2219<br>uni2981<br>uni29BF<br>uni2299<br>uni21E7<br>uni2B00<br>uni21E8<br>uni2B02<br>uni21E9<br>uni2B03<br>uni21E6<br>uni2B01<br>uni2B04<br>uni21EB<br>uni21EC<br>uni21ED<br>uni21EE<br>uni21EF<br>uni21F0<br>uni21F3<br>uni2324<br>uni2794<br>uni2798<br>uni2799<br>uni279A<br>uni279B<br>uni279C<br>uni279D<br>uni279E<br>uni279F<br>uni27A0<br>uni2B06<br>uni2B08<br>uni2B95<br>uni2B0A<br>uni2B07<br>uni2B0B<br>uni2B05<br>uni2B09<br>uni2B0C<br>uni2B0D<br>uni27A2<br>uni27A3<br>uni27A4<br>uni27A5<br>uni27A6<br>uni27A7<br>uni27A8<br>uni27A9<br>uni27AA<br>uni27AB<br>uni27AC<br>uni27AD<br>uni27AE<br>uni27AF<br>uni27B1<br>uni27B2<br>uni27B3<br>uni27B6<br>uni27B5<br>uni27B4<br>uni27B9<br>uni27B8<br>uni27B7<br>uni27BA<br>uni27BB<br>uni27BC<br>uni27BD<br>uni27BE<br>uni27A1<br>uni25CF<br>circle<br>uni25EF<br>uni25D0<br>uni25D1<br>uni25D2<br>uni25D3<br>uni25D6<br>uni25D7<br>uni25D4<br>uni25D5<br>uni25F4<br>uni25F5<br>uni25F6<br>uni25F7<br>uni25CD<br>uni25CC<br>uni25C9<br>uni25CE<br>openbullet<br>invbullet<br>invcircle<br>uni25DA<br>uni25DB<br>uni25E0<br>uni25E1<br>uni25DC<br>uni25DD<br>uni25DE<br>uni25DF<br>uni25C6<br>uni25C7<br>uni2B16<br>uni2B17<br>uni2B18<br>uni2B19<br>uni2756<br>uni25C8<br>uni25B0<br>uni25B1<br>uni25AE<br>filledrect<br>uni25AD<br>uni25AF<br>filledbox<br>uni25A1<br>uni25A2<br>uni25A3<br>uni2B1A<br>uni25A4<br>uni25A5<br>uni25A6<br>uni25A7<br>uni25A8<br>uni25A9<br>uni25AA<br>uni25AB<br>uni25E7<br>uni25E8<br>uni25E9<br>uni25EA<br>uni25EB<br>uni25F0<br>uni25F1<br>uni25F2<br>uni25F3<br>uni25FB<br>uni25FC<br>uni25FD<br>uni25FE<br>triagup<br>uni25B6<br>triagdn<br>uni25C0<br>uni25B3<br>uni25B7<br>uni25BD<br>uni25C1<br>uni25EC<br>uni25ED<br>uni25EE<br>triagrt<br>triaglf<br>uni25BB<br>uni25C5<br>uni25B4<br>uni25B8<br>uni25BE<br>uni25C2<br>uni25B5<br>uni25B9<br>uni25BF<br>uni25C3<br>uni25E5<br>uni25E2<br>uni25E3<br>uni25E4<br>uni25F9<br>uni25FF<br>uni25FA<br>uni25F8<br>uni2600<br>uni2601<br>uni2602<br>uni2603<br>uni2604<br>uni2607<br>uni2608<br>uni2609<br>uni2614<br>uni2605<br>uni2606<br>uni260E<br>uni260F<br>uni2610<br>uni2611<br>uni2612<br>uni2615<br>uni2616<br>uni2617<br>uni261A<br>uni261B<br>uni261C<br>uni261D<br>uni261E<br>uni261F<br>uni2620<br>uni2621<br>uni2622<br>uni2623<br>uni2719<br>uni271A<br>uni271B<br>uni271C<br>uni2630<br>uni2631<br>uni2632<br>uni2633<br>uni2634<br>uni2635<br>uni2636<br>uni2637<br>uni2668<br>uni267F<br>uni2686<br>uni2687<br>uni2688<br>uni2689<br>uni268A<br>uni268B<br>uni268C<br>uni268D<br>uni268E<br>uni268F<br>uni269E<br>uni269F<br>uni26A1<br>uni26AA<br>uni26AB<br>uni26AC<br>uni26BD<br>uni26BE<br>uni26BF<br>uni26C0<br>uni26C1<br>uni26C2<br>uni26C3<br>uni26C4<br>uni26C5<br>uni26C6<br>uni26C7<br>uni26C8<br>uni26C9<br>uni26CA<br>uni26CB<br>uni2701<br>uni2703<br>uni2704<br>uni2706<br>uni2707<br>uni2708<br>uni2709<br>uni270C<br>uni270D<br>uni270E<br>uni270F<br>uni2710<br>uni2711<br>uni2712<br>uni2713<br>uni2714<br>uni2715<br>uni2716<br>uni2717<br>uni2718<br>uni2722<br>uni2723<br>uni2724<br>uni2725<br>uni2726<br>uni2727<br>uni2729<br>uni272A<br>uni272B<br>uni272C<br>uni272D<br>uni272E<br>uni272F<br>uni2730<br>uni2731<br>uni2732<br>uni2733<br>uni2734<br>uni2735<br>uni2736<br>uni2737<br>uni2738<br>uni2739<br>uni273A<br>uni273B<br>uni273C<br>uni273D<br>uni273E<br>uni273F<br>uni2740<br>uni2741<br>uni2742<br>uni2743<br>uni2744<br>uni2745<br>uni2746<br>uni2747<br>uni2748<br>uni2749<br>uni274A<br>uni274B<br>uni274D<br>uni274F<br>uni2750<br>uni2751<br>uni2752<br>uni2753<br>uni2757<br>uni2758<br>uni2759<br>uni275A<br>uni275B<br>uni275C<br>uni275D<br>uni275E<br>uni275F<br>uni2760<br>uni2761<br>uni2762<br>uni2763<br>uni2764<br>uni2765<br>uni2766<br>uni2767<br>uni2406<br>u1F39F<br>u1F6E9<br>u1F691<br>uni2B8D<br>uni2B8E<br>uni2B6F<br>uni2B8C<br>uni2B8F<br>u1F6BC<br>u1F582<br>uni2B5B<br>uni2B5D<br>uni2408<br>u1F5F6<br>u1F5F3<br>u1F5F9<br>u1F5F7<br>uni2BBD<br>u1F5F5<br>u1F5F4<br>u1F4CA<br>u1F3D6<br>u1F39C<br>u1F39D<br>u1F6CF<br>uni2407<br>u1F6CE<br>uni2B5E<br>u1F6B2<br>u1F426<br>uni23FA<br>uni2BA8<br>uni2BA9<br>uni2BAE<br>uni2BAC<br>uni2BAF<br>uni2BAD<br>uni2BAA<br>uni2BAB<br>uni2BC1<br>u1F5A3<br>uni2B9F<br>u1F783<br>u1F322<br>u1F5BF<br>u1F5AA<br>uni2B22<br>uni2B2C<br>uni2B24<br>uni2B1B<br>u1F59C<br>uni23EA<br>uni23EE<br>uni2B9C<br>u1F780<br>uni2B25<br>uni23F7<br>uni2BC6<br>uni23F4<br>uni2BC7<br>uni2B27<br>uni23F5<br>uni2BC8<br>u1F799<br>u1F79F<br>uni23F6<br>uni2BC5<br>uni2BC4<br>u1F3F2<br>uni2B1F<br>u1F588<br>u1F59D<br>uni23E9<br>uni23ED<br>uni2B9E<br>uni2B53<br>u1F782<br>uni23EF<br>u1F3F6<br>uni2700<br>u1F571<br>u1F784<br>u1F78D<br>uni2B29<br>uni2B2A<br>uni2B51<br>uni2BC0<br>uni23F9<br>u1F797<br>u1F79D<br>u1F78C<br>u1F57F<br>u1F5A2<br>uni2B9D<br>u1F781<br>uni2B2E<br>u1F798<br>u1F79E<br>uni2B1D<br>uni2423<br>uni2800<br>uni2422<br>u1F7BD<br>u1F7B1<br>u1F7A4<br>u1F7AB<br>u1F7B7<br>u1F786<br>u1F790<br>u1F4A3<br>u1F56E<br>u1F4DA<br>uni2BCB<br>u1F395<br>u1F6C9<br>u1F3D7<br>u1F56B<br>u1F56C<br>u1F4F7<br>u1F3D5<br>uni2418<br>u1F5D9<br>u1F56F<br>u1F5C3<br>u1F5C2<br>uni240D<br>u1F408<br>u1F4C9<br>u1F4C8<br>u1F4B9<br>u1F67E<br>u1F43F<br>uni2BBF<br>u1F6C8<br>uni2BBE<br>u1F3D9<br>u1F581<br>u1F3AC<br>u1F3DB<br>u1F4CB<br>u1F557<br>u1F563<br>u1F55A<br>u1F566<br>u1F554<br>u1F560<br>u1F553<br>u1F55F<br>u1F558<br>u1F564<br>u1F550<br>u1F55C<br>u1F556<br>u1F562<br>u1F555<br>u1F561<br>u1F559<br>u1F565<br>u1F552<br>u1F55E<br>u1F55B<br>u1F567<br>u1F551<br>u1F55D<br>u1F5D8<br>uni2B6E<br>u1F4EA<br>u1F4EB<br>u1F329<br>u1F327<br>u1F328<br>u1F32A<br>u1F378<br>u1F5DC<br>u1F39B<br>u1F6CB<br>u1F4B3<br>u1F542<br>u1F541<br>u1F5E1<br>u1F576<br>uni2410<br>u1F5DB<br>uni2421<br>uni2425<br>u1F3DA<br>u1F3DC<br>u1F3DD<br>u1F5A5<br>u1F5D4<br>uni2414<br>uni2411<br>uni2413<br>uni2412<br>u1F79C<br>u1F6F2<br>u1F5CE<br>u1F5BB<br>u1F5B9<br>u1F5BA<br>u1F415<br>uni2801<br>uni2803<br>uni2807<br>uni280F<br>uni281F<br>uni283F<br>uni287F<br>uni28FF<br>uni28BF<br>uni285F<br>uni28DF<br>uni289F<br>uni282F<br>uni286F<br>uni28EF<br>uni28AF<br>uni284F<br>uni28CF<br>uni288F<br>uni2817<br>uni2837<br>uni2877<br>uni28F7<br>uni28B7<br>uni2857<br>uni28D7<br>uni2897<br>uni2827<br>uni2867<br>uni28E7<br>uni28A7<br>uni2847<br>uni28C7<br>uni2887<br>uni280B<br>uni281B<br>uni283B<br>uni287B<br>uni28FB<br>uni28BB<br>uni285B<br>uni28DB<br>uni289B<br>uni282B<br>uni286B<br>uni28EB<br>uni28AB<br>uni284B<br>uni28CB<br>uni288B<br>uni2813<br>uni2833<br>uni2873<br>uni28F3<br>uni28B3<br>uni2853<br>uni28D3<br>uni2893<br>uni2823<br>uni2863<br>uni28E3<br>uni28A3<br>uni2843<br>uni28C3<br>uni2883<br>uni2805<br>uni280D<br>uni281D<br>uni283D<br>uni287D<br>uni28FD<br>uni28BD<br>uni285D<br>uni28DD<br>uni289D<br>uni282D<br>uni286D<br>uni28ED<br>uni28AD<br>uni284D<br>uni28CD<br>uni288D<br>uni2815<br>uni2835<br>uni2875<br>uni28F5<br>uni28B5<br>uni2855<br>uni28D5<br>uni2895<br>uni2825<br>uni2865<br>uni28E5<br>uni28A5<br>uni2845<br>uni28C5<br>uni2885<br>uni2809<br>uni2819<br>uni2839<br>uni2879<br>uni28F9<br>uni28B9<br>uni2859<br>uni28D9<br>uni2899<br>uni2829<br>uni2869<br>uni28E9<br>uni28A9<br>uni2849<br>uni28C9<br>uni2889<br>uni2811<br>uni2831<br>uni2871<br>uni28F1<br>uni28B1<br>uni2851<br>uni28D1<br>uni2891<br>uni2821<br>uni2861<br>uni28E1<br>uni28A1<br>uni2841<br>uni28C1<br>uni2881<br>uni2802<br>uni2806<br>uni280E<br>uni281E<br>uni283E<br>uni287E<br>uni28FE<br>uni28BE<br>uni285E<br>uni28DE<br>uni289E<br>uni282E<br>uni286E<br>uni28EE<br>uni28AE<br>uni284E<br>uni28CE<br>uni288E<br>uni2816<br>uni2836<br>uni2876<br>uni28F6<br>uni28B6<br>uni2856<br>uni28D6<br>uni2896<br>uni2826<br>uni2866<br>uni28E6<br>uni28A6<br>uni2846<br>uni28C6<br>uni2886<br>uni280A<br>uni281A<br>uni283A<br>uni287A<br>uni28FA<br>uni28BA<br>uni285A<br>uni28DA<br>uni289A<br>uni282A<br>uni286A<br>uni28EA<br>uni28AA<br>uni284A<br>uni28CA<br>uni288A<br>uni2812<br>uni2832<br>uni2872<br>uni28F2<br>uni28B2<br>uni2852<br>uni28D2<br>uni2892<br>uni2822<br>uni2862<br>uni28E2<br>uni28A2<br>uni2842<br>uni28C2<br>uni2882<br>uni2804<br>uni280C<br>uni281C<br>uni283C<br>uni287C<br>uni28FC<br>uni28BC<br>uni285C<br>uni28DC<br>uni289C<br>uni282C<br>uni286C<br>uni28EC<br>uni28AC<br>uni284C<br>uni28CC<br>uni288C<br>uni2814<br>uni2834<br>uni2874<br>uni28F4<br>uni28B4<br>uni2854<br>uni28D4<br>uni2894<br>uni2824<br>uni2864<br>uni28E4<br>uni28A4<br>uni2844<br>uni28C4<br>uni2884<br>uni2808<br>uni2818<br>uni2838<br>uni2878<br>uni28F8<br>uni28B8<br>uni2858<br>uni28D8<br>uni2898<br>uni2828<br>uni2868<br>uni28E8<br>uni28A8<br>uni2848<br>uni28C8<br>uni2888<br>uni2810<br>uni2830<br>uni2870<br>uni28F0<br>uni28B0<br>uni2850<br>uni28D0<br>uni2890<br>uni2820<br>uni2860<br>uni28E0<br>uni28A0<br>uni2840<br>uni28C0<br>uni2880<br>uni23F8<br>u1F54A<br>uni2B83<br>u1F817<br>u1F80B<br>u1F807<br>u1F89B<br>u1F803<br>u1F83F<br>u1F837<br>u1F847<br>u1F843<br>u1F66F<br>u1F853<br>u1F83B<br>uni2B63<br>uni2B7D<br>uni2B73<br>u1F82B<br>u1F82F<br>uni2BA0<br>uni2BA1<br>u1F827<br>u1F823<br>u1F833<br>u1F893<br>uni2B6D<br>uni2B4D<br>u1F897<br>u1F813<br>uni2B87<br>u1F442<br>u1F30E<br>u1F30F<br>u1F30D<br>u1F5CB<br>u1F5C5<br>u1F5C7<br>u1F5C6<br>u1F5CC<br>u1F5CD<br>uni2419<br>uni2403<br>uni2404<br>uni2417<br>uni2405<br>u1F584<br>uni241B<br>u1F47D<br>u1F7B4<br>u1F7A7<br>u1F7AE<br>u1F7BA<br>u1F789<br>u1F793<br>u1F441<br>u1F453<br>u1F3ED<br>u1F46A<br>u1F5B7<br>u1F5C4<br>uni241C<br>u1F39E<br>u1F4FD<br>u1F41F<br>u1F585<br>u1F32B<br>u1F5C0<br>u1F37D<br>uni240C<br>uni2B94<br>u1F7C6<br>u1F5BE<br>u1F5BC<br>u1F5BD<br>u1F315<br>u1F6CA<br>u1F3CC<br>u1F393<br>uni241D<br>u1F6E0<br>u1F5B4<br>u1F3A7<br>u1F394<br>u1F674<br>u1F89C<br>u1F89E<br>u1F89F<br>u1F89D<br>uni2B58<br>uni2B57<br>uni2B59<br>u1F81B<br>u1F81F<br>u1F7CF<br>u1F7D1<br>u1F7BE<br>u1F7CA<br>u1F7B2<br>u1F679<br>uni2B55<br>u1F818<br>u1F81C<br>u1F673<br>u1F666<br>u1F65E<br>u1F664<br>u1F65C<br>uni2B56<br>u1F81A<br>u1F81E<br>u1F7AC<br>u1F67B<br>u1F671<br>u1F7CC<br>u1F7B8<br>u1F667<br>u1F65F<br>u1F665<br>u1F65D<br>u1F7D3<br>u1F7D4<br>u1F819<br>u1F81D<br>u1F787<br>u1F791<br>u1F573<br>u1F668<br>u1F669<br>uni2B23<br>uni2BC3<br>uni2409<br>u1F336<br>uni231B<br>uni23F3<br>u1F3E0<br>u1F3D8<br>u1F4E5<br>u1F5DA<br>u1F579<br>u1F5A6<br>uni21EA<br>uni2327<br>uni232B<br>uni2326<br>uni23CF<br>uni2328<br>uni2325<br>uni2318<br>uni23CE<br>u1F3F7<br>u1F31C<br>u1F5EE<br>u1F814<br>u1F808<br>u1F804<br>u1F898<br>u1F800<br>u1F8A8<br>u1F8A0<br>u1F83C<br>u1F834<br>u1F8AA<br>u1F57B<br>u1F844<br>u1F840<br>u1F8A4<br>u1F50D<br>u1F858<br>u1F8A6<br>uni2B64<br>u1F66C<br>u1F850<br>u1F5E8<br>u1F838<br>u1F5EC<br>u1F8A2<br>uni2B60<br>uni2B7A<br>uni2B70<br>u1F828<br>u1F82C<br>uni2BA6<br>uni2BA4<br>u1F824<br>u1F820<br>u1F830<br>u1F890<br>uni2B6A<br>u1F894<br>u1F58E<br>uni2B80<br>u1F810<br>uni2B84<br>u1F39A<br>u1F672<br>u1F5F8<br>u1F7BB<br>u1F7C9<br>u1F7AF<br>uni2BCC<br>u1F7C4<br>u1F7A2<br>u1F7A9<br>u1F7B5<br>u1F7C0<br>u1F7D2<br>u1F78E<br>u1F5F2<br>u1F5F1<br>uni240A<br>u1F587<br>u1F5E2<br>u1F512<br>uni2B12<br>u1F58A<br>u1F58D<br>u1F58B<br>uni2B14<br>u1F58C<br>u1F589<br>u1F53E<br>u1F574<br>u1F570<br>u1F5D6<br>u1F785<br>u1F7CE<br>u1F7BC<br>u1F7B0<br>u1F7C5<br>u1F7C7<br>u1F7A3<br>u1F7AA<br>u1F7CB<br>u1F7B6<br>u1F7C1<br>u1F7C3<br>u1F78F<br>u1F6B9<br>u1F687<br>u1F396<br>u1F5D5<br>u1F4B0<br>u1F5F0<br>u1F6E5<br>u1F6E3<br>u1F398<br>u1F3DE<br>uni2415<br>uni2424<br>uni2B92<br>uni2B93<br>u1F572<br>u1F6AD<br>u1F662<br>u1F652<br>u1F855<br>uni2B67<br>uni2B77<br>u1F65A<br>u1F660<br>u1F650<br>u1F854<br>uni2B66<br>uni2B76<br>u1F658<br>u1F6EA<br>u1F543<br>u1F544<br>u1F5C8<br>u1F5CA<br>u1F5C9<br>uni2400<br>uni2447<br>uni2444<br>uni2445<br>uni2446<br>uni2441<br>uni2449<br>uni2448<br>uni244A<br>uni2442<br>uni2440<br>uni2443<br>u1F6E2<br>u1F44C<br>u1F5DD<br>u1F5B3<br>u1F698<br>u1F68D<br>u1F6F1<br>u1F694<br>u1F5AF<br>u1F5C1<br>u1F513<br>u1F4ED<br>u1F4EC<br>u1F4BF<br>u1F5B8<br>u1F4E4<br>u1F5D7<br>u1F4E6<br>u1F5CF<br>u1F5DF<br>u1F4DF<br>u1F5D0<br>u1F6F3<br>u1F586<br>u1F3AD<br>u1F4BB<br>u1F5A9<br>u1F4FE<br>u1F5A8<br>u1F5B6<br>u1F6C7<br>u1F3CE<br>u1F3CD<br>u1F4FB<br>u1F6E4<br>u1F590<br>uni241E<br>u1F397<br>uni2B90<br>uni2B91<br>u1F67F<br>u1F7C8<br>u1F591<br>u1F593<br>u1F592<br>u1F594<br>uni2BB0<br>uni2BB1<br>uni2BB6<br>uni2BB4<br>uni2BB7<br>uni2BB5<br>uni2BB2<br>uni2BB3<br>u1F5EF<br>u1F816<br>u1F80A<br>u1F806<br>u1F89A<br>u1F802<br>u1F8A9<br>u1F8A1<br>u1F83E<br>u1F836<br>u1F8AB<br>u1F57D<br>u1F846<br>u1F842<br>u1F8A7<br>u1F8A5<br>u1F66E<br>u1F852<br>u1F568<br>u1F569<br>u1F56A<br>u1F5E9<br>u1F83A<br>u1F5ED<br>u1F8A3<br>uni2B62<br>uni2B7C<br>uni2B72<br>u1F82A<br>u1F82E<br>uni2BA7<br>uni2BA5<br>u1F826<br>u1F822<br>u1F832<br>u1F892<br>uni2B6C<br>u1F896<br>uni2B82<br>u1F812<br>uni2B86<br>u1F56D<br>u1F5DE<br>u1F3F5<br>uni2BCD<br>uni2BCF<br>u1F78B<br>u1F677<br>u1F676<br>u1F678<br>u1F67A<br>u1F6F0<br>u1F5B5<br>u1F670<br>u1F6E1<br>uni240F<br>uni240E<br>u1F6CD<br>uni2B4F<br>uni2B5F<br>uni2B4E<br>uni237D<br>u1F5A1<br>u1F59A<br>u1F59B<br>u1F5A0<br>u1F59F<br>u1F598<br>u1F599<br>u1F59E<br>u1F7CD<br>uni2B5A<br>uni2B5C<br>u1F575<br>u1F3D4<br>u1F3C2<br>u1F5AC<br>u1F66A<br>u1F66B<br>u1F663<br>u1F653<br>u1F856<br>uni2B68<br>uni2B78<br>u1F65B<br>u1F661<br>u1F651<br>u1F857<br>uni2B69<br>uni2B79<br>u1F659<br>uni2420<br>u1F508<br>u1F507<br>u1F509<br>u1F50A<br>u1F5E3<br>u1F577<br>u1F578<br>u1F5D3<br>u1F5D2<br>uni2BD0<br>u1F796<br>u1F3DF<br>u1F583<br>uni2401<br>uni2402<br>u1F5E0<br>uni23F1<br>u1F399<br>uni241A<br>uni2426<br>u1F3C4<br>u1F675<br>u1F3CA<br>u1F545<br>uni2416<br>uni2B7E<br>uni2B7F<br>u1F5AD<br>u1F580<br>u1F57C<br>u1F4FA<br>u1F321<br>u1F7A1<br>u1F7A8<br>u1F5B1<br>uni2B9B<br>uni2B99<br>uni2B98<br>uni2B9A<br>u1F5A7<br>u1F7C2<br>u1F5E4<br>u1F5E5<br>u1F5E6<br>u1F5E7<br>u1F5EB<br>u1F44E<br>u1F44D<br>uni23F2<br>uni2BCA<br>uni2B13<br>uni2B15<br>u1F5B2<br>u1F6C6<br>u1F3C6<br>uni2BC2<br>u1F656<br>u1F654<br>u1F58F<br>u1F657<br>u1F655<br>u1F5B0<br>u1F5EA<br>uni2BD1<br>uni241F<br>u1F815<br>u1F809<br>u1F805<br>u1F899<br>uni2BB9<br>u1F801<br>u1F83D<br>u1F859<br>uni2B65<br>u1F835<br>u1F845<br>u1F841<br>u1F6E7<br>u1F6E6<br>u1F66D<br>u1F851<br>u1F839<br>uni2B61<br>uni2B7B<br>uni2B71<br>u1F829<br>u1F82D<br>uni2BA2<br>uni2BA3<br>u1F825<br>u1F821<br>u1F831<br>u1F891<br>uni2B6B<br>uni2BB8<br>u1F895<br>uni2B81<br>u1F811<br>uni2B85<br>u1F53F<br>u1F6E8<br>uni240B<br>u1F7A5<br>u1F7D0<br>u1F7BF<br>u1F7B3<br>u1F7A6<br>u1F67D<br>u1F7AD<br>u1F7B9<br>u1F67C<br>u1F788<br>u1F792<br>u1F4F9<br>u1F3AE<br>u1F5D1<br>uni231A<br>u1F3F3<br>u1F3CB<br>u1F8AC<br>u1F8AD<br>u1F78A<br>u1F79B<br>u1F79A<br>u1F447<br>u1F597<br>uni2BCE<br>u1F5AB<br>uni2B21<br>uni2B2D<br>uni2B1C<br>u1F448<br>u1F7A0<br>uni2B26<br>uni2B28<br>uni2B50<br>u1F3F1<br>uni2B20<br>u1F449<br>uni2B54<br>uni2B2B<br>uni2B52<br>u1F795<br>u1F794<br>u1F323<br>u1F325<br>u1F326<br>u1F57E<br>u1F446<br>uni2B2F<br>uni2B1E<br>u1F324<br>u1F86B<br>u1F87B<br>u1F863<br>u1F873<br>u1F883<br>u1F868<br>u1F878<br>u1F860<br>u1F870<br>u1F880<br>u1F86D<br>u1F87D<br>u1F865<br>u1F875<br>u1F885<br>u1F86C<br>u1F87C<br>u1F864<br>u1F874<br>u1F884<br>u1F86A<br>u1F87A<br>u1F862<br>u1F872<br>u1F882<br>u1F86E<br>u1F87E<br>u1F866<br>u1F876<br>u1F886<br>u1F86F<br>u1F87F<br>u1F867<br>u1F877<br>u1F887<br>u1F869<br>u1F879<br>u1F861<br>u1F871<br>u1F881<br>u1F32C<br>u1F5AE<br>u1F6BA<br>u1F5FA<br>u1F540<br>uni2B8B<br>uni2B88<br>uni2B8A<br>uni2B89<br>sun<br>uni2316<br>uni20E3<br>u1d360<br>u1d361<br>u1d362<br>u1d363<br>u1d364<br>u1d365<br>u1d366<br>u1d367<br>u1d368<br>u1d369<br>u1d36a<br>u1d36b<br>u1d36c<br>u1d36d<br>u1d36e<br>u1d36f<br>u1d370<br>u1d371<br>u1f031<br>u1f032<br>u1f033<br>u1f034<br>u1f035<br>u1f036<br>u1f037<br>u1f038<br>u1f039<br>u1f03a<br>u1f03b<br>u1f03c<br>u1f03d<br>u1f03e<br>u1f03f<br>u1f040<br>u1f041<br>u1f042<br>u1f043<br>u1f044<br>u1f045<br>u1f046<br>u1f047<br>u1f048<br>u1f049<br>u1f04a<br>u1f04b<br>u1f04c<br>u1f04d<br>u1f04e<br>u1f04f<br>u1f050<br>u1f051<br>u1f052<br>u1f053<br>u1f054<br>u1f055<br>u1f056<br>u1f057<br>u1f058<br>u1f059<br>u1f05a<br>u1f05b<br>u1f05c<br>u1f05d<br>u1f05e<br>u1f05f<br>u1f060<br>u1f061<br>u1f062<br>u1f063<br>u1f064<br>u1f065<br>u1f066<br>u1f067<br>u1f068<br>u1f069<br>u1f06a<br>u1f06b<br>u1f06c<br>u1f06d<br>u1f06e<br>u1f06f<br>u1f070<br>u1f071<br>u1f072<br>u1f073<br>u1f074<br>u1f075<br>u1f076<br>u1f077<br>u1f078<br>u1f079<br>u1f07a<br>u1f07b<br>u1f07c<br>u1f07d<br>u1f07e<br>u1f07f<br>u1f080<br>u1f081<br>u1f082<br>u1f083<br>u1f084<br>u1f085<br>u1f086<br>u1f087<br>u1f088<br>u1f089<br>u1f08a<br>u1f08b<br>u1f08c<br>u1f08d<br>u1f08e<br>u1f08f<br>u1f090<br>u1f091<br>u1f092<br>u1f093<br>u1f0a0<br>u1f0a1<br>u1f0a2<br>u1f0a3<br>u1f0a4<br>u1f0a5<br>u1f0a6<br>u1f0a7<br>u1f0a8<br>u1f0a9<br>u1f0aa<br>u1f0ab<br>u1f0ac<br>u1f0ad<br>u1f0ae<br>u1f0b1<br>u1f0b2<br>u1f0b3<br>u1f0b4<br>u1f0b5<br>u1f0b6<br>u1f0b7<br>u1f0b8<br>u1f0b9<br>u1f0ba<br>u1f0bb<br>u1f0bc<br>u1f0bd<br>u1f0be<br>u1f0c1<br>u1f0c2<br>u1f0c3<br>u1f0c4<br>u1f0c5<br>u1f0c6<br>u1f0c7<br>u1f0c8<br>u1f0c9<br>u1f0ca<br>u1f0cb<br>u1f0cc<br>u1f0cd<br>u1f0ce<br>u1f0cf<br>u1f0d1<br>u1f0d2<br>u1f0d3<br>u1f0d4<br>u1f0d5<br>u1f0d6<br>u1f0d7<br>u1f0d8<br>u1f0d9<br>u1f0da<br>u1f0db<br>u1f0dc<br>u1f0dd<br>u1f0de<br>u1f0df<br>u1f000<br>u1f001<br>u1f002<br>u1f003<br>u1f004<br>u1f005<br>u1f006<br>u1f007<br>u1f008<br>u1f009<br>u1f00a<br>u1f00b<br>u1f00c<br>u1f00d<br>u1f00e<br>u1f00f<br>u1f010<br>u1f011<br>u1f012<br>u1f013<br>u1f014<br>u1f015<br>u1f016<br>u1f017<br>u1f018<br>u1f019<br>u1f01a<br>u1f01b<br>u1f01c<br>u1f01d<br>u1f01e<br>u1f01f<br>u1f020<br>u1f021<br>u1f022<br>u1f023<br>u1f024<br>u1f025<br>u1f026<br>u1f027<br>u1f028<br>u1f029<br>u1f02a<br>u1f02b<br>u1f030<br>u1d301<br>u1d302<br>u1d303<br>u1d304<br>u1d305<br>u1d306<br>u1d307<br>u1d308<br>u1d309<br>u1d30a<br>u1d30b<br>u1d30c<br>u1d30d<br>u1d30e<br>u1d30f<br>u1d310<br>u1d311<br>u1d312<br>u1d313<br>u1d314<br>u1d315<br>u1d316<br>u1d317<br>u1d318<br>u1d319<br>u1d31a<br>u1d31b<br>u1d31c<br>u1d31d<br>u1d31e<br>u1d31f<br>u1d320<br>u1d321<br>u1d322<br>u1d323<br>u1d324<br>u1d325<br>u1d326<br>u1d327<br>u1d328<br>u1d329<br>u1d32a<br>u1d32b<br>u1d32c<br>u1d32d<br>u1d32e<br>u1d32f<br>u1d330<br>u1d331<br>u1d332<br>u1d333<br>u1d334<br>u1d335<br>u1d336<br>u1d337<br>u1d338<br>u1d339<br>u1d33a<br>u1d33b<br>u1d33c<br>u1d33d<br>u1d33e<br>u1d33f<br>u1d340<br>u1d341<br>u1d342<br>u1d343<br>u1d344<br>u1d345<br>u1d346<br>u1d347<br>u1d348<br>u1d349<br>u1d34a<br>u1d34b<br>u1d34c<br>u1d34d<br>u1d34e<br>u1d34f<br>u1d350<br>u1d351<br>u1d352<br>u1d353<br>u1d354<br>u1d355<br>u1d356<br>u1d300<br>uni0001<br>uni0002<br>uni0003<br>uni0004<br>uni0005<br>uni0006<br>uni0007<br>uni0008<br>uni0009<br>uni0010<br>uni0011<br>uni0012<br>uni0013<br>uni0014<br>uni0015<br>uni0016<br>uni0017<br>uni0018<br>uni0019<br>uni0080<br>uni0081<br>uni0082<br>uni0083<br>uni0084<br>uni0085<br>uni0086<br>uni0087<br>uni0088<br>uni0089<br>uni0090<br>uni0091<br>uni0092<br>uni0093<br>uni0094<br>uni0095<br>uni0096<br>uni0097<br>uni0098<br>uni0099<br>u102e0<br>u102e1<br>u102e2<br>u102e3<br>u102e4<br>u102e5<br>u102e6<br>u102e7<br>u102e8<br>u102e9<br>u102ea<br>u102eb<br>u102ec<br>u102ed<br>u102ee<br>u102ef<br>u102f0<br>u102f1<br>u102f2<br>u102f3<br>u102f4<br>u102f5<br>u102f6<br>u102f7<br>u102f8<br>u102f9<br>u102fa<br>u102fb<br>u10e60<br>u10e61<br>u10e62<br>u10e63<br>u10e64<br>u10e65<br>u10e66<br>u10e67<br>u10e68<br>u10e69<br>u10e6a<br>u10e6b<br>u10e6c<br>u10e6d<br>u10e6e<br>u10e6f<br>u10e70<br>u10e71<br>u10e72<br>u10e73<br>u10e74<br>u10e75<br>u10e76<br>u10e77<br>u10e78<br>u10e79<br>u10e7a<br>u10e7b<br>u10e7c<br>u10e7d<br>u10e7e<br>u1f0bf<br>u1f0e0<br>u1f0e1<br>u1f0e2<br>u1f0e3<br>u1f0e4<br>u1f0e5<br>u1f0e6<br>u1f0e7<br>u1f0e8<br>u1f0e9<br>u1f0ea<br>u1f0eb<br>u1f0ec<br>u1f0ed<br>u1f0ee<br>u1f0ef<br>u1f0f0<br>u1f0f1<br>u1f0f2<br>u1f0f3<br>u1f0f4<br>u1f0f5<br>u1f93b<br>u1f946<br>u101D0<br>u101D1<br>u101D2<br>u101D3<br>u101D4<br>u101D5<br>u101D6<br>u101D7<br>u101D8<br>u101D9<br>u101DA<br>u101DB<br>u101DC<br>u101DD<br>u101DE<br>u101DF<br>u101E0<br>u101E1<br>u101E2<br>u101E3<br>u101E4<br>u101E5<br>u101E6<br>u101E7<br>u101E8<br>u101E9<br>u101EA<br>u101EB<br>u101EC<br>u101ED<br>u101EE<br>u101EF<br>u101F0<br>u101F1<br>u101F2<br>u101F3<br>u101F4<br>u101F5<br>u101F6<br>u101F7<br>u101F8<br>u101F9<br>u101FA<br>u101FB<br>u101FC<br>dottedCircle_20E3<br>dottedCircle_u102e0<br>zero_20E3<br>one_20E3<br>two_20E3<br>three_20E3<br>four_20E3<br>five_20E3<br>six_20E3<br>seven_20E3<br>eight_20E3<br>nine_20E3<br>u10175<br>u10176<br>u10177<br>u10178<br>u1018A<br>u1018B<br>u10140<br>u10141<br>u10142<br>u10143<br>u10144<br>u10145<br>u10146<br>u10147<br>u10148<br>u10149<br>u1014A<br>u1014B<br>u1014C<br>u1014D<br>u1014E<br>u1014F<br>u10150<br>u10151<br>u10152<br>u10153<br>u10154<br>u10155<br>u10156<br>u10157<br>u10158<br>u10159<br>u1015A<br>u1015B<br>u1015C<br>u1015D<br>u1015E<br>u1015F<br>u10160<br>u10161<br>u10162<br>u10163<br>u10164<br>u10165<br>u10166<br>u10167<br>u10168<br>u10169<br>u1016A<br>u1016B<br>u1016C<br>u1016D<br>u1016E<br>u1016F<br>u10170<br>u10171<br>u10172<br>u10173<br>u10174<br>asterisk_20E3<br>numbersign_20E3<br>space_20E3<br>space_enclosingscreencomb<br>space_u102e0<br>uni22C4<br>uni2218<br>uni22C6<br>uni21AF<br>uni2618<br>uni2619<br>uni2654<br>uni2655<br>uni2656<br>uni2657<br>uni2658<br>uni2659<br>uni265A<br>uni265B<br>uni265C<br>uni265D<br>uni265E<br>uni265F<br>spade<br>uni2661<br>uni2662<br>club<br>uni2664<br>heart<br>diamond<br>uni2667<br>uni2680<br>uni2681<br>uni2682<br>uni2683<br>uni2684<br>uni2685<br>uni26A0<br>uni26CC<br>uni26CD<br>uni26CF<br>uni26D0<br>uni26D1<br>uni26D2<br>uni26D3<br>uni26D4<br>uni26D5<br>uni26D6<br>uni26D7<br>uni26D8<br>uni26D9<br>uni26DA<br>uni26DB<br>uni26DC<br>uni26DD<br>uni26DE<br>uni26DF<br>uni26E0<br>uni26E1<br>uni2702<br>uni270B<br>uni237E<br>uni237B<br>uni2394<br>u1F503<br>uni237F<br>u10190<br>u10191<br>u10192<br>u10193<br>u10194<br>u10195<br>u10196<br>u10197<br>u10198<br>u10199<br>u1019A<br>u1019B<br>u10179<br>u1017A<br>u1017B<br>u1017C<br>u1017D<br>u1017E<br>u1017F<br>u10180<br>u10181<br>u10182<br>u10183<br>u10184<br>u10185<br>u10186<br>u10187<br>u10188<br>u10189<br>u1018C<br>u1018D<br>u1018E<br>u101A0<br>uni20E2<br>u101FD<br>sp_gobliquestr-phaistosDisc<br>uniFFF9<br>uniFFFA<br>uniFFFB<br>uni23FC<br>uni23FD<br>uni23FE<br>uni23FB<br>uni2BEF<br>uni2BEE<br>uni2BED<br>uni2BEC<br>uni009C<br>uni009E<br>uni009F<br>uni009D<br>uni009B<br>uni009A<br>uni001E<br>uni001C<br>uni001F<br>uni001D<br>uni001B<br>uni001A<br>uni008E<br>uni008C<br>uni008F<br>uni008D<br>uni008B<br>uni008A<br>uni000E<br>uni000B<br>uni000F<br>uni000C<br>uni000A<br>u102e1_u102e0<br>u102e2_u102e0<br>u102e3_u102e0<br>u102e4_u102e0<br>u102e5_u102e0<br>u102e6_u102e0<br>u102e7_u102e0<br>u102e8_u102e0<br>u102e9_u102e0<br>u102ea_u102e0<br>u102eb_u102e0<br>u102ec_u102e0<br>u102ed_u102e0<br>u102ee_u102e0<br>u102ef_u102e0<br>u102f0_u102e0<br>u102f1_u102e0<br>u102f2_u102e0<br>u102f3_u102e0<br>u102f4_u102e0<br>u102f5_u102e0<br>u102f6_u102e0<br>u102f7_u102e0<br>u102f8_u102e0<br>u102f9_u102e0<br>u102fa_u102e0<br>u102fb_u102e0'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>OT Features</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="OT Features_cell">
+                <button id="OT Features_btn" onclick='toggle_detail("OT Features");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>OT Features</h3></th></tr>
+            </thead>
+            <tbody id="OT Features" class="result_body">
+                      </tbody>
+            </table>
+    </body>
+</html>

@@ -1,0 +1,83 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "NotoSansTelugu-Regular.ttf",
+                "type": "ttf",
+                "size": 114240,
+                "md5": "d6b5c4c461c728a5c68c259f3b6815e1",
+                "geometryMd5": "1c515b0f16fdb71f759100f962ec969b"
+            },
+            "name": {
+                "family": "Noto Sans Telugu",
+                "subFamily": "Regular",
+                "fullName": "Noto Sans Telugu",
+                "psName": "NotoSansTelugu",
+                "versionText": "Version 1.05 uh",
+                "copyright": "Copyright 2013 Google Inc. All Rights Reserved.",
+                "trademark": "Noto is a trademark of Google Inc."
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 762,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "GOOG",
+                "font_vendor": "Google"
+            },
+            "validation": {
+                "font_full_name": "Noto Sans Telugu",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 4,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_4a4553cef11f4b3aa383b0b4aaf52c28.GDEF.glyphClasses",
+                        "levelname": "ERROR",
+                        "message": "The following mark glyphs have nonzero advances: [57, 60, 61, 62, 63, 67, 68, 69, 78, 470, 475, 476, 489, 490, 491, 492, 493, 494, 495, 499, 500, 501, 503, 505, 506, 507, 508, 509, 510, 511, 512, 513, 514, 515, 516, 517, 518, 519, 520, 521, 522, 523, 524, 525, 526, 527, 528, 529, 530, 531, 532, 533, 534, 535, 536, 537, 538, 539, 540, 541, 542, 543, 544, 545, 546, 547, 548]",
+                        "timestamp": "2020-09-26T15:25:39.665366Z",
+                        "orig_output": "validate_4a4553cef11f4b3aa383b0b4aaf52c28.GDEF.glyphClasses - ERROR - The following mark glyphs have nonzero advances: [57, 60, 61, 62, 63, 67, 68, 69, 78, 470, 475, 476, 489, 490, 491, 492, 493, 494, 495, 499, 500, 501, 503, 505, 506, 507, 508, 509, 510, 511, 512, 513, 514, 515, 516, 517, 518, 519, 520, 521, 522, 523, 524, 525, 526, 527, 528, 529, 530, 531, 532, 533, 534, 535, 536, 537, 538, 539, 540, 541, 542, 543, 544, 545, 546, 547, 548]",
+                        "msg_code": "V1102"
+                    },
+                    {
+                        "subroutine": "validate_4a4553cef11f4b3aa383b0b4aaf52c28.GPOS.features.[b'dist0002', b'dist0003'].[0].[Key((ClassTuple((1,)), ClassTuple((1,)), ClassTuple((1,))), ruleOrder=0)]",
+                        "levelname": "ERROR",
+                        "message": "The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "timestamp": "2020-09-26T15:25:39.871502Z",
+                        "orig_output": "validate_4a4553cef11f4b3aa383b0b4aaf52c28.GPOS.features.[b'dist0002', b'dist0003'].[0].[Key((ClassTuple((1,)), ClassTuple((1,)), ClassTuple((1,))), ruleOrder=0)] - ERROR - The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "msg_code": "V0998"
+                    },
+                    {
+                        "subroutine": "validate_4a4553cef11f4b3aa383b0b4aaf52c28.GSUB.scripts.[b'psts0009'].[0].[Key((101, 60, 484), ruleOrder=0)]",
+                        "levelname": "ERROR",
+                        "message": "The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "timestamp": "2020-09-26T15:25:42.988306Z",
+                        "orig_output": "validate_4a4553cef11f4b3aa383b0b4aaf52c28.GSUB.scripts.[b'psts0009'].[0].[Key((101, 60, 484), ruleOrder=0)] - ERROR - The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "msg_code": "V0998"
+                    },
+                    {
+                        "subroutine": "validate_4a4553cef11f4b3aa383b0b4aaf52c28.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2020-09-26T15:26:04.475578Z",
+                        "orig_output": "validate_4a4553cef11f4b3aa383b0b4aaf52c28.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 28047,
+    "completedDate": "2020-09-26 15:26:04.970865"
+}

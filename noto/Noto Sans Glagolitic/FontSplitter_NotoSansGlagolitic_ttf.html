@@ -1,0 +1,2585 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv='content-type' content='text/html; charset=utf-8'>
+    <meta name="code" content="Olli Meier">
+    <title>MT FontSplitter</title>
+    <style type="text/css">
+      body {
+        /*background-color: #fff; #fdfdfb;*/
+        color: #131313;
+        font-family: "Kootenay Pro", Axel, "System Font", "Fira Sans", sans-serif;
+        /*line-height: 1.3em;*/
+        margin: 0;
+        /*padding: 1em;*/
+        font-size: 14px;
+        /*padding-right: 50px;*/
+        /*background: linear-gradient(to bottom, #383838, white);*/
+      }
+
+    table {width:100%;}
+    tr {margin: 10px;}
+    td {border: 1px solid #fff; /*#fdfdfb;*/}
+/*
+    table th, table td {
+    overflow: scroll !important;
+    white-space: nowrap;
+}
+*/
+
+    mark {
+        background-color: #fff990;
+        color: black;
+        opacity: 0.7;
+    }
+
+    .containerMain {
+        position: absolute;
+        z-index: 2;
+        /*top:-2000px;*/
+        left: 15px; 
+        background-color: white;
+        overflow: scroll;
+        width: calc(100% - 15px);
+    }
+
+
+    .containerCSScode {
+        overflow: scroll;
+        position: absolute;
+        z-index: 1;
+        top:0px;
+        padding-top: 200px;
+        padding-left: 20px;
+        width: 100%;
+        background-color: #383838;
+    }
+
+    .cssButton {
+        z-index: 3;
+        position: fixed;
+        top: 49%;
+    }
+
+    .cssButtonStyle {
+        /*text-align: center;*/
+        /*text-transform: uppercase;*/
+        transform-origin: left bottom 0;
+        /*writing-mode:tb-rl;*/
+        -webkit-transform:rotate(-90deg);
+        -moz-transform:rotate(-90deg);
+        -o-transform: rotate(-90deg);
+        -ms-transform:rotate(-90deg);
+        transform: rotate(-90deg);
+        white-space:nowrap;
+        display:block;
+        /*bottom:0;
+        width:20px;
+        height:20px;*/
+
+    }
+
+    .comment{color:#FCD833}
+    .rule{color:#009FE3}
+    .element{color:#FFF}
+    .keyword{color:#E50051}
+    .prop{color:#FF9700}
+    .whitetext{color:#FFF}
+    /*.deepgray{background-color:#383838}*/
+    .darkgray{background-color: #787878}
+    .darkgray_text{color:#BBB}
+    .lightgray{background-color:rgb(252,252,252)}
+    .lightgray_text{color:rgb(252,252,252)}
+    .gray_text{color:lightgrey}
+
+    pre{font-family:Consolas,Courier,monospace;
+        /*font-size:.81em;*/
+        line-height:1.1em;
+        margin:0;
+        /*padding:1em;*/
+        border:0;
+        -webkit-touch-callout:text!important;
+        -webkit-user-select:text!important;
+        -khtml-user-select:text!important;
+        -moz-user-select:text!important;
+        -ms-user-select:text!important;
+        user-select:text!important
+    }
+    .gradientBG {
+        background:
+            linear-gradient(
+                limegreen,
+                transparent
+            ),
+            linear-gradient(
+                90deg,
+                skyblue,
+                transparent
+            ),
+            linear-gradient(
+                -90deg,
+                coral,
+                transparent
+            );
+            
+        background-blend-mode: screen;
+        }
+
+    .linearGradientBG{
+        background:
+            repeating-linear-gradient(
+                -45deg,
+                transparent,
+                transparent 25%,
+                tomato 0,
+                tomato 50%
+            ),
+            repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 25%,
+                dodgerblue 0,
+                dodgerblue 50%
+            ), wheat;
+
+        background-size: 10em 10em;
+        background-blend-mode: multiply;
+    }
+
+    .linearGradient2BG{
+        background:
+            repeating-linear-gradient(
+                50deg,
+                #F7A37B,
+                #F7A37B 1em,
+                #FFDEA8 1em,
+                #FFDEA8 2em,
+                #D0E4B0 2em,
+                #D0E4B0 3em,
+                #7CC5D0 3em,
+                #7CC5D0 4em,
+                #00A2E1 4em,
+                #00A2E1 5em,
+                #0085C8 5em,
+                #0085C8 6em
+            ),
+            repeating-linear-gradient(
+                -50deg,
+                #F7A37B,
+                #F7A37B 1em,
+                #FFDEA8 1em,
+                #FFDEA8 2em,
+                #D0E4B0 2em,
+                #D0E4B0 3em,
+                #7CC5D0 3em,
+                #7CC5D0 4em,
+                #00A2E1 4em,
+                #00A2E1 5em,
+                #0085C8 5em,
+                #0085C8 6em
+            );
+            
+        background-blend-mode: multiply;
+    }
+
+    .character {
+        line-height: 1.45em;
+        font-size:2.5em;
+        		display:inline-block;
+width:1.45em;
+white-space: pre;
+        min-width:1.45em;
+        height:1.45em;
+        text-align:center;
+        /*margin:-1px -1px -1px -4px;*/
+        background-color: #fff; /*#fdfdfb;*/
+        border:1px solid #efefef;/*#FAF7F5;*/ 
+        /*overflow: scroll !important;*/
+        white-space: nowrap;
+        font-size: 30px;
+    }
+
+    .characterZoom {
+        display:inline-block;
+        white-space: pre;
+        text-align:center;
+        background-color: #fff; /*#fdfdfb;*/
+        border:10px solid #efefef;/*#FAF7F5;*/ 
+        white-space: nowrap;
+        font-size: 35vh;
+        z-index:1000; 
+        width:50%; 
+        height:50%;
+        position: fixed; 
+        left: 25%; 
+        top:25%; 
+        display: none;"
+    }
+
+    .characterUniRanges{
+        font-size:2.5em;
+        display:inline-block;
+        /*width:1.45em;*/
+        min-width:2em;
+        height:2em;
+        text-align:center;
+        margin:-0px -0px -1px -4px;
+        background-color:#fff;
+        border:1px solid rgb(240,240,240); 
+        white-space: pre;
+    }
+
+    .characterUniRanges[title-B]:active {
+        z-index: 999;
+      content: attr(title-B);
+      position: relative;
+        background:#B3D4FC;
+        font-size: 20.5em;
+        display:inline-block;
+        /*width:10.45em;*/
+        min-width:500px;
+        height:500px;
+        text-align:center;
+        margin:-0px -0px -1px -4px;
+        border:1px solid rgb(240,240,240); 
+        white-space: pre;
+    }
+
+    [data-title] {
+      transition-timing-function: ease-in;
+          transition: 0.4s;
+      position: relative;
+    }
+
+    [data-title]:hover::before {
+      content: attr(data-title);
+      position: absolute;
+      z-index: 999;
+      bottom: -26px;
+      display: inline-block;
+      padding: 3px 6px;
+      border-radius: 2px;
+      background: #000;
+      color: #fff;
+      font-size: 12px;
+      font-family: sans-serif;
+      white-space: nowrap;
+      left: -20px;
+    }
+
+    [data-title]:hover::after {
+          z-index: 999;
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 8px;
+      display: inline-block;
+      color: #fff;
+      border: 8px solid transparent;    
+      border-bottom: 8px solid #000;
+    }
+
+    .characterMetaData {
+        line-height: 1.45em;
+        font-size:2.5em;
+        		display:inline-block;
+width:1.45em;
+white-space: pre;
+        max-width:1.45em !important;
+        min-width:1.45em;
+        height:1.45em;
+        text-align:center;
+        /*margin:-1px -1px -1px -4px;*/
+        background-color: #fff; /*#fdfdfb;*/
+        border:1px solid #efefef;/*#FAF7F5;*/ 
+        /*overflow: scroll !important;*/
+        white-space: nowrap;
+        font-size: 30px;
+    }
+
+    .characterFix {
+        font-size:2.5em;
+        		display:inline-block;
+width:1.45em;
+white-space: pre;
+        min-width:1.45em;
+        height:1.45em;
+        text-align:center;
+        /*margin:-1px -1px -1px -4px;*/
+        background-color: #fff; /*#fdfdfb;*/
+        border:1px solid #efefef;/*#FAF7F5;*/
+        overflow-x: scroll !important;
+        white-space: nowrap;
+        font-size: 30px;
+    }
+
+    .characterFontNames {
+        font-size:2.5em;
+        		display:inline-block;
+width:1.45em;
+white-space: pre;
+        min-width: 1.45em;
+        height:1.45em;
+        text-align:center;
+        /*margin:-1px -1px -1px -4px;*/
+        background-color: #fff; /*#fdfdfb;*/
+        border: 1px solid #fff; /*#fdfdfb;*/ 
+        position: -webkit-sticky;
+        position: sticky;
+        white-space: pre !important;
+        font-size: 30px;
+    }
+
+    .buttonBlack {
+        background-color: #131313;
+        border: 1px solid #fff; /*#fdfdfb;*/
+        color: #fff; /*#fdfdfb;*/
+        padding: 5px 15px;
+        text-align: center;
+        /*text-decoration: none;*/
+        display: inline-block;
+        margin: 1px 1px;
+        cursor: pointer;
+        border-radius: 0.0em;
+
+    }
+
+    .features-head {
+        content:"";
+        display:inline-block;
+        float:left;
+        width:100%;
+        border-bottom:1px solid rgb(240,240,240);
+        padding-top:10px;
+        margin-top:30px; 
+        margin-bottom:10px
+    }
+
+    input {
+        /*width: 44px;
+        height: 23px;
+        background-color: buttonface;*/
+        cursor: default;
+        border-width: 0px;
+        border-style: solid;
+        border-color: ; #fff; /*#fdfdfb;*//*rgb(169, 169, 169);*/
+        border-image: initial;
+        padding: 0px opx;
+    }
+
+    .inputColor{
+        width: 25px;
+        height: 29px;
+        cursor: default;
+        border: none;
+    }
+
+    button {
+        border: 0;
+        height: 100%;
+        /*width: 100%;*/
+        padding: 5px 15px;
+        text-align: center;
+        /*text-decoration: none;*/
+        display: inline-block;
+        margin: 1px 1px;
+        cursor: pointer;
+        border-radius: 0.0em;
+        vertical-align: top;
+        background: #fff; /*#fdfdfb;*/
+        outline: none;
+    }
+
+    .buttonBorder {
+        border: 0;
+        height: 100%;
+        /*width: 100%;*/
+        padding: 5px 15px;
+        text-align: center;
+        /*text-decoration: none;*/
+        display: inline-block;
+        margin: 1px 1px;
+        cursor: pointer;
+        border-radius: 0.0em;
+        vertical-align: top;
+        background: #fff; /*#fdfdfb;*/
+        outline: none;
+        border:1px solid #efefef;/*#FAF7F5;*/
+    }
+
+    .buttonOT {
+        border:1px solid #efefef;/*#FAF7F5;*/
+        width: 40px;
+        padding: 5px 5px;
+    }
+    .buttonExtra{
+        vertical-align: bottom;
+        line-height: 2em;
+
+        border: 0;
+        height: 100%;
+        /*width: 100%;*/
+        padding: 5px 15px;
+        text-align: center;
+        /*text-decoration: none;*/
+        display: inline-block;
+        margin: 1px 1px;
+        cursor: pointer;
+        border-radius: 0.0em;
+        background: #fff; /*#fdfdfb;*/
+        outline: none;
+    }
+
+    select {
+        border: 0;
+        height: 100%;
+        width: 100%;
+        padding: 5px 15px;
+        text-align: center;
+        /*text-decoration: none;*/
+        display: inline-block;
+        margin: 1px 1px;
+        cursor: pointer;
+        border-radius: 0.0em;
+        vertical-align: top;
+        background: #131313;
+        color: #fff; /*#fdfdfb;*/
+    }
+
+    .selectSampleText {
+        border: 0;
+        height: 100%;
+        width: 200px;
+        /*padding: 5px 15px;*/
+        text-align: center;
+        /*text-decoration: none;*/
+        display: inline-block;
+        margin: 5px 1px;
+        cursor: pointer;
+        border-radius: 0.0em;
+        vertical-align: top;
+        background: #fff; /*#fdfdfb;*/
+        color: #131313;
+    }
+
+    .textTop {vertical-align: top;}
+    .compareBoxes{word-break: break-all;}
+
+    .flyingFont{
+        font-size: 300px;
+        text-align: center;
+        /*text-transform: uppercase;*/
+        width: 100%;
+    }
+
+    .flyingFont1{
+        color: #FF4136/*#131313*/; 
+        z-index: 900; 
+        position: absolute;
+    }
+    .flyingFont2{
+        /*-webkit-text-stroke-width: 2px;
+           -webkit-text-stroke-color: #FF4136;
+           -webkit-text-fill-color: transparent;*/
+        z-index: 899; 
+        position: absolute;
+           opacity: .5;
+           margin-top: 10px;
+           margin-left: 10px;
+    }
+    .flyingFont3{
+        /*-webkit-text-stroke-width: 2px;
+           -webkit-text-stroke-color: #FF4136;
+           -webkit-text-fill-color: transparent;*/
+        z-index: 898; 
+        position: absolute;
+           opacity: .2;
+           margin-top: 20px;
+           margin-left: 20px;
+    }
+
+    .buttonToggle {
+        border: 0;
+        /*background-color: #131313;*/
+        /*color: #fff; /*#fdfdfb;*/*/
+        text-align: center;
+        /*text-decoration: none;*/
+        display: inline-block;
+        margin: 1px 1px;
+        cursor: pointer;
+        border-radius: 0.0em;
+    }
+
+    button:hover, .selectSampleText:hover {background-color: #131313; color: #fff; /*#fdfdfb;*/}
+    .buttonOT:hover {background-color: #131313; color: #fff; /*#fdfdfb;*/}
+    .buttonExtra:hover {background-color: #fff; /*#fdfdfb;*/ color: #131313;}
+
+    hr { border: 0; height: 1px; background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0));}
+
+    .underline {text-decoration: underline; text-decoration-color: #131313; color: hsl(  0,  0%,  95%); overflow: hidden;} /* for the future: text-underline-offset: from-font; text-decoration-width: from-font; */
+    .strikeout {text-decoration: line-through; text-decoration-color: #131313; color: hsl(  0,  0%,  95%); overflow: hidden;} 
+
+    .character:hover {background:#B3D4FC}
+    .characterUniRanges:hover {background:#B3D4FC}
+    /*.characterUniRanges:active {
+        background:#B3D4FC;
+        font-size: 20.5em;
+        display:inline-block;
+        /*width:10.45em;*/
+        min-width:500px;
+        height:500px;
+        text-align:center;
+        margin:-0px -0px -1px -4px;
+        border:1px solid rgb(240,240,240); 
+        white-space: pre;
+    }
+    */
+    .characterFix:hover {background:#B3D4FC}
+    .character_name {/*padding-top: 5px; padding-left: 25px;*/}
+    
+    @keyframes blinkblink {
+        0% 100%   {background-color: hsl( 24,  100%, 50%); }
+        50% {background-color: hsl( 24,  100%, 45%); }
+    }
+
+    .serious {animation: blinkblink 0.9s ease-in-out 0s infinite;}
+    .critical {background-color: hsl( 0,  100%, 20%); color: hsl( 0,  0%, 90%);}
+    .error {background-color: hsl( 24,  100%, 45%); color: hsl( 24,  100%, 70%);}
+    .warning {background-color: hsl( 50,  65%, 52%); color: hsl( 50,  65%, 70%);}
+    .info {background-color: #f9f7f6;/*hsl(  0,  0%,  95%);*/ color: hsl(  0,  0%,  70%);}
+
+    .extra {background-color: hsl( 200,  50%, 95%);}
+    .extra_info {background-color: hsl( 200,  50%, 96%); color: hsl( 200,  50%, 80%);}
+
+    .colLeft {
+        width: 50%;
+        padding-left: 25px;
+        text-align: right;
+        padding-right: 25px;
+        vertical-align: text-top;
+    }
+
+    .header {
+      text-transform: none;
+      text-decoration: none;
+      background-color: #fff; /*#fdfdfb;*/
+      text-align: left;
+      color: #131313;
+      position: fixed;
+      padding: 15px 15px 0px 0px;
+      width: 100%;
+      box-shadow: 0px 0px 5px #888888;
+      z-index: 99;
+    }
+
+    .header1 {
+      text-transform: none;
+      text-decoration: none;
+      background-color: #fff; /*#fdfdfb;*/
+      text-align: left;
+      color: #131313;
+      position: fixed;
+      padding: 15px 15px 0px 0px;
+      width: 100%;
+      z-index: 99;
+    }
+    
+    .header:hover  { opacity: 0.95; }
+    .header1:hover  { opacity: 0.95; }
+
+
+    .splitter{width:100%; font-weight: bold;}
+    .center{text-align: center;}
+    .left{text-align: left;}
+    .content{padding-top: 500px;}
+    .sampleBig {/*font-size: 50px !important*/; color:#fff; /*#fdfdfb;*/ padding: 20px 50px 20px 50px; }
+    .sampleWaterfall {padding: 20px 50px 20px 20px;}
+    .waterfallOverflow {white-space:nowrap; overflow: hidden; text-overflow: clip; }
+    .sampleContent {/*empty*/ font-size: 30px;}
+    .compareBoxCSS {vertical-align: top; font-size: 30px;}
+    .blackBG {background-color: #131313;}
+
+    .defaultFont {font-size: 30px;}
+    .infoFont {font-family: "Kootenay Pro", Axel, "System Font", "Fira Sans", sans-serif; font-size: 14px; vertical-align: 5px;}
+    
+    .hidden {display:none;}
+    .sliderbar {vertical-align: 4px;}
+
+    /* Slider design Start */
+
+    .inputRangeCompareBox {
+      padding-bottom: 7px !important;
+      padding-left: 10px;
+    }
+
+    .inputNumberCompareBox{
+        max-width: 50px;
+    }
+
+    input[type=range] {
+      padding-bottom: 3px;
+      -webkit-appearance: none;
+      /*position: relative*/
+    }
+
+    input[type=range]::-webkit-slider-runnable-track {
+      width: 300px;
+      height: 2px;
+      border: none;
+      border-radius: 3px;
+      border: 1px solid #131313;
+    }
+
+    input[type=range]::-moz-range-track {
+      background-color: #131313;
+    }
+
+    input::-moz-range-thumb {
+        background-color: #fff; /*#fdfdfb;*/
+        border: solid 2px #131313;
+        border-radius: 0;
+        height: 10px;
+        width: 10px;
+      }
+
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      border: none;
+      height: 12px;
+      width: 12px;
+      border-radius: 510%;
+      background: #fff; /*#fdfdfb;*/
+      border: 2px solid #131313;
+      margin-top: -5px;
+      cursor: pointer
+    }
+
+    input[type=range]:focus {
+      outline: none
+    }
+
+    /* Slider design End */
+
+    .infoToggle {border-bottom:1px solid #efefef;/*#FAF7F5;*/}
+    .colLeftToggle {
+        width: 50%;
+        padding-left: 25px;
+        text-align: right;
+        padding-right: 25px;
+        vertical-align: mittle;
+    }
+
+    td.rotateSAVE {*/height: 140px;*/ white-space: nowrap; /*float: left;*/ }
+    td.rotate > div {-webkit-transform: rotate(270deg); transform: rotate(270deg); width: 30px;}
+    td.rotate > div > span {/*padding: 5px 10px;*/}
+
+
+    
+        .mkmk {-webkit-font-feature-settings: "mkmk" 1; -moz-font-feature-settings: "mkmk" 1; -moz-font-feature-settings: "mkmk=1"; -ms-font-feature-settings: "mkmk" 1; -o-font-feature-settings: "mkmk" 1;}
+        
+        .mark {-webkit-font-feature-settings: "mark" 1; -moz-font-feature-settings: "mark" 1; -moz-font-feature-settings: "mark=1"; -ms-font-feature-settings: "mark" 1; -o-font-feature-settings: "mark" 1;}
+        
+
+    
+		@font-face {font-family: 'om_NotoSansGlagoliticRegularttf'; src: url('NotoSansGlagolitic-Regular.ttf');}
+	.om_NotoSansGlagoliticRegularttf {font-family: 'om_NotoSansGlagoliticRegularttf'; /*font-size: 30px;*/}
+
+    
+
+    /*.animationON {animation: LooperOne 5.0s ease-in-out 0s infinite;}
+    .animationOFF {/*empty*/}*/
+
+
+    </style>
+
+  </head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <body style="-webkit-print-color-adjust:exact;" id="body_all" onload="functionAddSupportedFeatures('mark'),functionAddSupportedFeatures('mkmk')">
+
+      <div id="zoom_characters" class="characterZoom" onclick="mUp()"></div>
+
+    <div class="header1 center" style="z-index:999; ">
+            Monotype
+        <table class="splitter">
+          <tr>
+            <td class="center">F</td>
+            <td class="center">O</td>
+            <td class="center">N</td>
+            <td class="center">T</td>
+            <td class="center">S</td>
+            <td class="center">P</td>
+            <td class="center">L</td>
+            <td class="center">I</td>
+            <td class="center">T</td>
+            <td class="center">T</td>
+            <td class="center">E</td>
+            <td class="center">R</td>
+          </tr>
+        </table>
+        <br>
+    </div>
+
+       <div class="header center">
+        <table style="width:100%">
+            <tbody id="otFeature" >
+                <td>
+                    <!-- OT feature buttons -->
+                    <table>
+		<tr>
+			<td class="colLeft">Select HTML Language</td><td class="left">
+		<select onchange="functionChangeLanguage(this.value)" class="selectSampleText">		<option value=>Default</option>
+			</select>
+			</td>
+		</tr>
+		<tr>
+			<td class="colLeft">Positioning Features</td><td class="left">
+		<button class="buttonOT" data-title="Mark Positioning" id="mark_btn" onclick="functionAddSupportedFeatures('mark')">mark</button>
+		<button class="buttonOT" data-title="Mark to Mark Positioning" id="mkmk_btn" onclick="functionAddSupportedFeatures('mkmk')">mkmk</button>
+
+			</td>
+		</tr>
+</table>
+
+                    <!-- fonts size slider
+                    <table>
+                        <tr>
+                        <td class="colLeft">Font Size</td><td class="left"><input type="range" min="0.5" max="20" value="2.5" step=".01" id="slider" /></td>
+                        </tr>
+                    </table>
+                     -->
+
+                    <!-- axis variable fonts -->
+                    
+
+                </td>
+            </tbody>
+
+            <th><button class="buttonExtra" id="otFeature_btn" onclick='functionShowHeader(".header", "otFeature");' title="Toggle details">&#x25bc;</button>
+            </th>
+        </table>
+    </div>  
+
+<div id="cssCodeForCustomerPreview" class="containerCSScode deepgray whitetext">
+<pre>
+
+<span class="comment">/* first assign web font */</span>
+
+<span class="rule">@font-face</span> {
+    <span class="keyword">font-family</span>: 'Noto Sans Glagolitic Regular'; 
+    <span class="prop">src</span>: <span class="prop">url</span>('../NotoSansGlagolitic-Regular.ttf') <span class="prop">format</span>('truetype');
+    }
+
+<span class="comment">/* go on with normal style definitions */</span>
+<span class="rule">body</span> {
+    <span class="keyword">font-family</span>: 'Noto Sans Glagolitic Regular'; <span class="comment">/* this is only an example for one style */</span>
+    <span class="featurestring">
+    <span class="comment">/* setup OpenType features */</span>
+    <span class="keyword">font-feature-settings: </span><span id="w3cfeatures"></span>;
+
+    <span class="comment">/* vendor prefixes */</span>
+    <span class="keyword">-webkit-font-feature-settings: </span><span id="webkitfeatures"></span>;
+    <span class="keyword">-moz-font-feature-settings: </span><span id="mozfeatures-up-to-14"></span>;
+    <span class="keyword">-moz-font-feature-settings: </span><span id="mozfeatures"></span>;
+    <span class="keyword">-ms-font-feature-settings: </span><span id="msfeatures"></span>;
+    <span class="keyword">-o-font-feature-settings: </span><span id="ofeatures"></span>;
+    
+}
+    
+
+<span class="comment">/* language tag */</span>
+<code><</code><span class="keyword">html</span><span class="prop"> lang</span>=<span class="rule">"<span id="htmlLangTag"></span>"</span><code>></code>
+
+...
+
+<code><</code>/<span class="keyword">html</span><code>></code>
+
+</pre>
+</div>
+
+
+<div id="containerMainID" class="containerMain" onscroll="scrollXNamesFunc()">
+
+    <div class="cssButton">
+        <a class="cssButtonStyle whitetext" onclick="functionShowCSSCode('.containerMain')" href="#" style="text-decoration:None;"> 
+            css code
+        </a>
+    </div>
+
+    <div id="showFontNames" class="content" style="background: white; opacity: 0; transition: opacity 1s ease-in-out; position: fixed; z-index: -1; width:100%;">
+        <table style="width:100%; border-bottom: 1px solid #FAF7F5;">
+            <tr>
+                <td class="colLeft">
+                </td>
+                <td class="rotate characterFontNames defaultFont"><div><span class="infoFont"> </span></div></td>
+				<td class="rotate characterFontNames om_NotoSansGlagoliticRegularttf"><div><span>Noto Sans Glagolitic Regular</span></div></td>
+				
+            </tr>
+        </table>
+    </div>
+
+    <div id="showFontNames_div" class="center" style="position: fixed; bottom: -50px; z-index:998; width:100%;">
+        <button class="buttonBlack" id="showFontNames_btn" onclick='showhide_div("showFontNames", "font names");' title="Toggle details">show font names</button>
+    </div>
+
+    <div id="varFont" class="content">
+
+        <table>
+            <tr>
+                <td class="colLeft">
+                <!-- <a href="#splitterContent">Character Set Compare</a> https://css-tricks.com/snippets/jquery/smooth-scrolling/ -->
+                2020-09-26 - 14:35.42
+                <br>
+                14:35.43
+                <br>
+                <button class="buttonBorder" onClick="window.print()">
+                Print this page
+                </button>
+                </td>
+                <td class="rotate characterFontNames defaultFont"><div><span class="infoFont"> </span></div></td>
+				<td class="rotate characterFontNames om_NotoSansGlagoliticRegularttf"><div><span>Noto Sans Glagolitic Regular</span></div></td>
+				
+            </tr>
+        </table>
+
+            
+		<hr>
+		<table>
+<tr>
+<td class="colLeft">Format<br>(by file ending)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Glagolitic Regular" data-original-title=".ttf"><span class="infoFont">.ttf</span></td>
+</tr>
+<tr>
+<td class="colLeft">Outline Flavour<br>(CFF or glyf table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Glagolitic Regular" data-original-title="OT TTF"><span class="infoFont">OT TTF</span></td>
+</tr>
+<tr>
+<td class="colLeft">Number of Glyphs<br>(maxp table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Glagolitic Regular" data-original-title="142"><span class="infoFont">142</span></td>
+</tr>
+<tr>
+<td class="colLeft">Weight Class<br>(OS/2 table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont " title="Noto Sans Glagolitic Regular" data-original-title="400"><span class="infoFont">400</span></td>
+</tr>
+<tr>
+<td class="colLeft">Width Class<br>(OS/2 table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont " title="Noto Sans Glagolitic Regular" data-original-title="5"><span class="infoFont">5</span></td>
+</tr>
+<tr>
+<td class="colLeft">Units per Em<br>(head table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Glagolitic Regular" data-original-title="1000"><div><span class="infoFont">1000</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">Font Revision<br>(head table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Glagolitic Regular" data-original-title="2.0"><div><span class="infoFont">2.0</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">OS/2 Table Version<br></td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Glagolitic Regular" data-original-title="4"><div><span class="infoFont">4</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">sTypeAscender<br>(OS/2 table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Glagolitic Regular" data-original-title="1069"><div><span class="infoFont">1069</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">sTypeDescender<br>(OS/2 table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Glagolitic Regular" data-original-title="-293"><div><span class="infoFont">-293</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">sTypeLineGap<br>(OS/2 table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Glagolitic Regular" data-original-title="0"><div><span class="infoFont">0</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">usWinAscent<br>(OS/2 table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Glagolitic Regular" data-original-title="1069"><div><span class="infoFont">1069</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">usWinDescent<br>(OS/2 table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Glagolitic Regular" data-original-title="293"><div><span class="infoFont">293</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">Ascender<br>(hhea table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Glagolitic Regular" data-original-title="1069"><div><span class="infoFont">1069</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">Descender<br>(hhea table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Glagolitic Regular" data-original-title="-293"><div><span class="infoFont">-293</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">LineGap<br>(hhea table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Glagolitic Regular" data-original-title="0"><div><span class="infoFont">0</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">post table format<br>(post table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Glagolitic Regular" data-original-title="2.0"><div><span class="infoFont">2.0</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">Underline Position<br>(post table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Glagolitic Regular" data-original-title="-100"><div><span class="infoFont">-100</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">Underline Thickness<br>(post table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Glagolitic Regular" data-original-title="50"><div><span class="infoFont">50</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">Hgo<br>visual check underline</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData om_NotoSansGlagoliticRegularttf underline" title="Noto Sans Glagolitic Regular" data-original-title="Hgo">Hgo</td>
+</tr>
+<tr>
+<td class="colLeft">yStrikeoutPosition<br>(OS/2 table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Glagolitic Regular" data-original-title="322"><div><span class="infoFont">322</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">yStrikeoutSize<br>(OS/2 table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Glagolitic Regular" data-original-title="50"><div><span class="infoFont">50</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">strikeout<br>visual check</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData om_NotoSansGlagoliticRegularttf strikeout" title="Noto Sans Glagolitic Regular" data-original-title="Hgo">Hgo</td>
+</tr>
+<tr>
+<td class="colLeft">Italic Flag<br>(OS/2 table fsSelection)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Glagolitic Regular" data-original-title="False"><div><span class="infoFont">False</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">Italic Angle<br>(post table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterFix defaultFont" title="Noto Sans Glagolitic Regular" data-original-title="0.0"><div><span class="infoFont">0.0</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">Panose: Family<br>(Value 1)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterFix defaultFont" title="Noto Sans Glagolitic Regular" data-original-title="Latin Text"><div><span class="infoFont">Latin Text</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">Panose: Serif<br>(Value 2)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterFix defaultFont" title="Noto Sans Glagolitic Regular" data-original-title="Normal Sans"><div><span class="infoFont">Normal Sans</span></div></td>
+</tr>
+
+		</table>
+
+
+            
+
+            
+            <hr>
+            <table id="compareBoxID">
+            <tr id="tableTR" class="textTop sampleBig blackBG compareBoxes">
+
+            <button class="buttonBorder" title="add column" onclick="functionBoxAdd()">+</button>
+            <button class="buttonBorder" title="remove column" onclick="functionBoxRemove()">-</button>
+            <select id="mySelectSampleText" onchange="functionSelectSampleText('mySelectSampleText')" class="selectSampleText">
+
+            <option value='Default Sample'>Default Sample</option><option value='All Unicodes'>All Unicodes</option>
+
+            </select>
+            <input type="color" class="inputColor" value="#82e5fe" title="Background Color" onchange="functionGetColorBG(this.value, '.compareBoxes')">
+            <input type="color" class="inputColor" value="#ff79ad" title="Text Color" onchange="functionGetColorText(this.value, '.compareBoxes')">
+            <button class="buttonBorder" title="Swap Colors" onclick="functionSwapColorTextBG('.compareBoxes')">&#x02B14</button>
+            <button class="buttonBorder" title="have fun, change background" onclick="functionGetRandomBG(['gradientBG', 'linearGradientBG', 'linearGradient2BG', 'blackBG'])">∞</button>
+            <input type="range" class="inputRangeCompareBox" title="Text Size" min="0.5" max="100" value="30" step=".01" id="sliderCompareBoxCSS"/>
+            <input type="number" class="inputNumberCompareBox" value="30" step="1" id="numberCompareBoxCSS"/>
+            <button class="buttonOT" id="leftcompareBox_btn" title="text alignment left" onclick="functionTextAlignment('compareBoxID', 'left')">L</button>
+            <button class="buttonOT" id="centercompareBox_btn" title="text alignment center" onclick="functionTextAlignment('compareBoxID', 'center')">C</button>
+            <button class="buttonOT" id="rightcompareBox_btn" title="text alignment right" onclick="functionTextAlignment('compareBoxID', 'right')">R</button>
+            <span style="vertical-align: super; color: #efefef;">|</span>
+            <button class="buttonOT" id="left-to-rightcompareBox_btn" title="reading direction: left to right" onclick="functionReadDirection('compareBoxID', 'left-to-right')">LR</button>
+            <button class="buttonOT" id="right-to-leftcompareBox_btn" title="reading direction: right to left" onclick="functionReadDirection('compareBoxID', 'right-to-left')">RL</button>
+            <!--<button class="buttonOT" id="top-to-downcompareBox_btn" title="reading direction: top to down" onclick="functionReadDirection('compareBoxID', 'top-to-down')">TD</button>-->
+            <button class="buttonBlack" id="hintingOnOff_btn" onclick="hintingOnOff('.compareBoxes', 'hintingOnOff');" title="activate/deactivate hinting">hinting on</button>
+            
+<td id="myBox" class="compareBox om_NotoSansGlagoliticRegularttf"><select id="mySelect" name="myBox" onchange="functionSelect('mySelect')"><option value='om_NotoSansGlagoliticRegularttf'>Noto Sans Glagolitic Regular (ttf)</option>
+</select>
+
+<span id="myBoxContent" contenteditable="true" class="compareBoxCSS ">1234567890 xozszn HOZD 1/3 @ 1a ;#& ? % $ € ! In August of 2016, four unlikely collaborators in the world of type, fonts and font technology stood on a stage at the ATypI conference in Warsaw, Poland. The collaborators were Apple, Microsoft, Adobe and Google. Together they announced the publishing of OpenType 1.8, an update to the now ubiquitous font standard which was originally an amalgam of Apple & Microsoft’s TrueType, and Adobe’s PostScript font formats. The OpenType 1.8 announcement, ATypI, Warsaw, Poland, September 14, 2016.</span></td>
+
+</tr>
+            </table>
+    
+
+            
+		<hr>
+		<table>
+<thead><tr><tr>
+<td class="colLeft">Copyright<br>NID0 Windows (3, 1, 1033, 0)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 0)_btn" onclick='toggle_detail("(3, 1, 1033, 0)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 0)0')" onMouseOut="hover('(3, 1, 1033, 0)0')" class="character defaultFont " title="Noto Sans Glagolitic Regular" data-original-title="(3, 1, 1033, 0)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 0)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Glagolitic Regular"><td onMouseOver="hover('(3, 1, 1033, 0)0')" onMouseOut="hover('(3, 1, 1033, 0)0')" id="(3, 1, 1033, 0)0" class="infoToggle" colspan="1">Copyright 2017 Google Inc. All Rights Reserved.</td></tr></tbody><tr>
+<td class="colLeft">Family Name<br>NID1 Windows (3, 1, 1033, 1)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 1)_btn" onclick='toggle_detail("(3, 1, 1033, 1)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 1)0')" onMouseOut="hover('(3, 1, 1033, 1)0')" class="character defaultFont " title="Noto Sans Glagolitic Regular" data-original-title="(3, 1, 1033, 1)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 1)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID 1 and 2 together should be unique within the family.</td><tr class="" title="Noto Sans Glagolitic Regular"><td onMouseOver="hover('(3, 1, 1033, 1)0')" onMouseOut="hover('(3, 1, 1033, 1)0')" id="(3, 1, 1033, 1)0" class="infoToggle" colspan="1">NID1: 'Noto Sans Glagolitic' + NID2: 'Regular'</td></tr></tbody><tr>
+<td class="colLeft">Subfamily Name<br>NID2 Windows (3, 1, 1033, 2)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 2)_btn" onclick='toggle_detail("(3, 1, 1033, 2)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 2)0')" onMouseOut="hover('(3, 1, 1033, 2)0')" class="character defaultFont " title="Noto Sans Glagolitic Regular" data-original-title="(3, 1, 1033, 2)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 2)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be 'Regular', 'Italic', 'Bold' or 'Bold Italic'.</td><tr class="" title="Noto Sans Glagolitic Regular"><td onMouseOver="hover('(3, 1, 1033, 2)0')" onMouseOut="hover('(3, 1, 1033, 2)0')" id="(3, 1, 1033, 2)0" class="infoToggle" colspan="1">Regular</td></tr></tbody><tr>
+<td class="colLeft">Unique Font Identifier<br>NID3 Windows (3, 1, 1033, 3)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 3)_btn" onclick='toggle_detail("(3, 1, 1033, 3)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 3)0')" onMouseOut="hover('(3, 1, 1033, 3)0')" class="character defaultFont " title="Noto Sans Glagolitic Regular" data-original-title="(3, 1, 1033, 3)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 3)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be DIFFERENT within the family.</td><tr class="" title="Noto Sans Glagolitic Regular"><td onMouseOver="hover('(3, 1, 1033, 3)0')" onMouseOut="hover('(3, 1, 1033, 3)0')" id="(3, 1, 1033, 3)0" class="infoToggle" colspan="1">2.000;GOOG;NotoSansGlagolitic-Regular</td></tr></tbody><tr>
+<td class="colLeft">Full Font Name<br>NID4 Windows (3, 1, 1033, 4)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 4)_btn" onclick='toggle_detail("(3, 1, 1033, 4)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 4)0')" onMouseOut="hover('(3, 1, 1033, 4)0')" class="character defaultFont " title="Noto Sans Glagolitic Regular" data-original-title="(3, 1, 1033, 4)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 4)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be DIFFERENT within the family.</td><tr class="" title="Noto Sans Glagolitic Regular"><td onMouseOver="hover('(3, 1, 1033, 4)0')" onMouseOut="hover('(3, 1, 1033, 4)0')" id="(3, 1, 1033, 4)0" class="infoToggle" colspan="1">Noto Sans Glagolitic Regular</td></tr></tbody><tr>
+<td class="colLeft">Version<br>NID5 Windows (3, 1, 1033, 5)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 5)_btn" onclick='toggle_detail("(3, 1, 1033, 5)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 5)0')" onMouseOut="hover('(3, 1, 1033, 5)0')" class="character defaultFont " title="Noto Sans Glagolitic Regular" data-original-title="(3, 1, 1033, 5)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 5)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Glagolitic Regular"><td onMouseOver="hover('(3, 1, 1033, 5)0')" onMouseOut="hover('(3, 1, 1033, 5)0')" id="(3, 1, 1033, 5)0" class="infoToggle" colspan="1">Version 2.000;GOOG;noto-source:20170915:90ef993387c0</td></tr></tbody><tr>
+<td class="colLeft">PostScript Name<br>NID6 Windows (3, 1, 1033, 6)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 6)_btn" onclick='toggle_detail("(3, 1, 1033, 6)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 6)0')" onMouseOut="hover('(3, 1, 1033, 6)0')" class="character defaultFont " title="Noto Sans Glagolitic Regular" data-original-title="(3, 1, 1033, 6)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 6)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be DIFFERENT within the family.</td><tr class="" title="Noto Sans Glagolitic Regular"><td onMouseOver="hover('(3, 1, 1033, 6)0')" onMouseOut="hover('(3, 1, 1033, 6)0')" id="(3, 1, 1033, 6)0" class="infoToggle" colspan="1">NotoSansGlagolitic-Regular</td></tr></tbody><tr>
+<td class="colLeft">Trademark<br>NID7 Windows (3, 1, 1033, 7)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 7)_btn" onclick='toggle_detail("(3, 1, 1033, 7)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 7)0')" onMouseOut="hover('(3, 1, 1033, 7)0')" class="character defaultFont " title="Noto Sans Glagolitic Regular" data-original-title="(3, 1, 1033, 7)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 7)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Glagolitic Regular"><td onMouseOver="hover('(3, 1, 1033, 7)0')" onMouseOut="hover('(3, 1, 1033, 7)0')" id="(3, 1, 1033, 7)0" class="infoToggle" colspan="1">Noto is a trademark of Google Inc.</td></tr></tbody><tr>
+<td class="colLeft">Manufacturer<br>NID8 Windows (3, 1, 1033, 8)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 8)_btn" onclick='toggle_detail("(3, 1, 1033, 8)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 8)0')" onMouseOut="hover('(3, 1, 1033, 8)0')" class="character defaultFont " title="Noto Sans Glagolitic Regular" data-original-title="(3, 1, 1033, 8)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 8)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Glagolitic Regular"><td onMouseOver="hover('(3, 1, 1033, 8)0')" onMouseOut="hover('(3, 1, 1033, 8)0')" id="(3, 1, 1033, 8)0" class="infoToggle" colspan="1">Monotype Imaging Inc.</td></tr></tbody><tr>
+<td class="colLeft">Designer<br>NID9 Windows (3, 1, 1033, 9)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 9)_btn" onclick='toggle_detail("(3, 1, 1033, 9)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 9)0')" onMouseOut="hover('(3, 1, 1033, 9)0')" class="character defaultFont " title="Noto Sans Glagolitic Regular" data-original-title="(3, 1, 1033, 9)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 9)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Glagolitic Regular"><td onMouseOver="hover('(3, 1, 1033, 9)0')" onMouseOut="hover('(3, 1, 1033, 9)0')" id="(3, 1, 1033, 9)0" class="infoToggle" colspan="1">Monotype Design Team</td></tr></tbody><tr>
+<td class="colLeft">Description<br>NID10 Windows (3, 1, 1033, 10)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 10)_btn" onclick='toggle_detail("(3, 1, 1033, 10)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 10)0')" onMouseOut="hover('(3, 1, 1033, 10)0')" class="character defaultFont " title="Noto Sans Glagolitic Regular" data-original-title="(3, 1, 1033, 10)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 10)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Glagolitic Regular"><td onMouseOver="hover('(3, 1, 1033, 10)0')" onMouseOut="hover('(3, 1, 1033, 10)0')" id="(3, 1, 1033, 10)0" class="infoToggle" colspan="1">Designed by Monotype design team.</td></tr></tbody><tr>
+<td class="colLeft">Vendor URL<br>NID11 Windows (3, 1, 1033, 11)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 11)_btn" onclick='toggle_detail("(3, 1, 1033, 11)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 11)0')" onMouseOut="hover('(3, 1, 1033, 11)0')" class="character defaultFont " title="Noto Sans Glagolitic Regular" data-original-title="(3, 1, 1033, 11)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 11)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Glagolitic Regular"><td onMouseOver="hover('(3, 1, 1033, 11)0')" onMouseOut="hover('(3, 1, 1033, 11)0')" id="(3, 1, 1033, 11)0" class="infoToggle" colspan="1">http://www.google.com/get/noto/</td></tr></tbody><tr>
+<td class="colLeft">Designer URL<br>NID12 Windows (3, 1, 1033, 12)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 12)_btn" onclick='toggle_detail("(3, 1, 1033, 12)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 12)0')" onMouseOut="hover('(3, 1, 1033, 12)0')" class="character defaultFont " title="Noto Sans Glagolitic Regular" data-original-title="(3, 1, 1033, 12)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 12)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Glagolitic Regular"><td onMouseOver="hover('(3, 1, 1033, 12)0')" onMouseOut="hover('(3, 1, 1033, 12)0')" id="(3, 1, 1033, 12)0" class="infoToggle" colspan="1">http://www.monotype.com/studio</td></tr></tbody><tr>
+<td class="colLeft">License Text<br>NID13 Windows (3, 1, 1033, 13)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 13)_btn" onclick='toggle_detail("(3, 1, 1033, 13)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 13)0')" onMouseOut="hover('(3, 1, 1033, 13)0')" class="character defaultFont " title="Noto Sans Glagolitic Regular" data-original-title="(3, 1, 1033, 13)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 13)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Glagolitic Regular"><td onMouseOver="hover('(3, 1, 1033, 13)0')" onMouseOut="hover('(3, 1, 1033, 13)0')" id="(3, 1, 1033, 13)0" class="infoToggle" colspan="1">This Font Software is licensed under the SIL Open Font License, Version 1.1. This Font Software is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the SIL Open Font License for the specific language, permissions and limitations governing your use of this Font Software.</td></tr></tbody><tr>
+<td class="colLeft">License URL<br>NID14 Windows (3, 1, 1033, 14)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 14)_btn" onclick='toggle_detail("(3, 1, 1033, 14)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 14)0')" onMouseOut="hover('(3, 1, 1033, 14)0')" class="character defaultFont " title="Noto Sans Glagolitic Regular" data-original-title="(3, 1, 1033, 14)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 14)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Glagolitic Regular"><td onMouseOver="hover('(3, 1, 1033, 14)0')" onMouseOut="hover('(3, 1, 1033, 14)0')" id="(3, 1, 1033, 14)0" class="infoToggle" colspan="1">http://scripts.sil.org/OFL</td></tr></tbody>
+		</table>
+
+
+            
+
+            
+
+        <!-- big text on black backround -->
+            
+
+            
+
+            
+
+            
+		<hr>
+		<table id="splitterContent">
+<tr>
+<td class="colLeft"><br>uni0000</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0000', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0000">&#x0000</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x0000', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni0000">&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft"><br>uni000D</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x000d', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni000d">&#x000d</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x000d', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni000d">&#x000d</td>
+</tr>
+<tr>
+<td class="colLeft">SPACE<br>uni0020</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0020', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0020">&#x0020</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x0020', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni0020">&#x0020</td>
+</tr>
+<tr>
+<td class="colLeft">NO-BREAK SPACE<br>uni00A0</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x00a0', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni00a0">&#x00a0</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x00a0', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni00a0">&#x00a0</td>
+</tr>
+<tr>
+<td class="colLeft">COMBINING TILDE<br>uni0303</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0303', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0303">&#x0303</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x0303', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni0303">&#x0303</td>
+</tr>
+<tr>
+<td class="colLeft">COMBINING OVERLINE<br>uni0305</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0305', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0305">&#x0305</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x0305', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni0305">&#x0305</td>
+</tr>
+<tr>
+<td class="colLeft">COMBINING CYRILLIC PALATALIZATION<br>uni0484</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0484', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0484">&#x0484</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x0484', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni0484">&#x0484</td>
+</tr>
+<tr>
+<td class="colLeft">COMBINING CYRILLIC POKRYTIE<br>uni0487</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0487', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0487">&#x0487</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x0487', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni0487">&#x0487</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC CAPITAL LETTER AZU<br>uni2C00</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c00', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c00">&#x2c00</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c00', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c00">&#x2c00</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC CAPITAL LETTER BUKY<br>uni2C01</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c01', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c01">&#x2c01</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c01', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c01">&#x2c01</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC CAPITAL LETTER VEDE<br>uni2C02</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c02', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c02">&#x2c02</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c02', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c02">&#x2c02</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC CAPITAL LETTER GLAGOLI<br>uni2C03</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c03', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c03">&#x2c03</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c03', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c03">&#x2c03</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC CAPITAL LETTER DOBRO<br>uni2C04</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c04', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c04">&#x2c04</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c04', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c04">&#x2c04</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC CAPITAL LETTER YESTU<br>uni2C05</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c05', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c05">&#x2c05</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c05', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c05">&#x2c05</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC CAPITAL LETTER ZHIVETE<br>uni2C06</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c06', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c06">&#x2c06</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c06', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c06">&#x2c06</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC CAPITAL LETTER DZELO<br>uni2C07</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c07', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c07">&#x2c07</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c07', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c07">&#x2c07</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC CAPITAL LETTER ZEMLJA<br>uni2C08</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c08', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c08">&#x2c08</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c08', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c08">&#x2c08</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC CAPITAL LETTER IZHE<br>uni2C09</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c09', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c09">&#x2c09</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c09', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c09">&#x2c09</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC CAPITAL LETTER INITIAL IZHE<br>uni2C0A</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c0a', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c0a">&#x2c0a</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c0a', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c0a">&#x2c0a</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC CAPITAL LETTER I<br>uni2C0B</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c0b', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c0b">&#x2c0b</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c0b', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c0b">&#x2c0b</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC CAPITAL LETTER DJERVI<br>uni2C0C</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c0c', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c0c">&#x2c0c</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c0c', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c0c">&#x2c0c</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC CAPITAL LETTER KAKO<br>uni2C0D</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c0d', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c0d">&#x2c0d</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c0d', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c0d">&#x2c0d</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC CAPITAL LETTER LJUDIJE<br>uni2C0E</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c0e', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c0e">&#x2c0e</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c0e', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c0e">&#x2c0e</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC CAPITAL LETTER MYSLITE<br>uni2C0F</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c0f', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c0f">&#x2c0f</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c0f', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c0f">&#x2c0f</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC CAPITAL LETTER NASHI<br>uni2C10</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c10', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c10">&#x2c10</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c10', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c10">&#x2c10</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC CAPITAL LETTER ONU<br>uni2C11</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c11', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c11">&#x2c11</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c11', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c11">&#x2c11</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC CAPITAL LETTER POKOJI<br>uni2C12</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c12', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c12">&#x2c12</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c12', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c12">&#x2c12</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC CAPITAL LETTER RITSI<br>uni2C13</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c13', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c13">&#x2c13</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c13', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c13">&#x2c13</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC CAPITAL LETTER SLOVO<br>uni2C14</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c14', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c14">&#x2c14</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c14', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c14">&#x2c14</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC CAPITAL LETTER TVRIDO<br>uni2C15</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c15', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c15">&#x2c15</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c15', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c15">&#x2c15</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC CAPITAL LETTER UKU<br>uni2C16</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c16', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c16">&#x2c16</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c16', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c16">&#x2c16</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC CAPITAL LETTER FRITU<br>uni2C17</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c17', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c17">&#x2c17</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c17', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c17">&#x2c17</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC CAPITAL LETTER HERU<br>uni2C18</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c18', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c18">&#x2c18</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c18', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c18">&#x2c18</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC CAPITAL LETTER OTU<br>uni2C19</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c19', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c19">&#x2c19</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c19', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c19">&#x2c19</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC CAPITAL LETTER PE<br>uni2C1A</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c1a', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c1a">&#x2c1a</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c1a', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c1a">&#x2c1a</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC CAPITAL LETTER SHTA<br>uni2C1B</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c1b', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c1b">&#x2c1b</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c1b', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c1b">&#x2c1b</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC CAPITAL LETTER TSI<br>uni2C1C</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c1c', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c1c">&#x2c1c</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c1c', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c1c">&#x2c1c</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC CAPITAL LETTER CHRIVI<br>uni2C1D</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c1d', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c1d">&#x2c1d</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c1d', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c1d">&#x2c1d</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC CAPITAL LETTER SHA<br>uni2C1E</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c1e', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c1e">&#x2c1e</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c1e', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c1e">&#x2c1e</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC CAPITAL LETTER YERU<br>uni2C1F</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c1f', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c1f">&#x2c1f</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c1f', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c1f">&#x2c1f</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC CAPITAL LETTER YERI<br>uni2C20</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c20', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c20">&#x2c20</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c20', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c20">&#x2c20</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC CAPITAL LETTER YATI<br>uni2C21</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c21', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c21">&#x2c21</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c21', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c21">&#x2c21</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC CAPITAL LETTER SPIDERY HA<br>uni2C22</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c22', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c22">&#x2c22</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c22', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c22">&#x2c22</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC CAPITAL LETTER YU<br>uni2C23</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c23', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c23">&#x2c23</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c23', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c23">&#x2c23</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC CAPITAL LETTER SMALL YUS<br>uni2C24</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c24', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c24">&#x2c24</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c24', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c24">&#x2c24</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC CAPITAL LETTER SMALL YUS WITH TAIL<br>uni2C25</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c25', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c25">&#x2c25</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c25', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c25">&#x2c25</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC CAPITAL LETTER YO<br>uni2C26</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c26', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c26">&#x2c26</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c26', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c26">&#x2c26</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC CAPITAL LETTER IOTATED SMALL YUS<br>uni2C27</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c27', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c27">&#x2c27</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c27', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c27">&#x2c27</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC CAPITAL LETTER BIG YUS<br>uni2C28</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c28', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c28">&#x2c28</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c28', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c28">&#x2c28</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC CAPITAL LETTER IOTATED BIG YUS<br>uni2C29</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c29', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c29">&#x2c29</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c29', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c29">&#x2c29</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC CAPITAL LETTER FITA<br>uni2C2A</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c2a', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c2a">&#x2c2a</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c2a', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c2a">&#x2c2a</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC CAPITAL LETTER IZHITSA<br>uni2C2B</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c2b', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c2b">&#x2c2b</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c2b', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c2b">&#x2c2b</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC CAPITAL LETTER SHTAPIC<br>uni2C2C</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c2c', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c2c">&#x2c2c</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c2c', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c2c">&#x2c2c</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC CAPITAL LETTER TROKUTASTI A<br>uni2C2D</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c2d', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c2d">&#x2c2d</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c2d', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c2d">&#x2c2d</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC CAPITAL LETTER LATINATE MYSLITE<br>uni2C2E</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c2e', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c2e">&#x2c2e</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c2e', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c2e">&#x2c2e</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC SMALL LETTER AZU<br>uni2C30</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c30', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c30">&#x2c30</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c30', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c30">&#x2c30</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC SMALL LETTER BUKY<br>uni2C31</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c31', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c31">&#x2c31</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c31', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c31">&#x2c31</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC SMALL LETTER VEDE<br>uni2C32</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c32', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c32">&#x2c32</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c32', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c32">&#x2c32</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC SMALL LETTER GLAGOLI<br>uni2C33</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c33', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c33">&#x2c33</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c33', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c33">&#x2c33</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC SMALL LETTER DOBRO<br>uni2C34</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c34', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c34">&#x2c34</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c34', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c34">&#x2c34</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC SMALL LETTER YESTU<br>uni2C35</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c35', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c35">&#x2c35</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c35', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c35">&#x2c35</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC SMALL LETTER ZHIVETE<br>uni2C36</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c36', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c36">&#x2c36</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c36', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c36">&#x2c36</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC SMALL LETTER DZELO<br>uni2C37</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c37', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c37">&#x2c37</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c37', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c37">&#x2c37</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC SMALL LETTER ZEMLJA<br>uni2C38</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c38', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c38">&#x2c38</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c38', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c38">&#x2c38</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC SMALL LETTER IZHE<br>uni2C39</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c39', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c39">&#x2c39</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c39', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c39">&#x2c39</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC SMALL LETTER INITIAL IZHE<br>uni2C3A</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c3a', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c3a">&#x2c3a</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c3a', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c3a">&#x2c3a</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC SMALL LETTER I<br>uni2C3B</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c3b', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c3b">&#x2c3b</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c3b', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c3b">&#x2c3b</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC SMALL LETTER DJERVI<br>uni2C3C</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c3c', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c3c">&#x2c3c</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c3c', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c3c">&#x2c3c</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC SMALL LETTER KAKO<br>uni2C3D</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c3d', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c3d">&#x2c3d</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c3d', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c3d">&#x2c3d</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC SMALL LETTER LJUDIJE<br>uni2C3E</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c3e', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c3e">&#x2c3e</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c3e', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c3e">&#x2c3e</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC SMALL LETTER MYSLITE<br>uni2C3F</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c3f', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c3f">&#x2c3f</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c3f', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c3f">&#x2c3f</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC SMALL LETTER NASHI<br>uni2C40</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c40', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c40">&#x2c40</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c40', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c40">&#x2c40</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC SMALL LETTER ONU<br>uni2C41</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c41', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c41">&#x2c41</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c41', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c41">&#x2c41</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC SMALL LETTER POKOJI<br>uni2C42</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c42', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c42">&#x2c42</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c42', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c42">&#x2c42</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC SMALL LETTER RITSI<br>uni2C43</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c43', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c43">&#x2c43</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c43', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c43">&#x2c43</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC SMALL LETTER SLOVO<br>uni2C44</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c44', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c44">&#x2c44</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c44', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c44">&#x2c44</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC SMALL LETTER TVRIDO<br>uni2C45</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c45', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c45">&#x2c45</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c45', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c45">&#x2c45</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC SMALL LETTER UKU<br>uni2C46</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c46', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c46">&#x2c46</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c46', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c46">&#x2c46</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC SMALL LETTER FRITU<br>uni2C47</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c47', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c47">&#x2c47</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c47', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c47">&#x2c47</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC SMALL LETTER HERU<br>uni2C48</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c48', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c48">&#x2c48</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c48', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c48">&#x2c48</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC SMALL LETTER OTU<br>uni2C49</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c49', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c49">&#x2c49</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c49', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c49">&#x2c49</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC SMALL LETTER PE<br>uni2C4A</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c4a', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c4a">&#x2c4a</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c4a', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c4a">&#x2c4a</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC SMALL LETTER SHTA<br>uni2C4B</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c4b', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c4b">&#x2c4b</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c4b', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c4b">&#x2c4b</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC SMALL LETTER TSI<br>uni2C4C</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c4c', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c4c">&#x2c4c</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c4c', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c4c">&#x2c4c</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC SMALL LETTER CHRIVI<br>uni2C4D</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c4d', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c4d">&#x2c4d</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c4d', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c4d">&#x2c4d</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC SMALL LETTER SHA<br>uni2C4E</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c4e', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c4e">&#x2c4e</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c4e', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c4e">&#x2c4e</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC SMALL LETTER YERU<br>uni2C4F</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c4f', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c4f">&#x2c4f</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c4f', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c4f">&#x2c4f</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC SMALL LETTER YERI<br>uni2C50</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c50', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c50">&#x2c50</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c50', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c50">&#x2c50</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC SMALL LETTER YATI<br>uni2C51</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c51', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c51">&#x2c51</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c51', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c51">&#x2c51</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC SMALL LETTER SPIDERY HA<br>uni2C52</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c52', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c52">&#x2c52</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c52', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c52">&#x2c52</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC SMALL LETTER YU<br>uni2C53</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c53', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c53">&#x2c53</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c53', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c53">&#x2c53</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC SMALL LETTER SMALL YUS<br>uni2C54</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c54', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c54">&#x2c54</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c54', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c54">&#x2c54</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC SMALL LETTER SMALL YUS WITH TAIL<br>uni2C55</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c55', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c55">&#x2c55</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c55', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c55">&#x2c55</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC SMALL LETTER YO<br>uni2C56</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c56', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c56">&#x2c56</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c56', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c56">&#x2c56</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC SMALL LETTER IOTATED SMALL YUS<br>uni2C57</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c57', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c57">&#x2c57</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c57', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c57">&#x2c57</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC SMALL LETTER BIG YUS<br>uni2C58</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c58', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c58">&#x2c58</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c58', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c58">&#x2c58</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC SMALL LETTER IOTATED BIG YUS<br>uni2C59</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c59', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c59">&#x2c59</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c59', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c59">&#x2c59</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC SMALL LETTER FITA<br>uni2C5A</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c5a', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c5a">&#x2c5a</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c5a', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c5a">&#x2c5a</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC SMALL LETTER IZHITSA<br>uni2C5B</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c5b', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c5b">&#x2c5b</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c5b', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c5b">&#x2c5b</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC SMALL LETTER SHTAPIC<br>uni2C5C</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c5c', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c5c">&#x2c5c</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c5c', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c5c">&#x2c5c</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC SMALL LETTER TROKUTASTI A<br>uni2C5D</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c5d', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c5d">&#x2c5d</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c5d', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c5d">&#x2c5d</td>
+</tr>
+<tr>
+<td class="colLeft">GLAGOLITIC SMALL LETTER LATINATE MYSLITE<br>uni2C5E</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2c5e', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2c5e">&#x2c5e</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x2c5e', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni2c5e">&#x2c5e</td>
+</tr>
+<tr>
+<td class="colLeft">COMBINING CYRILLIC VZMET<br>uniA66F</td>
+<td class="character defaultFont info" onmousedown="mDown('&#xa66f', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="unia66f">&#xa66f</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#xa66f', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="unia66f">&#xa66f</td>
+</tr>
+<tr>
+<td class="colLeft">COMBINING GLAGOLITIC LETTER AZU<br>uni1E000</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1e000', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1e000">&#x1e000</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x1e000', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni1e000">&#x1e000</td>
+</tr>
+<tr>
+<td class="colLeft">COMBINING GLAGOLITIC LETTER BUKY<br>uni1E001</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1e001', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1e001">&#x1e001</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x1e001', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni1e001">&#x1e001</td>
+</tr>
+<tr>
+<td class="colLeft">COMBINING GLAGOLITIC LETTER VEDE<br>uni1E002</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1e002', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1e002">&#x1e002</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x1e002', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni1e002">&#x1e002</td>
+</tr>
+<tr>
+<td class="colLeft">COMBINING GLAGOLITIC LETTER GLAGOLI<br>uni1E003</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1e003', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1e003">&#x1e003</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x1e003', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni1e003">&#x1e003</td>
+</tr>
+<tr>
+<td class="colLeft">COMBINING GLAGOLITIC LETTER DOBRO<br>uni1E004</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1e004', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1e004">&#x1e004</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x1e004', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni1e004">&#x1e004</td>
+</tr>
+<tr>
+<td class="colLeft">COMBINING GLAGOLITIC LETTER YESTU<br>uni1E005</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1e005', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1e005">&#x1e005</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x1e005', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni1e005">&#x1e005</td>
+</tr>
+<tr>
+<td class="colLeft">COMBINING GLAGOLITIC LETTER ZHIVETE<br>uni1E006</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1e006', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1e006">&#x1e006</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x1e006', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni1e006">&#x1e006</td>
+</tr>
+<tr>
+<td class="colLeft">COMBINING GLAGOLITIC LETTER ZEMLJA<br>uni1E008</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1e008', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1e008">&#x1e008</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x1e008', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni1e008">&#x1e008</td>
+</tr>
+<tr>
+<td class="colLeft">COMBINING GLAGOLITIC LETTER IZHE<br>uni1E009</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1e009', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1e009">&#x1e009</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x1e009', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni1e009">&#x1e009</td>
+</tr>
+<tr>
+<td class="colLeft">COMBINING GLAGOLITIC LETTER INITIAL IZHE<br>uni1E00A</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1e00a', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1e00a">&#x1e00a</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x1e00a', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni1e00a">&#x1e00a</td>
+</tr>
+<tr>
+<td class="colLeft">COMBINING GLAGOLITIC LETTER I<br>uni1E00B</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1e00b', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1e00b">&#x1e00b</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x1e00b', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni1e00b">&#x1e00b</td>
+</tr>
+<tr>
+<td class="colLeft">COMBINING GLAGOLITIC LETTER DJERVI<br>uni1E00C</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1e00c', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1e00c">&#x1e00c</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x1e00c', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni1e00c">&#x1e00c</td>
+</tr>
+<tr>
+<td class="colLeft">COMBINING GLAGOLITIC LETTER KAKO<br>uni1E00D</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1e00d', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1e00d">&#x1e00d</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x1e00d', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni1e00d">&#x1e00d</td>
+</tr>
+<tr>
+<td class="colLeft">COMBINING GLAGOLITIC LETTER LJUDIJE<br>uni1E00E</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1e00e', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1e00e">&#x1e00e</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x1e00e', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni1e00e">&#x1e00e</td>
+</tr>
+<tr>
+<td class="colLeft">COMBINING GLAGOLITIC LETTER MYSLITE<br>uni1E00F</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1e00f', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1e00f">&#x1e00f</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x1e00f', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni1e00f">&#x1e00f</td>
+</tr>
+<tr>
+<td class="colLeft">COMBINING GLAGOLITIC LETTER NASHI<br>uni1E010</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1e010', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1e010">&#x1e010</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x1e010', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni1e010">&#x1e010</td>
+</tr>
+<tr>
+<td class="colLeft">COMBINING GLAGOLITIC LETTER ONU<br>uni1E011</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1e011', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1e011">&#x1e011</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x1e011', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni1e011">&#x1e011</td>
+</tr>
+<tr>
+<td class="colLeft">COMBINING GLAGOLITIC LETTER POKOJI<br>uni1E012</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1e012', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1e012">&#x1e012</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x1e012', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni1e012">&#x1e012</td>
+</tr>
+<tr>
+<td class="colLeft">COMBINING GLAGOLITIC LETTER RITSI<br>uni1E013</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1e013', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1e013">&#x1e013</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x1e013', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni1e013">&#x1e013</td>
+</tr>
+<tr>
+<td class="colLeft">COMBINING GLAGOLITIC LETTER SLOVO<br>uni1E014</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1e014', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1e014">&#x1e014</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x1e014', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni1e014">&#x1e014</td>
+</tr>
+<tr>
+<td class="colLeft">COMBINING GLAGOLITIC LETTER TVRIDO<br>uni1E015</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1e015', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1e015">&#x1e015</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x1e015', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni1e015">&#x1e015</td>
+</tr>
+<tr>
+<td class="colLeft">COMBINING GLAGOLITIC LETTER UKU<br>uni1E016</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1e016', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1e016">&#x1e016</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x1e016', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni1e016">&#x1e016</td>
+</tr>
+<tr>
+<td class="colLeft">COMBINING GLAGOLITIC LETTER FRITU<br>uni1E017</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1e017', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1e017">&#x1e017</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x1e017', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni1e017">&#x1e017</td>
+</tr>
+<tr>
+<td class="colLeft">COMBINING GLAGOLITIC LETTER HERU<br>uni1E018</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1e018', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1e018">&#x1e018</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x1e018', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni1e018">&#x1e018</td>
+</tr>
+<tr>
+<td class="colLeft">COMBINING GLAGOLITIC LETTER SHTA<br>uni1E01B</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1e01b', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1e01b">&#x1e01b</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x1e01b', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni1e01b">&#x1e01b</td>
+</tr>
+<tr>
+<td class="colLeft">COMBINING GLAGOLITIC LETTER TSI<br>uni1E01C</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1e01c', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1e01c">&#x1e01c</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x1e01c', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni1e01c">&#x1e01c</td>
+</tr>
+<tr>
+<td class="colLeft">COMBINING GLAGOLITIC LETTER CHRIVI<br>uni1E01D</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1e01d', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1e01d">&#x1e01d</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x1e01d', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni1e01d">&#x1e01d</td>
+</tr>
+<tr>
+<td class="colLeft">COMBINING GLAGOLITIC LETTER SHA<br>uni1E01E</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1e01e', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1e01e">&#x1e01e</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x1e01e', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni1e01e">&#x1e01e</td>
+</tr>
+<tr>
+<td class="colLeft">COMBINING GLAGOLITIC LETTER YERU<br>uni1E01F</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1e01f', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1e01f">&#x1e01f</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x1e01f', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni1e01f">&#x1e01f</td>
+</tr>
+<tr>
+<td class="colLeft">COMBINING GLAGOLITIC LETTER YERI<br>uni1E020</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1e020', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1e020">&#x1e020</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x1e020', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni1e020">&#x1e020</td>
+</tr>
+<tr>
+<td class="colLeft">COMBINING GLAGOLITIC LETTER YATI<br>uni1E021</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1e021', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1e021">&#x1e021</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x1e021', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni1e021">&#x1e021</td>
+</tr>
+<tr>
+<td class="colLeft">COMBINING GLAGOLITIC LETTER YU<br>uni1E023</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1e023', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1e023">&#x1e023</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x1e023', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni1e023">&#x1e023</td>
+</tr>
+<tr>
+<td class="colLeft">COMBINING GLAGOLITIC LETTER SMALL YUS<br>uni1E024</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1e024', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1e024">&#x1e024</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x1e024', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni1e024">&#x1e024</td>
+</tr>
+<tr>
+<td class="colLeft">COMBINING GLAGOLITIC LETTER YO<br>uni1E026</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1e026', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1e026">&#x1e026</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x1e026', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni1e026">&#x1e026</td>
+</tr>
+<tr>
+<td class="colLeft">COMBINING GLAGOLITIC LETTER IOTATED SMALL YUS<br>uni1E027</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1e027', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1e027">&#x1e027</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x1e027', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni1e027">&#x1e027</td>
+</tr>
+<tr>
+<td class="colLeft">COMBINING GLAGOLITIC LETTER BIG YUS<br>uni1E028</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1e028', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1e028">&#x1e028</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x1e028', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni1e028">&#x1e028</td>
+</tr>
+<tr>
+<td class="colLeft">COMBINING GLAGOLITIC LETTER IOTATED BIG YUS<br>uni1E029</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1e029', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1e029">&#x1e029</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x1e029', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni1e029">&#x1e029</td>
+</tr>
+<tr>
+<td class="colLeft">COMBINING GLAGOLITIC LETTER FITA<br>uni1E02A</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1e02a', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1e02a">&#x1e02a</td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('&#x1e02a', ['om_NotoSansGlagoliticRegularttf'])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title="uni1e02a">&#x1e02a</td>
+</tr>
+
+		</table>
+
+
+            
+		<hr>
+		<table id="splitterContent_unencoded">
+<tr>
+<td class="colLeft"><br></td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title=" "></td>
+<td class="character om_NotoSansGlagoliticRegularttf " onmousedown="mDown('', ['om_NotoSansGlagoliticRegularttf', ''])" onmouseup="mUp()" title="Noto Sans Glagolitic Regular" data-original-title=" "></td>
+</tr>
+
+		</table>
+
+
+
+    </div>
+    </div>
+
+
+    <script type="text/javascript">
+
+    //var elementCustomerPreview = document.getElementById("cssCodeForCustomerPreview");
+    //console.log('element.height: ', elementCustomerPreview.offsetHeight)
+    //$('.containerMain').css("top", '-' + elementCustomerPreview.offsetHeight + 'px')
+
+    var elementCustomerPreview = document.getElementById("containerMainID");
+    console.log('element.height: ', elementCustomerPreview.offsetHeight)
+    $('.containerCSScode').css("height", elementCustomerPreview.offsetHeight -200 + 'px')
+
+    var elementHeader = document.getElementById('otFeature');
+    console.log('element.height: ', elementHeader.offsetHeight)
+    divHeight = elementHeader.offsetHeight - 50
+    $('.header').css("top", '-' + divHeight + 'px')
+
+    //document.getElementById("varFont").style.color = "blue";
+
+    $('.sampleContent').on('blur keyup paste input', function() {$(".sampleContent").not(this).html($(this).html());});
+
+    
+    $('#slider').on('change',function(){
+    var val = $(this).val();
+    $(".om_NotoSansGlagoliticRegularttf").css("font-size",(val+"em"));
+    $(".colLeft").css("width",(50 - (val*2)) +"%");
+    });
+
+    
+
+    function toggle_detail(my_id){
+        var element = document.getElementById(my_id)
+        //var buttoncell = document.getElementById(my_id+"_cell")
+        var button = document.getElementById(my_id+"_btn")
+        if (element.style.display != 'none') {
+          element.style.display = 'none'; //$("#" + my_id).slideUp(); smooth in/out does not work currently
+          button.innerHTML = '▼';
+        } else {
+          element.style.display = ''; //$("#" + my_id).slideDown(); smooth in/out does not work currently
+          button.innerHTML = '▲';
+        }
+    }
+
+    function showhide_div(my_id, buttomName){
+        var element = document.getElementById(my_id)
+        //var buttoncell = document.getElementById(my_id+"_cell")
+        var button = document.getElementById(my_id+"_btn")
+        if (element.style.opacity != '0') {
+          element.style.opacity = '0'; 
+          setTimeout(function () {
+            element.style.zIndex = '-1';
+            }, 1000);
+          button.innerHTML = 'show ' + buttomName;
+        } else {
+          element.style.opacity = '1';
+          element.style.zIndex = '998';
+          button.innerHTML = 'hide ' + buttomName;
+        }
+    }
+
+    function hover(my_id){
+        var element = document.getElementById(my_id)
+        if (element.style.background != '') {
+          element.style.background = '';
+          element.style.color = ''; 
+        } else {
+          element.style.background = '#B3D4FC';
+          element.style.color = 'black'; 
+        }
+    }
+
+    var HTMLCodeCompareBoxes = '1234567890 xozszn HOZD 1/3 @ 1a ;#& ? % $ € ! In August of 2016, four unlikely collaborators in the world of type, fonts and font technology stood on a stage at the ATypI conference in Warsaw, Poland. The collaborators were Apple, Microsoft, Adobe and Google. Together they announced the publishing of OpenType 1.8, an update to the now ubiquitous font standard which was originally an amalgam of Apple & Microsoft’s TrueType, and Adobe’s PostScript font formats. The OpenType 1.8 announcement, ATypI, Warsaw, Poland, September 14, 2016.'
+    var fontWeightsDict = {'Noto Sans Glagolitic Regular (ttf)':'om_NotoSansGlagoliticRegularttf'};
+
+    var sampleTexts = {'All Unicodes': '\x00 \r   \xa0 ̃ ̅ ҄ ҇ Ⰰ Ⰱ Ⰲ Ⰳ Ⰴ Ⰵ Ⰶ Ⰷ Ⰸ Ⰹ Ⰺ Ⰻ Ⰼ Ⰽ Ⰾ Ⰿ Ⱀ Ⱁ Ⱂ Ⱃ Ⱄ Ⱅ Ⱆ Ⱇ Ⱈ Ⱉ Ⱊ Ⱋ Ⱌ Ⱍ Ⱎ Ⱏ Ⱐ Ⱑ Ⱒ Ⱓ Ⱔ Ⱕ Ⱖ Ⱗ Ⱘ Ⱙ Ⱚ Ⱛ Ⱜ Ⱝ Ⱞ ⰰ ⰱ ⰲ ⰳ ⰴ ⰵ ⰶ ⰷ ⰸ ⰹ ⰺ ⰻ ⰼ ⰽ ⰾ ⰿ ⱀ ⱁ ⱂ ⱃ ⱄ ⱅ ⱆ ⱇ ⱈ ⱉ ⱊ ⱋ ⱌ ⱍ ⱎ ⱏ ⱐ ⱑ ⱒ ⱓ ⱔ ⱕ ⱖ ⱗ ⱘ ⱙ ⱚ ⱛ ⱜ ⱝ ⱞ ꙯ 𞀀 𞀁 𞀂 𞀃 𞀄 𞀅 𞀆 𞀈 𞀉 𞀊 𞀋 𞀌 𞀍 𞀎 𞀏 𞀐 𞀑 𞀒 𞀓 𞀔 𞀕 𞀖 𞀗 𞀘 𞀛 𞀜 𞀝 𞀞 𞀟 𞀠 𞀡 𞀣 𞀤 𞀦 𞀧 𞀨 𞀩 𞀪', 'Default Sample': '1234567890 xozszn HOZD 1/3 @ 1a ;#& ? % $ € ! In August of 2016, four unlikely collaborators in the world of type, fonts and font technology stood on a stage at the ATypI conference in Warsaw, Poland. The collaborators were Apple, Microsoft, Adobe and Google. Together they announced the publishing of OpenType 1.8, an update to the now ubiquitous font standard which was originally an amalgam of Apple & Microsoft’s TrueType, and Adobe’s PostScript font formats. The OpenType 1.8 announcement, ATypI, Warsaw, Poland, September 14, 2016.'}
+
+    var clicks = 0;
+    var arrList = [];
+    var mySpanIDList = [];
+
+    var supported_features = [];
+
+    function functionAddSupportedFeatures(item){
+        var button = document.getElementById(item+"_btn")
+        if (supported_features.includes(item) === true){
+            button.style.color = 'black';
+            button.style.backgroundColor = 'white';
+            var index = supported_features.indexOf(item);
+            if (index > -1) {
+                supported_features.splice(index, 1);
+            }
+        }
+        else { 
+            button.style.color = 'white';
+            button.style.backgroundColor = 'black';
+            supported_features.push(item);
+        }
+        functionSetCSSFeatureCode(supported_features)
+    }
+
+    function functionChangeLanguage(item){
+        document.documentElement.lang = item;
+        $("#htmlLangTag").html(item);
+        if (['ar', 'fa', 'ur'].indexOf(item) >= 0) {
+            document.getElementById('compareBoxID').dir = 'rtl';
+            functionReadDirection('compareBoxID', 'right-to-left');
+        } else {
+            document.getElementById('compareBoxID').dir = '';
+            functionReadDirection('compareBoxID', 'left-to-right')
+        }
+
+    }
+
+
+    function functionSetCSSFeatureCode(arr){
+        var supported_features = arr;
+        var default_features =  ['mark', 'mkmk']; //['kern', 'vkrn', 'liga', 'clig', 'calt', 'mark', 'mkmk', 'rvrm' ];
+
+        var cssCode_features = "";//font-feature-settings:
+        var moz_features = "";
+        
+
+        var arrayLength = supported_features.length;
+        for (var i = 0; i < arrayLength; i++) {
+            var item = supported_features[i];
+            cssCode_features += "'" + item + "' 1,";
+            moz_features += item + "=1,";
+        }
+
+        var defaultLength = default_features.length;
+        for (var i = 0; i < defaultLength; i++) {
+            var item = default_features[i];
+            if (supported_features.includes(item) === false){
+                cssCode_features += "'" + item + "' 0,";
+                moz_features += item + "=0,";
+            }
+        }
+
+        var stringLength = cssCode_features.length;
+        if (cssCode_features[stringLength-1] === ','){
+            var cleanedCSS = cssCode_features.substring(',', stringLength - 1);
+        } else {
+            var cleanedCSS = cssCode_features;
+        }
+
+        var element = document.getElementById('body_all');
+        element.style.fontFeatureSettings = cleanedCSS;
+
+        var stringLength = moz_features.length;
+        if (moz_features[stringLength-1] === ','){
+            var cleanedCSSmoz_features = moz_features.substring(',', stringLength - 1);
+        } else {
+            var cleanedCSSmoz_features = moz_features;
+        }
+
+        console.log('cleanedCSS: ', cleanedCSS)
+        var webkit_features = cleanedCSS 
+
+        $("#w3cfeatures").html(webkit_features);
+        $("#webkitfeatures").html(webkit_features);
+        $("#mozfeatures-up-to-14").html(webkit_features);
+        $("#mozfeatures").html(cleanedCSSmoz_features);
+        $("#msfeatures").html(webkit_features);
+        $("#ofeatures").html(webkit_features);
+
+      };
+
+
+    function functionBoxAdd() {
+
+        clicks += 1;
+        //arrList.push(clicks.toString())
+        console.log(arrList)
+        //var tdID = 'myTD_' + clicks;
+        //arrList.push(tdID.toString())
+        
+        //var x = document.createElement("TD");
+        //x.setAttribute("id", tdID);
+        //document.getElementById("tableTR").appendChild(x);
+
+        //var optionID = 'myOption_' + clicks;
+        //var d1 = document.createElement("DIV");
+        //d1.setAttribute("id", optionID);
+        //document.getElementById(tdID).appendChild(d1);
+
+        //var copyTextID = 'myText_' + clicks;
+        //var d2 = document.createElement("DIV");
+        //d2.setAttribute("id", copyTextID);
+        //d2.setAttribute("contenteditable", 'true');
+        //document.getElementById(tdID).appendChild(d2);
+        //var SampleText = document.createTextNode(HTMLCodeCompareBoxes);
+        //document.getElementById(copyTextID).innerHTML = HTMLCodeCompareBoxes;
+
+        var nameID = 'myBox_' + clicks;
+        arrList.push(nameID.toString())
+        var x = document.createElement("TD");
+        x.setAttribute("id", nameID);
+        //x.setAttribute("contenteditable", 'true');
+
+
+         var selectID = 'mySelect_' + clicks;
+         var s = document.createElement("SELECT");
+         s.setAttribute("id", selectID);
+         s.setAttribute("name", nameID);
+         s.setAttribute("onchange", "functionSelect('" + selectID + "')");
+
+         var arrListFontname = [];
+         var arrListCSSName = [];
+         lenClicks = 0;
+
+         for(fontName in fontWeightsDict){
+                 lenClicks += 1;
+                 arrListFontname.push(fontName.toString())
+                  var fontCSScode = fontWeightsDict[fontName];
+                  arrListCSSName.push(fontCSScode.toString())
+
+                  var z = document.createElement("option");
+                z.setAttribute("value", fontCSScode);
+                if (clicks + 1 == lenClicks){
+                    var FontSelected = arrListCSSName[lenClicks-1]; //minus one because array starts with zero
+                    z.setAttribute("selected", 'selected');
+                }
+                var t = document.createTextNode(fontName);
+                z.appendChild(t);
+                s.appendChild(z);
+                console.log(arrListFontname[-1])
+        }
+
+        var numberFonts = Object.keys(fontWeightsDict).length;
+        if (numberFonts <= clicks){var FontSelected = arrListCSSName[0];}
+        
+        x.setAttribute("class", "compareBox "+FontSelected);
+        document.getElementById("tableTR").appendChild(x);
+
+
+        //document.getElementById(nameID).appendChild(z);
+        document.getElementById(nameID).appendChild(s);
+
+        //var SampleText = document.createTextNode(HTMLCodeCompareBoxes);
+        var mySpanID = 'myBoxContent_' + clicks;
+        mySpanIDList.push(mySpanID.toString())
+        var span = document.createElement("SPAN");
+        span.setAttribute("id", mySpanID);
+        span.setAttribute("contenteditable", 'true');
+        span.setAttribute("class", 'compareBoxCSS');
+
+        var compareBoxFontSize = document.getElementById("myBoxContent").style.fontSize;
+        //console.log('Font-Size: ', compareBoxFontSize)
+        span.setAttribute("style", "font-size: " + compareBoxFontSize);
+
+        var getSampleText = document.getElementById('myBoxContent').innerHTML
+        //var mySampleText = document.getElementById('mySelectSampleText').value;
+        //var getSampleText = sampleTexts[mySampleText];
+        span.innerHTML = getSampleText;
+
+        //var sp = document.createTextNode(getSampleText);
+        //span.appendChild(sp);
+
+        document.getElementById(nameID).appendChild(span);
+     
+    }
+     
+    function functionBoxRemove() {
+        var item = arrList.pop() ;
+        //var nameID2 = 'myBox_' + (item);
+
+        if (item != 'myBox'){
+            var x = document.getElementById(item);
+            document.getElementById("tableTR").removeChild(x);
+        }
+
+        var index = mySpanIDList.length;
+        if (index > 1){
+            var listIndex = index -1;
+            mySpanIDList.splice(listIndex, 1);
+        }
+
+    }
+
+    var allBoxBG = arrList;
+    allBoxBG.push('myBox'); //first fixed box
+    function functionBoxBG(){
+        for (var item in allBoxBG){
+            console.log(allBoxBG[item])
+            var element = document.getElementById(allBoxBG[item])
+            if (element.style.backgroundColor != "white"){
+                element.style.backgroundColor = "white";
+                element.style.color = 'black';
+            } else {
+                element.style.backgroundColor = "black";
+                element.style.color = 'white';                
+            }
+        }
+    }
+
+    //$('#myBox').on('blur keyup paste input', function() {
+    //    var sampleText = document.getElementById('myBox').innerHTML;
+    //    for (var item in arrList){
+    //        var element = document.getElementById(arrList[item]);
+    //        element.innerHTML = sampleText;
+    //    }
+    //});
+
+    function functionSelect(selectID) {
+        console.log(selectID)
+        //var box = document.getElementById(selectID).parentElement; //.nodeName;
+        var CSScode = document.getElementById(selectID).value;
+        var boxID = document.getElementById(selectID).name;
+        console.log(CSScode)
+        console.log(boxID)
+        //document.getElementById(boxID).classList.add(value);
+        //box.classList.add(value);
+        document.getElementById(boxID).classList = CSScode;
+    }
+
+    mySpanIDList.push('myBoxContent'); //first add "fixed box"
+    function functionSelectSampleText(mySelectSampleText){
+        console.log('LISTE mySpanIDList::::', mySpanIDList)
+        var mySampleText = document.getElementById(mySelectSampleText).value;
+        var sampleText = sampleTexts[mySampleText];
+        for (var item in mySpanIDList){
+            document.getElementById(mySpanIDList[item]).innerHTML = sampleText;
+        }
+
+    }
+
+    function functionGetColorBG(item, CSSClass){
+        $(CSSClass).css('background-color', item);
+    }
+
+    function functionGetColorText(item, CSSClass){
+        $(CSSClass).css('color', item);
+    }
+
+    function functionSwapColorTextBG(CSSClass){
+        var colorText = $(CSSClass).css('color');
+        var colorBG = $(CSSClass).css('backgroundColor');
+        $(CSSClass).css('background-color', colorText);
+        $(CSSClass).css('color', colorBG);
+
+    }
+
+    $('.compareBoxCSS').on('blur keyup paste input', function() {$(".compareBoxCSS").not(this).html($(this).html());});
+
+    $('#sliderCompareBoxCSS').on('change',function(){
+        var val = $(this).val();
+        $(".compareBoxCSS").css("font-size",(val+"px"));
+        
+        document.getElementById("numberCompareBoxCSS").value = val;
+    });
+
+    $('#numberCompareBoxCSS').on('change',function(){
+        var val = $(this).val();
+        $(".compareBoxCSS").css("font-size",(val+"px"));
+        
+        document.getElementById("sliderCompareBoxCSS").value = val;
+    });
+
+    $('#sliderSampleContent').on('change',function(){
+        var val = $(this).val();
+        $(".sampleContent").css("font-size",(val+"px"));
+        if (val <= 30){
+            $(".sampleContent").css("padding",(val+"px 50px "+ val+"px 50px"));
+        } else {
+            $(".sampleContent").css("padding",("30px 50px 30px 50px"));              
+        }        
+        document.getElementById("numberSampleContent").value = val;
+    });
+
+    $('#numberSampleContent').on('change',function(){
+        var val = $(this).val();
+        $(".sampleContent").css("font-size",(val+"px"));
+        if (val <= 30){
+            $(".sampleContent").css("padding",(val+"px 50px "+ val+"px 50px"));
+        } else {
+            $(".sampleContent").css("padding",("30px 50px 30px 50px"));              
+        }           
+        document.getElementById("sliderSampleContent").value = val;
+    });
+
+    clicksBG = 0;
+    function functionGetRandomBG(cssItem){
+        
+        var arrListCSSClasses = [];
+        var numberCSSClasses = Object.keys(cssItem).length;
+        var cssClasses = document.getElementById("tableTR").className;
+
+        var oldCSSClasses = cssClasses.split(' ');
+
+        for (var item in cssItem){
+            if (item == clicksBG){
+                oldCSSClasses.push(cssItem[clicksBG]);
+            } else {
+                var index = oldCSSClasses.indexOf(cssItem[item]);
+                if (index > -1) {
+                    oldCSSClasses.splice(index, 1);
+                }
+                
+            }
+        }
+
+        var newClassNames = oldCSSClasses.join(' ')
+
+        document.getElementById("tableTR").className = newClassNames;
+        
+        clicksBG += 1;
+
+        if (clicksBG === 4){
+            clicksBG = 0;
+        }
+        
+
+    }
+
+    function functionShowCSSCode(CSSClass){
+        if ($(CSSClass).css("left") == '15px'){
+            $(CSSClass).css("transition-timing-function", "ease-in");
+            $(CSSClass).css("transition", "0.4s");
+            $(CSSClass).css("left", "80%");
+        } else {
+            $(CSSClass).css("left", "15px");
+        }
+    }
+
+    function functionShowHeader(CSSClass, my_id){
+        //var element = document.getElementById(my_id)
+        //var buttoncell = document.getElementById(my_id+"_cell")
+
+        var button = document.getElementById(my_id+"_btn");
+        if (button.innerHTML != '▼') {
+            $(CSSClass).css("top", '-' + divHeight + 'px');
+            button.innerHTML = '▼';
+        } else {
+          //$("#" + my_id).slideDown();
+            $(CSSClass).css("transition-timing-function", "ease-in");
+            $(CSSClass).css("transition", "0.4s");
+          $(CSSClass).css("top", "50px");
+          button.innerHTML = '▲';
+        }
+
+    }
+
+        /*function myFunctionAnimate(my_id, CSSClassList){
+            var button = document.getElementById(my_id+"_btn");
+            if (button.innerHTML === 'Play') {
+                button.innerHTML = 'Pause';
+                var countingUp = 1;
+                var minValue = document.getElementById(my_id).min;
+                var maxValue = document.getElementById(my_id).max;
+                var value = document.getElementById(my_id).value;
+                var i = Math.round(value);
+                var speed = Math.round(1000/maxValue);
+                myTimer = setInterval(function() {
+                    console.log(maxValue)
+                    i = i + (1 * countingUp);
+
+                    if (i == maxValue || i == minValue)
+                    {
+                        countingUp *= -1;
+                    }
+
+                    console.log(i)
+                  document.getElementById(my_id).value = i;
+                  document.getElementById(my_id+"_range").innerHTML = i;
+                  //om_AvenirNextVariableRomanttfWeight_showValue(i, CSSClassList)
+                  
+                }, speed);
+
+            } else {
+                button.innerHTML = 'Play';
+                clearInterval(myTimer);
+            }
+        }*/
+
+        
+
+        function functionTextAlignment(ID, item){
+            textAligment = ['left', 'center', 'right'];
+            console.log('ID: ', ID)
+            nameID = ID.replace('ID', '');
+            console.log('nameID: ', nameID)
+            console.log('item: ', item)
+
+            buttonName = item + nameID + "_btn";
+
+            console.log('buttonName: ', buttonName)
+
+            var button = document.getElementById(buttonName);
+            button.style.backgroundColor = 'black';
+            button.style.color = 'white';
+
+            $('#' +ID).css("text-align", item);
+
+            var textAligmentLength = textAligment.length;
+            for (var i = 0; i < textAligmentLength; i++) {
+                var itemLoop = textAligment[i];
+                if (itemLoop != item){
+                    otherButtonName = itemLoop + nameID + "_btn";
+                    console.log('otherButtonName: ', otherButtonName)
+                    var otherButton = document.getElementById(otherButtonName);
+                    otherButton.style.backgroundColor = 'white';
+                    otherButton.style.color = 'black';
+
+                }
+            }
+        }
+
+        function functionReadDirection(ID, item){
+            textAligment = ['left-to-right', 'right-to-left', 'top-to-down'];
+            console.log('ID: ', ID)
+            nameID = ID.replace('ID', '');
+            console.log('nameID: ', nameID)
+            console.log('item: ', item)
+
+            buttonName = item + nameID + "_btn";
+
+            console.log('buttonName: ', buttonName)
+
+            var button = document.getElementById(buttonName);
+            button.style.backgroundColor = 'black';
+            button.style.color = 'white';
+
+            if (item === 'right-to-left'){document.getElementById('compareBoxID').dir = 'rtl';}
+            if (item === 'left-to-right'){document.getElementById('compareBoxID').dir = '';}
+
+            // if (item === 'top-to-down'){
+            //     document.getElementById('compareBoxID').dir = '';
+
+            //     //var elt = document.documentElement
+            //     var elt = document.getElementById(ID);
+            //     elt.setAttribute("style", "writing-mode: vertical-rl;");
+            //     //$("body").css("writing-mode", 'vertical-rl;');
+            //     //document.documentElement.css("writing-mode", 'vertical-rl;');
+
+            //     /* writing-mode: vertical-rl; */
+            // }            
+
+            var textAligmentLength = textAligment.length;
+            for (var i = 0; i < textAligmentLength; i++) {
+                var itemLoop = textAligment[i];
+                if (itemLoop != item){
+                    otherButtonName = itemLoop + nameID + "_btn";
+                    console.log('otherButtonName: ', otherButtonName)
+                    var otherButton = document.getElementById(otherButtonName);
+                    otherButton.style.backgroundColor = 'white';
+                    otherButton.style.color = 'black';
+
+                }
+            }
+        }
+
+    function functionTest(CSSClass){
+            $(CSSClass).css("transition-timing-function", "ease-in");
+            $(CSSClass).css("transition", "1.4s");
+            $(CSSClass).css("transform", 'translate3d(0px,0px,0px)');
+    }
+
+
+    delta = 0;
+    beta = 0;
+    lastPos = null;
+
+    function clearBeta() {
+      beta = 0;
+    }
+
+    window.onscroll = function(){
+
+        function clear() {
+          lastPos = null;
+          delta = 0;
+        }
+
+        newPos = window.scrollY;
+        if ( lastPos != null ){
+          delta = newPos - lastPos;
+        }
+        lastPos = newPos;
+
+        //console.log(100 - delta)
+        //console.log('newPos: ', newPos)
+
+        if (delta < 0){if (beta < (delta * -1)){beta = (delta * 6)} }
+        if (delta > 0){if (beta < delta){beta = delta} }
+
+        //console.log('beta: ', beta)
+
+        setTimeout(clear, 500);
+        setTimeout(clearBeta, 500);
+
+        //console.log(100 - Pos)
+      //var distanz =  window.scrollY
+      //console.log('distanz: ', distanz);
+      //console.log( 'PositivVal: ', PositivVal );
+      //console.log(Int(distanz))
+      $('.flyingFont1').css("transform", 'translate3d(0px,' + (beta * -1) + 'px,0px)');
+      $('.flyingFont2').css("transform", 'translate3d(0px,' + (beta * -2) + 'px,0px)');
+      $('.flyingFont3').css("transform", 'translate3d(0px,' + (beta * -3) + 'px,0px)');
+    };
+
+
+    window.addEventListener("scroll", functionTest('.flyingFont1'), false);
+    window.addEventListener("scroll", functionTest('.flyingFont2'), false);
+    window.addEventListener("scroll", functionTest('.flyingFont3'), false);
+
+    $('.flyingFont').on('blur keyup paste input', function() {$(".flyingFont").not(this).html($(this).html());});
+
+    function adjustHeightOfTwoDiv(div1_ID, div2_ID){
+        var offsetHeight = document.getElementById(div1_ID).offsetHeight;
+        document.getElementById(div2_ID).style.height = offsetHeight + 'px';
+    } 
+
+    $('.flyingFont1').on('blur keyup paste input', function() {adjustHeightOfTwoDiv('flyingFont_ID1', 'flyingFont_ID0')});
+
+    function mDown(UID, CSSClassFontList) {
+        var obj = document.getElementById('zoom_characters');
+        obj.style.display = 'block';
+
+        var w = window.innerWidth;
+        var h = window.innerHeight;
+
+        if (w < h){
+            var nW = w / 2;
+            var nH = nW;
+
+        } else {
+            var nW = h / 2;
+            var nH = nW;
+        }
+        var top = (h - nH) / 2;
+        var left = (w - nW) / 2;
+
+        obj.style.height = nH + 'px';
+        obj.style.top = top + 'px';
+        obj.style.width = nW + 'px';
+        obj.style.left = left + 'px';        
+        obj.innerHTML = UID;
+        
+        var arrayLength = CSSClassFontList.length;
+        for (var i = 0; i < arrayLength; i++) {
+            var item = CSSClassFontList[i];
+            obj.classList.add(item);
+        }
+
+
+        
+
+        
+
+
+    }
+
+    function mUp() {
+        var obj = document.getElementById('zoom_characters');
+        obj.innerHTML = '';
+        obj.style.display = 'none';
+        obj.className = "characterZoom";
+    }
+
+    var prevScrollpos = window.pageYOffset;
+    window.onscroll = function() {
+    var currentScrollPos = window.pageYOffset;
+    if (prevScrollpos > currentScrollPos) {
+        document.getElementById("showFontNames_div").style.bottom = "-50px";
+        } else {
+            document.getElementById("showFontNames_div").style.bottom = "0";
+        }
+        prevScrollpos = currentScrollPos;
+    }
+
+    function scrollXNamesFunc() {
+        var elmnt = document.getElementById("containerMainID");
+        var x = elmnt.scrollLeft;
+        $('#showFontNames').css({
+            'left': 15 - x
+        });
+    }
+
+    function hintingOnOff(CSSClass, my_id){
+        var button = document.getElementById(my_id+"_btn");
+        var elements = document.getElementsByClassName('compareBox')
+
+        if (button.innerHTML != 'hinting on') {
+            Array.prototype.filter.call(elements, function(el){
+                el.style.transform = 'rotate(0.0deg)';
+                el.style.transformOrigin = 'top left';
+            });
+
+            button.className = "buttonBlack";
+            button.innerHTML = 'hinting on';
+            button.style.backgroundColor = 'black';
+
+        } else {
+            Array.prototype.filter.call(elements, function(el){
+                el.style.transform = 'rotate(0.03deg)';
+                el.style.transformOrigin = 'top center';
+            });
+
+            button.innerHTML = 'hinting off';
+            button.className = ".buttonBorder";
+
+            button.style.backgroundColor = 'red';
+
+        }
+
+    }
+
+    </script>
+
+  </body>
+</html>
+

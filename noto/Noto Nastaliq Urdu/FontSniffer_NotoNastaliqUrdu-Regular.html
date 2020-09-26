@@ -1,0 +1,2417 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv='content-type' content='text/html; charset=utf-8'>
+    <title>MT FontSniffer Report</title>
+    <style type="text/css">
+      body {
+        background-color: #fff;
+        color: #000;
+        font-family: "Kootenay Pro", Axel, "System Font", "Fira Sans", sans-serif;
+        line-height: 1.3em;
+        margin: 0;
+        padding: 1em;
+        font-size: 14px;
+      }
+      mark {
+        background-color: #fff990;
+        color: black;
+      }
+      h2 {
+        padding: 2em 0 0.2em 2.35em;
+        border-bottom: 2px solid #606060;
+        margin: 0;
+      }
+      h3 {
+        padding: 0.2em 0 0.3em 0;
+        margin: 0;
+      }
+      table {
+        border-collapse: collapse; 
+        margin: 1em 0; 
+        /* width: 100%; */
+        padding: 0;
+      }
+      table.togglemessages {
+        border: none; 
+        background-color: #f0f0f0;
+      }
+      td, th {
+        line-height: 1.3em; 
+        padding: 0.25em 0.5em; 
+        vertical-align: top;
+        text-align: left;
+      }
+      .summary th {
+        border-bottom: 1px solid #000;
+      }
+      td p, th p {
+        margin: 0 0 0em 0;
+        padding: 0;
+      }
+      td.num, th.num {
+        text-align: right;
+        width: 6em;
+      }
+      
+      td.time, th.time {
+        text-align: right;
+        width: 4.5em;
+        color: #c8c8c8;
+        font-size: 0.9em;
+        background-color: #fff;
+      }
+      
+      th.time p {
+        color: #d8d8d8;
+        padding-top: 0.5em;
+      }
+      
+      .summary {
+        width: auto;
+      }
+      
+      .summary tbody tr:nth-child(odd) {
+        background-color: #f8f8f8;
+      }
+      
+      .summary tbody tr:nth-last-child(1) {
+        background-color: #f0f0f0;
+      }
+      
+      .code {
+        font-weight: bold;
+        color: #fff;
+        width: 2em; 
+        text-align: center
+      }
+      
+      .results th {
+        border-radius: 0.0em;
+      }
+      
+      .results th button{
+        font-family: "Erler Dingbats", Arial;
+        line-height: 1.4em;
+        width: 2.6em;
+        padding-top: 0.2em;
+        margin-top: 0.2em;
+        background-color: rgba(255, 255, 255, 0.0);
+        border-radius: 0.0em;
+        border: 0px solid rgba(0, 0, 0, 0.3);
+      }
+
+      .A, .S, .E, .W, .I, .P {
+        width: 5em; 
+      }
+
+      tr.S {                                  color: hsl(  0,  0%,  90%) }
+      tr.S .code {                            color: hsl(  0,  0%,  90%) }
+      tr.S:nth-child(odd)        { background-color: hsl(  0,  0%,  10%) }
+      tr.S:nth-child(even)       { background-color: hsl(  0,  0%,  20%) }
+      tr.S:nth-child(odd)  .code { background-color: hsl(  0,  0%,  20%) }
+      tr.S:nth-child(even) .code { background-color: hsl(  0,  0%,  10%) }
+
+      tr.C {                                  color: hsl(  0,  0%,  90%) }
+      tr.C .code {                            color: hsl(  0,  0%,  90%) }
+      tr.C:nth-child(odd)        { background-color: hsl(  0,  100%,  20%) }
+      tr.C:nth-child(even)       { background-color: hsl(  0,  100%,  25%) }
+      tr.C:nth-child(odd)  .code { background-color: hsl(  0,  100%,  27%) }
+      tr.C:nth-child(even) .code { background-color: hsl(  0,  100%,  30%) }
+
+      tr.E {                                  color: #000 }
+      tr.E .code {                            color: #fff }
+      tr.E:nth-child(odd)        { background-color: hsl( 24,  100%, 95%) }
+      tr.E:nth-child(even)       { background-color: hsl( 24,  100%, 90%) }
+      tr.E:nth-child(odd)  .code { background-color: hsl( 24,  100%, 45%) }
+      tr.E:nth-child(even) .code { background-color: hsl( 24,  100%, 40%) }
+      
+      tr.W {                                  color: #000 }
+      tr.W .code {                            color: #fff }
+      tr.W:nth-child(odd)        { background-color: hsl( 50,  65%, 95%) }
+      tr.W:nth-child(even)       { background-color: hsl( 50,  65%, 90%) }
+      tr.W:nth-child(odd)  .code { background-color: hsl( 50,  65%, 52%) }
+      tr.W:nth-child(even) .code { background-color: hsl( 50,  65%, 48%) }
+      
+      tr.I {                                  color: #000 }
+      tr.I .code {                            color: #fff }
+      tr.I:nth-child(odd)        { background-color: hsl( 200,  50%, 95%) }
+      tr.I:nth-child(even)       { background-color: hsl( 200,  50%, 90%) }
+      tr.I:nth-child(odd)  .code { background-color: hsl( 200,  50%, 52%) }
+      tr.I:nth-child(even) .code { background-color: hsl( 200,  50%, 48%) }
+      
+      tr.P {                                  color: #000 }
+      tr.P .code {                            color: #fff }
+      tr.P:nth-child(odd)        { background-color: hsl( 130,  40%, 95%) }
+      tr.P:nth-child(even)       { background-color: hsl( 130,  40%, 90%) }
+      tr.P:nth-child(odd)  .code { background-color: hsl( 130,  40%, 60%) }
+      tr.P:nth-child(even) .code { background-color: hsl( 130,  40%, 55%) }
+      
+      tr.A {                                  color: hsl(  0,  0%,  50%) }
+      tr.A .code {                            color: hsl(  0,  0%,  50%) }
+      tr.A:nth-child(odd)        { background-color: hsl(  0,  0%,  75%) }
+      tr.A:nth-child(even)       { background-color: hsl(  0,  0%,  80%) }
+      tr.A:nth-child(odd)  .code { background-color: hsl(  0,  0%,  85%) }
+      tr.A:nth-child(even) .code { background-color: hsl(  0,  0%,  90%) }
+      
+      
+      /* Summary backgrounds */
+
+      th.S {
+        background: hsl(  0,  0%,  85%);
+      }
+      
+      th.A {
+        background: hsl(  0,  0%,  85%);
+      }
+      
+      th.E {
+        background: hsl( 24,  100%, 45%);
+      }
+      
+      th.I {
+        background: hsl( 200,  50%, 52%);
+      }
+      
+      th.P {
+        background: hsl( 130,  40%, 60%);
+      }
+      
+      th.W {
+        background: hsl( 50,  65%, 52%);
+      }
+      
+      
+      th.AE {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 24,  100%, 45%) 100%
+        );
+      }
+      
+      th.AI {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 200,  50%, 52%) 100%
+        );
+      }
+      
+      th.AP {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 130,  40%, 60%) 100%
+        );
+      }
+      
+      th.AW {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.EI {
+        background: linear-gradient(
+          90deg,
+          hsl( 24,  100%, 45%) 0%,
+          hsl( 200,  50%, 52%) 100%
+        );
+      }
+      
+      th.EP {
+        background: linear-gradient(
+          90deg,
+          hsl( 24,  100%, 45%) 0%,
+          hsl( 130,  40%, 60%) 100%
+        );
+      }
+      
+      th.EW {
+        background: linear-gradient(
+          90deg,
+          hsl( 24,  100%, 45%) 0%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.IP {
+        background: linear-gradient(
+          90deg,
+          hsl( 200,  50%, 52%) 0%,
+          hsl( 130,  40%, 60%) 100%
+        );
+      }
+      
+      th.IW {
+        background: linear-gradient(
+          90deg,
+          hsl( 200,  50%, 52%) 0%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.PW {
+        background: linear-gradient(
+          90deg,
+          hsl( 130,  40%, 60%) 0%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      
+      th.AEI {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 24,  100%, 45%) 50%,
+          hsl( 200,  50%, 52%) 100%
+        );
+      }
+      
+      th.AEP {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 24,  100%, 45%) 50%,
+          hsl( 130,  40%, 60%) 100%
+        );
+      }
+      
+      th.AEW {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 24,  100%, 45%) 50%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.AIP {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 200,  50%, 52%) 50%,
+          hsl( 130,  40%, 60%) 100%
+        );
+      }
+      
+      th.AIW {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 200,  50%, 52%) 50%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.APW {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 130,  40%, 60%) 50%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.EIP {
+        background: linear-gradient(
+          90deg,
+          hsl( 24,  100%, 45%) 0%,
+          hsl( 200,  50%, 52%) 50%,
+          hsl( 130,  40%, 60%) 100%
+        );
+      }
+      
+      th.EIW {
+        background: linear-gradient(
+          90deg,
+          hsl( 24,  100%, 45%) 0%,
+          hsl( 200,  50%, 52%) 50%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.IPW {
+        background: linear-gradient(
+          90deg,
+          hsl( 200,  50%, 52%) 0%,
+          hsl( 130,  40%, 60%) 50%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      
+      /* AEIPW */
+      
+      
+      th.AEIP {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 24,  100%, 45%) 33%,
+          hsl( 200,  50%, 52%) 66%,
+          hsl( 130,  40%, 60%) 100%
+        );
+      }
+      
+      th.AEIW {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 24,  100%, 45%) 33%,
+          hsl( 200,  50%, 52%) 66%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.AEPW {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 24,  100%, 45%) 33%,
+          hsl( 130,  40%, 60%) 66%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.AIPW {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 200,  50%, 52%) 33%,
+          hsl( 130,  40%, 60%) 66%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.EIPW {
+        background: linear-gradient(
+          90deg,
+          hsl( 24,  100%, 45%) 0%,
+          hsl( 200,  50%, 52%) 33%,
+          hsl( 130,  40%, 60%) 66%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      
+      th.AEIPW {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 24,  100%, 45%) 25%,
+          hsl( 200,  50%, 52%) 50%,
+          hsl( 130,  40%, 60%) 75%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      
+      .fontname {
+        width: 20em;
+      }
+      .table {
+        width: 2.5em;
+      }
+      .feature {
+        width: 7.5em;
+      }
+      .message {
+        /*width: 20em;*/
+      }
+      .detail {
+        width: 40em;
+      }
+      .detail p {
+      }
+      .name { background-color: #eee }
+      .name th { padding-top: 1em }
+
+    </style>
+    <script type='text/javascript'>
+      function toggle(toggle_class){
+        var elements = document.getElementsByTagName('tr')
+        for (var i = 0; i < elements.length; i++){
+          var e = elements[i]
+          if (e.className == toggle_class) {
+            if (e.style.display != 'none') {
+              e.style.display = 'none'
+            } else {
+              e.style.display = 'table-row'
+            }
+          }
+        }
+      }
+    </script>
+    
+    <script type='text/javascript'>
+      function toggle_detail(my_id){
+        var element = document.getElementById(my_id)
+        var buttoncell = document.getElementById(my_id+"_cell")
+        var button = document.getElementById(my_id+"_btn")
+        if (element.style.display != 'none') {
+          element.style.display = 'none'
+          buttoncell.style.borderRadius = '0.0em'
+          button.firstChild.data = '\u25bc'
+        } else {
+          element.style.display = ''
+          buttoncell.style.borderRadius = '0.0em 0.0em 0 0'
+          button.firstChild.data = '\u25b2'
+        }
+      }
+    </script>
+    
+    <script type='text/javascript'>
+      function toggle_all_results(){
+        var elements = document.getElementsByClassName('result_body')
+        for (var i = 0; i < elements.length; i++){
+          var e = elements[i]
+          if (e.style.display != 'none') {
+            e.style.display = 'none'
+          } else {
+            e.style.display = ''
+          }
+        }
+      }
+    </script>
+  </head>
+  <body onload="toggle_all_results()">
+    <h1>FontSniffer Report</h1>
+    <p>Library Project, start: 2020-09-26 - 14:19.27, end: 14:19.28</p>
+    <table class='togglemessages'>
+      <tr>
+        <td>Show messages:</td>
+        <td><input type='checkbox' checked name='P' id='itoggle' onclick='toggle("P");'>
+          <label for='itoggle'>Pass</label></td>
+        <td><input type='checkbox' checked name='I' id='itoggle' onclick='toggle("I");'>
+          <label for='itoggle'>Info</label></td>
+        <td><input type='checkbox' checked name='W' id='wtoggle'onclick='toggle("W");'>
+          <label for='wtoggle'>Warning</label></td>
+        <td><input type='checkbox' checked name='E' id='etoggle' onclick='toggle("E");'>
+          <label for='etoggle'>Error</label></td>
+        <td><input type='checkbox' checked name='C' id='ctoggle' onclick='toggle("C");'>
+          <label for='ctoggle'>Critical</label></td>
+          
+        <td><button onclick='toggle_all_results();'>Toggle all details</button></td>
+      </tr>
+    </table>
+    
+        <table class="fontlist">
+
+            <thead>
+                <tr><th>Font List</th></tr>
+            </thead>
+            <tbody>
+								<tr><td>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</td></tr>
+						</tbody>
+        </table>
+
+            <h2>Table Description</h2>
+            <table class="results">
+
+                <thead>
+                    <tr>
+                    <th class="A code" id="Table Description_cell">
+                    <button id="Table Description_btn" onclick='toggle_detail("Table Description");' title="Toggle details">&#x25bc;</button>
+                    </th>
+                    <th colspan="3"><h3>Table Description</h3></th></tr>
+                </thead>
+              <tbody id="Table Description" class="result_body">
+                    
+                <tr class="A">
+                    <td class="code"><p>Level</p></td>
+                    <td class="fontname"><p>Font Name</p></td>
+                    <td class="table"><p>Table</p></td>
+                    <td class="feature"><p>Feature/Item</p></td>
+                    <td class="message"><p>Description</p></td>
+                    <td class="detail"><p>Notes</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+              </tbody>
+            </table>				<h2>Table Version</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Table Version_cell">
+                <button id="Table Version_btn" onclick='toggle_detail("Table Version");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Table Version</h3></th></tr>
+            </thead>
+            <tbody id="Table Version" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>head</p></td>
+                    <td class="feature"><p>version</p></td>
+                    <td class="message"><p>head table version should be 1.0.</p></td>
+                    <td class="detail"><p>head table version is 1.0.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>version</p></td>
+                    <td class="message"><p>OS/2 table version should be 4.</p></td>
+                    <td class="detail"><p>OS/2 table version is 4.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>post</p></td>
+                    <td class="feature"><p>format</p></td>
+                    <td class="message"><p>If not CFF, post table format should be 2.</p></td>
+                    <td class="detail"><p>Format is 2.0</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>OT Sanitizer</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="OT Sanitizer_cell">
+                <button id="OT Sanitizer_btn" onclick='toggle_detail("OT Sanitizer");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>OT Sanitizer</h3></th></tr>
+            </thead>
+            <tbody id="OT Sanitizer" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>-/-</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>OT Sanitizer</p></td>
+                    <td class="detail"><p>Passed:<br>&emsp;&emsp;&emsp;&emsp;Process start (TTF file)<br>&emsp;&emsp;&emsp;&emsp;&emsp;ProcessGeneric start<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Validating font<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Reading font<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Processing glyphs...<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; 1000<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Processing glyphs done<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Writing new font<br>&emsp;&emsp;&emsp;&emsp;&emsp;ProcessGeneric end<br>&emsp;&emsp;&emsp;&emsp;Process end<br>&emsp;&emsp;&emsp;&emsp;Process start (TTF file)<br>&emsp;&emsp;&emsp;&emsp;&emsp;ProcessGeneric start<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Validating font<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Reading font<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Processing glyphs...<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; 1000<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Processing glyphs done<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Writing new font<br>&emsp;&emsp;&emsp;&emsp;&emsp;ProcessGeneric end<br>&emsp;&emsp;&emsp;&emsp;Process end<br></p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Weight Class</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Weight Class_cell">
+                <button id="Weight Class_btn" onclick='toggle_detail("Weight Class");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Weight Class</h3></th></tr>
+            </thead>
+            <tbody id="Weight Class" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>usWeightClass</p></td>
+                    <td class="message"><p>OS/2 weight class should be greater then 250 otherwise it cause issues in MS PowerPoint.</p></td>
+                    <td class="detail"><p>OK: usWeightClass is '400'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>File Name</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="File Name_cell">
+                <button id="File Name_btn" onclick='toggle_detail("File Name");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>File Name</h3></th></tr>
+            </thead>
+            <tbody id="File Name" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>-/-</p></td>
+                    <td class="feature"><p>File Name</p></td>
+                    <td class="message"><p>File name should not be longer than 31 characters, otherwise style linking does not work in MS Word/Mac.</p></td>
+                    <td class="detail"><p>file name length is '28': 'NotoNastaliqUrdu-Regular.ttf'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>-/-</p></td>
+                    <td class="feature"><p>File Name</p></td>
+                    <td class="message"><p>File name should not be longer than 31 characters, contain space and have more then one dot for ending.</p></td>
+                    <td class="detail"><p>Everything is fine: 'NotoNastaliqUrdu-Regular.ttf'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Style Linking</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Style Linking_cell">
+                <button id="Style Linking_btn" onclick='toggle_detail("Style Linking");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Style Linking</h3></th></tr>
+            </thead>
+            <tbody id="Style Linking" class="result_body">
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>-/-</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Check if italic or upright.</p></td>
+                    <td class="detail"><p>It seems to be an upright font.<br>OS2.fsSelection.italic: False<br>head.macStyle.italic: False<br>post.header.italicAngle: 0.0</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>-/-</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Check if bold.</p></td>
+                    <td class="detail"><p>It seems to be not bold.<br>OS2.fsSelection.bold: False<br>head.macStyle.bold: False</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Empty Glyphs</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Empty Glyphs_cell">
+                <button id="Empty Glyphs_btn" onclick='toggle_detail("Empty Glyphs");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Empty Glyphs</h3></th></tr>
+            </thead>
+            <tbody id="Empty Glyphs" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>glyf</p></td>
+                    <td class="feature"><p>outline</p></td>
+                    <td class="message"><p>Unicodes should have outlines.</p></td>
+                    <td class="detail"><p>The following glyphs have no outlines, but this is correct:<br>Monotype NULL (uni0000)<br>ZERO WIDTH NO-BREAK SPACE (uniFEFF)<br> (uni000D)<br>SPACE (uni0020)<br>NO-BREAK SPACE (uni00A0)<br>ZERO WIDTH SPACE (uni200B)<br>ARABIC LETTER MARK (uni061C)</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Supplementary NFC</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Supplementary NFC_cell">
+                <button id="Supplementary NFC_btn" onclick='toggle_detail("Supplementary NFC");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Supplementary NFC</h3></th></tr>
+            </thead>
+            <tbody id="Supplementary NFC" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>unicode</p></td>
+                    <td class="message"><p>Supplementary glyphs</p></td>
+                    <td class="detail"><p>No issues found.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Supplementary Glyphs</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Supplementary Glyphs_cell">
+                <button id="Supplementary Glyphs_btn" onclick='toggle_detail("Supplementary Glyphs");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Supplementary Glyphs</h3></th></tr>
+            </thead>
+            <tbody id="Supplementary Glyphs" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>unicode</p></td>
+                    <td class="message"><p>Supplementary glyphs</p></td>
+                    <td class="detail"><p>No issues found.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Check against Base Glyph Advance Width</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Check against Base Glyph Advance Width_cell">
+                <button id="Check against Base Glyph Advance Width_btn" onclick='toggle_detail("Check against Base Glyph Advance Width");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Check against Base Glyph Advance Width</h3></th></tr>
+            </thead>
+            <tbody id="Check against Base Glyph Advance Width" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>hmtx</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Compare advance width against base glyph advance width (tolerance 2 units).</p></td>
+                    <td class="detail"><p>'ThreeDotsDownAboveNS' (ID 21): width is 0, base glyph ('ThreeDotsDownBelowNS' (ID 20)) width is 0<br>'OneDotEnclTNS' (ID 23): width is 0, base glyph ('OneDotEnclNS' (ID 22)) width is 0<br>'TwoDotsEnclNS' (ID 26): width is 0, base glyph ('TwoDotsBelowNS' (ID 19)) width is 0<br>'TwoDotsVertEnclNS' (ID 27): width is 0, base glyph ('TwoDotsVert' (ID 29)) width is 0<br>'FourDotsEnclNS' (ID 28): width is 0, base glyph ('FourDots' (ID 34)) width is 0<br>'TwoDotsVertAboveNS' (ID 30): width is 0, base glyph ('TwoDotsVert' (ID 29)) width is 0<br>'TwoDotsVertBelowNS' (ID 31): width is 0, base glyph ('TwoDotsVert' (ID 29)) width is 0<br>'FourDotsBelowNS' (ID 33): width is 0, base glyph ('FourDots' (ID 34)) width is 0<br>'HamzaBelowNS' (ID 40): width is 0, base glyph ('HamzaAboveNS' (ID 39)) width is 0<br>'HamzaBelowAF_NS' (ID 42): width is 0, base glyph ('HamzaAboveAF_NS' (ID 41)) width is 0<br>'TahSmallBelowNS' (ID 68): width is 0, base glyph ('TahSmallNS' (ID 67)) width is 0<br>'TahSmallEnclNS' (ID 69): width is 0, base glyph ('TahSmallNS' (ID 67)) width is 0<br>'Tah2DotsEnclNS' (ID 70): width is 0, base glyph ('Tah2DotsBelowNS' (ID 71)) width is 0<br>'AlefInferiorYB' (ID 74): width is 0, base glyph ('AlefInferiorNS' (ID 46)) width is 0<br>'HamzaBelowYB' (ID 75): width is 0, base glyph ('HamzaAboveNS' (ID 39)) width is 0<br>'KasraYB' (ID 76): width is 0, base glyph ('KasraNS' (ID 52)) width is 0<br>'KasratanYB' (ID 77): width is 0, base glyph ('KasratanNS' (ID 53)) width is 0<br>'OneDotBelowYB' (ID 78): width is 0, base glyph ('OneDotBelowNS' (ID 18)) width is 0<br>'ThreeDotsDownBelowYB' (ID 79): width is 0, base glyph ('ThreeDotsDownBelowNS' (ID 20)) width is 0<br>'TwoDotsBelowYB' (ID 80): width is 0, base glyph ('TwoDotsBelowNS' (ID 19)) width is 0<br>'HehCommaAltNS' (ID 82): width is 0, base glyph ('HehCommaNS' (ID 81)) width is 0<br>'HehCommaYB' (ID 83): width is 0, base glyph ('HehCommaNS' (ID 81)) width is 0<br>'FourDotsBelowYB' (ID 84): width is 0, base glyph ('FourDotsAboveNS' (ID 32)) width is 0<br>'WavyHamzaBelowYB' (ID 85): width is 0, base glyph ('WavyHamzaBelowNS' (ID 1083)) width is 0<br>'Small4UrduBelowYB' (ID 86): width is 0, base glyph ('Small4UrduAboveNS' (ID 1087)) width is 0<br>'TwoDotsVertBelowYB' (ID 87): width is 0, base glyph ('TwoDotsVert' (ID 29)) width is 0<br>'HamzaBelowAF_YB' (ID 88): width is 0, base glyph ('HamzaAboveAF_NS' (ID 41)) width is 0<br>'Tah2DotsBelowYB' (ID 89): width is 0, base glyph ('Tah2DotsBelowNS' (ID 71)) width is 0<br>'TahSmallBelowYB' (ID 90): width is 0, base glyph ('TahSmallNS' (ID 67)) width is 0<br>'OneDotAboveAltNS' (ID 92): width is 0, base glyph ('OneDotAboveNS' (ID 15)) width is 0<br>'TwoDotsAboveAltNS' (ID 93): width is 0, base glyph ('TwoDotsAboveNS' (ID 16)) width is 0<br>'ThreeDotsUpAboveAltNS' (ID 94): width is 0, base glyph ('ThreeDotsUpAboveNS' (ID 17)) width is 0<br>'MaddaAltNS' (ID 95): width is 0, base glyph ('MaddaNS' (ID 35)) width is 0<br>'Madda.shortAltNS' (ID 96): width is 0, base glyph ('Madda.shortNS' (ID 36)) width is 0<br>'Madda.shorterAltNS' (ID 97): width is 0, base glyph ('Madda.shorterNS' (ID 37)) width is 0<br>'WaslaAltNS' (ID 98): width is 0, base glyph ('WaslaNS' (ID 38)) width is 0<br>'HamzaAboveAltNS' (ID 99): width is 0, base glyph ('HamzaAboveNS' (ID 39)) width is 0<br>'HamzaAboveAF_AltNS' (ID 100): width is 0, base glyph ('HamzaAboveAF_NS' (ID 41)) width is 0<br>'AlayhissalamAltNS' (ID 101): width is 0, base glyph ('AlayhissalamNS' (ID 43)) width is 0<br>'AlefSuperiorAltNS' (ID 102): width is 0, base glyph ('AlefSuperiorNS' (ID 44)) width is 0<br>'DammaAltNS' (ID 103): width is 0, base glyph ('DammaNS' (ID 47)) width is 0<br>'UltapeshAltNS' (ID 104): width is 0, base glyph ('UltapeshNS' (ID 48)) width is 0<br>'DammatanAltNS' (ID 105): width is 0, base glyph ('DammatanNS' (ID 49)) width is 0<br>'FathaAltNS' (ID 106): width is 0, base glyph ('FathaNS' (ID 50)) width is 0<br>'FathatanAltNS' (ID 107): width is 0, base glyph ('FathatanNS' (ID 51)) width is 0<br>'NoonGhunnaMarkAltNS' (ID 108): width is 0, base glyph ('NoonGhunnaMarkNS' (ID 54)) width is 0<br>'RadiallahAltNS' (ID 109): width is 0, base glyph ('RadiallahNS' (ID 56)) width is 0<br>'RahmatullahAltNS' (ID 110): width is 0, base glyph ('RahmatullahNS' (ID 57)) width is 0<br>'SallallahAltNS' (ID 111): width is 0, base glyph ('SallallahNS' (ID 58)) width is 0<br>'ShaddaAltNS' (ID 112): width is 0, base glyph ('ShaddaNS' (ID 59)) width is 0<br>'Tah2DotsAboveAltNS' (ID 113): width is 0, base glyph ('Tah2DotsAboveNS' (ID 72)) width is 0<br>'SukunHahAltNS' (ID 114): width is 0, base glyph ('SukunHahNS' (ID 63)) width is 0<br>'SukunJazmAltNS' (ID 115): width is 0, base glyph ('SukunJazmNS' (ID 64)) width is 0<br>'WavyHamzaAboveAltNS' (ID 116): width is 0, base glyph ('WavyHamzaBelowNS' (ID 1083)) width is 0<br>'SukunAltNS' (ID 117): width is 0, base glyph ('SukunNS' (ID 65)) width is 0<br>'SukunZeroAltNS' (ID 118): width is 0, base glyph ('SukunZeroNS' (ID 66)) width is 0<br>'TahSmallAltNS' (ID 119): width is 0, base glyph ('TahSmallNS' (ID 67)) width is 0<br>'TakhallusAltNS' (ID 120): width is 0, base glyph ('TakhallusNS' (ID 73)) width is 0<br>'OneDotBelowAltNS' (ID 121): width is 0, base glyph ('OneDotBelowNS' (ID 18)) width is 0<br>'TwoDotsBelowAltNS' (ID 122): width is 0, base glyph ('TwoDotsBelowNS' (ID 19)) width is 0<br>'ThreeDotsDownBelowAltNS' (ID 123): width is 0, base glyph ('ThreeDotsDownBelowNS' (ID 20)) width is 0<br>'HamzaBelowAltNS' (ID 124): width is 0, base glyph ('HamzaAboveNS' (ID 39)) width is 0<br>'HamzaBelowAF_AltNS' (ID 125): width is 0, base glyph ('HamzaAboveAF_NS' (ID 41)) width is 0<br>'AlefInferiorAltNS' (ID 126): width is 0, base glyph ('AlefInferiorNS' (ID 46)) width is 0<br>'KasraAltNS' (ID 127): width is 0, base glyph ('KasraNS' (ID 52)) width is 0<br>'KasratanAltNS' (ID 128): width is 0, base glyph ('KasratanNS' (ID 53)) width is 0<br>'AlefSuperiorTallAltNS' (ID 129): width is 0, base glyph ('AlefSuperiorTallNS' (ID 45)) width is 0<br>'CircumArabicAltNS' (ID 130): width is 0, base glyph ('CircumArabicNS' (ID 1092)) width is 0<br>'Fatha2dotsAltNS' (ID 131): width is 0, base glyph ('Fatha2dotsNS' (ID 1082)) width is 0<br>'FourDotsAboveAltNS' (ID 132): width is 0, base glyph ('FourDots' (ID 34)) width is 0<br>'FourDotsBelowAltNS' (ID 133): width is 0, base glyph ('FourDots' (ID 34)) width is 0<br>'WavyHamzaBelowAltNS' (ID 134): width is 0, base glyph ('WavyHamzaBelowNS' (ID 1083)) width is 0<br>'SevenSmallDotAltNS' (ID 135): width is 0, base glyph ('SevenSmallDotNS' (ID 1093)) width is 0<br>'TahDotAboveAltNS' (ID 136): width is 0, base glyph ('TahDotAboveNS' (ID 1094)) width is 0<br>'ShortVwlAltNS' (ID 137): width is 0, base glyph ('ShortVwlNS' (ID 1095)) width is 0<br>'Small2AboveAltNS' (ID 138): width is 0, base glyph ('Small2AboveNS' (ID 1085)) width is 0<br>'Small3AboveAltNS' (ID 139): width is 0, base glyph ('Small3AboveNS' (ID 1086)) width is 0<br>'Small4UrduAboveAltNS' (ID 140): width is 0, base glyph ('Small4UrduAboveNS' (ID 1087)) width is 0<br>'Small4UrduBelowAltNS' (ID 141): width is 0, base glyph ('Small4UrduAboveNS' (ID 1087)) width is 0<br>'TwoDotsVertAboveAltNS' (ID 142): width is 0, base glyph ('TwoDotsVert' (ID 29)) width is 0<br>'TwoDotsVertBelowAltNS' (ID 143): width is 0, base glyph ('TwoDotsVert' (ID 29)) width is 0<br>'Tah2DotsBelowAltNS' (ID 144): width is 0, base glyph ('Tah2DotsBelowNS' (ID 71)) width is 0<br>'ZwarakayAltNS' (ID 145): width is 0, base glyph ('ZwarakayNS' (ID 1080)) width is 0<br>'ThreeDotsDownAboveAltNS' (ID 146): width is 0, base glyph ('ThreeDotsDownBelowNS' (ID 20)) width is 0<br>'DammaRevAltNS' (ID 147): width is 0, base glyph ('DammaRevNS' (ID 1081)) width is 0<br>'OneDotSmallAbove' (ID 149): width is 0, base glyph ('OneDotSmall' (ID 148)) width is 0<br>'OneDotSmallBelowNS' (ID 150): width is 0, base glyph ('OneDotSmall' (ID 148)) width is 0<br>'SixUrdu' (ID 173): width is 1161, base glyph ('SixArabic' (ID 165)) width is 1161<br>'uni2010' (ID 189): width is 968, base glyph ('hyphen' (ID 180)) width is 968<br>'uni2011' (ID 190): width is 968, base glyph ('hyphen' (ID 180)) width is 968<br>'YehBarreeFin_5' (ID 253): width is 2808, base glyph ('YehBarreeFin' (ID 252)) width is 2808<br>'YehBarreeFin_4' (ID 254): width is 2808, base glyph ('YehBarreeFin' (ID 252)) width is 2808<br>'YehBarreeFin_3' (ID 255): width is 2808, base glyph ('YehBarreeFin' (ID 252)) width is 2808<br>'BehxIni.A' (ID 282): width is 484, base glyph ('BehxIni' (ID 281)) width is 484<br>'YehBarreeFin.2_5' (ID 291): width is 2808, base glyph ('YehBarreeFin.2' (ID 290)) width is 2808<br>'YehBarreeFin.2_4' (ID 292): width is 2808, base glyph ('YehBarreeFin.2' (ID 290)) width is 2808<br>'YehBarreeFin.2_3' (ID 293): width is 2808, base glyph ('YehBarreeFin.2' (ID 290)) width is 2808<br>'BehxIni.outT2B' (ID 302): width is 320, base glyph ('BehxIni.outT2' (ID 301)) width is 320<br>'BehxIni.outT2K' (ID 303): width is 320, base glyph ('BehxIni.outT2' (ID 301)) width is 320<br>'BehxMed.inT2outT2K' (ID 370): width is 610, base glyph ('BehxMed.inT2outT2' (ID 369)) width is 610<br>'BehxMed.inT2outD11wide' (ID 401): width is 1282, base glyph ('BehxMed.inT2outD1' (ID 399)) width is 1282<br>'BehxMed.inT2outD2H' (ID 405): width is 846, base glyph ('BehxMed.inT2outD2HF' (ID 407)) width is 846<br>'BehxMed.inT2outD2HS' (ID 406): width is 846, base glyph ('BehxMed.inT2outD2HF' (ID 407)) width is 846<br>'LamMed.outD2H' (ID 448): width is 1037, base glyph ('LamMed.outD2HYB' (ID 449)) width is 1037<br>'HahIni.outD2D' (ID 522): width is 1145, base glyph ('HahIni.outD2' (ID 520)) width is 1145<br>'HahIni.outD2H' (ID 523): width is 1145, base glyph ('HahIni.outD2' (ID 520)) width is 1145<br>'HehDoMed.inD2outD2YB' (ID 532): width is 999, base glyph ('HehDoMed.inD2outD2' (ID 531)) width is 999<br>'KafMed.outD2H' (ID 732): width is 1037, base glyph ('KafMed.outD2HYB' (ID 733)) width is 1037<br>'GafIni.k' (ID 763): width is 565, base glyph ('KafIni.k' (ID 297)) width is 565<br>'GafMed.outD2H' (ID 780): width is 1037, base glyph ('GafMed.outD2HYB' (ID 781)) width is 1037<br>'AinIni.outD2D' (ID 794): width is 1143, base glyph ('AinIni.outD2' (ID 576)) width is 1143<br>'FehxIni.outD2D' (ID 795): width is 941, base glyph ('FehxIni.outD2' (ID 263)) width is 941<br>'GafIni.outD2D' (ID 796): width is 513, base glyph ('GafIni.outD2' (ID 430)) width is 513<br>'HehDoIni.outD2D' (ID 797): width is 1503, base glyph ('HehDoIni.outD2' (ID 489)) width is 1503<br>'HehIniAF.outD2D' (ID 798): width is 1199, base glyph ('HehIniAF.outD2' (ID 678)) width is 1199<br>'KafIni.outD2D' (ID 799): width is 513, base glyph ('KafIni.outD2' (ID 422)) width is 513<br>'LamIni.outD2D' (ID 800): width is 520, base glyph ('LamIni.outD2' (ID 418)) width is 520<br>'MeemIni.outD2D' (ID 801): width is 1048, base glyph ('MeemIni.outD2' (ID 319)) width is 1048<br>'TahIni.outD2D' (ID 802): width is 1224, base glyph ('TahIni.outD2' (ID 354)) width is 1224<br>'AinIni.outD2H' (ID 803): width is 1143, base glyph ('AinIni.outD2' (ID 576)) width is 1143<br>'FehxIni.outD2H' (ID 804): width is 941, base glyph ('FehxIni.outD2' (ID 263)) width is 941<br>'HehDoIni.outD2H' (ID 805): width is 1503, base glyph ('HehDoIni.outD2' (ID 489)) width is 1503<br>'HehIniAF.outD2H' (ID 806): width is 1199, base glyph ('HehIniAF.outD2' (ID 678)) width is 1199<br>'MeemIni.outD2H' (ID 807): width is 1048, base glyph ('MeemIni.outD2' (ID 319)) width is 1048<br>'HehIni.outD2D' (ID 808): width is 1357, base glyph ('HehIni.outD2H' (ID 352)) width is 1357<br>'BehxMed.inT1' (ID 809): width is 513, base glyph ('BehxMed.inT1outS1' (ID 366)) width is 513<br>'BehxMed.inT2' (ID 810): width is 598, base glyph ('BehxMed.inT2outS1' (ID 376)) width is 598<br>'SeenMed.inT2' (ID 811): width is 1152, base glyph ('SeenMed.inT2outS1' (ID 597)) width is 1152<br>'AinMed.inT3' (ID 812): width is 635, base glyph ('AinMed.inT3outT2' (ID 558)) width is 635<br>'FehxMed.inT3' (ID 813): width is 668, base glyph ('FehxMed.inT3outT2' (ID 557)) width is 668<br>'SadMed.inD1' (ID 814): width is 749, base glyph ('SadMed.inD1outS1' (ID 615)) width is 749<br>'TahMed.inD1' (ID 815): width is 86, base glyph ('TahMed.inD1outS1' (ID 305)) width is 86<br>'HahMed.inD2' (ID 816): width is 319, base glyph ('HahMed.inD2outS1' (ID 648)) width is 319<br>'HehDoMed.inD2' (ID 817): width is 743, base glyph ('HehDoMed.inD2outS1' (ID 492)) width is 743<br>'MeemMed.inD2' (ID 818): width is 698, base glyph ('MeemMed.inD2outS1' (ID 690)) width is 698<br>'HehMed.inD5' (ID 819): width is 902, base glyph ('HehMed.inD5outS1' (ID 660)) width is 902<br>'AinMed.inT3outT1' (ID 820): width is 535, base glyph ('AinMed' (ID 556)) width is 535<br>'FehxMed.inT3outT1' (ID 821): width is 504, base glyph ('FehxMed' (ID 460)) width is 504<br>'SadMed.inD1outT1' (ID 822): width is 698, base glyph ('SadMed' (ID 612)) width is 698<br>'TahMed.inD1outT1' (ID 823): width is 140, base glyph ('TahMed' (ID 624)) width is 140<br>'HahMed.inD2outT1' (ID 824): width is 203, base glyph ('HahMed' (ID 591)) width is 203<br>'MeemMed.inD2outT1' (ID 825): width is 623, base glyph ('MeemMed' (ID 413)) width is 623<br>'HehMed.inD5outT1' (ID 826): width is 787, base glyph ('HehMed' (ID 637)) width is 787<br>'SeenMed.inT2outT1' (ID 828): width is 1103, base glyph ('SeenMed' (ID 411)) width is 1103<br>'AinMed.inT3outD2D' (ID 829): width is 634, base glyph ('AinMed.inT3outD2' (ID 568)) width is 634<br>'FehxMed.inT3outD2D' (ID 830): width is 635, base glyph ('FehxMed.inT3outD2' (ID 493)) width is 635<br>'HahMed.inD2outD2D' (ID 831): width is 317, base glyph ('HahMed.inD2outD2' (ID 598)) width is 317<br>'HehDoMed.inD2outD2D' (ID 832): width is 999, base glyph ('HehDoMed.inD2outD2' (ID 531)) width is 999<br>'HehMed.inD5outD2D' (ID 833): width is 959, base glyph ('HehMed.inD5outD2' (ID 661)) width is 959<br>'MeemMed.inD2outD2D' (ID 834): width is 598, base glyph ('MeemMed.inD2outD2' (ID 695)) width is 598<br>'TahMed.inD1outD2D' (ID 835): width is 337, base glyph ('TahMed.inD1outD2' (ID 629)) width is 337<br>'AinMed.inT3outD2H' (ID 836): width is 634, base glyph ('AinMed.inT3outD2' (ID 568)) width is 634<br>'FehxMed.inT3outD2H' (ID 837): width is 635, base glyph ('FehxMed.inT3outD2D' (ID 830)) width is 635<br>'FehxMed.inT3outD2Hwide' (ID 838): width is 745, base glyph ('FehxMed.inT3outD2YB' (ID 569)) width is 745<br>'HahMed.inD2outD2H' (ID 839): width is 317, base glyph ('HahMed.inD2outD2' (ID 598)) width is 317<br>'HahMed.inD2outD2YB' (ID 840): width is 317, base glyph ('HahMed.inD2outD2' (ID 598)) width is 317<br>'HehDoMed.inD2outD2H' (ID 841): width is 999, base glyph ('HehDoMed.inD2outD2' (ID 531)) width is 999<br>'YehKashmiriSep' (ID 847): width is 1651, base glyph ('YehKashmiri' (ID 851)) width is 1651<br>'Hamza' (ID 852): width is 1114, base glyph ('HamzaSep' (ID 313)) width is 1114<br>'AlefMadda' (ID 853): width is 675, base glyph ('AlefSep' (ID 227)) width is 675<br>'AlefHamzaAbove' (ID 854): width is 675, base glyph ('AlefSep' (ID 227)) width is 675<br>'WawHamza' (ID 855): width is 864, base glyph ('WawSep' (ID 246)) width is 864<br>'AlefHamzaBelow' (ID 856): width is 675, base glyph ('AlefSep' (ID 227)) width is 675<br>'YehHamza' (ID 857): width is 1762, base glyph ('YehxSep' (ID 273)) width is 1762<br>'Alef' (ID 858): width is 675, base glyph ('AlefSep' (ID 227)) width is 675<br>'Beh' (ID 859): width is 2407, base glyph ('BehxSep' (ID 229)) width is 2407<br>'TehMarbuta' (ID 860): width is 643, base glyph ('HehSep' (ID 278)) width is 643<br>'Teh' (ID 861): width is 2407, base glyph ('BehxSep' (ID 229)) width is 2407<br>'Theh' (ID 862): width is 2407, base glyph ('BehxSep' (ID 229)) width is 2407<br>'Jeem' (ID 863): width is 1784, base glyph ('HahSep' (ID 233)) width is 1784<br>'Hah' (ID 864): width is 1784, base glyph ('HahSep' (ID 233)) width is 1784<br>'Xah' (ID 865): width is 1784, base glyph ('HahSep' (ID 233)) width is 1784<br>'Dal' (ID 866): width is 614, base glyph ('DalSep' (ID 234)) width is 614<br>'Dhal' (ID 867): width is 614, base glyph ('DalSep' (ID 234)) width is 614<br>'Reh' (ID 868): width is 832, base glyph ('RehSep' (ID 236)) width is 832<br>'Zain' (ID 869): width is 832, base glyph ('RehSep' (ID 236)) width is 832<br>'Seen' (ID 870): width is 2279, base glyph ('SeenSep' (ID 237)) width is 2279<br>'Sheen' (ID 871): width is 2279, base glyph ('SeenSep' (ID 237)) width is 2279<br>'Sad' (ID 872): width is 2542, base glyph ('SadSep' (ID 239)) width is 2542<br>'Dad' (ID 873): width is 2542, base glyph ('SadSep' (ID 239)) width is 2542<br>'Tah' (ID 874): width is 1337, base glyph ('TahSep' (ID 240)) width is 1337<br>'Zah' (ID 875): width is 1337, base glyph ('TahSep' (ID 240)) width is 1337<br>'Ain' (ID 876): width is 1786, base glyph ('AinSep' (ID 241)) width is 1786<br>'Ghain' (ID 877): width is 1786, base glyph ('AinSep' (ID 241)) width is 1786<br>'Feh' (ID 878): width is 2493, base glyph ('FehxSep' (ID 243)) width is 2493<br>'Qaf' (ID 879): width is 1751, base glyph ('QafxSep' (ID 245)) width is 1751<br>'Kaf' (ID 880): width is 2374, base glyph ('KafSep' (ID 247)) width is 2374<br>'Lam' (ID 881): width is 1742, base glyph ('LamSep' (ID 248)) width is 1742<br>'Meem' (ID 882): width is 1352, base glyph ('MeemSep' (ID 250)) width is 1352<br>'Noon' (ID 883): width is 1764, base glyph ('NoonxSep' (ID 231)) width is 1764<br>'Heh' (ID 884): width is 1152, base glyph ('HehSep.AF' (ID 343)) width is 1152<br>'Waw' (ID 885): width is 864, base glyph ('WawSep' (ID 246)) width is 864<br>'AlefMaqsura' (ID 886): width is 1762, base glyph ('YehxSep' (ID 273)) width is 1762<br>'Yeh' (ID 887): width is 1762, base glyph ('YehxSep' (ID 273)) width is 1762<br>'Behx' (ID 888): width is 2407, base glyph ('BehxSep' (ID 229)) width is 2407<br>'Qafx' (ID 889): width is 1751, base glyph ('QafxSep' (ID 245)) width is 1751<br>'AlefWasla' (ID 890): width is 675, base glyph ('AlefSep' (ID 227)) width is 675<br>'AlefWavyHamzaAbove' (ID 891): width is 675, base glyph ('AlefSep' (ID 227)) width is 675<br>'AlefWavyHamzaBelow' (ID 892): width is 675, base glyph ('AlefSep' (ID 227)) width is 675<br>'TehTahAbove' (ID 893): width is 2407, base glyph ('BehxSep' (ID 229)) width is 2407<br>'Peh' (ID 894): width is 2407, base glyph ('BehxSep' (ID 229)) width is 2407<br>'Tcheh' (ID 895): width is 1784, base glyph ('HahSep' (ID 233)) width is 1784<br>'DalTahAbove' (ID 896): width is 614, base glyph ('DalSep' (ID 234)) width is 614<br>'RehTahAbove' (ID 897): width is 832, base glyph ('RehSep' (ID 236)) width is 832<br>'Zheh' (ID 898): width is 832, base glyph ('RehSep' (ID 236)) width is 832<br>'Fehx' (ID 899): width is 2493, base glyph ('FehxSep' (ID 243)) width is 2493<br>'Veh' (ID 900): width is 2493, base glyph ('FehxSep' (ID 243)) width is 2493<br>'KafFarsi' (ID 901): width is 2374, base glyph ('KafSep' (ID 247)) width is 2374<br>'NoonGhunna' (ID 903): width is 1764, base glyph ('NoonxSep' (ID 231)) width is 1764<br>'HehDoachasmee' (ID 904): width is 1341, base glyph ('HehDoSep' (ID 274)) width is 1341<br>'HehHamza' (ID 905): width is 643, base glyph ('HehSep' (ID 278)) width is 643<br>'HehUrdu' (ID 906): width is 643, base glyph ('HehSep' (ID 278)) width is 643<br>'HehHamzaUrdu' (ID 907): width is 643, base glyph ('HehSep' (ID 278)) width is 643<br>'TehMarbutaUrdu' (ID 908): width is 643, base glyph ('HehSep' (ID 278)) width is 643<br>'YehFarsi' (ID 909): width is 1762, base glyph ('YehxSep' (ID 273)) width is 1762<br>'YehBarree' (ID 910): width is 2885, base glyph ('YehBarreeSep' (ID 251)) width is 2885<br>'YehBarreeHamza' (ID 911): width is 2885, base glyph ('YehBarreeSep' (ID 251)) width is 2885<br>'uni063B' (ID 912): width is 2374, base glyph ('KafSep' (ID 247)) width is 2374<br>'uni063C' (ID 913): width is 2374, base glyph ('KafSep' (ID 247)) width is 2374<br>'uni063D' (ID 914): width is 1762, base glyph ('YehxSep' (ID 273)) width is 1762<br>'uni063E' (ID 915): width is 1762, base glyph ('YehxSep' (ID 273)) width is 1762<br>'uni063F' (ID 916): width is 1762, base glyph ('YehxSep' (ID 273)) width is 1762<br>'uni067A' (ID 917): width is 2407, base glyph ('BehxSep' (ID 229)) width is 2407<br>'uni067B' (ID 918): width is 2407, base glyph ('BehxSep' (ID 229)) width is 2407<br>'uni067C' (ID 919): width is 2407, base glyph ('BehxSep' (ID 229)) width is 2407<br>'uni067D' (ID 920): width is 2407, base glyph ('BehxSep' (ID 229)) width is 2407<br>'uni0680' (ID 921): width is 2407, base glyph ('BehxSep' (ID 229)) width is 2407<br>'uni067F' (ID 922): width is 2407, base glyph ('BehxSep' (ID 229)) width is 2407<br>'uni0681' (ID 923): width is 1784, base glyph ('HahSep' (ID 233)) width is 1784<br>'uni0683' (ID 924): width is 1784, base glyph ('HahSep' (ID 233)) width is 1784<br>'uni0684' (ID 925): width is 1784, base glyph ('HahSep' (ID 233)) width is 1784<br>'uni0685' (ID 926): width is 1784, base glyph ('HahSep' (ID 233)) width is 1784<br>'uni0687' (ID 927): width is 1784, base glyph ('HahSep' (ID 233)) width is 1784<br>'uni0689' (ID 928): width is 614, base glyph ('DalSep' (ID 234)) width is 614<br>'uni068A' (ID 929): width is 614, base glyph ('DalSep' (ID 234)) width is 614<br>'uni068B' (ID 930): width is 614, base glyph ('DalSep' (ID 234)) width is 614<br>'uni068C' (ID 931): width is 614, base glyph ('DalSep' (ID 234)) width is 614<br>'uni068D' (ID 932): width is 614, base glyph ('DalSep' (ID 234)) width is 614<br>'uni068E' (ID 933): width is 614, base glyph ('DalSep' (ID 234)) width is 614<br>'uni068F' (ID 934): width is 614, base glyph ('DalSep' (ID 234)) width is 614<br>'uni0693' (ID 935): width is 832, base glyph ('RehSep' (ID 236)) width is 832<br>'uni0696' (ID 936): width is 832, base glyph ('RehSep' (ID 236)) width is 832<br>'uni0699' (ID 937): width is 832, base glyph ('RehSep' (ID 236)) width is 832<br>'uni069A' (ID 938): width is 2279, base glyph ('SeenSep' (ID 237)) width is 2279<br>'uni069E' (ID 939): width is 2542, base glyph ('SadSep' (ID 239)) width is 2542<br>'uni06A6' (ID 940): width is 2493, base glyph ('FehxSep' (ID 243)) width is 2493<br>'uni06AB' (ID 941): width is 2374, base glyph ('KafSep' (ID 247)) width is 2374<br>'uni06B0' (ID 942): width is 2374, base glyph ('Gaf' (ID 902)) width is 2374<br>'uni06B1' (ID 943): width is 2374, base glyph ('Gaf' (ID 902)) width is 2374<br>'uni06B3' (ID 944): width is 2374, base glyph ('Gaf' (ID 902)) width is 2374<br>'uni06B7' (ID 945): width is 1742, base glyph ('LamSep' (ID 248)) width is 1742<br>'uni06BB' (ID 946): width is 1764, base glyph ('NoonxSep' (ID 231)) width is 1764<br>'uni06BC' (ID 947): width is 1764, base glyph ('NoonxSep' (ID 231)) width is 1764<br>'uni06C4' (ID 948): width is 864, base glyph ('WawSep' (ID 246)) width is 864<br>'uni06CD' (ID 949): width is 1762, base glyph ('YehxSep' (ID 273)) width is 1762<br>'uni06D0' (ID 950): width is 1762, base glyph ('YehxSep' (ID 273)) width is 1762<br>'uni06D5' (ID 951): width is 643, base glyph ('HehSep' (ID 278)) width is 643<br>'uni06EE' (ID 953): width is 614, base glyph ('DalSep' (ID 234)) width is 614<br>'uni06EF' (ID 954): width is 832, base glyph ('RehSep' (ID 236)) width is 832<br>'uni06FF' (ID 955): width is 1341, base glyph ('HehDoSep' (ID 274)) width is 1341<br>'uni0759' (ID 956): width is 614, base glyph ('DalSep' (ID 234)) width is 614<br>'uni075C' (ID 957): width is 2279, base glyph ('SeenSep' (ID 237)) width is 2279<br>'uni0763' (ID 958): width is 2374, base glyph ('KafSep' (ID 247)) width is 2374<br>'uni0767' (ID 959): width is 1764, base glyph ('Noon' (ID 883)) width is 1764<br>'uni0768' (ID 960): width is 1764, base glyph ('NoonxSep' (ID 231)) width is 1764<br>'uni0769' (ID 961): width is 1764, base glyph ('NoonxSep' (ID 231)) width is 1764<br>'uni076B' (ID 962): width is 832, base glyph ('RehSep' (ID 236)) width is 832<br>'uni076C' (ID 963): width is 832, base glyph ('RehSep' (ID 236)) width is 832<br>'uni076D' (ID 964): width is 2279, base glyph ('SeenSep' (ID 237)) width is 2279<br>'uni076E' (ID 965): width is 1784, base glyph ('HahSep' (ID 233)) width is 1784<br>'uni076F' (ID 966): width is 1784, base glyph ('HahSep' (ID 233)) width is 1784<br>'uni0770' (ID 967): width is 2279, base glyph ('SeenSep' (ID 237)) width is 2279<br>'uni0771' (ID 968): width is 832, base glyph ('RehSep' (ID 236)) width is 832<br>'uni0772' (ID 969): width is 1784, base glyph ('HahSep' (ID 233)) width is 1784<br>'uni0773' (ID 970): width is 675, base glyph ('AlefSep' (ID 227)) width is 675<br>'uni0774' (ID 971): width is 675, base glyph ('AlefSep' (ID 227)) width is 675<br>'uni0775' (ID 972): width is 1762, base glyph ('YehxSep' (ID 273)) width is 1762<br>'uni0776' (ID 973): width is 1762, base glyph ('YehxSep' (ID 273)) width is 1762<br>'uni0777' (ID 974): width is 1762, base glyph ('YehxSep' (ID 273)) width is 1762<br>'uni0778' (ID 975): width is 864, base glyph ('WawSep' (ID 246)) width is 864<br>'uni0779' (ID 976): width is 864, base glyph ('WawSep' (ID 246)) width is 864<br>'uni077A' (ID 977): width is 2885, base glyph ('YehBarreeSep' (ID 251)) width is 2885<br>'uni077B' (ID 978): width is 2885, base glyph ('YehBarreeSep' (ID 251)) width is 2885<br>'uni077C' (ID 979): width is 1784, base glyph ('HahSep' (ID 233)) width is 1784<br>'uni077D' (ID 980): width is 2279, base glyph ('SeenSep' (ID 237)) width is 2279<br>'uni076A' (ID 981): width is 1742, base glyph ('LamSep' (ID 248)) width is 1742<br>'NumberSign.alt2' (ID 1004): width is 4230, base glyph ('NumberSign.alt' (ID 1006)) width is 4230<br>'NumberSign.alt3' (ID 1005): width is 4230, base glyph ('NumberSign.alt' (ID 1006)) width is 4230<br>'Sanah.alt2' (ID 1007): width is 4608, base glyph ('Sanah.alt' (ID 1010)) width is 4608<br>'Sanah.alt3' (ID 1008): width is 4608, base glyph ('Sanah.alt' (ID 1010)) width is 4608<br>'Sanah.alt4' (ID 1009): width is 4608, base glyph ('Sanah.alt' (ID 1010)) width is 4608<br>'Footnote.alt2' (ID 1011): width is 4189, base glyph ('Footnote.alt' (ID 1013)) width is 4189<br>'Footnote.alt3' (ID 1012): width is 4189, base glyph ('Footnote.alt' (ID 1013)) width is 4189<br>'Safhah.alt2' (ID 1014): width is 5198, base glyph ('Safhah.alt' (ID 1016)) width is 5198<br>'Safhah.alt3' (ID 1015): width is 5198, base glyph ('Safhah.alt' (ID 1016)) width is 5198<br>'Samvat.alt2' (ID 1018): width is 5438, base glyph ('Samvat.alt' (ID 1021)) width is 5438<br>'Samvat.alt3' (ID 1019): width is 5438, base glyph ('Samvat.alt' (ID 1021)) width is 5438<br>'Samvat.alt4' (ID 1020): width is 5438, base glyph ('Samvat.alt' (ID 1021)) width is 5438<br>'AyahEnd.alt2' (ID 1022): width is 3530, base glyph ('AyahEnd' (ID 952)) width is 3530<br>'AyahEnd.alt3' (ID 1023): width is 3530, base glyph ('AyahEnd' (ID 952)) width is 3530<br>'ZeroFarsi' (ID 1056): width is 837, base glyph ('ZeroArabic' (ID 159)) width is 837<br>'OneFarsi' (ID 1057): width is 1161, base glyph ('OneArabic' (ID 160)) width is 1161<br>'TwoFarsi' (ID 1058): width is 1161, base glyph ('TwoArabic' (ID 161)) width is 1161<br>'ThreeFarsi' (ID 1059): width is 1161, base glyph ('ThreeArabic' (ID 162)) width is 1161<br>'SevenFarsi' (ID 1060): width is 1161, base glyph ('SevenArabic' (ID 166)) width is 1161<br>'EightFarsi' (ID 1061): width is 1161, base glyph ('EightArabic' (ID 167)) width is 1161<br>'NineFarsi' (ID 1062): width is 1161, base glyph ('NineArabic' (ID 168)) width is 1161<br>'WavyHamzaAboveNS' (ID 1084): width is 0, base glyph ('WavyHamzaBelowNS' (ID 1083)) width is 0<br>'Small4UrduEnclNS' (ID 1088): width is 0, base glyph ('Small4UrduAboveNS' (ID 1087)) width is 0<br>'Small4UrduBelowNS' (ID 1089): width is 0, base glyph ('Small4UrduAboveNS' (ID 1087)) width is 0</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="W">
+                    <td class="code"><p>Warning</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>hmtx</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Compare advance width against base glyph advance width (tolerance 2 units).</p></td>
+                    <td class="detail"><p>'uni007C' (ID 5): width is 238, base glyph ('uni200C' (ID 7)) width is 0<br>'PeriodArabic' (ID 200): width is 529, base glyph ('OneDot' (ID 11)) width is 0<br>'Afghani' (ID 202): width is 677, base glyph ('FehxIni.outT2N' (ID 310)) width is 630<br>'ColonArabic' (ID 205): width is 650, base glyph ('OneDot' (ID 11)) width is 0<br>'periodcentered' (ID 206): width is 529, base glyph ('OneDot' (ID 11)) width is 0<br>'QuoteDblLeftArabic' (ID 209): width is 1078, base glyph ('QuoteSingleLeftArabic' (ID 207)) width is 628<br>'QuoteDblRightArabic' (ID 210): width is 1078, base glyph ('QuoteSingleRightArabic' (ID 208)) width is 628<br>'ThreeDotPunct' (ID 215): width is 1053, base glyph ('OneDot' (ID 11)) width is 0<br>'Divine_nm' (ID 220): width is 2286, base glyph ('Divine_nm_p1' (ID 219)) width is 1643<br>'FehxIni.outD2YB' (ID 264): width is 2646, base glyph ('FehxIni.outD2' (ID 263)) width is 941<br>'MeemIni.outD2YB' (ID 320): width is 2646, base glyph ('MeemIni.outD2' (ID 319)) width is 1048<br>'TahIni.outD2YB' (ID 355): width is 2646, base glyph ('TahIni.outD2' (ID 354)) width is 1224<br>'LamIni.outD2YB' (ID 419): width is 2016, base glyph ('LamIni.outD2' (ID 418)) width is 520<br>'KafIni.outD2YB' (ID 423): width is 2016, base glyph ('KafIni.outD2' (ID 422)) width is 513<br>'KafMed.k' (ID 424): width is 9, base glyph ('KafIni.k' (ID 297)) width is 565<br>'GafIni.outD2YB' (ID 431): width is 2016, base glyph ('GafIni.outD2' (ID 430)) width is 513<br>'HehDoMed' (ID 458): width is 671, base glyph ('HehDoIni' (ID 276)) width is 1143<br>'GafMed.HRk' (ID 480): width is 9, base glyph ('GafIni.HRk' (ID 350)) width is 554<br>'HehDoIni.outD2YB' (ID 490): width is 2646, base glyph ('HehDoIni.outD2' (ID 489)) width is 1503<br>'HahIni.outD2YB' (ID 521): width is 2646, base glyph ('HahIni.outD2' (ID 520)) width is 1145<br>'AinIni.outD2YB' (ID 577): width is 2646, base glyph ('AinIni.outD2' (ID 576)) width is 1143<br>'SadMed.r' (ID 581): width is 400, base glyph ('SadIni.r' (ID 337)) width is 1255<br>'TahMed.inD1outT2' (ID 625): width is 88, base glyph ('TahIni.outT2' (ID 351)) width is 961<br>'TahMed.inD1outT3' (ID 626): width is 394, base glyph ('TahIni.outT3' (ID 353)) width is 1278<br>'TahMed.inD1outD2' (ID 629): width is 337, base glyph ('TahIni.outD2' (ID 354)) width is 1224<br>'TahMed.inD1outD2YB' (ID 630): width is 337, base glyph ('TahIni.outD2' (ID 354)) width is 1224<br>'TahMed.inD1outD3' (ID 634): width is 18, base glyph ('TahIni.outD3' (ID 357)) width is 859<br>'MeemMed.Heel2' (ID 645): width is 130, base glyph ('MeemMed.Heel' (ID 334)) width is 59<br>'KafMed.HRk' (ID 759): width is 9, base glyph ('KafIni.HRk' (ID 349)) width is 554<br>'GafMed.k' (ID 764): width is 9, base glyph ('KafIni.k' (ID 297)) width is 565<br>'HehDoMed.inD2outT1' (ID 827): width is 671, base glyph ('HehDoIni' (ID 276)) width is 1143<br>'uniFBB2' (ID 1063): width is 468, base glyph ('OneDot' (ID 11)) width is 0<br>'uniFBB4' (ID 1064): width is 774, base glyph ('TwoDots' (ID 12)) width is 0<br>'uniFBBD' (ID 1066): width is 468, base glyph ('TwoDotsV' (ID 1100)) width is 0<br>'uniFBB6' (ID 1067): width is 774, base glyph ('ThreeDotsUp' (ID 13)) width is 0<br>'uniFBB7' (ID 1069): width is 774, base glyph ('ThreeDotsUp' (ID 13)) width is 0<br>'uniFBBA' (ID 1070): width is 774, base glyph ('FourDots' (ID 34)) width is 0<br>'OneDotBelow' (ID 1071): width is 468, base glyph ('OneDot' (ID 11)) width is 0<br>'uniFBB5' (ID 1072): width is 774, base glyph ('TwoDots' (ID 12)) width is 0<br>'uniFBBE' (ID 1073): width is 468, base glyph ('TwoDotsV' (ID 1100)) width is 0<br>'uniFBB9' (ID 1074): width is 774, base glyph ('ThreeDotsDown' (ID 14)) width is 0<br>'uniFBB8' (ID 1075): width is 774, base glyph ('ThreeDotsDown' (ID 14)) width is 0<br>'uniFBBB' (ID 1076): width is 774, base glyph ('FourDots' (ID 34)) width is 0<br>'uniFBC0' (ID 1078): width is 666, base glyph ('TahSmallNS' (ID 67)) width is 0<br>'uniFBC1' (ID 1079): width is 666, base glyph ('TahSmallNS' (ID 67)) width is 0<br>'uniFBBF' (ID 1091): width is 432, base glyph ('RingNS' (ID 1090)) width is 0</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Compare Advance Width hmtx and CFF table</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Compare Advance Width hmtx and CFF table_cell">
+                <button id="Compare Advance Width hmtx and CFF table_btn" onclick='toggle_detail("Compare Advance Width hmtx and CFF table");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Compare Advance Width hmtx and CFF table</h3></th></tr>
+            </thead>
+            <tbody id="Compare Advance Width hmtx and CFF table" class="result_body">
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>hmtx/CFF</p></td>
+                    <td class="feature"><p>Advance width</p></td>
+                    <td class="message"><p>Advance width of hmtx and CFF table should be the same (tolerance 2 units).</p></td>
+                    <td class="detail"><p>This is a TrueType font. This test is only for CFF.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Individual Glyphs</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Individual Glyphs_cell">
+                <button id="Individual Glyphs_btn" onclick='toggle_detail("Individual Glyphs");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Individual Glyphs</h3></th></tr>
+            </thead>
+            <tbody id="Individual Glyphs" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>post</p></td>
+                    <td class="feature"><p>PostScript names</p></td>
+                    <td class="message"><p>Check double NULL</p></td>
+                    <td class="detail"><p>Font only has one NULL: 'null'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>glyf</p></td>
+                    <td class="feature"><p>Contours</p></td>
+                    <td class="message"><p>.notdef should be TOFU.</p></td>
+                    <td class="detail"><p>.notdef has 2 contours. It looks like it is a TOFU.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>hmtx</p></td>
+                    <td class="feature"><p>Advance</p></td>
+                    <td class="message"><p>ZERO WIDTH SPACE advance width should be 0</p></td>
+                    <td class="detail"><p>Advance width is '0'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>hmtx</p></td>
+                    <td class="feature"><p>Advance</p></td>
+                    <td class="message"><p>ZERO WIDTH NO-BREAK SPACE advance width should be 0</p></td>
+                    <td class="detail"><p>Advance width is '0'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="W">
+                    <td class="code"><p>Warning</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>00AD</p></td>
+                    <td class="message"><p>Soft hyphen 00AD in cmap table.</p></td>
+                    <td class="detail"><p>Missing Soft hyphen 00AD in cmap table. Soft hyphen is often used in web and in professional print publishing software like Adobe InDesign.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>hmtx</p></td>
+                    <td class="feature"><p>Index 3 and 4</p></td>
+                    <td class="message"><p>Advance width of nonbreakingspace (uni00A0) should match the space (uni0020) width.</p></td>
+                    <td class="detail"><p>OK: Advance width nonbreakingspace (uni00A0) does match the space (uni0020) width:<br>270 = 270</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>uni2009</p></td>
+                    <td class="message"><p>Advance width of 'thinspace' (uni2009) should be smaller than the width of space (uni0020).</p></td>
+                    <td class="detail"><p>Can not check, because no uni2009 in this font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>uni200A</p></td>
+                    <td class="message"><p>Advance width of 'hairspace' (uni200A) should be smaller than the width of space (uni0020).</p></td>
+                    <td class="detail"><p>Can not check, because no uni200A in this font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>uni2004</p></td>
+                    <td class="message"><p>Advance width of 'THREE-PER-EM SPACE' (uni2004) should be 1/3 of em-square.</p></td>
+                    <td class="detail"><p>Can not check, because no uni2004 in this font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>uni2005</p></td>
+                    <td class="message"><p>Advance width of 'FOUR-PER-EM SPACE' (uni2005) should be 1/4 of em-square.</p></td>
+                    <td class="detail"><p>Can not check, because no uni2005 in this font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>uni2006</p></td>
+                    <td class="message"><p>Advance width of 'SIX-PER-EM SPACE' (uni2006) should be 1/6 of em-square.</p></td>
+                    <td class="detail"><p>Can not check, because no uni2006 in this font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>uni2002</p></td>
+                    <td class="message"><p>Advance width of 'EN SPACE' (uni2002) should be 50%% of em-square.</p></td>
+                    <td class="detail"><p>Can not check, because no uni2002 in this font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>uni2003</p></td>
+                    <td class="message"><p>Advance width of 'EM SPACE' (uni2003) should be equal to UPM.</p></td>
+                    <td class="detail"><p>Can not check, because no uni2003 in this font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>uni2008</p></td>
+                    <td class="message"><p>Advance width of 'PUNCTUATION SPACE' (uni2008) should be equal to the 'period' advance width.</p></td>
+                    <td class="detail"><p>Can not check, because no uni2008 in this font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Nodes Close to Zones (CFF)</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Nodes Close to Zones (CFF)_cell">
+                <button id="Nodes Close to Zones (CFF)_btn" onclick='toggle_detail("Nodes Close to Zones (CFF)");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Nodes Close to Zones (CFF)</h3></th></tr>
+            </thead>
+            <tbody id="Nodes Close to Zones (CFF)" class="result_body">
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>CFF</p></td>
+                    <td class="feature"><p>Alignment Zones</p></td>
+                    <td class="message"><p>Check if nodes are close to a zone, but not in or touching it.</p></td>
+                    <td class="detail"><p>This is a TTF, but this test is only for CFF fonts.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Should be Composite (only .ttf)</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Should be Composite (only .ttf)_cell">
+                <button id="Should be Composite (only .ttf)_btn" onclick='toggle_detail("Should be Composite (only .ttf)");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Should be Composite (only .ttf)</h3></th></tr>
+            </thead>
+            <tbody id="Should be Composite (only .ttf)" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>glyf</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Glyphs (OTHER) which are made from components.<br>Great.</p></td>
+                    <td class="detail"><p>'uni2011' (uni2011) (ID 190)</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Should not be Composite (CFF)</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Should not be Composite (CFF)_cell">
+                <button id="Should not be Composite (CFF)_btn" onclick='toggle_detail("Should not be Composite (CFF)");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Should not be Composite (CFF)</h3></th></tr>
+            </thead>
+            <tbody id="Should not be Composite (CFF)" class="result_body">
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>CFF </p></td>
+                    <td class="feature"><p>Composite</p></td>
+                    <td class="message"><p>CFF font should not have any composite.</p></td>
+                    <td class="detail"><p>This is not a CFF font. Skipped this check.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Advance Width (zero or negative)</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Advance Width (zero or negative)_cell">
+                <button id="Advance Width (zero or negative)_btn" onclick='toggle_detail("Advance Width (zero or negative)");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Advance Width (zero or negative)</h3></th></tr>
+            </thead>
+            <tbody id="Advance Width (zero or negative)" class="result_body">
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>hmtx</p></td>
+                    <td class="feature"><p>advance</p></td>
+                    <td class="message"><p>Pull glyphs with advance width zero.</p></td>
+                    <td class="detail"><p>'null' (uniFEFF) (ID 1) = '0'.<br>'ZWSP' (uni200B) (ID 6) = '0'.<br>'uni200C' (uni200C) (ID 7) = '0'.<br>'uni200D' (uni200D) (ID 8) = '0'.<br>'uni200E' (uni200E) (ID 9) = '0'.<br>'uni200F' (uni200F) (ID 10) = '0'.<br>'OneDot' (ID 11) = '0'.<br>'TwoDots' (ID 12) = '0'.<br>'ThreeDotsUp' (ID 13) = '0'.<br>'ThreeDotsDown' (ID 14) = '0'.<br>'OneDotAboveNS' (ID 15) = '0'.<br>'TwoDotsAboveNS' (ID 16) = '0'.<br>'ThreeDotsUpAboveNS' (ID 17) = '0'.<br>'OneDotBelowNS' (ID 18) = '0'.<br>'TwoDotsBelowNS' (ID 19) = '0'.<br>'ThreeDotsDownBelowNS' (ID 20) = '0'.<br>'ThreeDotsDownAboveNS' (ID 21) = '0'.<br>'OneDotEnclNS' (ID 22) = '0'.<br>'OneDotEnclTNS' (ID 23) = '0'.<br>'ThreeDotsDownEnclNS' (ID 24) = '0'.<br>'ThreeDotsUpEnclNS' (ID 25) = '0'.<br>'TwoDotsEnclNS' (ID 26) = '0'.<br>'TwoDotsVertEnclNS' (ID 27) = '0'.<br>'FourDotsEnclNS' (ID 28) = '0'.<br>'TwoDotsVert' (ID 29) = '0'.<br>'TwoDotsVertAboveNS' (ID 30) = '0'.<br>'TwoDotsVertBelowNS' (ID 31) = '0'.<br>'FourDotsAboveNS' (ID 32) = '0'.<br>'FourDotsBelowNS' (ID 33) = '0'.<br>'FourDots' (ID 34) = '0'.<br>'MaddaNS' (uni0653) (ID 35) = '0'.<br>'Madda.shortNS' (ID 36) = '0'.<br>'Madda.shorterNS' (ID 37) = '0'.<br>'WaslaNS' (ID 38) = '0'.<br>'HamzaAboveNS' (uni0654) (ID 39) = '0'.<br>'HamzaBelowNS' (uni0655) (ID 40) = '0'.<br>'HamzaAboveAF_NS' (ID 41) = '0'.<br>'HamzaBelowAF_NS' (ID 42) = '0'.<br>'AlayhissalamNS' (uni0611) (ID 43) = '0'.<br>'AlefSuperiorNS' (uni0670) (ID 44) = '0'.<br>'AlefSuperiorTallNS' (ID 45) = '0'.<br>'AlefInferiorNS' (uni0656) (ID 46) = '0'.<br>'DammaNS' (uni064F) (ID 47) = '0'.<br>'UltapeshNS' (uni0657) (ID 48) = '0'.<br>'DammatanNS' (uni064C) (ID 49) = '0'.<br>'FathaNS' (uni064E) (ID 50) = '0'.<br>'FathatanNS' (uni064B) (ID 51) = '0'.<br>'KasraNS' (uni0650) (ID 52) = '0'.<br>'KasratanNS' (uni064D) (ID 53) = '0'.<br>'NoonGhunnaMarkNS' (uni0658) (ID 54) = '0'.<br>'NoonGhunnaMarkKshmrNS' (ID 55) = '0'.<br>'RadiallahNS' (uni0613) (ID 56) = '0'.<br>'RahmatullahNS' (uni0612) (ID 57) = '0'.<br>'SallallahNS' (uni0610) (ID 58) = '0'.<br>'ShaddaNS' (uni0651) (ID 59) = '0'.<br>'SharetKafNS' (ID 60) = '0'.<br>'SharetYehPashtoNS' (ID 61) = '0'.<br>'Crossbar' (ID 62) = '0'.<br>'SukunHahNS' (uni06E1) (ID 63) = '0'.<br>'SukunJazmNS' (uni0652) (ID 64) = '0'.<br>'SukunNS' (ID 65) = '0'.<br>'SukunZeroNS' (uni06E0) (ID 66) = '0'.<br>'TahSmallNS' (ID 67) = '0'.<br>'TahSmallBelowNS' (ID 68) = '0'.<br>'TahSmallEnclNS' (ID 69) = '0'.<br>'Tah2DotsEnclNS' (ID 70) = '0'.<br>'Tah2DotsBelowNS' (ID 71) = '0'.<br>'Tah2DotsAboveNS' (ID 72) = '0'.<br>'TakhallusNS' (uni0614) (ID 73) = '0'.<br>'AlefInferiorYB' (ID 74) = '0'.<br>'HamzaBelowYB' (ID 75) = '0'.<br>'KasraYB' (ID 76) = '0'.<br>'KasratanYB' (ID 77) = '0'.<br>'OneDotBelowYB' (ID 78) = '0'.<br>'ThreeDotsDownBelowYB' (ID 79) = '0'.<br>'TwoDotsBelowYB' (ID 80) = '0'.<br>'HehCommaNS' (ID 81) = '0'.<br>'HehCommaAltNS' (ID 82) = '0'.<br>'HehCommaYB' (ID 83) = '0'.<br>'FourDotsBelowYB' (ID 84) = '0'.<br>'WavyHamzaBelowYB' (ID 85) = '0'.<br>'Small4UrduBelowYB' (ID 86) = '0'.<br>'TwoDotsVertBelowYB' (ID 87) = '0'.<br>'HamzaBelowAF_YB' (ID 88) = '0'.<br>'Tah2DotsBelowYB' (ID 89) = '0'.<br>'TahSmallBelowYB' (ID 90) = '0'.<br>'NullMk' (ID 91) = '0'.<br>'OneDotAboveAltNS' (ID 92) = '0'.<br>'TwoDotsAboveAltNS' (ID 93) = '0'.<br>'ThreeDotsUpAboveAltNS' (ID 94) = '0'.<br>'MaddaAltNS' (ID 95) = '0'.<br>'Madda.shortAltNS' (ID 96) = '0'.<br>'Madda.shorterAltNS' (ID 97) = '0'.<br>'WaslaAltNS' (ID 98) = '0'.<br>'HamzaAboveAltNS' (ID 99) = '0'.<br>'HamzaAboveAF_AltNS' (ID 100) = '0'.<br>'AlayhissalamAltNS' (ID 101) = '0'.<br>'AlefSuperiorAltNS' (ID 102) = '0'.<br>'DammaAltNS' (ID 103) = '0'.<br>'UltapeshAltNS' (ID 104) = '0'.<br>'DammatanAltNS' (ID 105) = '0'.<br>'FathaAltNS' (ID 106) = '0'.<br>'FathatanAltNS' (ID 107) = '0'.<br>'NoonGhunnaMarkAltNS' (ID 108) = '0'.<br>'RadiallahAltNS' (ID 109) = '0'.<br>'RahmatullahAltNS' (ID 110) = '0'.<br>'SallallahAltNS' (ID 111) = '0'.<br>'ShaddaAltNS' (ID 112) = '0'.<br>'Tah2DotsAboveAltNS' (ID 113) = '0'.<br>'SukunHahAltNS' (ID 114) = '0'.<br>'SukunJazmAltNS' (ID 115) = '0'.<br>'WavyHamzaAboveAltNS' (ID 116) = '0'.<br>'SukunAltNS' (ID 117) = '0'.<br>'SukunZeroAltNS' (ID 118) = '0'.<br>'TahSmallAltNS' (ID 119) = '0'.<br>'TakhallusAltNS' (ID 120) = '0'.<br>'OneDotBelowAltNS' (ID 121) = '0'.<br>'TwoDotsBelowAltNS' (ID 122) = '0'.<br>'ThreeDotsDownBelowAltNS' (ID 123) = '0'.<br>'HamzaBelowAltNS' (ID 124) = '0'.<br>'HamzaBelowAF_AltNS' (ID 125) = '0'.<br>'AlefInferiorAltNS' (ID 126) = '0'.<br>'KasraAltNS' (ID 127) = '0'.<br>'KasratanAltNS' (ID 128) = '0'.<br>'AlefSuperiorTallAltNS' (ID 129) = '0'.<br>'CircumArabicAltNS' (ID 130) = '0'.<br>'Fatha2dotsAltNS' (ID 131) = '0'.<br>'FourDotsAboveAltNS' (ID 132) = '0'.<br>'FourDotsBelowAltNS' (ID 133) = '0'.<br>'WavyHamzaBelowAltNS' (ID 134) = '0'.<br>'SevenSmallDotAltNS' (ID 135) = '0'.<br>'TahDotAboveAltNS' (ID 136) = '0'.<br>'ShortVwlAltNS' (ID 137) = '0'.<br>'Small2AboveAltNS' (ID 138) = '0'.<br>'Small3AboveAltNS' (ID 139) = '0'.<br>'Small4UrduAboveAltNS' (ID 140) = '0'.<br>'Small4UrduBelowAltNS' (ID 141) = '0'.<br>'TwoDotsVertAboveAltNS' (ID 142) = '0'.<br>'TwoDotsVertBelowAltNS' (ID 143) = '0'.<br>'Tah2DotsBelowAltNS' (ID 144) = '0'.<br>'ZwarakayAltNS' (ID 145) = '0'.<br>'ThreeDotsDownAboveAltNS' (ID 146) = '0'.<br>'DammaRevAltNS' (ID 147) = '0'.<br>'OneDotSmall' (ID 148) = '0'.<br>'OneDotSmallAbove' (ID 149) = '0'.<br>'OneDotSmallBelowNS' (ID 150) = '0'.<br>'ALM' (uni061C) (ID 151) = '0'.<br>'GbarV2' (ID 849) = '0'.<br>'TatweelNS' (ID 850) = '0'.<br>'ybMk' (ID 982) = '0'.<br>'sp0' (ID 983) = '0'.<br>'sp1' (ID 984) = '0'.<br>'sp2' (ID 985) = '0'.<br>'sp3' (ID 986) = '0'.<br>'sp4' (ID 987) = '0'.<br>'sp5' (ID 988) = '0'.<br>'sp6' (ID 989) = '0'.<br>'sp7' (ID 990) = '0'.<br>'sp8' (ID 991) = '0'.<br>'sp9' (ID 992) = '0'.<br>'sp10' (ID 993) = '0'.<br>'sp11' (ID 994) = '0'.<br>'sp12' (ID 995) = '0'.<br>'sp13' (ID 996) = '0'.<br>'sp14' (ID 997) = '0'.<br>'sp15' (ID 998) = '0'.<br>'YBc1' (ID 999) = '0'.<br>'YBc2' (ID 1000) = '0'.<br>'YBc3' (ID 1001) = '0'.<br>'ybPre' (ID 1002) = '0'.<br>'ZeroArabic.small' (ID 1024) = '0'.<br>'OneArabic.small' (ID 1025) = '0'.<br>'TwoArabic.small' (ID 1026) = '0'.<br>'ThreeArabic.small' (ID 1027) = '0'.<br>'FourArabic.small' (ID 1028) = '0'.<br>'FiveArabic.small' (ID 1029) = '0'.<br>'SixArabic.small' (ID 1030) = '0'.<br>'SevenArabic.small' (ID 1031) = '0'.<br>'EightArabic.small' (ID 1032) = '0'.<br>'NineArabic.small' (ID 1033) = '0'.<br>'FourFarsi.small' (ID 1034) = '0'.<br>'FiveFarsi.small' (ID 1035) = '0'.<br>'SixFarsi.small' (ID 1036) = '0'.<br>'FourUrdu.small' (ID 1037) = '0'.<br>'SevenUrdu.small' (ID 1038) = '0'.<br>'ZeroFarsi_alt.small' (ID 1039) = '0'.<br>'ZeroArabic.encl' (ID 1040) = '0'.<br>'OneArabic.encl' (ID 1041) = '0'.<br>'TwoArabic.encl' (ID 1042) = '0'.<br>'ThreeArabic.encl' (ID 1043) = '0'.<br>'FourArabic.encl' (ID 1044) = '0'.<br>'FiveArabic.encl' (ID 1045) = '0'.<br>'SixArabic.encl' (ID 1046) = '0'.<br>'SevenArabic.encl' (ID 1047) = '0'.<br>'EightArabic.encl' (ID 1048) = '0'.<br>'NineArabic.encl' (ID 1049) = '0'.<br>'FourFarsi.encl' (ID 1050) = '0'.<br>'FiveFarsi.encl' (ID 1051) = '0'.<br>'SixFarsi.encl' (ID 1052) = '0'.<br>'FourUrdu.encl' (ID 1053) = '0'.<br>'SevenUrdu.encl' (ID 1054) = '0'.<br>'ZeroFarsi_alt.encl' (ID 1055) = '0'.<br>'TwoDotsAboveKNS' (ID 1065) = '0'.<br>'ThreeDotsAboveKNS' (ID 1068) = '0'.<br>'ZwarakayNS' (uni0659) (ID 1080) = '0'.<br>'DammaRevNS' (uni065D) (ID 1081) = '0'.<br>'Fatha2dotsNS' (uni065E) (ID 1082) = '0'.<br>'WavyHamzaBelowNS' (uni065F) (ID 1083) = '0'.<br>'WavyHamzaAboveNS' (ID 1084) = '0'.<br>'Small2AboveNS' (ID 1085) = '0'.<br>'Small3AboveNS' (ID 1086) = '0'.<br>'Small4UrduAboveNS' (ID 1087) = '0'.<br>'Small4UrduEnclNS' (ID 1088) = '0'.<br>'Small4UrduBelowNS' (ID 1089) = '0'.<br>'RingNS' (ID 1090) = '0'.<br>'CircumArabicNS' (ID 1092) = '0'.<br>'SevenSmallDotNS' (ID 1093) = '0'.<br>'TahDotAboveNS' (ID 1094) = '0'.<br>'ShortVwlNS' (uni08FF) (ID 1095) = '0'.<br>'TwoDotsV' (ID 1100) = '0'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Un/Necessary Tables</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Un/Necessary Tables_cell">
+                <button id="Un/Necessary Tables_btn" onclick='toggle_detail("Un/Necessary Tables");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Un/Necessary Tables</h3></th></tr>
+            </thead>
+            <tbody id="Un/Necessary Tables" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>-/-</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Unnecessary tables (private tables and embedded bitmap tables).</p></td>
+                    <td class="detail"><p>OK: No unnecessary tables.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>DSIG</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Necessary tables.</p></td>
+                    <td class="detail"><p>'DSIG' is missing. Please investigate.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>First Four Characters</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="First Four Characters_cell">
+                <button id="First Four Characters_btn" onclick='toggle_detail("First Four Characters");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>First Four Characters</h3></th></tr>
+            </thead>
+            <tbody id="First Four Characters" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>post</p></td>
+                    <td class="feature"><p>Index 0</p></td>
+                    <td class="message"><p>PostScript name should be ".notdef".</p></td>
+                    <td class="detail"><p>OK: Index 0 = ".notdef".</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>hmtx</p></td>
+                    <td class="feature"><p>Index 0</p></td>
+                    <td class="message"><p>'.notdef' advance width should not be 0.</p></td>
+                    <td class="detail"><p>OK: '.notdef' advance width is 1843.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>post</p></td>
+                    <td class="feature"><p>Index 1</p></td>
+                    <td class="message"><p>PostScript name should be one of the names:<br>".null"<br>"null"<br>"NULL".</p></td>
+                    <td class="detail"><p>OK: Index 1 = "null".</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>glyf</p></td>
+                    <td class="feature"><p>Index 1</p></td>
+                    <td class="message"><p>'null' shoiuld have no contours.</p></td>
+                    <td class="detail"><p>'null' has 0 contours.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>hmtx</p></td>
+                    <td class="feature"><p>Index 1</p></td>
+                    <td class="message"><p>'null' should have an advance width of 0.</p></td>
+                    <td class="detail"><p>OK: 'null' has an advance width of 0.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>post</p></td>
+                    <td class="feature"><p>Index 2</p></td>
+                    <td class="message"><p>PostScript name should be one of the names:<br>"nonmarkingreturn"<br>"CR".</p></td>
+                    <td class="detail"><p>OK: Index 2 = "nonmarkingreturn".</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>glyf</p></td>
+                    <td class="feature"><p>Index 2</p></td>
+                    <td class="message"><p>'nonmarkingreturn' should have no contours.</p></td>
+                    <td class="detail"><p>OK: 'nonmarkingreturn' has 0 contours.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>hmtx</p></td>
+                    <td class="feature"><p>Index 2</p></td>
+                    <td class="message"><p>Advance width of 'nonmarkingreturn' should match the space width.</p></td>
+                    <td class="detail"><p>OK: 'nonmarkingreturn' advance width does match the space width:<br>270 = 270</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>post</p></td>
+                    <td class="feature"><p>Index 3</p></td>
+                    <td class="message"><p>PostScript name should be "space"</p></td>
+                    <td class="detail"><p>OK: Index 3 = "space".</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>glyf</p></td>
+                    <td class="feature"><p>Index 3</p></td>
+                    <td class="message"><p>'space' should have no contours.</p></td>
+                    <td class="detail"><p>OK: 'space' has 0 contours.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>glyf</p></td>
+                    <td class="feature"><p></p></td>
+                    <td class="message"><p>The first four glyph indices are correct.</p></td>
+                    <td class="detail"><p>.notdef<br>null<br>nonmarkingreturn<br>space</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>OS/2 table</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="OS/2 table_cell">
+                <button id="OS/2 table_btn" onclick='toggle_detail("OS/2 table");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>OS/2 table</h3></th></tr>
+            </thead>
+            <tbody id="OS/2 table" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>table version 4.</p></td>
+                    <td class="message"><p>'OS/2' table version should be 4.</p></td>
+                    <td class="detail"><p>OK: 'OS/2' table version is: 4.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>useTypoMetrics</p></td>
+                    <td class="message"><p>If the hhea metrics match the usWin metrics, it does not matter what the sTypo metrics are the fsSelection useTypoMetrics flag should be False.</p></td>
+                    <td class="detail"><p>OK: fsSelection useTypoMetrics flag should be False and is False.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>WWS</p></td>
+                    <td class="message"><p>If no NID 21 and 22, 'OS/2' fsSelection flag for WWS should be True.</p></td>
+                    <td class="detail"><p>'OS/2' fsSelection flag for WWS should be True but is False.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>italic flag</p></td>
+                    <td class="message"><p>'OS/2' fsSelection italic flag should match the 'head' macStyle italic flag. They should be the same.</p></td>
+                    <td class="detail"><p>OK: They are the same.'OS/2' fsSelection italic flag is False and 'head' macStyle italic flag is False.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>Panose Normal</p></td>
+                    <td class="message"><p>Because 'OS/2' fsSelection italic flag is False and 'head' macStyle italic flag is False the OS/2 panose array form flag should be a 'Normal' entry.</p></td>
+                    <td class="detail"><p>OK: 'OS/2' panose array form flag is a 'Normal' entry.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>usBreakChar</p></td>
+                    <td class="message"><p>'OS/2' usBreakChar should be 0x0020.</p></td>
+                    <td class="detail"><p>OK: 'OS/2' usBreakChar is 0x0020.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>usDefaultChar</p></td>
+                    <td class="message"><p>'OS/2' usDefaultChar should be 0x0000.</p></td>
+                    <td class="detail"><p>OK: 'OS/2' usDefaultChar is 0x0000.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>usFirstCharIndex</p></td>
+                    <td class="message"><p>'OS/2' usFirstCharIndex should be 0x0000</p></td>
+                    <td class="detail"><p>OK: 'OS/2' usFirstCharIndex is 0x0000.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>usLastCharIndex</p></td>
+                    <td class="message"><p>'OS/2' usLastCharIndex should be 0xFEFF</p></td>
+                    <td class="detail"><p>OK: 'OS/2' usLastCharIndex is 0xFEFF.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>Embedding Level</p></td>
+                    <td class="message"><p>For library fonts embedding level should be 'Preview & Print Embedding'.</p></td>
+                    <td class="detail"><p>Embedding Level is 'Embedding Level = Installable Embedding'. If custom font please check against job spec.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>fsType</p></td>
+                    <td class="message"><p>Pull 'OS/2' fsType.</p></td>
+                    <td class="detail"><p>embedding level: Embedding Level = Installable Embedding<br>no subsetting flag: False<br>bitmap embedding only flag: False</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>fvar table</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="fvar table_cell">
+                <button id="fvar table_btn" onclick='toggle_detail("fvar table");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>fvar table</h3></th></tr>
+            </thead>
+            <tbody id="fvar table" class="result_body">
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>fvar</p></td>
+                    <td class="feature"><p>variable font</p></td>
+                    <td class="message"><p>Variable font must have a fvar table.</p></td>
+                    <td class="detail"><p>This font is not a variable font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>STAT table</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="STAT table_cell">
+                <button id="STAT table_btn" onclick='toggle_detail("STAT table");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>STAT table</h3></th></tr>
+            </thead>
+            <tbody id="STAT table" class="result_body">
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>STAT</p></td>
+                    <td class="feature"><p>static font</p></td>
+                    <td class="message"><p>Variable font must have a STAT table.</p></td>
+                    <td class="detail"><p>No check of STAT table for static fonts included, yet. Static fonts do not need to have a STAT table. It is only recommended by Microsoft, not required.<br>More infos here:<br><a href='https://docs.microsoft.com/en-us/typography/opentype/spec/stat'>https://docs.microsoft.com/en-us/typography/opentype/spec/stat</a></p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Missing uni0000 and uni000D in cmap Table</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Missing uni0000 and uni000D in cmap Table_cell">
+                <button id="Missing uni0000 and uni000D in cmap Table_btn" onclick='toggle_detail("Missing uni0000 and uni000D in cmap Table");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Missing uni0000 and uni000D in cmap Table</h3></th></tr>
+            </thead>
+            <tbody id="Missing uni0000 and uni000D in cmap Table" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>cmap(3, 1, 0)</p></td>
+                    <td class="message"><p>Missing uni0000 and uni000D in cmap MS/BMP(0,3,0) and Unicode/2.0, BMP only(3,1,0).</p></td>
+                    <td class="detail"><p>cmap(3, 1, 0) contains U+0000</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>cmap(3, 1, 0)</p></td>
+                    <td class="message"><p>Missing uni0000 and uni000D in cmap MS/BMP(0,3,0) and Unicode/2.0, BMP only(3,1,0).</p></td>
+                    <td class="detail"><p>cmap(3, 1, 0) contains U+000D</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Obsolete Language Tag TUR</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Obsolete Language Tag TUR_cell">
+                <button id="Obsolete Language Tag TUR_btn" onclick='toggle_detail("Obsolete Language Tag TUR");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Obsolete Language Tag TUR</h3></th></tr>
+            </thead>
+            <tbody id="Obsolete Language Tag TUR" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>-/-</p></td>
+                    <td class="feature"><p>TRK</p></td>
+                    <td class="message"><p>Obsolete language tag 'TUR' should be TRK.</p></td>
+                    <td class="detail"><p>OK: No language tag 'TUR' in any table.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Name Table</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Name Table_cell">
+                <button id="Name Table_btn" onclick='toggle_detail("Name Table");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Name Table</h3></th></tr>
+            </thead>
+            <tbody id="Name Table" class="result_body">
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 0 (3, 1, 1033, 0)</p></td>
+                    <td class="message"><p>MS NID 0, Copyright.</p></td>
+                    <td class="detail"><p>Please verify agains spec.<br>MS NID 0 is 'Copyright 2014 Google Inc. All Rights Reserved.'<br>It should follow this structure: 'Copyright <mark>(c) XXXX - XXXX /entity/. All rights r</mark>eserved.' </p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 1</p></td>
+                    <td class="message"><p>MS NID 1, Family Name length shouldn't be longer then 31.</p></td>
+                    <td class="detail"><p>OK: NID 1 length is '18'<br>'Noto Nastaliq Urdu' </p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 1</p></td>
+                    <td class="message"><p>Reserved word used in Family Name NID1 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 1 does not contain any of the following keywords: 'Regular, Bold, Roman'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 1</p></td>
+                    <td class="message"><p>Reserved word used in Family Name NID1 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 1 does not contain any of the following keywords: 'Book, Ultra, Normal'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 1</p></td>
+                    <td class="message"><p>Reserved word used in Family Name NID1 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 1 does not contain any of the following keywords: 'Roman'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 1</p></td>
+                    <td class="message"><p>Reserved word used in Family Name NID1 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 1 does not contain any of the following keywords: 'Regular, Bold, Italic, Extra, Light, Black, Thin, Wide, Ultra'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 1</p></td>
+                    <td class="message"><p>Should be camel case Family Name NID1</p></td>
+                    <td class="detail"><p>NID 1: OK. No camel case required.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 1</p></td>
+                    <td class="message"><p>Check style extentions Family Name NID1</p></td>
+                    <td class="detail"><p>NID 1 does not contain any of the following beginnings: 'Semi, Sm, Ultra, Ex, X, Xtra, Extra, Dm, Demi'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>name/OS/2</p></td>
+                    <td class="feature"><p>MS NID 1</p></td>
+                    <td class="message"><p>Width Names Family Name NID1</p></td>
+                    <td class="detail"><p>OS/2 usWidthClass seems to be correct. Cannot find any specific width name in the name:<br>'Noto Nastaliq Urdu'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 2</p></td>
+                    <td class="message"><p>MS NID 2, Subfamily.</p></td>
+                    <td class="detail"><p>OK: NID 2 is 'Regular'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 2</p></td>
+                    <td class="message"><p>Reserved word used in Subfamily Name NID2 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 2 does not contain any of the following keywords: 'Book, Ultra, Normal'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 2</p></td>
+                    <td class="message"><p>Reserved word used in Subfamily Name NID2 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 2 does not contain any of the following keywords: 'Roman'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 4</p></td>
+                    <td class="message"><p>MS NID 4, Full Name length shouldn't be longer than 31.</p></td>
+                    <td class="detail"><p>OK: NID 4 length is '18'<br>'Noto Nastaliq Urdu' </p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 4</p></td>
+                    <td class="message"><p>If NID 2 is 'Regular': MS NID 4 = NID 1</p></td>
+                    <td class="detail"><p>NID 4 'Noto Nastaliq Urdu' = NID 1 'Noto Nastaliq Urdu'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 4</p></td>
+                    <td class="message"><p>Reserved word used in Full Font Name NID4 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 4 does not contain any of the following keywords: 'Book, Ultra, Normal'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 4</p></td>
+                    <td class="message"><p>Reserved word used in Full Font Name NID4 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 4 does not contain any of the following keywords: 'Roman'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 4</p></td>
+                    <td class="message"><p>Should be camel case Full Font Name NID4</p></td>
+                    <td class="detail"><p>NID 4: OK. No camel case required.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 4</p></td>
+                    <td class="message"><p>Check style extentions Full Font Name NID4</p></td>
+                    <td class="detail"><p>NID 4 does not contain any of the following beginnings: 'Semi, Sm, Ultra, Ex, X, Xtra, Extra, Dm, Demi'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>name/OS/2</p></td>
+                    <td class="feature"><p>MS NID 4</p></td>
+                    <td class="message"><p>Width Names Full Font Name NID4</p></td>
+                    <td class="detail"><p>OS/2 usWidthClass seems to be correct. Cannot find any specific width name in the name:<br>'Noto Nastaliq Urdu'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>name/head</p></td>
+                    <td class="feature"><p>MS NID 5</p></td>
+                    <td class="message"><p>name table version should match head table fontRevision.</p></td>
+                    <td class="detail"><p>OK: name table version entry 'Version 1.02 uh' does match fontRevision 'Version 1.02'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 6</p></td>
+                    <td class="message"><p>MS NID 6, PostScript Name length shouldn't be longer then 27.<br>(Otherwise it may cause issues in MS Word.)</p></td>
+                    <td class="detail"><p>NID 6 length is '16'<br>'NotoNastaliqUrdu' </p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 6</p></td>
+                    <td class="message"><p>MS NID 6, PostScript Name check for illegal characters.<br>Monotype uses NID 6 for creating CSS classes for their demo HTML. The following characters cause issues in the CSS code: '<br>, ,  , &, _, [, ], (, ), {, }, <, >, /, \, %'</p></td>
+                    <td class="detail"><p>NID 6 is 'NotoNastaliqUrdu', Everything looks good.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 6</p></td>
+                    <td class="message"><p>MS NID 6, PostScript Name check for illegal characters.<br>'space' in NID 6 cause issues in fontbook for Mac.</p></td>
+                    <td class="detail"><p>NID 6 is 'NotoNastaliqUrdu', Everything looks good.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 6</p></td>
+                    <td class="message"><p>Reserved word used in PostScript Name NID6 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 6 does not contain any of the following keywords: 'Book, Ultra, Normal'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 6</p></td>
+                    <td class="message"><p>Reserved word used in PostScript Name NID6 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 6 does not contain any of the following keywords: 'Roman'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 6</p></td>
+                    <td class="message"><p>Should be camel case PostScript Name NID6</p></td>
+                    <td class="detail"><p>NID 6: OK. No camel case required.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 7</p></td>
+                    <td class="message"><p>Test Trademark</p></td>
+                    <td class="detail"><p><b>Current trademark is:</b><br>'Noto is a trademark of Google Inc.'<br><b>but what do think about this</b><br>'Noto is a trademark of <mark>Fontsmith Ltd and may be registered in certain jurisdictions</mark>.'<br><br>(This is automatically generated and might be wrong. Must be confirmed by legal)</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 8</p></td>
+                    <td class="message"><p>Manufactur (NID 8) should be Monotype IP</p></td>
+                    <td class="detail"><p>OK: MS NID 8 is 'Monotype Imaging Inc.'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 11</p></td>
+                    <td class="message"><p>MS NID 11, URL Vendor should be 'http://www.monotype.com'. </p></td>
+                    <td class="detail"><p>NID 11 is http://www.google.com/get/noto/, but should be http://www.monotype.com. Please verify against job spec.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 12</p></td>
+                    <td class="message"><p>MS NID 12, URL Vendor should be 'http://www.monotype.com'. </p></td>
+                    <td class="detail"><p>NID 12 is http://www.monotype.com/studio, but should be http://www.monotype.com. Please verify against job spec.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 8/13</p></td>
+                    <td class="message"><p>License text if Manufactur (NID 8) is one of these 'Monotype Imaging Inc.', 'Monotype Imaging Inc', 'Monotype ITC Inc.', 'Monotype Hong Kong Limited', 'Monotype Limited', 'Monotype KK', 'Monotype Solutions India Private Limited'</p></td>
+                    <td class="detail"><p>Please verify against job spec.<br><b>MS NID 13 is:</b><br>This Font Software is licensed under the SIL Open Font License, Version 1.1. This Font Software is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the SIL Open Font License for the specific language, permissions and limitations governing your use of this Font Software.<br><b>but should be:</b><br>This <mark>font software is the property of Monotype Imaging Inc., or one of its affiliated entities (collectively, Monotype) and its use by you is covered under the terms of a license agreement. You have obtained this font software either directly from Monotype or together with software distributed by one of the licensees of Monotype. This software is a valuable asset of Monotype. Unless you have entered into a specific license agreement granting you additional rights, your use of this software is limited by the terms of the actual license agreement you have entered into with Monotype. You may not copy or distribute this software. If you have any questions concerning your rights you should review the license agreement you received with the software. You can learn more about Monotype by clicking here: www.monotype.com</mark>.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 14</p></td>
+                    <td class="message"><p>MS NID 14, URL Vendor should be 'http://www.monotype.com'. </p></td>
+                    <td class="detail"><p>NID 14 is http://scripts.sil.org/OFL, but should be http://www.monotype.com. Please verify against job spec.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 0</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: 'No entry.'<br>MS [3, 1, 1033] is: '<mark>Copyright 2014 Google Inc. All Rights Reserved</mark>.'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 1</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: 'No entry.'<br>MS [3, 1, 1033] is: 'No<mark>to Nastaliq Urdu</mark>'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 2</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: '<mark>No entry.</mark>'<br>MS [3, 1, 1033] is: 'Regular'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 3</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: 'No entry.'<br>MS [3, 1, 1033] is: '<mark>Monotype Imaging - Noto Nastaliq Urdu</mark>'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 4</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: 'No entry.'<br>MS [3, 1, 1033] is: 'No<mark>to Nastaliq Urdu</mark>'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 5</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: 'No entry.'<br>MS [3, 1, 1033] is: '<mark>Version 1.02 uh</mark>'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 6</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: 'No entry.'<br>MS [3, 1, 1033] is: 'No<mark>toNastaliqUrdu</mark>'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 7</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: 'No entry.'<br>MS [3, 1, 1033] is: 'No<mark>to is a trademark of Google Inc</mark>.'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 8</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: 'No entry.'<br>MS [3, 1, 1033] is: '<mark>Monotype Imaging Inc</mark>.'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 9</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: 'No entry.'<br>MS [3, 1, 1033] is: '<mark>Monotype Design Team</mark>'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 10</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: 'No entry.'<br>MS [3, 1, 1033] is: '<mark>Data unhinted. Designed by Monotype design team</mark>.'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 11</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: 'No entry.'<br>MS [3, 1, 1033] is: '<mark>http://www.google.com/get/noto/</mark>'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 12</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: 'No entry.'<br>MS [3, 1, 1033] is: '<mark>http://www.monotype.com/studio</mark>'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 13</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: 'No entry.'<br>MS [3, 1, 1033] is: '<mark>This Font Software is licensed under the SIL Open Font License, Version 1.1. This Font Software is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the SIL Open Font License for the specific language, permissions and limitations governing your use of this Font Software</mark>.'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 14</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: 'No entry.'<br>MS [3, 1, 1033] is: '<mark>http://scripts.sil.org/OFL</mark>'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 0 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 0, Copyright' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Copyright is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 1 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 1, Family Name' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Family Name is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 2 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 2, Subfamily Name' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Subfamily Name is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 3 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 3, Unique Font Identifier' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Unique Font Identifier is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 4 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 4, Full Font Name' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Full Font Name is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 5 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 5, Version' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Version is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 6 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 6, PostScript Name' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>PostScript Name is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 7 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 7, Trademark' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Trademark is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 8 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 8, Manufacturer' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Manufacturer is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 9 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 9, Designer' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Designer is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 10 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 10, Description' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Description is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 11 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 11, Vendor URL' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Vendor URL is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 13 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 13, License Text' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>License Text is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 14 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 14, License URL' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>License URL is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 16 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 16, Typographic Family Name' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Typographic Family Name NID 16 (MS/BMP/English (U.S.)) is missing.<br>Please verify agains spec. It might be ok if it's a symbol font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 17 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 17, Typographic Subfamily Name' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Typographic Subfamily Name NID 17 (MS/BMP/English (U.S.)) is missing.<br>Please verify agains spec. It might be ok if it's a symbol font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Underline Position and Thickness</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Underline Position and Thickness_cell">
+                <button id="Underline Position and Thickness_btn" onclick='toggle_detail("Underline Position and Thickness");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Underline Position and Thickness</h3></th></tr>
+            </thead>
+            <tbody id="Underline Position and Thickness" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>post</p></td>
+                    <td class="feature"><p>underline position and thickness</p></td>
+                    <td class="message"><p>underlinePosition should be a negative and underlineThickness not 0 or negative.</p></td>
+                    <td class="detail"><p>underlinePosition is '-277'.<br>underlineThicknes is '184'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Kerning (kern Table and GPOS Kerning)</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Kerning (kern Table and GPOS Kerning)_cell">
+                <button id="Kerning (kern Table and GPOS Kerning)_btn" onclick='toggle_detail("Kerning (kern Table and GPOS Kerning)");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Kerning (kern Table and GPOS Kerning)</h3></th></tr>
+            </thead>
+            <tbody id="Kerning (kern Table and GPOS Kerning)" class="result_body">
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>GPOS</p></td>
+                    <td class="feature"><p>kern</p></td>
+                    <td class="message"><p>Simple check if kern feature in GPOS table.</p></td>
+                    <td class="detail"><p>GPOS table does not have kerning feature. Please investigate if this meets requirements.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>kern</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Check if 'kern' table in font.</p></td>
+                    <td class="detail"><p>Font has no 'kern' table. Please verify if font requires kern table or if only GPOS kerning should be in font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Vendor ID</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Vendor ID_cell">
+                <button id="Vendor ID_btn" onclick='toggle_detail("Vendor ID");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Vendor ID</h3></th></tr>
+            </thead>
+            <tbody id="Vendor ID" class="result_body">
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>achVendID</p></td>
+                    <td class="message"><p>Vendor ID should be 'MONO'</p></td>
+                    <td class="detail"><p>Vendor ID is 'GOOG'. Please change to 'MONO'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Vertical Metrics</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Vertical Metrics_cell">
+                <button id="Vertical Metrics_btn" onclick='toggle_detail("Vertical Metrics");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Vertical Metrics</h3></th></tr>
+            </thead>
+            <tbody id="Vertical Metrics" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2 and head</p></td>
+                    <td class="feature"><p>sTypeAsc/Desc and unitsPerEm</p></td>
+                    <td class="message"><p>The result of sTypoAscender – sTypoDescender should match or exceed the unitsPerEm value.</p></td>
+                    <td class="detail"><p>The result of sTypoAscender – sTypoDescender (5120) match or exceed the unitsPerEm value (2048).</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>hhea</p></td>
+                    <td class="feature"><p>Vertical Metrics</p></td>
+                    <td class="message"><p>Pull hhea Metrics</p></td>
+                    <td class="detail"><p>hhea.ascent: 3900<br>hhea.descent: -1220<br>hhea.lineGap: 0</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>Vertical Metrics</p></td>
+                    <td class="message"><p>Pull OS/2 sTypo Metrics</p></td>
+                    <td class="detail"><p>OS2.sTypoAscender: 3900<br>OS2.sTypoDescender: -1220<br>OS2.sTypoLineGap: 0</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>Vertical Metrics</p></td>
+                    <td class="message"><p>Pull OS/2 usWin Metrics</p></td>
+                    <td class="detail"><p>OS2.usWinAscent: 3900<br>OS2.usWinDescent: 1220</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>xAvgCharWidth</p></td>
+                    <td class="message"><p>Get 'OS/2' xAvgCharWidth.</p></td>
+                    <td class="detail"><p>xAvgCharWidth = 1155.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>hhea</p></td>
+                    <td class="feature"><p>advanceWidthMax</p></td>
+                    <td class="message"><p>Get advanceWidthMax.</p></td>
+                    <td class="detail"><p>advanceWidthMax = 9459.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>hhea</p></td>
+                    <td class="feature"><p>xMin, yMin, xMax, yMax</p></td>
+                    <td class="message"><p>Get xMin, yMin, xMax, yMax.</p></td>
+                    <td class="detail"><p>xMin: -776<br>yMin: -2831<br>xMax: 9279<br>yMax: 3697<br></p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>sTypoAscender</p></td>
+                    <td class="message"><p>Vertical Metrics 'sTypoAscender' shouldn't be negative.</p></td>
+                    <td class="detail"><p>sTypoAscender = '3900'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>sTypoDescender</p></td>
+                    <td class="message"><p>Vertical Metrics 'sTypoDescender' should be negative.</p></td>
+                    <td class="detail"><p>sTypoDescender = '-1220'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>sTypoLineGap</p></td>
+                    <td class="message"><p>Vertical Metrics 'sTypoLineGap' shouldn't be negative.</p></td>
+                    <td class="detail"><p>sTypoLineGap = '0'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>usWinAscent</p></td>
+                    <td class="message"><p>Vertical Metrics 'usWinAscent' shouldn't be negative.</p></td>
+                    <td class="detail"><p>usWinAscent = '3900'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>usWinDescent</p></td>
+                    <td class="message"><p>Vertical Metrics 'usWinDescent' shouldn't be negative.</p></td>
+                    <td class="detail"><p>usWinDescent = '1220'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>hhea</p></td>
+                    <td class="feature"><p>ascent</p></td>
+                    <td class="message"><p>Vertical Metrics 'ascent' shouldn't be negative.</p></td>
+                    <td class="detail"><p>ascent = '3900'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>hhea</p></td>
+                    <td class="feature"><p>descent</p></td>
+                    <td class="message"><p>Vertical Metrics 'descent' should be negative.</p></td>
+                    <td class="detail"><p>descent = '-1220'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>hhea</p></td>
+                    <td class="feature"><p>lineGap</p></td>
+                    <td class="message"><p>Vertical Metrics 'lineGap' shouldn't be negative.</p></td>
+                    <td class="detail"><p>lineGap = '0'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>gasp Table</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="gasp Table_cell">
+                <button id="gasp Table_btn" onclick='toggle_detail("gasp Table");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>gasp Table</h3></th></tr>
+            </thead>
+            <tbody id="gasp Table" class="result_body">
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>gasp</p></td>
+                    <td class="feature"><p>Version</p></td>
+                    <td class="message"><p>gasp table verison should be 1.</p></td>
+                    <td class="detail"><p>Verison = 0</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>gasp</p></td>
+                    <td class="feature"><p>Default</p></td>
+                    <td class="message"><p>Pull gasp table Default.</p></td>
+                    <td class="detail"><p>Grid-fit = True, Do gray = True</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>gasp</p></td>
+                    <td class="feature"><p>Default</p></td>
+                    <td class="message"><p>Check gasp table Default.</p></td>
+                    <td class="detail"><p>gasp table default is:<br>Grid-fit = True, Do gray = True<br>and should be:<br>Grid-fit = True, Do gray = True, Symmetric grid-fit = True, Symmetric smoothing = True</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>gasp</p></td>
+                    <td class="feature"><p>subtable</p></td>
+                    <td class="message"><p>Pull gasp subtable: '8'</p></td>
+                    <td class="detail"><p>Do gray = True</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>head</p></td>
+                    <td class="feature"><p>lowestRecPPEM</p></td>
+                    <td class="message"><p>Monotype standard for lowestRecPPEM is '9'.</p></td>
+                    <td class="detail"><p>lowestRecPPEM is '9', but should be '9'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>gasp</p></td>
+                    <td class="feature"><p>subtable</p></td>
+                    <td class="message"><p>gasp subtable value should be one less than lowestRecPPEM (head table).</p></td>
+                    <td class="detail"><p>gasp subtable is '8' and should be '8'.<br>(head table lowestRecPPEM is '9')</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>gasp</p></td>
+                    <td class="feature"><p>subtable</p></td>
+                    <td class="message"><p>Monotype standard for gasp table.</p></td>
+                    <td class="detail"><p>gasp subtable '8' is<br>'Do gray = True'<br>equal to MT standard<br>'Do gray = True, Symmetric smoothing = True'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>PostScript names</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="PostScript names_cell">
+                <button id="PostScript names_btn" onclick='toggle_detail("PostScript names");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>PostScript names</h3></th></tr>
+            </thead>
+            <tbody id="PostScript names" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Nastaliq Urdu Regular (NotoNastaliqUrdu-Regular.ttf)</p></td>
+                    <td class="table"><p>post</p></td>
+                    <td class="feature"><p>PostScript names</p></td>
+                    <td class="message"><p>Postscript names should not be longer then 29 characters. May cause issues in PDF.</p></td>
+                    <td class="detail"><p>Every PostScript name is fine.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>OT Features</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="OT Features_cell">
+                <button id="OT Features_btn" onclick='toggle_detail("OT Features");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>OT Features</h3></th></tr>
+            </thead>
+            <tbody id="OT Features" class="result_body">
+                      </tbody>
+            </table>
+    </body>
+</html>

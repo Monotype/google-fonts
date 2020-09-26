@@ -1,0 +1,2913 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv='content-type' content='text/html; charset=utf-8'>
+    <meta name="code" content="Olli Meier">
+    <title>MT FontSplitter</title>
+    <style type="text/css">
+      body {
+        /*background-color: #fff; #fdfdfb;*/
+        color: #131313;
+        font-family: "Kootenay Pro", Axel, "System Font", "Fira Sans", sans-serif;
+        /*line-height: 1.3em;*/
+        margin: 0;
+        /*padding: 1em;*/
+        font-size: 14px;
+        /*padding-right: 50px;*/
+        /*background: linear-gradient(to bottom, #383838, white);*/
+      }
+
+    table {width:100%;}
+    tr {margin: 10px;}
+    td {border: 1px solid #fff; /*#fdfdfb;*/}
+/*
+    table th, table td {
+    overflow: scroll !important;
+    white-space: nowrap;
+}
+*/
+
+    mark {
+        background-color: #fff990;
+        color: black;
+        opacity: 0.7;
+    }
+
+    .containerMain {
+        position: absolute;
+        z-index: 2;
+        /*top:-2000px;*/
+        left: 15px; 
+        background-color: white;
+        overflow: scroll;
+        width: calc(100% - 15px);
+    }
+
+
+    .containerCSScode {
+        overflow: scroll;
+        position: absolute;
+        z-index: 1;
+        top:0px;
+        padding-top: 200px;
+        padding-left: 20px;
+        width: 100%;
+        background-color: #383838;
+    }
+
+    .cssButton {
+        z-index: 3;
+        position: fixed;
+        top: 49%;
+    }
+
+    .cssButtonStyle {
+        /*text-align: center;*/
+        /*text-transform: uppercase;*/
+        transform-origin: left bottom 0;
+        /*writing-mode:tb-rl;*/
+        -webkit-transform:rotate(-90deg);
+        -moz-transform:rotate(-90deg);
+        -o-transform: rotate(-90deg);
+        -ms-transform:rotate(-90deg);
+        transform: rotate(-90deg);
+        white-space:nowrap;
+        display:block;
+        /*bottom:0;
+        width:20px;
+        height:20px;*/
+
+    }
+
+    .comment{color:#FCD833}
+    .rule{color:#009FE3}
+    .element{color:#FFF}
+    .keyword{color:#E50051}
+    .prop{color:#FF9700}
+    .whitetext{color:#FFF}
+    /*.deepgray{background-color:#383838}*/
+    .darkgray{background-color: #787878}
+    .darkgray_text{color:#BBB}
+    .lightgray{background-color:rgb(252,252,252)}
+    .lightgray_text{color:rgb(252,252,252)}
+    .gray_text{color:lightgrey}
+
+    pre{font-family:Consolas,Courier,monospace;
+        /*font-size:.81em;*/
+        line-height:1.1em;
+        margin:0;
+        /*padding:1em;*/
+        border:0;
+        -webkit-touch-callout:text!important;
+        -webkit-user-select:text!important;
+        -khtml-user-select:text!important;
+        -moz-user-select:text!important;
+        -ms-user-select:text!important;
+        user-select:text!important
+    }
+    .gradientBG {
+        background:
+            linear-gradient(
+                limegreen,
+                transparent
+            ),
+            linear-gradient(
+                90deg,
+                skyblue,
+                transparent
+            ),
+            linear-gradient(
+                -90deg,
+                coral,
+                transparent
+            );
+            
+        background-blend-mode: screen;
+        }
+
+    .linearGradientBG{
+        background:
+            repeating-linear-gradient(
+                -45deg,
+                transparent,
+                transparent 25%,
+                tomato 0,
+                tomato 50%
+            ),
+            repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 25%,
+                dodgerblue 0,
+                dodgerblue 50%
+            ), wheat;
+
+        background-size: 10em 10em;
+        background-blend-mode: multiply;
+    }
+
+    .linearGradient2BG{
+        background:
+            repeating-linear-gradient(
+                50deg,
+                #F7A37B,
+                #F7A37B 1em,
+                #FFDEA8 1em,
+                #FFDEA8 2em,
+                #D0E4B0 2em,
+                #D0E4B0 3em,
+                #7CC5D0 3em,
+                #7CC5D0 4em,
+                #00A2E1 4em,
+                #00A2E1 5em,
+                #0085C8 5em,
+                #0085C8 6em
+            ),
+            repeating-linear-gradient(
+                -50deg,
+                #F7A37B,
+                #F7A37B 1em,
+                #FFDEA8 1em,
+                #FFDEA8 2em,
+                #D0E4B0 2em,
+                #D0E4B0 3em,
+                #7CC5D0 3em,
+                #7CC5D0 4em,
+                #00A2E1 4em,
+                #00A2E1 5em,
+                #0085C8 5em,
+                #0085C8 6em
+            );
+            
+        background-blend-mode: multiply;
+    }
+
+    .character {
+        line-height: 1.45em;
+        font-size:2.5em;
+        		display:inline-block;
+width:1.45em;
+white-space: pre;
+        min-width:1.45em;
+        height:1.45em;
+        text-align:center;
+        /*margin:-1px -1px -1px -4px;*/
+        background-color: #fff; /*#fdfdfb;*/
+        border:1px solid #efefef;/*#FAF7F5;*/ 
+        /*overflow: scroll !important;*/
+        white-space: nowrap;
+        font-size: 30px;
+    }
+
+    .characterZoom {
+        display:inline-block;
+        white-space: pre;
+        text-align:center;
+        background-color: #fff; /*#fdfdfb;*/
+        border:10px solid #efefef;/*#FAF7F5;*/ 
+        white-space: nowrap;
+        font-size: 35vh;
+        z-index:1000; 
+        width:50%; 
+        height:50%;
+        position: fixed; 
+        left: 25%; 
+        top:25%; 
+        display: none;"
+    }
+
+    .characterUniRanges{
+        font-size:2.5em;
+        display:inline-block;
+        /*width:1.45em;*/
+        min-width:2em;
+        height:2em;
+        text-align:center;
+        margin:-0px -0px -1px -4px;
+        background-color:#fff;
+        border:1px solid rgb(240,240,240); 
+        white-space: pre;
+    }
+
+    .characterUniRanges[title-B]:active {
+        z-index: 999;
+      content: attr(title-B);
+      position: relative;
+        background:#B3D4FC;
+        font-size: 20.5em;
+        display:inline-block;
+        /*width:10.45em;*/
+        min-width:500px;
+        height:500px;
+        text-align:center;
+        margin:-0px -0px -1px -4px;
+        border:1px solid rgb(240,240,240); 
+        white-space: pre;
+    }
+
+    [data-title] {
+      transition-timing-function: ease-in;
+          transition: 0.4s;
+      position: relative;
+    }
+
+    [data-title]:hover::before {
+      content: attr(data-title);
+      position: absolute;
+      z-index: 999;
+      bottom: -26px;
+      display: inline-block;
+      padding: 3px 6px;
+      border-radius: 2px;
+      background: #000;
+      color: #fff;
+      font-size: 12px;
+      font-family: sans-serif;
+      white-space: nowrap;
+      left: -20px;
+    }
+
+    [data-title]:hover::after {
+          z-index: 999;
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 8px;
+      display: inline-block;
+      color: #fff;
+      border: 8px solid transparent;    
+      border-bottom: 8px solid #000;
+    }
+
+    .characterMetaData {
+        line-height: 1.45em;
+        font-size:2.5em;
+        		display:inline-block;
+width:1.45em;
+white-space: pre;
+        max-width:1.45em !important;
+        min-width:1.45em;
+        height:1.45em;
+        text-align:center;
+        /*margin:-1px -1px -1px -4px;*/
+        background-color: #fff; /*#fdfdfb;*/
+        border:1px solid #efefef;/*#FAF7F5;*/ 
+        /*overflow: scroll !important;*/
+        white-space: nowrap;
+        font-size: 30px;
+    }
+
+    .characterFix {
+        font-size:2.5em;
+        		display:inline-block;
+width:1.45em;
+white-space: pre;
+        min-width:1.45em;
+        height:1.45em;
+        text-align:center;
+        /*margin:-1px -1px -1px -4px;*/
+        background-color: #fff; /*#fdfdfb;*/
+        border:1px solid #efefef;/*#FAF7F5;*/
+        overflow-x: scroll !important;
+        white-space: nowrap;
+        font-size: 30px;
+    }
+
+    .characterFontNames {
+        font-size:2.5em;
+        		display:inline-block;
+width:1.45em;
+white-space: pre;
+        min-width: 1.45em;
+        height:1.45em;
+        text-align:center;
+        /*margin:-1px -1px -1px -4px;*/
+        background-color: #fff; /*#fdfdfb;*/
+        border: 1px solid #fff; /*#fdfdfb;*/ 
+        position: -webkit-sticky;
+        position: sticky;
+        white-space: pre !important;
+        font-size: 30px;
+    }
+
+    .buttonBlack {
+        background-color: #131313;
+        border: 1px solid #fff; /*#fdfdfb;*/
+        color: #fff; /*#fdfdfb;*/
+        padding: 5px 15px;
+        text-align: center;
+        /*text-decoration: none;*/
+        display: inline-block;
+        margin: 1px 1px;
+        cursor: pointer;
+        border-radius: 0.0em;
+
+    }
+
+    .features-head {
+        content:"";
+        display:inline-block;
+        float:left;
+        width:100%;
+        border-bottom:1px solid rgb(240,240,240);
+        padding-top:10px;
+        margin-top:30px; 
+        margin-bottom:10px
+    }
+
+    input {
+        /*width: 44px;
+        height: 23px;
+        background-color: buttonface;*/
+        cursor: default;
+        border-width: 0px;
+        border-style: solid;
+        border-color: ; #fff; /*#fdfdfb;*//*rgb(169, 169, 169);*/
+        border-image: initial;
+        padding: 0px opx;
+    }
+
+    .inputColor{
+        width: 25px;
+        height: 29px;
+        cursor: default;
+        border: none;
+    }
+
+    button {
+        border: 0;
+        height: 100%;
+        /*width: 100%;*/
+        padding: 5px 15px;
+        text-align: center;
+        /*text-decoration: none;*/
+        display: inline-block;
+        margin: 1px 1px;
+        cursor: pointer;
+        border-radius: 0.0em;
+        vertical-align: top;
+        background: #fff; /*#fdfdfb;*/
+        outline: none;
+    }
+
+    .buttonBorder {
+        border: 0;
+        height: 100%;
+        /*width: 100%;*/
+        padding: 5px 15px;
+        text-align: center;
+        /*text-decoration: none;*/
+        display: inline-block;
+        margin: 1px 1px;
+        cursor: pointer;
+        border-radius: 0.0em;
+        vertical-align: top;
+        background: #fff; /*#fdfdfb;*/
+        outline: none;
+        border:1px solid #efefef;/*#FAF7F5;*/
+    }
+
+    .buttonOT {
+        border:1px solid #efefef;/*#FAF7F5;*/
+        width: 40px;
+        padding: 5px 5px;
+    }
+    .buttonExtra{
+        vertical-align: bottom;
+        line-height: 2em;
+
+        border: 0;
+        height: 100%;
+        /*width: 100%;*/
+        padding: 5px 15px;
+        text-align: center;
+        /*text-decoration: none;*/
+        display: inline-block;
+        margin: 1px 1px;
+        cursor: pointer;
+        border-radius: 0.0em;
+        background: #fff; /*#fdfdfb;*/
+        outline: none;
+    }
+
+    select {
+        border: 0;
+        height: 100%;
+        width: 100%;
+        padding: 5px 15px;
+        text-align: center;
+        /*text-decoration: none;*/
+        display: inline-block;
+        margin: 1px 1px;
+        cursor: pointer;
+        border-radius: 0.0em;
+        vertical-align: top;
+        background: #131313;
+        color: #fff; /*#fdfdfb;*/
+    }
+
+    .selectSampleText {
+        border: 0;
+        height: 100%;
+        width: 200px;
+        /*padding: 5px 15px;*/
+        text-align: center;
+        /*text-decoration: none;*/
+        display: inline-block;
+        margin: 5px 1px;
+        cursor: pointer;
+        border-radius: 0.0em;
+        vertical-align: top;
+        background: #fff; /*#fdfdfb;*/
+        color: #131313;
+    }
+
+    .textTop {vertical-align: top;}
+    .compareBoxes{word-break: break-all;}
+
+    .flyingFont{
+        font-size: 300px;
+        text-align: center;
+        /*text-transform: uppercase;*/
+        width: 100%;
+    }
+
+    .flyingFont1{
+        color: #FF4136/*#131313*/; 
+        z-index: 900; 
+        position: absolute;
+    }
+    .flyingFont2{
+        /*-webkit-text-stroke-width: 2px;
+           -webkit-text-stroke-color: #FF4136;
+           -webkit-text-fill-color: transparent;*/
+        z-index: 899; 
+        position: absolute;
+           opacity: .5;
+           margin-top: 10px;
+           margin-left: 10px;
+    }
+    .flyingFont3{
+        /*-webkit-text-stroke-width: 2px;
+           -webkit-text-stroke-color: #FF4136;
+           -webkit-text-fill-color: transparent;*/
+        z-index: 898; 
+        position: absolute;
+           opacity: .2;
+           margin-top: 20px;
+           margin-left: 20px;
+    }
+
+    .buttonToggle {
+        border: 0;
+        /*background-color: #131313;*/
+        /*color: #fff; /*#fdfdfb;*/*/
+        text-align: center;
+        /*text-decoration: none;*/
+        display: inline-block;
+        margin: 1px 1px;
+        cursor: pointer;
+        border-radius: 0.0em;
+    }
+
+    button:hover, .selectSampleText:hover {background-color: #131313; color: #fff; /*#fdfdfb;*/}
+    .buttonOT:hover {background-color: #131313; color: #fff; /*#fdfdfb;*/}
+    .buttonExtra:hover {background-color: #fff; /*#fdfdfb;*/ color: #131313;}
+
+    hr { border: 0; height: 1px; background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0));}
+
+    .underline {text-decoration: underline; text-decoration-color: #131313; color: hsl(  0,  0%,  95%); overflow: hidden;} /* for the future: text-underline-offset: from-font; text-decoration-width: from-font; */
+    .strikeout {text-decoration: line-through; text-decoration-color: #131313; color: hsl(  0,  0%,  95%); overflow: hidden;} 
+
+    .character:hover {background:#B3D4FC}
+    .characterUniRanges:hover {background:#B3D4FC}
+    /*.characterUniRanges:active {
+        background:#B3D4FC;
+        font-size: 20.5em;
+        display:inline-block;
+        /*width:10.45em;*/
+        min-width:500px;
+        height:500px;
+        text-align:center;
+        margin:-0px -0px -1px -4px;
+        border:1px solid rgb(240,240,240); 
+        white-space: pre;
+    }
+    */
+    .characterFix:hover {background:#B3D4FC}
+    .character_name {/*padding-top: 5px; padding-left: 25px;*/}
+    
+    @keyframes blinkblink {
+        0% 100%   {background-color: hsl( 24,  100%, 50%); }
+        50% {background-color: hsl( 24,  100%, 45%); }
+    }
+
+    .serious {animation: blinkblink 0.9s ease-in-out 0s infinite;}
+    .critical {background-color: hsl( 0,  100%, 20%); color: hsl( 0,  0%, 90%);}
+    .error {background-color: hsl( 24,  100%, 45%); color: hsl( 24,  100%, 70%);}
+    .warning {background-color: hsl( 50,  65%, 52%); color: hsl( 50,  65%, 70%);}
+    .info {background-color: #f9f7f6;/*hsl(  0,  0%,  95%);*/ color: hsl(  0,  0%,  70%);}
+
+    .extra {background-color: hsl( 200,  50%, 95%);}
+    .extra_info {background-color: hsl( 200,  50%, 96%); color: hsl( 200,  50%, 80%);}
+
+    .colLeft {
+        width: 50%;
+        padding-left: 25px;
+        text-align: right;
+        padding-right: 25px;
+        vertical-align: text-top;
+    }
+
+    .header {
+      text-transform: none;
+      text-decoration: none;
+      background-color: #fff; /*#fdfdfb;*/
+      text-align: left;
+      color: #131313;
+      position: fixed;
+      padding: 15px 15px 0px 0px;
+      width: 100%;
+      box-shadow: 0px 0px 5px #888888;
+      z-index: 99;
+    }
+
+    .header1 {
+      text-transform: none;
+      text-decoration: none;
+      background-color: #fff; /*#fdfdfb;*/
+      text-align: left;
+      color: #131313;
+      position: fixed;
+      padding: 15px 15px 0px 0px;
+      width: 100%;
+      z-index: 99;
+    }
+    
+    .header:hover  { opacity: 0.95; }
+    .header1:hover  { opacity: 0.95; }
+
+
+    .splitter{width:100%; font-weight: bold;}
+    .center{text-align: center;}
+    .left{text-align: left;}
+    .content{padding-top: 500px;}
+    .sampleBig {/*font-size: 50px !important*/; color:#fff; /*#fdfdfb;*/ padding: 20px 50px 20px 50px; }
+    .sampleWaterfall {padding: 20px 50px 20px 20px;}
+    .waterfallOverflow {white-space:nowrap; overflow: hidden; text-overflow: clip; }
+    .sampleContent {/*empty*/ font-size: 30px;}
+    .compareBoxCSS {vertical-align: top; font-size: 30px;}
+    .blackBG {background-color: #131313;}
+
+    .defaultFont {font-size: 30px;}
+    .infoFont {font-family: "Kootenay Pro", Axel, "System Font", "Fira Sans", sans-serif; font-size: 14px; vertical-align: 5px;}
+    
+    .hidden {display:none;}
+    .sliderbar {vertical-align: 4px;}
+
+    /* Slider design Start */
+
+    .inputRangeCompareBox {
+      padding-bottom: 7px !important;
+      padding-left: 10px;
+    }
+
+    .inputNumberCompareBox{
+        max-width: 50px;
+    }
+
+    input[type=range] {
+      padding-bottom: 3px;
+      -webkit-appearance: none;
+      /*position: relative*/
+    }
+
+    input[type=range]::-webkit-slider-runnable-track {
+      width: 300px;
+      height: 2px;
+      border: none;
+      border-radius: 3px;
+      border: 1px solid #131313;
+    }
+
+    input[type=range]::-moz-range-track {
+      background-color: #131313;
+    }
+
+    input::-moz-range-thumb {
+        background-color: #fff; /*#fdfdfb;*/
+        border: solid 2px #131313;
+        border-radius: 0;
+        height: 10px;
+        width: 10px;
+      }
+
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      border: none;
+      height: 12px;
+      width: 12px;
+      border-radius: 510%;
+      background: #fff; /*#fdfdfb;*/
+      border: 2px solid #131313;
+      margin-top: -5px;
+      cursor: pointer
+    }
+
+    input[type=range]:focus {
+      outline: none
+    }
+
+    /* Slider design End */
+
+    .infoToggle {border-bottom:1px solid #efefef;/*#FAF7F5;*/}
+    .colLeftToggle {
+        width: 50%;
+        padding-left: 25px;
+        text-align: right;
+        padding-right: 25px;
+        vertical-align: mittle;
+    }
+
+    td.rotateSAVE {*/height: 140px;*/ white-space: nowrap; /*float: left;*/ }
+    td.rotate > div {-webkit-transform: rotate(270deg); transform: rotate(270deg); width: 30px;}
+    td.rotate > div > span {/*padding: 5px 10px;*/}
+
+
+    
+        .blwf {-webkit-font-feature-settings: "blwf" 1; -moz-font-feature-settings: "blwf" 1; -moz-font-feature-settings: "blwf=1"; -ms-font-feature-settings: "blwf" 1; -o-font-feature-settings: "blwf" 1;}
+        
+        .cjct {-webkit-font-feature-settings: "cjct" 1; -moz-font-feature-settings: "cjct" 1; -moz-font-feature-settings: "cjct=1"; -ms-font-feature-settings: "cjct" 1; -o-font-feature-settings: "cjct" 1;}
+        
+        .abvm {-webkit-font-feature-settings: "abvm" 1; -moz-font-feature-settings: "abvm" 1; -moz-font-feature-settings: "abvm=1"; -ms-font-feature-settings: "abvm" 1; -o-font-feature-settings: "abvm" 1;}
+        
+        .rkrf {-webkit-font-feature-settings: "rkrf" 1; -moz-font-feature-settings: "rkrf" 1; -moz-font-feature-settings: "rkrf=1"; -ms-font-feature-settings: "rkrf" 1; -o-font-feature-settings: "rkrf" 1;}
+        
+        .akhn {-webkit-font-feature-settings: "akhn" 1; -moz-font-feature-settings: "akhn" 1; -moz-font-feature-settings: "akhn=1"; -ms-font-feature-settings: "akhn" 1; -o-font-feature-settings: "akhn" 1;}
+        
+        .dist {-webkit-font-feature-settings: "dist" 1; -moz-font-feature-settings: "dist" 1; -moz-font-feature-settings: "dist=1"; -ms-font-feature-settings: "dist" 1; -o-font-feature-settings: "dist" 1;}
+        
+        .vatu {-webkit-font-feature-settings: "vatu" 1; -moz-font-feature-settings: "vatu" 1; -moz-font-feature-settings: "vatu=1"; -ms-font-feature-settings: "vatu" 1; -o-font-feature-settings: "vatu" 1;}
+        
+        .blws {-webkit-font-feature-settings: "blws" 1; -moz-font-feature-settings: "blws" 1; -moz-font-feature-settings: "blws=1"; -ms-font-feature-settings: "blws" 1; -o-font-feature-settings: "blws" 1;}
+        
+        .haln {-webkit-font-feature-settings: "haln" 1; -moz-font-feature-settings: "haln" 1; -moz-font-feature-settings: "haln=1"; -ms-font-feature-settings: "haln" 1; -o-font-feature-settings: "haln" 1;}
+        
+        .abvs {-webkit-font-feature-settings: "abvs" 1; -moz-font-feature-settings: "abvs" 1; -moz-font-feature-settings: "abvs=1"; -ms-font-feature-settings: "abvs" 1; -o-font-feature-settings: "abvs" 1;}
+        
+        .nukt {-webkit-font-feature-settings: "nukt" 1; -moz-font-feature-settings: "nukt" 1; -moz-font-feature-settings: "nukt=1"; -ms-font-feature-settings: "nukt" 1; -o-font-feature-settings: "nukt" 1;}
+        
+        .psts {-webkit-font-feature-settings: "psts" 1; -moz-font-feature-settings: "psts" 1; -moz-font-feature-settings: "psts=1"; -ms-font-feature-settings: "psts" 1; -o-font-feature-settings: "psts" 1;}
+        
+        .rphf {-webkit-font-feature-settings: "rphf" 1; -moz-font-feature-settings: "rphf" 1; -moz-font-feature-settings: "rphf=1"; -ms-font-feature-settings: "rphf" 1; -o-font-feature-settings: "rphf" 1;}
+        
+        .blwm {-webkit-font-feature-settings: "blwm" 1; -moz-font-feature-settings: "blwm" 1; -moz-font-feature-settings: "blwm=1"; -ms-font-feature-settings: "blwm" 1; -o-font-feature-settings: "blwm" 1;}
+        
+        .pres {-webkit-font-feature-settings: "pres" 1; -moz-font-feature-settings: "pres" 1; -moz-font-feature-settings: "pres=1"; -ms-font-feature-settings: "pres" 1; -o-font-feature-settings: "pres" 1;}
+        
+        .half {-webkit-font-feature-settings: "half" 1; -moz-font-feature-settings: "half" 1; -moz-font-feature-settings: "half=1"; -ms-font-feature-settings: "half" 1; -o-font-feature-settings: "half" 1;}
+        
+
+    
+		@font-face {font-family: 'om_NotoSansGujaratiUIRegularttf'; src: url('NotoSansGujaratiUI-Regular.ttf');}
+		@font-face {font-family: 'om_NotoSansGujaratiUIBoldttf'; src: url('NotoSansGujaratiUI-Bold.ttf');}
+	.om_NotoSansGujaratiUIRegularttf {font-family: 'om_NotoSansGujaratiUIRegularttf'; /*font-size: 30px;*/}
+	.om_NotoSansGujaratiUIBoldttf {font-family: 'om_NotoSansGujaratiUIBoldttf'; /*font-size: 30px;*/}
+
+    
+
+    /*.animationON {animation: LooperOne 5.0s ease-in-out 0s infinite;}
+    .animationOFF {/*empty*/}*/
+
+
+    </style>
+
+  </head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <body style="-webkit-print-color-adjust:exact;" id="body_all" >
+
+      <div id="zoom_characters" class="characterZoom" onclick="mUp()"></div>
+
+    <div class="header1 center" style="z-index:999; ">
+            Monotype
+        <table class="splitter">
+          <tr>
+            <td class="center">F</td>
+            <td class="center">O</td>
+            <td class="center">N</td>
+            <td class="center">T</td>
+            <td class="center">S</td>
+            <td class="center">P</td>
+            <td class="center">L</td>
+            <td class="center">I</td>
+            <td class="center">T</td>
+            <td class="center">T</td>
+            <td class="center">E</td>
+            <td class="center">R</td>
+          </tr>
+        </table>
+        <br>
+    </div>
+
+       <div class="header center">
+        <table style="width:100%">
+            <tbody id="otFeature" >
+                <td>
+                    <!-- OT feature buttons -->
+                    <table>
+		<tr>
+			<td class="colLeft">Select HTML Language</td><td class="left">
+		<select onchange="functionChangeLanguage(this.value)" class="selectSampleText">		<option value=>Default</option>
+			</select>
+			</td>
+		</tr>
+		<tr>
+			<td class="colLeft">South-Asian alphasyllabary (Indic/Brahmic) Features</td><td class="left">
+		<button class="buttonOT" data-title="Above-base Mark Positioning" id="abvm_btn" onclick="functionAddSupportedFeatures('abvm')">abvm</button>
+		<button class="buttonOT" data-title="Above-base Substitutions" id="abvs_btn" onclick="functionAddSupportedFeatures('abvs')">abvs</button>
+		<button class="buttonOT" data-title="Below-base Forms" id="blwf_btn" onclick="functionAddSupportedFeatures('blwf')">blwf</button>
+		<button class="buttonOT" data-title="Below-base Mark Positioning" id="blwm_btn" onclick="functionAddSupportedFeatures('blwm')">blwm</button>
+		<button class="buttonOT" data-title="Below-base Substitutions" id="blws_btn" onclick="functionAddSupportedFeatures('blws')">blws</button>
+		<button class="buttonOT" data-title="Pre-base Substitutions" id="pres_btn" onclick="functionAddSupportedFeatures('pres')">pres</button>
+		<button class="buttonOT" data-title="Post-base Substitutions" id="psts_btn" onclick="functionAddSupportedFeatures('psts')">psts</button>
+		<button class="buttonOT" data-title="Distances" id="dist_btn" onclick="functionAddSupportedFeatures('dist')">dist</button>
+		<button class="buttonOT" data-title="Akhands" id="akhn_btn" onclick="functionAddSupportedFeatures('akhn')">akhn</button>
+		<button class="buttonOT" data-title="Halant Forms" id="haln_btn" onclick="functionAddSupportedFeatures('haln')">haln</button>
+		<button class="buttonOT" data-title="Half Forms" id="half_btn" onclick="functionAddSupportedFeatures('half')">half</button>
+		<button class="buttonOT" data-title="Nukta Forms" id="nukt_btn" onclick="functionAddSupportedFeatures('nukt')">nukt</button>
+		<button class="buttonOT" data-title="Rakar Forms" id="rkrf_btn" onclick="functionAddSupportedFeatures('rkrf')">rkrf</button>
+		<button class="buttonOT" data-title="Reph Forms" id="rphf_btn" onclick="functionAddSupportedFeatures('rphf')">rphf</button>
+		<button class="buttonOT" data-title="Vattu Variants" id="vatu_btn" onclick="functionAddSupportedFeatures('vatu')">vatu</button>
+		<button class="buttonOT" data-title="Conjunct Forms" id="cjct_btn" onclick="functionAddSupportedFeatures('cjct')">cjct</button>
+
+			</td>
+		</tr>
+		<tr>
+			<td class="colLeft">Positioning Features</td><td class="left">
+		<button class="buttonOT" data-title="Distances" id="dist_btn" onclick="functionAddSupportedFeatures('dist')">dist</button>
+		<button class="buttonOT" data-title="Above-base Mark Positioning" id="abvm_btn" onclick="functionAddSupportedFeatures('abvm')">abvm</button>
+		<button class="buttonOT" data-title="Below-base Mark Positioning" id="blwm_btn" onclick="functionAddSupportedFeatures('blwm')">blwm</button>
+
+			</td>
+		</tr>
+</table>
+
+                    <!-- fonts size slider
+                    <table>
+                        <tr>
+                        <td class="colLeft">Font Size</td><td class="left"><input type="range" min="0.5" max="20" value="2.5" step=".01" id="slider" /></td>
+                        </tr>
+                    </table>
+                     -->
+
+                    <!-- axis variable fonts -->
+                    
+
+                </td>
+            </tbody>
+
+            <th><button class="buttonExtra" id="otFeature_btn" onclick='functionShowHeader(".header", "otFeature");' title="Toggle details">&#x25bc;</button>
+            </th>
+        </table>
+    </div>  
+
+<div id="cssCodeForCustomerPreview" class="containerCSScode deepgray whitetext">
+<pre>
+
+<span class="comment">/* first assign web fonts */</span>
+
+<span class="rule">@font-face</span> {
+    <span class="keyword">font-family</span>: 'Noto Sans Gujarati UI'; 
+    <span class="prop">src</span>: <span class="prop">url</span>('../NotoSansGujaratiUI-Regular.ttf') <span class="prop">format</span>('truetype');
+    }
+
+<span class="rule">@font-face</span> {
+    <span class="keyword">font-family</span>: 'Noto Sans Gujarati UI Bold'; 
+    <span class="prop">src</span>: <span class="prop">url</span>('../NotoSansGujaratiUI-Bold.ttf') <span class="prop">format</span>('truetype');
+    }
+
+<span class="comment">/* go on with normal style definitions */</span>
+<span class="rule">body</span> {
+    <span class="keyword">font-family</span>: 'Noto Sans Gujarati UI'; <span class="comment">/* this is only an example for one style */</span>
+    <span class="featurestring">
+    <span class="comment">/* setup OpenType features */</span>
+    <span class="keyword">font-feature-settings: </span><span id="w3cfeatures"></span>;
+
+    <span class="comment">/* vendor prefixes */</span>
+    <span class="keyword">-webkit-font-feature-settings: </span><span id="webkitfeatures"></span>;
+    <span class="keyword">-moz-font-feature-settings: </span><span id="mozfeatures-up-to-14"></span>;
+    <span class="keyword">-moz-font-feature-settings: </span><span id="mozfeatures"></span>;
+    <span class="keyword">-ms-font-feature-settings: </span><span id="msfeatures"></span>;
+    <span class="keyword">-o-font-feature-settings: </span><span id="ofeatures"></span>;
+    
+}
+    
+
+<span class="comment">/* language tag */</span>
+<code><</code><span class="keyword">html</span><span class="prop"> lang</span>=<span class="rule">"<span id="htmlLangTag"></span>"</span><code>></code>
+
+...
+
+<code><</code>/<span class="keyword">html</span><code>></code>
+
+</pre>
+</div>
+
+
+<div id="containerMainID" class="containerMain" onscroll="scrollXNamesFunc()">
+
+    <div class="cssButton">
+        <a class="cssButtonStyle whitetext" onclick="functionShowCSSCode('.containerMain')" href="#" style="text-decoration:None;"> 
+            css code
+        </a>
+    </div>
+
+    <div id="showFontNames" class="content" style="background: white; opacity: 0; transition: opacity 1s ease-in-out; position: fixed; z-index: -1; width:100%;">
+        <table style="width:100%; border-bottom: 1px solid #FAF7F5;">
+            <tr>
+                <td class="colLeft">
+                </td>
+                <td class="rotate characterFontNames defaultFont"><div><span class="infoFont"> </span></div></td>
+				<td class="rotate characterFontNames om_NotoSansGujaratiUIRegularttf"><div><span>Noto Sans Gujarati UI</span></div></td>
+				<td class="rotate characterFontNames om_NotoSansGujaratiUIBoldttf"><div><span>Noto Sans Gujarati UI Bold</span></div></td>
+				
+            </tr>
+        </table>
+    </div>
+
+    <div id="showFontNames_div" class="center" style="position: fixed; bottom: -50px; z-index:998; width:100%;">
+        <button class="buttonBlack" id="showFontNames_btn" onclick='showhide_div("showFontNames", "font names");' title="Toggle details">show font names</button>
+    </div>
+
+    <div id="varFont" class="content">
+
+        <table>
+            <tr>
+                <td class="colLeft">
+                <!-- <a href="#splitterContent">Character Set Compare</a> https://css-tricks.com/snippets/jquery/smooth-scrolling/ -->
+                2020-09-26 - 14:13.55
+                <br>
+                14:13.56
+                <br>
+                <button class="buttonBorder" onClick="window.print()">
+                Print this page
+                </button>
+                </td>
+                <td class="rotate characterFontNames defaultFont"><div><span class="infoFont"> </span></div></td>
+				<td class="rotate characterFontNames om_NotoSansGujaratiUIRegularttf"><div><span>Noto Sans Gujarati UI</span></div></td>
+				<td class="rotate characterFontNames om_NotoSansGujaratiUIBoldttf"><div><span>Noto Sans Gujarati UI Bold</span></div></td>
+				
+            </tr>
+        </table>
+
+            
+		<hr>
+		<table>
+<tr>
+<td class="colLeft">Format<br>(by file ending)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Gujarati UI" data-original-title=".ttf"><span class="infoFont">.ttf</span></td>
+<td class="characterMetaData defaultFont" title="Noto Sans Gujarati UI Bold" data-original-title=".ttf"><span class="infoFont">.ttf</span></td>
+</tr>
+<tr>
+<td class="colLeft">Outline Flavour<br>(CFF or glyf table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Gujarati UI" data-original-title="OT TTF"><span class="infoFont">OT TTF</span></td>
+<td class="characterMetaData defaultFont" title="Noto Sans Gujarati UI Bold" data-original-title="OT TTF"><span class="infoFont">OT TTF</span></td>
+</tr>
+<tr>
+<td class="colLeft">Number of Glyphs<br>(maxp table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Gujarati UI" data-original-title="722"><span class="infoFont">722</span></td>
+<td class="characterMetaData defaultFont error" title="Noto Sans Gujarati UI Bold" data-original-title="721"><div><span class="infoFont">721</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">Weight Class<br>(OS/2 table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont " title="Noto Sans Gujarati UI" data-original-title="400"><span class="infoFont">400</span></td>
+<td class="characterMetaData defaultFont " title="Noto Sans Gujarati UI Bold" data-original-title="700"><span class="infoFont">700</span></td>
+</tr>
+<tr>
+<td class="colLeft">Width Class<br>(OS/2 table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont " title="Noto Sans Gujarati UI" data-original-title="5"><span class="infoFont">5</span></td>
+<td class="characterMetaData defaultFont " title="Noto Sans Gujarati UI Bold" data-original-title="5"><span class="infoFont">5</span></td>
+</tr>
+<tr>
+<td class="colLeft">Units per Em<br>(head table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Gujarati UI" data-original-title="2048"><div><span class="infoFont">2048</span></div></td>
+<td class="characterMetaData defaultFont" title="Noto Sans Gujarati UI Bold" data-original-title="2048"><div><span class="infoFont">2048</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">Font Revision<br>(head table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Gujarati UI" data-original-title="1.03"><div><span class="infoFont">1.03</span></div></td>
+<td class="characterMetaData defaultFont" title="Noto Sans Gujarati UI Bold" data-original-title="1.03"><div><span class="infoFont">1.03</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">OS/2 Table Version<br></td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Gujarati UI" data-original-title="4"><div><span class="infoFont">4</span></div></td>
+<td class="characterMetaData defaultFont" title="Noto Sans Gujarati UI Bold" data-original-title="4"><div><span class="infoFont">4</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">sTypeAscender<br>(OS/2 table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Gujarati UI" data-original-title="2189"><div><span class="infoFont">2189</span></div></td>
+<td class="characterMetaData defaultFont" title="Noto Sans Gujarati UI Bold" data-original-title="2189"><div><span class="infoFont">2189</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">sTypeDescender<br>(OS/2 table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Gujarati UI" data-original-title="-600"><div><span class="infoFont">-600</span></div></td>
+<td class="characterMetaData defaultFont" title="Noto Sans Gujarati UI Bold" data-original-title="-600"><div><span class="infoFont">-600</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">sTypeLineGap<br>(OS/2 table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Gujarati UI" data-original-title="0"><div><span class="infoFont">0</span></div></td>
+<td class="characterMetaData defaultFont" title="Noto Sans Gujarati UI Bold" data-original-title="0"><div><span class="infoFont">0</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">usWinAscent<br>(OS/2 table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Gujarati UI" data-original-title="2189"><div><span class="infoFont">2189</span></div></td>
+<td class="characterMetaData defaultFont" title="Noto Sans Gujarati UI Bold" data-original-title="2189"><div><span class="infoFont">2189</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">usWinDescent<br>(OS/2 table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Gujarati UI" data-original-title="600"><div><span class="infoFont">600</span></div></td>
+<td class="characterMetaData defaultFont" title="Noto Sans Gujarati UI Bold" data-original-title="600"><div><span class="infoFont">600</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">Ascender<br>(hhea table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Gujarati UI" data-original-title="2189"><div><span class="infoFont">2189</span></div></td>
+<td class="characterMetaData defaultFont" title="Noto Sans Gujarati UI Bold" data-original-title="2189"><div><span class="infoFont">2189</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">Descender<br>(hhea table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Gujarati UI" data-original-title="-600"><div><span class="infoFont">-600</span></div></td>
+<td class="characterMetaData defaultFont" title="Noto Sans Gujarati UI Bold" data-original-title="-600"><div><span class="infoFont">-600</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">LineGap<br>(hhea table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Gujarati UI" data-original-title="0"><div><span class="infoFont">0</span></div></td>
+<td class="characterMetaData defaultFont" title="Noto Sans Gujarati UI Bold" data-original-title="0"><div><span class="infoFont">0</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">post table format<br>(post table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Gujarati UI" data-original-title="3.0"><div><span class="infoFont">3.0</span></div></td>
+<td class="characterMetaData defaultFont" title="Noto Sans Gujarati UI Bold" data-original-title="3.0"><div><span class="infoFont">3.0</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">Underline Position<br>(post table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Gujarati UI" data-original-title="-154"><div><span class="infoFont">-154</span></div></td>
+<td class="characterMetaData defaultFont" title="Noto Sans Gujarati UI Bold" data-original-title="-154"><div><span class="infoFont">-154</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">Underline Thickness<br>(post table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Gujarati UI" data-original-title="102"><div><span class="infoFont">102</span></div></td>
+<td class="characterMetaData defaultFont" title="Noto Sans Gujarati UI Bold" data-original-title="102"><div><span class="infoFont">102</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">Hgo<br>visual check underline</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData om_NotoSansGujaratiUIRegularttf underline" title="Noto Sans Gujarati UI" data-original-title="Hgo">Hgo</td>
+<td class="characterMetaData om_NotoSansGujaratiUIBoldttf underline" title="Noto Sans Gujarati UI Bold" data-original-title="Hgo">Hgo</td>
+</tr>
+<tr>
+<td class="colLeft">yStrikeoutPosition<br>(OS/2 table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Gujarati UI" data-original-title="641"><div><span class="infoFont">641</span></div></td>
+<td class="characterMetaData defaultFont" title="Noto Sans Gujarati UI Bold" data-original-title="641"><div><span class="infoFont">641</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">yStrikeoutSize<br>(OS/2 table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Gujarati UI" data-original-title="102"><div><span class="infoFont">102</span></div></td>
+<td class="characterMetaData defaultFont" title="Noto Sans Gujarati UI Bold" data-original-title="102"><div><span class="infoFont">102</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">strikeout<br>visual check</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData om_NotoSansGujaratiUIRegularttf strikeout" title="Noto Sans Gujarati UI" data-original-title="Hgo">Hgo</td>
+<td class="characterMetaData om_NotoSansGujaratiUIBoldttf strikeout" title="Noto Sans Gujarati UI Bold" data-original-title="Hgo">Hgo</td>
+</tr>
+<tr>
+<td class="colLeft">Italic Flag<br>(OS/2 table fsSelection)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Gujarati UI" data-original-title="False"><div><span class="infoFont">False</span></div></td>
+<td class="characterMetaData defaultFont" title="Noto Sans Gujarati UI Bold" data-original-title="False"><div><span class="infoFont">False</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">Italic Angle<br>(post table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterFix defaultFont" title="Noto Sans Gujarati UI" data-original-title="0.0"><div><span class="infoFont">0.0</span></div></td>
+<td class="characterFix defaultFont" title="Noto Sans Gujarati UI Bold" data-original-title="0.0"><div><span class="infoFont">0.0</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">Panose: Family<br>(Value 1)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterFix defaultFont" title="Noto Sans Gujarati UI" data-original-title="Latin Text"><div><span class="infoFont">Latin Text</span></div></td>
+<td class="characterFix defaultFont" title="Noto Sans Gujarati UI Bold" data-original-title="Latin Text"><div><span class="infoFont">Latin Text</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">Panose: Serif<br>(Value 2)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterFix defaultFont" title="Noto Sans Gujarati UI" data-original-title="Normal Sans"><div><span class="infoFont">Normal Sans</span></div></td>
+<td class="characterFix defaultFont" title="Noto Sans Gujarati UI Bold" data-original-title="Normal Sans"><div><span class="infoFont">Normal Sans</span></div></td>
+</tr>
+
+		</table>
+
+
+            
+
+            
+            <hr>
+            <table id="compareBoxID">
+            <tr id="tableTR" class="textTop sampleBig blackBG compareBoxes">
+
+            <button class="buttonBorder" title="add column" onclick="functionBoxAdd()">+</button>
+            <button class="buttonBorder" title="remove column" onclick="functionBoxRemove()">-</button>
+            <select id="mySelectSampleText" onchange="functionSelectSampleText('mySelectSampleText')" class="selectSampleText">
+
+            <option value='Default Sample'>Default Sample</option><option value='All Unicodes'>All Unicodes</option><option value='Feature Frac'>Feature Frac</option><option value='Hebrew International'>Hebrew International</option>
+
+            </select>
+            <input type="color" class="inputColor" value="#82e5fe" title="Background Color" onchange="functionGetColorBG(this.value, '.compareBoxes')">
+            <input type="color" class="inputColor" value="#ff79ad" title="Text Color" onchange="functionGetColorText(this.value, '.compareBoxes')">
+            <button class="buttonBorder" title="Swap Colors" onclick="functionSwapColorTextBG('.compareBoxes')">&#x02B14</button>
+            <button class="buttonBorder" title="have fun, change background" onclick="functionGetRandomBG(['gradientBG', 'linearGradientBG', 'linearGradient2BG', 'blackBG'])">∞</button>
+            <input type="range" class="inputRangeCompareBox" title="Text Size" min="0.5" max="100" value="30" step=".01" id="sliderCompareBoxCSS"/>
+            <input type="number" class="inputNumberCompareBox" value="30" step="1" id="numberCompareBoxCSS"/>
+            <button class="buttonOT" id="leftcompareBox_btn" title="text alignment left" onclick="functionTextAlignment('compareBoxID', 'left')">L</button>
+            <button class="buttonOT" id="centercompareBox_btn" title="text alignment center" onclick="functionTextAlignment('compareBoxID', 'center')">C</button>
+            <button class="buttonOT" id="rightcompareBox_btn" title="text alignment right" onclick="functionTextAlignment('compareBoxID', 'right')">R</button>
+            <span style="vertical-align: super; color: #efefef;">|</span>
+            <button class="buttonOT" id="left-to-rightcompareBox_btn" title="reading direction: left to right" onclick="functionReadDirection('compareBoxID', 'left-to-right')">LR</button>
+            <button class="buttonOT" id="right-to-leftcompareBox_btn" title="reading direction: right to left" onclick="functionReadDirection('compareBoxID', 'right-to-left')">RL</button>
+            <!--<button class="buttonOT" id="top-to-downcompareBox_btn" title="reading direction: top to down" onclick="functionReadDirection('compareBoxID', 'top-to-down')">TD</button>-->
+            <button class="buttonBlack" id="hintingOnOff_btn" onclick="hintingOnOff('.compareBoxes', 'hintingOnOff');" title="activate/deactivate hinting">hinting on</button>
+            
+<td id="myBox" class="compareBox om_NotoSansGujaratiUIRegularttf"><select id="mySelect" name="myBox" onchange="functionSelect('mySelect')"><option value='om_NotoSansGujaratiUIRegularttf'>Noto Sans Gujarati UI (ttf)</option>
+<option value='om_NotoSansGujaratiUIBoldttf'>Noto Sans Gujarati UI Bold (ttf)</option>
+</select>
+
+<span id="myBoxContent" contenteditable="true" class="compareBoxCSS ">1234567890 xozszn HOZD 1/3 @ 1a ;#& ? % $ € ! In August of 2016, four unlikely collaborators in the world of type, fonts and font technology stood on a stage at the ATypI conference in Warsaw, Poland. The collaborators were Apple, Microsoft, Adobe and Google. Together they announced the publishing of OpenType 1.8, an update to the now ubiquitous font standard which was originally an amalgam of Apple & Microsoft’s TrueType, and Adobe’s PostScript font formats. The OpenType 1.8 announcement, ATypI, Warsaw, Poland, September 14, 2016.</span></td>
+
+</tr>
+            </table>
+    
+
+            
+		<hr>
+		<table>
+<thead><tr><tr>
+<td class="colLeft">Copyright<br>NID0 Windows (3, 1, 1033, 0)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 0)_btn" onclick='toggle_detail("(3, 1, 1033, 0)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 0)0')" onMouseOut="hover('(3, 1, 1033, 0)0')" class="character defaultFont " title="Noto Sans Gujarati UI" data-original-title="(3, 1, 1033, 0)">&#8226</td>
+<td onMouseOver="hover('(3, 1, 1033, 0)1')" onMouseOut="hover('(3, 1, 1033, 0)1')" class="character defaultFont " title="Noto Sans Gujarati UI Bold" data-original-title="(3, 1, 1033, 0)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 0)" style="display: none;">
+        <td class="colLeftToggle" rowspan="3">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Gujarati UI"><td onMouseOver="hover('(3, 1, 1033, 0)0')" onMouseOut="hover('(3, 1, 1033, 0)0')" id="(3, 1, 1033, 0)0" class="infoToggle" colspan="2">Copyright 2013 Google Inc. All Rights Reserved.</td></tr><tr class="" title="Noto Sans Gujarati UI Bold"><td onMouseOver="hover('(3, 1, 1033, 0)1')" onMouseOut="hover('(3, 1, 1033, 0)1')" id="(3, 1, 1033, 0)1" class="infoToggle" colspan="2">Copyright 2013 Google Inc. All Rights Reserved.</td></tr></tbody><tr>
+<td class="colLeft">Family Name<br>NID1 Windows (3, 1, 1033, 1)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 1)_btn" onclick='toggle_detail("(3, 1, 1033, 1)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 1)0')" onMouseOut="hover('(3, 1, 1033, 1)0')" class="character defaultFont " title="Noto Sans Gujarati UI" data-original-title="(3, 1, 1033, 1)">&#8226</td>
+<td onMouseOver="hover('(3, 1, 1033, 1)1')" onMouseOut="hover('(3, 1, 1033, 1)1')" class="character defaultFont " title="Noto Sans Gujarati UI Bold" data-original-title="(3, 1, 1033, 1)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 1)" style="display: none;">
+        <td class="colLeftToggle" rowspan="3">NID 1 and 2 together should be unique within the family.</td><tr class="" title="Noto Sans Gujarati UI"><td onMouseOver="hover('(3, 1, 1033, 1)0')" onMouseOut="hover('(3, 1, 1033, 1)0')" id="(3, 1, 1033, 1)0" class="infoToggle" colspan="2">NID1: 'Noto Sans Gujarati UI' + NID2: 'Regular'</td></tr><tr class="" title="Noto Sans Gujarati UI Bold"><td onMouseOver="hover('(3, 1, 1033, 1)1')" onMouseOut="hover('(3, 1, 1033, 1)1')" id="(3, 1, 1033, 1)1" class="infoToggle" colspan="2">NID1: 'Noto Sans Gujarati UI' + NID2: 'Bold'</td></tr></tbody><tr>
+<td class="colLeft">Subfamily Name<br>NID2 Windows (3, 1, 1033, 2)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 2)_btn" onclick='toggle_detail("(3, 1, 1033, 2)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 2)0')" onMouseOut="hover('(3, 1, 1033, 2)0')" class="character defaultFont " title="Noto Sans Gujarati UI" data-original-title="(3, 1, 1033, 2)">&#8226</td>
+<td onMouseOver="hover('(3, 1, 1033, 2)1')" onMouseOut="hover('(3, 1, 1033, 2)1')" class="character defaultFont " title="Noto Sans Gujarati UI Bold" data-original-title="(3, 1, 1033, 2)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 2)" style="display: none;">
+        <td class="colLeftToggle" rowspan="3">NID entry should be 'Regular', 'Italic', 'Bold' or 'Bold Italic'.</td><tr class="" title="Noto Sans Gujarati UI"><td onMouseOver="hover('(3, 1, 1033, 2)0')" onMouseOut="hover('(3, 1, 1033, 2)0')" id="(3, 1, 1033, 2)0" class="infoToggle" colspan="2">Regular</td></tr><tr class="" title="Noto Sans Gujarati UI Bold"><td onMouseOver="hover('(3, 1, 1033, 2)1')" onMouseOut="hover('(3, 1, 1033, 2)1')" id="(3, 1, 1033, 2)1" class="infoToggle" colspan="2">Bold</td></tr></tbody><tr>
+<td class="colLeft">Unique Font Identifier<br>NID3 Windows (3, 1, 1033, 3)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 3)_btn" onclick='toggle_detail("(3, 1, 1033, 3)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 3)0')" onMouseOut="hover('(3, 1, 1033, 3)0')" class="character defaultFont " title="Noto Sans Gujarati UI" data-original-title="(3, 1, 1033, 3)">&#8226</td>
+<td onMouseOver="hover('(3, 1, 1033, 3)1')" onMouseOut="hover('(3, 1, 1033, 3)1')" class="character defaultFont " title="Noto Sans Gujarati UI Bold" data-original-title="(3, 1, 1033, 3)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 3)" style="display: none;">
+        <td class="colLeftToggle" rowspan="3">NID entry should be DIFFERENT within the family.</td><tr class="" title="Noto Sans Gujarati UI"><td onMouseOver="hover('(3, 1, 1033, 3)0')" onMouseOut="hover('(3, 1, 1033, 3)0')" id="(3, 1, 1033, 3)0" class="infoToggle" colspan="2">Monotype Imaging - Noto Sans Gujarati UI</td></tr><tr class="" title="Noto Sans Gujarati UI Bold"><td onMouseOver="hover('(3, 1, 1033, 3)1')" onMouseOut="hover('(3, 1, 1033, 3)1')" id="(3, 1, 1033, 3)1" class="infoToggle" colspan="2">Monotype Imaging - Noto Sans Gujarati UI Bold</td></tr></tbody><tr>
+<td class="colLeft">Full Font Name<br>NID4 Windows (3, 1, 1033, 4)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 4)_btn" onclick='toggle_detail("(3, 1, 1033, 4)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 4)0')" onMouseOut="hover('(3, 1, 1033, 4)0')" class="character defaultFont " title="Noto Sans Gujarati UI" data-original-title="(3, 1, 1033, 4)">&#8226</td>
+<td onMouseOver="hover('(3, 1, 1033, 4)1')" onMouseOut="hover('(3, 1, 1033, 4)1')" class="character defaultFont " title="Noto Sans Gujarati UI Bold" data-original-title="(3, 1, 1033, 4)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 4)" style="display: none;">
+        <td class="colLeftToggle" rowspan="3">NID entry should be DIFFERENT within the family.</td><tr class="" title="Noto Sans Gujarati UI"><td onMouseOver="hover('(3, 1, 1033, 4)0')" onMouseOut="hover('(3, 1, 1033, 4)0')" id="(3, 1, 1033, 4)0" class="infoToggle" colspan="2">Noto Sans Gujarati UI</td></tr><tr class="" title="Noto Sans Gujarati UI Bold"><td onMouseOver="hover('(3, 1, 1033, 4)1')" onMouseOut="hover('(3, 1, 1033, 4)1')" id="(3, 1, 1033, 4)1" class="infoToggle" colspan="2">Noto Sans Gujarati UI Bold</td></tr></tbody><tr>
+<td class="colLeft">Version<br>NID5 Windows (3, 1, 1033, 5)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 5)_btn" onclick='toggle_detail("(3, 1, 1033, 5)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 5)0')" onMouseOut="hover('(3, 1, 1033, 5)0')" class="character defaultFont " title="Noto Sans Gujarati UI" data-original-title="(3, 1, 1033, 5)">&#8226</td>
+<td onMouseOver="hover('(3, 1, 1033, 5)1')" onMouseOut="hover('(3, 1, 1033, 5)1')" class="character defaultFont " title="Noto Sans Gujarati UI Bold" data-original-title="(3, 1, 1033, 5)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 5)" style="display: none;">
+        <td class="colLeftToggle" rowspan="3">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Gujarati UI"><td onMouseOver="hover('(3, 1, 1033, 5)0')" onMouseOut="hover('(3, 1, 1033, 5)0')" id="(3, 1, 1033, 5)0" class="infoToggle" colspan="2">Version 1.03 uh</td></tr><tr class="" title="Noto Sans Gujarati UI Bold"><td onMouseOver="hover('(3, 1, 1033, 5)1')" onMouseOut="hover('(3, 1, 1033, 5)1')" id="(3, 1, 1033, 5)1" class="infoToggle" colspan="2">Version 1.03 uh</td></tr></tbody><tr>
+<td class="colLeft">PostScript Name<br>NID6 Windows (3, 1, 1033, 6)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 6)_btn" onclick='toggle_detail("(3, 1, 1033, 6)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 6)0')" onMouseOut="hover('(3, 1, 1033, 6)0')" class="character defaultFont " title="Noto Sans Gujarati UI" data-original-title="(3, 1, 1033, 6)">&#8226</td>
+<td onMouseOver="hover('(3, 1, 1033, 6)1')" onMouseOut="hover('(3, 1, 1033, 6)1')" class="character defaultFont " title="Noto Sans Gujarati UI Bold" data-original-title="(3, 1, 1033, 6)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 6)" style="display: none;">
+        <td class="colLeftToggle" rowspan="3">NID entry should be DIFFERENT within the family.</td><tr class="" title="Noto Sans Gujarati UI"><td onMouseOver="hover('(3, 1, 1033, 6)0')" onMouseOut="hover('(3, 1, 1033, 6)0')" id="(3, 1, 1033, 6)0" class="infoToggle" colspan="2">NotoSansGujaratiUI</td></tr><tr class="" title="Noto Sans Gujarati UI Bold"><td onMouseOver="hover('(3, 1, 1033, 6)1')" onMouseOut="hover('(3, 1, 1033, 6)1')" id="(3, 1, 1033, 6)1" class="infoToggle" colspan="2">NotoSansGujaratiUI-Bold</td></tr></tbody><tr>
+<td class="colLeft">Trademark<br>NID7 Windows (3, 1, 1033, 7)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 7)_btn" onclick='toggle_detail("(3, 1, 1033, 7)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 7)0')" onMouseOut="hover('(3, 1, 1033, 7)0')" class="character defaultFont " title="Noto Sans Gujarati UI" data-original-title="(3, 1, 1033, 7)">&#8226</td>
+<td onMouseOver="hover('(3, 1, 1033, 7)1')" onMouseOut="hover('(3, 1, 1033, 7)1')" class="character defaultFont " title="Noto Sans Gujarati UI Bold" data-original-title="(3, 1, 1033, 7)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 7)" style="display: none;">
+        <td class="colLeftToggle" rowspan="3">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Gujarati UI"><td onMouseOver="hover('(3, 1, 1033, 7)0')" onMouseOut="hover('(3, 1, 1033, 7)0')" id="(3, 1, 1033, 7)0" class="infoToggle" colspan="2">Noto is a trademark of Google Inc.</td></tr><tr class="" title="Noto Sans Gujarati UI Bold"><td onMouseOver="hover('(3, 1, 1033, 7)1')" onMouseOut="hover('(3, 1, 1033, 7)1')" id="(3, 1, 1033, 7)1" class="infoToggle" colspan="2">Noto is a trademark of Google Inc.</td></tr></tbody><tr>
+<td class="colLeft">Manufacturer<br>NID8 Windows (3, 1, 1033, 8)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 8)_btn" onclick='toggle_detail("(3, 1, 1033, 8)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 8)0')" onMouseOut="hover('(3, 1, 1033, 8)0')" class="character defaultFont " title="Noto Sans Gujarati UI" data-original-title="(3, 1, 1033, 8)">&#8226</td>
+<td onMouseOver="hover('(3, 1, 1033, 8)1')" onMouseOut="hover('(3, 1, 1033, 8)1')" class="character defaultFont " title="Noto Sans Gujarati UI Bold" data-original-title="(3, 1, 1033, 8)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 8)" style="display: none;">
+        <td class="colLeftToggle" rowspan="3">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Gujarati UI"><td onMouseOver="hover('(3, 1, 1033, 8)0')" onMouseOut="hover('(3, 1, 1033, 8)0')" id="(3, 1, 1033, 8)0" class="infoToggle" colspan="2">Monotype Imaging Inc.</td></tr><tr class="" title="Noto Sans Gujarati UI Bold"><td onMouseOver="hover('(3, 1, 1033, 8)1')" onMouseOut="hover('(3, 1, 1033, 8)1')" id="(3, 1, 1033, 8)1" class="infoToggle" colspan="2">Monotype Imaging Inc.</td></tr></tbody><tr>
+<td class="colLeft">Designer<br>NID9 Windows (3, 1, 1033, 9)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 9)_btn" onclick='toggle_detail("(3, 1, 1033, 9)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 9)0')" onMouseOut="hover('(3, 1, 1033, 9)0')" class="character defaultFont " title="Noto Sans Gujarati UI" data-original-title="(3, 1, 1033, 9)">&#8226</td>
+<td onMouseOver="hover('(3, 1, 1033, 9)1')" onMouseOut="hover('(3, 1, 1033, 9)1')" class="character defaultFont " title="Noto Sans Gujarati UI Bold" data-original-title="(3, 1, 1033, 9)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 9)" style="display: none;">
+        <td class="colLeftToggle" rowspan="3">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Gujarati UI"><td onMouseOver="hover('(3, 1, 1033, 9)0')" onMouseOut="hover('(3, 1, 1033, 9)0')" id="(3, 1, 1033, 9)0" class="infoToggle" colspan="2">Monotype Design Team</td></tr><tr class="" title="Noto Sans Gujarati UI Bold"><td onMouseOver="hover('(3, 1, 1033, 9)1')" onMouseOut="hover('(3, 1, 1033, 9)1')" id="(3, 1, 1033, 9)1" class="infoToggle" colspan="2">Monotype Design Team</td></tr></tbody><tr>
+<td class="colLeft">Description<br>NID10 Windows (3, 1, 1033, 10)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 10)_btn" onclick='toggle_detail("(3, 1, 1033, 10)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 10)0')" onMouseOut="hover('(3, 1, 1033, 10)0')" class="character defaultFont " title="Noto Sans Gujarati UI" data-original-title="(3, 1, 1033, 10)">&#8226</td>
+<td onMouseOver="hover('(3, 1, 1033, 10)1')" onMouseOut="hover('(3, 1, 1033, 10)1')" class="character defaultFont " title="Noto Sans Gujarati UI Bold" data-original-title="(3, 1, 1033, 10)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 10)" style="display: none;">
+        <td class="colLeftToggle" rowspan="3">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Gujarati UI"><td onMouseOver="hover('(3, 1, 1033, 10)0')" onMouseOut="hover('(3, 1, 1033, 10)0')" id="(3, 1, 1033, 10)0" class="infoToggle" colspan="2">Data unhinted. Designed by Monotype design team.</td></tr><tr class="" title="Noto Sans Gujarati UI Bold"><td onMouseOver="hover('(3, 1, 1033, 10)1')" onMouseOut="hover('(3, 1, 1033, 10)1')" id="(3, 1, 1033, 10)1" class="infoToggle" colspan="2">Data unhinted. Designed by Monotype design team.</td></tr></tbody><tr>
+<td class="colLeft">Vendor URL<br>NID11 Windows (3, 1, 1033, 11)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 11)_btn" onclick='toggle_detail("(3, 1, 1033, 11)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 11)0')" onMouseOut="hover('(3, 1, 1033, 11)0')" class="character defaultFont " title="Noto Sans Gujarati UI" data-original-title="(3, 1, 1033, 11)">&#8226</td>
+<td onMouseOver="hover('(3, 1, 1033, 11)1')" onMouseOut="hover('(3, 1, 1033, 11)1')" class="character defaultFont " title="Noto Sans Gujarati UI Bold" data-original-title="(3, 1, 1033, 11)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 11)" style="display: none;">
+        <td class="colLeftToggle" rowspan="3">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Gujarati UI"><td onMouseOver="hover('(3, 1, 1033, 11)0')" onMouseOut="hover('(3, 1, 1033, 11)0')" id="(3, 1, 1033, 11)0" class="infoToggle" colspan="2">http://www.google.com/get/noto/</td></tr><tr class="" title="Noto Sans Gujarati UI Bold"><td onMouseOver="hover('(3, 1, 1033, 11)1')" onMouseOut="hover('(3, 1, 1033, 11)1')" id="(3, 1, 1033, 11)1" class="infoToggle" colspan="2">http://www.google.com/get/noto/</td></tr></tbody><tr>
+<td class="colLeft">Designer URL<br>NID12 Windows (3, 1, 1033, 12)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 12)_btn" onclick='toggle_detail("(3, 1, 1033, 12)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 12)0')" onMouseOut="hover('(3, 1, 1033, 12)0')" class="character defaultFont " title="Noto Sans Gujarati UI" data-original-title="(3, 1, 1033, 12)">&#8226</td>
+<td onMouseOver="hover('(3, 1, 1033, 12)1')" onMouseOut="hover('(3, 1, 1033, 12)1')" class="character defaultFont " title="Noto Sans Gujarati UI Bold" data-original-title="(3, 1, 1033, 12)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 12)" style="display: none;">
+        <td class="colLeftToggle" rowspan="3">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Gujarati UI"><td onMouseOver="hover('(3, 1, 1033, 12)0')" onMouseOut="hover('(3, 1, 1033, 12)0')" id="(3, 1, 1033, 12)0" class="infoToggle" colspan="2">http://www.monotype.com/studio</td></tr><tr class="" title="Noto Sans Gujarati UI Bold"><td onMouseOver="hover('(3, 1, 1033, 12)1')" onMouseOut="hover('(3, 1, 1033, 12)1')" id="(3, 1, 1033, 12)1" class="infoToggle" colspan="2">http://www.monotype.com/studio</td></tr></tbody><tr>
+<td class="colLeft">License Text<br>NID13 Windows (3, 1, 1033, 13)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 13)_btn" onclick='toggle_detail("(3, 1, 1033, 13)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 13)0')" onMouseOut="hover('(3, 1, 1033, 13)0')" class="character defaultFont " title="Noto Sans Gujarati UI" data-original-title="(3, 1, 1033, 13)">&#8226</td>
+<td onMouseOver="hover('(3, 1, 1033, 13)1')" onMouseOut="hover('(3, 1, 1033, 13)1')" class="character defaultFont " title="Noto Sans Gujarati UI Bold" data-original-title="(3, 1, 1033, 13)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 13)" style="display: none;">
+        <td class="colLeftToggle" rowspan="3">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Gujarati UI"><td onMouseOver="hover('(3, 1, 1033, 13)0')" onMouseOut="hover('(3, 1, 1033, 13)0')" id="(3, 1, 1033, 13)0" class="infoToggle" colspan="2">This Font Software is licensed under the SIL Open Font License, Version 1.1. This Font Software is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the SIL Open Font License for the specific language, permissions and limitations governing your use of this Font Software.</td></tr><tr class="" title="Noto Sans Gujarati UI Bold"><td onMouseOver="hover('(3, 1, 1033, 13)1')" onMouseOut="hover('(3, 1, 1033, 13)1')" id="(3, 1, 1033, 13)1" class="infoToggle" colspan="2">This Font Software is licensed under the SIL Open Font License, Version 1.1. This Font Software is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the SIL Open Font License for the specific language, permissions and limitations governing your use of this Font Software.</td></tr></tbody><tr>
+<td class="colLeft">License URL<br>NID14 Windows (3, 1, 1033, 14)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 14)_btn" onclick='toggle_detail("(3, 1, 1033, 14)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 14)0')" onMouseOut="hover('(3, 1, 1033, 14)0')" class="character defaultFont " title="Noto Sans Gujarati UI" data-original-title="(3, 1, 1033, 14)">&#8226</td>
+<td onMouseOver="hover('(3, 1, 1033, 14)1')" onMouseOut="hover('(3, 1, 1033, 14)1')" class="character defaultFont " title="Noto Sans Gujarati UI Bold" data-original-title="(3, 1, 1033, 14)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 14)" style="display: none;">
+        <td class="colLeftToggle" rowspan="3">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Gujarati UI"><td onMouseOver="hover('(3, 1, 1033, 14)0')" onMouseOut="hover('(3, 1, 1033, 14)0')" id="(3, 1, 1033, 14)0" class="infoToggle" colspan="2">http://scripts.sil.org/OFL</td></tr><tr class="" title="Noto Sans Gujarati UI Bold"><td onMouseOver="hover('(3, 1, 1033, 14)1')" onMouseOut="hover('(3, 1, 1033, 14)1')" id="(3, 1, 1033, 14)1" class="infoToggle" colspan="2">http://scripts.sil.org/OFL</td></tr></tbody>
+		</table>
+
+
+            
+
+            
+
+        <!-- big text on black backround -->
+            
+
+            
+
+            
+
+            
+		<hr>
+		<table id="splitterContent">
+<tr>
+<td class="colLeft"><br>uni0000</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0000', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0000">&#x0000</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0000', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0000">&#x0000</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0000', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0000">&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft"><br>uni000D</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x000d', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni000d">&#x000d</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x000d', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni000d">&#x000d</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x000d', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni000d">&#x000d</td>
+</tr>
+<tr>
+<td class="colLeft">SPACE<br>uni0020</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0020', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0020">&#x0020</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0020', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0020">&#x0020</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0020', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0020">&#x0020</td>
+</tr>
+<tr>
+<td class="colLeft">EXCLAMATION MARK<br>uni0021</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0021', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0021">&#x0021</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0021', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0021">&#x0021</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0021', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0021">&#x0021</td>
+</tr>
+<tr>
+<td class="colLeft">QUOTATION MARK<br>uni0022</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0022', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0022">&#x0022</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0022', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0022">&#x0022</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0022', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0022">&#x0022</td>
+</tr>
+<tr>
+<td class="colLeft">NUMBER SIGN<br>uni0023</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0023', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0023">&#x0023</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0023', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0023">&#x0023</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0023', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0023">&#x0023</td>
+</tr>
+<tr>
+<td class="colLeft">PERCENT SIGN<br>uni0025</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0025', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0025">&#x0025</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0025', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0025">&#x0025</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0025', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0025">&#x0025</td>
+</tr>
+<tr>
+<td class="colLeft">APOSTROPHE<br>uni0027</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0027', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0027">&#x0027</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0027', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0027">&#x0027</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0027', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0027">&#x0027</td>
+</tr>
+<tr>
+<td class="colLeft">LEFT PARENTHESIS<br>uni0028</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0028', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0028">&#x0028</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0028', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0028">&#x0028</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0028', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0028">&#x0028</td>
+</tr>
+<tr>
+<td class="colLeft">RIGHT PARENTHESIS<br>uni0029</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0029', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0029">&#x0029</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0029', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0029">&#x0029</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0029', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0029">&#x0029</td>
+</tr>
+<tr>
+<td class="colLeft">ASTERISK<br>uni002A</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x002a', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni002a">&#x002a</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x002a', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni002a">&#x002a</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x002a', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni002a">&#x002a</td>
+</tr>
+<tr>
+<td class="colLeft">PLUS SIGN<br>uni002B</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x002b', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni002b">&#x002b</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x002b', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni002b">&#x002b</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x002b', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni002b">&#x002b</td>
+</tr>
+<tr>
+<td class="colLeft">COMMA<br>uni002C</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x002c', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni002c">&#x002c</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x002c', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni002c">&#x002c</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x002c', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni002c">&#x002c</td>
+</tr>
+<tr>
+<td class="colLeft">HYPHEN-MINUS<br>uni002D</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x002d', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni002d">&#x002d</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x002d', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni002d">&#x002d</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x002d', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni002d">&#x002d</td>
+</tr>
+<tr>
+<td class="colLeft">FULL STOP<br>uni002E</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x002e', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni002e">&#x002e</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x002e', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni002e">&#x002e</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x002e', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni002e">&#x002e</td>
+</tr>
+<tr>
+<td class="colLeft">SOLIDUS<br>uni002F</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x002f', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni002f">&#x002f</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x002f', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni002f">&#x002f</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x002f', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni002f">&#x002f</td>
+</tr>
+<tr>
+<td class="colLeft">DIGIT ZERO<br>uni0030</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0030', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0030">&#x0030</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0030', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0030">&#x0030</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0030', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0030">&#x0030</td>
+</tr>
+<tr>
+<td class="colLeft">DIGIT ONE<br>uni0031</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0031', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0031">&#x0031</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0031', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0031">&#x0031</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0031', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0031">&#x0031</td>
+</tr>
+<tr>
+<td class="colLeft">DIGIT TWO<br>uni0032</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0032', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0032">&#x0032</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0032', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0032">&#x0032</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0032', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0032">&#x0032</td>
+</tr>
+<tr>
+<td class="colLeft">DIGIT THREE<br>uni0033</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0033', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0033">&#x0033</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0033', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0033">&#x0033</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0033', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0033">&#x0033</td>
+</tr>
+<tr>
+<td class="colLeft">DIGIT FOUR<br>uni0034</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0034', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0034">&#x0034</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0034', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0034">&#x0034</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0034', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0034">&#x0034</td>
+</tr>
+<tr>
+<td class="colLeft">DIGIT FIVE<br>uni0035</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0035', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0035">&#x0035</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0035', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0035">&#x0035</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0035', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0035">&#x0035</td>
+</tr>
+<tr>
+<td class="colLeft">DIGIT SIX<br>uni0036</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0036', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0036">&#x0036</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0036', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0036">&#x0036</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0036', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0036">&#x0036</td>
+</tr>
+<tr>
+<td class="colLeft">DIGIT SEVEN<br>uni0037</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0037', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0037">&#x0037</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0037', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0037">&#x0037</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0037', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0037">&#x0037</td>
+</tr>
+<tr>
+<td class="colLeft">DIGIT EIGHT<br>uni0038</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0038', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0038">&#x0038</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0038', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0038">&#x0038</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0038', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0038">&#x0038</td>
+</tr>
+<tr>
+<td class="colLeft">DIGIT NINE<br>uni0039</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0039', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0039">&#x0039</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0039', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0039">&#x0039</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0039', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0039">&#x0039</td>
+</tr>
+<tr>
+<td class="colLeft">COLON<br>uni003A</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x003a', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni003a">&#x003a</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x003a', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni003a">&#x003a</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x003a', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni003a">&#x003a</td>
+</tr>
+<tr>
+<td class="colLeft">SEMICOLON<br>uni003B</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x003b', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni003b">&#x003b</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x003b', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni003b">&#x003b</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x003b', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni003b">&#x003b</td>
+</tr>
+<tr>
+<td class="colLeft">LESS-THAN SIGN<br>uni003C</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x003c', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni003c">&#x003c</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x003c', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni003c">&#x003c</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x003c', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni003c">&#x003c</td>
+</tr>
+<tr>
+<td class="colLeft">EQUALS SIGN<br>uni003D</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x003d', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni003d">&#x003d</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x003d', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni003d">&#x003d</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x003d', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni003d">&#x003d</td>
+</tr>
+<tr>
+<td class="colLeft">GREATER-THAN SIGN<br>uni003E</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x003e', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni003e">&#x003e</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x003e', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni003e">&#x003e</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x003e', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni003e">&#x003e</td>
+</tr>
+<tr>
+<td class="colLeft">QUESTION MARK<br>uni003F</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x003f', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni003f">&#x003f</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x003f', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni003f">&#x003f</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x003f', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni003f">&#x003f</td>
+</tr>
+<tr>
+<td class="colLeft">LEFT SQUARE BRACKET<br>uni005B</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x005b', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni005b">&#x005b</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x005b', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni005b">&#x005b</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x005b', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni005b">&#x005b</td>
+</tr>
+<tr>
+<td class="colLeft">REVERSE SOLIDUS<br>uni005C</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x005c', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni005c">&#x005c</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x005c', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni005c">&#x005c</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x005c', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni005c">&#x005c</td>
+</tr>
+<tr>
+<td class="colLeft">RIGHT SQUARE BRACKET<br>uni005D</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x005d', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni005d">&#x005d</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x005d', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni005d">&#x005d</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x005d', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni005d">&#x005d</td>
+</tr>
+<tr>
+<td class="colLeft">CIRCUMFLEX ACCENT<br>uni005E</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x005e', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni005e">&#x005e</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x005e', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni005e">&#x005e</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x005e', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni005e">&#x005e</td>
+</tr>
+<tr>
+<td class="colLeft">LOW LINE<br>uni005F</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x005f', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni005f">&#x005f</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x005f', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni005f">&#x005f</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x005f', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni005f">&#x005f</td>
+</tr>
+<tr>
+<td class="colLeft">LEFT CURLY BRACKET<br>uni007B</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x007b', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni007b">&#x007b</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x007b', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni007b">&#x007b</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x007b', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni007b">&#x007b</td>
+</tr>
+<tr>
+<td class="colLeft">VERTICAL LINE<br>uni007C</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x007c', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni007c">&#x007c</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x007c', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni007c">&#x007c</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x007c', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni007c">&#x007c</td>
+</tr>
+<tr>
+<td class="colLeft">RIGHT CURLY BRACKET<br>uni007D</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x007d', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni007d">&#x007d</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x007d', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni007d">&#x007d</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x007d', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni007d">&#x007d</td>
+</tr>
+<tr>
+<td class="colLeft">TILDE<br>uni007E</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x007e', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni007e">&#x007e</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x007e', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni007e">&#x007e</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x007e', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni007e">&#x007e</td>
+</tr>
+<tr>
+<td class="colLeft">NO-BREAK SPACE<br>uni00A0</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x00a0', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni00a0">&#x00a0</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x00a0', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni00a0">&#x00a0</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x00a0', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni00a0">&#x00a0</td>
+</tr>
+<tr>
+<td class="colLeft">SOFT HYPHEN<br>uni00AD</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x00ad', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni00ad">&#x00ad</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x00ad', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni00ad">&#x00ad</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x00ad', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni00ad">&#x00ad</td>
+</tr>
+<tr>
+<td class="colLeft">MULTIPLICATION SIGN<br>uni00D7</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x00d7', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni00d7">&#x00d7</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x00d7', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni00d7">&#x00d7</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x00d7', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni00d7">&#x00d7</td>
+</tr>
+<tr>
+<td class="colLeft">DIVISION SIGN<br>uni00F7</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x00f7', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni00f7">&#x00f7</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x00f7', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni00f7">&#x00f7</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x00f7', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni00f7">&#x00f7</td>
+</tr>
+<tr>
+<td class="colLeft">DEVANAGARI DANDA<br>uni0964</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0964', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0964">&#x0964</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0964', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0964">&#x0964</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0964', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0964">&#x0964</td>
+</tr>
+<tr>
+<td class="colLeft">DEVANAGARI DOUBLE DANDA<br>uni0965</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0965', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0965">&#x0965</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0965', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0965">&#x0965</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0965', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0965">&#x0965</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI SIGN CANDRABINDU<br>uni0A81</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0a81', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0a81">&#x0a81</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0a81', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0a81">&#x0a81</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0a81', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0a81">&#x0a81</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI SIGN ANUSVARA<br>uni0A82</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0a82', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0a82">&#x0a82</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0a82', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0a82">&#x0a82</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0a82', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0a82">&#x0a82</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI SIGN VISARGA<br>uni0A83</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0a83', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0a83">&#x0a83</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0a83', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0a83">&#x0a83</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0a83', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0a83">&#x0a83</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI LETTER A<br>uni0A85</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0a85', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0a85">&#x0a85</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0a85', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0a85">&#x0a85</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0a85', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0a85">&#x0a85</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI LETTER AA<br>uni0A86</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0a86', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0a86">&#x0a86</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0a86', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0a86">&#x0a86</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0a86', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0a86">&#x0a86</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI LETTER I<br>uni0A87</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0a87', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0a87">&#x0a87</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0a87', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0a87">&#x0a87</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0a87', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0a87">&#x0a87</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI LETTER II<br>uni0A88</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0a88', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0a88">&#x0a88</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0a88', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0a88">&#x0a88</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0a88', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0a88">&#x0a88</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI LETTER U<br>uni0A89</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0a89', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0a89">&#x0a89</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0a89', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0a89">&#x0a89</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0a89', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0a89">&#x0a89</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI LETTER UU<br>uni0A8A</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0a8a', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0a8a">&#x0a8a</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0a8a', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0a8a">&#x0a8a</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0a8a', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0a8a">&#x0a8a</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI LETTER VOCALIC R<br>uni0A8B</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0a8b', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0a8b">&#x0a8b</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0a8b', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0a8b">&#x0a8b</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0a8b', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0a8b">&#x0a8b</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI LETTER VOCALIC L<br>uni0A8C</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0a8c', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0a8c">&#x0a8c</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0a8c', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0a8c">&#x0a8c</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0a8c', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0a8c">&#x0a8c</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI VOWEL CANDRA E<br>uni0A8D</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0a8d', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0a8d">&#x0a8d</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0a8d', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0a8d">&#x0a8d</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0a8d', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0a8d">&#x0a8d</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI LETTER E<br>uni0A8F</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0a8f', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0a8f">&#x0a8f</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0a8f', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0a8f">&#x0a8f</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0a8f', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0a8f">&#x0a8f</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI LETTER AI<br>uni0A90</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0a90', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0a90">&#x0a90</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0a90', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0a90">&#x0a90</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0a90', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0a90">&#x0a90</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI VOWEL CANDRA O<br>uni0A91</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0a91', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0a91">&#x0a91</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0a91', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0a91">&#x0a91</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0a91', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0a91">&#x0a91</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI LETTER O<br>uni0A93</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0a93', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0a93">&#x0a93</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0a93', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0a93">&#x0a93</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0a93', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0a93">&#x0a93</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI LETTER AU<br>uni0A94</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0a94', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0a94">&#x0a94</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0a94', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0a94">&#x0a94</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0a94', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0a94">&#x0a94</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI LETTER KA<br>uni0A95</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0a95', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0a95">&#x0a95</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0a95', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0a95">&#x0a95</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0a95', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0a95">&#x0a95</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI LETTER KHA<br>uni0A96</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0a96', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0a96">&#x0a96</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0a96', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0a96">&#x0a96</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0a96', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0a96">&#x0a96</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI LETTER GA<br>uni0A97</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0a97', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0a97">&#x0a97</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0a97', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0a97">&#x0a97</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0a97', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0a97">&#x0a97</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI LETTER GHA<br>uni0A98</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0a98', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0a98">&#x0a98</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0a98', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0a98">&#x0a98</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0a98', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0a98">&#x0a98</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI LETTER NGA<br>uni0A99</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0a99', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0a99">&#x0a99</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0a99', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0a99">&#x0a99</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0a99', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0a99">&#x0a99</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI LETTER CA<br>uni0A9A</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0a9a', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0a9a">&#x0a9a</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0a9a', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0a9a">&#x0a9a</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0a9a', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0a9a">&#x0a9a</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI LETTER CHA<br>uni0A9B</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0a9b', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0a9b">&#x0a9b</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0a9b', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0a9b">&#x0a9b</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0a9b', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0a9b">&#x0a9b</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI LETTER JA<br>uni0A9C</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0a9c', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0a9c">&#x0a9c</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0a9c', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0a9c">&#x0a9c</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0a9c', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0a9c">&#x0a9c</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI LETTER JHA<br>uni0A9D</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0a9d', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0a9d">&#x0a9d</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0a9d', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0a9d">&#x0a9d</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0a9d', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0a9d">&#x0a9d</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI LETTER NYA<br>uni0A9E</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0a9e', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0a9e">&#x0a9e</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0a9e', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0a9e">&#x0a9e</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0a9e', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0a9e">&#x0a9e</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI LETTER TTA<br>uni0A9F</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0a9f', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0a9f">&#x0a9f</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0a9f', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0a9f">&#x0a9f</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0a9f', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0a9f">&#x0a9f</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI LETTER TTHA<br>uni0AA0</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0aa0', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0aa0">&#x0aa0</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0aa0', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0aa0">&#x0aa0</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0aa0', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0aa0">&#x0aa0</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI LETTER DDA<br>uni0AA1</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0aa1', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0aa1">&#x0aa1</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0aa1', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0aa1">&#x0aa1</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0aa1', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0aa1">&#x0aa1</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI LETTER DDHA<br>uni0AA2</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0aa2', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0aa2">&#x0aa2</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0aa2', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0aa2">&#x0aa2</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0aa2', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0aa2">&#x0aa2</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI LETTER NNA<br>uni0AA3</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0aa3', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0aa3">&#x0aa3</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0aa3', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0aa3">&#x0aa3</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0aa3', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0aa3">&#x0aa3</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI LETTER TA<br>uni0AA4</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0aa4', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0aa4">&#x0aa4</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0aa4', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0aa4">&#x0aa4</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0aa4', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0aa4">&#x0aa4</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI LETTER THA<br>uni0AA5</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0aa5', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0aa5">&#x0aa5</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0aa5', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0aa5">&#x0aa5</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0aa5', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0aa5">&#x0aa5</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI LETTER DA<br>uni0AA6</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0aa6', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0aa6">&#x0aa6</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0aa6', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0aa6">&#x0aa6</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0aa6', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0aa6">&#x0aa6</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI LETTER DHA<br>uni0AA7</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0aa7', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0aa7">&#x0aa7</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0aa7', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0aa7">&#x0aa7</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0aa7', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0aa7">&#x0aa7</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI LETTER NA<br>uni0AA8</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0aa8', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0aa8">&#x0aa8</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0aa8', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0aa8">&#x0aa8</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0aa8', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0aa8">&#x0aa8</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI LETTER PA<br>uni0AAA</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0aaa', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0aaa">&#x0aaa</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0aaa', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0aaa">&#x0aaa</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0aaa', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0aaa">&#x0aaa</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI LETTER PHA<br>uni0AAB</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0aab', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0aab">&#x0aab</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0aab', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0aab">&#x0aab</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0aab', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0aab">&#x0aab</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI LETTER BA<br>uni0AAC</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0aac', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0aac">&#x0aac</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0aac', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0aac">&#x0aac</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0aac', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0aac">&#x0aac</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI LETTER BHA<br>uni0AAD</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0aad', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0aad">&#x0aad</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0aad', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0aad">&#x0aad</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0aad', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0aad">&#x0aad</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI LETTER MA<br>uni0AAE</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0aae', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0aae">&#x0aae</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0aae', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0aae">&#x0aae</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0aae', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0aae">&#x0aae</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI LETTER YA<br>uni0AAF</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0aaf', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0aaf">&#x0aaf</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0aaf', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0aaf">&#x0aaf</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0aaf', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0aaf">&#x0aaf</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI LETTER RA<br>uni0AB0</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0ab0', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0ab0">&#x0ab0</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0ab0', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0ab0">&#x0ab0</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0ab0', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0ab0">&#x0ab0</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI LETTER LA<br>uni0AB2</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0ab2', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0ab2">&#x0ab2</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0ab2', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0ab2">&#x0ab2</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0ab2', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0ab2">&#x0ab2</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI LETTER LLA<br>uni0AB3</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0ab3', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0ab3">&#x0ab3</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0ab3', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0ab3">&#x0ab3</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0ab3', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0ab3">&#x0ab3</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI LETTER VA<br>uni0AB5</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0ab5', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0ab5">&#x0ab5</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0ab5', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0ab5">&#x0ab5</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0ab5', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0ab5">&#x0ab5</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI LETTER SHA<br>uni0AB6</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0ab6', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0ab6">&#x0ab6</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0ab6', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0ab6">&#x0ab6</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0ab6', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0ab6">&#x0ab6</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI LETTER SSA<br>uni0AB7</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0ab7', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0ab7">&#x0ab7</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0ab7', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0ab7">&#x0ab7</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0ab7', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0ab7">&#x0ab7</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI LETTER SA<br>uni0AB8</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0ab8', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0ab8">&#x0ab8</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0ab8', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0ab8">&#x0ab8</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0ab8', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0ab8">&#x0ab8</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI LETTER HA<br>uni0AB9</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0ab9', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0ab9">&#x0ab9</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0ab9', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0ab9">&#x0ab9</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0ab9', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0ab9">&#x0ab9</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI SIGN NUKTA<br>uni0ABC</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0abc', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0abc">&#x0abc</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0abc', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0abc">&#x0abc</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0abc', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0abc">&#x0abc</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI SIGN AVAGRAHA<br>uni0ABD</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0abd', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0abd">&#x0abd</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0abd', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0abd">&#x0abd</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0abd', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0abd">&#x0abd</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI VOWEL SIGN AA<br>uni0ABE</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0abe', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0abe">&#x0abe</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0abe', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0abe">&#x0abe</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0abe', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0abe">&#x0abe</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI VOWEL SIGN I<br>uni0ABF</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0abf', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0abf">&#x0abf</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0abf', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0abf">&#x0abf</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0abf', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0abf">&#x0abf</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI VOWEL SIGN II<br>uni0AC0</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0ac0', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0ac0">&#x0ac0</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0ac0', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0ac0">&#x0ac0</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0ac0', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0ac0">&#x0ac0</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI VOWEL SIGN U<br>uni0AC1</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0ac1', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0ac1">&#x0ac1</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0ac1', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0ac1">&#x0ac1</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0ac1', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0ac1">&#x0ac1</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI VOWEL SIGN UU<br>uni0AC2</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0ac2', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0ac2">&#x0ac2</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0ac2', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0ac2">&#x0ac2</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0ac2', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0ac2">&#x0ac2</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI VOWEL SIGN VOCALIC R<br>uni0AC3</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0ac3', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0ac3">&#x0ac3</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0ac3', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0ac3">&#x0ac3</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0ac3', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0ac3">&#x0ac3</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI VOWEL SIGN VOCALIC RR<br>uni0AC4</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0ac4', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0ac4">&#x0ac4</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0ac4', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0ac4">&#x0ac4</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0ac4', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0ac4">&#x0ac4</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI VOWEL SIGN CANDRA E<br>uni0AC5</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0ac5', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0ac5">&#x0ac5</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0ac5', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0ac5">&#x0ac5</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0ac5', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0ac5">&#x0ac5</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI VOWEL SIGN E<br>uni0AC7</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0ac7', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0ac7">&#x0ac7</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0ac7', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0ac7">&#x0ac7</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0ac7', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0ac7">&#x0ac7</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI VOWEL SIGN AI<br>uni0AC8</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0ac8', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0ac8">&#x0ac8</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0ac8', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0ac8">&#x0ac8</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0ac8', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0ac8">&#x0ac8</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI VOWEL SIGN CANDRA O<br>uni0AC9</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0ac9', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0ac9">&#x0ac9</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0ac9', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0ac9">&#x0ac9</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0ac9', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0ac9">&#x0ac9</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI VOWEL SIGN O<br>uni0ACB</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0acb', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0acb">&#x0acb</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0acb', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0acb">&#x0acb</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0acb', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0acb">&#x0acb</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI VOWEL SIGN AU<br>uni0ACC</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0acc', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0acc">&#x0acc</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0acc', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0acc">&#x0acc</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0acc', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0acc">&#x0acc</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI SIGN VIRAMA<br>uni0ACD</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0acd', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0acd">&#x0acd</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0acd', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0acd">&#x0acd</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0acd', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0acd">&#x0acd</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI OM<br>uni0AD0</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0ad0', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0ad0">&#x0ad0</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0ad0', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0ad0">&#x0ad0</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0ad0', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0ad0">&#x0ad0</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI LETTER VOCALIC RR<br>uni0AE0</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0ae0', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0ae0">&#x0ae0</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0ae0', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0ae0">&#x0ae0</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0ae0', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0ae0">&#x0ae0</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI LETTER VOCALIC LL<br>uni0AE1</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0ae1', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0ae1">&#x0ae1</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0ae1', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0ae1">&#x0ae1</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0ae1', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0ae1">&#x0ae1</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI VOWEL SIGN VOCALIC L<br>uni0AE2</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0ae2', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0ae2">&#x0ae2</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0ae2', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0ae2">&#x0ae2</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0ae2', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0ae2">&#x0ae2</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI VOWEL SIGN VOCALIC LL<br>uni0AE3</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0ae3', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0ae3">&#x0ae3</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0ae3', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0ae3">&#x0ae3</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0ae3', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0ae3">&#x0ae3</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI DIGIT ZERO<br>uni0AE6</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0ae6', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0ae6">&#x0ae6</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0ae6', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0ae6">&#x0ae6</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0ae6', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0ae6">&#x0ae6</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI DIGIT ONE<br>uni0AE7</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0ae7', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0ae7">&#x0ae7</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0ae7', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0ae7">&#x0ae7</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0ae7', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0ae7">&#x0ae7</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI DIGIT TWO<br>uni0AE8</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0ae8', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0ae8">&#x0ae8</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0ae8', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0ae8">&#x0ae8</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0ae8', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0ae8">&#x0ae8</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI DIGIT THREE<br>uni0AE9</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0ae9', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0ae9">&#x0ae9</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0ae9', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0ae9">&#x0ae9</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0ae9', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0ae9">&#x0ae9</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI DIGIT FOUR<br>uni0AEA</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0aea', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0aea">&#x0aea</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0aea', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0aea">&#x0aea</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0aea', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0aea">&#x0aea</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI DIGIT FIVE<br>uni0AEB</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0aeb', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0aeb">&#x0aeb</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0aeb', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0aeb">&#x0aeb</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0aeb', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0aeb">&#x0aeb</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI DIGIT SIX<br>uni0AEC</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0aec', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0aec">&#x0aec</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0aec', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0aec">&#x0aec</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0aec', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0aec">&#x0aec</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI DIGIT SEVEN<br>uni0AED</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0aed', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0aed">&#x0aed</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0aed', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0aed">&#x0aed</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0aed', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0aed">&#x0aed</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI DIGIT EIGHT<br>uni0AEE</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0aee', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0aee">&#x0aee</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0aee', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0aee">&#x0aee</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0aee', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0aee">&#x0aee</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI DIGIT NINE<br>uni0AEF</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0aef', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0aef">&#x0aef</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0aef', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0aef">&#x0aef</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0aef', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0aef">&#x0aef</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI ABBREVIATION SIGN<br>uni0AF0</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0af0', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0af0">&#x0af0</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0af0', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0af0">&#x0af0</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0af0', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0af0">&#x0af0</td>
+</tr>
+<tr>
+<td class="colLeft">GUJARATI RUPEE SIGN<br>uni0AF1</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0af1', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0af1">&#x0af1</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x0af1', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni0af1">&#x0af1</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x0af1', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni0af1">&#x0af1</td>
+</tr>
+<tr>
+<td class="colLeft">ZERO WIDTH SPACE<br>uni200B</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x200b', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni200b">&#x200b</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x200b', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni200b">&#x200b</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x200b', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni200b">&#x200b</td>
+</tr>
+<tr>
+<td class="colLeft">ZERO WIDTH NON-JOINER<br>uni200C</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x200c', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni200c">&#x200c</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x200c', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni200c">&#x200c</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x200c', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni200c">&#x200c</td>
+</tr>
+<tr>
+<td class="colLeft">ZERO WIDTH JOINER<br>uni200D</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x200d', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni200d">&#x200d</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x200d', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni200d">&#x200d</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x200d', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni200d">&#x200d</td>
+</tr>
+<tr>
+<td class="colLeft">EN DASH<br>uni2013</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2013', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2013">&#x2013</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x2013', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni2013">&#x2013</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x2013', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni2013">&#x2013</td>
+</tr>
+<tr>
+<td class="colLeft">EM DASH<br>uni2014</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2014', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2014">&#x2014</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x2014', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni2014">&#x2014</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x2014', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni2014">&#x2014</td>
+</tr>
+<tr>
+<td class="colLeft">LEFT SINGLE QUOTATION MARK<br>uni2018</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2018', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2018">&#x2018</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x2018', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni2018">&#x2018</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x2018', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni2018">&#x2018</td>
+</tr>
+<tr>
+<td class="colLeft">RIGHT SINGLE QUOTATION MARK<br>uni2019</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2019', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2019">&#x2019</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x2019', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni2019">&#x2019</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x2019', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni2019">&#x2019</td>
+</tr>
+<tr>
+<td class="colLeft">LEFT DOUBLE QUOTATION MARK<br>uni201C</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x201c', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni201c">&#x201c</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x201c', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni201c">&#x201c</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x201c', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni201c">&#x201c</td>
+</tr>
+<tr>
+<td class="colLeft">RIGHT DOUBLE QUOTATION MARK<br>uni201D</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x201d', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni201d">&#x201d</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x201d', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni201d">&#x201d</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x201d', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni201d">&#x201d</td>
+</tr>
+<tr>
+<td class="colLeft">HORIZONTAL ELLIPSIS<br>uni2026</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2026', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2026">&#x2026</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x2026', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni2026">&#x2026</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x2026', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni2026">&#x2026</td>
+</tr>
+<tr>
+<td class="colLeft">INDIAN RUPEE SIGN<br>uni20B9</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x20b9', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni20b9">&#x20b9</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x20b9', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni20b9">&#x20b9</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x20b9', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni20b9">&#x20b9</td>
+</tr>
+<tr>
+<td class="colLeft">MINUS SIGN<br>uni2212</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x2212', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2212">&#x2212</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x2212', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni2212">&#x2212</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x2212', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni2212">&#x2212</td>
+</tr>
+<tr>
+<td class="colLeft">DOTTED CIRCLE<br>uni25CC</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x25cc', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni25cc">&#x25cc</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#x25cc', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="uni25cc">&#x25cc</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#x25cc', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="uni25cc">&#x25cc</td>
+</tr>
+<tr>
+<td class="colLeft">NORTH INDIC FRACTION ONE QUARTER<br>uniA830</td>
+<td class="character defaultFont info" onmousedown="mDown('&#xa830', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="unia830">&#xa830</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#xa830', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="unia830">&#xa830</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#xa830', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="unia830">&#xa830</td>
+</tr>
+<tr>
+<td class="colLeft">NORTH INDIC FRACTION ONE HALF<br>uniA831</td>
+<td class="character defaultFont info" onmousedown="mDown('&#xa831', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="unia831">&#xa831</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#xa831', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="unia831">&#xa831</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#xa831', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="unia831">&#xa831</td>
+</tr>
+<tr>
+<td class="colLeft">NORTH INDIC FRACTION THREE QUARTERS<br>uniA832</td>
+<td class="character defaultFont info" onmousedown="mDown('&#xa832', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="unia832">&#xa832</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#xa832', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="unia832">&#xa832</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#xa832', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="unia832">&#xa832</td>
+</tr>
+<tr>
+<td class="colLeft">NORTH INDIC FRACTION ONE SIXTEENTH<br>uniA833</td>
+<td class="character defaultFont info" onmousedown="mDown('&#xa833', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="unia833">&#xa833</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#xa833', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="unia833">&#xa833</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#xa833', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="unia833">&#xa833</td>
+</tr>
+<tr>
+<td class="colLeft">NORTH INDIC FRACTION ONE EIGHTH<br>uniA834</td>
+<td class="character defaultFont info" onmousedown="mDown('&#xa834', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="unia834">&#xa834</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#xa834', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="unia834">&#xa834</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#xa834', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="unia834">&#xa834</td>
+</tr>
+<tr>
+<td class="colLeft">NORTH INDIC FRACTION THREE SIXTEENTHS<br>uniA835</td>
+<td class="character defaultFont info" onmousedown="mDown('&#xa835', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="unia835">&#xa835</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#xa835', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="unia835">&#xa835</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#xa835', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="unia835">&#xa835</td>
+</tr>
+<tr>
+<td class="colLeft">NORTH INDIC QUARTER MARK<br>uniA836</td>
+<td class="character defaultFont info" onmousedown="mDown('&#xa836', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="unia836">&#xa836</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#xa836', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="unia836">&#xa836</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#xa836', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="unia836">&#xa836</td>
+</tr>
+<tr>
+<td class="colLeft">NORTH INDIC PLACEHOLDER MARK<br>uniA837</td>
+<td class="character defaultFont info" onmousedown="mDown('&#xa837', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="unia837">&#xa837</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#xa837', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="unia837">&#xa837</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#xa837', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="unia837">&#xa837</td>
+</tr>
+<tr>
+<td class="colLeft">NORTH INDIC RUPEE MARK<br>uniA838</td>
+<td class="character defaultFont info" onmousedown="mDown('&#xa838', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="unia838">&#xa838</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#xa838', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="unia838">&#xa838</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#xa838', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="unia838">&#xa838</td>
+</tr>
+<tr>
+<td class="colLeft">NORTH INDIC QUANTITY MARK<br>uniA839</td>
+<td class="character defaultFont info" onmousedown="mDown('&#xa839', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="unia839">&#xa839</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#xa839', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="unia839">&#xa839</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#xa839', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="unia839">&#xa839</td>
+</tr>
+<tr>
+<td class="colLeft">ZERO WIDTH NO-BREAK SPACE<br>uniFEFF</td>
+<td class="character defaultFont info" onmousedown="mDown('&#xfeff', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="unifeff">&#xfeff</td>
+<td class="character om_NotoSansGujaratiUIRegularttf " onmousedown="mDown('&#xfeff', ['om_NotoSansGujaratiUIRegularttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI" data-original-title="unifeff">&#xfeff</td>
+<td class="character om_NotoSansGujaratiUIBoldttf " onmousedown="mDown('&#xfeff', ['om_NotoSansGujaratiUIBoldttf'])" onmouseup="mUp()" title="Noto Sans Gujarati UI Bold" data-original-title="unifeff">&#xfeff</td>
+</tr>
+
+		</table>
+
+
+            
+		<hr>
+		<table id="splitterContent_unencoded">
+
+		</table>
+
+
+
+    </div>
+    </div>
+
+
+    <script type="text/javascript">
+
+    //var elementCustomerPreview = document.getElementById("cssCodeForCustomerPreview");
+    //console.log('element.height: ', elementCustomerPreview.offsetHeight)
+    //$('.containerMain').css("top", '-' + elementCustomerPreview.offsetHeight + 'px')
+
+    var elementCustomerPreview = document.getElementById("containerMainID");
+    console.log('element.height: ', elementCustomerPreview.offsetHeight)
+    $('.containerCSScode').css("height", elementCustomerPreview.offsetHeight -200 + 'px')
+
+    var elementHeader = document.getElementById('otFeature');
+    console.log('element.height: ', elementHeader.offsetHeight)
+    divHeight = elementHeader.offsetHeight - 50
+    $('.header').css("top", '-' + divHeight + 'px')
+
+    //document.getElementById("varFont").style.color = "blue";
+
+    $('.sampleContent').on('blur keyup paste input', function() {$(".sampleContent").not(this).html($(this).html());});
+
+    
+    $('#slider').on('change',function(){
+    var val = $(this).val();
+    $(".om_NotoSansGujaratiUIRegularttf").css("font-size",(val+"em"));
+    $(".colLeft").css("width",(50 - (val*2)) +"%");
+    });
+
+    $('#slider').on('change',function(){
+    var val = $(this).val();
+    $(".om_NotoSansGujaratiUIBoldttf").css("font-size",(val+"em"));
+    $(".colLeft").css("width",(50 - (val*2)) +"%");
+    });
+
+    
+
+    function toggle_detail(my_id){
+        var element = document.getElementById(my_id)
+        //var buttoncell = document.getElementById(my_id+"_cell")
+        var button = document.getElementById(my_id+"_btn")
+        if (element.style.display != 'none') {
+          element.style.display = 'none'; //$("#" + my_id).slideUp(); smooth in/out does not work currently
+          button.innerHTML = '▼';
+        } else {
+          element.style.display = ''; //$("#" + my_id).slideDown(); smooth in/out does not work currently
+          button.innerHTML = '▲';
+        }
+    }
+
+    function showhide_div(my_id, buttomName){
+        var element = document.getElementById(my_id)
+        //var buttoncell = document.getElementById(my_id+"_cell")
+        var button = document.getElementById(my_id+"_btn")
+        if (element.style.opacity != '0') {
+          element.style.opacity = '0'; 
+          setTimeout(function () {
+            element.style.zIndex = '-1';
+            }, 1000);
+          button.innerHTML = 'show ' + buttomName;
+        } else {
+          element.style.opacity = '1';
+          element.style.zIndex = '998';
+          button.innerHTML = 'hide ' + buttomName;
+        }
+    }
+
+    function hover(my_id){
+        var element = document.getElementById(my_id)
+        if (element.style.background != '') {
+          element.style.background = '';
+          element.style.color = ''; 
+        } else {
+          element.style.background = '#B3D4FC';
+          element.style.color = 'black'; 
+        }
+    }
+
+    var HTMLCodeCompareBoxes = '1234567890 xozszn HOZD 1/3 @ 1a ;#& ? % $ € ! In August of 2016, four unlikely collaborators in the world of type, fonts and font technology stood on a stage at the ATypI conference in Warsaw, Poland. The collaborators were Apple, Microsoft, Adobe and Google. Together they announced the publishing of OpenType 1.8, an update to the now ubiquitous font standard which was originally an amalgam of Apple & Microsoft’s TrueType, and Adobe’s PostScript font formats. The OpenType 1.8 announcement, ATypI, Warsaw, Poland, September 14, 2016.'
+    var fontWeightsDict = {'Noto Sans Gujarati UI (ttf)':'om_NotoSansGujaratiUIRegularttf','Noto Sans Gujarati UI Bold (ttf)':'om_NotoSansGujaratiUIBoldttf'};
+
+    var sampleTexts = {'All Unicodes': '\x00 \r   ! " # % \' ( ) * + , - . / 0 1 2 3 4 5 6 7 8 9 : ; < = > ? [ \\ ] ^ _ { | } ~ \xa0 \xad × ÷ । ॥ ઁ ં ઃ અ આ ઇ ઈ ઉ ઊ ઋ ઌ ઍ એ ઐ ઑ ઓ ઔ ક ખ ગ ઘ ઙ ચ છ જ ઝ ઞ ટ ઠ ડ ઢ ણ ત થ દ ધ ન પ ફ બ ભ મ ય ર લ ળ વ શ ષ સ હ ઼ ઽ ા િ ી ુ ૂ ૃ ૄ ૅ ે ૈ ૉ ો ૌ ્ ૐ ૠ ૡ ૢ ૣ ૦ ૧ ૨ ૩ ૪ ૫ ૬ ૭ ૮ ૯ ૰ ૱ \u200b \u200c \u200d – — ‘ ’ “ ” … ₹ − ◌ ꠰ ꠱ ꠲ ꠳ ꠴ ꠵ ꠶ ꠷ ꠸ ꠹ \ufeff', 'Default Sample': '1234567890 xozszn HOZD 1/3 @ 1a ;#& ? % $ € ! In August of 2016, four unlikely collaborators in the world of type, fonts and font technology stood on a stage at the ATypI conference in Warsaw, Poland. The collaborators were Apple, Microsoft, Adobe and Google. Together they announced the publishing of OpenType 1.8, an update to the now ubiquitous font standard which was originally an amalgam of Apple & Microsoft’s TrueType, and Adobe’s PostScript font formats. The OpenType 1.8 announcement, ATypI, Warsaw, Poland, September 14, 2016.', 'Feature Frac': '1 0/1<br>2 2/3<br>3 4/5<br>4 6/7<br>5 8/9<br>6 9/8<br>7 7/6<br>8 5/4<br>9 3/2<br>0 1/0<br>1234567890/9876543210<br><br>', 'Hebrew International': ' עברית  עברית  עברית ! עברית " עברית # עברית % עברית \' עברית ( עברית ) עברית * עברית + עברית , עברית - עברית . עברית / עברית 0 עברית 1 עברית 2 עברית 3 עברית 4 עברית 5 עברית 6 עברית 7 עברית 8 עברית 9 עברית : עברית ; עברית < עברית = עברית > עברית ? עברית [ עברית \\ עברית ] עברית ^ עברית _ עברית { עברית | עברית } עברית ~ עברית \xa0 עברית \xad עברית 4=2×2 עברית 2=1÷2 עברית । עברית ॥ עברית \u200c עברית \u200d עברית \u200e עברית \u200f עברית – עברית — עברית ‘ עברית ’ עברית “ עברית ” עברית … עברית − עברית ◌ עברית \u0380 עברית <br> עברית '}
+
+    var clicks = 0;
+    var arrList = [];
+    var mySpanIDList = [];
+
+    var supported_features = [];
+
+    function functionAddSupportedFeatures(item){
+        var button = document.getElementById(item+"_btn")
+        if (supported_features.includes(item) === true){
+            button.style.color = 'black';
+            button.style.backgroundColor = 'white';
+            var index = supported_features.indexOf(item);
+            if (index > -1) {
+                supported_features.splice(index, 1);
+            }
+        }
+        else { 
+            button.style.color = 'white';
+            button.style.backgroundColor = 'black';
+            supported_features.push(item);
+        }
+        functionSetCSSFeatureCode(supported_features)
+    }
+
+    function functionChangeLanguage(item){
+        document.documentElement.lang = item;
+        $("#htmlLangTag").html(item);
+        if (['ar', 'fa', 'ur'].indexOf(item) >= 0) {
+            document.getElementById('compareBoxID').dir = 'rtl';
+            functionReadDirection('compareBoxID', 'right-to-left');
+        } else {
+            document.getElementById('compareBoxID').dir = '';
+            functionReadDirection('compareBoxID', 'left-to-right')
+        }
+
+    }
+
+
+    function functionSetCSSFeatureCode(arr){
+        var supported_features = arr;
+        var default_features =  []; //['kern', 'vkrn', 'liga', 'clig', 'calt', 'mark', 'mkmk', 'rvrm' ];
+
+        var cssCode_features = "";//font-feature-settings:
+        var moz_features = "";
+        
+
+        var arrayLength = supported_features.length;
+        for (var i = 0; i < arrayLength; i++) {
+            var item = supported_features[i];
+            cssCode_features += "'" + item + "' 1,";
+            moz_features += item + "=1,";
+        }
+
+        var defaultLength = default_features.length;
+        for (var i = 0; i < defaultLength; i++) {
+            var item = default_features[i];
+            if (supported_features.includes(item) === false){
+                cssCode_features += "'" + item + "' 0,";
+                moz_features += item + "=0,";
+            }
+        }
+
+        var stringLength = cssCode_features.length;
+        if (cssCode_features[stringLength-1] === ','){
+            var cleanedCSS = cssCode_features.substring(',', stringLength - 1);
+        } else {
+            var cleanedCSS = cssCode_features;
+        }
+
+        var element = document.getElementById('body_all');
+        element.style.fontFeatureSettings = cleanedCSS;
+
+        var stringLength = moz_features.length;
+        if (moz_features[stringLength-1] === ','){
+            var cleanedCSSmoz_features = moz_features.substring(',', stringLength - 1);
+        } else {
+            var cleanedCSSmoz_features = moz_features;
+        }
+
+        console.log('cleanedCSS: ', cleanedCSS)
+        var webkit_features = cleanedCSS 
+
+        $("#w3cfeatures").html(webkit_features);
+        $("#webkitfeatures").html(webkit_features);
+        $("#mozfeatures-up-to-14").html(webkit_features);
+        $("#mozfeatures").html(cleanedCSSmoz_features);
+        $("#msfeatures").html(webkit_features);
+        $("#ofeatures").html(webkit_features);
+
+      };
+
+
+    function functionBoxAdd() {
+
+        clicks += 1;
+        //arrList.push(clicks.toString())
+        console.log(arrList)
+        //var tdID = 'myTD_' + clicks;
+        //arrList.push(tdID.toString())
+        
+        //var x = document.createElement("TD");
+        //x.setAttribute("id", tdID);
+        //document.getElementById("tableTR").appendChild(x);
+
+        //var optionID = 'myOption_' + clicks;
+        //var d1 = document.createElement("DIV");
+        //d1.setAttribute("id", optionID);
+        //document.getElementById(tdID).appendChild(d1);
+
+        //var copyTextID = 'myText_' + clicks;
+        //var d2 = document.createElement("DIV");
+        //d2.setAttribute("id", copyTextID);
+        //d2.setAttribute("contenteditable", 'true');
+        //document.getElementById(tdID).appendChild(d2);
+        //var SampleText = document.createTextNode(HTMLCodeCompareBoxes);
+        //document.getElementById(copyTextID).innerHTML = HTMLCodeCompareBoxes;
+
+        var nameID = 'myBox_' + clicks;
+        arrList.push(nameID.toString())
+        var x = document.createElement("TD");
+        x.setAttribute("id", nameID);
+        //x.setAttribute("contenteditable", 'true');
+
+
+         var selectID = 'mySelect_' + clicks;
+         var s = document.createElement("SELECT");
+         s.setAttribute("id", selectID);
+         s.setAttribute("name", nameID);
+         s.setAttribute("onchange", "functionSelect('" + selectID + "')");
+
+         var arrListFontname = [];
+         var arrListCSSName = [];
+         lenClicks = 0;
+
+         for(fontName in fontWeightsDict){
+                 lenClicks += 1;
+                 arrListFontname.push(fontName.toString())
+                  var fontCSScode = fontWeightsDict[fontName];
+                  arrListCSSName.push(fontCSScode.toString())
+
+                  var z = document.createElement("option");
+                z.setAttribute("value", fontCSScode);
+                if (clicks + 1 == lenClicks){
+                    var FontSelected = arrListCSSName[lenClicks-1]; //minus one because array starts with zero
+                    z.setAttribute("selected", 'selected');
+                }
+                var t = document.createTextNode(fontName);
+                z.appendChild(t);
+                s.appendChild(z);
+                console.log(arrListFontname[-1])
+        }
+
+        var numberFonts = Object.keys(fontWeightsDict).length;
+        if (numberFonts <= clicks){var FontSelected = arrListCSSName[0];}
+        
+        x.setAttribute("class", "compareBox "+FontSelected);
+        document.getElementById("tableTR").appendChild(x);
+
+
+        //document.getElementById(nameID).appendChild(z);
+        document.getElementById(nameID).appendChild(s);
+
+        //var SampleText = document.createTextNode(HTMLCodeCompareBoxes);
+        var mySpanID = 'myBoxContent_' + clicks;
+        mySpanIDList.push(mySpanID.toString())
+        var span = document.createElement("SPAN");
+        span.setAttribute("id", mySpanID);
+        span.setAttribute("contenteditable", 'true');
+        span.setAttribute("class", 'compareBoxCSS');
+
+        var compareBoxFontSize = document.getElementById("myBoxContent").style.fontSize;
+        //console.log('Font-Size: ', compareBoxFontSize)
+        span.setAttribute("style", "font-size: " + compareBoxFontSize);
+
+        var getSampleText = document.getElementById('myBoxContent').innerHTML
+        //var mySampleText = document.getElementById('mySelectSampleText').value;
+        //var getSampleText = sampleTexts[mySampleText];
+        span.innerHTML = getSampleText;
+
+        //var sp = document.createTextNode(getSampleText);
+        //span.appendChild(sp);
+
+        document.getElementById(nameID).appendChild(span);
+     
+    }
+     
+    function functionBoxRemove() {
+        var item = arrList.pop() ;
+        //var nameID2 = 'myBox_' + (item);
+
+        if (item != 'myBox'){
+            var x = document.getElementById(item);
+            document.getElementById("tableTR").removeChild(x);
+        }
+
+        var index = mySpanIDList.length;
+        if (index > 1){
+            var listIndex = index -1;
+            mySpanIDList.splice(listIndex, 1);
+        }
+
+    }
+
+    var allBoxBG = arrList;
+    allBoxBG.push('myBox'); //first fixed box
+    function functionBoxBG(){
+        for (var item in allBoxBG){
+            console.log(allBoxBG[item])
+            var element = document.getElementById(allBoxBG[item])
+            if (element.style.backgroundColor != "white"){
+                element.style.backgroundColor = "white";
+                element.style.color = 'black';
+            } else {
+                element.style.backgroundColor = "black";
+                element.style.color = 'white';                
+            }
+        }
+    }
+
+    //$('#myBox').on('blur keyup paste input', function() {
+    //    var sampleText = document.getElementById('myBox').innerHTML;
+    //    for (var item in arrList){
+    //        var element = document.getElementById(arrList[item]);
+    //        element.innerHTML = sampleText;
+    //    }
+    //});
+
+    function functionSelect(selectID) {
+        console.log(selectID)
+        //var box = document.getElementById(selectID).parentElement; //.nodeName;
+        var CSScode = document.getElementById(selectID).value;
+        var boxID = document.getElementById(selectID).name;
+        console.log(CSScode)
+        console.log(boxID)
+        //document.getElementById(boxID).classList.add(value);
+        //box.classList.add(value);
+        document.getElementById(boxID).classList = CSScode;
+    }
+
+    mySpanIDList.push('myBoxContent'); //first add "fixed box"
+    function functionSelectSampleText(mySelectSampleText){
+        console.log('LISTE mySpanIDList::::', mySpanIDList)
+        var mySampleText = document.getElementById(mySelectSampleText).value;
+        var sampleText = sampleTexts[mySampleText];
+        for (var item in mySpanIDList){
+            document.getElementById(mySpanIDList[item]).innerHTML = sampleText;
+        }
+
+    }
+
+    function functionGetColorBG(item, CSSClass){
+        $(CSSClass).css('background-color', item);
+    }
+
+    function functionGetColorText(item, CSSClass){
+        $(CSSClass).css('color', item);
+    }
+
+    function functionSwapColorTextBG(CSSClass){
+        var colorText = $(CSSClass).css('color');
+        var colorBG = $(CSSClass).css('backgroundColor');
+        $(CSSClass).css('background-color', colorText);
+        $(CSSClass).css('color', colorBG);
+
+    }
+
+    $('.compareBoxCSS').on('blur keyup paste input', function() {$(".compareBoxCSS").not(this).html($(this).html());});
+
+    $('#sliderCompareBoxCSS').on('change',function(){
+        var val = $(this).val();
+        $(".compareBoxCSS").css("font-size",(val+"px"));
+        
+        document.getElementById("numberCompareBoxCSS").value = val;
+    });
+
+    $('#numberCompareBoxCSS').on('change',function(){
+        var val = $(this).val();
+        $(".compareBoxCSS").css("font-size",(val+"px"));
+        
+        document.getElementById("sliderCompareBoxCSS").value = val;
+    });
+
+    $('#sliderSampleContent').on('change',function(){
+        var val = $(this).val();
+        $(".sampleContent").css("font-size",(val+"px"));
+        if (val <= 30){
+            $(".sampleContent").css("padding",(val+"px 50px "+ val+"px 50px"));
+        } else {
+            $(".sampleContent").css("padding",("30px 50px 30px 50px"));              
+        }        
+        document.getElementById("numberSampleContent").value = val;
+    });
+
+    $('#numberSampleContent').on('change',function(){
+        var val = $(this).val();
+        $(".sampleContent").css("font-size",(val+"px"));
+        if (val <= 30){
+            $(".sampleContent").css("padding",(val+"px 50px "+ val+"px 50px"));
+        } else {
+            $(".sampleContent").css("padding",("30px 50px 30px 50px"));              
+        }           
+        document.getElementById("sliderSampleContent").value = val;
+    });
+
+    clicksBG = 0;
+    function functionGetRandomBG(cssItem){
+        
+        var arrListCSSClasses = [];
+        var numberCSSClasses = Object.keys(cssItem).length;
+        var cssClasses = document.getElementById("tableTR").className;
+
+        var oldCSSClasses = cssClasses.split(' ');
+
+        for (var item in cssItem){
+            if (item == clicksBG){
+                oldCSSClasses.push(cssItem[clicksBG]);
+            } else {
+                var index = oldCSSClasses.indexOf(cssItem[item]);
+                if (index > -1) {
+                    oldCSSClasses.splice(index, 1);
+                }
+                
+            }
+        }
+
+        var newClassNames = oldCSSClasses.join(' ')
+
+        document.getElementById("tableTR").className = newClassNames;
+        
+        clicksBG += 1;
+
+        if (clicksBG === 4){
+            clicksBG = 0;
+        }
+        
+
+    }
+
+    function functionShowCSSCode(CSSClass){
+        if ($(CSSClass).css("left") == '15px'){
+            $(CSSClass).css("transition-timing-function", "ease-in");
+            $(CSSClass).css("transition", "0.4s");
+            $(CSSClass).css("left", "80%");
+        } else {
+            $(CSSClass).css("left", "15px");
+        }
+    }
+
+    function functionShowHeader(CSSClass, my_id){
+        //var element = document.getElementById(my_id)
+        //var buttoncell = document.getElementById(my_id+"_cell")
+
+        var button = document.getElementById(my_id+"_btn");
+        if (button.innerHTML != '▼') {
+            $(CSSClass).css("top", '-' + divHeight + 'px');
+            button.innerHTML = '▼';
+        } else {
+          //$("#" + my_id).slideDown();
+            $(CSSClass).css("transition-timing-function", "ease-in");
+            $(CSSClass).css("transition", "0.4s");
+          $(CSSClass).css("top", "50px");
+          button.innerHTML = '▲';
+        }
+
+    }
+
+        /*function myFunctionAnimate(my_id, CSSClassList){
+            var button = document.getElementById(my_id+"_btn");
+            if (button.innerHTML === 'Play') {
+                button.innerHTML = 'Pause';
+                var countingUp = 1;
+                var minValue = document.getElementById(my_id).min;
+                var maxValue = document.getElementById(my_id).max;
+                var value = document.getElementById(my_id).value;
+                var i = Math.round(value);
+                var speed = Math.round(1000/maxValue);
+                myTimer = setInterval(function() {
+                    console.log(maxValue)
+                    i = i + (1 * countingUp);
+
+                    if (i == maxValue || i == minValue)
+                    {
+                        countingUp *= -1;
+                    }
+
+                    console.log(i)
+                  document.getElementById(my_id).value = i;
+                  document.getElementById(my_id+"_range").innerHTML = i;
+                  //om_AvenirNextVariableRomanttfWeight_showValue(i, CSSClassList)
+                  
+                }, speed);
+
+            } else {
+                button.innerHTML = 'Play';
+                clearInterval(myTimer);
+            }
+        }*/
+
+        
+
+        function functionTextAlignment(ID, item){
+            textAligment = ['left', 'center', 'right'];
+            console.log('ID: ', ID)
+            nameID = ID.replace('ID', '');
+            console.log('nameID: ', nameID)
+            console.log('item: ', item)
+
+            buttonName = item + nameID + "_btn";
+
+            console.log('buttonName: ', buttonName)
+
+            var button = document.getElementById(buttonName);
+            button.style.backgroundColor = 'black';
+            button.style.color = 'white';
+
+            $('#' +ID).css("text-align", item);
+
+            var textAligmentLength = textAligment.length;
+            for (var i = 0; i < textAligmentLength; i++) {
+                var itemLoop = textAligment[i];
+                if (itemLoop != item){
+                    otherButtonName = itemLoop + nameID + "_btn";
+                    console.log('otherButtonName: ', otherButtonName)
+                    var otherButton = document.getElementById(otherButtonName);
+                    otherButton.style.backgroundColor = 'white';
+                    otherButton.style.color = 'black';
+
+                }
+            }
+        }
+
+        function functionReadDirection(ID, item){
+            textAligment = ['left-to-right', 'right-to-left', 'top-to-down'];
+            console.log('ID: ', ID)
+            nameID = ID.replace('ID', '');
+            console.log('nameID: ', nameID)
+            console.log('item: ', item)
+
+            buttonName = item + nameID + "_btn";
+
+            console.log('buttonName: ', buttonName)
+
+            var button = document.getElementById(buttonName);
+            button.style.backgroundColor = 'black';
+            button.style.color = 'white';
+
+            if (item === 'right-to-left'){document.getElementById('compareBoxID').dir = 'rtl';}
+            if (item === 'left-to-right'){document.getElementById('compareBoxID').dir = '';}
+
+            // if (item === 'top-to-down'){
+            //     document.getElementById('compareBoxID').dir = '';
+
+            //     //var elt = document.documentElement
+            //     var elt = document.getElementById(ID);
+            //     elt.setAttribute("style", "writing-mode: vertical-rl;");
+            //     //$("body").css("writing-mode", 'vertical-rl;');
+            //     //document.documentElement.css("writing-mode", 'vertical-rl;');
+
+            //     /* writing-mode: vertical-rl; */
+            // }            
+
+            var textAligmentLength = textAligment.length;
+            for (var i = 0; i < textAligmentLength; i++) {
+                var itemLoop = textAligment[i];
+                if (itemLoop != item){
+                    otherButtonName = itemLoop + nameID + "_btn";
+                    console.log('otherButtonName: ', otherButtonName)
+                    var otherButton = document.getElementById(otherButtonName);
+                    otherButton.style.backgroundColor = 'white';
+                    otherButton.style.color = 'black';
+
+                }
+            }
+        }
+
+    function functionTest(CSSClass){
+            $(CSSClass).css("transition-timing-function", "ease-in");
+            $(CSSClass).css("transition", "1.4s");
+            $(CSSClass).css("transform", 'translate3d(0px,0px,0px)');
+    }
+
+
+    delta = 0;
+    beta = 0;
+    lastPos = null;
+
+    function clearBeta() {
+      beta = 0;
+    }
+
+    window.onscroll = function(){
+
+        function clear() {
+          lastPos = null;
+          delta = 0;
+        }
+
+        newPos = window.scrollY;
+        if ( lastPos != null ){
+          delta = newPos - lastPos;
+        }
+        lastPos = newPos;
+
+        //console.log(100 - delta)
+        //console.log('newPos: ', newPos)
+
+        if (delta < 0){if (beta < (delta * -1)){beta = (delta * 6)} }
+        if (delta > 0){if (beta < delta){beta = delta} }
+
+        //console.log('beta: ', beta)
+
+        setTimeout(clear, 500);
+        setTimeout(clearBeta, 500);
+
+        //console.log(100 - Pos)
+      //var distanz =  window.scrollY
+      //console.log('distanz: ', distanz);
+      //console.log( 'PositivVal: ', PositivVal );
+      //console.log(Int(distanz))
+      $('.flyingFont1').css("transform", 'translate3d(0px,' + (beta * -1) + 'px,0px)');
+      $('.flyingFont2').css("transform", 'translate3d(0px,' + (beta * -2) + 'px,0px)');
+      $('.flyingFont3').css("transform", 'translate3d(0px,' + (beta * -3) + 'px,0px)');
+    };
+
+
+    window.addEventListener("scroll", functionTest('.flyingFont1'), false);
+    window.addEventListener("scroll", functionTest('.flyingFont2'), false);
+    window.addEventListener("scroll", functionTest('.flyingFont3'), false);
+
+    $('.flyingFont').on('blur keyup paste input', function() {$(".flyingFont").not(this).html($(this).html());});
+
+    function adjustHeightOfTwoDiv(div1_ID, div2_ID){
+        var offsetHeight = document.getElementById(div1_ID).offsetHeight;
+        document.getElementById(div2_ID).style.height = offsetHeight + 'px';
+    } 
+
+    $('.flyingFont1').on('blur keyup paste input', function() {adjustHeightOfTwoDiv('flyingFont_ID1', 'flyingFont_ID0')});
+
+    function mDown(UID, CSSClassFontList) {
+        var obj = document.getElementById('zoom_characters');
+        obj.style.display = 'block';
+
+        var w = window.innerWidth;
+        var h = window.innerHeight;
+
+        if (w < h){
+            var nW = w / 2;
+            var nH = nW;
+
+        } else {
+            var nW = h / 2;
+            var nH = nW;
+        }
+        var top = (h - nH) / 2;
+        var left = (w - nW) / 2;
+
+        obj.style.height = nH + 'px';
+        obj.style.top = top + 'px';
+        obj.style.width = nW + 'px';
+        obj.style.left = left + 'px';        
+        obj.innerHTML = UID;
+        
+        var arrayLength = CSSClassFontList.length;
+        for (var i = 0; i < arrayLength; i++) {
+            var item = CSSClassFontList[i];
+            obj.classList.add(item);
+        }
+
+
+        
+
+        
+
+
+    }
+
+    function mUp() {
+        var obj = document.getElementById('zoom_characters');
+        obj.innerHTML = '';
+        obj.style.display = 'none';
+        obj.className = "characterZoom";
+    }
+
+    var prevScrollpos = window.pageYOffset;
+    window.onscroll = function() {
+    var currentScrollPos = window.pageYOffset;
+    if (prevScrollpos > currentScrollPos) {
+        document.getElementById("showFontNames_div").style.bottom = "-50px";
+        } else {
+            document.getElementById("showFontNames_div").style.bottom = "0";
+        }
+        prevScrollpos = currentScrollPos;
+    }
+
+    function scrollXNamesFunc() {
+        var elmnt = document.getElementById("containerMainID");
+        var x = elmnt.scrollLeft;
+        $('#showFontNames').css({
+            'left': 15 - x
+        });
+    }
+
+    function hintingOnOff(CSSClass, my_id){
+        var button = document.getElementById(my_id+"_btn");
+        var elements = document.getElementsByClassName('compareBox')
+
+        if (button.innerHTML != 'hinting on') {
+            Array.prototype.filter.call(elements, function(el){
+                el.style.transform = 'rotate(0.0deg)';
+                el.style.transformOrigin = 'top left';
+            });
+
+            button.className = "buttonBlack";
+            button.innerHTML = 'hinting on';
+            button.style.backgroundColor = 'black';
+
+        } else {
+            Array.prototype.filter.call(elements, function(el){
+                el.style.transform = 'rotate(0.03deg)';
+                el.style.transformOrigin = 'top center';
+            });
+
+            button.innerHTML = 'hinting off';
+            button.className = ".buttonBorder";
+
+            button.style.backgroundColor = 'red';
+
+        }
+
+    }
+
+    </script>
+
+  </body>
+</html>
+

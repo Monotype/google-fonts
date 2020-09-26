@@ -1,0 +1,85 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "NotoSansKhmer-Black.ttf",
+                "type": "ttf",
+                "size": 44040,
+                "md5": "60a65ced229837a46876c799c1bf4c32",
+                "geometryMd5": "5dd89dd506f60bbc358610786da6750f"
+            },
+            "name": {
+                "family": "Noto Sans Khmer Blk",
+                "subFamily": "Regular",
+                "fullName": "Noto Sans Khmer Black",
+                "psName": "NotoSansKhmer-Black",
+                "versionText": "Version 2.000;GOOG;noto-source:20170915:90ef993387c0",
+                "copyright": "Copyright 2016 Google Inc. All Rights Reserved.",
+                "trademark": "Noto is a trademark of Google Inc.",
+                "typographicFamily": "Noto Sans Khmer",
+                "typographicSubFamily": "Black"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 370,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "GOOG",
+                "font_vendor": "Google"
+            },
+            "validation": {
+                "font_full_name": "Noto Sans Khmer Black",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 4,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_7dac2fee165846a2b88f195141bbb75b.GDEF.glyphClasses",
+                        "levelname": "ERROR",
+                        "message": "The following mark glyphs have nonzero advances: [314, 315]",
+                        "timestamp": "2020-09-26T14:16:04.352108Z",
+                        "orig_output": "validate_7dac2fee165846a2b88f195141bbb75b.GDEF.glyphClasses - ERROR - The following mark glyphs have nonzero advances: [314, 315]",
+                        "msg_code": "V1102"
+                    },
+                    {
+                        "subroutine": "validate_7dac2fee165846a2b88f195141bbb75b.glyf.glyph 132 ('uni17D0')",
+                        "levelname": "ERROR",
+                        "message": "Bounds should be [-487, 701, -67, 921], but are [-486, 701, -67, 921].",
+                        "timestamp": "2020-09-26T14:16:08.918478Z",
+                        "orig_output": "validate_7dac2fee165846a2b88f195141bbb75b.glyf.glyph 132 ('uni17D0') - ERROR - Bounds should be [-487, 701, -67, 921], but are [-486, 701, -67, 921].",
+                        "msg_code": "E1112"
+                    },
+                    {
+                        "subroutine": "validate_7dac2fee165846a2b88f195141bbb75b.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2020-09-26T14:16:14.746737Z",
+                        "orig_output": "validate_7dac2fee165846a2b88f195141bbb75b.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
+                    },
+                    {
+                        "subroutine": "validate_7dac2fee165846a2b88f195141bbb75b.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 765, but is 760",
+                        "timestamp": "2020-09-26T14:16:05.906004Z",
+                        "orig_output": "validate_7dac2fee165846a2b88f195141bbb75b.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 765, but is 760",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 12888,
+    "completedDate": "2020-09-26 14:16:15.094895"
+}

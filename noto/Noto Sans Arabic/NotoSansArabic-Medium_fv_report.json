@@ -1,0 +1,101 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "NotoSansArabic-Medium.ttf",
+                "type": "ttf",
+                "size": 140752,
+                "md5": "8e9bbfa06f58dc0cfb5e2d0e62c85c07",
+                "geometryMd5": "7b3b0c460c2512bd4b893392a4d62666"
+            },
+            "name": {
+                "family": "Noto Sans Arabic Med",
+                "subFamily": "Regular",
+                "fullName": "Noto Sans Arabic Medium",
+                "psName": "NotoSansArabic-Medium",
+                "versionText": "Version 2.000;GOOG;noto-source:20170915:90ef993387c0",
+                "copyright": "Copyright 2015 Google Inc. All Rights Reserved.",
+                "trademark": "Noto is a trademark of Google Inc.",
+                "typographicFamily": "Noto Sans Arabic",
+                "typographicSubFamily": "Medium"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 1677,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "GOOG",
+                "font_vendor": "Google"
+            },
+            "validation": {
+                "font_full_name": "Noto Sans Arabic Medium",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 6,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_371c4b2838bc40d28606b12e9e771fd3.glyf.glyph 1509 ('uni08E3')",
+                        "levelname": "ERROR",
+                        "message": "Bounds should be [38, 1484, 288, 1735], but are [38, -300, 288, -49].",
+                        "timestamp": "2020-09-26T16:03:47.815615Z",
+                        "orig_output": "validate_371c4b2838bc40d28606b12e9e771fd3.glyf.glyph 1509 ('uni08E3') - ERROR - Bounds should be [38, 1484, 288, 1735], but are [38, -300, 288, -49].",
+                        "msg_code": "E1112"
+                    },
+                    {
+                        "subroutine": "validate_371c4b2838bc40d28606b12e9e771fd3.GPOS.features.[b'mark0002'].[0]",
+                        "levelname": "ERROR",
+                        "message": "The following ligatures have inconsistent counts between the GSUB Ligature Lookup that created them and the length of the mark-to-ligature data in this table: [1082, 1223, 1224, 1225, 1226, 1251, 1255, 1258, 1261]",
+                        "timestamp": "2020-09-26T16:03:27.794882Z",
+                        "orig_output": "validate_371c4b2838bc40d28606b12e9e771fd3.GPOS.features.[b'mark0002'].[0] - ERROR - The following ligatures have inconsistent counts between the GSUB Ligature Lookup that created them and the length of the mark-to-ligature data in this table: [1082, 1223, 1224, 1225, 1226, 1251, 1255, 1258, 1261]",
+                        "msg_code": "V1062"
+                    },
+                    {
+                        "subroutine": "validate_371c4b2838bc40d28606b12e9e771fd3.GPOS.features.[b'mark0002'].[0]",
+                        "levelname": "ERROR",
+                        "message": "The following ligatures have inconsistent counts between the GSUB Ligature Lookup that created them and the length of the mark-to-ligature data in this table: [1082, 1223, 1224, 1225, 1226, 1251, 1255, 1258, 1261]",
+                        "timestamp": "2020-09-26T16:03:28.016891Z",
+                        "orig_output": "validate_371c4b2838bc40d28606b12e9e771fd3.GPOS.features.[b'mark0002'].[0] - ERROR - The following ligatures have inconsistent counts between the GSUB Ligature Lookup that created them and the length of the mark-to-ligature data in this table: [1082, 1223, 1224, 1225, 1226, 1251, 1255, 1258, 1261]",
+                        "msg_code": "V1062"
+                    },
+                    {
+                        "subroutine": "validate_371c4b2838bc40d28606b12e9e771fd3.head",
+                        "levelname": "ERROR",
+                        "message": "The calculated value for yMax (1735) exceeds the actual value 1126",
+                        "timestamp": "2020-09-26T16:03:55.503439Z",
+                        "orig_output": "validate_371c4b2838bc40d28606b12e9e771fd3.head - ERROR - The calculated value for yMax (1735) exceeds the actual value 1126",
+                        "msg_code": "E1326"
+                    },
+                    {
+                        "subroutine": "validate_371c4b2838bc40d28606b12e9e771fd3.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2020-09-26T16:04:07.744034Z",
+                        "orig_output": "validate_371c4b2838bc40d28606b12e9e771fd3.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
+                    },
+                    {
+                        "subroutine": "validate_371c4b2838bc40d28606b12e9e771fd3.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 862, but is 859",
+                        "timestamp": "2020-09-26T16:03:29.520574Z",
+                        "orig_output": "validate_371c4b2838bc40d28606b12e9e771fd3.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 862, but is 859",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 44201,
+    "completedDate": "2020-09-26 16:04:08.958156"
+}

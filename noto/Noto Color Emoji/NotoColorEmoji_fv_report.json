@@ -1,0 +1,183 @@
+﻿{
+    "processed": [],
+    "skipped": [
+        {
+            "file": {
+                "name": "NotoColorEmoji.ttf",
+                "type": "ttf",
+                "size": 7297112,
+                "md5": "e0e141083ec8960372e6fa96940d0721",
+                "geometryMd5": "2025e0fb00c5364f36597304738dc326"
+            },
+            "error": {
+                "init": "\nTraceback (most recent call last):\n  File \"/fvs/venv/lib/python3.7/site-packages/fontvalidator/fontvalidation.py\", line 525, in __init__\n    _validate(self.editor, **val_kw)\n  File \"/fvs/venv/lib/python3.7/site-packages/fontvalidator/fontvalidation.py\", line 166, in _validate\n    r = table.isValid(logger=subLogger, **kwArgs) and r\n  File \"/fvs/venv/lib/python3.7/site-packages/fontio3/fontdata/simplemeta.py\", line 1170, in M_isValid\n    r = f(self, logger=logger, **kwArgs)\n  File \"/fvs/venv/lib/python3.7/site-packages/fontio3/vhea/vhea_v1.py\", line 178, in _validate\n    changed, obj2 = _recalc(obj, **kwArgs)\n  File \"/fvs/venv/lib/python3.7/site-packages/fontio3/vhea/vhea_v1.py\", line 79, in _recalc\n    raise NoGlyf()\nfontio3.vhea.vhea_v1.NoGlyf\n",
+                "raise": true
+            },
+            "name": {
+                "family": "Noto Color Emoji",
+                "subFamily": "Regular",
+                "fullName": "Noto Color Emoji",
+                "psName": "NotoColorEmoji",
+                "versionText": "Version 2.011;GOOG;noto-emoji:20180424; pistol",
+                "copyright": "Copyright 2013 Google Inc.",
+                "trademark": "Noto is a trademark of Google Inc."
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "CFF"
+            },
+            "summary": {
+                "num_glyphs": 2504,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "GOOG",
+                "font_vendor": "Google"
+            },
+            "validation": {
+                "font_full_name": "Noto Color Emoji",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 16,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_ba1754ca4e0747f3a8cd813f2b3465d1.fontedit",
+                        "levelname": "ERROR",
+                        "message": "Required TrueType tables not present: [\"b'glyf'\", \"b'loca'\"]",
+                        "timestamp": "2020-09-26T15:03:23.921991Z",
+                        "orig_output": "validate_ba1754ca4e0747f3a8cd813f2b3465d1.fontedit - ERROR - Required TrueType tables not present: [\"b'glyf'\", \"b'loca'\"]",
+                        "msg_code": "E0020"
+                    },
+                    {
+                        "subroutine": "validate_ba1754ca4e0747f3a8cd813f2b3465d1",
+                        "levelname": "ERROR",
+                        "message": "Scaler preflight failed; will continue validation without a scaler.",
+                        "timestamp": "2020-09-26T15:03:23.887504Z",
+                        "orig_output": "validate_ba1754ca4e0747f3a8cd813f2b3465d1 - ERROR - Scaler preflight failed; will continue validation without a scaler.",
+                        "msg_code": "V1109"
+                    },
+                    {
+                        "subroutine": "validate_ba1754ca4e0747f3a8cd813f2b3465d1.CBDT.[(109, 109, 32)].horiz line metrics",
+                        "levelname": "ERROR",
+                        "message": "The maxBeforeBL should be 101 (is 0)",
+                        "timestamp": "2020-09-26T15:03:24.185811Z",
+                        "orig_output": "validate_ba1754ca4e0747f3a8cd813f2b3465d1.CBDT.[(109, 109, 32)].horiz line metrics - ERROR - The maxBeforeBL should be 101 (is 0)",
+                        "msg_code": "V0217"
+                    },
+                    {
+                        "subroutine": "validate_ba1754ca4e0747f3a8cd813f2b3465d1.CBDT.[(109, 109, 32)].horiz line metrics",
+                        "levelname": "ERROR",
+                        "message": "The minAfterBL should be -27 (is 0)",
+                        "timestamp": "2020-09-26T15:03:24.185935Z",
+                        "orig_output": "validate_ba1754ca4e0747f3a8cd813f2b3465d1.CBDT.[(109, 109, 32)].horiz line metrics - ERROR - The minAfterBL should be -27 (is 0)",
+                        "msg_code": "V0218"
+                    },
+                    {
+                        "subroutine": "validate_ba1754ca4e0747f3a8cd813f2b3465d1.CBDT.[(109, 109, 32)].vert line metrics",
+                        "levelname": "ERROR",
+                        "message": "The minOriginSB should be -1 (is 0)",
+                        "timestamp": "2020-09-26T15:03:24.186129Z",
+                        "orig_output": "validate_ba1754ca4e0747f3a8cd813f2b3465d1.CBDT.[(109, 109, 32)].vert line metrics - ERROR - The minOriginSB should be -1 (is 0)",
+                        "msg_code": "V0215"
+                    },
+                    {
+                        "subroutine": "validate_ba1754ca4e0747f3a8cd813f2b3465d1.CBDT.[(109, 109, 32)].vert line metrics",
+                        "levelname": "ERROR",
+                        "message": "The minAdvanceSB should be 3 (is 0)",
+                        "timestamp": "2020-09-26T15:03:24.186180Z",
+                        "orig_output": "validate_ba1754ca4e0747f3a8cd813f2b3465d1.CBDT.[(109, 109, 32)].vert line metrics - ERROR - The minAdvanceSB should be 3 (is 0)",
+                        "msg_code": "V0216"
+                    },
+                    {
+                        "subroutine": "validate_ba1754ca4e0747f3a8cd813f2b3465d1.CBDT.[(109, 109, 32)].vert line metrics",
+                        "levelname": "ERROR",
+                        "message": "The maxBeforeBL should be -68 (is 0)",
+                        "timestamp": "2020-09-26T15:03:24.186235Z",
+                        "orig_output": "validate_ba1754ca4e0747f3a8cd813f2b3465d1.CBDT.[(109, 109, 32)].vert line metrics - ERROR - The maxBeforeBL should be -68 (is 0)",
+                        "msg_code": "V0217"
+                    },
+                    {
+                        "subroutine": "validate_ba1754ca4e0747f3a8cd813f2b3465d1.CBDT.[(109, 109, 32)].vert line metrics",
+                        "levelname": "ERROR",
+                        "message": "The minAfterBL should be -204 (is 0)",
+                        "timestamp": "2020-09-26T15:03:24.186279Z",
+                        "orig_output": "validate_ba1754ca4e0747f3a8cd813f2b3465d1.CBDT.[(109, 109, 32)].vert line metrics - ERROR - The minAfterBL should be -204 (is 0)",
+                        "msg_code": "V0218"
+                    },
+                    {
+                        "subroutine": "validate_ba1754ca4e0747f3a8cd813f2b3465d1.GSUB.scripts.[b'ccmp0001'].[0].[Key((1, 1), ruleOrder=0)]",
+                        "levelname": "ERROR",
+                        "message": "The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "timestamp": "2020-09-26T15:03:24.725257Z",
+                        "orig_output": "validate_ba1754ca4e0747f3a8cd813f2b3465d1.GSUB.scripts.[b'ccmp0001'].[0].[Key((1, 1), ruleOrder=0)] - ERROR - The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "msg_code": "V0998"
+                    },
+                    {
+                        "subroutine": "validate_ba1754ca4e0747f3a8cd813f2b3465d1.head.indexToLocFormat",
+                        "levelname": "ERROR",
+                        "message": "Unable to validate the indexToLocFormat value because the 'loca' table is missing.",
+                        "timestamp": "2020-09-26T15:03:25.672906Z",
+                        "orig_output": "validate_ba1754ca4e0747f3a8cd813f2b3465d1.head.indexToLocFormat - ERROR - Unable to validate the indexToLocFormat value because the 'loca' table is missing.",
+                        "msg_code": "V0553"
+                    },
+                    {
+                        "subroutine": "validate_ba1754ca4e0747f3a8cd813f2b3465d1.hhea",
+                        "levelname": "ERROR",
+                        "message": "Unable to recalculate (and thus validate) the 'hhea' table because no valid glyph table (glyf, CFF, or CFF2) was found.",
+                        "timestamp": "2020-09-26T15:03:25.673215Z",
+                        "orig_output": "validate_ba1754ca4e0747f3a8cd813f2b3465d1.hhea - ERROR - Unable to recalculate (and thus validate) the 'hhea' table because no valid glyph table (glyf, CFF, or CFF2) was found.",
+                        "msg_code": "V0553"
+                    },
+                    {
+                        "subroutine": "validate_ba1754ca4e0747f3a8cd813f2b3465d1.hmtx",
+                        "levelname": "ERROR",
+                        "message": "Unable to test hmtx values against glyph data table because the Editor did not contain a functional glyf, CFF, or CFF2 table.",
+                        "timestamp": "2020-09-26T15:03:25.673418Z",
+                        "orig_output": "validate_ba1754ca4e0747f3a8cd813f2b3465d1.hmtx - ERROR - Unable to test hmtx values against glyph data table because the Editor did not contain a functional glyf, CFF, or CFF2 table.",
+                        "msg_code": "V0936"
+                    },
+                    {
+                        "subroutine": "validate_ba1754ca4e0747f3a8cd813f2b3465d1.maxp",
+                        "levelname": "ERROR",
+                        "message": "Font has version 1.0 'maxp' table, but no 'glyf' table is present.",
+                        "timestamp": "2020-09-26T15:03:25.753023Z",
+                        "orig_output": "validate_ba1754ca4e0747f3a8cd813f2b3465d1.maxp - ERROR - Font has version 1.0 'maxp' table, but no 'glyf' table is present.",
+                        "msg_code": "E1907"
+                    },
+                    {
+                        "subroutine": "validate_ba1754ca4e0747f3a8cd813f2b3465d1.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2020-09-26T15:03:25.753382Z",
+                        "orig_output": "validate_ba1754ca4e0747f3a8cd813f2b3465d1.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
+                    },
+                    {
+                        "subroutine": "validate_ba1754ca4e0747f3a8cd813f2b3465d1.OS_2.unicodeRanges",
+                        "levelname": "ERROR",
+                        "message": "Font has non-BMP characters but surrogates bit not set.",
+                        "timestamp": "2020-09-26T15:03:25.535902Z",
+                        "orig_output": "validate_ba1754ca4e0747f3a8cd813f2b3465d1.OS_2.unicodeRanges - ERROR - Font has non-BMP characters but surrogates bit not set.",
+                        "msg_code": "E2122"
+                    },
+                    {
+                        "subroutine": "validate_ba1754ca4e0747f3a8cd813f2b3465d1.OS_2.usMaxContext",
+                        "levelname": "ERROR",
+                        "message": "The usMaxContext should be 7, but is 1",
+                        "timestamp": "2020-09-26T15:03:25.662348Z",
+                        "orig_output": "validate_ba1754ca4e0747f3a8cd813f2b3465d1.OS_2.usMaxContext - ERROR - The usMaxContext should be 7, but is 1",
+                        "msg_code": "V0831"
+                    }
+                ]
+            }
+        }
+    ],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 5748,
+    "completedDate": "2020-09-26 15:03:26.083062"
+}

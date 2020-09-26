@@ -1,0 +1,85 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "NotoSansTamil-Black.ttf",
+                "type": "ttf",
+                "size": 44036,
+                "md5": "71ee2cfaaf02e1a8326edb4e09719bdf",
+                "geometryMd5": "447f17d87f02e7ae68417b7b06b7c050"
+            },
+            "name": {
+                "family": "Noto Sans Tamil Blk",
+                "subFamily": "Regular",
+                "fullName": "Noto Sans Tamil Black",
+                "psName": "NotoSansTamil-Black",
+                "versionText": "Version 2.000;GOOG;noto-source:20170915:90ef993387c0",
+                "copyright": "Copyright 2017 Google Inc. All Rights Reserved.",
+                "trademark": "Noto is a trademark of Google Inc.",
+                "typographicFamily": "Noto Sans Tamil",
+                "typographicSubFamily": "Black"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 240,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "GOOG",
+                "font_vendor": "Google"
+            },
+            "validation": {
+                "font_full_name": "Noto Sans Tamil Black",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 4,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_41c1cbc641044e678ddab1168dafb00d.GDEF.glyphClasses",
+                        "levelname": "ERROR",
+                        "message": "The following mark glyphs have nonzero advances: [4, 41, 42, 44, 45, 54, 164, 165, 166, 167, 168, 169]",
+                        "timestamp": "2020-09-26T14:17:55.355974Z",
+                        "orig_output": "validate_41c1cbc641044e678ddab1168dafb00d.GDEF.glyphClasses - ERROR - The following mark glyphs have nonzero advances: [4, 41, 42, 44, 45, 54, 164, 165, 166, 167, 168, 169]",
+                        "msg_code": "V1102"
+                    },
+                    {
+                        "subroutine": "validate_41c1cbc641044e678ddab1168dafb00d.glyf.glyph 47 ('eevowelsigntamil').contours.contour 1",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-26T14:17:57.570391Z",
+                        "orig_output": "validate_41c1cbc641044e678ddab1168dafb00d.glyf.glyph 47 ('eevowelsigntamil').contours.contour 1 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_41c1cbc641044e678ddab1168dafb00d.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2020-09-26T14:18:03.859133Z",
+                        "orig_output": "validate_41c1cbc641044e678ddab1168dafb00d.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
+                    },
+                    {
+                        "subroutine": "validate_41c1cbc641044e678ddab1168dafb00d.OS_2.usMaxContext",
+                        "levelname": "ERROR",
+                        "message": "The usMaxContext should be 4, but is 0",
+                        "timestamp": "2020-09-26T14:17:56.407656Z",
+                        "orig_output": "validate_41c1cbc641044e678ddab1168dafb00d.OS_2.usMaxContext - ERROR - The usMaxContext should be 4, but is 0",
+                        "msg_code": "V0831"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 10767,
+    "completedDate": "2020-09-26 14:18:04.050056"
+}

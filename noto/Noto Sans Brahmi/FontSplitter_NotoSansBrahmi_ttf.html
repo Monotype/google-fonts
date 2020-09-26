@@ -1,0 +1,2452 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv='content-type' content='text/html; charset=utf-8'>
+    <meta name="code" content="Olli Meier">
+    <title>MT FontSplitter</title>
+    <style type="text/css">
+      body {
+        /*background-color: #fff; #fdfdfb;*/
+        color: #131313;
+        font-family: "Kootenay Pro", Axel, "System Font", "Fira Sans", sans-serif;
+        /*line-height: 1.3em;*/
+        margin: 0;
+        /*padding: 1em;*/
+        font-size: 14px;
+        /*padding-right: 50px;*/
+        /*background: linear-gradient(to bottom, #383838, white);*/
+      }
+
+    table {width:100%;}
+    tr {margin: 10px;}
+    td {border: 1px solid #fff; /*#fdfdfb;*/}
+/*
+    table th, table td {
+    overflow: scroll !important;
+    white-space: nowrap;
+}
+*/
+
+    mark {
+        background-color: #fff990;
+        color: black;
+        opacity: 0.7;
+    }
+
+    .containerMain {
+        position: absolute;
+        z-index: 2;
+        /*top:-2000px;*/
+        left: 15px; 
+        background-color: white;
+        overflow: scroll;
+        width: calc(100% - 15px);
+    }
+
+
+    .containerCSScode {
+        overflow: scroll;
+        position: absolute;
+        z-index: 1;
+        top:0px;
+        padding-top: 200px;
+        padding-left: 20px;
+        width: 100%;
+        background-color: #383838;
+    }
+
+    .cssButton {
+        z-index: 3;
+        position: fixed;
+        top: 49%;
+    }
+
+    .cssButtonStyle {
+        /*text-align: center;*/
+        /*text-transform: uppercase;*/
+        transform-origin: left bottom 0;
+        /*writing-mode:tb-rl;*/
+        -webkit-transform:rotate(-90deg);
+        -moz-transform:rotate(-90deg);
+        -o-transform: rotate(-90deg);
+        -ms-transform:rotate(-90deg);
+        transform: rotate(-90deg);
+        white-space:nowrap;
+        display:block;
+        /*bottom:0;
+        width:20px;
+        height:20px;*/
+
+    }
+
+    .comment{color:#FCD833}
+    .rule{color:#009FE3}
+    .element{color:#FFF}
+    .keyword{color:#E50051}
+    .prop{color:#FF9700}
+    .whitetext{color:#FFF}
+    /*.deepgray{background-color:#383838}*/
+    .darkgray{background-color: #787878}
+    .darkgray_text{color:#BBB}
+    .lightgray{background-color:rgb(252,252,252)}
+    .lightgray_text{color:rgb(252,252,252)}
+    .gray_text{color:lightgrey}
+
+    pre{font-family:Consolas,Courier,monospace;
+        /*font-size:.81em;*/
+        line-height:1.1em;
+        margin:0;
+        /*padding:1em;*/
+        border:0;
+        -webkit-touch-callout:text!important;
+        -webkit-user-select:text!important;
+        -khtml-user-select:text!important;
+        -moz-user-select:text!important;
+        -ms-user-select:text!important;
+        user-select:text!important
+    }
+    .gradientBG {
+        background:
+            linear-gradient(
+                limegreen,
+                transparent
+            ),
+            linear-gradient(
+                90deg,
+                skyblue,
+                transparent
+            ),
+            linear-gradient(
+                -90deg,
+                coral,
+                transparent
+            );
+            
+        background-blend-mode: screen;
+        }
+
+    .linearGradientBG{
+        background:
+            repeating-linear-gradient(
+                -45deg,
+                transparent,
+                transparent 25%,
+                tomato 0,
+                tomato 50%
+            ),
+            repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 25%,
+                dodgerblue 0,
+                dodgerblue 50%
+            ), wheat;
+
+        background-size: 10em 10em;
+        background-blend-mode: multiply;
+    }
+
+    .linearGradient2BG{
+        background:
+            repeating-linear-gradient(
+                50deg,
+                #F7A37B,
+                #F7A37B 1em,
+                #FFDEA8 1em,
+                #FFDEA8 2em,
+                #D0E4B0 2em,
+                #D0E4B0 3em,
+                #7CC5D0 3em,
+                #7CC5D0 4em,
+                #00A2E1 4em,
+                #00A2E1 5em,
+                #0085C8 5em,
+                #0085C8 6em
+            ),
+            repeating-linear-gradient(
+                -50deg,
+                #F7A37B,
+                #F7A37B 1em,
+                #FFDEA8 1em,
+                #FFDEA8 2em,
+                #D0E4B0 2em,
+                #D0E4B0 3em,
+                #7CC5D0 3em,
+                #7CC5D0 4em,
+                #00A2E1 4em,
+                #00A2E1 5em,
+                #0085C8 5em,
+                #0085C8 6em
+            );
+            
+        background-blend-mode: multiply;
+    }
+
+    .character {
+        line-height: 1.45em;
+        font-size:2.5em;
+        		display:inline-block;
+width:1.45em;
+white-space: pre;
+        min-width:1.45em;
+        height:1.45em;
+        text-align:center;
+        /*margin:-1px -1px -1px -4px;*/
+        background-color: #fff; /*#fdfdfb;*/
+        border:1px solid #efefef;/*#FAF7F5;*/ 
+        /*overflow: scroll !important;*/
+        white-space: nowrap;
+        font-size: 30px;
+    }
+
+    .characterZoom {
+        display:inline-block;
+        white-space: pre;
+        text-align:center;
+        background-color: #fff; /*#fdfdfb;*/
+        border:10px solid #efefef;/*#FAF7F5;*/ 
+        white-space: nowrap;
+        font-size: 35vh;
+        z-index:1000; 
+        width:50%; 
+        height:50%;
+        position: fixed; 
+        left: 25%; 
+        top:25%; 
+        display: none;"
+    }
+
+    .characterUniRanges{
+        font-size:2.5em;
+        display:inline-block;
+        /*width:1.45em;*/
+        min-width:2em;
+        height:2em;
+        text-align:center;
+        margin:-0px -0px -1px -4px;
+        background-color:#fff;
+        border:1px solid rgb(240,240,240); 
+        white-space: pre;
+    }
+
+    .characterUniRanges[title-B]:active {
+        z-index: 999;
+      content: attr(title-B);
+      position: relative;
+        background:#B3D4FC;
+        font-size: 20.5em;
+        display:inline-block;
+        /*width:10.45em;*/
+        min-width:500px;
+        height:500px;
+        text-align:center;
+        margin:-0px -0px -1px -4px;
+        border:1px solid rgb(240,240,240); 
+        white-space: pre;
+    }
+
+    [data-title] {
+      transition-timing-function: ease-in;
+          transition: 0.4s;
+      position: relative;
+    }
+
+    [data-title]:hover::before {
+      content: attr(data-title);
+      position: absolute;
+      z-index: 999;
+      bottom: -26px;
+      display: inline-block;
+      padding: 3px 6px;
+      border-radius: 2px;
+      background: #000;
+      color: #fff;
+      font-size: 12px;
+      font-family: sans-serif;
+      white-space: nowrap;
+      left: -20px;
+    }
+
+    [data-title]:hover::after {
+          z-index: 999;
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 8px;
+      display: inline-block;
+      color: #fff;
+      border: 8px solid transparent;    
+      border-bottom: 8px solid #000;
+    }
+
+    .characterMetaData {
+        line-height: 1.45em;
+        font-size:2.5em;
+        		display:inline-block;
+width:1.45em;
+white-space: pre;
+        max-width:1.45em !important;
+        min-width:1.45em;
+        height:1.45em;
+        text-align:center;
+        /*margin:-1px -1px -1px -4px;*/
+        background-color: #fff; /*#fdfdfb;*/
+        border:1px solid #efefef;/*#FAF7F5;*/ 
+        /*overflow: scroll !important;*/
+        white-space: nowrap;
+        font-size: 30px;
+    }
+
+    .characterFix {
+        font-size:2.5em;
+        		display:inline-block;
+width:1.45em;
+white-space: pre;
+        min-width:1.45em;
+        height:1.45em;
+        text-align:center;
+        /*margin:-1px -1px -1px -4px;*/
+        background-color: #fff; /*#fdfdfb;*/
+        border:1px solid #efefef;/*#FAF7F5;*/
+        overflow-x: scroll !important;
+        white-space: nowrap;
+        font-size: 30px;
+    }
+
+    .characterFontNames {
+        font-size:2.5em;
+        		display:inline-block;
+width:1.45em;
+white-space: pre;
+        min-width: 1.45em;
+        height:1.45em;
+        text-align:center;
+        /*margin:-1px -1px -1px -4px;*/
+        background-color: #fff; /*#fdfdfb;*/
+        border: 1px solid #fff; /*#fdfdfb;*/ 
+        position: -webkit-sticky;
+        position: sticky;
+        white-space: pre !important;
+        font-size: 30px;
+    }
+
+    .buttonBlack {
+        background-color: #131313;
+        border: 1px solid #fff; /*#fdfdfb;*/
+        color: #fff; /*#fdfdfb;*/
+        padding: 5px 15px;
+        text-align: center;
+        /*text-decoration: none;*/
+        display: inline-block;
+        margin: 1px 1px;
+        cursor: pointer;
+        border-radius: 0.0em;
+
+    }
+
+    .features-head {
+        content:"";
+        display:inline-block;
+        float:left;
+        width:100%;
+        border-bottom:1px solid rgb(240,240,240);
+        padding-top:10px;
+        margin-top:30px; 
+        margin-bottom:10px
+    }
+
+    input {
+        /*width: 44px;
+        height: 23px;
+        background-color: buttonface;*/
+        cursor: default;
+        border-width: 0px;
+        border-style: solid;
+        border-color: ; #fff; /*#fdfdfb;*//*rgb(169, 169, 169);*/
+        border-image: initial;
+        padding: 0px opx;
+    }
+
+    .inputColor{
+        width: 25px;
+        height: 29px;
+        cursor: default;
+        border: none;
+    }
+
+    button {
+        border: 0;
+        height: 100%;
+        /*width: 100%;*/
+        padding: 5px 15px;
+        text-align: center;
+        /*text-decoration: none;*/
+        display: inline-block;
+        margin: 1px 1px;
+        cursor: pointer;
+        border-radius: 0.0em;
+        vertical-align: top;
+        background: #fff; /*#fdfdfb;*/
+        outline: none;
+    }
+
+    .buttonBorder {
+        border: 0;
+        height: 100%;
+        /*width: 100%;*/
+        padding: 5px 15px;
+        text-align: center;
+        /*text-decoration: none;*/
+        display: inline-block;
+        margin: 1px 1px;
+        cursor: pointer;
+        border-radius: 0.0em;
+        vertical-align: top;
+        background: #fff; /*#fdfdfb;*/
+        outline: none;
+        border:1px solid #efefef;/*#FAF7F5;*/
+    }
+
+    .buttonOT {
+        border:1px solid #efefef;/*#FAF7F5;*/
+        width: 40px;
+        padding: 5px 5px;
+    }
+    .buttonExtra{
+        vertical-align: bottom;
+        line-height: 2em;
+
+        border: 0;
+        height: 100%;
+        /*width: 100%;*/
+        padding: 5px 15px;
+        text-align: center;
+        /*text-decoration: none;*/
+        display: inline-block;
+        margin: 1px 1px;
+        cursor: pointer;
+        border-radius: 0.0em;
+        background: #fff; /*#fdfdfb;*/
+        outline: none;
+    }
+
+    select {
+        border: 0;
+        height: 100%;
+        width: 100%;
+        padding: 5px 15px;
+        text-align: center;
+        /*text-decoration: none;*/
+        display: inline-block;
+        margin: 1px 1px;
+        cursor: pointer;
+        border-radius: 0.0em;
+        vertical-align: top;
+        background: #131313;
+        color: #fff; /*#fdfdfb;*/
+    }
+
+    .selectSampleText {
+        border: 0;
+        height: 100%;
+        width: 200px;
+        /*padding: 5px 15px;*/
+        text-align: center;
+        /*text-decoration: none;*/
+        display: inline-block;
+        margin: 5px 1px;
+        cursor: pointer;
+        border-radius: 0.0em;
+        vertical-align: top;
+        background: #fff; /*#fdfdfb;*/
+        color: #131313;
+    }
+
+    .textTop {vertical-align: top;}
+    .compareBoxes{word-break: break-all;}
+
+    .flyingFont{
+        font-size: 300px;
+        text-align: center;
+        /*text-transform: uppercase;*/
+        width: 100%;
+    }
+
+    .flyingFont1{
+        color: #FF4136/*#131313*/; 
+        z-index: 900; 
+        position: absolute;
+    }
+    .flyingFont2{
+        /*-webkit-text-stroke-width: 2px;
+           -webkit-text-stroke-color: #FF4136;
+           -webkit-text-fill-color: transparent;*/
+        z-index: 899; 
+        position: absolute;
+           opacity: .5;
+           margin-top: 10px;
+           margin-left: 10px;
+    }
+    .flyingFont3{
+        /*-webkit-text-stroke-width: 2px;
+           -webkit-text-stroke-color: #FF4136;
+           -webkit-text-fill-color: transparent;*/
+        z-index: 898; 
+        position: absolute;
+           opacity: .2;
+           margin-top: 20px;
+           margin-left: 20px;
+    }
+
+    .buttonToggle {
+        border: 0;
+        /*background-color: #131313;*/
+        /*color: #fff; /*#fdfdfb;*/*/
+        text-align: center;
+        /*text-decoration: none;*/
+        display: inline-block;
+        margin: 1px 1px;
+        cursor: pointer;
+        border-radius: 0.0em;
+    }
+
+    button:hover, .selectSampleText:hover {background-color: #131313; color: #fff; /*#fdfdfb;*/}
+    .buttonOT:hover {background-color: #131313; color: #fff; /*#fdfdfb;*/}
+    .buttonExtra:hover {background-color: #fff; /*#fdfdfb;*/ color: #131313;}
+
+    hr { border: 0; height: 1px; background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0));}
+
+    .underline {text-decoration: underline; text-decoration-color: #131313; color: hsl(  0,  0%,  95%); overflow: hidden;} /* for the future: text-underline-offset: from-font; text-decoration-width: from-font; */
+    .strikeout {text-decoration: line-through; text-decoration-color: #131313; color: hsl(  0,  0%,  95%); overflow: hidden;} 
+
+    .character:hover {background:#B3D4FC}
+    .characterUniRanges:hover {background:#B3D4FC}
+    /*.characterUniRanges:active {
+        background:#B3D4FC;
+        font-size: 20.5em;
+        display:inline-block;
+        /*width:10.45em;*/
+        min-width:500px;
+        height:500px;
+        text-align:center;
+        margin:-0px -0px -1px -4px;
+        border:1px solid rgb(240,240,240); 
+        white-space: pre;
+    }
+    */
+    .characterFix:hover {background:#B3D4FC}
+    .character_name {/*padding-top: 5px; padding-left: 25px;*/}
+    
+    @keyframes blinkblink {
+        0% 100%   {background-color: hsl( 24,  100%, 50%); }
+        50% {background-color: hsl( 24,  100%, 45%); }
+    }
+
+    .serious {animation: blinkblink 0.9s ease-in-out 0s infinite;}
+    .critical {background-color: hsl( 0,  100%, 20%); color: hsl( 0,  0%, 90%);}
+    .error {background-color: hsl( 24,  100%, 45%); color: hsl( 24,  100%, 70%);}
+    .warning {background-color: hsl( 50,  65%, 52%); color: hsl( 50,  65%, 70%);}
+    .info {background-color: #f9f7f6;/*hsl(  0,  0%,  95%);*/ color: hsl(  0,  0%,  70%);}
+
+    .extra {background-color: hsl( 200,  50%, 95%);}
+    .extra_info {background-color: hsl( 200,  50%, 96%); color: hsl( 200,  50%, 80%);}
+
+    .colLeft {
+        width: 50%;
+        padding-left: 25px;
+        text-align: right;
+        padding-right: 25px;
+        vertical-align: text-top;
+    }
+
+    .header {
+      text-transform: none;
+      text-decoration: none;
+      background-color: #fff; /*#fdfdfb;*/
+      text-align: left;
+      color: #131313;
+      position: fixed;
+      padding: 15px 15px 0px 0px;
+      width: 100%;
+      box-shadow: 0px 0px 5px #888888;
+      z-index: 99;
+    }
+
+    .header1 {
+      text-transform: none;
+      text-decoration: none;
+      background-color: #fff; /*#fdfdfb;*/
+      text-align: left;
+      color: #131313;
+      position: fixed;
+      padding: 15px 15px 0px 0px;
+      width: 100%;
+      z-index: 99;
+    }
+    
+    .header:hover  { opacity: 0.95; }
+    .header1:hover  { opacity: 0.95; }
+
+
+    .splitter{width:100%; font-weight: bold;}
+    .center{text-align: center;}
+    .left{text-align: left;}
+    .content{padding-top: 500px;}
+    .sampleBig {/*font-size: 50px !important*/; color:#fff; /*#fdfdfb;*/ padding: 20px 50px 20px 50px; }
+    .sampleWaterfall {padding: 20px 50px 20px 20px;}
+    .waterfallOverflow {white-space:nowrap; overflow: hidden; text-overflow: clip; }
+    .sampleContent {/*empty*/ font-size: 30px;}
+    .compareBoxCSS {vertical-align: top; font-size: 30px;}
+    .blackBG {background-color: #131313;}
+
+    .defaultFont {font-size: 30px;}
+    .infoFont {font-family: "Kootenay Pro", Axel, "System Font", "Fira Sans", sans-serif; font-size: 14px; vertical-align: 5px;}
+    
+    .hidden {display:none;}
+    .sliderbar {vertical-align: 4px;}
+
+    /* Slider design Start */
+
+    .inputRangeCompareBox {
+      padding-bottom: 7px !important;
+      padding-left: 10px;
+    }
+
+    .inputNumberCompareBox{
+        max-width: 50px;
+    }
+
+    input[type=range] {
+      padding-bottom: 3px;
+      -webkit-appearance: none;
+      /*position: relative*/
+    }
+
+    input[type=range]::-webkit-slider-runnable-track {
+      width: 300px;
+      height: 2px;
+      border: none;
+      border-radius: 3px;
+      border: 1px solid #131313;
+    }
+
+    input[type=range]::-moz-range-track {
+      background-color: #131313;
+    }
+
+    input::-moz-range-thumb {
+        background-color: #fff; /*#fdfdfb;*/
+        border: solid 2px #131313;
+        border-radius: 0;
+        height: 10px;
+        width: 10px;
+      }
+
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      border: none;
+      height: 12px;
+      width: 12px;
+      border-radius: 510%;
+      background: #fff; /*#fdfdfb;*/
+      border: 2px solid #131313;
+      margin-top: -5px;
+      cursor: pointer
+    }
+
+    input[type=range]:focus {
+      outline: none
+    }
+
+    /* Slider design End */
+
+    .infoToggle {border-bottom:1px solid #efefef;/*#FAF7F5;*/}
+    .colLeftToggle {
+        width: 50%;
+        padding-left: 25px;
+        text-align: right;
+        padding-right: 25px;
+        vertical-align: mittle;
+    }
+
+    td.rotateSAVE {*/height: 140px;*/ white-space: nowrap; /*float: left;*/ }
+    td.rotate > div {-webkit-transform: rotate(270deg); transform: rotate(270deg); width: 30px;}
+    td.rotate > div > span {/*padding: 5px 10px;*/}
+
+
+    
+        .ccmp {-webkit-font-feature-settings: "ccmp" 1; -moz-font-feature-settings: "ccmp" 1; -moz-font-feature-settings: "ccmp=1"; -ms-font-feature-settings: "ccmp" 1; -o-font-feature-settings: "ccmp" 1;}
+        
+        .dist {-webkit-font-feature-settings: "dist" 1; -moz-font-feature-settings: "dist" 1; -moz-font-feature-settings: "dist=1"; -ms-font-feature-settings: "dist" 1; -o-font-feature-settings: "dist" 1;}
+        
+        .mark {-webkit-font-feature-settings: "mark" 1; -moz-font-feature-settings: "mark" 1; -moz-font-feature-settings: "mark=1"; -ms-font-feature-settings: "mark" 1; -o-font-feature-settings: "mark" 1;}
+        
+        .mkmk {-webkit-font-feature-settings: "mkmk" 1; -moz-font-feature-settings: "mkmk" 1; -moz-font-feature-settings: "mkmk=1"; -ms-font-feature-settings: "mkmk" 1; -o-font-feature-settings: "mkmk" 1;}
+        
+
+    
+		@font-face {font-family: 'om_NotoSansBrahmiRegularttf'; src: url('NotoSansBrahmi-Regular.ttf');}
+	.om_NotoSansBrahmiRegularttf {font-family: 'om_NotoSansBrahmiRegularttf'; /*font-size: 30px;*/}
+
+    
+
+    /*.animationON {animation: LooperOne 5.0s ease-in-out 0s infinite;}
+    .animationOFF {/*empty*/}*/
+
+
+    </style>
+
+  </head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <body style="-webkit-print-color-adjust:exact;" id="body_all" onload="functionAddSupportedFeatures('mark'),functionAddSupportedFeatures('mkmk')">
+
+      <div id="zoom_characters" class="characterZoom" onclick="mUp()"></div>
+
+    <div class="header1 center" style="z-index:999; ">
+            Monotype
+        <table class="splitter">
+          <tr>
+            <td class="center">F</td>
+            <td class="center">O</td>
+            <td class="center">N</td>
+            <td class="center">T</td>
+            <td class="center">S</td>
+            <td class="center">P</td>
+            <td class="center">L</td>
+            <td class="center">I</td>
+            <td class="center">T</td>
+            <td class="center">T</td>
+            <td class="center">E</td>
+            <td class="center">R</td>
+          </tr>
+        </table>
+        <br>
+    </div>
+
+       <div class="header center">
+        <table style="width:100%">
+            <tbody id="otFeature" >
+                <td>
+                    <!-- OT feature buttons -->
+                    <table>
+		<tr>
+			<td class="colLeft">Select HTML Language</td><td class="left">
+		<select onchange="functionChangeLanguage(this.value)" class="selectSampleText">		<option value=>Default</option>
+			</select>
+			</td>
+		</tr>
+		<tr>
+			<td class="colLeft">South-Asian alphasyllabary (Indic/Brahmic) Features</td><td class="left">
+		<button class="buttonOT" data-title="Distances" id="dist_btn" onclick="functionAddSupportedFeatures('dist')">dist</button>
+
+			</td>
+		</tr>
+		<tr>
+			<td class="colLeft">Positioning Features</td><td class="left">
+		<button class="buttonOT" data-title="Glyph Composition / Decomposition" id="ccmp_btn" onclick="functionAddSupportedFeatures('ccmp')">ccmp</button>
+		<button class="buttonOT" data-title="Mark Positioning" id="mark_btn" onclick="functionAddSupportedFeatures('mark')">mark</button>
+		<button class="buttonOT" data-title="Mark to Mark Positioning" id="mkmk_btn" onclick="functionAddSupportedFeatures('mkmk')">mkmk</button>
+		<button class="buttonOT" data-title="Distances" id="dist_btn" onclick="functionAddSupportedFeatures('dist')">dist</button>
+
+			</td>
+		</tr>
+</table>
+
+                    <!-- fonts size slider
+                    <table>
+                        <tr>
+                        <td class="colLeft">Font Size</td><td class="left"><input type="range" min="0.5" max="20" value="2.5" step=".01" id="slider" /></td>
+                        </tr>
+                    </table>
+                     -->
+
+                    <!-- axis variable fonts -->
+                    
+
+                </td>
+            </tbody>
+
+            <th><button class="buttonExtra" id="otFeature_btn" onclick='functionShowHeader(".header", "otFeature");' title="Toggle details">&#x25bc;</button>
+            </th>
+        </table>
+    </div>  
+
+<div id="cssCodeForCustomerPreview" class="containerCSScode deepgray whitetext">
+<pre>
+
+<span class="comment">/* first assign web font */</span>
+
+<span class="rule">@font-face</span> {
+    <span class="keyword">font-family</span>: 'Noto Sans Brahmi'; 
+    <span class="prop">src</span>: <span class="prop">url</span>('../NotoSansBrahmi-Regular.ttf') <span class="prop">format</span>('truetype');
+    }
+
+<span class="comment">/* go on with normal style definitions */</span>
+<span class="rule">body</span> {
+    <span class="keyword">font-family</span>: 'Noto Sans Brahmi'; <span class="comment">/* this is only an example for one style */</span>
+    <span class="featurestring">
+    <span class="comment">/* setup OpenType features */</span>
+    <span class="keyword">font-feature-settings: </span><span id="w3cfeatures"></span>;
+
+    <span class="comment">/* vendor prefixes */</span>
+    <span class="keyword">-webkit-font-feature-settings: </span><span id="webkitfeatures"></span>;
+    <span class="keyword">-moz-font-feature-settings: </span><span id="mozfeatures-up-to-14"></span>;
+    <span class="keyword">-moz-font-feature-settings: </span><span id="mozfeatures"></span>;
+    <span class="keyword">-ms-font-feature-settings: </span><span id="msfeatures"></span>;
+    <span class="keyword">-o-font-feature-settings: </span><span id="ofeatures"></span>;
+    
+}
+    
+
+<span class="comment">/* language tag */</span>
+<code><</code><span class="keyword">html</span><span class="prop"> lang</span>=<span class="rule">"<span id="htmlLangTag"></span>"</span><code>></code>
+
+...
+
+<code><</code>/<span class="keyword">html</span><code>></code>
+
+</pre>
+</div>
+
+
+<div id="containerMainID" class="containerMain" onscroll="scrollXNamesFunc()">
+
+    <div class="cssButton">
+        <a class="cssButtonStyle whitetext" onclick="functionShowCSSCode('.containerMain')" href="#" style="text-decoration:None;"> 
+            css code
+        </a>
+    </div>
+
+    <div id="showFontNames" class="content" style="background: white; opacity: 0; transition: opacity 1s ease-in-out; position: fixed; z-index: -1; width:100%;">
+        <table style="width:100%; border-bottom: 1px solid #FAF7F5;">
+            <tr>
+                <td class="colLeft">
+                </td>
+                <td class="rotate characterFontNames defaultFont"><div><span class="infoFont"> </span></div></td>
+				<td class="rotate characterFontNames om_NotoSansBrahmiRegularttf"><div><span>Noto Sans Brahmi</span></div></td>
+				
+            </tr>
+        </table>
+    </div>
+
+    <div id="showFontNames_div" class="center" style="position: fixed; bottom: -50px; z-index:998; width:100%;">
+        <button class="buttonBlack" id="showFontNames_btn" onclick='showhide_div("showFontNames", "font names");' title="Toggle details">show font names</button>
+    </div>
+
+    <div id="varFont" class="content">
+
+        <table>
+            <tr>
+                <td class="colLeft">
+                <!-- <a href="#splitterContent">Character Set Compare</a> https://css-tricks.com/snippets/jquery/smooth-scrolling/ -->
+                2020-09-26 - 14:11.10
+                <br>
+                14:11.10
+                <br>
+                <button class="buttonBorder" onClick="window.print()">
+                Print this page
+                </button>
+                </td>
+                <td class="rotate characterFontNames defaultFont"><div><span class="infoFont"> </span></div></td>
+				<td class="rotate characterFontNames om_NotoSansBrahmiRegularttf"><div><span>Noto Sans Brahmi</span></div></td>
+				
+            </tr>
+        </table>
+
+            
+		<hr>
+		<table>
+<tr>
+<td class="colLeft">Format<br>(by file ending)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Brahmi" data-original-title=".ttf"><span class="infoFont">.ttf</span></td>
+</tr>
+<tr>
+<td class="colLeft">Outline Flavour<br>(CFF or glyf table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Brahmi" data-original-title="OT TTF"><span class="infoFont">OT TTF</span></td>
+</tr>
+<tr>
+<td class="colLeft">Number of Glyphs<br>(maxp table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Brahmi" data-original-title="182"><span class="infoFont">182</span></td>
+</tr>
+<tr>
+<td class="colLeft">Weight Class<br>(OS/2 table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont " title="Noto Sans Brahmi" data-original-title="400"><span class="infoFont">400</span></td>
+</tr>
+<tr>
+<td class="colLeft">Width Class<br>(OS/2 table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont " title="Noto Sans Brahmi" data-original-title="5"><span class="infoFont">5</span></td>
+</tr>
+<tr>
+<td class="colLeft">Units per Em<br>(head table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Brahmi" data-original-title="2048"><div><span class="infoFont">2048</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">Font Revision<br>(head table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Brahmi" data-original-title="1.03"><div><span class="infoFont">1.03</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">OS/2 Table Version<br></td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Brahmi" data-original-title="4"><div><span class="infoFont">4</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">sTypeAscender<br>(OS/2 table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Brahmi" data-original-title="2189"><div><span class="infoFont">2189</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">sTypeDescender<br>(OS/2 table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Brahmi" data-original-title="-600"><div><span class="infoFont">-600</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">sTypeLineGap<br>(OS/2 table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Brahmi" data-original-title="0"><div><span class="infoFont">0</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">usWinAscent<br>(OS/2 table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Brahmi" data-original-title="2189"><div><span class="infoFont">2189</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">usWinDescent<br>(OS/2 table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Brahmi" data-original-title="600"><div><span class="infoFont">600</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">Ascender<br>(hhea table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Brahmi" data-original-title="2189"><div><span class="infoFont">2189</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">Descender<br>(hhea table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Brahmi" data-original-title="-600"><div><span class="infoFont">-600</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">LineGap<br>(hhea table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Brahmi" data-original-title="0"><div><span class="infoFont">0</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">post table format<br>(post table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Brahmi" data-original-title="3.0"><div><span class="infoFont">3.0</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">Underline Position<br>(post table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Brahmi" data-original-title="-154"><div><span class="infoFont">-154</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">Underline Thickness<br>(post table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Brahmi" data-original-title="102"><div><span class="infoFont">102</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">Hgo<br>visual check underline</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData om_NotoSansBrahmiRegularttf underline" title="Noto Sans Brahmi" data-original-title="Hgo">Hgo</td>
+</tr>
+<tr>
+<td class="colLeft">yStrikeoutPosition<br>(OS/2 table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Brahmi" data-original-title="512"><div><span class="infoFont">512</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">yStrikeoutSize<br>(OS/2 table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Brahmi" data-original-title="102"><div><span class="infoFont">102</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">strikeout<br>visual check</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData om_NotoSansBrahmiRegularttf strikeout" title="Noto Sans Brahmi" data-original-title="Hgo">Hgo</td>
+</tr>
+<tr>
+<td class="colLeft">Italic Flag<br>(OS/2 table fsSelection)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Brahmi" data-original-title="False"><div><span class="infoFont">False</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">Italic Angle<br>(post table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterFix defaultFont" title="Noto Sans Brahmi" data-original-title="0.0"><div><span class="infoFont">0.0</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">Panose: Family<br>(Value 1)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterFix defaultFont" title="Noto Sans Brahmi" data-original-title="Latin Text"><div><span class="infoFont">Latin Text</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">Panose: Serif<br>(Value 2)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterFix defaultFont" title="Noto Sans Brahmi" data-original-title="Normal Sans"><div><span class="infoFont">Normal Sans</span></div></td>
+</tr>
+
+		</table>
+
+
+            
+
+            
+            <hr>
+            <table id="compareBoxID">
+            <tr id="tableTR" class="textTop sampleBig blackBG compareBoxes">
+
+            <button class="buttonBorder" title="add column" onclick="functionBoxAdd()">+</button>
+            <button class="buttonBorder" title="remove column" onclick="functionBoxRemove()">-</button>
+            <select id="mySelectSampleText" onchange="functionSelectSampleText('mySelectSampleText')" class="selectSampleText">
+
+            <option value='Default Sample'>Default Sample</option><option value='All Unicodes'>All Unicodes</option>
+
+            </select>
+            <input type="color" class="inputColor" value="#82e5fe" title="Background Color" onchange="functionGetColorBG(this.value, '.compareBoxes')">
+            <input type="color" class="inputColor" value="#ff79ad" title="Text Color" onchange="functionGetColorText(this.value, '.compareBoxes')">
+            <button class="buttonBorder" title="Swap Colors" onclick="functionSwapColorTextBG('.compareBoxes')">&#x02B14</button>
+            <button class="buttonBorder" title="have fun, change background" onclick="functionGetRandomBG(['gradientBG', 'linearGradientBG', 'linearGradient2BG', 'blackBG'])">∞</button>
+            <input type="range" class="inputRangeCompareBox" title="Text Size" min="0.5" max="100" value="30" step=".01" id="sliderCompareBoxCSS"/>
+            <input type="number" class="inputNumberCompareBox" value="30" step="1" id="numberCompareBoxCSS"/>
+            <button class="buttonOT" id="leftcompareBox_btn" title="text alignment left" onclick="functionTextAlignment('compareBoxID', 'left')">L</button>
+            <button class="buttonOT" id="centercompareBox_btn" title="text alignment center" onclick="functionTextAlignment('compareBoxID', 'center')">C</button>
+            <button class="buttonOT" id="rightcompareBox_btn" title="text alignment right" onclick="functionTextAlignment('compareBoxID', 'right')">R</button>
+            <span style="vertical-align: super; color: #efefef;">|</span>
+            <button class="buttonOT" id="left-to-rightcompareBox_btn" title="reading direction: left to right" onclick="functionReadDirection('compareBoxID', 'left-to-right')">LR</button>
+            <button class="buttonOT" id="right-to-leftcompareBox_btn" title="reading direction: right to left" onclick="functionReadDirection('compareBoxID', 'right-to-left')">RL</button>
+            <!--<button class="buttonOT" id="top-to-downcompareBox_btn" title="reading direction: top to down" onclick="functionReadDirection('compareBoxID', 'top-to-down')">TD</button>-->
+            <button class="buttonBlack" id="hintingOnOff_btn" onclick="hintingOnOff('.compareBoxes', 'hintingOnOff');" title="activate/deactivate hinting">hinting on</button>
+            
+<td id="myBox" class="compareBox om_NotoSansBrahmiRegularttf"><select id="mySelect" name="myBox" onchange="functionSelect('mySelect')"><option value='om_NotoSansBrahmiRegularttf'>Noto Sans Brahmi (ttf)</option>
+</select>
+
+<span id="myBoxContent" contenteditable="true" class="compareBoxCSS ">1234567890 xozszn HOZD 1/3 @ 1a ;#& ? % $ € ! In August of 2016, four unlikely collaborators in the world of type, fonts and font technology stood on a stage at the ATypI conference in Warsaw, Poland. The collaborators were Apple, Microsoft, Adobe and Google. Together they announced the publishing of OpenType 1.8, an update to the now ubiquitous font standard which was originally an amalgam of Apple & Microsoft’s TrueType, and Adobe’s PostScript font formats. The OpenType 1.8 announcement, ATypI, Warsaw, Poland, September 14, 2016.</span></td>
+
+</tr>
+            </table>
+    
+
+            
+		<hr>
+		<table>
+<thead><tr><tr>
+<td class="colLeft">Copyright<br>NID0 Windows (3, 1, 1033, 0)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 0)_btn" onclick='toggle_detail("(3, 1, 1033, 0)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 0)0')" onMouseOut="hover('(3, 1, 1033, 0)0')" class="character defaultFont " title="Noto Sans Brahmi" data-original-title="(3, 1, 1033, 0)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 0)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Brahmi"><td onMouseOver="hover('(3, 1, 1033, 0)0')" onMouseOut="hover('(3, 1, 1033, 0)0')" id="(3, 1, 1033, 0)0" class="infoToggle" colspan="1">Copyright 2013 Google Inc. All Rights Reserved.</td></tr></tbody><tr>
+<td class="colLeft">Family Name<br>NID1 Windows (3, 1, 1033, 1)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 1)_btn" onclick='toggle_detail("(3, 1, 1033, 1)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 1)0')" onMouseOut="hover('(3, 1, 1033, 1)0')" class="character defaultFont " title="Noto Sans Brahmi" data-original-title="(3, 1, 1033, 1)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 1)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID 1 and 2 together should be unique within the family.</td><tr class="" title="Noto Sans Brahmi"><td onMouseOver="hover('(3, 1, 1033, 1)0')" onMouseOut="hover('(3, 1, 1033, 1)0')" id="(3, 1, 1033, 1)0" class="infoToggle" colspan="1">NID1: 'Noto Sans Brahmi' + NID2: 'Regular'</td></tr></tbody><tr>
+<td class="colLeft">Subfamily Name<br>NID2 Windows (3, 1, 1033, 2)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 2)_btn" onclick='toggle_detail("(3, 1, 1033, 2)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 2)0')" onMouseOut="hover('(3, 1, 1033, 2)0')" class="character defaultFont " title="Noto Sans Brahmi" data-original-title="(3, 1, 1033, 2)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 2)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be 'Regular', 'Italic', 'Bold' or 'Bold Italic'.</td><tr class="" title="Noto Sans Brahmi"><td onMouseOver="hover('(3, 1, 1033, 2)0')" onMouseOut="hover('(3, 1, 1033, 2)0')" id="(3, 1, 1033, 2)0" class="infoToggle" colspan="1">Regular</td></tr></tbody><tr>
+<td class="colLeft">Unique Font Identifier<br>NID3 Windows (3, 1, 1033, 3)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 3)_btn" onclick='toggle_detail("(3, 1, 1033, 3)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 3)0')" onMouseOut="hover('(3, 1, 1033, 3)0')" class="character defaultFont " title="Noto Sans Brahmi" data-original-title="(3, 1, 1033, 3)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 3)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be DIFFERENT within the family.</td><tr class="" title="Noto Sans Brahmi"><td onMouseOver="hover('(3, 1, 1033, 3)0')" onMouseOut="hover('(3, 1, 1033, 3)0')" id="(3, 1, 1033, 3)0" class="infoToggle" colspan="1">Monotype Imaging - Noto Sans Brahmi</td></tr></tbody><tr>
+<td class="colLeft">Full Font Name<br>NID4 Windows (3, 1, 1033, 4)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 4)_btn" onclick='toggle_detail("(3, 1, 1033, 4)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 4)0')" onMouseOut="hover('(3, 1, 1033, 4)0')" class="character defaultFont " title="Noto Sans Brahmi" data-original-title="(3, 1, 1033, 4)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 4)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be DIFFERENT within the family.</td><tr class="" title="Noto Sans Brahmi"><td onMouseOver="hover('(3, 1, 1033, 4)0')" onMouseOut="hover('(3, 1, 1033, 4)0')" id="(3, 1, 1033, 4)0" class="infoToggle" colspan="1">Noto Sans Brahmi</td></tr></tbody><tr>
+<td class="colLeft">Version<br>NID5 Windows (3, 1, 1033, 5)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 5)_btn" onclick='toggle_detail("(3, 1, 1033, 5)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 5)0')" onMouseOut="hover('(3, 1, 1033, 5)0')" class="character defaultFont " title="Noto Sans Brahmi" data-original-title="(3, 1, 1033, 5)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 5)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Brahmi"><td onMouseOver="hover('(3, 1, 1033, 5)0')" onMouseOut="hover('(3, 1, 1033, 5)0')" id="(3, 1, 1033, 5)0" class="infoToggle" colspan="1">Version 1.03 uh</td></tr></tbody><tr>
+<td class="colLeft">PostScript Name<br>NID6 Windows (3, 1, 1033, 6)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 6)_btn" onclick='toggle_detail("(3, 1, 1033, 6)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 6)0')" onMouseOut="hover('(3, 1, 1033, 6)0')" class="character defaultFont " title="Noto Sans Brahmi" data-original-title="(3, 1, 1033, 6)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 6)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be DIFFERENT within the family.</td><tr class="" title="Noto Sans Brahmi"><td onMouseOver="hover('(3, 1, 1033, 6)0')" onMouseOut="hover('(3, 1, 1033, 6)0')" id="(3, 1, 1033, 6)0" class="infoToggle" colspan="1">NotoSansBrahmi</td></tr></tbody><tr>
+<td class="colLeft">Trademark<br>NID7 Windows (3, 1, 1033, 7)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 7)_btn" onclick='toggle_detail("(3, 1, 1033, 7)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 7)0')" onMouseOut="hover('(3, 1, 1033, 7)0')" class="character defaultFont " title="Noto Sans Brahmi" data-original-title="(3, 1, 1033, 7)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 7)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Brahmi"><td onMouseOver="hover('(3, 1, 1033, 7)0')" onMouseOut="hover('(3, 1, 1033, 7)0')" id="(3, 1, 1033, 7)0" class="infoToggle" colspan="1">Noto is a trademark of Google Inc.</td></tr></tbody><tr>
+<td class="colLeft">Manufacturer<br>NID8 Windows (3, 1, 1033, 8)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 8)_btn" onclick='toggle_detail("(3, 1, 1033, 8)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 8)0')" onMouseOut="hover('(3, 1, 1033, 8)0')" class="character defaultFont " title="Noto Sans Brahmi" data-original-title="(3, 1, 1033, 8)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 8)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Brahmi"><td onMouseOver="hover('(3, 1, 1033, 8)0')" onMouseOut="hover('(3, 1, 1033, 8)0')" id="(3, 1, 1033, 8)0" class="infoToggle" colspan="1">Monotype Imaging Inc.</td></tr></tbody><tr>
+<td class="colLeft">Designer<br>NID9 Windows (3, 1, 1033, 9)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 9)_btn" onclick='toggle_detail("(3, 1, 1033, 9)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 9)0')" onMouseOut="hover('(3, 1, 1033, 9)0')" class="character defaultFont " title="Noto Sans Brahmi" data-original-title="(3, 1, 1033, 9)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 9)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Brahmi"><td onMouseOver="hover('(3, 1, 1033, 9)0')" onMouseOut="hover('(3, 1, 1033, 9)0')" id="(3, 1, 1033, 9)0" class="infoToggle" colspan="1">Monotype Design Team</td></tr></tbody><tr>
+<td class="colLeft">Description<br>NID10 Windows (3, 1, 1033, 10)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 10)_btn" onclick='toggle_detail("(3, 1, 1033, 10)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 10)0')" onMouseOut="hover('(3, 1, 1033, 10)0')" class="character defaultFont " title="Noto Sans Brahmi" data-original-title="(3, 1, 1033, 10)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 10)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Brahmi"><td onMouseOver="hover('(3, 1, 1033, 10)0')" onMouseOut="hover('(3, 1, 1033, 10)0')" id="(3, 1, 1033, 10)0" class="infoToggle" colspan="1">Data unhinted. Designed by Monotype design team.</td></tr></tbody><tr>
+<td class="colLeft">Vendor URL<br>NID11 Windows (3, 1, 1033, 11)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 11)_btn" onclick='toggle_detail("(3, 1, 1033, 11)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 11)0')" onMouseOut="hover('(3, 1, 1033, 11)0')" class="character defaultFont " title="Noto Sans Brahmi" data-original-title="(3, 1, 1033, 11)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 11)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Brahmi"><td onMouseOver="hover('(3, 1, 1033, 11)0')" onMouseOut="hover('(3, 1, 1033, 11)0')" id="(3, 1, 1033, 11)0" class="infoToggle" colspan="1">http://www.google.com/get/noto/</td></tr></tbody><tr>
+<td class="colLeft">Designer URL<br>NID12 Windows (3, 1, 1033, 12)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 12)_btn" onclick='toggle_detail("(3, 1, 1033, 12)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 12)0')" onMouseOut="hover('(3, 1, 1033, 12)0')" class="character defaultFont " title="Noto Sans Brahmi" data-original-title="(3, 1, 1033, 12)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 12)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Brahmi"><td onMouseOver="hover('(3, 1, 1033, 12)0')" onMouseOut="hover('(3, 1, 1033, 12)0')" id="(3, 1, 1033, 12)0" class="infoToggle" colspan="1">http://www.monotype.com/studio</td></tr></tbody><tr>
+<td class="colLeft">License Text<br>NID13 Windows (3, 1, 1033, 13)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 13)_btn" onclick='toggle_detail("(3, 1, 1033, 13)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 13)0')" onMouseOut="hover('(3, 1, 1033, 13)0')" class="character defaultFont " title="Noto Sans Brahmi" data-original-title="(3, 1, 1033, 13)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 13)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Brahmi"><td onMouseOver="hover('(3, 1, 1033, 13)0')" onMouseOut="hover('(3, 1, 1033, 13)0')" id="(3, 1, 1033, 13)0" class="infoToggle" colspan="1">This Font Software is licensed under the SIL Open Font License, Version 1.1. This Font Software is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the SIL Open Font License for the specific language, permissions and limitations governing your use of this Font Software.</td></tr></tbody><tr>
+<td class="colLeft">License URL<br>NID14 Windows (3, 1, 1033, 14)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 14)_btn" onclick='toggle_detail("(3, 1, 1033, 14)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 14)0')" onMouseOut="hover('(3, 1, 1033, 14)0')" class="character defaultFont " title="Noto Sans Brahmi" data-original-title="(3, 1, 1033, 14)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 14)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Brahmi"><td onMouseOver="hover('(3, 1, 1033, 14)0')" onMouseOut="hover('(3, 1, 1033, 14)0')" id="(3, 1, 1033, 14)0" class="infoToggle" colspan="1">http://scripts.sil.org/OFL</td></tr></tbody>
+		</table>
+
+
+            
+
+            
+
+        <!-- big text on black backround -->
+            
+
+            
+
+            
+
+            
+		<hr>
+		<table id="splitterContent">
+<tr>
+<td class="colLeft"><br>uni0000</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0000', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0000">&#x0000</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x0000', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni0000">&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft"><br>uni000D</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x000d', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni000d">&#x000d</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x000d', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni000d">&#x000d</td>
+</tr>
+<tr>
+<td class="colLeft">SPACE<br>uni0020</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0020', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0020">&#x0020</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x0020', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni0020">&#x0020</td>
+</tr>
+<tr>
+<td class="colLeft">NO-BREAK SPACE<br>uni00A0</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x00a0', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni00a0">&#x00a0</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x00a0', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni00a0">&#x00a0</td>
+</tr>
+<tr>
+<td class="colLeft">ZERO WIDTH NO-BREAK SPACE<br>uniFEFF</td>
+<td class="character defaultFont info" onmousedown="mDown('&#xfeff', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="unifeff">&#xfeff</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#xfeff', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="unifeff">&#xfeff</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI SIGN CANDRABINDU<br>uni11000</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11000', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11000">&#x11000</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x11000', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni11000">&#x11000</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI SIGN ANUSVARA<br>uni11001</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11001', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11001">&#x11001</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x11001', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni11001">&#x11001</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI SIGN VISARGA<br>uni11002</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11002', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11002">&#x11002</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x11002', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni11002">&#x11002</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI SIGN JIHVAMULIYA<br>uni11003</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11003', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11003">&#x11003</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x11003', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni11003">&#x11003</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI SIGN UPADHMANIYA<br>uni11004</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11004', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11004">&#x11004</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x11004', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni11004">&#x11004</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI LETTER A<br>uni11005</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11005', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11005">&#x11005</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x11005', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni11005">&#x11005</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI LETTER AA<br>uni11006</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11006', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11006">&#x11006</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x11006', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni11006">&#x11006</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI LETTER I<br>uni11007</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11007', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11007">&#x11007</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x11007', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni11007">&#x11007</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI LETTER II<br>uni11008</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11008', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11008">&#x11008</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x11008', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni11008">&#x11008</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI LETTER U<br>uni11009</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11009', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11009">&#x11009</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x11009', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni11009">&#x11009</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI LETTER UU<br>uni1100A</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1100a', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1100a">&#x1100a</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x1100a', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni1100a">&#x1100a</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI LETTER VOCALIC R<br>uni1100B</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1100b', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1100b">&#x1100b</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x1100b', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni1100b">&#x1100b</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI LETTER VOCALIC RR<br>uni1100C</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1100c', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1100c">&#x1100c</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x1100c', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni1100c">&#x1100c</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI LETTER VOCALIC L<br>uni1100D</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1100d', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1100d">&#x1100d</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x1100d', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni1100d">&#x1100d</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI LETTER VOCALIC LL<br>uni1100E</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1100e', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1100e">&#x1100e</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x1100e', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni1100e">&#x1100e</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI LETTER E<br>uni1100F</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1100f', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1100f">&#x1100f</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x1100f', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni1100f">&#x1100f</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI LETTER AI<br>uni11010</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11010', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11010">&#x11010</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x11010', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni11010">&#x11010</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI LETTER O<br>uni11011</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11011', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11011">&#x11011</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x11011', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni11011">&#x11011</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI LETTER AU<br>uni11012</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11012', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11012">&#x11012</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x11012', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni11012">&#x11012</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI LETTER KA<br>uni11013</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11013', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11013">&#x11013</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x11013', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni11013">&#x11013</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI LETTER KHA<br>uni11014</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11014', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11014">&#x11014</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x11014', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni11014">&#x11014</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI LETTER GA<br>uni11015</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11015', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11015">&#x11015</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x11015', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni11015">&#x11015</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI LETTER GHA<br>uni11016</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11016', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11016">&#x11016</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x11016', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni11016">&#x11016</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI LETTER NGA<br>uni11017</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11017', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11017">&#x11017</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x11017', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni11017">&#x11017</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI LETTER CA<br>uni11018</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11018', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11018">&#x11018</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x11018', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni11018">&#x11018</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI LETTER CHA<br>uni11019</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11019', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11019">&#x11019</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x11019', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni11019">&#x11019</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI LETTER JA<br>uni1101A</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1101a', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1101a">&#x1101a</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x1101a', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni1101a">&#x1101a</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI LETTER JHA<br>uni1101B</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1101b', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1101b">&#x1101b</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x1101b', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni1101b">&#x1101b</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI LETTER NYA<br>uni1101C</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1101c', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1101c">&#x1101c</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x1101c', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni1101c">&#x1101c</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI LETTER TTA<br>uni1101D</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1101d', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1101d">&#x1101d</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x1101d', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni1101d">&#x1101d</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI LETTER TTHA<br>uni1101E</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1101e', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1101e">&#x1101e</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x1101e', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni1101e">&#x1101e</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI LETTER DDA<br>uni1101F</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1101f', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1101f">&#x1101f</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x1101f', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni1101f">&#x1101f</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI LETTER DDHA<br>uni11020</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11020', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11020">&#x11020</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x11020', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni11020">&#x11020</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI LETTER NNA<br>uni11021</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11021', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11021">&#x11021</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x11021', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni11021">&#x11021</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI LETTER TA<br>uni11022</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11022', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11022">&#x11022</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x11022', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni11022">&#x11022</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI LETTER THA<br>uni11023</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11023', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11023">&#x11023</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x11023', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni11023">&#x11023</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI LETTER DA<br>uni11024</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11024', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11024">&#x11024</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x11024', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni11024">&#x11024</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI LETTER DHA<br>uni11025</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11025', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11025">&#x11025</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x11025', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni11025">&#x11025</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI LETTER NA<br>uni11026</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11026', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11026">&#x11026</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x11026', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni11026">&#x11026</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI LETTER PA<br>uni11027</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11027', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11027">&#x11027</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x11027', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni11027">&#x11027</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI LETTER PHA<br>uni11028</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11028', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11028">&#x11028</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x11028', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni11028">&#x11028</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI LETTER BA<br>uni11029</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11029', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11029">&#x11029</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x11029', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni11029">&#x11029</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI LETTER BHA<br>uni1102A</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1102a', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1102a">&#x1102a</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x1102a', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni1102a">&#x1102a</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI LETTER MA<br>uni1102B</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1102b', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1102b">&#x1102b</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x1102b', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni1102b">&#x1102b</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI LETTER YA<br>uni1102C</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1102c', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1102c">&#x1102c</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x1102c', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni1102c">&#x1102c</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI LETTER RA<br>uni1102D</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1102d', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1102d">&#x1102d</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x1102d', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni1102d">&#x1102d</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI LETTER LA<br>uni1102E</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1102e', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1102e">&#x1102e</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x1102e', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni1102e">&#x1102e</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI LETTER VA<br>uni1102F</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1102f', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1102f">&#x1102f</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x1102f', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni1102f">&#x1102f</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI LETTER SHA<br>uni11030</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11030', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11030">&#x11030</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x11030', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni11030">&#x11030</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI LETTER SSA<br>uni11031</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11031', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11031">&#x11031</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x11031', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni11031">&#x11031</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI LETTER SA<br>uni11032</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11032', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11032">&#x11032</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x11032', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni11032">&#x11032</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI LETTER HA<br>uni11033</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11033', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11033">&#x11033</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x11033', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni11033">&#x11033</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI LETTER LLA<br>uni11034</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11034', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11034">&#x11034</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x11034', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni11034">&#x11034</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI LETTER OLD TAMIL LLLA<br>uni11035</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11035', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11035">&#x11035</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x11035', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni11035">&#x11035</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI LETTER OLD TAMIL RRA<br>uni11036</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11036', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11036">&#x11036</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x11036', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni11036">&#x11036</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI LETTER OLD TAMIL NNNA<br>uni11037</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11037', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11037">&#x11037</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x11037', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni11037">&#x11037</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI VOWEL SIGN AA<br>uni11038</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11038', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11038">&#x11038</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x11038', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni11038">&#x11038</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI VOWEL SIGN BHATTIPROLU AA<br>uni11039</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11039', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11039">&#x11039</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x11039', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni11039">&#x11039</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI VOWEL SIGN I<br>uni1103A</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1103a', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1103a">&#x1103a</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x1103a', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni1103a">&#x1103a</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI VOWEL SIGN II<br>uni1103B</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1103b', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1103b">&#x1103b</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x1103b', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni1103b">&#x1103b</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI VOWEL SIGN U<br>uni1103C</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1103c', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1103c">&#x1103c</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x1103c', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni1103c">&#x1103c</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI VOWEL SIGN UU<br>uni1103D</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1103d', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1103d">&#x1103d</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x1103d', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni1103d">&#x1103d</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI VOWEL SIGN VOCALIC R<br>uni1103E</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1103e', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1103e">&#x1103e</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x1103e', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni1103e">&#x1103e</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI VOWEL SIGN VOCALIC RR<br>uni1103F</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1103f', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1103f">&#x1103f</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x1103f', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni1103f">&#x1103f</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI VOWEL SIGN VOCALIC L<br>uni11040</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11040', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11040">&#x11040</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x11040', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni11040">&#x11040</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI VOWEL SIGN VOCALIC LL<br>uni11041</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11041', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11041">&#x11041</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x11041', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni11041">&#x11041</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI VOWEL SIGN E<br>uni11042</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11042', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11042">&#x11042</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x11042', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni11042">&#x11042</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI VOWEL SIGN AI<br>uni11043</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11043', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11043">&#x11043</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x11043', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni11043">&#x11043</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI VOWEL SIGN O<br>uni11044</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11044', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11044">&#x11044</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x11044', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni11044">&#x11044</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI VOWEL SIGN AU<br>uni11045</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11045', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11045">&#x11045</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x11045', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni11045">&#x11045</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI VIRAMA<br>uni11046</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11046', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11046">&#x11046</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x11046', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni11046">&#x11046</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI DANDA<br>uni11047</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11047', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11047">&#x11047</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x11047', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni11047">&#x11047</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI DOUBLE DANDA<br>uni11048</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11048', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11048">&#x11048</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x11048', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni11048">&#x11048</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI PUNCTUATION DOT<br>uni11049</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11049', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11049">&#x11049</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x11049', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni11049">&#x11049</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI PUNCTUATION DOUBLE DOT<br>uni1104A</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1104a', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1104a">&#x1104a</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x1104a', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni1104a">&#x1104a</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI PUNCTUATION LINE<br>uni1104B</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1104b', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1104b">&#x1104b</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x1104b', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni1104b">&#x1104b</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI PUNCTUATION CRESCENT BAR<br>uni1104C</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1104c', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1104c">&#x1104c</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x1104c', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni1104c">&#x1104c</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI PUNCTUATION LOTUS<br>uni1104D</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1104d', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1104d">&#x1104d</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x1104d', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni1104d">&#x1104d</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI NUMBER ONE<br>uni11052</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11052', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11052">&#x11052</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x11052', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni11052">&#x11052</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI NUMBER TWO<br>uni11053</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11053', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11053">&#x11053</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x11053', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni11053">&#x11053</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI NUMBER THREE<br>uni11054</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11054', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11054">&#x11054</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x11054', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni11054">&#x11054</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI NUMBER FOUR<br>uni11055</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11055', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11055">&#x11055</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x11055', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni11055">&#x11055</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI NUMBER FIVE<br>uni11056</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11056', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11056">&#x11056</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x11056', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni11056">&#x11056</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI NUMBER SIX<br>uni11057</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11057', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11057">&#x11057</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x11057', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni11057">&#x11057</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI NUMBER SEVEN<br>uni11058</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11058', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11058">&#x11058</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x11058', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni11058">&#x11058</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI NUMBER EIGHT<br>uni11059</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11059', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11059">&#x11059</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x11059', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni11059">&#x11059</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI NUMBER NINE<br>uni1105A</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1105a', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1105a">&#x1105a</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x1105a', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni1105a">&#x1105a</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI NUMBER TEN<br>uni1105B</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1105b', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1105b">&#x1105b</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x1105b', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni1105b">&#x1105b</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI NUMBER TWENTY<br>uni1105C</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1105c', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1105c">&#x1105c</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x1105c', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni1105c">&#x1105c</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI NUMBER THIRTY<br>uni1105D</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1105d', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1105d">&#x1105d</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x1105d', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni1105d">&#x1105d</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI NUMBER FORTY<br>uni1105E</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1105e', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1105e">&#x1105e</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x1105e', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni1105e">&#x1105e</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI NUMBER FIFTY<br>uni1105F</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1105f', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1105f">&#x1105f</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x1105f', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni1105f">&#x1105f</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI NUMBER SIXTY<br>uni11060</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11060', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11060">&#x11060</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x11060', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni11060">&#x11060</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI NUMBER SEVENTY<br>uni11061</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11061', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11061">&#x11061</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x11061', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni11061">&#x11061</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI NUMBER EIGHTY<br>uni11062</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11062', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11062">&#x11062</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x11062', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni11062">&#x11062</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI NUMBER NINETY<br>uni11063</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11063', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11063">&#x11063</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x11063', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni11063">&#x11063</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI NUMBER ONE HUNDRED<br>uni11064</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11064', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11064">&#x11064</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x11064', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni11064">&#x11064</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI NUMBER ONE THOUSAND<br>uni11065</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11065', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11065">&#x11065</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x11065', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni11065">&#x11065</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI DIGIT ZERO<br>uni11066</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11066', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11066">&#x11066</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x11066', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni11066">&#x11066</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI DIGIT ONE<br>uni11067</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11067', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11067">&#x11067</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x11067', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni11067">&#x11067</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI DIGIT TWO<br>uni11068</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11068', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11068">&#x11068</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x11068', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni11068">&#x11068</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI DIGIT THREE<br>uni11069</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11069', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11069">&#x11069</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x11069', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni11069">&#x11069</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI DIGIT FOUR<br>uni1106A</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1106a', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1106a">&#x1106a</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x1106a', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni1106a">&#x1106a</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI DIGIT FIVE<br>uni1106B</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1106b', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1106b">&#x1106b</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x1106b', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni1106b">&#x1106b</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI DIGIT SIX<br>uni1106C</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1106c', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1106c">&#x1106c</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x1106c', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni1106c">&#x1106c</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI DIGIT SEVEN<br>uni1106D</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1106d', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1106d">&#x1106d</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x1106d', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni1106d">&#x1106d</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI DIGIT EIGHT<br>uni1106E</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1106e', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1106e">&#x1106e</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x1106e', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni1106e">&#x1106e</td>
+</tr>
+<tr>
+<td class="colLeft">BRAHMI DIGIT NINE<br>uni1106F</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1106f', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1106f">&#x1106f</td>
+<td class="character om_NotoSansBrahmiRegularttf " onmousedown="mDown('&#x1106f', ['om_NotoSansBrahmiRegularttf'])" onmouseup="mUp()" title="Noto Sans Brahmi" data-original-title="uni1106f">&#x1106f</td>
+</tr>
+
+		</table>
+
+
+            
+		<hr>
+		<table id="splitterContent_unencoded">
+
+		</table>
+
+
+
+    </div>
+    </div>
+
+
+    <script type="text/javascript">
+
+    //var elementCustomerPreview = document.getElementById("cssCodeForCustomerPreview");
+    //console.log('element.height: ', elementCustomerPreview.offsetHeight)
+    //$('.containerMain').css("top", '-' + elementCustomerPreview.offsetHeight + 'px')
+
+    var elementCustomerPreview = document.getElementById("containerMainID");
+    console.log('element.height: ', elementCustomerPreview.offsetHeight)
+    $('.containerCSScode').css("height", elementCustomerPreview.offsetHeight -200 + 'px')
+
+    var elementHeader = document.getElementById('otFeature');
+    console.log('element.height: ', elementHeader.offsetHeight)
+    divHeight = elementHeader.offsetHeight - 50
+    $('.header').css("top", '-' + divHeight + 'px')
+
+    //document.getElementById("varFont").style.color = "blue";
+
+    $('.sampleContent').on('blur keyup paste input', function() {$(".sampleContent").not(this).html($(this).html());});
+
+    
+    $('#slider').on('change',function(){
+    var val = $(this).val();
+    $(".om_NotoSansBrahmiRegularttf").css("font-size",(val+"em"));
+    $(".colLeft").css("width",(50 - (val*2)) +"%");
+    });
+
+    
+
+    function toggle_detail(my_id){
+        var element = document.getElementById(my_id)
+        //var buttoncell = document.getElementById(my_id+"_cell")
+        var button = document.getElementById(my_id+"_btn")
+        if (element.style.display != 'none') {
+          element.style.display = 'none'; //$("#" + my_id).slideUp(); smooth in/out does not work currently
+          button.innerHTML = '▼';
+        } else {
+          element.style.display = ''; //$("#" + my_id).slideDown(); smooth in/out does not work currently
+          button.innerHTML = '▲';
+        }
+    }
+
+    function showhide_div(my_id, buttomName){
+        var element = document.getElementById(my_id)
+        //var buttoncell = document.getElementById(my_id+"_cell")
+        var button = document.getElementById(my_id+"_btn")
+        if (element.style.opacity != '0') {
+          element.style.opacity = '0'; 
+          setTimeout(function () {
+            element.style.zIndex = '-1';
+            }, 1000);
+          button.innerHTML = 'show ' + buttomName;
+        } else {
+          element.style.opacity = '1';
+          element.style.zIndex = '998';
+          button.innerHTML = 'hide ' + buttomName;
+        }
+    }
+
+    function hover(my_id){
+        var element = document.getElementById(my_id)
+        if (element.style.background != '') {
+          element.style.background = '';
+          element.style.color = ''; 
+        } else {
+          element.style.background = '#B3D4FC';
+          element.style.color = 'black'; 
+        }
+    }
+
+    var HTMLCodeCompareBoxes = '1234567890 xozszn HOZD 1/3 @ 1a ;#& ? % $ € ! In August of 2016, four unlikely collaborators in the world of type, fonts and font technology stood on a stage at the ATypI conference in Warsaw, Poland. The collaborators were Apple, Microsoft, Adobe and Google. Together they announced the publishing of OpenType 1.8, an update to the now ubiquitous font standard which was originally an amalgam of Apple & Microsoft’s TrueType, and Adobe’s PostScript font formats. The OpenType 1.8 announcement, ATypI, Warsaw, Poland, September 14, 2016.'
+    var fontWeightsDict = {'Noto Sans Brahmi (ttf)':'om_NotoSansBrahmiRegularttf'};
+
+    var sampleTexts = {'All Unicodes': '\x00 \r   \xa0 \ufeff 𑀀 𑀁 𑀂 𑀃 𑀄 𑀅 𑀆 𑀇 𑀈 𑀉 𑀊 𑀋 𑀌 𑀍 𑀎 𑀏 𑀐 𑀑 𑀒 𑀓 𑀔 𑀕 𑀖 𑀗 𑀘 𑀙 𑀚 𑀛 𑀜 𑀝 𑀞 𑀟 𑀠 𑀡 𑀢 𑀣 𑀤 𑀥 𑀦 𑀧 𑀨 𑀩 𑀪 𑀫 𑀬 𑀭 𑀮 𑀯 𑀰 𑀱 𑀲 𑀳 𑀴 𑀵 𑀶 𑀷 𑀸 𑀹 𑀺 𑀻 𑀼 𑀽 𑀾 𑀿 𑁀 𑁁 𑁂 𑁃 𑁄 𑁅 𑁆 𑁇 𑁈 𑁉 𑁊 𑁋 𑁌 𑁍 𑁒 𑁓 𑁔 𑁕 𑁖 𑁗 𑁘 𑁙 𑁚 𑁛 𑁜 𑁝 𑁞 𑁟 𑁠 𑁡 𑁢 𑁣 𑁤 𑁥 𑁦 𑁧 𑁨 𑁩 𑁪 𑁫 𑁬 𑁭 𑁮 𑁯', 'Default Sample': '1234567890 xozszn HOZD 1/3 @ 1a ;#& ? % $ € ! In August of 2016, four unlikely collaborators in the world of type, fonts and font technology stood on a stage at the ATypI conference in Warsaw, Poland. The collaborators were Apple, Microsoft, Adobe and Google. Together they announced the publishing of OpenType 1.8, an update to the now ubiquitous font standard which was originally an amalgam of Apple & Microsoft’s TrueType, and Adobe’s PostScript font formats. The OpenType 1.8 announcement, ATypI, Warsaw, Poland, September 14, 2016.'}
+
+    var clicks = 0;
+    var arrList = [];
+    var mySpanIDList = [];
+
+    var supported_features = [];
+
+    function functionAddSupportedFeatures(item){
+        var button = document.getElementById(item+"_btn")
+        if (supported_features.includes(item) === true){
+            button.style.color = 'black';
+            button.style.backgroundColor = 'white';
+            var index = supported_features.indexOf(item);
+            if (index > -1) {
+                supported_features.splice(index, 1);
+            }
+        }
+        else { 
+            button.style.color = 'white';
+            button.style.backgroundColor = 'black';
+            supported_features.push(item);
+        }
+        functionSetCSSFeatureCode(supported_features)
+    }
+
+    function functionChangeLanguage(item){
+        document.documentElement.lang = item;
+        $("#htmlLangTag").html(item);
+        if (['ar', 'fa', 'ur'].indexOf(item) >= 0) {
+            document.getElementById('compareBoxID').dir = 'rtl';
+            functionReadDirection('compareBoxID', 'right-to-left');
+        } else {
+            document.getElementById('compareBoxID').dir = '';
+            functionReadDirection('compareBoxID', 'left-to-right')
+        }
+
+    }
+
+
+    function functionSetCSSFeatureCode(arr){
+        var supported_features = arr;
+        var default_features =  ['mark', 'mkmk']; //['kern', 'vkrn', 'liga', 'clig', 'calt', 'mark', 'mkmk', 'rvrm' ];
+
+        var cssCode_features = "";//font-feature-settings:
+        var moz_features = "";
+        
+
+        var arrayLength = supported_features.length;
+        for (var i = 0; i < arrayLength; i++) {
+            var item = supported_features[i];
+            cssCode_features += "'" + item + "' 1,";
+            moz_features += item + "=1,";
+        }
+
+        var defaultLength = default_features.length;
+        for (var i = 0; i < defaultLength; i++) {
+            var item = default_features[i];
+            if (supported_features.includes(item) === false){
+                cssCode_features += "'" + item + "' 0,";
+                moz_features += item + "=0,";
+            }
+        }
+
+        var stringLength = cssCode_features.length;
+        if (cssCode_features[stringLength-1] === ','){
+            var cleanedCSS = cssCode_features.substring(',', stringLength - 1);
+        } else {
+            var cleanedCSS = cssCode_features;
+        }
+
+        var element = document.getElementById('body_all');
+        element.style.fontFeatureSettings = cleanedCSS;
+
+        var stringLength = moz_features.length;
+        if (moz_features[stringLength-1] === ','){
+            var cleanedCSSmoz_features = moz_features.substring(',', stringLength - 1);
+        } else {
+            var cleanedCSSmoz_features = moz_features;
+        }
+
+        console.log('cleanedCSS: ', cleanedCSS)
+        var webkit_features = cleanedCSS 
+
+        $("#w3cfeatures").html(webkit_features);
+        $("#webkitfeatures").html(webkit_features);
+        $("#mozfeatures-up-to-14").html(webkit_features);
+        $("#mozfeatures").html(cleanedCSSmoz_features);
+        $("#msfeatures").html(webkit_features);
+        $("#ofeatures").html(webkit_features);
+
+      };
+
+
+    function functionBoxAdd() {
+
+        clicks += 1;
+        //arrList.push(clicks.toString())
+        console.log(arrList)
+        //var tdID = 'myTD_' + clicks;
+        //arrList.push(tdID.toString())
+        
+        //var x = document.createElement("TD");
+        //x.setAttribute("id", tdID);
+        //document.getElementById("tableTR").appendChild(x);
+
+        //var optionID = 'myOption_' + clicks;
+        //var d1 = document.createElement("DIV");
+        //d1.setAttribute("id", optionID);
+        //document.getElementById(tdID).appendChild(d1);
+
+        //var copyTextID = 'myText_' + clicks;
+        //var d2 = document.createElement("DIV");
+        //d2.setAttribute("id", copyTextID);
+        //d2.setAttribute("contenteditable", 'true');
+        //document.getElementById(tdID).appendChild(d2);
+        //var SampleText = document.createTextNode(HTMLCodeCompareBoxes);
+        //document.getElementById(copyTextID).innerHTML = HTMLCodeCompareBoxes;
+
+        var nameID = 'myBox_' + clicks;
+        arrList.push(nameID.toString())
+        var x = document.createElement("TD");
+        x.setAttribute("id", nameID);
+        //x.setAttribute("contenteditable", 'true');
+
+
+         var selectID = 'mySelect_' + clicks;
+         var s = document.createElement("SELECT");
+         s.setAttribute("id", selectID);
+         s.setAttribute("name", nameID);
+         s.setAttribute("onchange", "functionSelect('" + selectID + "')");
+
+         var arrListFontname = [];
+         var arrListCSSName = [];
+         lenClicks = 0;
+
+         for(fontName in fontWeightsDict){
+                 lenClicks += 1;
+                 arrListFontname.push(fontName.toString())
+                  var fontCSScode = fontWeightsDict[fontName];
+                  arrListCSSName.push(fontCSScode.toString())
+
+                  var z = document.createElement("option");
+                z.setAttribute("value", fontCSScode);
+                if (clicks + 1 == lenClicks){
+                    var FontSelected = arrListCSSName[lenClicks-1]; //minus one because array starts with zero
+                    z.setAttribute("selected", 'selected');
+                }
+                var t = document.createTextNode(fontName);
+                z.appendChild(t);
+                s.appendChild(z);
+                console.log(arrListFontname[-1])
+        }
+
+        var numberFonts = Object.keys(fontWeightsDict).length;
+        if (numberFonts <= clicks){var FontSelected = arrListCSSName[0];}
+        
+        x.setAttribute("class", "compareBox "+FontSelected);
+        document.getElementById("tableTR").appendChild(x);
+
+
+        //document.getElementById(nameID).appendChild(z);
+        document.getElementById(nameID).appendChild(s);
+
+        //var SampleText = document.createTextNode(HTMLCodeCompareBoxes);
+        var mySpanID = 'myBoxContent_' + clicks;
+        mySpanIDList.push(mySpanID.toString())
+        var span = document.createElement("SPAN");
+        span.setAttribute("id", mySpanID);
+        span.setAttribute("contenteditable", 'true');
+        span.setAttribute("class", 'compareBoxCSS');
+
+        var compareBoxFontSize = document.getElementById("myBoxContent").style.fontSize;
+        //console.log('Font-Size: ', compareBoxFontSize)
+        span.setAttribute("style", "font-size: " + compareBoxFontSize);
+
+        var getSampleText = document.getElementById('myBoxContent').innerHTML
+        //var mySampleText = document.getElementById('mySelectSampleText').value;
+        //var getSampleText = sampleTexts[mySampleText];
+        span.innerHTML = getSampleText;
+
+        //var sp = document.createTextNode(getSampleText);
+        //span.appendChild(sp);
+
+        document.getElementById(nameID).appendChild(span);
+     
+    }
+     
+    function functionBoxRemove() {
+        var item = arrList.pop() ;
+        //var nameID2 = 'myBox_' + (item);
+
+        if (item != 'myBox'){
+            var x = document.getElementById(item);
+            document.getElementById("tableTR").removeChild(x);
+        }
+
+        var index = mySpanIDList.length;
+        if (index > 1){
+            var listIndex = index -1;
+            mySpanIDList.splice(listIndex, 1);
+        }
+
+    }
+
+    var allBoxBG = arrList;
+    allBoxBG.push('myBox'); //first fixed box
+    function functionBoxBG(){
+        for (var item in allBoxBG){
+            console.log(allBoxBG[item])
+            var element = document.getElementById(allBoxBG[item])
+            if (element.style.backgroundColor != "white"){
+                element.style.backgroundColor = "white";
+                element.style.color = 'black';
+            } else {
+                element.style.backgroundColor = "black";
+                element.style.color = 'white';                
+            }
+        }
+    }
+
+    //$('#myBox').on('blur keyup paste input', function() {
+    //    var sampleText = document.getElementById('myBox').innerHTML;
+    //    for (var item in arrList){
+    //        var element = document.getElementById(arrList[item]);
+    //        element.innerHTML = sampleText;
+    //    }
+    //});
+
+    function functionSelect(selectID) {
+        console.log(selectID)
+        //var box = document.getElementById(selectID).parentElement; //.nodeName;
+        var CSScode = document.getElementById(selectID).value;
+        var boxID = document.getElementById(selectID).name;
+        console.log(CSScode)
+        console.log(boxID)
+        //document.getElementById(boxID).classList.add(value);
+        //box.classList.add(value);
+        document.getElementById(boxID).classList = CSScode;
+    }
+
+    mySpanIDList.push('myBoxContent'); //first add "fixed box"
+    function functionSelectSampleText(mySelectSampleText){
+        console.log('LISTE mySpanIDList::::', mySpanIDList)
+        var mySampleText = document.getElementById(mySelectSampleText).value;
+        var sampleText = sampleTexts[mySampleText];
+        for (var item in mySpanIDList){
+            document.getElementById(mySpanIDList[item]).innerHTML = sampleText;
+        }
+
+    }
+
+    function functionGetColorBG(item, CSSClass){
+        $(CSSClass).css('background-color', item);
+    }
+
+    function functionGetColorText(item, CSSClass){
+        $(CSSClass).css('color', item);
+    }
+
+    function functionSwapColorTextBG(CSSClass){
+        var colorText = $(CSSClass).css('color');
+        var colorBG = $(CSSClass).css('backgroundColor');
+        $(CSSClass).css('background-color', colorText);
+        $(CSSClass).css('color', colorBG);
+
+    }
+
+    $('.compareBoxCSS').on('blur keyup paste input', function() {$(".compareBoxCSS").not(this).html($(this).html());});
+
+    $('#sliderCompareBoxCSS').on('change',function(){
+        var val = $(this).val();
+        $(".compareBoxCSS").css("font-size",(val+"px"));
+        
+        document.getElementById("numberCompareBoxCSS").value = val;
+    });
+
+    $('#numberCompareBoxCSS').on('change',function(){
+        var val = $(this).val();
+        $(".compareBoxCSS").css("font-size",(val+"px"));
+        
+        document.getElementById("sliderCompareBoxCSS").value = val;
+    });
+
+    $('#sliderSampleContent').on('change',function(){
+        var val = $(this).val();
+        $(".sampleContent").css("font-size",(val+"px"));
+        if (val <= 30){
+            $(".sampleContent").css("padding",(val+"px 50px "+ val+"px 50px"));
+        } else {
+            $(".sampleContent").css("padding",("30px 50px 30px 50px"));              
+        }        
+        document.getElementById("numberSampleContent").value = val;
+    });
+
+    $('#numberSampleContent').on('change',function(){
+        var val = $(this).val();
+        $(".sampleContent").css("font-size",(val+"px"));
+        if (val <= 30){
+            $(".sampleContent").css("padding",(val+"px 50px "+ val+"px 50px"));
+        } else {
+            $(".sampleContent").css("padding",("30px 50px 30px 50px"));              
+        }           
+        document.getElementById("sliderSampleContent").value = val;
+    });
+
+    clicksBG = 0;
+    function functionGetRandomBG(cssItem){
+        
+        var arrListCSSClasses = [];
+        var numberCSSClasses = Object.keys(cssItem).length;
+        var cssClasses = document.getElementById("tableTR").className;
+
+        var oldCSSClasses = cssClasses.split(' ');
+
+        for (var item in cssItem){
+            if (item == clicksBG){
+                oldCSSClasses.push(cssItem[clicksBG]);
+            } else {
+                var index = oldCSSClasses.indexOf(cssItem[item]);
+                if (index > -1) {
+                    oldCSSClasses.splice(index, 1);
+                }
+                
+            }
+        }
+
+        var newClassNames = oldCSSClasses.join(' ')
+
+        document.getElementById("tableTR").className = newClassNames;
+        
+        clicksBG += 1;
+
+        if (clicksBG === 4){
+            clicksBG = 0;
+        }
+        
+
+    }
+
+    function functionShowCSSCode(CSSClass){
+        if ($(CSSClass).css("left") == '15px'){
+            $(CSSClass).css("transition-timing-function", "ease-in");
+            $(CSSClass).css("transition", "0.4s");
+            $(CSSClass).css("left", "80%");
+        } else {
+            $(CSSClass).css("left", "15px");
+        }
+    }
+
+    function functionShowHeader(CSSClass, my_id){
+        //var element = document.getElementById(my_id)
+        //var buttoncell = document.getElementById(my_id+"_cell")
+
+        var button = document.getElementById(my_id+"_btn");
+        if (button.innerHTML != '▼') {
+            $(CSSClass).css("top", '-' + divHeight + 'px');
+            button.innerHTML = '▼';
+        } else {
+          //$("#" + my_id).slideDown();
+            $(CSSClass).css("transition-timing-function", "ease-in");
+            $(CSSClass).css("transition", "0.4s");
+          $(CSSClass).css("top", "50px");
+          button.innerHTML = '▲';
+        }
+
+    }
+
+        /*function myFunctionAnimate(my_id, CSSClassList){
+            var button = document.getElementById(my_id+"_btn");
+            if (button.innerHTML === 'Play') {
+                button.innerHTML = 'Pause';
+                var countingUp = 1;
+                var minValue = document.getElementById(my_id).min;
+                var maxValue = document.getElementById(my_id).max;
+                var value = document.getElementById(my_id).value;
+                var i = Math.round(value);
+                var speed = Math.round(1000/maxValue);
+                myTimer = setInterval(function() {
+                    console.log(maxValue)
+                    i = i + (1 * countingUp);
+
+                    if (i == maxValue || i == minValue)
+                    {
+                        countingUp *= -1;
+                    }
+
+                    console.log(i)
+                  document.getElementById(my_id).value = i;
+                  document.getElementById(my_id+"_range").innerHTML = i;
+                  //om_AvenirNextVariableRomanttfWeight_showValue(i, CSSClassList)
+                  
+                }, speed);
+
+            } else {
+                button.innerHTML = 'Play';
+                clearInterval(myTimer);
+            }
+        }*/
+
+        
+
+        function functionTextAlignment(ID, item){
+            textAligment = ['left', 'center', 'right'];
+            console.log('ID: ', ID)
+            nameID = ID.replace('ID', '');
+            console.log('nameID: ', nameID)
+            console.log('item: ', item)
+
+            buttonName = item + nameID + "_btn";
+
+            console.log('buttonName: ', buttonName)
+
+            var button = document.getElementById(buttonName);
+            button.style.backgroundColor = 'black';
+            button.style.color = 'white';
+
+            $('#' +ID).css("text-align", item);
+
+            var textAligmentLength = textAligment.length;
+            for (var i = 0; i < textAligmentLength; i++) {
+                var itemLoop = textAligment[i];
+                if (itemLoop != item){
+                    otherButtonName = itemLoop + nameID + "_btn";
+                    console.log('otherButtonName: ', otherButtonName)
+                    var otherButton = document.getElementById(otherButtonName);
+                    otherButton.style.backgroundColor = 'white';
+                    otherButton.style.color = 'black';
+
+                }
+            }
+        }
+
+        function functionReadDirection(ID, item){
+            textAligment = ['left-to-right', 'right-to-left', 'top-to-down'];
+            console.log('ID: ', ID)
+            nameID = ID.replace('ID', '');
+            console.log('nameID: ', nameID)
+            console.log('item: ', item)
+
+            buttonName = item + nameID + "_btn";
+
+            console.log('buttonName: ', buttonName)
+
+            var button = document.getElementById(buttonName);
+            button.style.backgroundColor = 'black';
+            button.style.color = 'white';
+
+            if (item === 'right-to-left'){document.getElementById('compareBoxID').dir = 'rtl';}
+            if (item === 'left-to-right'){document.getElementById('compareBoxID').dir = '';}
+
+            // if (item === 'top-to-down'){
+            //     document.getElementById('compareBoxID').dir = '';
+
+            //     //var elt = document.documentElement
+            //     var elt = document.getElementById(ID);
+            //     elt.setAttribute("style", "writing-mode: vertical-rl;");
+            //     //$("body").css("writing-mode", 'vertical-rl;');
+            //     //document.documentElement.css("writing-mode", 'vertical-rl;');
+
+            //     /* writing-mode: vertical-rl; */
+            // }            
+
+            var textAligmentLength = textAligment.length;
+            for (var i = 0; i < textAligmentLength; i++) {
+                var itemLoop = textAligment[i];
+                if (itemLoop != item){
+                    otherButtonName = itemLoop + nameID + "_btn";
+                    console.log('otherButtonName: ', otherButtonName)
+                    var otherButton = document.getElementById(otherButtonName);
+                    otherButton.style.backgroundColor = 'white';
+                    otherButton.style.color = 'black';
+
+                }
+            }
+        }
+
+    function functionTest(CSSClass){
+            $(CSSClass).css("transition-timing-function", "ease-in");
+            $(CSSClass).css("transition", "1.4s");
+            $(CSSClass).css("transform", 'translate3d(0px,0px,0px)');
+    }
+
+
+    delta = 0;
+    beta = 0;
+    lastPos = null;
+
+    function clearBeta() {
+      beta = 0;
+    }
+
+    window.onscroll = function(){
+
+        function clear() {
+          lastPos = null;
+          delta = 0;
+        }
+
+        newPos = window.scrollY;
+        if ( lastPos != null ){
+          delta = newPos - lastPos;
+        }
+        lastPos = newPos;
+
+        //console.log(100 - delta)
+        //console.log('newPos: ', newPos)
+
+        if (delta < 0){if (beta < (delta * -1)){beta = (delta * 6)} }
+        if (delta > 0){if (beta < delta){beta = delta} }
+
+        //console.log('beta: ', beta)
+
+        setTimeout(clear, 500);
+        setTimeout(clearBeta, 500);
+
+        //console.log(100 - Pos)
+      //var distanz =  window.scrollY
+      //console.log('distanz: ', distanz);
+      //console.log( 'PositivVal: ', PositivVal );
+      //console.log(Int(distanz))
+      $('.flyingFont1').css("transform", 'translate3d(0px,' + (beta * -1) + 'px,0px)');
+      $('.flyingFont2').css("transform", 'translate3d(0px,' + (beta * -2) + 'px,0px)');
+      $('.flyingFont3').css("transform", 'translate3d(0px,' + (beta * -3) + 'px,0px)');
+    };
+
+
+    window.addEventListener("scroll", functionTest('.flyingFont1'), false);
+    window.addEventListener("scroll", functionTest('.flyingFont2'), false);
+    window.addEventListener("scroll", functionTest('.flyingFont3'), false);
+
+    $('.flyingFont').on('blur keyup paste input', function() {$(".flyingFont").not(this).html($(this).html());});
+
+    function adjustHeightOfTwoDiv(div1_ID, div2_ID){
+        var offsetHeight = document.getElementById(div1_ID).offsetHeight;
+        document.getElementById(div2_ID).style.height = offsetHeight + 'px';
+    } 
+
+    $('.flyingFont1').on('blur keyup paste input', function() {adjustHeightOfTwoDiv('flyingFont_ID1', 'flyingFont_ID0')});
+
+    function mDown(UID, CSSClassFontList) {
+        var obj = document.getElementById('zoom_characters');
+        obj.style.display = 'block';
+
+        var w = window.innerWidth;
+        var h = window.innerHeight;
+
+        if (w < h){
+            var nW = w / 2;
+            var nH = nW;
+
+        } else {
+            var nW = h / 2;
+            var nH = nW;
+        }
+        var top = (h - nH) / 2;
+        var left = (w - nW) / 2;
+
+        obj.style.height = nH + 'px';
+        obj.style.top = top + 'px';
+        obj.style.width = nW + 'px';
+        obj.style.left = left + 'px';        
+        obj.innerHTML = UID;
+        
+        var arrayLength = CSSClassFontList.length;
+        for (var i = 0; i < arrayLength; i++) {
+            var item = CSSClassFontList[i];
+            obj.classList.add(item);
+        }
+
+
+        
+
+        
+
+
+    }
+
+    function mUp() {
+        var obj = document.getElementById('zoom_characters');
+        obj.innerHTML = '';
+        obj.style.display = 'none';
+        obj.className = "characterZoom";
+    }
+
+    var prevScrollpos = window.pageYOffset;
+    window.onscroll = function() {
+    var currentScrollPos = window.pageYOffset;
+    if (prevScrollpos > currentScrollPos) {
+        document.getElementById("showFontNames_div").style.bottom = "-50px";
+        } else {
+            document.getElementById("showFontNames_div").style.bottom = "0";
+        }
+        prevScrollpos = currentScrollPos;
+    }
+
+    function scrollXNamesFunc() {
+        var elmnt = document.getElementById("containerMainID");
+        var x = elmnt.scrollLeft;
+        $('#showFontNames').css({
+            'left': 15 - x
+        });
+    }
+
+    function hintingOnOff(CSSClass, my_id){
+        var button = document.getElementById(my_id+"_btn");
+        var elements = document.getElementsByClassName('compareBox')
+
+        if (button.innerHTML != 'hinting on') {
+            Array.prototype.filter.call(elements, function(el){
+                el.style.transform = 'rotate(0.0deg)';
+                el.style.transformOrigin = 'top left';
+            });
+
+            button.className = "buttonBlack";
+            button.innerHTML = 'hinting on';
+            button.style.backgroundColor = 'black';
+
+        } else {
+            Array.prototype.filter.call(elements, function(el){
+                el.style.transform = 'rotate(0.03deg)';
+                el.style.transformOrigin = 'top center';
+            });
+
+            button.innerHTML = 'hinting off';
+            button.className = ".buttonBorder";
+
+            button.style.backgroundColor = 'red';
+
+        }
+
+    }
+
+    </script>
+
+  </body>
+</html>
+

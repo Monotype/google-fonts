@@ -1,0 +1,2889 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv='content-type' content='text/html; charset=utf-8'>
+    <meta name="code" content="Olli Meier">
+    <title>MT FontSplitter</title>
+    <style type="text/css">
+      body {
+        /*background-color: #fff; #fdfdfb;*/
+        color: #131313;
+        font-family: "Kootenay Pro", Axel, "System Font", "Fira Sans", sans-serif;
+        /*line-height: 1.3em;*/
+        margin: 0;
+        /*padding: 1em;*/
+        font-size: 14px;
+        /*padding-right: 50px;*/
+        /*background: linear-gradient(to bottom, #383838, white);*/
+      }
+
+    table {width:100%;}
+    tr {margin: 10px;}
+    td {border: 1px solid #fff; /*#fdfdfb;*/}
+/*
+    table th, table td {
+    overflow: scroll !important;
+    white-space: nowrap;
+}
+*/
+
+    mark {
+        background-color: #fff990;
+        color: black;
+        opacity: 0.7;
+    }
+
+    .containerMain {
+        position: absolute;
+        z-index: 2;
+        /*top:-2000px;*/
+        left: 15px; 
+        background-color: white;
+        overflow: scroll;
+        width: calc(100% - 15px);
+    }
+
+
+    .containerCSScode {
+        overflow: scroll;
+        position: absolute;
+        z-index: 1;
+        top:0px;
+        padding-top: 200px;
+        padding-left: 20px;
+        width: 100%;
+        background-color: #383838;
+    }
+
+    .cssButton {
+        z-index: 3;
+        position: fixed;
+        top: 49%;
+    }
+
+    .cssButtonStyle {
+        /*text-align: center;*/
+        /*text-transform: uppercase;*/
+        transform-origin: left bottom 0;
+        /*writing-mode:tb-rl;*/
+        -webkit-transform:rotate(-90deg);
+        -moz-transform:rotate(-90deg);
+        -o-transform: rotate(-90deg);
+        -ms-transform:rotate(-90deg);
+        transform: rotate(-90deg);
+        white-space:nowrap;
+        display:block;
+        /*bottom:0;
+        width:20px;
+        height:20px;*/
+
+    }
+
+    .comment{color:#FCD833}
+    .rule{color:#009FE3}
+    .element{color:#FFF}
+    .keyword{color:#E50051}
+    .prop{color:#FF9700}
+    .whitetext{color:#FFF}
+    /*.deepgray{background-color:#383838}*/
+    .darkgray{background-color: #787878}
+    .darkgray_text{color:#BBB}
+    .lightgray{background-color:rgb(252,252,252)}
+    .lightgray_text{color:rgb(252,252,252)}
+    .gray_text{color:lightgrey}
+
+    pre{font-family:Consolas,Courier,monospace;
+        /*font-size:.81em;*/
+        line-height:1.1em;
+        margin:0;
+        /*padding:1em;*/
+        border:0;
+        -webkit-touch-callout:text!important;
+        -webkit-user-select:text!important;
+        -khtml-user-select:text!important;
+        -moz-user-select:text!important;
+        -ms-user-select:text!important;
+        user-select:text!important
+    }
+    .gradientBG {
+        background:
+            linear-gradient(
+                limegreen,
+                transparent
+            ),
+            linear-gradient(
+                90deg,
+                skyblue,
+                transparent
+            ),
+            linear-gradient(
+                -90deg,
+                coral,
+                transparent
+            );
+            
+        background-blend-mode: screen;
+        }
+
+    .linearGradientBG{
+        background:
+            repeating-linear-gradient(
+                -45deg,
+                transparent,
+                transparent 25%,
+                tomato 0,
+                tomato 50%
+            ),
+            repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 25%,
+                dodgerblue 0,
+                dodgerblue 50%
+            ), wheat;
+
+        background-size: 10em 10em;
+        background-blend-mode: multiply;
+    }
+
+    .linearGradient2BG{
+        background:
+            repeating-linear-gradient(
+                50deg,
+                #F7A37B,
+                #F7A37B 1em,
+                #FFDEA8 1em,
+                #FFDEA8 2em,
+                #D0E4B0 2em,
+                #D0E4B0 3em,
+                #7CC5D0 3em,
+                #7CC5D0 4em,
+                #00A2E1 4em,
+                #00A2E1 5em,
+                #0085C8 5em,
+                #0085C8 6em
+            ),
+            repeating-linear-gradient(
+                -50deg,
+                #F7A37B,
+                #F7A37B 1em,
+                #FFDEA8 1em,
+                #FFDEA8 2em,
+                #D0E4B0 2em,
+                #D0E4B0 3em,
+                #7CC5D0 3em,
+                #7CC5D0 4em,
+                #00A2E1 4em,
+                #00A2E1 5em,
+                #0085C8 5em,
+                #0085C8 6em
+            );
+            
+        background-blend-mode: multiply;
+    }
+
+    .character {
+        line-height: 1.45em;
+        font-size:2.5em;
+        		display:inline-block;
+width:1.45em;
+white-space: pre;
+        min-width:1.45em;
+        height:1.45em;
+        text-align:center;
+        /*margin:-1px -1px -1px -4px;*/
+        background-color: #fff; /*#fdfdfb;*/
+        border:1px solid #efefef;/*#FAF7F5;*/ 
+        /*overflow: scroll !important;*/
+        white-space: nowrap;
+        font-size: 30px;
+    }
+
+    .characterZoom {
+        display:inline-block;
+        white-space: pre;
+        text-align:center;
+        background-color: #fff; /*#fdfdfb;*/
+        border:10px solid #efefef;/*#FAF7F5;*/ 
+        white-space: nowrap;
+        font-size: 35vh;
+        z-index:1000; 
+        width:50%; 
+        height:50%;
+        position: fixed; 
+        left: 25%; 
+        top:25%; 
+        display: none;"
+    }
+
+    .characterUniRanges{
+        font-size:2.5em;
+        display:inline-block;
+        /*width:1.45em;*/
+        min-width:2em;
+        height:2em;
+        text-align:center;
+        margin:-0px -0px -1px -4px;
+        background-color:#fff;
+        border:1px solid rgb(240,240,240); 
+        white-space: pre;
+    }
+
+    .characterUniRanges[title-B]:active {
+        z-index: 999;
+      content: attr(title-B);
+      position: relative;
+        background:#B3D4FC;
+        font-size: 20.5em;
+        display:inline-block;
+        /*width:10.45em;*/
+        min-width:500px;
+        height:500px;
+        text-align:center;
+        margin:-0px -0px -1px -4px;
+        border:1px solid rgb(240,240,240); 
+        white-space: pre;
+    }
+
+    [data-title] {
+      transition-timing-function: ease-in;
+          transition: 0.4s;
+      position: relative;
+    }
+
+    [data-title]:hover::before {
+      content: attr(data-title);
+      position: absolute;
+      z-index: 999;
+      bottom: -26px;
+      display: inline-block;
+      padding: 3px 6px;
+      border-radius: 2px;
+      background: #000;
+      color: #fff;
+      font-size: 12px;
+      font-family: sans-serif;
+      white-space: nowrap;
+      left: -20px;
+    }
+
+    [data-title]:hover::after {
+          z-index: 999;
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 8px;
+      display: inline-block;
+      color: #fff;
+      border: 8px solid transparent;    
+      border-bottom: 8px solid #000;
+    }
+
+    .characterMetaData {
+        line-height: 1.45em;
+        font-size:2.5em;
+        		display:inline-block;
+width:1.45em;
+white-space: pre;
+        max-width:1.45em !important;
+        min-width:1.45em;
+        height:1.45em;
+        text-align:center;
+        /*margin:-1px -1px -1px -4px;*/
+        background-color: #fff; /*#fdfdfb;*/
+        border:1px solid #efefef;/*#FAF7F5;*/ 
+        /*overflow: scroll !important;*/
+        white-space: nowrap;
+        font-size: 30px;
+    }
+
+    .characterFix {
+        font-size:2.5em;
+        		display:inline-block;
+width:1.45em;
+white-space: pre;
+        min-width:1.45em;
+        height:1.45em;
+        text-align:center;
+        /*margin:-1px -1px -1px -4px;*/
+        background-color: #fff; /*#fdfdfb;*/
+        border:1px solid #efefef;/*#FAF7F5;*/
+        overflow-x: scroll !important;
+        white-space: nowrap;
+        font-size: 30px;
+    }
+
+    .characterFontNames {
+        font-size:2.5em;
+        		display:inline-block;
+width:1.45em;
+white-space: pre;
+        min-width: 1.45em;
+        height:1.45em;
+        text-align:center;
+        /*margin:-1px -1px -1px -4px;*/
+        background-color: #fff; /*#fdfdfb;*/
+        border: 1px solid #fff; /*#fdfdfb;*/ 
+        position: -webkit-sticky;
+        position: sticky;
+        white-space: pre !important;
+        font-size: 30px;
+    }
+
+    .buttonBlack {
+        background-color: #131313;
+        border: 1px solid #fff; /*#fdfdfb;*/
+        color: #fff; /*#fdfdfb;*/
+        padding: 5px 15px;
+        text-align: center;
+        /*text-decoration: none;*/
+        display: inline-block;
+        margin: 1px 1px;
+        cursor: pointer;
+        border-radius: 0.0em;
+
+    }
+
+    .features-head {
+        content:"";
+        display:inline-block;
+        float:left;
+        width:100%;
+        border-bottom:1px solid rgb(240,240,240);
+        padding-top:10px;
+        margin-top:30px; 
+        margin-bottom:10px
+    }
+
+    input {
+        /*width: 44px;
+        height: 23px;
+        background-color: buttonface;*/
+        cursor: default;
+        border-width: 0px;
+        border-style: solid;
+        border-color: ; #fff; /*#fdfdfb;*//*rgb(169, 169, 169);*/
+        border-image: initial;
+        padding: 0px opx;
+    }
+
+    .inputColor{
+        width: 25px;
+        height: 29px;
+        cursor: default;
+        border: none;
+    }
+
+    button {
+        border: 0;
+        height: 100%;
+        /*width: 100%;*/
+        padding: 5px 15px;
+        text-align: center;
+        /*text-decoration: none;*/
+        display: inline-block;
+        margin: 1px 1px;
+        cursor: pointer;
+        border-radius: 0.0em;
+        vertical-align: top;
+        background: #fff; /*#fdfdfb;*/
+        outline: none;
+    }
+
+    .buttonBorder {
+        border: 0;
+        height: 100%;
+        /*width: 100%;*/
+        padding: 5px 15px;
+        text-align: center;
+        /*text-decoration: none;*/
+        display: inline-block;
+        margin: 1px 1px;
+        cursor: pointer;
+        border-radius: 0.0em;
+        vertical-align: top;
+        background: #fff; /*#fdfdfb;*/
+        outline: none;
+        border:1px solid #efefef;/*#FAF7F5;*/
+    }
+
+    .buttonOT {
+        border:1px solid #efefef;/*#FAF7F5;*/
+        width: 40px;
+        padding: 5px 5px;
+    }
+    .buttonExtra{
+        vertical-align: bottom;
+        line-height: 2em;
+
+        border: 0;
+        height: 100%;
+        /*width: 100%;*/
+        padding: 5px 15px;
+        text-align: center;
+        /*text-decoration: none;*/
+        display: inline-block;
+        margin: 1px 1px;
+        cursor: pointer;
+        border-radius: 0.0em;
+        background: #fff; /*#fdfdfb;*/
+        outline: none;
+    }
+
+    select {
+        border: 0;
+        height: 100%;
+        width: 100%;
+        padding: 5px 15px;
+        text-align: center;
+        /*text-decoration: none;*/
+        display: inline-block;
+        margin: 1px 1px;
+        cursor: pointer;
+        border-radius: 0.0em;
+        vertical-align: top;
+        background: #131313;
+        color: #fff; /*#fdfdfb;*/
+    }
+
+    .selectSampleText {
+        border: 0;
+        height: 100%;
+        width: 200px;
+        /*padding: 5px 15px;*/
+        text-align: center;
+        /*text-decoration: none;*/
+        display: inline-block;
+        margin: 5px 1px;
+        cursor: pointer;
+        border-radius: 0.0em;
+        vertical-align: top;
+        background: #fff; /*#fdfdfb;*/
+        color: #131313;
+    }
+
+    .textTop {vertical-align: top;}
+    .compareBoxes{word-break: break-all;}
+
+    .flyingFont{
+        font-size: 300px;
+        text-align: center;
+        /*text-transform: uppercase;*/
+        width: 100%;
+    }
+
+    .flyingFont1{
+        color: #FF4136/*#131313*/; 
+        z-index: 900; 
+        position: absolute;
+    }
+    .flyingFont2{
+        /*-webkit-text-stroke-width: 2px;
+           -webkit-text-stroke-color: #FF4136;
+           -webkit-text-fill-color: transparent;*/
+        z-index: 899; 
+        position: absolute;
+           opacity: .5;
+           margin-top: 10px;
+           margin-left: 10px;
+    }
+    .flyingFont3{
+        /*-webkit-text-stroke-width: 2px;
+           -webkit-text-stroke-color: #FF4136;
+           -webkit-text-fill-color: transparent;*/
+        z-index: 898; 
+        position: absolute;
+           opacity: .2;
+           margin-top: 20px;
+           margin-left: 20px;
+    }
+
+    .buttonToggle {
+        border: 0;
+        /*background-color: #131313;*/
+        /*color: #fff; /*#fdfdfb;*/*/
+        text-align: center;
+        /*text-decoration: none;*/
+        display: inline-block;
+        margin: 1px 1px;
+        cursor: pointer;
+        border-radius: 0.0em;
+    }
+
+    button:hover, .selectSampleText:hover {background-color: #131313; color: #fff; /*#fdfdfb;*/}
+    .buttonOT:hover {background-color: #131313; color: #fff; /*#fdfdfb;*/}
+    .buttonExtra:hover {background-color: #fff; /*#fdfdfb;*/ color: #131313;}
+
+    hr { border: 0; height: 1px; background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0));}
+
+    .underline {text-decoration: underline; text-decoration-color: #131313; color: hsl(  0,  0%,  95%); overflow: hidden;} /* for the future: text-underline-offset: from-font; text-decoration-width: from-font; */
+    .strikeout {text-decoration: line-through; text-decoration-color: #131313; color: hsl(  0,  0%,  95%); overflow: hidden;} 
+
+    .character:hover {background:#B3D4FC}
+    .characterUniRanges:hover {background:#B3D4FC}
+    /*.characterUniRanges:active {
+        background:#B3D4FC;
+        font-size: 20.5em;
+        display:inline-block;
+        /*width:10.45em;*/
+        min-width:500px;
+        height:500px;
+        text-align:center;
+        margin:-0px -0px -1px -4px;
+        border:1px solid rgb(240,240,240); 
+        white-space: pre;
+    }
+    */
+    .characterFix:hover {background:#B3D4FC}
+    .character_name {/*padding-top: 5px; padding-left: 25px;*/}
+    
+    @keyframes blinkblink {
+        0% 100%   {background-color: hsl( 24,  100%, 50%); }
+        50% {background-color: hsl( 24,  100%, 45%); }
+    }
+
+    .serious {animation: blinkblink 0.9s ease-in-out 0s infinite;}
+    .critical {background-color: hsl( 0,  100%, 20%); color: hsl( 0,  0%, 90%);}
+    .error {background-color: hsl( 24,  100%, 45%); color: hsl( 24,  100%, 70%);}
+    .warning {background-color: hsl( 50,  65%, 52%); color: hsl( 50,  65%, 70%);}
+    .info {background-color: #f9f7f6;/*hsl(  0,  0%,  95%);*/ color: hsl(  0,  0%,  70%);}
+
+    .extra {background-color: hsl( 200,  50%, 95%);}
+    .extra_info {background-color: hsl( 200,  50%, 96%); color: hsl( 200,  50%, 80%);}
+
+    .colLeft {
+        width: 50%;
+        padding-left: 25px;
+        text-align: right;
+        padding-right: 25px;
+        vertical-align: text-top;
+    }
+
+    .header {
+      text-transform: none;
+      text-decoration: none;
+      background-color: #fff; /*#fdfdfb;*/
+      text-align: left;
+      color: #131313;
+      position: fixed;
+      padding: 15px 15px 0px 0px;
+      width: 100%;
+      box-shadow: 0px 0px 5px #888888;
+      z-index: 99;
+    }
+
+    .header1 {
+      text-transform: none;
+      text-decoration: none;
+      background-color: #fff; /*#fdfdfb;*/
+      text-align: left;
+      color: #131313;
+      position: fixed;
+      padding: 15px 15px 0px 0px;
+      width: 100%;
+      z-index: 99;
+    }
+    
+    .header:hover  { opacity: 0.95; }
+    .header1:hover  { opacity: 0.95; }
+
+
+    .splitter{width:100%; font-weight: bold;}
+    .center{text-align: center;}
+    .left{text-align: left;}
+    .content{padding-top: 500px;}
+    .sampleBig {/*font-size: 50px !important*/; color:#fff; /*#fdfdfb;*/ padding: 20px 50px 20px 50px; }
+    .sampleWaterfall {padding: 20px 50px 20px 20px;}
+    .waterfallOverflow {white-space:nowrap; overflow: hidden; text-overflow: clip; }
+    .sampleContent {/*empty*/ font-size: 30px;}
+    .compareBoxCSS {vertical-align: top; font-size: 30px;}
+    .blackBG {background-color: #131313;}
+
+    .defaultFont {font-size: 30px;}
+    .infoFont {font-family: "Kootenay Pro", Axel, "System Font", "Fira Sans", sans-serif; font-size: 14px; vertical-align: 5px;}
+    
+    .hidden {display:none;}
+    .sliderbar {vertical-align: 4px;}
+
+    /* Slider design Start */
+
+    .inputRangeCompareBox {
+      padding-bottom: 7px !important;
+      padding-left: 10px;
+    }
+
+    .inputNumberCompareBox{
+        max-width: 50px;
+    }
+
+    input[type=range] {
+      padding-bottom: 3px;
+      -webkit-appearance: none;
+      /*position: relative*/
+    }
+
+    input[type=range]::-webkit-slider-runnable-track {
+      width: 300px;
+      height: 2px;
+      border: none;
+      border-radius: 3px;
+      border: 1px solid #131313;
+    }
+
+    input[type=range]::-moz-range-track {
+      background-color: #131313;
+    }
+
+    input::-moz-range-thumb {
+        background-color: #fff; /*#fdfdfb;*/
+        border: solid 2px #131313;
+        border-radius: 0;
+        height: 10px;
+        width: 10px;
+      }
+
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      border: none;
+      height: 12px;
+      width: 12px;
+      border-radius: 510%;
+      background: #fff; /*#fdfdfb;*/
+      border: 2px solid #131313;
+      margin-top: -5px;
+      cursor: pointer
+    }
+
+    input[type=range]:focus {
+      outline: none
+    }
+
+    /* Slider design End */
+
+    .infoToggle {border-bottom:1px solid #efefef;/*#FAF7F5;*/}
+    .colLeftToggle {
+        width: 50%;
+        padding-left: 25px;
+        text-align: right;
+        padding-right: 25px;
+        vertical-align: mittle;
+    }
+
+    td.rotateSAVE {*/height: 140px;*/ white-space: nowrap; /*float: left;*/ }
+    td.rotate > div {-webkit-transform: rotate(270deg); transform: rotate(270deg); width: 30px;}
+    td.rotate > div > span {/*padding: 5px 10px;*/}
+
+
+    
+        .mkmk {-webkit-font-feature-settings: "mkmk" 1; -moz-font-feature-settings: "mkmk" 1; -moz-font-feature-settings: "mkmk=1"; -ms-font-feature-settings: "mkmk" 1; -o-font-feature-settings: "mkmk" 1;}
+        
+        .blwf {-webkit-font-feature-settings: "blwf" 1; -moz-font-feature-settings: "blwf" 1; -moz-font-feature-settings: "blwf=1"; -ms-font-feature-settings: "blwf" 1; -o-font-feature-settings: "blwf" 1;}
+        
+        .pres {-webkit-font-feature-settings: "pres" 1; -moz-font-feature-settings: "pres" 1; -moz-font-feature-settings: "pres=1"; -ms-font-feature-settings: "pres" 1; -o-font-feature-settings: "pres" 1;}
+        
+        .ss01 {-webkit-font-feature-settings: "ss01" 1; -moz-font-feature-settings: "ss01" 1; -moz-font-feature-settings: "ss01=1"; -ms-font-feature-settings: "ss01" 1; -o-font-feature-settings: "ss01" 1;}
+        
+        .blws {-webkit-font-feature-settings: "blws" 1; -moz-font-feature-settings: "blws" 1; -moz-font-feature-settings: "blws=1"; -ms-font-feature-settings: "blws" 1; -o-font-feature-settings: "blws" 1;}
+        
+        .ss02 {-webkit-font-feature-settings: "ss02" 1; -moz-font-feature-settings: "ss02" 1; -moz-font-feature-settings: "ss02=1"; -ms-font-feature-settings: "ss02" 1; -o-font-feature-settings: "ss02" 1;}
+        
+        .mark {-webkit-font-feature-settings: "mark" 1; -moz-font-feature-settings: "mark" 1; -moz-font-feature-settings: "mark=1"; -ms-font-feature-settings: "mark" 1; -o-font-feature-settings: "mark" 1;}
+        
+        .liga {-webkit-font-feature-settings: "liga" 1; -moz-font-feature-settings: "liga" 1; -moz-font-feature-settings: "liga=1"; -ms-font-feature-settings: "liga" 1; -o-font-feature-settings: "liga" 1;}
+        
+        .dist {-webkit-font-feature-settings: "dist" 1; -moz-font-feature-settings: "dist" 1; -moz-font-feature-settings: "dist=1"; -ms-font-feature-settings: "dist" 1; -o-font-feature-settings: "dist" 1;}
+        
+        .pstf {-webkit-font-feature-settings: "pstf" 1; -moz-font-feature-settings: "pstf" 1; -moz-font-feature-settings: "pstf=1"; -ms-font-feature-settings: "pstf" 1; -o-font-feature-settings: "pstf" 1;}
+        
+        .abvs {-webkit-font-feature-settings: "abvs" 1; -moz-font-feature-settings: "abvs" 1; -moz-font-feature-settings: "abvs=1"; -ms-font-feature-settings: "abvs" 1; -o-font-feature-settings: "abvs" 1;}
+        
+        .ccmp {-webkit-font-feature-settings: "ccmp" 1; -moz-font-feature-settings: "ccmp" 1; -moz-font-feature-settings: "ccmp=1"; -ms-font-feature-settings: "ccmp" 1; -o-font-feature-settings: "ccmp" 1;}
+        
+        .ss03 {-webkit-font-feature-settings: "ss03" 1; -moz-font-feature-settings: "ss03" 1; -moz-font-feature-settings: "ss03=1"; -ms-font-feature-settings: "ss03" 1; -o-font-feature-settings: "ss03" 1;}
+        
+
+    
+		@font-face {font-family: 'om_NotoSansChakmaRegularttf'; src: url('NotoSansChakma-Regular.ttf');}
+	.om_NotoSansChakmaRegularttf {font-family: 'om_NotoSansChakmaRegularttf'; /*font-size: 30px;*/}
+
+    
+
+    /*.animationON {animation: LooperOne 5.0s ease-in-out 0s infinite;}
+    .animationOFF {/*empty*/}*/
+
+
+    </style>
+
+  </head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <body style="-webkit-print-color-adjust:exact;" id="body_all" onload="functionAddSupportedFeatures('liga'),functionAddSupportedFeatures('mark'),functionAddSupportedFeatures('mkmk')">
+
+      <div id="zoom_characters" class="characterZoom" onclick="mUp()"></div>
+
+    <div class="header1 center" style="z-index:999; ">
+            Monotype
+        <table class="splitter">
+          <tr>
+            <td class="center">F</td>
+            <td class="center">O</td>
+            <td class="center">N</td>
+            <td class="center">T</td>
+            <td class="center">S</td>
+            <td class="center">P</td>
+            <td class="center">L</td>
+            <td class="center">I</td>
+            <td class="center">T</td>
+            <td class="center">T</td>
+            <td class="center">E</td>
+            <td class="center">R</td>
+          </tr>
+        </table>
+        <br>
+    </div>
+
+       <div class="header center">
+        <table style="width:100%">
+            <tbody id="otFeature" >
+                <td>
+                    <!-- OT feature buttons -->
+                    <table>
+		<tr>
+			<td class="colLeft">Select HTML Language</td><td class="left">
+		<select onchange="functionChangeLanguage(this.value)" class="selectSampleText">		<option value=>Default</option>
+			</select>
+			</td>
+		</tr>
+		<tr>
+			<td class="colLeft">Ligature Features</td><td class="left">
+		<button class="buttonOT" data-title="Standard Ligatures" id="liga_btn" onclick="functionAddSupportedFeatures('liga')">liga</button>
+
+			</td>
+		</tr>
+		<tr>
+			<td class="colLeft">Stylistic Set Features</td><td class="left">
+		<button class="buttonOT" data-title="Stylistic Set 1" id="ss01_btn" onclick="functionAddSupportedFeatures('ss01')">ss01</button>
+		<button class="buttonOT" data-title="Stylistic Set 2" id="ss02_btn" onclick="functionAddSupportedFeatures('ss02')">ss02</button>
+		<button class="buttonOT" data-title="Stylistic Set 3" id="ss03_btn" onclick="functionAddSupportedFeatures('ss03')">ss03</button>
+
+			</td>
+		</tr>
+		<tr>
+			<td class="colLeft">South-Asian alphasyllabary (Indic/Brahmic) Features</td><td class="left">
+		<button class="buttonOT" data-title="Above-base Substitutions" id="abvs_btn" onclick="functionAddSupportedFeatures('abvs')">abvs</button>
+		<button class="buttonOT" data-title="Below-base Forms" id="blwf_btn" onclick="functionAddSupportedFeatures('blwf')">blwf</button>
+		<button class="buttonOT" data-title="Below-base Substitutions" id="blws_btn" onclick="functionAddSupportedFeatures('blws')">blws</button>
+		<button class="buttonOT" data-title="Pre-base Substitutions" id="pres_btn" onclick="functionAddSupportedFeatures('pres')">pres</button>
+		<button class="buttonOT" data-title="Post-base Forms" id="pstf_btn" onclick="functionAddSupportedFeatures('pstf')">pstf</button>
+		<button class="buttonOT" data-title="Distances" id="dist_btn" onclick="functionAddSupportedFeatures('dist')">dist</button>
+
+			</td>
+		</tr>
+		<tr>
+			<td class="colLeft">Positioning Features</td><td class="left">
+		<button class="buttonOT" data-title="Glyph Composition / Decomposition" id="ccmp_btn" onclick="functionAddSupportedFeatures('ccmp')">ccmp</button>
+		<button class="buttonOT" data-title="Mark Positioning" id="mark_btn" onclick="functionAddSupportedFeatures('mark')">mark</button>
+		<button class="buttonOT" data-title="Mark to Mark Positioning" id="mkmk_btn" onclick="functionAddSupportedFeatures('mkmk')">mkmk</button>
+		<button class="buttonOT" data-title="Distances" id="dist_btn" onclick="functionAddSupportedFeatures('dist')">dist</button>
+
+			</td>
+		</tr>
+</table>
+
+                    <!-- fonts size slider
+                    <table>
+                        <tr>
+                        <td class="colLeft">Font Size</td><td class="left"><input type="range" min="0.5" max="20" value="2.5" step=".01" id="slider" /></td>
+                        </tr>
+                    </table>
+                     -->
+
+                    <!-- axis variable fonts -->
+                    
+
+                </td>
+            </tbody>
+
+            <th><button class="buttonExtra" id="otFeature_btn" onclick='functionShowHeader(".header", "otFeature");' title="Toggle details">&#x25bc;</button>
+            </th>
+        </table>
+    </div>  
+
+<div id="cssCodeForCustomerPreview" class="containerCSScode deepgray whitetext">
+<pre>
+
+<span class="comment">/* first assign web font */</span>
+
+<span class="rule">@font-face</span> {
+    <span class="keyword">font-family</span>: 'Noto Sans Chakma Regular'; 
+    <span class="prop">src</span>: <span class="prop">url</span>('../NotoSansChakma-Regular.ttf') <span class="prop">format</span>('truetype');
+    }
+
+<span class="comment">/* go on with normal style definitions */</span>
+<span class="rule">body</span> {
+    <span class="keyword">font-family</span>: 'Noto Sans Chakma Regular'; <span class="comment">/* this is only an example for one style */</span>
+    <span class="featurestring">
+    <span class="comment">/* setup OpenType features */</span>
+    <span class="keyword">font-feature-settings: </span><span id="w3cfeatures"></span>;
+
+    <span class="comment">/* vendor prefixes */</span>
+    <span class="keyword">-webkit-font-feature-settings: </span><span id="webkitfeatures"></span>;
+    <span class="keyword">-moz-font-feature-settings: </span><span id="mozfeatures-up-to-14"></span>;
+    <span class="keyword">-moz-font-feature-settings: </span><span id="mozfeatures"></span>;
+    <span class="keyword">-ms-font-feature-settings: </span><span id="msfeatures"></span>;
+    <span class="keyword">-o-font-feature-settings: </span><span id="ofeatures"></span>;
+    
+}
+    
+
+<span class="comment">/* language tag */</span>
+<code><</code><span class="keyword">html</span><span class="prop"> lang</span>=<span class="rule">"<span id="htmlLangTag"></span>"</span><code>></code>
+
+...
+
+<code><</code>/<span class="keyword">html</span><code>></code>
+
+</pre>
+</div>
+
+
+<div id="containerMainID" class="containerMain" onscroll="scrollXNamesFunc()">
+
+    <div class="cssButton">
+        <a class="cssButtonStyle whitetext" onclick="functionShowCSSCode('.containerMain')" href="#" style="text-decoration:None;"> 
+            css code
+        </a>
+    </div>
+
+    <div id="showFontNames" class="content" style="background: white; opacity: 0; transition: opacity 1s ease-in-out; position: fixed; z-index: -1; width:100%;">
+        <table style="width:100%; border-bottom: 1px solid #FAF7F5;">
+            <tr>
+                <td class="colLeft">
+                </td>
+                <td class="rotate characterFontNames defaultFont"><div><span class="infoFont"> </span></div></td>
+				<td class="rotate characterFontNames om_NotoSansChakmaRegularttf"><div><span>Noto Sans Chakma Regular</span></div></td>
+				
+            </tr>
+        </table>
+    </div>
+
+    <div id="showFontNames_div" class="center" style="position: fixed; bottom: -50px; z-index:998; width:100%;">
+        <button class="buttonBlack" id="showFontNames_btn" onclick='showhide_div("showFontNames", "font names");' title="Toggle details">show font names</button>
+    </div>
+
+    <div id="varFont" class="content">
+
+        <table>
+            <tr>
+                <td class="colLeft">
+                <!-- <a href="#splitterContent">Character Set Compare</a> https://css-tricks.com/snippets/jquery/smooth-scrolling/ -->
+                2020-09-26 - 14:11.00
+                <br>
+                14:11.01
+                <br>
+                <button class="buttonBorder" onClick="window.print()">
+                Print this page
+                </button>
+                </td>
+                <td class="rotate characterFontNames defaultFont"><div><span class="infoFont"> </span></div></td>
+				<td class="rotate characterFontNames om_NotoSansChakmaRegularttf"><div><span>Noto Sans Chakma Regular</span></div></td>
+				
+            </tr>
+        </table>
+
+            
+		<hr>
+		<table>
+<tr>
+<td class="colLeft">Format<br>(by file ending)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Chakma Regular" data-original-title=".ttf"><span class="infoFont">.ttf</span></td>
+</tr>
+<tr>
+<td class="colLeft">Outline Flavour<br>(CFF or glyf table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Chakma Regular" data-original-title="OT TTF"><span class="infoFont">OT TTF</span></td>
+</tr>
+<tr>
+<td class="colLeft">Number of Glyphs<br>(maxp table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Chakma Regular" data-original-title="193"><span class="infoFont">193</span></td>
+</tr>
+<tr>
+<td class="colLeft">Weight Class<br>(OS/2 table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont " title="Noto Sans Chakma Regular" data-original-title="400"><span class="infoFont">400</span></td>
+</tr>
+<tr>
+<td class="colLeft">Width Class<br>(OS/2 table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont " title="Noto Sans Chakma Regular" data-original-title="5"><span class="infoFont">5</span></td>
+</tr>
+<tr>
+<td class="colLeft">Units per Em<br>(head table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Chakma Regular" data-original-title="1000"><div><span class="infoFont">1000</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">Font Revision<br>(head table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Chakma Regular" data-original-title="2.0"><div><span class="infoFont">2.0</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">OS/2 Table Version<br></td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Chakma Regular" data-original-title="4"><div><span class="infoFont">4</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">sTypeAscender<br>(OS/2 table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Chakma Regular" data-original-title="1140"><div><span class="infoFont">1140</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">sTypeDescender<br>(OS/2 table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Chakma Regular" data-original-title="-320"><div><span class="infoFont">-320</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">sTypeLineGap<br>(OS/2 table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Chakma Regular" data-original-title="0"><div><span class="infoFont">0</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">usWinAscent<br>(OS/2 table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Chakma Regular" data-original-title="1140"><div><span class="infoFont">1140</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">usWinDescent<br>(OS/2 table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Chakma Regular" data-original-title="320"><div><span class="infoFont">320</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">Ascender<br>(hhea table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Chakma Regular" data-original-title="1140"><div><span class="infoFont">1140</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">Descender<br>(hhea table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Chakma Regular" data-original-title="-320"><div><span class="infoFont">-320</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">LineGap<br>(hhea table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Chakma Regular" data-original-title="0"><div><span class="infoFont">0</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">post table format<br>(post table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Chakma Regular" data-original-title="2.0"><div><span class="infoFont">2.0</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">Underline Position<br>(post table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Chakma Regular" data-original-title="-100"><div><span class="infoFont">-100</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">Underline Thickness<br>(post table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Chakma Regular" data-original-title="50"><div><span class="infoFont">50</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">Hgo<br>visual check underline</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData om_NotoSansChakmaRegularttf underline" title="Noto Sans Chakma Regular" data-original-title="Hgo">Hgo</td>
+</tr>
+<tr>
+<td class="colLeft">yStrikeoutPosition<br>(OS/2 table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Chakma Regular" data-original-title="322"><div><span class="infoFont">322</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">yStrikeoutSize<br>(OS/2 table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Chakma Regular" data-original-title="50"><div><span class="infoFont">50</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">strikeout<br>visual check</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData om_NotoSansChakmaRegularttf strikeout" title="Noto Sans Chakma Regular" data-original-title="Hgo">Hgo</td>
+</tr>
+<tr>
+<td class="colLeft">Italic Flag<br>(OS/2 table fsSelection)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Chakma Regular" data-original-title="False"><div><span class="infoFont">False</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">Italic Angle<br>(post table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterFix defaultFont" title="Noto Sans Chakma Regular" data-original-title="0.0"><div><span class="infoFont">0.0</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">Panose: Family<br>(Value 1)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterFix defaultFont" title="Noto Sans Chakma Regular" data-original-title="Latin Text"><div><span class="infoFont">Latin Text</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">Panose: Serif<br>(Value 2)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterFix defaultFont" title="Noto Sans Chakma Regular" data-original-title="Normal Sans"><div><span class="infoFont">Normal Sans</span></div></td>
+</tr>
+
+		</table>
+
+
+            
+
+            
+            <hr>
+            <table id="compareBoxID">
+            <tr id="tableTR" class="textTop sampleBig blackBG compareBoxes">
+
+            <button class="buttonBorder" title="add column" onclick="functionBoxAdd()">+</button>
+            <button class="buttonBorder" title="remove column" onclick="functionBoxRemove()">-</button>
+            <select id="mySelectSampleText" onchange="functionSelectSampleText('mySelectSampleText')" class="selectSampleText">
+
+            <option value='Default Sample'>Default Sample</option><option value='All Unicodes'>All Unicodes</option>
+
+            </select>
+            <input type="color" class="inputColor" value="#82e5fe" title="Background Color" onchange="functionGetColorBG(this.value, '.compareBoxes')">
+            <input type="color" class="inputColor" value="#ff79ad" title="Text Color" onchange="functionGetColorText(this.value, '.compareBoxes')">
+            <button class="buttonBorder" title="Swap Colors" onclick="functionSwapColorTextBG('.compareBoxes')">&#x02B14</button>
+            <button class="buttonBorder" title="have fun, change background" onclick="functionGetRandomBG(['gradientBG', 'linearGradientBG', 'linearGradient2BG', 'blackBG'])">∞</button>
+            <input type="range" class="inputRangeCompareBox" title="Text Size" min="0.5" max="100" value="30" step=".01" id="sliderCompareBoxCSS"/>
+            <input type="number" class="inputNumberCompareBox" value="30" step="1" id="numberCompareBoxCSS"/>
+            <button class="buttonOT" id="leftcompareBox_btn" title="text alignment left" onclick="functionTextAlignment('compareBoxID', 'left')">L</button>
+            <button class="buttonOT" id="centercompareBox_btn" title="text alignment center" onclick="functionTextAlignment('compareBoxID', 'center')">C</button>
+            <button class="buttonOT" id="rightcompareBox_btn" title="text alignment right" onclick="functionTextAlignment('compareBoxID', 'right')">R</button>
+            <span style="vertical-align: super; color: #efefef;">|</span>
+            <button class="buttonOT" id="left-to-rightcompareBox_btn" title="reading direction: left to right" onclick="functionReadDirection('compareBoxID', 'left-to-right')">LR</button>
+            <button class="buttonOT" id="right-to-leftcompareBox_btn" title="reading direction: right to left" onclick="functionReadDirection('compareBoxID', 'right-to-left')">RL</button>
+            <!--<button class="buttonOT" id="top-to-downcompareBox_btn" title="reading direction: top to down" onclick="functionReadDirection('compareBoxID', 'top-to-down')">TD</button>-->
+            <button class="buttonBlack" id="hintingOnOff_btn" onclick="hintingOnOff('.compareBoxes', 'hintingOnOff');" title="activate/deactivate hinting">hinting on</button>
+            
+<td id="myBox" class="compareBox om_NotoSansChakmaRegularttf"><select id="mySelect" name="myBox" onchange="functionSelect('mySelect')"><option value='om_NotoSansChakmaRegularttf'>Noto Sans Chakma Regular (ttf)</option>
+</select>
+
+<span id="myBoxContent" contenteditable="true" class="compareBoxCSS ">1234567890 xozszn HOZD 1/3 @ 1a ;#& ? % $ € ! In August of 2016, four unlikely collaborators in the world of type, fonts and font technology stood on a stage at the ATypI conference in Warsaw, Poland. The collaborators were Apple, Microsoft, Adobe and Google. Together they announced the publishing of OpenType 1.8, an update to the now ubiquitous font standard which was originally an amalgam of Apple & Microsoft’s TrueType, and Adobe’s PostScript font formats. The OpenType 1.8 announcement, ATypI, Warsaw, Poland, September 14, 2016.</span></td>
+
+</tr>
+            </table>
+    
+
+            
+		<hr>
+		<table>
+<thead><tr><tr>
+<td class="colLeft">Copyright<br>NID0 Windows (3, 1, 1033, 0)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 0)_btn" onclick='toggle_detail("(3, 1, 1033, 0)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 0)0')" onMouseOut="hover('(3, 1, 1033, 0)0')" class="character defaultFont " title="Noto Sans Chakma Regular" data-original-title="(3, 1, 1033, 0)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 0)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Chakma Regular"><td onMouseOver="hover('(3, 1, 1033, 0)0')" onMouseOut="hover('(3, 1, 1033, 0)0')" id="(3, 1, 1033, 0)0" class="infoToggle" colspan="1">Copyright 2017 Google Inc. All Rights Reserved.</td></tr></tbody><tr>
+<td class="colLeft">Family Name<br>NID1 Windows (3, 1, 1033, 1)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 1)_btn" onclick='toggle_detail("(3, 1, 1033, 1)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 1)0')" onMouseOut="hover('(3, 1, 1033, 1)0')" class="character defaultFont " title="Noto Sans Chakma Regular" data-original-title="(3, 1, 1033, 1)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 1)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID 1 and 2 together should be unique within the family.</td><tr class="" title="Noto Sans Chakma Regular"><td onMouseOver="hover('(3, 1, 1033, 1)0')" onMouseOut="hover('(3, 1, 1033, 1)0')" id="(3, 1, 1033, 1)0" class="infoToggle" colspan="1">NID1: 'Noto Sans Chakma' + NID2: 'Regular'</td></tr></tbody><tr>
+<td class="colLeft">Subfamily Name<br>NID2 Windows (3, 1, 1033, 2)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 2)_btn" onclick='toggle_detail("(3, 1, 1033, 2)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 2)0')" onMouseOut="hover('(3, 1, 1033, 2)0')" class="character defaultFont " title="Noto Sans Chakma Regular" data-original-title="(3, 1, 1033, 2)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 2)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be 'Regular', 'Italic', 'Bold' or 'Bold Italic'.</td><tr class="" title="Noto Sans Chakma Regular"><td onMouseOver="hover('(3, 1, 1033, 2)0')" onMouseOut="hover('(3, 1, 1033, 2)0')" id="(3, 1, 1033, 2)0" class="infoToggle" colspan="1">Regular</td></tr></tbody><tr>
+<td class="colLeft">Unique Font Identifier<br>NID3 Windows (3, 1, 1033, 3)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 3)_btn" onclick='toggle_detail("(3, 1, 1033, 3)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 3)0')" onMouseOut="hover('(3, 1, 1033, 3)0')" class="character defaultFont " title="Noto Sans Chakma Regular" data-original-title="(3, 1, 1033, 3)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 3)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be DIFFERENT within the family.</td><tr class="" title="Noto Sans Chakma Regular"><td onMouseOver="hover('(3, 1, 1033, 3)0')" onMouseOut="hover('(3, 1, 1033, 3)0')" id="(3, 1, 1033, 3)0" class="infoToggle" colspan="1">2.000;GOOG;NotoSansChakma-Regular</td></tr></tbody><tr>
+<td class="colLeft">Full Font Name<br>NID4 Windows (3, 1, 1033, 4)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 4)_btn" onclick='toggle_detail("(3, 1, 1033, 4)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 4)0')" onMouseOut="hover('(3, 1, 1033, 4)0')" class="character defaultFont " title="Noto Sans Chakma Regular" data-original-title="(3, 1, 1033, 4)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 4)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be DIFFERENT within the family.</td><tr class="" title="Noto Sans Chakma Regular"><td onMouseOver="hover('(3, 1, 1033, 4)0')" onMouseOut="hover('(3, 1, 1033, 4)0')" id="(3, 1, 1033, 4)0" class="infoToggle" colspan="1">Noto Sans Chakma Regular</td></tr></tbody><tr>
+<td class="colLeft">Version<br>NID5 Windows (3, 1, 1033, 5)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 5)_btn" onclick='toggle_detail("(3, 1, 1033, 5)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 5)0')" onMouseOut="hover('(3, 1, 1033, 5)0')" class="character defaultFont " title="Noto Sans Chakma Regular" data-original-title="(3, 1, 1033, 5)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 5)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Chakma Regular"><td onMouseOver="hover('(3, 1, 1033, 5)0')" onMouseOut="hover('(3, 1, 1033, 5)0')" id="(3, 1, 1033, 5)0" class="infoToggle" colspan="1">Version 2.000;GOOG;noto-source:20170915:90ef993387c0</td></tr></tbody><tr>
+<td class="colLeft">PostScript Name<br>NID6 Windows (3, 1, 1033, 6)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 6)_btn" onclick='toggle_detail("(3, 1, 1033, 6)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 6)0')" onMouseOut="hover('(3, 1, 1033, 6)0')" class="character defaultFont " title="Noto Sans Chakma Regular" data-original-title="(3, 1, 1033, 6)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 6)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be DIFFERENT within the family.</td><tr class="" title="Noto Sans Chakma Regular"><td onMouseOver="hover('(3, 1, 1033, 6)0')" onMouseOut="hover('(3, 1, 1033, 6)0')" id="(3, 1, 1033, 6)0" class="infoToggle" colspan="1">NotoSansChakma-Regular</td></tr></tbody><tr>
+<td class="colLeft">Trademark<br>NID7 Windows (3, 1, 1033, 7)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 7)_btn" onclick='toggle_detail("(3, 1, 1033, 7)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 7)0')" onMouseOut="hover('(3, 1, 1033, 7)0')" class="character defaultFont " title="Noto Sans Chakma Regular" data-original-title="(3, 1, 1033, 7)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 7)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Chakma Regular"><td onMouseOver="hover('(3, 1, 1033, 7)0')" onMouseOut="hover('(3, 1, 1033, 7)0')" id="(3, 1, 1033, 7)0" class="infoToggle" colspan="1">Noto is a trademark of Google Inc.</td></tr></tbody><tr>
+<td class="colLeft">Manufacturer<br>NID8 Windows (3, 1, 1033, 8)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 8)_btn" onclick='toggle_detail("(3, 1, 1033, 8)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 8)0')" onMouseOut="hover('(3, 1, 1033, 8)0')" class="character defaultFont " title="Noto Sans Chakma Regular" data-original-title="(3, 1, 1033, 8)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 8)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Chakma Regular"><td onMouseOver="hover('(3, 1, 1033, 8)0')" onMouseOut="hover('(3, 1, 1033, 8)0')" id="(3, 1, 1033, 8)0" class="infoToggle" colspan="1">Monotype Imaging Inc.</td></tr></tbody><tr>
+<td class="colLeft">Designer<br>NID9 Windows (3, 1, 1033, 9)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 9)_btn" onclick='toggle_detail("(3, 1, 1033, 9)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 9)0')" onMouseOut="hover('(3, 1, 1033, 9)0')" class="character defaultFont " title="Noto Sans Chakma Regular" data-original-title="(3, 1, 1033, 9)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 9)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Chakma Regular"><td onMouseOver="hover('(3, 1, 1033, 9)0')" onMouseOut="hover('(3, 1, 1033, 9)0')" id="(3, 1, 1033, 9)0" class="infoToggle" colspan="1">Monotype Design Team</td></tr></tbody><tr>
+<td class="colLeft">Description<br>NID10 Windows (3, 1, 1033, 10)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 10)_btn" onclick='toggle_detail("(3, 1, 1033, 10)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 10)0')" onMouseOut="hover('(3, 1, 1033, 10)0')" class="character defaultFont " title="Noto Sans Chakma Regular" data-original-title="(3, 1, 1033, 10)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 10)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Chakma Regular"><td onMouseOver="hover('(3, 1, 1033, 10)0')" onMouseOut="hover('(3, 1, 1033, 10)0')" id="(3, 1, 1033, 10)0" class="infoToggle" colspan="1">Designed by Monotype design team.</td></tr></tbody><tr>
+<td class="colLeft">Vendor URL<br>NID11 Windows (3, 1, 1033, 11)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 11)_btn" onclick='toggle_detail("(3, 1, 1033, 11)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 11)0')" onMouseOut="hover('(3, 1, 1033, 11)0')" class="character defaultFont " title="Noto Sans Chakma Regular" data-original-title="(3, 1, 1033, 11)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 11)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Chakma Regular"><td onMouseOver="hover('(3, 1, 1033, 11)0')" onMouseOut="hover('(3, 1, 1033, 11)0')" id="(3, 1, 1033, 11)0" class="infoToggle" colspan="1">http://www.google.com/get/noto/</td></tr></tbody><tr>
+<td class="colLeft">Designer URL<br>NID12 Windows (3, 1, 1033, 12)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 12)_btn" onclick='toggle_detail("(3, 1, 1033, 12)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 12)0')" onMouseOut="hover('(3, 1, 1033, 12)0')" class="character defaultFont " title="Noto Sans Chakma Regular" data-original-title="(3, 1, 1033, 12)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 12)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Chakma Regular"><td onMouseOver="hover('(3, 1, 1033, 12)0')" onMouseOut="hover('(3, 1, 1033, 12)0')" id="(3, 1, 1033, 12)0" class="infoToggle" colspan="1">http://www.monotype.com/studio</td></tr></tbody><tr>
+<td class="colLeft">License Text<br>NID13 Windows (3, 1, 1033, 13)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 13)_btn" onclick='toggle_detail("(3, 1, 1033, 13)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 13)0')" onMouseOut="hover('(3, 1, 1033, 13)0')" class="character defaultFont " title="Noto Sans Chakma Regular" data-original-title="(3, 1, 1033, 13)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 13)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Chakma Regular"><td onMouseOver="hover('(3, 1, 1033, 13)0')" onMouseOut="hover('(3, 1, 1033, 13)0')" id="(3, 1, 1033, 13)0" class="infoToggle" colspan="1">This Font Software is licensed under the SIL Open Font License, Version 1.1. This Font Software is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the SIL Open Font License for the specific language, permissions and limitations governing your use of this Font Software.</td></tr></tbody><tr>
+<td class="colLeft">License URL<br>NID14 Windows (3, 1, 1033, 14)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 14)_btn" onclick='toggle_detail("(3, 1, 1033, 14)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 14)0')" onMouseOut="hover('(3, 1, 1033, 14)0')" class="character defaultFont " title="Noto Sans Chakma Regular" data-original-title="(3, 1, 1033, 14)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 14)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Chakma Regular"><td onMouseOver="hover('(3, 1, 1033, 14)0')" onMouseOut="hover('(3, 1, 1033, 14)0')" id="(3, 1, 1033, 14)0" class="infoToggle" colspan="1">http://scripts.sil.org/OFL</td></tr></tbody>
+		</table>
+
+
+            
+
+            
+
+        <!-- big text on black backround -->
+            
+
+            
+
+            
+
+            
+		<hr>
+		<table id="splitterContent">
+<tr>
+<td class="colLeft"><br>uni0000</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0000', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0000">&#x0000</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x0000', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni0000">&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft"><br>uni000D</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x000d', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni000d">&#x000d</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x000d', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni000d">&#x000d</td>
+</tr>
+<tr>
+<td class="colLeft">SPACE<br>uni0020</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0020', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0020">&#x0020</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x0020', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni0020">&#x0020</td>
+</tr>
+<tr>
+<td class="colLeft">NO-BREAK SPACE<br>uni00A0</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x00a0', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni00a0">&#x00a0</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x00a0', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni00a0">&#x00a0</td>
+</tr>
+<tr>
+<td class="colLeft">BENGALI DIGIT ZERO<br>uni09E6</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x09e6', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni09e6">&#x09e6</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x09e6', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni09e6">&#x09e6</td>
+</tr>
+<tr>
+<td class="colLeft">BENGALI DIGIT ONE<br>uni09E7</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x09e7', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni09e7">&#x09e7</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x09e7', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni09e7">&#x09e7</td>
+</tr>
+<tr>
+<td class="colLeft">BENGALI DIGIT TWO<br>uni09E8</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x09e8', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni09e8">&#x09e8</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x09e8', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni09e8">&#x09e8</td>
+</tr>
+<tr>
+<td class="colLeft">BENGALI DIGIT THREE<br>uni09E9</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x09e9', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni09e9">&#x09e9</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x09e9', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni09e9">&#x09e9</td>
+</tr>
+<tr>
+<td class="colLeft">BENGALI DIGIT FOUR<br>uni09EA</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x09ea', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni09ea">&#x09ea</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x09ea', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni09ea">&#x09ea</td>
+</tr>
+<tr>
+<td class="colLeft">BENGALI DIGIT FIVE<br>uni09EB</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x09eb', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni09eb">&#x09eb</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x09eb', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni09eb">&#x09eb</td>
+</tr>
+<tr>
+<td class="colLeft">BENGALI DIGIT SIX<br>uni09EC</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x09ec', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni09ec">&#x09ec</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x09ec', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni09ec">&#x09ec</td>
+</tr>
+<tr>
+<td class="colLeft">BENGALI DIGIT SEVEN<br>uni09ED</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x09ed', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni09ed">&#x09ed</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x09ed', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni09ed">&#x09ed</td>
+</tr>
+<tr>
+<td class="colLeft">BENGALI DIGIT EIGHT<br>uni09EE</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x09ee', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni09ee">&#x09ee</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x09ee', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni09ee">&#x09ee</td>
+</tr>
+<tr>
+<td class="colLeft">BENGALI DIGIT NINE<br>uni09EF</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x09ef', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni09ef">&#x09ef</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x09ef', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni09ef">&#x09ef</td>
+</tr>
+<tr>
+<td class="colLeft">MYANMAR DIGIT ZERO<br>uni1040</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1040', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1040">&#x1040</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x1040', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni1040">&#x1040</td>
+</tr>
+<tr>
+<td class="colLeft">MYANMAR DIGIT ONE<br>uni1041</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1041', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1041">&#x1041</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x1041', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni1041">&#x1041</td>
+</tr>
+<tr>
+<td class="colLeft">MYANMAR DIGIT TWO<br>uni1042</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1042', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1042">&#x1042</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x1042', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni1042">&#x1042</td>
+</tr>
+<tr>
+<td class="colLeft">MYANMAR DIGIT THREE<br>uni1043</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1043', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1043">&#x1043</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x1043', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni1043">&#x1043</td>
+</tr>
+<tr>
+<td class="colLeft">MYANMAR DIGIT FOUR<br>uni1044</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1044', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1044">&#x1044</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x1044', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni1044">&#x1044</td>
+</tr>
+<tr>
+<td class="colLeft">MYANMAR DIGIT FIVE<br>uni1045</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1045', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1045">&#x1045</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x1045', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni1045">&#x1045</td>
+</tr>
+<tr>
+<td class="colLeft">MYANMAR DIGIT SIX<br>uni1046</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1046', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1046">&#x1046</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x1046', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni1046">&#x1046</td>
+</tr>
+<tr>
+<td class="colLeft">MYANMAR DIGIT SEVEN<br>uni1047</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1047', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1047">&#x1047</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x1047', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni1047">&#x1047</td>
+</tr>
+<tr>
+<td class="colLeft">MYANMAR DIGIT EIGHT<br>uni1048</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1048', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1048">&#x1048</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x1048', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni1048">&#x1048</td>
+</tr>
+<tr>
+<td class="colLeft">MYANMAR DIGIT NINE<br>uni1049</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1049', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1049">&#x1049</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x1049', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni1049">&#x1049</td>
+</tr>
+<tr>
+<td class="colLeft">ZERO WIDTH NON-JOINER<br>uni200C</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x200c', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni200c">&#x200c</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x200c', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni200c">&#x200c</td>
+</tr>
+<tr>
+<td class="colLeft">ZERO WIDTH JOINER<br>uni200D</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x200d', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni200d">&#x200d</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x200d', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni200d">&#x200d</td>
+</tr>
+<tr>
+<td class="colLeft">DOTTED CIRCLE<br>uni25CC</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x25cc', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni25cc">&#x25cc</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x25cc', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni25cc">&#x25cc</td>
+</tr>
+<tr>
+<td class="colLeft">CHAKMA SIGN CANDRABINDU<br>uni11100</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11100', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11100">&#x11100</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x11100', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11100">&#x11100</td>
+</tr>
+<tr>
+<td class="colLeft">CHAKMA SIGN ANUSVARA<br>uni11101</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11101', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11101">&#x11101</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x11101', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11101">&#x11101</td>
+</tr>
+<tr>
+<td class="colLeft">CHAKMA SIGN VISARGA<br>uni11102</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11102', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11102">&#x11102</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x11102', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11102">&#x11102</td>
+</tr>
+<tr>
+<td class="colLeft">CHAKMA LETTER AA<br>uni11103</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11103', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11103">&#x11103</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x11103', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11103">&#x11103</td>
+</tr>
+<tr>
+<td class="colLeft">CHAKMA LETTER I<br>uni11104</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11104', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11104">&#x11104</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x11104', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11104">&#x11104</td>
+</tr>
+<tr>
+<td class="colLeft">CHAKMA LETTER U<br>uni11105</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11105', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11105">&#x11105</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x11105', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11105">&#x11105</td>
+</tr>
+<tr>
+<td class="colLeft">CHAKMA LETTER E<br>uni11106</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11106', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11106">&#x11106</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x11106', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11106">&#x11106</td>
+</tr>
+<tr>
+<td class="colLeft">CHAKMA LETTER KAA<br>uni11107</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11107', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11107">&#x11107</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x11107', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11107">&#x11107</td>
+</tr>
+<tr>
+<td class="colLeft">CHAKMA LETTER KHAA<br>uni11108</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11108', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11108">&#x11108</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x11108', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11108">&#x11108</td>
+</tr>
+<tr>
+<td class="colLeft">CHAKMA LETTER GAA<br>uni11109</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11109', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11109">&#x11109</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x11109', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11109">&#x11109</td>
+</tr>
+<tr>
+<td class="colLeft">CHAKMA LETTER GHAA<br>uni1110A</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1110a', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1110a">&#x1110a</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x1110a', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni1110a">&#x1110a</td>
+</tr>
+<tr>
+<td class="colLeft">CHAKMA LETTER NGAA<br>uni1110B</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1110b', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1110b">&#x1110b</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x1110b', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni1110b">&#x1110b</td>
+</tr>
+<tr>
+<td class="colLeft">CHAKMA LETTER CAA<br>uni1110C</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1110c', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1110c">&#x1110c</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x1110c', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni1110c">&#x1110c</td>
+</tr>
+<tr>
+<td class="colLeft">CHAKMA LETTER CHAA<br>uni1110D</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1110d', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1110d">&#x1110d</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x1110d', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni1110d">&#x1110d</td>
+</tr>
+<tr>
+<td class="colLeft">CHAKMA LETTER JAA<br>uni1110E</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1110e', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1110e">&#x1110e</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x1110e', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni1110e">&#x1110e</td>
+</tr>
+<tr>
+<td class="colLeft">CHAKMA LETTER JHAA<br>uni1110F</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1110f', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1110f">&#x1110f</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x1110f', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni1110f">&#x1110f</td>
+</tr>
+<tr>
+<td class="colLeft">CHAKMA LETTER NYAA<br>uni11110</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11110', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11110">&#x11110</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x11110', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11110">&#x11110</td>
+</tr>
+<tr>
+<td class="colLeft">CHAKMA LETTER TTAA<br>uni11111</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11111', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11111">&#x11111</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x11111', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11111">&#x11111</td>
+</tr>
+<tr>
+<td class="colLeft">CHAKMA LETTER TTHAA<br>uni11112</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11112', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11112">&#x11112</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x11112', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11112">&#x11112</td>
+</tr>
+<tr>
+<td class="colLeft">CHAKMA LETTER DDAA<br>uni11113</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11113', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11113">&#x11113</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x11113', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11113">&#x11113</td>
+</tr>
+<tr>
+<td class="colLeft">CHAKMA LETTER DDHAA<br>uni11114</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11114', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11114">&#x11114</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x11114', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11114">&#x11114</td>
+</tr>
+<tr>
+<td class="colLeft">CHAKMA LETTER NNAA<br>uni11115</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11115', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11115">&#x11115</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x11115', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11115">&#x11115</td>
+</tr>
+<tr>
+<td class="colLeft">CHAKMA LETTER TAA<br>uni11116</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11116', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11116">&#x11116</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x11116', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11116">&#x11116</td>
+</tr>
+<tr>
+<td class="colLeft">CHAKMA LETTER THAA<br>uni11117</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11117', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11117">&#x11117</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x11117', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11117">&#x11117</td>
+</tr>
+<tr>
+<td class="colLeft">CHAKMA LETTER DAA<br>uni11118</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11118', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11118">&#x11118</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x11118', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11118">&#x11118</td>
+</tr>
+<tr>
+<td class="colLeft">CHAKMA LETTER DHAA<br>uni11119</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11119', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11119">&#x11119</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x11119', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11119">&#x11119</td>
+</tr>
+<tr>
+<td class="colLeft">CHAKMA LETTER NAA<br>uni1111A</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1111a', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1111a">&#x1111a</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x1111a', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni1111a">&#x1111a</td>
+</tr>
+<tr>
+<td class="colLeft">CHAKMA LETTER PAA<br>uni1111B</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1111b', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1111b">&#x1111b</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x1111b', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni1111b">&#x1111b</td>
+</tr>
+<tr>
+<td class="colLeft">CHAKMA LETTER PHAA<br>uni1111C</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1111c', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1111c">&#x1111c</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x1111c', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni1111c">&#x1111c</td>
+</tr>
+<tr>
+<td class="colLeft">CHAKMA LETTER BAA<br>uni1111D</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1111d', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1111d">&#x1111d</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x1111d', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni1111d">&#x1111d</td>
+</tr>
+<tr>
+<td class="colLeft">CHAKMA LETTER BHAA<br>uni1111E</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1111e', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1111e">&#x1111e</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x1111e', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni1111e">&#x1111e</td>
+</tr>
+<tr>
+<td class="colLeft">CHAKMA LETTER MAA<br>uni1111F</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1111f', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1111f">&#x1111f</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x1111f', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni1111f">&#x1111f</td>
+</tr>
+<tr>
+<td class="colLeft">CHAKMA LETTER YYAA<br>uni11120</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11120', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11120">&#x11120</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x11120', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11120">&#x11120</td>
+</tr>
+<tr>
+<td class="colLeft">CHAKMA LETTER YAA<br>uni11121</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11121', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11121">&#x11121</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x11121', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11121">&#x11121</td>
+</tr>
+<tr>
+<td class="colLeft">CHAKMA LETTER RAA<br>uni11122</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11122', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11122">&#x11122</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x11122', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11122">&#x11122</td>
+</tr>
+<tr>
+<td class="colLeft">CHAKMA LETTER LAA<br>uni11123</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11123', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11123">&#x11123</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x11123', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11123">&#x11123</td>
+</tr>
+<tr>
+<td class="colLeft">CHAKMA LETTER WAA<br>uni11124</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11124', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11124">&#x11124</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x11124', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11124">&#x11124</td>
+</tr>
+<tr>
+<td class="colLeft">CHAKMA LETTER SAA<br>uni11125</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11125', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11125">&#x11125</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x11125', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11125">&#x11125</td>
+</tr>
+<tr>
+<td class="colLeft">CHAKMA LETTER HAA<br>uni11126</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11126', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11126">&#x11126</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x11126', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11126">&#x11126</td>
+</tr>
+<tr>
+<td class="colLeft">CHAKMA VOWEL SIGN A<br>uni11127</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11127', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11127">&#x11127</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x11127', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11127">&#x11127</td>
+</tr>
+<tr>
+<td class="colLeft">CHAKMA VOWEL SIGN I<br>uni11128</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11128', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11128">&#x11128</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x11128', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11128">&#x11128</td>
+</tr>
+<tr>
+<td class="colLeft">CHAKMA VOWEL SIGN II<br>uni11129</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11129', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11129">&#x11129</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x11129', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11129">&#x11129</td>
+</tr>
+<tr>
+<td class="colLeft">CHAKMA VOWEL SIGN U<br>uni1112A</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1112a', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1112a">&#x1112a</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x1112a', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni1112a">&#x1112a</td>
+</tr>
+<tr>
+<td class="colLeft">CHAKMA VOWEL SIGN UU<br>uni1112B</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1112b', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1112b">&#x1112b</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x1112b', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni1112b">&#x1112b</td>
+</tr>
+<tr>
+<td class="colLeft">CHAKMA VOWEL SIGN E<br>uni1112C</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1112c', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1112c">&#x1112c</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x1112c', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni1112c">&#x1112c</td>
+</tr>
+<tr>
+<td class="colLeft">CHAKMA VOWEL SIGN AI<br>uni1112D</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1112d', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1112d">&#x1112d</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x1112d', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni1112d">&#x1112d</td>
+</tr>
+<tr>
+<td class="colLeft">CHAKMA VOWEL SIGN O<br>uni1112E</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1112e', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1112e">&#x1112e</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x1112e', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni1112e">&#x1112e</td>
+</tr>
+<tr>
+<td class="colLeft">CHAKMA VOWEL SIGN AU<br>uni1112F</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1112f', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1112f">&#x1112f</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x1112f', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni1112f">&#x1112f</td>
+</tr>
+<tr>
+<td class="colLeft">CHAKMA VOWEL SIGN OI<br>uni11130</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11130', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11130">&#x11130</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x11130', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11130">&#x11130</td>
+</tr>
+<tr>
+<td class="colLeft">CHAKMA O MARK<br>uni11131</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11131', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11131">&#x11131</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x11131', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11131">&#x11131</td>
+</tr>
+<tr>
+<td class="colLeft">CHAKMA AU MARK<br>uni11132</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11132', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11132">&#x11132</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x11132', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11132">&#x11132</td>
+</tr>
+<tr>
+<td class="colLeft">CHAKMA VIRAMA<br>uni11133</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11133', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11133">&#x11133</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x11133', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11133">&#x11133</td>
+</tr>
+<tr>
+<td class="colLeft">CHAKMA MAAYYAA<br>uni11134</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11134', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11134">&#x11134</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x11134', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11134">&#x11134</td>
+</tr>
+<tr>
+<td class="colLeft">CHAKMA DIGIT ZERO<br>uni11136</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11136', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11136">&#x11136</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x11136', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11136">&#x11136</td>
+</tr>
+<tr>
+<td class="colLeft">CHAKMA DIGIT ONE<br>uni11137</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11137', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11137">&#x11137</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x11137', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11137">&#x11137</td>
+</tr>
+<tr>
+<td class="colLeft">CHAKMA DIGIT TWO<br>uni11138</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11138', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11138">&#x11138</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x11138', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11138">&#x11138</td>
+</tr>
+<tr>
+<td class="colLeft">CHAKMA DIGIT THREE<br>uni11139</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11139', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11139">&#x11139</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x11139', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11139">&#x11139</td>
+</tr>
+<tr>
+<td class="colLeft">CHAKMA DIGIT FOUR<br>uni1113A</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1113a', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1113a">&#x1113a</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x1113a', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni1113a">&#x1113a</td>
+</tr>
+<tr>
+<td class="colLeft">CHAKMA DIGIT FIVE<br>uni1113B</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1113b', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1113b">&#x1113b</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x1113b', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni1113b">&#x1113b</td>
+</tr>
+<tr>
+<td class="colLeft">CHAKMA DIGIT SIX<br>uni1113C</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1113c', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1113c">&#x1113c</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x1113c', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni1113c">&#x1113c</td>
+</tr>
+<tr>
+<td class="colLeft">CHAKMA DIGIT SEVEN<br>uni1113D</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1113d', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1113d">&#x1113d</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x1113d', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni1113d">&#x1113d</td>
+</tr>
+<tr>
+<td class="colLeft">CHAKMA DIGIT EIGHT<br>uni1113E</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1113e', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1113e">&#x1113e</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x1113e', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni1113e">&#x1113e</td>
+</tr>
+<tr>
+<td class="colLeft">CHAKMA DIGIT NINE<br>uni1113F</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1113f', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1113f">&#x1113f</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x1113f', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni1113f">&#x1113f</td>
+</tr>
+<tr>
+<td class="colLeft">CHAKMA SECTION MARK<br>uni11140</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11140', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11140">&#x11140</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x11140', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11140">&#x11140</td>
+</tr>
+<tr>
+<td class="colLeft">CHAKMA DANDA<br>uni11141</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11141', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11141">&#x11141</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x11141', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11141">&#x11141</td>
+</tr>
+<tr>
+<td class="colLeft">CHAKMA DOUBLE DANDA<br>uni11142</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11142', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11142">&#x11142</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x11142', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11142">&#x11142</td>
+</tr>
+<tr>
+<td class="colLeft">CHAKMA QUESTION MARK<br>uni11143</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11143', ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11143">&#x11143</td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('&#x11143', ['om_NotoSansChakmaRegularttf'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11143">&#x11143</td>
+</tr>
+
+		</table>
+
+
+            
+		<hr>
+		<table id="splitterContent_unencoded">
+<tr>
+<td class="colLeft"><br></td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title=" "></td>
+<td class="character om_NotoSansChakmaRegularttf " onmousedown="mDown('', ['om_NotoSansChakmaRegularttf', ''])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title=" "></td>
+</tr>
+<tr>
+<td class="colLeft">uni11100uni11102<br>"Uni" in name but missing unicode: uni11100uni11102</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1110011102', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11100uni11102 "Uni" in name but missing unicode: uni11100uni11102">&#x1110011102</td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('&#x1110011102', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11100uni11102 "Uni" in name but missing unicode: uni11100uni11102">&#x1110011102</td>
+</tr>
+<tr>
+<td class="colLeft">uni11100uni11128<br>"Uni" in name but missing unicode: uni11100uni11128</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1110011128', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11100uni11128 "Uni" in name but missing unicode: uni11100uni11128">&#x1110011128</td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('&#x1110011128', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11100uni11128 "Uni" in name but missing unicode: uni11100uni11128">&#x1110011128</td>
+</tr>
+<tr>
+<td class="colLeft">uni11100uni11129<br>"Uni" in name but missing unicode: uni11100uni11129</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1110011129', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11100uni11129 "Uni" in name but missing unicode: uni11100uni11129">&#x1110011129</td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('&#x1110011129', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11100uni11129 "Uni" in name but missing unicode: uni11100uni11129">&#x1110011129</td>
+</tr>
+<tr>
+<td class="colLeft">uni11101uni11100<br>"Uni" in name but missing unicode: uni11101uni11100</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1110111100', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11101uni11100 "Uni" in name but missing unicode: uni11101uni11100">&#x1110111100</td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('&#x1110111100', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11101uni11100 "Uni" in name but missing unicode: uni11101uni11100">&#x1110111100</td>
+</tr>
+<tr>
+<td class="colLeft">uni11101uni11128<br>"Uni" in name but missing unicode: uni11101uni11128</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1110111128', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11101uni11128 "Uni" in name but missing unicode: uni11101uni11128">&#x1110111128</td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('&#x1110111128', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11101uni11128 "Uni" in name but missing unicode: uni11101uni11128">&#x1110111128</td>
+</tr>
+<tr>
+<td class="colLeft">uni11101uni11129<br>"Uni" in name but missing unicode: uni11101uni11129</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1110111129', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11101uni11129 "Uni" in name but missing unicode: uni11101uni11129">&#x1110111129</td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('&#x1110111129', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11101uni11129 "Uni" in name but missing unicode: uni11101uni11129">&#x1110111129</td>
+</tr>
+<tr>
+<td class="colLeft">uni11102uni11128<br>"Uni" in name but missing unicode: uni11102uni11128</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1110211128', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11102uni11128 "Uni" in name but missing unicode: uni11102uni11128">&#x1110211128</td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('&#x1110211128', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11102uni11128 "Uni" in name but missing unicode: uni11102uni11128">&#x1110211128</td>
+</tr>
+<tr>
+<td class="colLeft">uni11102uni11129<br>"Uni" in name but missing unicode: uni11102uni11129</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1110211129', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11102uni11129 "Uni" in name but missing unicode: uni11102uni11129">&#x1110211129</td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('&#x1110211129', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11102uni11129 "Uni" in name but missing unicode: uni11102uni11129">&#x1110211129</td>
+</tr>
+<tr>
+<td class="colLeft">uni1112Cuni1112C<br>"Uni" in name but missing unicode: uni1112Cuni1112C</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1112C1112C', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1112Cuni1112C "Uni" in name but missing unicode: uni1112Cuni1112C">&#x1112C1112C</td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('&#x1112C1112C', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni1112Cuni1112C "Uni" in name but missing unicode: uni1112Cuni1112C">&#x1112C1112C</td>
+</tr>
+<tr>
+<td class="colLeft">uni1112D.short<br>Ending "short" ≠ OT Feature (cannot display this character) feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1112D.short Ending "short" ≠ OT Feature (cannot display this character) feature"></td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni1112D.short Ending "short" ≠ OT Feature (cannot display this character) feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1112Duni11100<br>"Uni" in name but missing unicode: uni1112Duni11100</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1112D11100', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1112Duni11100 "Uni" in name but missing unicode: uni1112Duni11100">&#x1112D11100</td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('&#x1112D11100', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni1112Duni11100 "Uni" in name but missing unicode: uni1112Duni11100">&#x1112D11100</td>
+</tr>
+<tr>
+<td class="colLeft">uni1112Duni11100.short<br>Ending "short" ≠ OT Feature (cannot display this character) feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1112Duni11100.short Ending "short" ≠ OT Feature (cannot display this character) feature"></td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni1112Duni11100.short Ending "short" ≠ OT Feature (cannot display this character) feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1112Duni11134<br>"Uni" in name but missing unicode: uni1112Duni11134</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1112D11134', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1112Duni11134 "Uni" in name but missing unicode: uni1112Duni11134">&#x1112D11134</td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('&#x1112D11134', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni1112Duni11134 "Uni" in name but missing unicode: uni1112Duni11134">&#x1112D11134</td>
+</tr>
+<tr>
+<td class="colLeft">uni1112Duni11134.short<br>Ending "short" ≠ OT Feature (cannot display this character) feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1112Duni11134.short Ending "short" ≠ OT Feature (cannot display this character) feature"></td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni1112Duni11134.short Ending "short" ≠ OT Feature (cannot display this character) feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni11130.short<br>Ending "short" ≠ OT Feature (cannot display this character) feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11130.short Ending "short" ≠ OT Feature (cannot display this character) feature"></td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11130.short Ending "short" ≠ OT Feature (cannot display this character) feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni11130uni11100<br>"Uni" in name but missing unicode: uni11130uni11100</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1113011100', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11130uni11100 "Uni" in name but missing unicode: uni11130uni11100">&#x1113011100</td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('&#x1113011100', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11130uni11100 "Uni" in name but missing unicode: uni11130uni11100">&#x1113011100</td>
+</tr>
+<tr>
+<td class="colLeft">uni11130uni11101<br>"Uni" in name but missing unicode: uni11130uni11101</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1113011101', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11130uni11101 "Uni" in name but missing unicode: uni11130uni11101">&#x1113011101</td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('&#x1113011101', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11130uni11101 "Uni" in name but missing unicode: uni11130uni11101">&#x1113011101</td>
+</tr>
+<tr>
+<td class="colLeft">uni11130uni11102<br>"Uni" in name but missing unicode: uni11130uni11102</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1113011102', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11130uni11102 "Uni" in name but missing unicode: uni11130uni11102">&#x1113011102</td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('&#x1113011102', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11130uni11102 "Uni" in name but missing unicode: uni11130uni11102">&#x1113011102</td>
+</tr>
+<tr>
+<td class="colLeft">uni11134uni11128<br>"Uni" in name but missing unicode: uni11134uni11128</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1113411128', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11134uni11128 "Uni" in name but missing unicode: uni11134uni11128">&#x1113411128</td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('&#x1113411128', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11134uni11128 "Uni" in name but missing unicode: uni11134uni11128">&#x1113411128</td>
+</tr>
+<tr>
+<td class="colLeft">uni11134uni11129<br>"Uni" in name but missing unicode: uni11134uni11129</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1113411129', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11134uni11129 "Uni" in name but missing unicode: uni11134uni11129">&#x1113411129</td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('&#x1113411129', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11134uni11129 "Uni" in name but missing unicode: uni11134uni11129">&#x1113411129</td>
+</tr>
+<tr>
+<td class="colLeft">uni11133uni11103<br>"Uni" in name but missing unicode: uni11133uni11103</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1113311103', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11133uni11103 "Uni" in name but missing unicode: uni11133uni11103">&#x1113311103</td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('&#x1113311103', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11133uni11103 "Uni" in name but missing unicode: uni11133uni11103">&#x1113311103</td>
+</tr>
+<tr>
+<td class="colLeft">uni11133uni11104<br>"Uni" in name but missing unicode: uni11133uni11104</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1113311104', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11133uni11104 "Uni" in name but missing unicode: uni11133uni11104">&#x1113311104</td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('&#x1113311104', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11133uni11104 "Uni" in name but missing unicode: uni11133uni11104">&#x1113311104</td>
+</tr>
+<tr>
+<td class="colLeft">uni11133uni11105<br>"Uni" in name but missing unicode: uni11133uni11105</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1113311105', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11133uni11105 "Uni" in name but missing unicode: uni11133uni11105">&#x1113311105</td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('&#x1113311105', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11133uni11105 "Uni" in name but missing unicode: uni11133uni11105">&#x1113311105</td>
+</tr>
+<tr>
+<td class="colLeft">uni11133uni11106<br>"Uni" in name but missing unicode: uni11133uni11106</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1113311106', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11133uni11106 "Uni" in name but missing unicode: uni11133uni11106">&#x1113311106</td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('&#x1113311106', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11133uni11106 "Uni" in name but missing unicode: uni11133uni11106">&#x1113311106</td>
+</tr>
+<tr>
+<td class="colLeft">uni11133uni11107<br>"Uni" in name but missing unicode: uni11133uni11107</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1113311107', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11133uni11107 "Uni" in name but missing unicode: uni11133uni11107">&#x1113311107</td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('&#x1113311107', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11133uni11107 "Uni" in name but missing unicode: uni11133uni11107">&#x1113311107</td>
+</tr>
+<tr>
+<td class="colLeft">uni11133uni11108<br>"Uni" in name but missing unicode: uni11133uni11108</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1113311108', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11133uni11108 "Uni" in name but missing unicode: uni11133uni11108">&#x1113311108</td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('&#x1113311108', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11133uni11108 "Uni" in name but missing unicode: uni11133uni11108">&#x1113311108</td>
+</tr>
+<tr>
+<td class="colLeft">uni11133uni11109<br>"Uni" in name but missing unicode: uni11133uni11109</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1113311109', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11133uni11109 "Uni" in name but missing unicode: uni11133uni11109">&#x1113311109</td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('&#x1113311109', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11133uni11109 "Uni" in name but missing unicode: uni11133uni11109">&#x1113311109</td>
+</tr>
+<tr>
+<td class="colLeft">uni11133uni1110A<br>"Uni" in name but missing unicode: uni11133uni1110A</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x111331110A', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11133uni1110A "Uni" in name but missing unicode: uni11133uni1110A">&#x111331110A</td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('&#x111331110A', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11133uni1110A "Uni" in name but missing unicode: uni11133uni1110A">&#x111331110A</td>
+</tr>
+<tr>
+<td class="colLeft">uni11133uni1110B<br>"Uni" in name but missing unicode: uni11133uni1110B</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x111331110B', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11133uni1110B "Uni" in name but missing unicode: uni11133uni1110B">&#x111331110B</td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('&#x111331110B', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11133uni1110B "Uni" in name but missing unicode: uni11133uni1110B">&#x111331110B</td>
+</tr>
+<tr>
+<td class="colLeft">uni11133uni1110C<br>"Uni" in name but missing unicode: uni11133uni1110C</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x111331110C', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11133uni1110C "Uni" in name but missing unicode: uni11133uni1110C">&#x111331110C</td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('&#x111331110C', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11133uni1110C "Uni" in name but missing unicode: uni11133uni1110C">&#x111331110C</td>
+</tr>
+<tr>
+<td class="colLeft">uni11133uni1110D<br>"Uni" in name but missing unicode: uni11133uni1110D</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x111331110D', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11133uni1110D "Uni" in name but missing unicode: uni11133uni1110D">&#x111331110D</td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('&#x111331110D', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11133uni1110D "Uni" in name but missing unicode: uni11133uni1110D">&#x111331110D</td>
+</tr>
+<tr>
+<td class="colLeft">uni11133uni1110E<br>"Uni" in name but missing unicode: uni11133uni1110E</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x111331110E', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11133uni1110E "Uni" in name but missing unicode: uni11133uni1110E">&#x111331110E</td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('&#x111331110E', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11133uni1110E "Uni" in name but missing unicode: uni11133uni1110E">&#x111331110E</td>
+</tr>
+<tr>
+<td class="colLeft">uni11133uni1110F<br>"Uni" in name but missing unicode: uni11133uni1110F</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x111331110F', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11133uni1110F "Uni" in name but missing unicode: uni11133uni1110F">&#x111331110F</td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('&#x111331110F', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11133uni1110F "Uni" in name but missing unicode: uni11133uni1110F">&#x111331110F</td>
+</tr>
+<tr>
+<td class="colLeft">uni11133uni11110<br>"Uni" in name but missing unicode: uni11133uni11110</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1113311110', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11133uni11110 "Uni" in name but missing unicode: uni11133uni11110">&#x1113311110</td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('&#x1113311110', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11133uni11110 "Uni" in name but missing unicode: uni11133uni11110">&#x1113311110</td>
+</tr>
+<tr>
+<td class="colLeft">uni11133uni11111<br>"Uni" in name but missing unicode: uni11133uni11111</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1113311111', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11133uni11111 "Uni" in name but missing unicode: uni11133uni11111">&#x1113311111</td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('&#x1113311111', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11133uni11111 "Uni" in name but missing unicode: uni11133uni11111">&#x1113311111</td>
+</tr>
+<tr>
+<td class="colLeft">uni11133uni11112<br>"Uni" in name but missing unicode: uni11133uni11112</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1113311112', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11133uni11112 "Uni" in name but missing unicode: uni11133uni11112">&#x1113311112</td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('&#x1113311112', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11133uni11112 "Uni" in name but missing unicode: uni11133uni11112">&#x1113311112</td>
+</tr>
+<tr>
+<td class="colLeft">uni11133uni11113<br>"Uni" in name but missing unicode: uni11133uni11113</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1113311113', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11133uni11113 "Uni" in name but missing unicode: uni11133uni11113">&#x1113311113</td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('&#x1113311113', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11133uni11113 "Uni" in name but missing unicode: uni11133uni11113">&#x1113311113</td>
+</tr>
+<tr>
+<td class="colLeft">uni11133uni11114<br>"Uni" in name but missing unicode: uni11133uni11114</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1113311114', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11133uni11114 "Uni" in name but missing unicode: uni11133uni11114">&#x1113311114</td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('&#x1113311114', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11133uni11114 "Uni" in name but missing unicode: uni11133uni11114">&#x1113311114</td>
+</tr>
+<tr>
+<td class="colLeft">uni11133uni11115<br>"Uni" in name but missing unicode: uni11133uni11115</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1113311115', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11133uni11115 "Uni" in name but missing unicode: uni11133uni11115">&#x1113311115</td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('&#x1113311115', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11133uni11115 "Uni" in name but missing unicode: uni11133uni11115">&#x1113311115</td>
+</tr>
+<tr>
+<td class="colLeft">uni11133uni11116<br>"Uni" in name but missing unicode: uni11133uni11116</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1113311116', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11133uni11116 "Uni" in name but missing unicode: uni11133uni11116">&#x1113311116</td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('&#x1113311116', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11133uni11116 "Uni" in name but missing unicode: uni11133uni11116">&#x1113311116</td>
+</tr>
+<tr>
+<td class="colLeft">uni11133uni11117<br>"Uni" in name but missing unicode: uni11133uni11117</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1113311117', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11133uni11117 "Uni" in name but missing unicode: uni11133uni11117">&#x1113311117</td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('&#x1113311117', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11133uni11117 "Uni" in name but missing unicode: uni11133uni11117">&#x1113311117</td>
+</tr>
+<tr>
+<td class="colLeft">uni11133uni11118<br>"Uni" in name but missing unicode: uni11133uni11118</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1113311118', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11133uni11118 "Uni" in name but missing unicode: uni11133uni11118">&#x1113311118</td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('&#x1113311118', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11133uni11118 "Uni" in name but missing unicode: uni11133uni11118">&#x1113311118</td>
+</tr>
+<tr>
+<td class="colLeft">uni11133uni11119<br>"Uni" in name but missing unicode: uni11133uni11119</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1113311119', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11133uni11119 "Uni" in name but missing unicode: uni11133uni11119">&#x1113311119</td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('&#x1113311119', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11133uni11119 "Uni" in name but missing unicode: uni11133uni11119">&#x1113311119</td>
+</tr>
+<tr>
+<td class="colLeft">uni11133uni1111A<br>"Uni" in name but missing unicode: uni11133uni1111A</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x111331111A', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11133uni1111A "Uni" in name but missing unicode: uni11133uni1111A">&#x111331111A</td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('&#x111331111A', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11133uni1111A "Uni" in name but missing unicode: uni11133uni1111A">&#x111331111A</td>
+</tr>
+<tr>
+<td class="colLeft">uni11133uni1111B<br>"Uni" in name but missing unicode: uni11133uni1111B</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x111331111B', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11133uni1111B "Uni" in name but missing unicode: uni11133uni1111B">&#x111331111B</td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('&#x111331111B', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11133uni1111B "Uni" in name but missing unicode: uni11133uni1111B">&#x111331111B</td>
+</tr>
+<tr>
+<td class="colLeft">uni11133uni1111C<br>"Uni" in name but missing unicode: uni11133uni1111C</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x111331111C', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11133uni1111C "Uni" in name but missing unicode: uni11133uni1111C">&#x111331111C</td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('&#x111331111C', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11133uni1111C "Uni" in name but missing unicode: uni11133uni1111C">&#x111331111C</td>
+</tr>
+<tr>
+<td class="colLeft">uni11133uni1111D<br>"Uni" in name but missing unicode: uni11133uni1111D</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x111331111D', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11133uni1111D "Uni" in name but missing unicode: uni11133uni1111D">&#x111331111D</td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('&#x111331111D', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11133uni1111D "Uni" in name but missing unicode: uni11133uni1111D">&#x111331111D</td>
+</tr>
+<tr>
+<td class="colLeft">uni11133uni1111E<br>"Uni" in name but missing unicode: uni11133uni1111E</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x111331111E', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11133uni1111E "Uni" in name but missing unicode: uni11133uni1111E">&#x111331111E</td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('&#x111331111E', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11133uni1111E "Uni" in name but missing unicode: uni11133uni1111E">&#x111331111E</td>
+</tr>
+<tr>
+<td class="colLeft">uni11133uni1111F<br>"Uni" in name but missing unicode: uni11133uni1111F</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x111331111F', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11133uni1111F "Uni" in name but missing unicode: uni11133uni1111F">&#x111331111F</td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('&#x111331111F', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11133uni1111F "Uni" in name but missing unicode: uni11133uni1111F">&#x111331111F</td>
+</tr>
+<tr>
+<td class="colLeft">uni11133uni11120<br>"Uni" in name but missing unicode: uni11133uni11120</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1113311120', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11133uni11120 "Uni" in name but missing unicode: uni11133uni11120">&#x1113311120</td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('&#x1113311120', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11133uni11120 "Uni" in name but missing unicode: uni11133uni11120">&#x1113311120</td>
+</tr>
+<tr>
+<td class="colLeft">uni11133uni11121<br>"Uni" in name but missing unicode: uni11133uni11121</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1113311121', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11133uni11121 "Uni" in name but missing unicode: uni11133uni11121">&#x1113311121</td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('&#x1113311121', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11133uni11121 "Uni" in name but missing unicode: uni11133uni11121">&#x1113311121</td>
+</tr>
+<tr>
+<td class="colLeft">uni11133uni11122<br>"Uni" in name but missing unicode: uni11133uni11122</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1113311122', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11133uni11122 "Uni" in name but missing unicode: uni11133uni11122">&#x1113311122</td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('&#x1113311122', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11133uni11122 "Uni" in name but missing unicode: uni11133uni11122">&#x1113311122</td>
+</tr>
+<tr>
+<td class="colLeft">uni11133uni11122.curve<br>Ending "curve" ≠ OT Feature (cannot display this character) feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11133uni11122.curve Ending "curve" ≠ OT Feature (cannot display this character) feature"></td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11133uni11122.curve Ending "curve" ≠ OT Feature (cannot display this character) feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni11133uni11123<br>"Uni" in name but missing unicode: uni11133uni11123</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1113311123', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11133uni11123 "Uni" in name but missing unicode: uni11133uni11123">&#x1113311123</td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('&#x1113311123', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11133uni11123 "Uni" in name but missing unicode: uni11133uni11123">&#x1113311123</td>
+</tr>
+<tr>
+<td class="colLeft">uni11133uni11123.alt<br>Ending "alt" ≠ OT Feature (cannot display this character) feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11133uni11123.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11133uni11123.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni11133uni11123.alt2<br>Ending "alt2" ≠ OT Feature (cannot display this character) feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11133uni11123.alt2 Ending "alt2" ≠ OT Feature (cannot display this character) feature"></td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11133uni11123.alt2 Ending "alt2" ≠ OT Feature (cannot display this character) feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni11133uni11124<br>"Uni" in name but missing unicode: uni11133uni11124</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1113311124', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11133uni11124 "Uni" in name but missing unicode: uni11133uni11124">&#x1113311124</td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('&#x1113311124', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11133uni11124 "Uni" in name but missing unicode: uni11133uni11124">&#x1113311124</td>
+</tr>
+<tr>
+<td class="colLeft">uni11133uni11125<br>"Uni" in name but missing unicode: uni11133uni11125</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1113311125', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11133uni11125 "Uni" in name but missing unicode: uni11133uni11125">&#x1113311125</td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('&#x1113311125', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11133uni11125 "Uni" in name but missing unicode: uni11133uni11125">&#x1113311125</td>
+</tr>
+<tr>
+<td class="colLeft">uni11133uni11126<br>"Uni" in name but missing unicode: uni11133uni11126</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1113311126', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11133uni11126 "Uni" in name but missing unicode: uni11133uni11126">&#x1113311126</td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('&#x1113311126', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11133uni11126 "Uni" in name but missing unicode: uni11133uni11126">&#x1113311126</td>
+</tr>
+<tr>
+<td class="colLeft">uni11133uni11126.alt<br>Ending "alt" ≠ OT Feature (cannot display this character) feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11133uni11126.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11133uni11126.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni11133uni11126.alt2<br>Ending "alt2" ≠ OT Feature (cannot display this character) feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11133uni11126.alt2 Ending "alt2" ≠ OT Feature (cannot display this character) feature"></td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11133uni11126.alt2 Ending "alt2" ≠ OT Feature (cannot display this character) feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni11133uni11122uni1112B.curve<br>Ending "curve" ≠ OT Feature (cannot display this character) feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11133uni11122uni1112B.curve Ending "curve" ≠ OT Feature (cannot display this character) feature"></td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11133uni11122uni1112B.curve Ending "curve" ≠ OT Feature (cannot display this character) feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni11133uni11106uni11120<br>"Uni" in name but missing unicode: uni11133uni11106uni11120</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x111331110611120', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11133uni11106uni11120 "Uni" in name but missing unicode: uni11133uni11106uni11120">&#x111331110611120</td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('&#x111331110611120', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11133uni11106uni11120 "Uni" in name but missing unicode: uni11133uni11106uni11120">&#x111331110611120</td>
+</tr>
+<tr>
+<td class="colLeft">uni11133uni11122uni1112A<br>"Uni" in name but missing unicode: uni11133uni11122uni1112A</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x11133111221112A', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11133uni11122uni1112A "Uni" in name but missing unicode: uni11133uni11122uni1112A">&#x11133111221112A</td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('&#x11133111221112A', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11133uni11122uni1112A "Uni" in name but missing unicode: uni11133uni11122uni1112A">&#x11133111221112A</td>
+</tr>
+<tr>
+<td class="colLeft">uni1110Buni11145<br>"Uni" in name but missing unicode: uni1110Buni11145</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1110B11145', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1110Buni11145 "Uni" in name but missing unicode: uni1110Buni11145">&#x1110B11145</td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('&#x1110B11145', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni1110Buni11145 "Uni" in name but missing unicode: uni1110Buni11145">&#x1110B11145</td>
+</tr>
+<tr>
+<td class="colLeft">uni1110Buni11146<br>"Uni" in name but missing unicode: uni1110Buni11146</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1110B11146', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1110Buni11146 "Uni" in name but missing unicode: uni1110Buni11146">&#x1110B11146</td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('&#x1110B11146', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni1110Buni11146 "Uni" in name but missing unicode: uni1110Buni11146">&#x1110B11146</td>
+</tr>
+<tr>
+<td class="colLeft">uni1110Buni11133uni11106<br>"Uni" in name but missing unicode: uni1110Buni11133uni11106</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1110B1113311106', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1110Buni11133uni11106 "Uni" in name but missing unicode: uni1110Buni11133uni11106">&#x1110B1113311106</td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('&#x1110B1113311106', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni1110Buni11133uni11106 "Uni" in name but missing unicode: uni1110Buni11133uni11106">&#x1110B1113311106</td>
+</tr>
+<tr>
+<td class="colLeft">uni1110Funi11145<br>"Uni" in name but missing unicode: uni1110Funi11145</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1110F11145', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1110Funi11145 "Uni" in name but missing unicode: uni1110Funi11145">&#x1110F11145</td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('&#x1110F11145', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni1110Funi11145 "Uni" in name but missing unicode: uni1110Funi11145">&#x1110F11145</td>
+</tr>
+<tr>
+<td class="colLeft">uni1110Funi11146<br>"Uni" in name but missing unicode: uni1110Funi11146</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1110F11146', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1110Funi11146 "Uni" in name but missing unicode: uni1110Funi11146">&#x1110F11146</td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('&#x1110F11146', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni1110Funi11146 "Uni" in name but missing unicode: uni1110Funi11146">&#x1110F11146</td>
+</tr>
+<tr>
+<td class="colLeft">uni1110Funi11133uni11106<br>"Uni" in name but missing unicode: uni1110Funi11133uni11106</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1110F1113311106', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1110Funi11133uni11106 "Uni" in name but missing unicode: uni1110Funi11133uni11106">&#x1110F1113311106</td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('&#x1110F1113311106', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni1110Funi11133uni11106 "Uni" in name but missing unicode: uni1110Funi11133uni11106">&#x1110F1113311106</td>
+</tr>
+<tr>
+<td class="colLeft">uni1110Funi11133uni11120<br>"Uni" in name but missing unicode: uni1110Funi11133uni11120</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1110F1113311120', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1110Funi11133uni11120 "Uni" in name but missing unicode: uni1110Funi11133uni11120">&#x1110F1113311120</td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('&#x1110F1113311120', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni1110Funi11133uni11120 "Uni" in name but missing unicode: uni1110Funi11133uni11120">&#x1110F1113311120</td>
+</tr>
+<tr>
+<td class="colLeft">uni11110uni11133uni11122<br>"Uni" in name but missing unicode: uni11110uni11133uni11122</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x111101113311122', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11110uni11133uni11122 "Uni" in name but missing unicode: uni11110uni11133uni11122">&#x111101113311122</td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('&#x111101113311122', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11110uni11133uni11122 "Uni" in name but missing unicode: uni11110uni11133uni11122">&#x111101113311122</td>
+</tr>
+<tr>
+<td class="colLeft">uni11110uni11133uni11120<br>"Uni" in name but missing unicode: uni11110uni11133uni11120</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x111101113311120', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11110uni11133uni11120 "Uni" in name but missing unicode: uni11110uni11133uni11120">&#x111101113311120</td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('&#x111101113311120', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11110uni11133uni11120 "Uni" in name but missing unicode: uni11110uni11133uni11120">&#x111101113311120</td>
+</tr>
+<tr>
+<td class="colLeft">uni11111uni11145<br>"Uni" in name but missing unicode: uni11111uni11145</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1111111145', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11111uni11145 "Uni" in name but missing unicode: uni11111uni11145">&#x1111111145</td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('&#x1111111145', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11111uni11145 "Uni" in name but missing unicode: uni11111uni11145">&#x1111111145</td>
+</tr>
+<tr>
+<td class="colLeft">uni11111uni11146<br>"Uni" in name but missing unicode: uni11111uni11146</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1111111146', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11111uni11146 "Uni" in name but missing unicode: uni11111uni11146">&#x1111111146</td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('&#x1111111146', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11111uni11146 "Uni" in name but missing unicode: uni11111uni11146">&#x1111111146</td>
+</tr>
+<tr>
+<td class="colLeft">uni11111uni11133uni11106<br>"Uni" in name but missing unicode: uni11111uni11133uni11106</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x111111113311106', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11111uni11133uni11106 "Uni" in name but missing unicode: uni11111uni11133uni11106">&#x111111113311106</td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('&#x111111113311106', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11111uni11133uni11106 "Uni" in name but missing unicode: uni11111uni11133uni11106">&#x111111113311106</td>
+</tr>
+<tr>
+<td class="colLeft">uni11111uni11133uni11120<br>"Uni" in name but missing unicode: uni11111uni11133uni11120</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x111111113311120', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11111uni11133uni11120 "Uni" in name but missing unicode: uni11111uni11133uni11120">&#x111111113311120</td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('&#x111111113311120', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11111uni11133uni11120 "Uni" in name but missing unicode: uni11111uni11133uni11120">&#x111111113311120</td>
+</tr>
+<tr>
+<td class="colLeft">uni11112uni11145<br>"Uni" in name but missing unicode: uni11112uni11145</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1111211145', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11112uni11145 "Uni" in name but missing unicode: uni11112uni11145">&#x1111211145</td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('&#x1111211145', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11112uni11145 "Uni" in name but missing unicode: uni11112uni11145">&#x1111211145</td>
+</tr>
+<tr>
+<td class="colLeft">uni11112uni11146<br>"Uni" in name but missing unicode: uni11112uni11146</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x1111211146', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11112uni11146 "Uni" in name but missing unicode: uni11112uni11146">&#x1111211146</td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('&#x1111211146', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11112uni11146 "Uni" in name but missing unicode: uni11112uni11146">&#x1111211146</td>
+</tr>
+<tr>
+<td class="colLeft">uni11112uni11133uni11106<br>"Uni" in name but missing unicode: uni11112uni11133uni11106</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x111121113311106', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11112uni11133uni11106 "Uni" in name but missing unicode: uni11112uni11133uni11106">&#x111121113311106</td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('&#x111121113311106', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11112uni11133uni11106 "Uni" in name but missing unicode: uni11112uni11133uni11106">&#x111121113311106</td>
+</tr>
+<tr>
+<td class="colLeft">uni11113uni11133uni11120<br>"Uni" in name but missing unicode: uni11113uni11133uni11120</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x111131113311120', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11113uni11133uni11120 "Uni" in name but missing unicode: uni11113uni11133uni11120">&#x111131113311120</td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('&#x111131113311120', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11113uni11133uni11120 "Uni" in name but missing unicode: uni11113uni11133uni11120">&#x111131113311120</td>
+</tr>
+<tr>
+<td class="colLeft">uni11114uni11133uni11120<br>"Uni" in name but missing unicode: uni11114uni11133uni11120</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x111141113311120', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11114uni11133uni11120 "Uni" in name but missing unicode: uni11114uni11133uni11120">&#x111141113311120</td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('&#x111141113311120', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11114uni11133uni11120 "Uni" in name but missing unicode: uni11114uni11133uni11120">&#x111141113311120</td>
+</tr>
+<tr>
+<td class="colLeft">uni1110A.alt<br>Ending "alt" ≠ OT Feature (cannot display this character) feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1110A.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni1110A.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1110D.alt<br>Ending "alt" ≠ OT Feature (cannot display this character) feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1110D.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni1110D.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1110E.alt<br>Ending "alt" ≠ OT Feature (cannot display this character) feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1110E.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni1110E.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni11115.alt<br>Ending "alt" ≠ OT Feature (cannot display this character) feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11115.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11115.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1111A.alt<br>Ending "alt" ≠ OT Feature (cannot display this character) feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1111A.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni1111A.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni11121.alt<br>Ending "alt" ≠ OT Feature (cannot display this character) feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11121.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11121.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni11121.alt2<br>Ending "alt2" ≠ OT Feature (cannot display this character) feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11121.alt2 Ending "alt2" ≠ OT Feature (cannot display this character) feature"></td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11121.alt2 Ending "alt2" ≠ OT Feature (cannot display this character) feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1112A.alt<br>Ending "alt" ≠ OT Feature (cannot display this character) feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1112A.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni1112A.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1112B.alt<br>Ending "alt" ≠ OT Feature (cannot display this character) feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1112B.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni1112B.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1112C.alt<br>Ending "alt" ≠ OT Feature (cannot display this character) feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1112C.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni1112C.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni1112Cuni1112C.alt<br>Ending "alt" ≠ OT Feature (cannot display this character) feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1112Cuni1112C.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni1112Cuni1112C.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+</tr>
+<tr>
+<td class="colLeft">uni11140.alt<br>Ending "alt" ≠ OT Feature (cannot display this character) feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni11140.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="uni11140.alt Ending "alt" ≠ OT Feature (cannot display this character) feature"></td>
+</tr>
+<tr>
+<td class="colLeft">bottom11112<br>Cannot display because feature tag is missing in name.</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0000', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="bottom11112 Cannot display because feature tag is missing in name.">&#x0000</td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('&#x0000', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="bottom11112 Cannot display because feature tag is missing in name.">&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">bottom11111<br>Cannot display because feature tag is missing in name.</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0000', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="bottom11111 Cannot display because feature tag is missing in name.">&#x0000</td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('&#x0000', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="bottom11111 Cannot display because feature tag is missing in name.">&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">ttaa_tthaa_left<br> (cannot find base glyph) (cannot find base glyph) (cannot find base glyph)liga feature</td>
+<td class="character defaultFont info" onmousedown="mDown('&#x0000&#x0000&#x0000', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="ttaa_tthaa_left  (cannot find base glyph) (cannot find base glyph) (cannot find base glyph)liga feature">&#x0000&#x0000&#x0000</td>
+<td class="character om_NotoSansChakmaRegularttf liga" onmousedown="mDown('&#x0000&#x0000&#x0000', ['om_NotoSansChakmaRegularttf', 'liga'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="ttaa_tthaa_left  (cannot find base glyph) (cannot find base glyph) (cannot find base glyph)liga feature">&#x0000&#x0000&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">ra.legs<br>Ending "legs" ≠ OT Feature (cannot display this character) feature</td>
+<td class="character defaultFont info" onmousedown="mDown('', ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="ra.legs Ending "legs" ≠ OT Feature (cannot display this character) feature"></td>
+<td class="character om_NotoSansChakmaRegularttf warning" onmousedown="mDown('', ['om_NotoSansChakmaRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Chakma Regular" data-original-title="ra.legs Ending "legs" ≠ OT Feature (cannot display this character) feature"></td>
+</tr>
+
+		</table>
+
+
+
+    </div>
+    </div>
+
+
+    <script type="text/javascript">
+
+    //var elementCustomerPreview = document.getElementById("cssCodeForCustomerPreview");
+    //console.log('element.height: ', elementCustomerPreview.offsetHeight)
+    //$('.containerMain').css("top", '-' + elementCustomerPreview.offsetHeight + 'px')
+
+    var elementCustomerPreview = document.getElementById("containerMainID");
+    console.log('element.height: ', elementCustomerPreview.offsetHeight)
+    $('.containerCSScode').css("height", elementCustomerPreview.offsetHeight -200 + 'px')
+
+    var elementHeader = document.getElementById('otFeature');
+    console.log('element.height: ', elementHeader.offsetHeight)
+    divHeight = elementHeader.offsetHeight - 50
+    $('.header').css("top", '-' + divHeight + 'px')
+
+    //document.getElementById("varFont").style.color = "blue";
+
+    $('.sampleContent').on('blur keyup paste input', function() {$(".sampleContent").not(this).html($(this).html());});
+
+    
+    $('#slider').on('change',function(){
+    var val = $(this).val();
+    $(".om_NotoSansChakmaRegularttf").css("font-size",(val+"em"));
+    $(".colLeft").css("width",(50 - (val*2)) +"%");
+    });
+
+    
+
+    function toggle_detail(my_id){
+        var element = document.getElementById(my_id)
+        //var buttoncell = document.getElementById(my_id+"_cell")
+        var button = document.getElementById(my_id+"_btn")
+        if (element.style.display != 'none') {
+          element.style.display = 'none'; //$("#" + my_id).slideUp(); smooth in/out does not work currently
+          button.innerHTML = '▼';
+        } else {
+          element.style.display = ''; //$("#" + my_id).slideDown(); smooth in/out does not work currently
+          button.innerHTML = '▲';
+        }
+    }
+
+    function showhide_div(my_id, buttomName){
+        var element = document.getElementById(my_id)
+        //var buttoncell = document.getElementById(my_id+"_cell")
+        var button = document.getElementById(my_id+"_btn")
+        if (element.style.opacity != '0') {
+          element.style.opacity = '0'; 
+          setTimeout(function () {
+            element.style.zIndex = '-1';
+            }, 1000);
+          button.innerHTML = 'show ' + buttomName;
+        } else {
+          element.style.opacity = '1';
+          element.style.zIndex = '998';
+          button.innerHTML = 'hide ' + buttomName;
+        }
+    }
+
+    function hover(my_id){
+        var element = document.getElementById(my_id)
+        if (element.style.background != '') {
+          element.style.background = '';
+          element.style.color = ''; 
+        } else {
+          element.style.background = '#B3D4FC';
+          element.style.color = 'black'; 
+        }
+    }
+
+    var HTMLCodeCompareBoxes = '1234567890 xozszn HOZD 1/3 @ 1a ;#& ? % $ € ! In August of 2016, four unlikely collaborators in the world of type, fonts and font technology stood on a stage at the ATypI conference in Warsaw, Poland. The collaborators were Apple, Microsoft, Adobe and Google. Together they announced the publishing of OpenType 1.8, an update to the now ubiquitous font standard which was originally an amalgam of Apple & Microsoft’s TrueType, and Adobe’s PostScript font formats. The OpenType 1.8 announcement, ATypI, Warsaw, Poland, September 14, 2016.'
+    var fontWeightsDict = {'Noto Sans Chakma Regular (ttf)':'om_NotoSansChakmaRegularttf'};
+
+    var sampleTexts = {'All Unicodes': '\x00 \r   \xa0 ০ ১ ২ ৩ ৪ ৫ ৬ ৭ ৮ ৯ ၀ ၁ ၂ ၃ ၄ ၅ ၆ ၇ ၈ ၉ \u200c \u200d ◌ 𑄀 𑄁 𑄂 𑄃 𑄄 𑄅 𑄆 𑄇 𑄈 𑄉 𑄊 𑄋 𑄌 𑄍 𑄎 𑄏 𑄐 𑄑 𑄒 𑄓 𑄔 𑄕 𑄖 𑄗 𑄘 𑄙 𑄚 𑄛 𑄜 𑄝 𑄞 𑄟 𑄠 𑄡 𑄢 𑄣 𑄤 𑄥 𑄦 𑄧 𑄨 𑄩 𑄪 𑄫 𑄬 𑄭 𑄮 𑄯 𑄰 𑄱 𑄲 𑄳 𑄴 𑄶 𑄷 𑄸 𑄹 𑄺 𑄻 𑄼 𑄽 𑄾 𑄿 𑅀 𑅁 𑅂 𑅃', 'Default Sample': '1234567890 xozszn HOZD 1/3 @ 1a ;#& ? % $ € ! In August of 2016, four unlikely collaborators in the world of type, fonts and font technology stood on a stage at the ATypI conference in Warsaw, Poland. The collaborators were Apple, Microsoft, Adobe and Google. Together they announced the publishing of OpenType 1.8, an update to the now ubiquitous font standard which was originally an amalgam of Apple & Microsoft’s TrueType, and Adobe’s PostScript font formats. The OpenType 1.8 announcement, ATypI, Warsaw, Poland, September 14, 2016.'}
+
+    var clicks = 0;
+    var arrList = [];
+    var mySpanIDList = [];
+
+    var supported_features = [];
+
+    function functionAddSupportedFeatures(item){
+        var button = document.getElementById(item+"_btn")
+        if (supported_features.includes(item) === true){
+            button.style.color = 'black';
+            button.style.backgroundColor = 'white';
+            var index = supported_features.indexOf(item);
+            if (index > -1) {
+                supported_features.splice(index, 1);
+            }
+        }
+        else { 
+            button.style.color = 'white';
+            button.style.backgroundColor = 'black';
+            supported_features.push(item);
+        }
+        functionSetCSSFeatureCode(supported_features)
+    }
+
+    function functionChangeLanguage(item){
+        document.documentElement.lang = item;
+        $("#htmlLangTag").html(item);
+        if (['ar', 'fa', 'ur'].indexOf(item) >= 0) {
+            document.getElementById('compareBoxID').dir = 'rtl';
+            functionReadDirection('compareBoxID', 'right-to-left');
+        } else {
+            document.getElementById('compareBoxID').dir = '';
+            functionReadDirection('compareBoxID', 'left-to-right')
+        }
+
+    }
+
+
+    function functionSetCSSFeatureCode(arr){
+        var supported_features = arr;
+        var default_features =  ['liga', 'mark', 'mkmk']; //['kern', 'vkrn', 'liga', 'clig', 'calt', 'mark', 'mkmk', 'rvrm' ];
+
+        var cssCode_features = "";//font-feature-settings:
+        var moz_features = "";
+        
+
+        var arrayLength = supported_features.length;
+        for (var i = 0; i < arrayLength; i++) {
+            var item = supported_features[i];
+            cssCode_features += "'" + item + "' 1,";
+            moz_features += item + "=1,";
+        }
+
+        var defaultLength = default_features.length;
+        for (var i = 0; i < defaultLength; i++) {
+            var item = default_features[i];
+            if (supported_features.includes(item) === false){
+                cssCode_features += "'" + item + "' 0,";
+                moz_features += item + "=0,";
+            }
+        }
+
+        var stringLength = cssCode_features.length;
+        if (cssCode_features[stringLength-1] === ','){
+            var cleanedCSS = cssCode_features.substring(',', stringLength - 1);
+        } else {
+            var cleanedCSS = cssCode_features;
+        }
+
+        var element = document.getElementById('body_all');
+        element.style.fontFeatureSettings = cleanedCSS;
+
+        var stringLength = moz_features.length;
+        if (moz_features[stringLength-1] === ','){
+            var cleanedCSSmoz_features = moz_features.substring(',', stringLength - 1);
+        } else {
+            var cleanedCSSmoz_features = moz_features;
+        }
+
+        console.log('cleanedCSS: ', cleanedCSS)
+        var webkit_features = cleanedCSS 
+
+        $("#w3cfeatures").html(webkit_features);
+        $("#webkitfeatures").html(webkit_features);
+        $("#mozfeatures-up-to-14").html(webkit_features);
+        $("#mozfeatures").html(cleanedCSSmoz_features);
+        $("#msfeatures").html(webkit_features);
+        $("#ofeatures").html(webkit_features);
+
+      };
+
+
+    function functionBoxAdd() {
+
+        clicks += 1;
+        //arrList.push(clicks.toString())
+        console.log(arrList)
+        //var tdID = 'myTD_' + clicks;
+        //arrList.push(tdID.toString())
+        
+        //var x = document.createElement("TD");
+        //x.setAttribute("id", tdID);
+        //document.getElementById("tableTR").appendChild(x);
+
+        //var optionID = 'myOption_' + clicks;
+        //var d1 = document.createElement("DIV");
+        //d1.setAttribute("id", optionID);
+        //document.getElementById(tdID).appendChild(d1);
+
+        //var copyTextID = 'myText_' + clicks;
+        //var d2 = document.createElement("DIV");
+        //d2.setAttribute("id", copyTextID);
+        //d2.setAttribute("contenteditable", 'true');
+        //document.getElementById(tdID).appendChild(d2);
+        //var SampleText = document.createTextNode(HTMLCodeCompareBoxes);
+        //document.getElementById(copyTextID).innerHTML = HTMLCodeCompareBoxes;
+
+        var nameID = 'myBox_' + clicks;
+        arrList.push(nameID.toString())
+        var x = document.createElement("TD");
+        x.setAttribute("id", nameID);
+        //x.setAttribute("contenteditable", 'true');
+
+
+         var selectID = 'mySelect_' + clicks;
+         var s = document.createElement("SELECT");
+         s.setAttribute("id", selectID);
+         s.setAttribute("name", nameID);
+         s.setAttribute("onchange", "functionSelect('" + selectID + "')");
+
+         var arrListFontname = [];
+         var arrListCSSName = [];
+         lenClicks = 0;
+
+         for(fontName in fontWeightsDict){
+                 lenClicks += 1;
+                 arrListFontname.push(fontName.toString())
+                  var fontCSScode = fontWeightsDict[fontName];
+                  arrListCSSName.push(fontCSScode.toString())
+
+                  var z = document.createElement("option");
+                z.setAttribute("value", fontCSScode);
+                if (clicks + 1 == lenClicks){
+                    var FontSelected = arrListCSSName[lenClicks-1]; //minus one because array starts with zero
+                    z.setAttribute("selected", 'selected');
+                }
+                var t = document.createTextNode(fontName);
+                z.appendChild(t);
+                s.appendChild(z);
+                console.log(arrListFontname[-1])
+        }
+
+        var numberFonts = Object.keys(fontWeightsDict).length;
+        if (numberFonts <= clicks){var FontSelected = arrListCSSName[0];}
+        
+        x.setAttribute("class", "compareBox "+FontSelected);
+        document.getElementById("tableTR").appendChild(x);
+
+
+        //document.getElementById(nameID).appendChild(z);
+        document.getElementById(nameID).appendChild(s);
+
+        //var SampleText = document.createTextNode(HTMLCodeCompareBoxes);
+        var mySpanID = 'myBoxContent_' + clicks;
+        mySpanIDList.push(mySpanID.toString())
+        var span = document.createElement("SPAN");
+        span.setAttribute("id", mySpanID);
+        span.setAttribute("contenteditable", 'true');
+        span.setAttribute("class", 'compareBoxCSS');
+
+        var compareBoxFontSize = document.getElementById("myBoxContent").style.fontSize;
+        //console.log('Font-Size: ', compareBoxFontSize)
+        span.setAttribute("style", "font-size: " + compareBoxFontSize);
+
+        var getSampleText = document.getElementById('myBoxContent').innerHTML
+        //var mySampleText = document.getElementById('mySelectSampleText').value;
+        //var getSampleText = sampleTexts[mySampleText];
+        span.innerHTML = getSampleText;
+
+        //var sp = document.createTextNode(getSampleText);
+        //span.appendChild(sp);
+
+        document.getElementById(nameID).appendChild(span);
+     
+    }
+     
+    function functionBoxRemove() {
+        var item = arrList.pop() ;
+        //var nameID2 = 'myBox_' + (item);
+
+        if (item != 'myBox'){
+            var x = document.getElementById(item);
+            document.getElementById("tableTR").removeChild(x);
+        }
+
+        var index = mySpanIDList.length;
+        if (index > 1){
+            var listIndex = index -1;
+            mySpanIDList.splice(listIndex, 1);
+        }
+
+    }
+
+    var allBoxBG = arrList;
+    allBoxBG.push('myBox'); //first fixed box
+    function functionBoxBG(){
+        for (var item in allBoxBG){
+            console.log(allBoxBG[item])
+            var element = document.getElementById(allBoxBG[item])
+            if (element.style.backgroundColor != "white"){
+                element.style.backgroundColor = "white";
+                element.style.color = 'black';
+            } else {
+                element.style.backgroundColor = "black";
+                element.style.color = 'white';                
+            }
+        }
+    }
+
+    //$('#myBox').on('blur keyup paste input', function() {
+    //    var sampleText = document.getElementById('myBox').innerHTML;
+    //    for (var item in arrList){
+    //        var element = document.getElementById(arrList[item]);
+    //        element.innerHTML = sampleText;
+    //    }
+    //});
+
+    function functionSelect(selectID) {
+        console.log(selectID)
+        //var box = document.getElementById(selectID).parentElement; //.nodeName;
+        var CSScode = document.getElementById(selectID).value;
+        var boxID = document.getElementById(selectID).name;
+        console.log(CSScode)
+        console.log(boxID)
+        //document.getElementById(boxID).classList.add(value);
+        //box.classList.add(value);
+        document.getElementById(boxID).classList = CSScode;
+    }
+
+    mySpanIDList.push('myBoxContent'); //first add "fixed box"
+    function functionSelectSampleText(mySelectSampleText){
+        console.log('LISTE mySpanIDList::::', mySpanIDList)
+        var mySampleText = document.getElementById(mySelectSampleText).value;
+        var sampleText = sampleTexts[mySampleText];
+        for (var item in mySpanIDList){
+            document.getElementById(mySpanIDList[item]).innerHTML = sampleText;
+        }
+
+    }
+
+    function functionGetColorBG(item, CSSClass){
+        $(CSSClass).css('background-color', item);
+    }
+
+    function functionGetColorText(item, CSSClass){
+        $(CSSClass).css('color', item);
+    }
+
+    function functionSwapColorTextBG(CSSClass){
+        var colorText = $(CSSClass).css('color');
+        var colorBG = $(CSSClass).css('backgroundColor');
+        $(CSSClass).css('background-color', colorText);
+        $(CSSClass).css('color', colorBG);
+
+    }
+
+    $('.compareBoxCSS').on('blur keyup paste input', function() {$(".compareBoxCSS").not(this).html($(this).html());});
+
+    $('#sliderCompareBoxCSS').on('change',function(){
+        var val = $(this).val();
+        $(".compareBoxCSS").css("font-size",(val+"px"));
+        
+        document.getElementById("numberCompareBoxCSS").value = val;
+    });
+
+    $('#numberCompareBoxCSS').on('change',function(){
+        var val = $(this).val();
+        $(".compareBoxCSS").css("font-size",(val+"px"));
+        
+        document.getElementById("sliderCompareBoxCSS").value = val;
+    });
+
+    $('#sliderSampleContent').on('change',function(){
+        var val = $(this).val();
+        $(".sampleContent").css("font-size",(val+"px"));
+        if (val <= 30){
+            $(".sampleContent").css("padding",(val+"px 50px "+ val+"px 50px"));
+        } else {
+            $(".sampleContent").css("padding",("30px 50px 30px 50px"));              
+        }        
+        document.getElementById("numberSampleContent").value = val;
+    });
+
+    $('#numberSampleContent').on('change',function(){
+        var val = $(this).val();
+        $(".sampleContent").css("font-size",(val+"px"));
+        if (val <= 30){
+            $(".sampleContent").css("padding",(val+"px 50px "+ val+"px 50px"));
+        } else {
+            $(".sampleContent").css("padding",("30px 50px 30px 50px"));              
+        }           
+        document.getElementById("sliderSampleContent").value = val;
+    });
+
+    clicksBG = 0;
+    function functionGetRandomBG(cssItem){
+        
+        var arrListCSSClasses = [];
+        var numberCSSClasses = Object.keys(cssItem).length;
+        var cssClasses = document.getElementById("tableTR").className;
+
+        var oldCSSClasses = cssClasses.split(' ');
+
+        for (var item in cssItem){
+            if (item == clicksBG){
+                oldCSSClasses.push(cssItem[clicksBG]);
+            } else {
+                var index = oldCSSClasses.indexOf(cssItem[item]);
+                if (index > -1) {
+                    oldCSSClasses.splice(index, 1);
+                }
+                
+            }
+        }
+
+        var newClassNames = oldCSSClasses.join(' ')
+
+        document.getElementById("tableTR").className = newClassNames;
+        
+        clicksBG += 1;
+
+        if (clicksBG === 4){
+            clicksBG = 0;
+        }
+        
+
+    }
+
+    function functionShowCSSCode(CSSClass){
+        if ($(CSSClass).css("left") == '15px'){
+            $(CSSClass).css("transition-timing-function", "ease-in");
+            $(CSSClass).css("transition", "0.4s");
+            $(CSSClass).css("left", "80%");
+        } else {
+            $(CSSClass).css("left", "15px");
+        }
+    }
+
+    function functionShowHeader(CSSClass, my_id){
+        //var element = document.getElementById(my_id)
+        //var buttoncell = document.getElementById(my_id+"_cell")
+
+        var button = document.getElementById(my_id+"_btn");
+        if (button.innerHTML != '▼') {
+            $(CSSClass).css("top", '-' + divHeight + 'px');
+            button.innerHTML = '▼';
+        } else {
+          //$("#" + my_id).slideDown();
+            $(CSSClass).css("transition-timing-function", "ease-in");
+            $(CSSClass).css("transition", "0.4s");
+          $(CSSClass).css("top", "50px");
+          button.innerHTML = '▲';
+        }
+
+    }
+
+        /*function myFunctionAnimate(my_id, CSSClassList){
+            var button = document.getElementById(my_id+"_btn");
+            if (button.innerHTML === 'Play') {
+                button.innerHTML = 'Pause';
+                var countingUp = 1;
+                var minValue = document.getElementById(my_id).min;
+                var maxValue = document.getElementById(my_id).max;
+                var value = document.getElementById(my_id).value;
+                var i = Math.round(value);
+                var speed = Math.round(1000/maxValue);
+                myTimer = setInterval(function() {
+                    console.log(maxValue)
+                    i = i + (1 * countingUp);
+
+                    if (i == maxValue || i == minValue)
+                    {
+                        countingUp *= -1;
+                    }
+
+                    console.log(i)
+                  document.getElementById(my_id).value = i;
+                  document.getElementById(my_id+"_range").innerHTML = i;
+                  //om_AvenirNextVariableRomanttfWeight_showValue(i, CSSClassList)
+                  
+                }, speed);
+
+            } else {
+                button.innerHTML = 'Play';
+                clearInterval(myTimer);
+            }
+        }*/
+
+        
+
+        function functionTextAlignment(ID, item){
+            textAligment = ['left', 'center', 'right'];
+            console.log('ID: ', ID)
+            nameID = ID.replace('ID', '');
+            console.log('nameID: ', nameID)
+            console.log('item: ', item)
+
+            buttonName = item + nameID + "_btn";
+
+            console.log('buttonName: ', buttonName)
+
+            var button = document.getElementById(buttonName);
+            button.style.backgroundColor = 'black';
+            button.style.color = 'white';
+
+            $('#' +ID).css("text-align", item);
+
+            var textAligmentLength = textAligment.length;
+            for (var i = 0; i < textAligmentLength; i++) {
+                var itemLoop = textAligment[i];
+                if (itemLoop != item){
+                    otherButtonName = itemLoop + nameID + "_btn";
+                    console.log('otherButtonName: ', otherButtonName)
+                    var otherButton = document.getElementById(otherButtonName);
+                    otherButton.style.backgroundColor = 'white';
+                    otherButton.style.color = 'black';
+
+                }
+            }
+        }
+
+        function functionReadDirection(ID, item){
+            textAligment = ['left-to-right', 'right-to-left', 'top-to-down'];
+            console.log('ID: ', ID)
+            nameID = ID.replace('ID', '');
+            console.log('nameID: ', nameID)
+            console.log('item: ', item)
+
+            buttonName = item + nameID + "_btn";
+
+            console.log('buttonName: ', buttonName)
+
+            var button = document.getElementById(buttonName);
+            button.style.backgroundColor = 'black';
+            button.style.color = 'white';
+
+            if (item === 'right-to-left'){document.getElementById('compareBoxID').dir = 'rtl';}
+            if (item === 'left-to-right'){document.getElementById('compareBoxID').dir = '';}
+
+            // if (item === 'top-to-down'){
+            //     document.getElementById('compareBoxID').dir = '';
+
+            //     //var elt = document.documentElement
+            //     var elt = document.getElementById(ID);
+            //     elt.setAttribute("style", "writing-mode: vertical-rl;");
+            //     //$("body").css("writing-mode", 'vertical-rl;');
+            //     //document.documentElement.css("writing-mode", 'vertical-rl;');
+
+            //     /* writing-mode: vertical-rl; */
+            // }            
+
+            var textAligmentLength = textAligment.length;
+            for (var i = 0; i < textAligmentLength; i++) {
+                var itemLoop = textAligment[i];
+                if (itemLoop != item){
+                    otherButtonName = itemLoop + nameID + "_btn";
+                    console.log('otherButtonName: ', otherButtonName)
+                    var otherButton = document.getElementById(otherButtonName);
+                    otherButton.style.backgroundColor = 'white';
+                    otherButton.style.color = 'black';
+
+                }
+            }
+        }
+
+    function functionTest(CSSClass){
+            $(CSSClass).css("transition-timing-function", "ease-in");
+            $(CSSClass).css("transition", "1.4s");
+            $(CSSClass).css("transform", 'translate3d(0px,0px,0px)');
+    }
+
+
+    delta = 0;
+    beta = 0;
+    lastPos = null;
+
+    function clearBeta() {
+      beta = 0;
+    }
+
+    window.onscroll = function(){
+
+        function clear() {
+          lastPos = null;
+          delta = 0;
+        }
+
+        newPos = window.scrollY;
+        if ( lastPos != null ){
+          delta = newPos - lastPos;
+        }
+        lastPos = newPos;
+
+        //console.log(100 - delta)
+        //console.log('newPos: ', newPos)
+
+        if (delta < 0){if (beta < (delta * -1)){beta = (delta * 6)} }
+        if (delta > 0){if (beta < delta){beta = delta} }
+
+        //console.log('beta: ', beta)
+
+        setTimeout(clear, 500);
+        setTimeout(clearBeta, 500);
+
+        //console.log(100 - Pos)
+      //var distanz =  window.scrollY
+      //console.log('distanz: ', distanz);
+      //console.log( 'PositivVal: ', PositivVal );
+      //console.log(Int(distanz))
+      $('.flyingFont1').css("transform", 'translate3d(0px,' + (beta * -1) + 'px,0px)');
+      $('.flyingFont2').css("transform", 'translate3d(0px,' + (beta * -2) + 'px,0px)');
+      $('.flyingFont3').css("transform", 'translate3d(0px,' + (beta * -3) + 'px,0px)');
+    };
+
+
+    window.addEventListener("scroll", functionTest('.flyingFont1'), false);
+    window.addEventListener("scroll", functionTest('.flyingFont2'), false);
+    window.addEventListener("scroll", functionTest('.flyingFont3'), false);
+
+    $('.flyingFont').on('blur keyup paste input', function() {$(".flyingFont").not(this).html($(this).html());});
+
+    function adjustHeightOfTwoDiv(div1_ID, div2_ID){
+        var offsetHeight = document.getElementById(div1_ID).offsetHeight;
+        document.getElementById(div2_ID).style.height = offsetHeight + 'px';
+    } 
+
+    $('.flyingFont1').on('blur keyup paste input', function() {adjustHeightOfTwoDiv('flyingFont_ID1', 'flyingFont_ID0')});
+
+    function mDown(UID, CSSClassFontList) {
+        var obj = document.getElementById('zoom_characters');
+        obj.style.display = 'block';
+
+        var w = window.innerWidth;
+        var h = window.innerHeight;
+
+        if (w < h){
+            var nW = w / 2;
+            var nH = nW;
+
+        } else {
+            var nW = h / 2;
+            var nH = nW;
+        }
+        var top = (h - nH) / 2;
+        var left = (w - nW) / 2;
+
+        obj.style.height = nH + 'px';
+        obj.style.top = top + 'px';
+        obj.style.width = nW + 'px';
+        obj.style.left = left + 'px';        
+        obj.innerHTML = UID;
+        
+        var arrayLength = CSSClassFontList.length;
+        for (var i = 0; i < arrayLength; i++) {
+            var item = CSSClassFontList[i];
+            obj.classList.add(item);
+        }
+
+
+        
+
+        
+
+
+    }
+
+    function mUp() {
+        var obj = document.getElementById('zoom_characters');
+        obj.innerHTML = '';
+        obj.style.display = 'none';
+        obj.className = "characterZoom";
+    }
+
+    var prevScrollpos = window.pageYOffset;
+    window.onscroll = function() {
+    var currentScrollPos = window.pageYOffset;
+    if (prevScrollpos > currentScrollPos) {
+        document.getElementById("showFontNames_div").style.bottom = "-50px";
+        } else {
+            document.getElementById("showFontNames_div").style.bottom = "0";
+        }
+        prevScrollpos = currentScrollPos;
+    }
+
+    function scrollXNamesFunc() {
+        var elmnt = document.getElementById("containerMainID");
+        var x = elmnt.scrollLeft;
+        $('#showFontNames').css({
+            'left': 15 - x
+        });
+    }
+
+    function hintingOnOff(CSSClass, my_id){
+        var button = document.getElementById(my_id+"_btn");
+        var elements = document.getElementsByClassName('compareBox')
+
+        if (button.innerHTML != 'hinting on') {
+            Array.prototype.filter.call(elements, function(el){
+                el.style.transform = 'rotate(0.0deg)';
+                el.style.transformOrigin = 'top left';
+            });
+
+            button.className = "buttonBlack";
+            button.innerHTML = 'hinting on';
+            button.style.backgroundColor = 'black';
+
+        } else {
+            Array.prototype.filter.call(elements, function(el){
+                el.style.transform = 'rotate(0.03deg)';
+                el.style.transformOrigin = 'top center';
+            });
+
+            button.innerHTML = 'hinting off';
+            button.className = ".buttonBorder";
+
+            button.style.backgroundColor = 'red';
+
+        }
+
+    }
+
+    </script>
+
+  </body>
+</html>
+

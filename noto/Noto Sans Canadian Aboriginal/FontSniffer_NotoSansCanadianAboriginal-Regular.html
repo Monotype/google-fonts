@@ -1,0 +1,2337 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv='content-type' content='text/html; charset=utf-8'>
+    <title>MT FontSniffer Report</title>
+    <style type="text/css">
+      body {
+        background-color: #fff;
+        color: #000;
+        font-family: "Kootenay Pro", Axel, "System Font", "Fira Sans", sans-serif;
+        line-height: 1.3em;
+        margin: 0;
+        padding: 1em;
+        font-size: 14px;
+      }
+      mark {
+        background-color: #fff990;
+        color: black;
+      }
+      h2 {
+        padding: 2em 0 0.2em 2.35em;
+        border-bottom: 2px solid #606060;
+        margin: 0;
+      }
+      h3 {
+        padding: 0.2em 0 0.3em 0;
+        margin: 0;
+      }
+      table {
+        border-collapse: collapse; 
+        margin: 1em 0; 
+        /* width: 100%; */
+        padding: 0;
+      }
+      table.togglemessages {
+        border: none; 
+        background-color: #f0f0f0;
+      }
+      td, th {
+        line-height: 1.3em; 
+        padding: 0.25em 0.5em; 
+        vertical-align: top;
+        text-align: left;
+      }
+      .summary th {
+        border-bottom: 1px solid #000;
+      }
+      td p, th p {
+        margin: 0 0 0em 0;
+        padding: 0;
+      }
+      td.num, th.num {
+        text-align: right;
+        width: 6em;
+      }
+      
+      td.time, th.time {
+        text-align: right;
+        width: 4.5em;
+        color: #c8c8c8;
+        font-size: 0.9em;
+        background-color: #fff;
+      }
+      
+      th.time p {
+        color: #d8d8d8;
+        padding-top: 0.5em;
+      }
+      
+      .summary {
+        width: auto;
+      }
+      
+      .summary tbody tr:nth-child(odd) {
+        background-color: #f8f8f8;
+      }
+      
+      .summary tbody tr:nth-last-child(1) {
+        background-color: #f0f0f0;
+      }
+      
+      .code {
+        font-weight: bold;
+        color: #fff;
+        width: 2em; 
+        text-align: center
+      }
+      
+      .results th {
+        border-radius: 0.0em;
+      }
+      
+      .results th button{
+        font-family: "Erler Dingbats", Arial;
+        line-height: 1.4em;
+        width: 2.6em;
+        padding-top: 0.2em;
+        margin-top: 0.2em;
+        background-color: rgba(255, 255, 255, 0.0);
+        border-radius: 0.0em;
+        border: 0px solid rgba(0, 0, 0, 0.3);
+      }
+
+      .A, .S, .E, .W, .I, .P {
+        width: 5em; 
+      }
+
+      tr.S {                                  color: hsl(  0,  0%,  90%) }
+      tr.S .code {                            color: hsl(  0,  0%,  90%) }
+      tr.S:nth-child(odd)        { background-color: hsl(  0,  0%,  10%) }
+      tr.S:nth-child(even)       { background-color: hsl(  0,  0%,  20%) }
+      tr.S:nth-child(odd)  .code { background-color: hsl(  0,  0%,  20%) }
+      tr.S:nth-child(even) .code { background-color: hsl(  0,  0%,  10%) }
+
+      tr.C {                                  color: hsl(  0,  0%,  90%) }
+      tr.C .code {                            color: hsl(  0,  0%,  90%) }
+      tr.C:nth-child(odd)        { background-color: hsl(  0,  100%,  20%) }
+      tr.C:nth-child(even)       { background-color: hsl(  0,  100%,  25%) }
+      tr.C:nth-child(odd)  .code { background-color: hsl(  0,  100%,  27%) }
+      tr.C:nth-child(even) .code { background-color: hsl(  0,  100%,  30%) }
+
+      tr.E {                                  color: #000 }
+      tr.E .code {                            color: #fff }
+      tr.E:nth-child(odd)        { background-color: hsl( 24,  100%, 95%) }
+      tr.E:nth-child(even)       { background-color: hsl( 24,  100%, 90%) }
+      tr.E:nth-child(odd)  .code { background-color: hsl( 24,  100%, 45%) }
+      tr.E:nth-child(even) .code { background-color: hsl( 24,  100%, 40%) }
+      
+      tr.W {                                  color: #000 }
+      tr.W .code {                            color: #fff }
+      tr.W:nth-child(odd)        { background-color: hsl( 50,  65%, 95%) }
+      tr.W:nth-child(even)       { background-color: hsl( 50,  65%, 90%) }
+      tr.W:nth-child(odd)  .code { background-color: hsl( 50,  65%, 52%) }
+      tr.W:nth-child(even) .code { background-color: hsl( 50,  65%, 48%) }
+      
+      tr.I {                                  color: #000 }
+      tr.I .code {                            color: #fff }
+      tr.I:nth-child(odd)        { background-color: hsl( 200,  50%, 95%) }
+      tr.I:nth-child(even)       { background-color: hsl( 200,  50%, 90%) }
+      tr.I:nth-child(odd)  .code { background-color: hsl( 200,  50%, 52%) }
+      tr.I:nth-child(even) .code { background-color: hsl( 200,  50%, 48%) }
+      
+      tr.P {                                  color: #000 }
+      tr.P .code {                            color: #fff }
+      tr.P:nth-child(odd)        { background-color: hsl( 130,  40%, 95%) }
+      tr.P:nth-child(even)       { background-color: hsl( 130,  40%, 90%) }
+      tr.P:nth-child(odd)  .code { background-color: hsl( 130,  40%, 60%) }
+      tr.P:nth-child(even) .code { background-color: hsl( 130,  40%, 55%) }
+      
+      tr.A {                                  color: hsl(  0,  0%,  50%) }
+      tr.A .code {                            color: hsl(  0,  0%,  50%) }
+      tr.A:nth-child(odd)        { background-color: hsl(  0,  0%,  75%) }
+      tr.A:nth-child(even)       { background-color: hsl(  0,  0%,  80%) }
+      tr.A:nth-child(odd)  .code { background-color: hsl(  0,  0%,  85%) }
+      tr.A:nth-child(even) .code { background-color: hsl(  0,  0%,  90%) }
+      
+      
+      /* Summary backgrounds */
+
+      th.S {
+        background: hsl(  0,  0%,  85%);
+      }
+      
+      th.A {
+        background: hsl(  0,  0%,  85%);
+      }
+      
+      th.E {
+        background: hsl( 24,  100%, 45%);
+      }
+      
+      th.I {
+        background: hsl( 200,  50%, 52%);
+      }
+      
+      th.P {
+        background: hsl( 130,  40%, 60%);
+      }
+      
+      th.W {
+        background: hsl( 50,  65%, 52%);
+      }
+      
+      
+      th.AE {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 24,  100%, 45%) 100%
+        );
+      }
+      
+      th.AI {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 200,  50%, 52%) 100%
+        );
+      }
+      
+      th.AP {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 130,  40%, 60%) 100%
+        );
+      }
+      
+      th.AW {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.EI {
+        background: linear-gradient(
+          90deg,
+          hsl( 24,  100%, 45%) 0%,
+          hsl( 200,  50%, 52%) 100%
+        );
+      }
+      
+      th.EP {
+        background: linear-gradient(
+          90deg,
+          hsl( 24,  100%, 45%) 0%,
+          hsl( 130,  40%, 60%) 100%
+        );
+      }
+      
+      th.EW {
+        background: linear-gradient(
+          90deg,
+          hsl( 24,  100%, 45%) 0%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.IP {
+        background: linear-gradient(
+          90deg,
+          hsl( 200,  50%, 52%) 0%,
+          hsl( 130,  40%, 60%) 100%
+        );
+      }
+      
+      th.IW {
+        background: linear-gradient(
+          90deg,
+          hsl( 200,  50%, 52%) 0%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.PW {
+        background: linear-gradient(
+          90deg,
+          hsl( 130,  40%, 60%) 0%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      
+      th.AEI {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 24,  100%, 45%) 50%,
+          hsl( 200,  50%, 52%) 100%
+        );
+      }
+      
+      th.AEP {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 24,  100%, 45%) 50%,
+          hsl( 130,  40%, 60%) 100%
+        );
+      }
+      
+      th.AEW {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 24,  100%, 45%) 50%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.AIP {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 200,  50%, 52%) 50%,
+          hsl( 130,  40%, 60%) 100%
+        );
+      }
+      
+      th.AIW {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 200,  50%, 52%) 50%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.APW {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 130,  40%, 60%) 50%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.EIP {
+        background: linear-gradient(
+          90deg,
+          hsl( 24,  100%, 45%) 0%,
+          hsl( 200,  50%, 52%) 50%,
+          hsl( 130,  40%, 60%) 100%
+        );
+      }
+      
+      th.EIW {
+        background: linear-gradient(
+          90deg,
+          hsl( 24,  100%, 45%) 0%,
+          hsl( 200,  50%, 52%) 50%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.IPW {
+        background: linear-gradient(
+          90deg,
+          hsl( 200,  50%, 52%) 0%,
+          hsl( 130,  40%, 60%) 50%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      
+      /* AEIPW */
+      
+      
+      th.AEIP {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 24,  100%, 45%) 33%,
+          hsl( 200,  50%, 52%) 66%,
+          hsl( 130,  40%, 60%) 100%
+        );
+      }
+      
+      th.AEIW {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 24,  100%, 45%) 33%,
+          hsl( 200,  50%, 52%) 66%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.AEPW {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 24,  100%, 45%) 33%,
+          hsl( 130,  40%, 60%) 66%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.AIPW {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 200,  50%, 52%) 33%,
+          hsl( 130,  40%, 60%) 66%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.EIPW {
+        background: linear-gradient(
+          90deg,
+          hsl( 24,  100%, 45%) 0%,
+          hsl( 200,  50%, 52%) 33%,
+          hsl( 130,  40%, 60%) 66%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      
+      th.AEIPW {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 24,  100%, 45%) 25%,
+          hsl( 200,  50%, 52%) 50%,
+          hsl( 130,  40%, 60%) 75%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      
+      .fontname {
+        width: 20em;
+      }
+      .table {
+        width: 2.5em;
+      }
+      .feature {
+        width: 7.5em;
+      }
+      .message {
+        /*width: 20em;*/
+      }
+      .detail {
+        width: 40em;
+      }
+      .detail p {
+      }
+      .name { background-color: #eee }
+      .name th { padding-top: 1em }
+
+    </style>
+    <script type='text/javascript'>
+      function toggle(toggle_class){
+        var elements = document.getElementsByTagName('tr')
+        for (var i = 0; i < elements.length; i++){
+          var e = elements[i]
+          if (e.className == toggle_class) {
+            if (e.style.display != 'none') {
+              e.style.display = 'none'
+            } else {
+              e.style.display = 'table-row'
+            }
+          }
+        }
+      }
+    </script>
+    
+    <script type='text/javascript'>
+      function toggle_detail(my_id){
+        var element = document.getElementById(my_id)
+        var buttoncell = document.getElementById(my_id+"_cell")
+        var button = document.getElementById(my_id+"_btn")
+        if (element.style.display != 'none') {
+          element.style.display = 'none'
+          buttoncell.style.borderRadius = '0.0em'
+          button.firstChild.data = '\u25bc'
+        } else {
+          element.style.display = ''
+          buttoncell.style.borderRadius = '0.0em 0.0em 0 0'
+          button.firstChild.data = '\u25b2'
+        }
+      }
+    </script>
+    
+    <script type='text/javascript'>
+      function toggle_all_results(){
+        var elements = document.getElementsByClassName('result_body')
+        for (var i = 0; i < elements.length; i++){
+          var e = elements[i]
+          if (e.style.display != 'none') {
+            e.style.display = 'none'
+          } else {
+            e.style.display = ''
+          }
+        }
+      }
+    </script>
+  </head>
+  <body onload="toggle_all_results()">
+    <h1>FontSniffer Report</h1>
+    <p>Library Project, start: 2020-09-26 - 14:39.01, end: 14:39.02</p>
+    <table class='togglemessages'>
+      <tr>
+        <td>Show messages:</td>
+        <td><input type='checkbox' checked name='P' id='itoggle' onclick='toggle("P");'>
+          <label for='itoggle'>Pass</label></td>
+        <td><input type='checkbox' checked name='I' id='itoggle' onclick='toggle("I");'>
+          <label for='itoggle'>Info</label></td>
+        <td><input type='checkbox' checked name='W' id='wtoggle'onclick='toggle("W");'>
+          <label for='wtoggle'>Warning</label></td>
+        <td><input type='checkbox' checked name='E' id='etoggle' onclick='toggle("E");'>
+          <label for='etoggle'>Error</label></td>
+        <td><input type='checkbox' checked name='C' id='ctoggle' onclick='toggle("C");'>
+          <label for='ctoggle'>Critical</label></td>
+          
+        <td><button onclick='toggle_all_results();'>Toggle all details</button></td>
+      </tr>
+    </table>
+    
+        <table class="fontlist">
+
+            <thead>
+                <tr><th>Font List</th></tr>
+            </thead>
+            <tbody>
+								<tr><td>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</td></tr>
+						</tbody>
+        </table>
+
+            <h2>Table Description</h2>
+            <table class="results">
+
+                <thead>
+                    <tr>
+                    <th class="A code" id="Table Description_cell">
+                    <button id="Table Description_btn" onclick='toggle_detail("Table Description");' title="Toggle details">&#x25bc;</button>
+                    </th>
+                    <th colspan="3"><h3>Table Description</h3></th></tr>
+                </thead>
+              <tbody id="Table Description" class="result_body">
+                    
+                <tr class="A">
+                    <td class="code"><p>Level</p></td>
+                    <td class="fontname"><p>Font Name</p></td>
+                    <td class="table"><p>Table</p></td>
+                    <td class="feature"><p>Feature/Item</p></td>
+                    <td class="message"><p>Description</p></td>
+                    <td class="detail"><p>Notes</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+              </tbody>
+            </table>				<h2>Table Version</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Table Version_cell">
+                <button id="Table Version_btn" onclick='toggle_detail("Table Version");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Table Version</h3></th></tr>
+            </thead>
+            <tbody id="Table Version" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>head</p></td>
+                    <td class="feature"><p>version</p></td>
+                    <td class="message"><p>head table version should be 1.0.</p></td>
+                    <td class="detail"><p>head table version is 1.0.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>version</p></td>
+                    <td class="message"><p>OS/2 table version should be 4.</p></td>
+                    <td class="detail"><p>OS/2 table version is 4.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>post</p></td>
+                    <td class="feature"><p>format</p></td>
+                    <td class="message"><p>If not CFF, post table format should be 2.</p></td>
+                    <td class="detail"><p>Post table format is 3.0 but should be 2 (except for CJK fonts). Please investigate.<br>More infos here:<br><a href='https://docs.microsoft.com/en-us/typography/opentype/spec/post'>https://docs.microsoft.com/en-us/typography/opentype/spec/post</a></p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>OT Sanitizer</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="OT Sanitizer_cell">
+                <button id="OT Sanitizer_btn" onclick='toggle_detail("OT Sanitizer");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>OT Sanitizer</h3></th></tr>
+            </thead>
+            <tbody id="OT Sanitizer" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>-/-</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>OT Sanitizer</p></td>
+                    <td class="detail"><p>Passed:<br>&emsp;&emsp;&emsp;&emsp;Process start (TTF file)<br>&emsp;&emsp;&emsp;&emsp;&emsp;ProcessGeneric start<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Validating font<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Reading font<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Processing glyphs...<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Processing glyphs done<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Writing new font<br>&emsp;&emsp;&emsp;&emsp;&emsp;ProcessGeneric end<br>&emsp;&emsp;&emsp;&emsp;Process end<br>&emsp;&emsp;&emsp;&emsp;Process start (TTF file)<br>&emsp;&emsp;&emsp;&emsp;&emsp;ProcessGeneric start<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Validating font<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Reading font<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Processing glyphs...<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Processing glyphs done<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Writing new font<br>&emsp;&emsp;&emsp;&emsp;&emsp;ProcessGeneric end<br>&emsp;&emsp;&emsp;&emsp;Process end<br></p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Weight Class</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Weight Class_cell">
+                <button id="Weight Class_btn" onclick='toggle_detail("Weight Class");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Weight Class</h3></th></tr>
+            </thead>
+            <tbody id="Weight Class" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>usWeightClass</p></td>
+                    <td class="message"><p>OS/2 weight class should be greater then 250 otherwise it cause issues in MS PowerPoint.</p></td>
+                    <td class="detail"><p>OK: usWeightClass is '400'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>File Name</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="File Name_cell">
+                <button id="File Name_btn" onclick='toggle_detail("File Name");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>File Name</h3></th></tr>
+            </thead>
+            <tbody id="File Name" class="result_body">
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>-/-</p></td>
+                    <td class="feature"><p>File Name</p></td>
+                    <td class="message"><p>File name should not be longer than 31 characters, otherwise style linking does not work in MS Word/Mac.</p></td>
+                    <td class="detail"><p>file name is too long: '38', max. 31.<br>'NotoSansCanadianAboriginal-Regular.ttf'<br>Please investigate.<br>(Background: Still an issue for Style Linking in MS Word for Mac. Tested Sept. 2018)</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Style Linking</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Style Linking_cell">
+                <button id="Style Linking_btn" onclick='toggle_detail("Style Linking");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Style Linking</h3></th></tr>
+            </thead>
+            <tbody id="Style Linking" class="result_body">
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>-/-</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Check if italic or upright.</p></td>
+                    <td class="detail"><p>It seems to be an upright font.<br>OS2.fsSelection.italic: False<br>head.macStyle.italic: False<br>post.header.italicAngle: 0.0</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>-/-</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Check if bold.</p></td>
+                    <td class="detail"><p>It seems to be not bold.<br>OS2.fsSelection.bold: False<br>head.macStyle.bold: False</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Empty Glyphs</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Empty Glyphs_cell">
+                <button id="Empty Glyphs_btn" onclick='toggle_detail("Empty Glyphs");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Empty Glyphs</h3></th></tr>
+            </thead>
+            <tbody id="Empty Glyphs" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>glyf</p></td>
+                    <td class="feature"><p>outline</p></td>
+                    <td class="message"><p>Unicodes should have outlines.</p></td>
+                    <td class="detail"><p>The following glyphs have no outlines, but this is correct:<br>Monotype NULL (uni0000)<br>ZERO WIDTH NO-BREAK SPACE (uniFEFF)<br> (uni000D)<br>SPACE (uni0020)<br>NO-BREAK SPACE (uni00A0)</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Supplementary NFC</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Supplementary NFC_cell">
+                <button id="Supplementary NFC_btn" onclick='toggle_detail("Supplementary NFC");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Supplementary NFC</h3></th></tr>
+            </thead>
+            <tbody id="Supplementary NFC" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>unicode</p></td>
+                    <td class="message"><p>Supplementary glyphs</p></td>
+                    <td class="detail"><p>No issues found.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Supplementary Glyphs</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Supplementary Glyphs_cell">
+                <button id="Supplementary Glyphs_btn" onclick='toggle_detail("Supplementary Glyphs");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Supplementary Glyphs</h3></th></tr>
+            </thead>
+            <tbody id="Supplementary Glyphs" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>unicode</p></td>
+                    <td class="message"><p>Supplementary glyphs</p></td>
+                    <td class="detail"><p>No issues found.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Check against Base Glyph Advance Width</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Check against Base Glyph Advance Width_cell">
+                <button id="Check against Base Glyph Advance Width_btn" onclick='toggle_detail("Check against Base Glyph Advance Width");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Check against Base Glyph Advance Width</h3></th></tr>
+            </thead>
+            <tbody id="Check against Base Glyph Advance Width" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>hmtx</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Compare advance width against base glyph advance width (tolerance 2 units).</p></td>
+                    <td class="detail"><p>'U+1402' (ID 12): width is 1590, base glyph ('U+1403' (ID 13)) width is 1590<br>'U+1404' (ID 14): width is 1590, base glyph ('U+1403' (ID 13)) width is 1590<br>'U+1406' (ID 16): width is 1497, base glyph ('U+1405' (ID 15)) width is 1497<br>'U+1407' (ID 17): width is 1497, base glyph ('U+1405' (ID 15)) width is 1497<br>'U+1408' (ID 18): width is 1497, base glyph ('U+1405' (ID 15)) width is 1497<br>'U+1409' (ID 19): width is 1497, base glyph ('U+1405' (ID 15)) width is 1497<br>'U+140B' (ID 21): width is 1497, base glyph ('U+140A' (ID 20)) width is 1497<br>'U+1416' (ID 32): width is 1497, base glyph ('U+1405' (ID 15)) width is 1497<br>'U+141B' (ID 37): width is 1497, base glyph ('U+140A' (ID 20)) width is 1497<br>'U+1432' (ID 60): width is 1670, base glyph ('U+1431' (ID 59)) width is 1670<br>'U+1434' (ID 62): width is 1457, base glyph ('U+1433' (ID 61)) width is 1457<br>'U+1435' (ID 63): width is 1457, base glyph ('U+1433' (ID 61)) width is 1457<br>'U+1436' (ID 64): width is 1457, base glyph ('U+1433' (ID 61)) width is 1457<br>'U+1437' (ID 65): width is 1457, base glyph ('U+1433' (ID 61)) width is 1457<br>'U+1439' (ID 67): width is 1457, base glyph ('U+1438' (ID 66)) width is 1457<br>'U+144D' (ID 87): width is 1568, base glyph ('U+144E' (ID 88)) width is 1568<br>'U+144F' (ID 89): width is 1568, base glyph ('U+144E' (ID 88)) width is 1568<br>'U+1451' (ID 91): width is 1396, base glyph ('U+1450' (ID 90)) width is 1396<br>'U+1452' (ID 92): width is 1396, base glyph ('U+1450' (ID 90)) width is 1396<br>'U+1453' (ID 93): width is 1396, base glyph ('U+1450' (ID 90)) width is 1396<br>'U+1454' (ID 94): width is 1396, base glyph ('U+1450' (ID 90)) width is 1396<br>'U+1456' (ID 96): width is 1396, base glyph ('U+1455' (ID 95)) width is 1396<br>'U+146C' (ID 118): width is 1212, base glyph ('U+146D' (ID 119)) width is 1212<br>'U+146E' (ID 120): width is 1212, base glyph ('U+146D' (ID 119)) width is 1212<br>'U+1470' (ID 122): width is 1212, base glyph ('U+146F' (ID 121)) width is 1212<br>'U+1471' (ID 123): width is 1212, base glyph ('U+146F' (ID 121)) width is 1212<br>'U+1473' (ID 125): width is 1212, base glyph ('U+1472' (ID 124)) width is 1212<br>'U+148A' (ID 148): width is 1296, base glyph ('U+148B' (ID 149)) width is 1296<br>'U+148C' (ID 150): width is 1296, base glyph ('U+148B' (ID 149)) width is 1296<br>'U+148E' (ID 152): width is 1296, base glyph ('U+148D' (ID 151)) width is 1296<br>'U+148F' (ID 153): width is 1296, base glyph ('U+148D' (ID 151)) width is 1296<br>'U+1491' (ID 155): width is 1296, base glyph ('U+1490' (ID 154)) width is 1296<br>'U+14A4' (ID 174): width is 1211, base glyph ('U+14A5' (ID 175)) width is 1211<br>'U+14A6' (ID 176): width is 1211, base glyph ('U+14A5' (ID 175)) width is 1211<br>'U+14A8' (ID 178): width is 1211, base glyph ('U+14A7' (ID 177)) width is 1211<br>'U+14A9' (ID 179): width is 1211, base glyph ('U+14A7' (ID 177)) width is 1211<br>'U+14AB' (ID 181): width is 1211, base glyph ('U+14AA' (ID 180)) width is 1211<br>'U+14C1' (ID 203): width is 1852, base glyph ('U+14C2' (ID 204)) width is 1852<br>'U+14C3' (ID 205): width is 1852, base glyph ('U+14C2' (ID 204)) width is 1852<br>'U+14C5' (ID 207): width is 1852, base glyph ('U+14C4' (ID 206)) width is 1852<br>'U+14C6' (ID 208): width is 1852, base glyph ('U+14C4' (ID 206)) width is 1852<br>'U+14C8' (ID 210): width is 1852, base glyph ('U+14C7' (ID 209)) width is 1852<br>'U+14CC' (ID 214): width is 1852, base glyph ('U+14C7' (ID 209)) width is 1852<br>'U+14CE' (ID 216): width is 1852, base glyph ('U+14C7' (ID 209)) width is 1852<br>'U+14CF' (ID 217): width is 1852, base glyph ('U+14C7' (ID 209)) width is 1852<br>'U+14D4' (ID 222): width is 1812, base glyph ('U+14D5' (ID 223)) width is 1812<br>'U+14D6' (ID 224): width is 1812, base glyph ('U+14D5' (ID 223)) width is 1812<br>'U+14D8' (ID 226): width is 1812, base glyph ('U+14D7' (ID 225)) width is 1812<br>'U+14D9' (ID 227): width is 1812, base glyph ('U+14D7' (ID 225)) width is 1812<br>'U+14DB' (ID 229): width is 1812, base glyph ('U+14DA' (ID 228)) width is 1812<br>'U+14E2' (ID 236): width is 1812, base glyph ('U+14D7' (ID 225)) width is 1812<br>'U+14E4' (ID 238): width is 1812, base glyph ('U+14D7' (ID 225)) width is 1812<br>'U+14E7' (ID 241): width is 1812, base glyph ('U+14DA' (ID 228)) width is 1812<br>'U+14E9' (ID 243): width is 1812, base glyph ('U+14DA' (ID 228)) width is 1812<br>'U+14EE' (ID 248): width is 1182, base glyph ('U+14EF' (ID 249)) width is 1182<br>'U+14F0' (ID 250): width is 1182, base glyph ('U+14EF' (ID 249)) width is 1182<br>'U+14F2' (ID 252): width is 1182, base glyph ('U+14F1' (ID 251)) width is 1182<br>'U+14F3' (ID 253): width is 1182, base glyph ('U+14F1' (ID 251)) width is 1182<br>'U+14F5' (ID 255): width is 1182, base glyph ('U+14F4' (ID 254)) width is 1182<br>'U+1512' (ID 284): width is 1730, base glyph ('U+1511' (ID 283)) width is 1730<br>'U+1514' (ID 286): width is 2017, base glyph ('U+1513' (ID 285)) width is 2017<br>'U+1516' (ID 288): width is 2017, base glyph ('U+1515' (ID 287)) width is 2017<br>'U+1527' (ID 305): width is 1151, base glyph ('U+1528' (ID 306)) width is 1151<br>'U+1529' (ID 307): width is 1151, base glyph ('U+1528' (ID 306)) width is 1151<br>'U+152B' (ID 309): width is 1151, base glyph ('U+152A' (ID 308)) width is 1151<br>'U+152C' (ID 310): width is 1151, base glyph ('U+152A' (ID 308)) width is 1151<br>'U+152E' (ID 312): width is 1151, base glyph ('U+152D' (ID 311)) width is 1151<br>'U+1545' (ID 335): width is 1832, base glyph ('U+1546' (ID 336)) width is 1832<br>'U+1547' (ID 337): width is 1832, base glyph ('U+1546' (ID 336)) width is 1832<br>'U+1549' (ID 339): width is 1192, base glyph ('U+1548' (ID 338)) width is 1192<br>'U+154C' (ID 342): width is 1192, base glyph ('U+154B' (ID 341)) width is 1192<br>'U+1554' (ID 350): width is 1613, base glyph ('U+1555' (ID 351)) width is 1613<br>'U+1556' (ID 352): width is 1613, base glyph ('U+1555' (ID 351)) width is 1613<br>'U+1558' (ID 354): width is 1632, base glyph ('U+1557' (ID 353)) width is 1632<br>'U+155A' (ID 356): width is 1632, base glyph ('U+1559' (ID 355)) width is 1632<br>'U+1562' (ID 364): width is 1568, base glyph ('U+1560' (ID 362)) width is 1568<br>'U+1563' (ID 365): width is 1568, base glyph ('U+1561' (ID 363)) width is 1568<br>'U+1565' (ID 367): width is 1508, base glyph ('U+1564' (ID 366)) width is 1508<br>'U+1567' (ID 369): width is 1508, base glyph ('U+1566' (ID 368)) width is 1508<br>'U+1576' (ID 384): width is 1654, base glyph ('U+1575' (ID 383)) width is 1654<br>'U+1578' (ID 386): width is 1654, base glyph ('U+1577' (ID 385)) width is 1654<br>'U+157A' (ID 388): width is 1654, base glyph ('U+1579' (ID 387)) width is 1654<br>'U+1592' (ID 412): width is 1876, base glyph ('U+1591' (ID 411)) width is 1876<br>'U+15A1' (ID 427): width is 1812, base glyph ('U+15A0' (ID 426)) width is 1812<br>'U+15A3' (ID 429): width is 1812, base glyph ('U+15A2' (ID 428)) width is 1812<br>'U+15A5' (ID 431): width is 1812, base glyph ('U+15A4' (ID 430)) width is 1812<br>'U+15A9' (ID 435): width is 1251, base glyph ('U+15A8' (ID 434)) width is 1251<br>'U+15AB' (ID 437): width is 1251, base glyph ('U+15AA' (ID 436)) width is 1251<br>'U+15AD' (ID 439): width is 1251, base glyph ('U+15AC' (ID 438)) width is 1251<br>'U+15C7' (ID 465): width is 1457, base glyph ('U+15C6' (ID 464)) width is 1457<br>'U+15C8' (ID 466): width is 1457, base glyph ('U+15C6' (ID 464)) width is 1457<br>'U+15CD' (ID 471): width is 1457, base glyph ('U+15CC' (ID 470)) width is 1457<br>'U+15CE' (ID 472): width is 1457, base glyph ('U+15CC' (ID 470)) width is 1457<br>'U+15D3' (ID 477): width is 1457, base glyph ('U+15D2' (ID 476)) width is 1457<br>'U+15D9' (ID 483): width is 1457, base glyph ('U+15D8' (ID 482)) width is 1457<br>'U+15DA' (ID 484): width is 1457, base glyph ('U+15D8' (ID 482)) width is 1457<br>'U+15DF' (ID 489): width is 1515, base glyph ('U+15DE' (ID 488)) width is 1515<br>'U+15E0' (ID 490): width is 1515, base glyph ('U+15DE' (ID 488)) width is 1515<br>'U+15E5' (ID 495): width is 1475, base glyph ('U+15E4' (ID 494)) width is 1475<br>'U+15E6' (ID 496): width is 1475, base glyph ('U+15E4' (ID 494)) width is 1475<br>'U+15EB' (ID 501): width is 1345, base glyph ('U+15EA' (ID 500)) width is 1345<br>'U+15EC' (ID 502): width is 1345, base glyph ('U+15EA' (ID 500)) width is 1345<br>'U+15F2' (ID 508): width is 1166, base glyph ('U+15F1' (ID 507)) width is 1166<br>'U+15F3' (ID 509): width is 1166, base glyph ('U+15F1' (ID 507)) width is 1166<br>'U+15F8' (ID 514): width is 1378, base glyph ('U+15F7' (ID 513)) width is 1378<br>'U+15F9' (ID 515): width is 1378, base glyph ('U+15F7' (ID 513)) width is 1378<br>'U+15FE' (ID 520): width is 1368, base glyph ('U+15FD' (ID 519)) width is 1368<br>'U+15FF' (ID 521): width is 1368, base glyph ('U+15FD' (ID 519)) width is 1368<br>'U+1605' (ID 527): width is 1707, base glyph ('U+1604' (ID 526)) width is 1707<br>'U+1606' (ID 528): width is 1707, base glyph ('U+1604' (ID 526)) width is 1707<br>'U+160B' (ID 533): width is 1166, base glyph ('U+160A' (ID 532)) width is 1166<br>'U+160C' (ID 534): width is 1166, base glyph ('U+160A' (ID 532)) width is 1166<br>'U+1611' (ID 539): width is 1420, base glyph ('U+1610' (ID 538)) width is 1420<br>'U+1612' (ID 540): width is 1420, base glyph ('U+1610' (ID 538)) width is 1420<br>'U+1618' (ID 546): width is 1829, base glyph ('U+1617' (ID 545)) width is 1829<br>'U+1619' (ID 547): width is 1829, base glyph ('U+1617' (ID 545)) width is 1829<br>'U+161F' (ID 553): width is 1778, base glyph ('U+161E' (ID 552)) width is 1778<br>'U+1620' (ID 554): width is 1778, base glyph ('U+161E' (ID 552)) width is 1778<br>'U+1625' (ID 559): width is 1237, base glyph ('U+1624' (ID 558)) width is 1237<br>'U+1626' (ID 560): width is 1237, base glyph ('U+1624' (ID 558)) width is 1237<br>'U+162B' (ID 565): width is 1347, base glyph ('U+162A' (ID 564)) width is 1347<br>'U+162C' (ID 566): width is 1347, base glyph ('U+162A' (ID 564)) width is 1347<br>'U+1631' (ID 571): width is 1237, base glyph ('U+1630' (ID 570)) width is 1237<br>'U+1632' (ID 572): width is 1237, base glyph ('U+1630' (ID 570)) width is 1237<br>'U+1637' (ID 577): width is 1347, base glyph ('U+1636' (ID 576)) width is 1347<br>'U+1638' (ID 578): width is 1347, base glyph ('U+1636' (ID 576)) width is 1347<br>'U+163D' (ID 583): width is 1216, base glyph ('U+163C' (ID 582)) width is 1216<br>'U+163E' (ID 584): width is 1216, base glyph ('U+163C' (ID 582)) width is 1216<br>'U+1643' (ID 589): width is 1454, base glyph ('U+1642' (ID 588)) width is 1454<br>'U+1644' (ID 590): width is 1454, base glyph ('U+1642' (ID 588)) width is 1454<br>'U+164B' (ID 597): width is 1454, base glyph ('U+164A' (ID 596)) width is 1454<br>'U+164C' (ID 598): width is 1454, base glyph ('U+164A' (ID 596)) width is 1454<br>'U+1651' (ID 603): width is 1256, base glyph ('U+1650' (ID 602)) width is 1256<br>'U+1652' (ID 604): width is 1256, base glyph ('U+1650' (ID 602)) width is 1256<br>'U+1657' (ID 609): width is 1256, base glyph ('U+1656' (ID 608)) width is 1256<br>'U+1658' (ID 610): width is 1256, base glyph ('U+1656' (ID 608)) width is 1256<br>'U+165E' (ID 616): width is 1347, base glyph ('U+165D' (ID 615)) width is 1347<br>'U+165F' (ID 617): width is 1347, base glyph ('U+165D' (ID 615)) width is 1347<br>'U+1664' (ID 622): width is 1256, base glyph ('U+1663' (ID 621)) width is 1256<br>'U+1665' (ID 623): width is 1256, base glyph ('U+1663' (ID 621)) width is 1256<br>'U+166A' (ID 628): width is 1256, base glyph ('U+1669' (ID 627)) width is 1256<br>'U+166B' (ID 629): width is 1256, base glyph ('U+1669' (ID 627)) width is 1256<br>'U+1674' (ID 638): width is 2546, base glyph ('U+1673' (ID 637)) width is 2546<br>'U+18B0' (ID 650): width is 1497, base glyph ('U+1405' (ID 15)) width is 1497<br>'U+18B1' (ID 651): width is 1497, base glyph ('U+140A' (ID 20)) width is 1497<br>'U+18B2' (ID 652): width is 1497, base glyph ('U+140A' (ID 20)) width is 1497<br>'U+18B4' (ID 654): width is 1457, base glyph ('U+1433' (ID 61)) width is 1457<br>'U+18B5' (ID 655): width is 1457, base glyph ('U+1438' (ID 66)) width is 1457<br>'U+18B7' (ID 657): width is 1396, base glyph ('U+1455' (ID 95)) width is 1396<br>'U+18B8' (ID 658): width is 1212, base glyph ('U+1472' (ID 124)) width is 1212<br>'U+18BA' (ID 660): width is 1211, base glyph ('U+14AA' (ID 180)) width is 1211<br>'U+18BB' (ID 661): width is 1852, base glyph ('U+14C4' (ID 206)) width is 1852<br>'U+18BC' (ID 662): width is 1852, base glyph ('U+14C7' (ID 209)) width is 1852<br>'U+18BD' (ID 663): width is 1812, base glyph ('U+14DA' (ID 228)) width is 1812<br>'U+18BE' (ID 664): width is 1182, base glyph ('U+14F1' (ID 251)) width is 1182<br>'U+18BF' (ID 665): width is 1182, base glyph ('U+14F4' (ID 254)) width is 1182<br>'U+18C0' (ID 666): width is 2017, base glyph ('U+1513' (ID 285)) width is 2017<br>'U+18C1' (ID 667): width is 2017, base glyph ('U+1515' (ID 287)) width is 2017<br>'U+18C3' (ID 669): width is 1151, base glyph ('U+152A' (ID 308)) width is 1151<br>'U+18C4' (ID 670): width is 1151, base glyph ('U+152D' (ID 311)) width is 1151<br>'U+18C5' (ID 671): width is 1192, base glyph ('U+154B' (ID 341)) width is 1192<br>'U+18CA' (ID 676): width is 1852, base glyph ('U+14C4' (ID 206)) width is 1852<br>'U+18CC' (ID 678): width is 1852, base glyph ('U+14C4' (ID 206)) width is 1852<br>'U+18E1' (ID 699): width is 1192, base glyph ('U+154A' (ID 340)) width is 1192<br>'U+18E2' (ID 700): width is 1192, base glyph ('U+154D' (ID 343)) width is 1192<br>'U+18E6' (ID 704): width is 1396, base glyph ('U+156D' (ID 375)) width is 1396<br>'U+18E7' (ID 705): width is 1396, base glyph ('U+156E' (ID 376)) width is 1396<br>'U+18E9' (ID 707): width is 1212, base glyph ('U+1588' (ID 402)) width is 1212<br>'U+18EB' (ID 709): width is 1212, base glyph ('U+1599' (ID 419)) width is 1212<br>'U+18EC' (ID 710): width is 1398, base glyph ('U+15C2' (ID 460)) width is 1398<br>'U+18EE' (ID 712): width is 1166, base glyph ('U+15F1' (ID 507)) width is 1166<br>'U+18EF' (ID 713): width is 1166, base glyph ('U+15F4' (ID 510)) width is 1166<br>'U+18F1' (ID 715): width is 1240, base glyph ('U+1615' (ID 543)) width is 1240<br>'728' (ID 728): width is 1385, base glyph ('727' (ID 727)) width is 1385<br>'730' (ID 730): width is 1385, base glyph ('729' (ID 729)) width is 1385<br>'740' (ID 740): width is 1385, base glyph ('727' (ID 727)) width is 1385<br>'741' (ID 741): width is 1385, base glyph ('729' (ID 729)) width is 1385</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="W">
+                    <td class="code"><p>Warning</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>hmtx</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Compare advance width against base glyph advance width (tolerance 2 units).</p></td>
+                    <td class="detail"><p>'U+140C' (ID 22): width is 1680, base glyph ('U+1401' (ID 11)) width is 1590<br>'U+140D' (ID 23): width is 1680, base glyph ('U+1401' (ID 11)) width is 1590<br>'U+140E' (ID 24): width is 1680, base glyph ('U+1403' (ID 13)) width is 1590<br>'U+140F' (ID 25): width is 1680, base glyph ('U+1403' (ID 13)) width is 1590<br>'U+1410' (ID 26): width is 1680, base glyph ('U+1403' (ID 13)) width is 1590<br>'U+1411' (ID 27): width is 1680, base glyph ('U+1403' (ID 13)) width is 1590<br>'U+1412' (ID 28): width is 1777, base glyph ('725' (ID 725)) width is 842<br>'U+1413' (ID 29): width is 1847, base glyph ('725' (ID 725)) width is 842<br>'U+1414' (ID 30): width is 1877, base glyph ('725' (ID 725)) width is 842<br>'U+1415' (ID 31): width is 1847, base glyph ('725' (ID 725)) width is 842<br>'U+1417' (ID 33): width is 1847, base glyph ('725' (ID 725)) width is 842<br>'U+1418' (ID 34): width is 1847, base glyph ('725' (ID 725)) width is 842<br>'U+1419' (ID 35): width is 1847, base glyph ('725' (ID 725)) width is 842<br>'U+141A' (ID 36): width is 1847, base glyph ('725' (ID 725)) width is 842<br>'U+142B' (ID 53): width is 2129, base glyph ('U+1401' (ID 11)) width is 1590<br>'U+142C' (ID 54): width is 1629, base glyph ('U+1403' (ID 13)) width is 1590<br>'U+142D' (ID 55): width is 1799, base glyph ('U+1405' (ID 15)) width is 1497<br>'U+142E' (ID 56): width is 2009, base glyph ('U+1420' (ID 42)) width is 629<br>'U+1430' (ID 58): width is 1670, base glyph ('720' (ID 720)) width is 984<br>'U+143A' (ID 68): width is 1660, base glyph ('U+142F' (ID 57)) width is 1590<br>'U+143B' (ID 69): width is 1660, base glyph ('U+142F' (ID 57)) width is 1590<br>'U+143C' (ID 70): width is 1700, base glyph ('725' (ID 725)) width is 842<br>'U+143D' (ID 71): width is 1700, base glyph ('725' (ID 725)) width is 842<br>'U+143E' (ID 72): width is 1700, base glyph ('725' (ID 725)) width is 842<br>'U+143F' (ID 73): width is 1700, base glyph ('725' (ID 725)) width is 842<br>'U+1440' (ID 74): width is 1647, base glyph ('U+1433' (ID 61)) width is 1457<br>'U+1441' (ID 75): width is 1772, base glyph ('U+1433' (ID 61)) width is 1457<br>'U+1442' (ID 76): width is 1647, base glyph ('U+1433' (ID 61)) width is 1457<br>'U+1443' (ID 77): width is 1772, base glyph ('U+1433' (ID 61)) width is 1457<br>'U+1444' (ID 78): width is 1772, base glyph ('U+1438' (ID 66)) width is 1457<br>'U+1445' (ID 79): width is 1647, base glyph ('U+1438' (ID 66)) width is 1457<br>'U+1446' (ID 80): width is 1772, base glyph ('U+1438' (ID 66)) width is 1457<br>'U+1447' (ID 81): width is 1647, base glyph ('U+1438' (ID 66)) width is 1457<br>'U+1448' (ID 82): width is 1497, base glyph ('724' (ID 724)) width is 842<br>'U+1457' (ID 97): width is 1878, base glyph ('U+144C' (ID 86)) width is 1568<br>'U+1458' (ID 98): width is 1878, base glyph ('U+144C' (ID 86)) width is 1568<br>'U+1459' (ID 99): width is 1878, base glyph ('U+144E' (ID 88)) width is 1568<br>'U+145A' (ID 100): width is 1878, base glyph ('U+144E' (ID 88)) width is 1568<br>'U+145B' (ID 101): width is 1878, base glyph ('U+144E' (ID 88)) width is 1568<br>'U+145C' (ID 102): width is 1878, base glyph ('U+144E' (ID 88)) width is 1568<br>'U+145D' (ID 103): width is 1586, base glyph ('U+1450' (ID 90)) width is 1396<br>'U+145E' (ID 104): width is 1697, base glyph ('U+1450' (ID 90)) width is 1396<br>'U+145F' (ID 105): width is 1586, base glyph ('U+1450' (ID 90)) width is 1396<br>'U+1460' (ID 106): width is 1697, base glyph ('U+1450' (ID 90)) width is 1396<br>'U+1461' (ID 107): width is 1696, base glyph ('U+1455' (ID 95)) width is 1396<br>'U+1462' (ID 108): width is 1586, base glyph ('U+1455' (ID 95)) width is 1396<br>'U+1463' (ID 109): width is 1696, base glyph ('U+1455' (ID 95)) width is 1396<br>'U+1464' (ID 110): width is 1586, base glyph ('U+1455' (ID 95)) width is 1396<br>'U+1465' (ID 111): width is 1696, base glyph ('U+1455' (ID 95)) width is 1396<br>'U+1467' (ID 113): width is 1914, base glyph ('U+144C' (ID 86)) width is 1568<br>'U+1468' (ID 114): width is 1914, base glyph ('U+144E' (ID 88)) width is 1568<br>'U+1469' (ID 115): width is 1734, base glyph ('U+1450' (ID 90)) width is 1396<br>'U+146A' (ID 116): width is 1734, base glyph ('U+1455' (ID 95)) width is 1396<br>'U+1474' (ID 126): width is 1552, base glyph ('U+146B' (ID 117)) width is 1212<br>'U+1475' (ID 127): width is 1552, base glyph ('U+146B' (ID 117)) width is 1212<br>'U+1476' (ID 128): width is 1552, base glyph ('U+146D' (ID 119)) width is 1212<br>'U+1477' (ID 129): width is 1552, base glyph ('U+146D' (ID 119)) width is 1212<br>'U+1478' (ID 130): width is 1552, base glyph ('U+146D' (ID 119)) width is 1212<br>'U+1479' (ID 131): width is 1552, base glyph ('U+146D' (ID 119)) width is 1212<br>'U+147A' (ID 132): width is 1552, base glyph ('U+146F' (ID 121)) width is 1212<br>'U+147B' (ID 133): width is 1552, base glyph ('U+146F' (ID 121)) width is 1212<br>'U+147C' (ID 134): width is 1552, base glyph ('U+146F' (ID 121)) width is 1212<br>'U+147D' (ID 135): width is 1552, base glyph ('U+146F' (ID 121)) width is 1212<br>'U+147E' (ID 136): width is 1552, base glyph ('U+1472' (ID 124)) width is 1212<br>'U+147F' (ID 137): width is 1552, base glyph ('U+1472' (ID 124)) width is 1212<br>'U+1480' (ID 138): width is 1552, base glyph ('U+1472' (ID 124)) width is 1212<br>'U+1481' (ID 139): width is 1552, base glyph ('U+1472' (ID 124)) width is 1212<br>'U+1482' (ID 140): width is 1552, base glyph ('722' (ID 722)) width is 842<br>'U+1485' (ID 143): width is 1564, base glyph ('U+146B' (ID 117)) width is 1212<br>'U+1486' (ID 144): width is 1564, base glyph ('U+146D' (ID 119)) width is 1212<br>'U+1487' (ID 145): width is 1564, base glyph ('U+146F' (ID 121)) width is 1212<br>'U+1488' (ID 146): width is 1564, base glyph ('U+1472' (ID 124)) width is 1212<br>'U+1492' (ID 156): width is 1636, base glyph ('U+1489' (ID 147)) width is 1296<br>'U+1493' (ID 157): width is 1636, base glyph ('U+1489' (ID 147)) width is 1296<br>'U+1494' (ID 158): width is 1636, base glyph ('U+148B' (ID 149)) width is 1296<br>'U+1495' (ID 159): width is 1636, base glyph ('U+148B' (ID 149)) width is 1296<br>'U+1496' (ID 160): width is 1636, base glyph ('U+148B' (ID 149)) width is 1296<br>'U+1497' (ID 161): width is 1636, base glyph ('U+148B' (ID 149)) width is 1296<br>'U+1498' (ID 162): width is 1636, base glyph ('U+148D' (ID 151)) width is 1296<br>'U+1499' (ID 163): width is 1636, base glyph ('U+148D' (ID 151)) width is 1296<br>'U+149A' (ID 164): width is 1636, base glyph ('U+148D' (ID 151)) width is 1296<br>'U+149B' (ID 165): width is 1636, base glyph ('U+148D' (ID 151)) width is 1296<br>'U+149C' (ID 166): width is 1636, base glyph ('U+1490' (ID 154)) width is 1296<br>'U+149D' (ID 167): width is 1636, base glyph ('U+1490' (ID 154)) width is 1296<br>'U+149E' (ID 168): width is 1636, base glyph ('U+1490' (ID 154)) width is 1296<br>'U+149F' (ID 169): width is 1636, base glyph ('U+1490' (ID 154)) width is 1296<br>'U+14A0' (ID 170): width is 1636, base glyph ('U+1490' (ID 154)) width is 1296<br>'U+14AC' (ID 182): width is 1351, base glyph ('U+14A3' (ID 173)) width is 1211<br>'U+14AD' (ID 183): width is 1551, base glyph ('U+14A3' (ID 173)) width is 1211<br>'U+14AE' (ID 184): width is 1551, base glyph ('U+14A5' (ID 175)) width is 1211<br>'U+14AF' (ID 185): width is 1351, base glyph ('U+14A5' (ID 175)) width is 1211<br>'U+14B0' (ID 186): width is 1551, base glyph ('U+14A5' (ID 175)) width is 1211<br>'U+14B1' (ID 187): width is 1351, base glyph ('U+14A5' (ID 175)) width is 1211<br>'U+14B2' (ID 188): width is 1351, base glyph ('U+14A7' (ID 177)) width is 1211<br>'U+14B3' (ID 189): width is 1551, base glyph ('U+14A7' (ID 177)) width is 1211<br>'U+14B4' (ID 190): width is 1351, base glyph ('U+14A7' (ID 177)) width is 1211<br>'U+14B5' (ID 191): width is 1551, base glyph ('U+14A7' (ID 177)) width is 1211<br>'U+14B6' (ID 192): width is 1551, base glyph ('U+14AA' (ID 180)) width is 1211<br>'U+14B7' (ID 193): width is 1351, base glyph ('U+14AA' (ID 180)) width is 1211<br>'U+14B8' (ID 194): width is 1551, base glyph ('U+14AA' (ID 180)) width is 1211<br>'U+14B9' (ID 195): width is 1351, base glyph ('U+14AA' (ID 180)) width is 1211<br>'U+14BA' (ID 196): width is 1551, base glyph ('U+14AA' (ID 180)) width is 1211<br>'U+14C9' (ID 211): width is 2162, base glyph ('U+14C0' (ID 202)) width is 1852<br>'U+14CA' (ID 212): width is 2162, base glyph ('U+14C0' (ID 202)) width is 1852<br>'U+14CB' (ID 213): width is 2162, base glyph ('U+14C7' (ID 209)) width is 1852<br>'U+14CD' (ID 215): width is 2162, base glyph ('U+14C7' (ID 209)) width is 1852<br>'U+14DC' (ID 230): width is 2152, base glyph ('U+14D3' (ID 221)) width is 1812<br>'U+14DD' (ID 231): width is 2152, base glyph ('U+14D3' (ID 221)) width is 1812<br>'U+14DE' (ID 232): width is 2152, base glyph ('725' (ID 725)) width is 842<br>'U+14DF' (ID 233): width is 2152, base glyph ('725' (ID 725)) width is 842<br>'U+14E0' (ID 234): width is 2152, base glyph ('725' (ID 725)) width is 842<br>'U+14E1' (ID 235): width is 2152, base glyph ('725' (ID 725)) width is 842<br>'U+14E3' (ID 237): width is 2152, base glyph ('U+14D7' (ID 225)) width is 1812<br>'U+14E5' (ID 239): width is 2152, base glyph ('U+14D7' (ID 225)) width is 1812<br>'U+14E6' (ID 240): width is 2152, base glyph ('725' (ID 725)) width is 842<br>'U+14E8' (ID 242): width is 2152, base glyph ('725' (ID 725)) width is 842<br>'U+14F6' (ID 256): width is 1482, base glyph ('U+14ED' (ID 247)) width is 1182<br>'U+14F7' (ID 257): width is 1482, base glyph ('U+14ED' (ID 247)) width is 1182<br>'U+14F8' (ID 258): width is 1482, base glyph ('U+14EF' (ID 249)) width is 1182<br>'U+14F9' (ID 259): width is 1482, base glyph ('U+14EF' (ID 249)) width is 1182<br>'U+14FA' (ID 260): width is 1482, base glyph ('U+14EF' (ID 249)) width is 1182<br>'U+14FB' (ID 261): width is 1482, base glyph ('U+14EF' (ID 249)) width is 1182<br>'U+14FC' (ID 262): width is 1482, base glyph ('U+14F1' (ID 251)) width is 1182<br>'U+14FD' (ID 263): width is 1482, base glyph ('U+14F1' (ID 251)) width is 1182<br>'U+14FE' (ID 264): width is 1482, base glyph ('U+14F1' (ID 251)) width is 1182<br>'U+14FF' (ID 265): width is 1482, base glyph ('U+14F1' (ID 251)) width is 1182<br>'U+1500' (ID 266): width is 1482, base glyph ('U+14F4' (ID 254)) width is 1182<br>'U+1501' (ID 267): width is 1482, base glyph ('U+14F4' (ID 254)) width is 1182<br>'U+1502' (ID 268): width is 1482, base glyph ('U+14F4' (ID 254)) width is 1182<br>'U+1503' (ID 269): width is 1482, base glyph ('U+14F4' (ID 254)) width is 1182<br>'U+1504' (ID 270): width is 1482, base glyph ('U+14F4' (ID 254)) width is 1182<br>'U+150D' (ID 279): width is 2036, base glyph ('U+150B' (ID 277)) width is 710<br>'U+150E' (ID 280): width is 1852, base glyph ('U+1472' (ID 124)) width is 1212<br>'U+150F' (ID 281): width is 1936, base glyph ('U+150B' (ID 277)) width is 710<br>'U+1517' (ID 289): width is 2030, base glyph ('U+1510' (ID 282)) width is 1730<br>'U+1518' (ID 290): width is 2030, base glyph ('U+1510' (ID 282)) width is 1730<br>'U+1519' (ID 291): width is 2030, base glyph ('U+1511' (ID 283)) width is 1730<br>'U+151A' (ID 292): width is 2030, base glyph ('U+1511' (ID 283)) width is 1730<br>'U+151B' (ID 293): width is 2030, base glyph ('U+1511' (ID 283)) width is 1730<br>'U+151C' (ID 294): width is 2030, base glyph ('U+1511' (ID 283)) width is 1730<br>'U+151D' (ID 295): width is 2317, base glyph ('U+1513' (ID 285)) width is 2017<br>'U+151E' (ID 296): width is 2317, base glyph ('U+1513' (ID 285)) width is 2017<br>'U+151F' (ID 297): width is 2317, base glyph ('U+1513' (ID 285)) width is 2017<br>'U+1520' (ID 298): width is 2317, base glyph ('U+1513' (ID 285)) width is 2017<br>'U+1521' (ID 299): width is 2317, base glyph ('U+1515' (ID 287)) width is 2017<br>'U+1522' (ID 300): width is 2317, base glyph ('U+1515' (ID 287)) width is 2017<br>'U+1523' (ID 301): width is 2317, base glyph ('U+1515' (ID 287)) width is 2017<br>'U+1524' (ID 302): width is 2317, base glyph ('U+1515' (ID 287)) width is 2017<br>'U+152F' (ID 313): width is 1451, base glyph ('U+1526' (ID 304)) width is 1151<br>'U+1530' (ID 314): width is 1451, base glyph ('U+1526' (ID 304)) width is 1151<br>'U+1531' (ID 315): width is 1451, base glyph ('U+1528' (ID 306)) width is 1151<br>'U+1532' (ID 316): width is 1451, base glyph ('U+1528' (ID 306)) width is 1151<br>'U+1533' (ID 317): width is 1451, base glyph ('U+1528' (ID 306)) width is 1151<br>'U+1534' (ID 318): width is 1451, base glyph ('U+1528' (ID 306)) width is 1151<br>'U+1535' (ID 319): width is 1451, base glyph ('U+152A' (ID 308)) width is 1151<br>'U+1536' (ID 320): width is 1451, base glyph ('U+152A' (ID 308)) width is 1151<br>'U+1537' (ID 321): width is 1451, base glyph ('U+152A' (ID 308)) width is 1151<br>'U+1538' (ID 322): width is 1451, base glyph ('U+152A' (ID 308)) width is 1151<br>'U+1539' (ID 323): width is 1451, base glyph ('U+152D' (ID 311)) width is 1151<br>'U+153A' (ID 324): width is 1451, base glyph ('U+152D' (ID 311)) width is 1151<br>'U+153B' (ID 325): width is 1451, base glyph ('U+152D' (ID 311)) width is 1151<br>'U+153C' (ID 326): width is 1451, base glyph ('U+152D' (ID 311)) width is 1151<br>'U+153D' (ID 327): width is 1451, base glyph ('U+152D' (ID 311)) width is 1151<br>'U+154E' (ID 344): width is 1492, base glyph ('U+154B' (ID 341)) width is 1192<br>'U+154F' (ID 345): width is 1492, base glyph ('U+154B' (ID 341)) width is 1192<br>'U+155B' (ID 357): width is 1932, base glyph ('U+1559' (ID 355)) width is 1632<br>'U+155C' (ID 358): width is 1932, base glyph ('U+1559' (ID 355)) width is 1632<br>'U+1568' (ID 370): width is 1808, base glyph ('U+1566' (ID 368)) width is 1508<br>'U+1569' (ID 371): width is 1808, base glyph ('U+1566' (ID 368)) width is 1508<br>'U+157E' (ID 392): width is 1872, base glyph ('U+1550' (ID 346)) width is 696<br>'U+157F' (ID 393): width is 1872, base glyph ('U+1550' (ID 346)) width is 696<br>'U+1580' (ID 394): width is 1872, base glyph ('U+1550' (ID 346)) width is 696<br>'U+1581' (ID 395): width is 1872, base glyph ('U+1550' (ID 346)) width is 696<br>'U+1582' (ID 396): width is 1872, base glyph ('U+1550' (ID 346)) width is 696<br>'U+1583' (ID 397): width is 1872, base glyph ('U+1550' (ID 346)) width is 696<br>'U+1584' (ID 398): width is 1872, base glyph ('U+1550' (ID 346)) width is 696<br>'U+1585' (ID 399): width is 1451, base glyph ('U+1550' (ID 346)) width is 696<br>'U+158E' (ID 408): width is 2416, base glyph ('U+1595' (ID 415)) width is 1204<br>'U+158F' (ID 409): width is 2416, base glyph ('U+1595' (ID 415)) width is 1204<br>'U+1590' (ID 410): width is 2416, base glyph ('U+1595' (ID 415)) width is 1204<br>'U+1593' (ID 413): width is 2416, base glyph ('U+1595' (ID 415)) width is 1204<br>'U+1594' (ID 414): width is 2416, base glyph ('U+1595' (ID 415)) width is 1204<br>'U+15D4' (ID 478): width is 1457, base glyph ('726' (ID 726)) width is 842<br>'U+166F' (ID 633): width is 1872, base glyph ('U+1550' (ID 346)) width is 696<br>'U+1670' (ID 634): width is 2436, base glyph ('U+1595' (ID 415)) width is 1204<br>'U+1671' (ID 635): width is 3006, base glyph ('U+1596' (ID 416)) width is 1766<br>'U+1672' (ID 636): width is 3006, base glyph ('U+1596' (ID 416)) width is 1766<br>'U+1675' (ID 639): width is 3006, base glyph ('U+1596' (ID 416)) width is 1766<br>'U+1676' (ID 640): width is 3006, base glyph ('U+1596' (ID 416)) width is 1766<br>'U+1677' (ID 641): width is 1432, base glyph ('U+15A7' (ID 433)) width is 1251<br>'U+1678' (ID 642): width is 1532, base glyph ('U+15A8' (ID 434)) width is 1251<br>'U+1679' (ID 643): width is 1532, base glyph ('U+15A8' (ID 434)) width is 1251<br>'U+167A' (ID 644): width is 1432, base glyph ('U+15AA' (ID 436)) width is 1251<br>'U+167B' (ID 645): width is 1432, base glyph ('U+15AA' (ID 436)) width is 1251<br>'U+167C' (ID 646): width is 1512, base glyph ('U+15AC' (ID 438)) width is 1251<br>'U+167D' (ID 647): width is 1512, base glyph ('U+15AC' (ID 438)) width is 1251<br>'U+18B3' (ID 653): width is 1847, base glyph ('725' (ID 725)) width is 842<br>'U+18B6' (ID 656): width is 1647, base glyph ('U+1433' (ID 61)) width is 1457<br>'U+18B9' (ID 659): width is 1552, base glyph ('U+1472' (ID 124)) width is 1212<br>'U+18C2' (ID 668): width is 2317, base glyph ('U+1513' (ID 285)) width is 2017<br>'U+18C6' (ID 672): width is 2192, base glyph ('U+14C2' (ID 204)) width is 1852<br>'U+18C7' (ID 673): width is 2192, base glyph ('U+14C2' (ID 204)) width is 1852<br>'U+18C8' (ID 674): width is 2192, base glyph ('U+14C2' (ID 204)) width is 1852<br>'U+18C9' (ID 675): width is 2192, base glyph ('U+14C2' (ID 204)) width is 1852<br>'U+18CB' (ID 677): width is 2192, base glyph ('U+14C4' (ID 206)) width is 1852<br>'U+18CD' (ID 679): width is 2192, base glyph ('U+14C4' (ID 206)) width is 1852<br>'U+18CE' (ID 680): width is 2132, base glyph ('U+1543' (ID 333)) width is 1832<br>'U+18CF' (ID 681): width is 2132, base glyph ('U+1546' (ID 336)) width is 1832<br>'U+18D0' (ID 682): width is 2132, base glyph ('U+1546' (ID 336)) width is 1832<br>'U+18D1' (ID 683): width is 1512, base glyph ('U+1548' (ID 338)) width is 1192<br>'U+18D2' (ID 684): width is 1512, base glyph ('U+1548' (ID 338)) width is 1192<br>'U+18D3' (ID 685): width is 1492, base glyph ('U+154B' (ID 341)) width is 1192<br>'U+18DC' (ID 694): width is 1105, base glyph ('U+141E' (ID 40)) width is 985<br>'U+18DD' (ID 695): width is 1105, base glyph ('U+141E' (ID 40)) width is 985<br>'U+18E0' (ID 698): width is 2182, base glyph ('U+1543' (ID 333)) width is 1832<br>'U+18E3' (ID 701): width is 1912, base glyph ('U+155E' (ID 360)) width is 1568<br>'U+18E4' (ID 702): width is 1808, base glyph ('U+1566' (ID 368)) width is 1508<br>'U+18E5' (ID 703): width is 1912, base glyph ('U+156B' (ID 373)) width is 1568<br>'U+18E8' (ID 706): width is 1556, base glyph ('U+1586' (ID 400)) width is 1212<br>'U+18EA' (ID 708): width is 1556, base glyph ('U+1597' (ID 417)) width is 1212<br>'U+18ED' (ID 711): width is 2178, base glyph ('U+15EF' (ID 505)) width is 1834<br>'U+18F0' (ID 714): width is 1476, base glyph ('U+15F4' (ID 510)) width is 1166<br>'U+18F2' (ID 716): width is 2194, base glyph ('U+161B' (ID 549)) width is 1829<br>'731' (ID 731): width is 1685, base glyph ('727' (ID 727)) width is 1385<br>'732' (ID 732): width is 1685, base glyph ('727' (ID 727)) width is 1385<br>'733' (ID 733): width is 1685, base glyph ('727' (ID 727)) width is 1385<br>'734' (ID 734): width is 1685, base glyph ('727' (ID 727)) width is 1385<br>'735' (ID 735): width is 1685, base glyph ('729' (ID 729)) width is 1385<br>'736' (ID 736): width is 1685, base glyph ('729' (ID 729)) width is 1385<br>'737' (ID 737): width is 1685, base glyph ('729' (ID 729)) width is 1385<br>'738' (ID 738): width is 1685, base glyph ('729' (ID 729)) width is 1385<br>'742' (ID 742): width is 1685, base glyph ('727' (ID 727)) width is 1385</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Compare Advance Width hmtx and CFF table</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Compare Advance Width hmtx and CFF table_cell">
+                <button id="Compare Advance Width hmtx and CFF table_btn" onclick='toggle_detail("Compare Advance Width hmtx and CFF table");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Compare Advance Width hmtx and CFF table</h3></th></tr>
+            </thead>
+            <tbody id="Compare Advance Width hmtx and CFF table" class="result_body">
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>hmtx/CFF</p></td>
+                    <td class="feature"><p>Advance width</p></td>
+                    <td class="message"><p>Advance width of hmtx and CFF table should be the same (tolerance 2 units).</p></td>
+                    <td class="detail"><p>This is a TrueType font. This test is only for CFF.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Individual Glyphs</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Individual Glyphs_cell">
+                <button id="Individual Glyphs_btn" onclick='toggle_detail("Individual Glyphs");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Individual Glyphs</h3></th></tr>
+            </thead>
+            <tbody id="Individual Glyphs" class="result_body">
+                    
+                <tr class="W">
+                    <td class="code"><p>Warning</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>post</p></td>
+                    <td class="feature"><p></p></td>
+                    <td class="message"><p>Check if tables are present: 'post' table if ttf, 'CFF ' table if otf.</p></td>
+                    <td class="detail"><p>CANNOT check double NULL names. Format 3.0 post table.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>uni200B</p></td>
+                    <td class="message"><p>Check ZERO WIDTH SPACE</p></td>
+                    <td class="detail"><p>Missing uni200B in cmap table.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>hmtx</p></td>
+                    <td class="feature"><p>Advance</p></td>
+                    <td class="message"><p>ZERO WIDTH NO-BREAK SPACE advance width should be 0</p></td>
+                    <td class="detail"><p>Advance width is '0'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="W">
+                    <td class="code"><p>Warning</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>00AD</p></td>
+                    <td class="message"><p>Soft hyphen 00AD in cmap table.</p></td>
+                    <td class="detail"><p>Missing Soft hyphen 00AD in cmap table. Soft hyphen is often used in web and in professional print publishing software like Adobe InDesign.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>hmtx</p></td>
+                    <td class="feature"><p>Index 3 and 3</p></td>
+                    <td class="message"><p>Advance width of nonbreakingspace (uni00A0) should match the space (uni0020) width.</p></td>
+                    <td class="detail"><p>OK: Advance width nonbreakingspace (uni00A0) does match the space (uni0020) width:<br>600 = 600</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>uni2009</p></td>
+                    <td class="message"><p>Advance width of 'thinspace' (uni2009) should be smaller than the width of space (uni0020).</p></td>
+                    <td class="detail"><p>Can not check, because no uni2009 in this font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>uni200A</p></td>
+                    <td class="message"><p>Advance width of 'hairspace' (uni200A) should be smaller than the width of space (uni0020).</p></td>
+                    <td class="detail"><p>Can not check, because no uni200A in this font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>uni2004</p></td>
+                    <td class="message"><p>Advance width of 'THREE-PER-EM SPACE' (uni2004) should be 1/3 of em-square.</p></td>
+                    <td class="detail"><p>Can not check, because no uni2004 in this font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>uni2005</p></td>
+                    <td class="message"><p>Advance width of 'FOUR-PER-EM SPACE' (uni2005) should be 1/4 of em-square.</p></td>
+                    <td class="detail"><p>Can not check, because no uni2005 in this font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>uni2006</p></td>
+                    <td class="message"><p>Advance width of 'SIX-PER-EM SPACE' (uni2006) should be 1/6 of em-square.</p></td>
+                    <td class="detail"><p>Can not check, because no uni2006 in this font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>uni2002</p></td>
+                    <td class="message"><p>Advance width of 'EN SPACE' (uni2002) should be 50%% of em-square.</p></td>
+                    <td class="detail"><p>Can not check, because no uni2002 in this font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>uni2003</p></td>
+                    <td class="message"><p>Advance width of 'EM SPACE' (uni2003) should be equal to UPM.</p></td>
+                    <td class="detail"><p>Can not check, because no uni2003 in this font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>uni2008</p></td>
+                    <td class="message"><p>Advance width of 'PUNCTUATION SPACE' (uni2008) should be equal to the 'period' advance width.</p></td>
+                    <td class="detail"><p>Can not check, because no uni2008 in this font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Nodes Close to Zones (CFF)</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Nodes Close to Zones (CFF)_cell">
+                <button id="Nodes Close to Zones (CFF)_btn" onclick='toggle_detail("Nodes Close to Zones (CFF)");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Nodes Close to Zones (CFF)</h3></th></tr>
+            </thead>
+            <tbody id="Nodes Close to Zones (CFF)" class="result_body">
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>CFF</p></td>
+                    <td class="feature"><p>Alignment Zones</p></td>
+                    <td class="message"><p>Check if nodes are close to a zone, but not in or touching it.</p></td>
+                    <td class="detail"><p>This is a TTF, but this test is only for CFF fonts.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Should be Composite (only .ttf)</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Should be Composite (only .ttf)_cell">
+                <button id="Should be Composite (only .ttf)_btn" onclick='toggle_detail("Should be Composite (only .ttf)");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Should be Composite (only .ttf)</h3></th></tr>
+            </thead>
+            <tbody id="Should be Composite (only .ttf)" class="result_body">
+                      </tbody>
+            </table>				<h2>Should not be Composite (CFF)</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Should not be Composite (CFF)_cell">
+                <button id="Should not be Composite (CFF)_btn" onclick='toggle_detail("Should not be Composite (CFF)");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Should not be Composite (CFF)</h3></th></tr>
+            </thead>
+            <tbody id="Should not be Composite (CFF)" class="result_body">
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>CFF </p></td>
+                    <td class="feature"><p>Composite</p></td>
+                    <td class="message"><p>CFF font should not have any composite.</p></td>
+                    <td class="detail"><p>This is not a CFF font. Skipped this check.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Advance Width (zero or negative)</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Advance Width (zero or negative)_cell">
+                <button id="Advance Width (zero or negative)_btn" onclick='toggle_detail("Advance Width (zero or negative)");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Advance Width (zero or negative)</h3></th></tr>
+            </thead>
+            <tbody id="Advance Width (zero or negative)" class="result_body">
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>hmtx</p></td>
+                    <td class="feature"><p>advance</p></td>
+                    <td class="message"><p>Pull glyphs with advance width zero.</p></td>
+                    <td class="detail"><p>'U+FEFF' (uniFEFF) (ID 1) = '0'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>glyf</p></td>
+                    <td class="feature"><p>advance width</p></td>
+                    <td class="message"><p>Advance width should be zero.</p></td>
+                    <td class="detail"><p>The following glyphs (1) should have advance width 0:<br>'U+0307' (uni0307) (ID 743) = '530'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Un/Necessary Tables</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Un/Necessary Tables_cell">
+                <button id="Un/Necessary Tables_btn" onclick='toggle_detail("Un/Necessary Tables");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Un/Necessary Tables</h3></th></tr>
+            </thead>
+            <tbody id="Un/Necessary Tables" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>-/-</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Unnecessary tables (private tables and embedded bitmap tables).</p></td>
+                    <td class="detail"><p>OK: No unnecessary tables.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>DSIG</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Necessary tables.</p></td>
+                    <td class="detail"><p>'DSIG' is missing. Please investigate.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>First Four Characters</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="First Four Characters_cell">
+                <button id="First Four Characters_btn" onclick='toggle_detail("First Four Characters");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>First Four Characters</h3></th></tr>
+            </thead>
+            <tbody id="First Four Characters" class="result_body">
+                    
+                <tr class="W">
+                    <td class="code"><p>Warning</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>post</p></td>
+                    <td class="feature"><p></p></td>
+                    <td class="message"><p>Check if tables are present: 'post' table if ttf, 'CFF ' table if otf.</p></td>
+                    <td class="detail"><p>CANNOT check first four glyphs names. Format 3.0 post table.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>-/-</p></td>
+                    <td class="feature"><p>Index 0: </p></td>
+                    <td class="message"><p>0                 (bestname)</p></td>
+                    <td class="detail"><p>Glyph has contour: True</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>-/-</p></td>
+                    <td class="feature"><p>Index 1: </p></td>
+                    <td class="message"><p>U+FEFF            (bestname)</p></td>
+                    <td class="detail"><p>Glyph has contour: False</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>-/-</p></td>
+                    <td class="feature"><p>Index 2: </p></td>
+                    <td class="message"><p>U+000D            (bestname)</p></td>
+                    <td class="detail"><p>Glyph has contour: False</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>-/-</p></td>
+                    <td class="feature"><p>Index 3: </p></td>
+                    <td class="message"><p>U+00A0            (bestname)</p></td>
+                    <td class="detail"><p>Glyph has contour: False</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>OS/2 table</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="OS/2 table_cell">
+                <button id="OS/2 table_btn" onclick='toggle_detail("OS/2 table");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>OS/2 table</h3></th></tr>
+            </thead>
+            <tbody id="OS/2 table" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>table version 4.</p></td>
+                    <td class="message"><p>'OS/2' table version should be 4.</p></td>
+                    <td class="detail"><p>OK: 'OS/2' table version is: 4.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>useTypoMetrics</p></td>
+                    <td class="message"><p>If the hhea metrics match the usWin metrics, it does not matter what the sTypo metrics are the fsSelection useTypoMetrics flag should be False.</p></td>
+                    <td class="detail"><p>OK: fsSelection useTypoMetrics flag should be False and is False.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>WWS</p></td>
+                    <td class="message"><p>If no NID 21 and 22, 'OS/2' fsSelection flag for WWS should be True.</p></td>
+                    <td class="detail"><p>'OS/2' fsSelection flag for WWS should be True but is False.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>italic flag</p></td>
+                    <td class="message"><p>'OS/2' fsSelection italic flag should match the 'head' macStyle italic flag. They should be the same.</p></td>
+                    <td class="detail"><p>OK: They are the same.'OS/2' fsSelection italic flag is False and 'head' macStyle italic flag is False.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>Panose Normal</p></td>
+                    <td class="message"><p>Because 'OS/2' fsSelection italic flag is False and 'head' macStyle italic flag is False the OS/2 panose array form flag should be a 'Normal' entry.</p></td>
+                    <td class="detail"><p>OK: 'OS/2' panose array form flag is a 'Normal' entry.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>usBreakChar</p></td>
+                    <td class="message"><p>'OS/2' usBreakChar should be 0x0020.</p></td>
+                    <td class="detail"><p>OK: 'OS/2' usBreakChar is 0x0020.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>usDefaultChar</p></td>
+                    <td class="message"><p>'OS/2' usDefaultChar should be 0x0000.</p></td>
+                    <td class="detail"><p>OK: 'OS/2' usDefaultChar is 0x0000.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>usFirstCharIndex</p></td>
+                    <td class="message"><p>'OS/2' usFirstCharIndex should be 0x0000</p></td>
+                    <td class="detail"><p>OK: 'OS/2' usFirstCharIndex is 0x0000.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>usLastCharIndex</p></td>
+                    <td class="message"><p>'OS/2' usLastCharIndex should be 0xFEFF</p></td>
+                    <td class="detail"><p>OK: 'OS/2' usLastCharIndex is 0xFEFF.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>Embedding Level</p></td>
+                    <td class="message"><p>For library fonts embedding level should be 'Preview & Print Embedding'.</p></td>
+                    <td class="detail"><p>Embedding Level is 'Embedding Level = Installable Embedding'. If custom font please check against job spec.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>fsType</p></td>
+                    <td class="message"><p>Pull 'OS/2' fsType.</p></td>
+                    <td class="detail"><p>embedding level: Embedding Level = Installable Embedding<br>no subsetting flag: False<br>bitmap embedding only flag: False</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>fvar table</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="fvar table_cell">
+                <button id="fvar table_btn" onclick='toggle_detail("fvar table");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>fvar table</h3></th></tr>
+            </thead>
+            <tbody id="fvar table" class="result_body">
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>fvar</p></td>
+                    <td class="feature"><p>variable font</p></td>
+                    <td class="message"><p>Variable font must have a fvar table.</p></td>
+                    <td class="detail"><p>This font is not a variable font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>STAT table</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="STAT table_cell">
+                <button id="STAT table_btn" onclick='toggle_detail("STAT table");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>STAT table</h3></th></tr>
+            </thead>
+            <tbody id="STAT table" class="result_body">
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>STAT</p></td>
+                    <td class="feature"><p>static font</p></td>
+                    <td class="message"><p>Variable font must have a STAT table.</p></td>
+                    <td class="detail"><p>No check of STAT table for static fonts included, yet. Static fonts do not need to have a STAT table. It is only recommended by Microsoft, not required.<br>More infos here:<br><a href='https://docs.microsoft.com/en-us/typography/opentype/spec/stat'>https://docs.microsoft.com/en-us/typography/opentype/spec/stat</a></p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Missing uni0000 and uni000D in cmap Table</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Missing uni0000 and uni000D in cmap Table_cell">
+                <button id="Missing uni0000 and uni000D in cmap Table_btn" onclick='toggle_detail("Missing uni0000 and uni000D in cmap Table");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Missing uni0000 and uni000D in cmap Table</h3></th></tr>
+            </thead>
+            <tbody id="Missing uni0000 and uni000D in cmap Table" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>cmap(3, 1, 0)</p></td>
+                    <td class="message"><p>Missing uni0000 and uni000D in cmap MS/BMP(0,3,0) and Unicode/2.0, BMP only(3,1,0).</p></td>
+                    <td class="detail"><p>cmap(3, 1, 0) contains U+0000</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>cmap(3, 1, 0)</p></td>
+                    <td class="message"><p>Missing uni0000 and uni000D in cmap MS/BMP(0,3,0) and Unicode/2.0, BMP only(3,1,0).</p></td>
+                    <td class="detail"><p>cmap(3, 1, 0) contains U+000D</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Obsolete Language Tag TUR</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Obsolete Language Tag TUR_cell">
+                <button id="Obsolete Language Tag TUR_btn" onclick='toggle_detail("Obsolete Language Tag TUR");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Obsolete Language Tag TUR</h3></th></tr>
+            </thead>
+            <tbody id="Obsolete Language Tag TUR" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>-/-</p></td>
+                    <td class="feature"><p>TRK</p></td>
+                    <td class="message"><p>Obsolete language tag 'TUR' should be TRK.</p></td>
+                    <td class="detail"><p>OK: No language tag 'TUR' in any table.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Name Table</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Name Table_cell">
+                <button id="Name Table_btn" onclick='toggle_detail("Name Table");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Name Table</h3></th></tr>
+            </thead>
+            <tbody id="Name Table" class="result_body">
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 0 (3, 1, 1033, 0)</p></td>
+                    <td class="message"><p>MS NID 0, Copyright.</p></td>
+                    <td class="detail"><p>Please verify agains spec.<br>MS NID 0 is 'Copyright 2013 Google Inc. All Rights Reserved.'<br>It should follow this structure: 'Copyright <mark>(c) XXXX - XXXX /entity/. All rights r</mark>eserved.' </p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 1</p></td>
+                    <td class="message"><p>MS NID 1, Family Name length shouldn't be longer then 31.</p></td>
+                    <td class="detail"><p>OK: NID 1 length is '29'<br>'Noto Sans Canadian Aboriginal' </p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 1</p></td>
+                    <td class="message"><p>Reserved word used in Family Name NID1 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 1 does not contain any of the following keywords: 'Regular, Bold, Roman'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 1</p></td>
+                    <td class="message"><p>Reserved word used in Family Name NID1 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 1 does not contain any of the following keywords: 'Book, Ultra, Normal'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 1</p></td>
+                    <td class="message"><p>Reserved word used in Family Name NID1 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 1 does not contain any of the following keywords: 'Roman'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 1</p></td>
+                    <td class="message"><p>Reserved word used in Family Name NID1 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 1 does not contain any of the following keywords: 'Regular, Bold, Italic, Extra, Light, Black, Thin, Wide, Ultra'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 1</p></td>
+                    <td class="message"><p>Should be camel case Family Name NID1</p></td>
+                    <td class="detail"><p>NID 1: OK. No camel case required.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 1</p></td>
+                    <td class="message"><p>Check style extentions Family Name NID1</p></td>
+                    <td class="detail"><p>NID 1 does not contain any of the following beginnings: 'X, Demi, Xtra, Extra, Semi, Sm, Ultra, Dm, Ex'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>name/OS/2</p></td>
+                    <td class="feature"><p>MS NID 1</p></td>
+                    <td class="message"><p>Width Names Family Name NID1</p></td>
+                    <td class="detail"><p>OS/2 usWidthClass seems to be correct. Cannot find any specific width name in the name:<br>'Noto Sans Canadian Aboriginal'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 2</p></td>
+                    <td class="message"><p>MS NID 2, Subfamily.</p></td>
+                    <td class="detail"><p>OK: NID 2 is 'Regular'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 2</p></td>
+                    <td class="message"><p>Reserved word used in Subfamily Name NID2 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 2 does not contain any of the following keywords: 'Book, Ultra, Normal'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 2</p></td>
+                    <td class="message"><p>Reserved word used in Subfamily Name NID2 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 2 does not contain any of the following keywords: 'Roman'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 4</p></td>
+                    <td class="message"><p>MS NID 4, Full Name length shouldn't be longer than 31.</p></td>
+                    <td class="detail"><p>OK: NID 4 length is '29'<br>'Noto Sans Canadian Aboriginal' </p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 4</p></td>
+                    <td class="message"><p>If NID 2 is 'Regular': MS NID 4 = NID 1</p></td>
+                    <td class="detail"><p>NID 4 'Noto Sans Canadian Aboriginal' = NID 1 'Noto Sans Canadian Aboriginal'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 4</p></td>
+                    <td class="message"><p>Reserved word used in Full Font Name NID4 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 4 does not contain any of the following keywords: 'Book, Ultra, Normal'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 4</p></td>
+                    <td class="message"><p>Reserved word used in Full Font Name NID4 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 4 does not contain any of the following keywords: 'Roman'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 4</p></td>
+                    <td class="message"><p>Should be camel case Full Font Name NID4</p></td>
+                    <td class="detail"><p>NID 4: OK. No camel case required.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 4</p></td>
+                    <td class="message"><p>Check style extentions Full Font Name NID4</p></td>
+                    <td class="detail"><p>NID 4 does not contain any of the following beginnings: 'X, Demi, Xtra, Extra, Semi, Sm, Ultra, Dm, Ex'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>name/OS/2</p></td>
+                    <td class="feature"><p>MS NID 4</p></td>
+                    <td class="message"><p>Width Names Full Font Name NID4</p></td>
+                    <td class="detail"><p>OS/2 usWidthClass seems to be correct. Cannot find any specific width name in the name:<br>'Noto Sans Canadian Aboriginal'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>name/head</p></td>
+                    <td class="feature"><p>MS NID 5</p></td>
+                    <td class="message"><p>name table version should match head table fontRevision.</p></td>
+                    <td class="detail"><p>OK: name table version entry 'Version 1.03 uh' does match fontRevision 'Version 1.03'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 6</p></td>
+                    <td class="message"><p>MS NID 6, PostScript Name length shouldn't be longer then 27.<br>(Otherwise it may cause issues in MS Word.)</p></td>
+                    <td class="detail"><p>NID 6 length is '26'<br>'NotoSansCanadianAboriginal' </p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 6</p></td>
+                    <td class="message"><p>MS NID 6, PostScript Name check for illegal characters.<br>Monotype uses NID 6 for creating CSS classes for their demo HTML. The following characters cause issues in the CSS code: '<br>, ,  , &, _, [, ], (, ), {, }, <, >, /, \, %'</p></td>
+                    <td class="detail"><p>NID 6 is 'NotoSansCanadianAboriginal', Everything looks good.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 6</p></td>
+                    <td class="message"><p>MS NID 6, PostScript Name check for illegal characters.<br>'space' in NID 6 cause issues in fontbook for Mac.</p></td>
+                    <td class="detail"><p>NID 6 is 'NotoSansCanadianAboriginal', Everything looks good.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 6</p></td>
+                    <td class="message"><p>Reserved word used in PostScript Name NID6 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 6 does not contain any of the following keywords: 'Book, Ultra, Normal'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 6</p></td>
+                    <td class="message"><p>Reserved word used in PostScript Name NID6 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 6 does not contain any of the following keywords: 'Roman'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 6</p></td>
+                    <td class="message"><p>Should be camel case PostScript Name NID6</p></td>
+                    <td class="detail"><p>NID 6: OK. No camel case required.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 7</p></td>
+                    <td class="message"><p>Test Trademark</p></td>
+                    <td class="detail"><p><b>Current trademark is:</b><br>'Noto is a trademark of Google Inc.'<br><b>but what do think about this</b><br>'Noto is a trademark of <mark>Fontsmith Ltd and may be registered in certain jurisdictions</mark>.'<br><br>(This is automatically generated and might be wrong. Must be confirmed by legal)</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 8</p></td>
+                    <td class="message"><p>Manufactur (NID 8) should be Monotype IP</p></td>
+                    <td class="detail"><p>OK: MS NID 8 is 'Monotype Imaging Inc.'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 11</p></td>
+                    <td class="message"><p>MS NID 11, URL Vendor should be 'http://www.monotype.com'. </p></td>
+                    <td class="detail"><p>NID 11 is http://www.google.com/get/noto/, but should be http://www.monotype.com. Please verify against job spec.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 12</p></td>
+                    <td class="message"><p>MS NID 12, URL Vendor should be 'http://www.monotype.com'. </p></td>
+                    <td class="detail"><p>NID 12 is http://www.monotype.com/studio, but should be http://www.monotype.com. Please verify against job spec.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 8/13</p></td>
+                    <td class="message"><p>License text if Manufactur (NID 8) is one of these 'Monotype Imaging Inc.', 'Monotype Imaging Inc', 'Monotype ITC Inc.', 'Monotype Hong Kong Limited', 'Monotype Limited', 'Monotype KK', 'Monotype Solutions India Private Limited'</p></td>
+                    <td class="detail"><p>Please verify against job spec.<br><b>MS NID 13 is:</b><br>This Font Software is licensed under the SIL Open Font License, Version 1.1. This Font Software is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the SIL Open Font License for the specific language, permissions and limitations governing your use of this Font Software.<br><b>but should be:</b><br>This <mark>font software is the property of Monotype Imaging Inc., or one of its affiliated entities (collectively, Monotype) and its use by you is covered under the terms of a license agreement. You have obtained this font software either directly from Monotype or together with software distributed by one of the licensees of Monotype. This software is a valuable asset of Monotype. Unless you have entered into a specific license agreement granting you additional rights, your use of this software is limited by the terms of the actual license agreement you have entered into with Monotype. You may not copy or distribute this software. If you have any questions concerning your rights you should review the license agreement you received with the software. You can learn more about Monotype by clicking here: www.monotype.com</mark>.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 14</p></td>
+                    <td class="message"><p>MS NID 14, URL Vendor should be 'http://www.monotype.com'. </p></td>
+                    <td class="detail"><p>NID 14 is http://scripts.sil.org/OFL, but should be http://www.monotype.com. Please verify against job spec.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 0</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: 'No entry.'<br>MS [3, 1, 1033] is: '<mark>Copyright 2013 Google Inc. All Rights Reserved</mark>.'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 1</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: 'No entry.'<br>MS [3, 1, 1033] is: 'No<mark>to Sans Canadian Aboriginal</mark>'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 2</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: '<mark>No entry.</mark>'<br>MS [3, 1, 1033] is: 'Regular'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 3</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: 'No entry.'<br>MS [3, 1, 1033] is: '<mark>Monotype Imaging - Noto Sans Canadian Aboriginal</mark>'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 4</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: 'No entry.'<br>MS [3, 1, 1033] is: 'No<mark>to Sans Canadian Aboriginal</mark>'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 5</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: 'No entry.'<br>MS [3, 1, 1033] is: '<mark>Version 1.03 uh</mark>'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 6</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: 'No entry.'<br>MS [3, 1, 1033] is: 'No<mark>toSansCanadianAboriginal</mark>'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 7</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: 'No entry.'<br>MS [3, 1, 1033] is: 'No<mark>to is a trademark of Google Inc</mark>.'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 8</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: 'No entry.'<br>MS [3, 1, 1033] is: '<mark>Monotype Imaging Inc</mark>.'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 9</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: 'No entry.'<br>MS [3, 1, 1033] is: '<mark>Monotype Design Team</mark>'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 10</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: 'No entry.'<br>MS [3, 1, 1033] is: '<mark>Data unhinted. Designed by Monotype design team</mark>.'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 11</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: 'No entry.'<br>MS [3, 1, 1033] is: '<mark>http://www.google.com/get/noto/</mark>'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 12</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: 'No entry.'<br>MS [3, 1, 1033] is: '<mark>http://www.monotype.com/studio</mark>'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 13</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: 'No entry.'<br>MS [3, 1, 1033] is: '<mark>This Font Software is licensed under the SIL Open Font License, Version 1.1. This Font Software is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the SIL Open Font License for the specific language, permissions and limitations governing your use of this Font Software</mark>.'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac and MS NID 14</p></td>
+                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
+                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: 'No entry.'<br>MS [3, 1, 1033] is: '<mark>http://scripts.sil.org/OFL</mark>'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 0 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 0, Copyright' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Copyright is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 1 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 1, Family Name' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Family Name is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 2 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 2, Subfamily Name' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Subfamily Name is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 3 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 3, Unique Font Identifier' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Unique Font Identifier is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 4 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 4, Full Font Name' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Full Font Name is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 5 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 5, Version' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Version is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 6 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 6, PostScript Name' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>PostScript Name is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 7 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 7, Trademark' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Trademark is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 8 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 8, Manufacturer' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Manufacturer is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 9 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 9, Designer' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Designer is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 10 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 10, Description' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Description is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 11 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 11, Vendor URL' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Vendor URL is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 13 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 13, License Text' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>License Text is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 14 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 14, License URL' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>License URL is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 16 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 16, Typographic Family Name' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Typographic Family Name NID 16 (MS/BMP/English (U.S.)) is missing.<br>Please verify agains spec. It might be ok if it's a symbol font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Windows NID 17 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 17, Typographic Subfamily Name' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Typographic Subfamily Name NID 17 (MS/BMP/English (U.S.)) is missing.<br>Please verify agains spec. It might be ok if it's a symbol font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Underline Position and Thickness</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Underline Position and Thickness_cell">
+                <button id="Underline Position and Thickness_btn" onclick='toggle_detail("Underline Position and Thickness");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Underline Position and Thickness</h3></th></tr>
+            </thead>
+            <tbody id="Underline Position and Thickness" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>post</p></td>
+                    <td class="feature"><p>underline position and thickness</p></td>
+                    <td class="message"><p>underlinePosition should be a negative and underlineThickness not 0 or negative.</p></td>
+                    <td class="detail"><p>underlinePosition is '-217'.<br>underlineThicknes is '150'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Kerning (kern Table and GPOS Kerning)</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Kerning (kern Table and GPOS Kerning)_cell">
+                <button id="Kerning (kern Table and GPOS Kerning)_btn" onclick='toggle_detail("Kerning (kern Table and GPOS Kerning)");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Kerning (kern Table and GPOS Kerning)</h3></th></tr>
+            </thead>
+            <tbody id="Kerning (kern Table and GPOS Kerning)" class="result_body">
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>GPOS</p></td>
+                    <td class="feature"><p>kern</p></td>
+                    <td class="message"><p>Simple check if kern feature in GPOS table.</p></td>
+                    <td class="detail"><p>GPOS table does not have kerning feature. Please investigate if this meets requirements.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>kern</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Check if 'kern' table in font.</p></td>
+                    <td class="detail"><p>Font has no 'kern' table. Please verify if font requires kern table or if only GPOS kerning should be in font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Vendor ID</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Vendor ID_cell">
+                <button id="Vendor ID_btn" onclick='toggle_detail("Vendor ID");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Vendor ID</h3></th></tr>
+            </thead>
+            <tbody id="Vendor ID" class="result_body">
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>achVendID</p></td>
+                    <td class="message"><p>Vendor ID should be 'MONO'</p></td>
+                    <td class="detail"><p>Vendor ID is 'GOOG'. Please change to 'MONO'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Vertical Metrics</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Vertical Metrics_cell">
+                <button id="Vertical Metrics_btn" onclick='toggle_detail("Vertical Metrics");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Vertical Metrics</h3></th></tr>
+            </thead>
+            <tbody id="Vertical Metrics" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2 and head</p></td>
+                    <td class="feature"><p>sTypeAsc/Desc and unitsPerEm</p></td>
+                    <td class="message"><p>The result of sTypoAscender – sTypoDescender should match or exceed the unitsPerEm value.</p></td>
+                    <td class="detail"><p>The result of sTypoAscender – sTypoDescender (2789) match or exceed the unitsPerEm value (2048).</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>hhea</p></td>
+                    <td class="feature"><p>Vertical Metrics</p></td>
+                    <td class="message"><p>Pull hhea Metrics</p></td>
+                    <td class="detail"><p>hhea.ascent: 2189<br>hhea.descent: -600<br>hhea.lineGap: 0</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>Vertical Metrics</p></td>
+                    <td class="message"><p>Pull OS/2 sTypo Metrics</p></td>
+                    <td class="detail"><p>OS2.sTypoAscender: 2189<br>OS2.sTypoDescender: -600<br>OS2.sTypoLineGap: 0</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>Vertical Metrics</p></td>
+                    <td class="message"><p>Pull OS/2 usWin Metrics</p></td>
+                    <td class="detail"><p>OS2.usWinAscent: 2189<br>OS2.usWinDescent: 600</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>xAvgCharWidth</p></td>
+                    <td class="message"><p>Get 'OS/2' xAvgCharWidth.</p></td>
+                    <td class="detail"><p>xAvgCharWidth = 1495.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>hhea</p></td>
+                    <td class="feature"><p>advanceWidthMax</p></td>
+                    <td class="message"><p>Get advanceWidthMax.</p></td>
+                    <td class="detail"><p>advanceWidthMax = 3006.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>hhea</p></td>
+                    <td class="feature"><p>xMin, yMin, xMax, yMax</p></td>
+                    <td class="message"><p>Get xMin, yMin, xMax, yMax.</p></td>
+                    <td class="detail"><p>xMin: 15<br>yMin: -547<br>xMax: 2886<br>yMax: 2034<br></p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>sTypoAscender</p></td>
+                    <td class="message"><p>Vertical Metrics 'sTypoAscender' shouldn't be negative.</p></td>
+                    <td class="detail"><p>sTypoAscender = '2189'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>sTypoDescender</p></td>
+                    <td class="message"><p>Vertical Metrics 'sTypoDescender' should be negative.</p></td>
+                    <td class="detail"><p>sTypoDescender = '-600'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>sTypoLineGap</p></td>
+                    <td class="message"><p>Vertical Metrics 'sTypoLineGap' shouldn't be negative.</p></td>
+                    <td class="detail"><p>sTypoLineGap = '0'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>usWinAscent</p></td>
+                    <td class="message"><p>Vertical Metrics 'usWinAscent' shouldn't be negative.</p></td>
+                    <td class="detail"><p>usWinAscent = '2189'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>usWinDescent</p></td>
+                    <td class="message"><p>Vertical Metrics 'usWinDescent' shouldn't be negative.</p></td>
+                    <td class="detail"><p>usWinDescent = '600'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>hhea</p></td>
+                    <td class="feature"><p>ascent</p></td>
+                    <td class="message"><p>Vertical Metrics 'ascent' shouldn't be negative.</p></td>
+                    <td class="detail"><p>ascent = '2189'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>hhea</p></td>
+                    <td class="feature"><p>descent</p></td>
+                    <td class="message"><p>Vertical Metrics 'descent' should be negative.</p></td>
+                    <td class="detail"><p>descent = '-600'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>hhea</p></td>
+                    <td class="feature"><p>lineGap</p></td>
+                    <td class="message"><p>Vertical Metrics 'lineGap' shouldn't be negative.</p></td>
+                    <td class="detail"><p>lineGap = '0'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>gasp Table</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="gasp Table_cell">
+                <button id="gasp Table_btn" onclick='toggle_detail("gasp Table");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>gasp Table</h3></th></tr>
+            </thead>
+            <tbody id="gasp Table" class="result_body">
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>gasp</p></td>
+                    <td class="feature"><p>Version</p></td>
+                    <td class="message"><p>gasp table verison should be 1.</p></td>
+                    <td class="detail"><p>Verison = 0</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>gasp</p></td>
+                    <td class="feature"><p>Default</p></td>
+                    <td class="message"><p>Pull gasp table Default.</p></td>
+                    <td class="detail"><p>Grid-fit = True, Do gray = True</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>gasp</p></td>
+                    <td class="feature"><p>Default</p></td>
+                    <td class="message"><p>Check gasp table Default.</p></td>
+                    <td class="detail"><p>gasp table default is:<br>Grid-fit = True, Do gray = True<br>and should be:<br>Grid-fit = True, Do gray = True, Symmetric grid-fit = True, Symmetric smoothing = True</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>gasp</p></td>
+                    <td class="feature"><p>subtable</p></td>
+                    <td class="message"><p>Pull gasp subtable: '8'</p></td>
+                    <td class="detail"><p>Do gray = True</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>head</p></td>
+                    <td class="feature"><p>lowestRecPPEM</p></td>
+                    <td class="message"><p>Monotype standard for lowestRecPPEM is '9'.</p></td>
+                    <td class="detail"><p>lowestRecPPEM is '9', but should be '9'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>gasp</p></td>
+                    <td class="feature"><p>subtable</p></td>
+                    <td class="message"><p>gasp subtable value should be one less than lowestRecPPEM (head table).</p></td>
+                    <td class="detail"><p>gasp subtable is '8' and should be '8'.<br>(head table lowestRecPPEM is '9')</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>gasp</p></td>
+                    <td class="feature"><p>subtable</p></td>
+                    <td class="message"><p>Monotype standard for gasp table.</p></td>
+                    <td class="detail"><p>gasp subtable '8' is<br>'Do gray = True'<br>equal to MT standard<br>'Do gray = True, Symmetric smoothing = True'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>PostScript names</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="PostScript names_cell">
+                <button id="PostScript names_btn" onclick='toggle_detail("PostScript names");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>PostScript names</h3></th></tr>
+            </thead>
+            <tbody id="PostScript names" class="result_body">
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Noto Sans Canadian Aboriginal Regular (NotoSansCanadianAboriginal-Regular.ttf)</p></td>
+                    <td class="table"><p>post</p></td>
+                    <td class="feature"><p>PostScript names</p></td>
+                    <td class="message"><p>Postscript names should not be longer then 29 characters. May cause issues in PDF.</p></td>
+                    <td class="detail"><p>Font has no PostScript names.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>OT Features</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="OT Features_cell">
+                <button id="OT Features_btn" onclick='toggle_detail("OT Features");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>OT Features</h3></th></tr>
+            </thead>
+            <tbody id="OT Features" class="result_body">
+                      </tbody>
+            </table>
+    </body>
+</html>

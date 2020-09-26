@@ -1,0 +1,93 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "NotoSansDevanagari-ExtraCondensed.ttf",
+                "type": "ttf",
+                "size": 153904,
+                "md5": "39628397b530a4b7a40b3b6838483a36",
+                "geometryMd5": "3ed2ad0c3a826b1dbd34529eaa415ad1"
+            },
+            "name": {
+                "family": "Noto Sans Devanagari XCn",
+                "subFamily": "Regular",
+                "fullName": "Noto Sans Devanagari ExtraCondensed",
+                "psName": "NotoSansDevanagari-ExtraCondensed",
+                "versionText": "Version 2.000;GOOG;noto-source:20170915:90ef993387c0",
+                "copyright": "Copyright 2015 Google Inc. All Rights Reserved.",
+                "trademark": "Noto is a trademark of Google Inc.",
+                "typographicFamily": "Noto Sans Devanagari",
+                "typographicSubFamily": "ExtraCondensed"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 967,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "GOOG",
+                "font_vendor": "Google"
+            },
+            "validation": {
+                "font_full_name": "Noto Sans Devanagari ExtraCondensed",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 5,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_e12a71213df345688df0181882774a91.GDEF.glyphClasses",
+                        "levelname": "ERROR",
+                        "message": "The following mark glyphs have nonzero advances: [904, 905, 906, 907, 908, 909]",
+                        "timestamp": "2020-09-26T15:41:20.920373Z",
+                        "orig_output": "validate_e12a71213df345688df0181882774a91.GDEF.glyphClasses - ERROR - The following mark glyphs have nonzero advances: [904, 905, 906, 907, 908, 909]",
+                        "msg_code": "V1102"
+                    },
+                    {
+                        "subroutine": "validate_e12a71213df345688df0181882774a91.glyf.glyph 111 ('fivedeva').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-09-26T15:41:23.307650Z",
+                        "orig_output": "validate_e12a71213df345688df0181882774a91.glyf.glyph 111 ('fivedeva').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_e12a71213df345688df0181882774a91.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2020-09-26T15:41:44.643779Z",
+                        "orig_output": "validate_e12a71213df345688df0181882774a91.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
+                    },
+                    {
+                        "subroutine": "validate_e12a71213df345688df0181882774a91.OS_2.usMaxContext",
+                        "levelname": "ERROR",
+                        "message": "The usMaxContext should be 5, but is 0",
+                        "timestamp": "2020-09-26T15:41:22.082728Z",
+                        "orig_output": "validate_e12a71213df345688df0181882774a91.OS_2.usMaxContext - ERROR - The usMaxContext should be 5, but is 0",
+                        "msg_code": "V0831"
+                    },
+                    {
+                        "subroutine": "validate_e12a71213df345688df0181882774a91.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 421, but is 422",
+                        "timestamp": "2020-09-26T15:41:22.083077Z",
+                        "orig_output": "validate_e12a71213df345688df0181882774a91.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 421, but is 422",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 26474,
+    "completedDate": "2020-09-26 15:41:45.165761"
+}
