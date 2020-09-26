@@ -46,35 +46,17 @@ node('fonttools-dev') {
 
     stage('Clean workspace before build') {
         try {
-            if (false) {
-                deleteDir()
-            }
+            deleteDir()
         } catch (e) {
             // can happen if old builds expire before next one runs; just proceed.
             currentBuild.result = 'SUCCESS'
         }
     }
 
-    stage('Git checkout') {
-        try {
-            scm_data = checkout([
-                $class: 'GitSCM',
-                branches: [[name: branch]],
-                gitTool: 'Default',
-                userRemoteConfigs: [[credentialsId: 'jenkins-github', url: 'https://github.com/Monotype/google-fonts.git']]]
-            )
-        } catch(e) {
-            currentBuild.result = 'FAILURE'
-            slackSend(channel: "fonttools-jenkins",
-                      color: "#bf0000",
-                      message:":linux: google-fonts failed during Git checkout.")
-            throw(e)
-        }
-    }
-
     stage('Update Git Clone') {
         withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'jenkins-github', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_TOKEN']]) {
             sh """
+                git clone https://github.com/Monotype/google-fonts.git .
                 echo 'echo \$GIT_TOKEN' > .git-askpass
                 chmod +x .git-askpass
                 export GIT_ASKPASS=\$PWD/.git-askpass
