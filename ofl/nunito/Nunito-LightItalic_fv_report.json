@@ -4,18 +4,18 @@
             "file": {
                 "name": "Nunito-LightItalic.ttf",
                 "type": "ttf",
-                "size": 176760,
-                "md5": "ce8b2077430de3f0e6ab41ad920c1aaa",
-                "geometryMd5": "028618ba4f5e252e1a537a95a975da1a"
+                "size": 157256,
+                "md5": "ec6c6d39250d2df46f9b8e1dfc7fb385",
+                "geometryMd5": "b7f4d6ef8482e63c65cf3c0c620e1e82"
             },
             "name": {
                 "family": "Nunito Light",
                 "subFamily": "Italic",
                 "fullName": "Nunito Light Italic",
                 "psName": "Nunito-LightItalic",
-                "versionText": "Version 3.504",
-                "copyright": "Copyright 2014 The Nunito Project Authors (https://github.com/googlefonts/NunitoFont)",
-                "trademark": "Nunito is a trademark of Vernon Adams and may be registered in certain jurisdictions.",
+                "versionText": "Version 3.600; ttfautohint (v1.8.3)",
+                "copyright": "Copyright 2014 The Nunito Project Authors (https://github.com/googlefonts/nunito)",
+                "trademark": "Unknown",
                 "typographicFamily": "Nunito",
                 "typographicSubFamily": "Light Italic"
             },
@@ -24,9 +24,9 @@
                 "flavor": "TT"
             },
             "summary": {
-                "num_glyphs": 1041,
+                "num_glyphs": 1103,
                 "embedding": "Installable Embedding",
-                "font_vendor_id": "NeWT",
+                "font_vendor_id": "NONE",
                 "font_vendor": "Unknown"
             },
             "validation": {
@@ -42,20 +42,20 @@
                 },
                 "result": [
                     {
-                        "subroutine": "validate_e32084495cbb41c48c3dcec044e413db.fontedit.OS_2.PANOSE.weight",
-                        "levelname": "ERROR",
-                        "message": "Value 4 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
-                        "timestamp": "2020-09-25T08:53:13.904117Z",
-                        "orig_output": "validate_e32084495cbb41c48c3dcec044e413db.fontedit.OS_2.PANOSE.weight - ERROR - Value 4 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
-                        "msg_code": "E2111"
-                    },
-                    {
-                        "subroutine": "validate_e32084495cbb41c48c3dcec044e413db.glyf.glyph 940 ('ampersand').contours.contour 0",
+                        "subroutine": "validate_0cd0803a81154f37a0e013046ab18ec5.glyf.glyph 231 ('uni01B3').contours.contour 0",
                         "levelname": "ERROR",
                         "message": "Contour has duplicate adjacent points of differing on-curve states.",
-                        "timestamp": "2020-09-25T08:53:30.946259Z",
-                        "orig_output": "validate_e32084495cbb41c48c3dcec044e413db.glyf.glyph 940 ('ampersand').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-11-17T17:37:11.439826Z",
+                        "orig_output": "validate_0cd0803a81154f37a0e013046ab18ec5.glyf.glyph 231 ('uni01B3').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
                         "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_0cd0803a81154f37a0e013046ab18ec5.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2020-11-17T17:38:10.915028Z",
+                        "orig_output": "validate_0cd0803a81154f37a0e013046ab18ec5.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
                     }
                 ]
             }
@@ -64,6 +64,6 @@
     "skipped": [],
     "fontio3_version": "3.7.20200604.317848rc4",
     "fontvalidator_version": "20200305.1",
-    "runningTime": 277486,
-    "completedDate": "2020-09-25 08:57:48.405866"
+    "runningTime": 106731,
+    "completedDate": "2020-11-17 17:38:50.857139"
 }

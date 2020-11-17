@@ -4,16 +4,16 @@
             "file": {
                 "name": "Padauk-Bold.ttf",
                 "type": "ttf",
-                "size": 428836,
-                "md5": "6ddd47c2fd77400e572d9d8d19b1e09b",
-                "geometryMd5": "af5969f67259ae82520855253b2542e4"
+                "size": 471856,
+                "md5": "987340f462fc64f73929dd04208613d8",
+                "geometryMd5": "f30e644d112f2ae34e76bd60c5ad812f"
             },
             "name": {
                 "family": "Padauk",
                 "subFamily": "Bold",
                 "fullName": "Padauk Bold",
                 "psName": "Padauk-Bold",
-                "versionText": "Version 3.002",
+                "versionText": "Version 3.003; ttfautohint (v1.8.2) -l 8 -r 50 -G 200 -x 14 -D mymr -f latn -a qsq -W -X \"\"",
                 "copyright": "Copyright 2016 SIL International, all rights reserved",
                 "trademark": "Unknown",
                 "typographicFamily": "Padauk",
@@ -35,35 +35,27 @@
                 "last_success": "finished validation python",
                 "msg_count": {
                     "CRITICAL": 0,
-                    "ERROR": 3,
+                    "ERROR": 2,
                     "WARNING": 0,
                     "INFO": 0,
                     "DEBUG": 0
                 },
                 "result": [
                     {
-                        "subroutine": "validate_ca8963686bb84cdd84f0aa398a69af2c.fontedit.GDEF.GDEF.ligcaret",
+                        "subroutine": "validate_6e9c6a0576544275a3d6b736a6159ae1.fontedit.GDEF.GDEF.ligcaret",
                         "levelname": "ERROR",
                         "message": "Offset count is zero but bytes remain.",
-                        "timestamp": "2020-09-24T12:34:14.790219Z",
-                        "orig_output": "validate_ca8963686bb84cdd84f0aa398a69af2c.fontedit.GDEF.GDEF.ligcaret - ERROR - Offset count is zero but bytes remain.",
+                        "timestamp": "2020-11-17T16:57:17.106906Z",
+                        "orig_output": "validate_6e9c6a0576544275a3d6b736a6159ae1.fontedit.GDEF.GDEF.ligcaret - ERROR - Offset count is zero but bytes remain.",
                         "msg_code": "V0106"
                     },
                     {
-                        "subroutine": "validate_ca8963686bb84cdd84f0aa398a69af2c.GDEF.glyphClasses",
+                        "subroutine": "validate_6e9c6a0576544275a3d6b736a6159ae1.GDEF.glyphClasses",
                         "levelname": "ERROR",
                         "message": "The following mark glyphs have nonzero advances: [111, 112, 113, 114, 115, 116, 117, 118, 180, 181, 182, 183, 211, 212, 214, 217, 220, 223, 228, 230, 231, 232, 237, 238, 239, 240, 241, 242, 243, 244, 245, 246, 247, 248, 286, 287, 316, 318, 333, 334, 339, 346, 362, 384, 385, 430, 442, 455, 472, 473, 474, 486, 487, 488, 489, 500, 501, 504, 505, 506, 508, 509, 510, 511]",
-                        "timestamp": "2020-09-24T12:34:15.130495Z",
-                        "orig_output": "validate_ca8963686bb84cdd84f0aa398a69af2c.GDEF.glyphClasses - ERROR - The following mark glyphs have nonzero advances: [111, 112, 113, 114, 115, 116, 117, 118, 180, 181, 182, 183, 211, 212, 214, 217, 220, 223, 228, 230, 231, 232, 237, 238, 239, 240, 241, 242, 243, 244, 245, 246, 247, 248, 286, 287, 316, 318, 333, 334, 339, 346, 362, 384, 385, 430, 442, 455, 472, 473, 474, 486, 487, 488, 489, 500, 501, 504, 505, 506, 508, 509, 510, 511]",
+                        "timestamp": "2020-11-17T16:57:17.514530Z",
+                        "orig_output": "validate_6e9c6a0576544275a3d6b736a6159ae1.GDEF.glyphClasses - ERROR - The following mark glyphs have nonzero advances: [111, 112, 113, 114, 115, 116, 117, 118, 180, 181, 182, 183, 211, 212, 214, 217, 220, 223, 228, 230, 231, 232, 237, 238, 239, 240, 241, 242, 243, 244, 245, 246, 247, 248, 286, 287, 316, 318, 333, 334, 339, 346, 362, 384, 385, 430, 442, 455, 472, 473, 474, 486, 487, 488, 489, 500, 501, 504, 505, 506, 508, 509, 510, 511]",
                         "msg_code": "V1102"
-                    },
-                    {
-                        "subroutine": "validate_ca8963686bb84cdd84f0aa398a69af2c.hints.call FDEF 8.call FDEF 7",
-                        "levelname": "ERROR",
-                        "message": "RCVT[] in FDEF 7 (PC 2) is attempting to read from CVT index 35, which does not exist!",
-                        "timestamp": "2020-09-24T12:34:27.793504Z",
-                        "orig_output": "validate_ca8963686bb84cdd84f0aa398a69af2c.hints.call FDEF 8.call FDEF 7 - ERROR - RCVT[] in FDEF 7 (PC 2) is attempting to read from CVT index 35, which does not exist!",
-                        "msg_code": "G0029"
                     }
                 ]
             }
@@ -72,6 +64,6 @@
     "skipped": [],
     "fontio3_version": "3.7.20200604.317848rc4",
     "fontvalidator_version": "20200305.1",
-    "runningTime": 15488,
-    "completedDate": "2020-09-24 12:34:27.887981"
+    "runningTime": 227317,
+    "completedDate": "2020-11-17 17:01:02.056200"
 }

@@ -4,16 +4,16 @@
             "file": {
                 "name": "Elsie-Regular.ttf",
                 "type": "ttf",
-                "size": 40956,
-                "md5": "12819065e0ad98b3414074452a65c650",
-                "geometryMd5": "568b4395addf8072491ecc6ad846f955"
+                "size": 38936,
+                "md5": "4e729441307c5748f291683dded77968",
+                "geometryMd5": "3c72c08e2408faaa382a45eb004ca63b"
             },
             "name": {
                 "family": "Elsie",
                 "subFamily": "Regular",
                 "fullName": "Elsie Regular",
                 "psName": "Elsie-Regular",
-                "versionText": "1.002",
+                "versionText": "1.003",
                 "copyright": "Copyright (c) 2010-2012, Alejandro Inler (alejandroinler@gmail.com), with Reserved Font Name 'Elsie'",
                 "trademark": "Elsie is a trademark of Alejandro Inler."
             },
@@ -22,7 +22,7 @@
                 "flavor": "TT"
             },
             "summary": {
-                "num_glyphs": 295,
+                "num_glyphs": 290,
                 "embedding": "Installable Embedding",
                 "font_vendor_id": "pyrs",
                 "font_vendor": "Unknown"
@@ -33,50 +33,34 @@
                 "last_success": "finished validation python",
                 "msg_count": {
                     "CRITICAL": 0,
-                    "ERROR": 5,
+                    "ERROR": 3,
                     "WARNING": 0,
                     "INFO": 0,
                     "DEBUG": 0
                 },
                 "result": [
                     {
-                        "subroutine": "validate_5227508213e6403090391f9f90e281e3.glyf.glyph 102 ('sterling')",
-                        "levelname": "ERROR",
-                        "message": "Bounds should be [20, -10, 438, 510], but are [20, -10, 439, 510].",
-                        "timestamp": "2020-09-24T12:05:56.829821Z",
-                        "orig_output": "validate_5227508213e6403090391f9f90e281e3.glyf.glyph 102 ('sterling') - ERROR - Bounds should be [20, -10, 438, 510], but are [20, -10, 439, 510].",
-                        "msg_code": "E1112"
-                    },
-                    {
-                        "subroutine": "validate_5227508213e6403090391f9f90e281e3.glyf.glyph 291 ('X.alt').contours.contour 1",
+                        "subroutine": "validate_f1daa92afd6341df980b6d638b70dbb4.glyf.glyph 286 ('X.alt').contours.contour 1",
                         "levelname": "ERROR",
                         "message": "Contour has duplicate adjacent points of differing on-curve states.",
-                        "timestamp": "2020-09-24T12:06:02.394123Z",
-                        "orig_output": "validate_5227508213e6403090391f9f90e281e3.glyf.glyph 291 ('X.alt').contours.contour 1 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-11-17T16:57:31.361664Z",
+                        "orig_output": "validate_f1daa92afd6341df980b6d638b70dbb4.glyf.glyph 286 ('X.alt').contours.contour 1 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
                         "msg_code": "V0295"
                     },
                     {
-                        "subroutine": "validate_5227508213e6403090391f9f90e281e3.OS_2.unicodeRanges",
+                        "subroutine": "validate_f1daa92afd6341df980b6d638b70dbb4.name",
                         "levelname": "ERROR",
-                        "message": "Unicode range 'hasLetterlike' claimed to be present but is not.",
-                        "timestamp": "2020-09-24T12:05:54.900195Z",
-                        "orig_output": "validate_5227508213e6403090391f9f90e281e3.OS_2.unicodeRanges - ERROR - Unicode range 'hasLetterlike' claimed to be present but is not.",
-                        "msg_code": "E2113"
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2020-11-17T16:57:32.656956Z",
+                        "orig_output": "validate_f1daa92afd6341df980b6d638b70dbb4.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
                     },
                     {
-                        "subroutine": "validate_5227508213e6403090391f9f90e281e3.OS_2.unicodeRanges",
-                        "levelname": "ERROR",
-                        "message": "Unicode range 'hasPlaneZeroPrivate' claimed to be present but is not.",
-                        "timestamp": "2020-09-24T12:05:54.900332Z",
-                        "orig_output": "validate_5227508213e6403090391f9f90e281e3.OS_2.unicodeRanges - ERROR - Unicode range 'hasPlaneZeroPrivate' claimed to be present but is not.",
-                        "msg_code": "E2113"
-                    },
-                    {
-                        "subroutine": "validate_5227508213e6403090391f9f90e281e3.OS_2.xAvgCharWidth",
+                        "subroutine": "validate_f1daa92afd6341df980b6d638b70dbb4.OS_2.xAvgCharWidth",
                         "levelname": "ERROR",
                         "message": "The xAvgCharWidth should be 524, but is 510",
-                        "timestamp": "2020-09-24T12:05:55.016683Z",
-                        "orig_output": "validate_5227508213e6403090391f9f90e281e3.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 524, but is 510",
+                        "timestamp": "2020-11-17T16:57:23.161618Z",
+                        "orig_output": "validate_f1daa92afd6341df980b6d638b70dbb4.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 524, but is 510",
                         "msg_code": "E2135"
                     }
                 ]
@@ -86,6 +70,6 @@
     "skipped": [],
     "fontio3_version": "3.7.20200604.317848rc4",
     "fontvalidator_version": "20200305.1",
-    "runningTime": 11268,
-    "completedDate": "2020-09-24 12:06:03.541702"
+    "runningTime": 13661,
+    "completedDate": "2020-11-17 16:57:33.018127"
 }

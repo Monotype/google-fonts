@@ -4,18 +4,18 @@
             "file": {
                 "name": "Nunito-Light.ttf",
                 "type": "ttf",
-                "size": 176868,
-                "md5": "6179873f552ac41e11f4371d7ac2f685",
-                "geometryMd5": "6514ea316c9580843f95878f08e824e5"
+                "size": 152548,
+                "md5": "27a23ed6e0ab5ff089a9c4a503ddc118",
+                "geometryMd5": "605ccccf0cd9231a60733b58357b0e56"
             },
             "name": {
                 "family": "Nunito Light",
                 "subFamily": "Regular",
                 "fullName": "Nunito Light",
                 "psName": "Nunito-Light",
-                "versionText": "Version 3.504",
-                "copyright": "Copyright 2014 The Nunito Project Authors (https://github.com/googlefonts/NunitoFont)",
-                "trademark": "Nunito is a trademark of Vernon Adams and may be registered in certain jurisdictions.",
+                "versionText": "Version 3.600; ttfautohint (v1.8.3)",
+                "copyright": "Copyright 2014 The Nunito Project Authors (https://github.com/googlefonts/nunito)",
+                "trademark": "Unknown",
                 "typographicFamily": "Nunito",
                 "typographicSubFamily": "Light"
             },
@@ -24,9 +24,9 @@
                 "flavor": "TT"
             },
             "summary": {
-                "num_glyphs": 1041,
+                "num_glyphs": 1103,
                 "embedding": "Installable Embedding",
-                "font_vendor_id": "NeWT",
+                "font_vendor_id": "NONE",
                 "font_vendor": "Unknown"
             },
             "validation": {
@@ -35,19 +35,27 @@
                 "last_success": "finished validation python",
                 "msg_count": {
                     "CRITICAL": 0,
-                    "ERROR": 1,
+                    "ERROR": 2,
                     "WARNING": 0,
                     "INFO": 0,
                     "DEBUG": 0
                 },
                 "result": [
                     {
-                        "subroutine": "validate_88123d0aa9764069a48f8f2ee82f60f4.fontedit.OS_2.PANOSE.weight",
+                        "subroutine": "validate_df10cacce3e642a6b8715e0cf276bd73.name",
                         "levelname": "ERROR",
-                        "message": "Value 4 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
-                        "timestamp": "2020-09-25T09:05:41.552488Z",
-                        "orig_output": "validate_88123d0aa9764069a48f8f2ee82f60f4.fontedit.OS_2.PANOSE.weight - ERROR - Value 4 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
-                        "msg_code": "E2111"
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2020-11-17T17:30:23.859080Z",
+                        "orig_output": "validate_df10cacce3e642a6b8715e0cf276bd73.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
+                    },
+                    {
+                        "subroutine": "validate_df10cacce3e642a6b8715e0cf276bd73.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 573, but is 574",
+                        "timestamp": "2020-11-17T17:29:35.458262Z",
+                        "orig_output": "validate_df10cacce3e642a6b8715e0cf276bd73.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 573, but is 574",
+                        "msg_code": "E2135"
                     }
                 ]
             }
@@ -56,6 +64,6 @@
     "skipped": [],
     "fontio3_version": "3.7.20200604.317848rc4",
     "fontvalidator_version": "20200305.1",
-    "runningTime": 262442,
-    "completedDate": "2020-09-25 09:10:00.890150"
+    "runningTime": 92570,
+    "completedDate": "2020-11-17 17:31:00.710494"
 }

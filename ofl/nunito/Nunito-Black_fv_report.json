@@ -4,18 +4,18 @@
             "file": {
                 "name": "Nunito-Black.ttf",
                 "type": "ttf",
-                "size": 176816,
-                "md5": "4ec54b5d8412604e165e0dd3da2ee142",
-                "geometryMd5": "3b12c3cc86d6ba9339d0d039729f5e16"
+                "size": 156672,
+                "md5": "59e80701309480d2e0a1d2e704c9bbc0",
+                "geometryMd5": "a5b8487bca21f19004ad2112a84f2162"
             },
             "name": {
                 "family": "Nunito Black",
                 "subFamily": "Regular",
                 "fullName": "Nunito Black",
                 "psName": "Nunito-Black",
-                "versionText": "Version 3.504",
-                "copyright": "Copyright 2014 The Nunito Project Authors (https://github.com/googlefonts/NunitoFont)",
-                "trademark": "Nunito is a trademark of Vernon Adams and may be registered in certain jurisdictions.",
+                "versionText": "Version 3.600; ttfautohint (v1.8.3)",
+                "copyright": "Copyright 2014 The Nunito Project Authors (https://github.com/googlefonts/nunito)",
+                "trademark": "Unknown",
                 "typographicFamily": "Nunito",
                 "typographicSubFamily": "Black"
             },
@@ -24,9 +24,9 @@
                 "flavor": "TT"
             },
             "summary": {
-                "num_glyphs": 1041,
+                "num_glyphs": 1103,
                 "embedding": "Installable Embedding",
-                "font_vendor_id": "NeWT",
+                "font_vendor_id": "NONE",
                 "font_vendor": "Unknown"
             },
             "validation": {
@@ -35,35 +35,27 @@
                 "last_success": "finished validation python",
                 "msg_count": {
                     "CRITICAL": 0,
-                    "ERROR": 3,
+                    "ERROR": 2,
                     "WARNING": 0,
                     "INFO": 0,
                     "DEBUG": 0
                 },
                 "result": [
                     {
-                        "subroutine": "validate_cf597c97ae964f4186460487ff4d0422.fontedit.OS_2.PANOSE.weight",
+                        "subroutine": "validate_4660906806aa4f618e7498bfe5db040b.name",
                         "levelname": "ERROR",
-                        "message": "Value 10 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
-                        "timestamp": "2020-09-25T09:34:28.789512Z",
-                        "orig_output": "validate_cf597c97ae964f4186460487ff4d0422.fontedit.OS_2.PANOSE.weight - ERROR - Value 10 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
-                        "msg_code": "E2111"
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2020-11-17T16:37:09.454659Z",
+                        "orig_output": "validate_4660906806aa4f618e7498bfe5db040b.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
                     },
                     {
-                        "subroutine": "validate_cf597c97ae964f4186460487ff4d0422.glyf.glyph 512 ('ordfeminine').contours.contour 2",
+                        "subroutine": "validate_4660906806aa4f618e7498bfe5db040b.OS_2.xAvgCharWidth",
                         "levelname": "ERROR",
-                        "message": "Contour is degenerate (only two (x,y) locations).",
-                        "timestamp": "2020-09-25T09:34:38.062494Z",
-                        "orig_output": "validate_cf597c97ae964f4186460487ff4d0422.glyf.glyph 512 ('ordfeminine').contours.contour 2 - ERROR - Contour is degenerate (only two (x,y) locations).",
-                        "msg_code": "V1013"
-                    },
-                    {
-                        "subroutine": "validate_cf597c97ae964f4186460487ff4d0422.glyf.glyph 885 ('colonmonetary').contours.contour 0",
-                        "levelname": "ERROR",
-                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
-                        "timestamp": "2020-09-25T09:34:42.834366Z",
-                        "orig_output": "validate_cf597c97ae964f4186460487ff4d0422.glyf.glyph 885 ('colonmonetary').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
-                        "msg_code": "V0295"
+                        "message": "The xAvgCharWidth should be 618, but is 619",
+                        "timestamp": "2020-11-17T16:36:12.649878Z",
+                        "orig_output": "validate_4660906806aa4f618e7498bfe5db040b.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 618, but is 619",
+                        "msg_code": "E2135"
                     }
                 ]
             }
@@ -72,6 +64,6 @@
     "skipped": [],
     "fontio3_version": "3.7.20200604.317848rc4",
     "fontvalidator_version": "20200305.1",
-    "runningTime": 298345,
-    "completedDate": "2020-09-25 09:39:23.227209"
+    "runningTime": 100852,
+    "completedDate": "2020-11-17 16:37:48.844248"
 }
