@@ -4,27 +4,27 @@
             "file": {
                 "name": "Nunito-Bold.ttf",
                 "type": "ttf",
-                "size": 176492,
-                "md5": "e0e8a9f44f6e060fe8a5901c74e468b8",
-                "geometryMd5": "76ef32314778a4aaae7b5ad18e6d1449"
+                "size": 153704,
+                "md5": "40072f173efdca8cf429f8a8f3804aca",
+                "geometryMd5": "e4ca08ca65656602d37eef302ffb778d"
             },
             "name": {
                 "family": "Nunito",
                 "subFamily": "Bold",
                 "fullName": "Nunito Bold",
                 "psName": "Nunito-Bold",
-                "versionText": "Version 3.504",
-                "copyright": "Copyright 2014 The Nunito Project Authors (https://github.com/googlefonts/NunitoFont)",
-                "trademark": "Nunito is a trademark of Vernon Adams and may be registered in certain jurisdictions."
+                "versionText": "Version 3.600; ttfautohint (v1.8.3)",
+                "copyright": "Copyright 2014 The Nunito Project Authors (https://github.com/googlefonts/nunito)",
+                "trademark": "Unknown"
             },
             "format": {
                 "format": "OT",
                 "flavor": "TT"
             },
             "summary": {
-                "num_glyphs": 1041,
+                "num_glyphs": 1103,
                 "embedding": "Installable Embedding",
-                "font_vendor_id": "NeWT",
+                "font_vendor_id": "NONE",
                 "font_vendor": "Unknown"
             },
             "validation": {
@@ -33,19 +33,35 @@
                 "last_success": "finished validation python",
                 "msg_count": {
                     "CRITICAL": 0,
-                    "ERROR": 1,
+                    "ERROR": 3,
                     "WARNING": 0,
                     "INFO": 0,
                     "DEBUG": 0
                 },
                 "result": [
                     {
-                        "subroutine": "validate_9ffd6b7e52d4439dbcbf82d119c4b00a.fontedit.OS_2.PANOSE.weight",
+                        "subroutine": "validate_846c8bb384884e1b99996eeb68588c5d.glyf.glyph 646 ('uni048E').contours.contour 1",
                         "levelname": "ERROR",
-                        "message": "Value 8 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
-                        "timestamp": "2020-09-25T09:24:28.780265Z",
-                        "orig_output": "validate_9ffd6b7e52d4439dbcbf82d119c4b00a.fontedit.OS_2.PANOSE.weight - ERROR - Value 8 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
-                        "msg_code": "E2111"
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2020-11-17T16:45:34.010257Z",
+                        "orig_output": "validate_846c8bb384884e1b99996eeb68588c5d.glyf.glyph 646 ('uni048E').contours.contour 1 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_846c8bb384884e1b99996eeb68588c5d.glyf.glyph 646 ('uni048E').contours.contour 1",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate non-adjacent points of differing on-curve states.",
+                        "timestamp": "2020-11-17T16:45:34.010477Z",
+                        "orig_output": "validate_846c8bb384884e1b99996eeb68588c5d.glyf.glyph 646 ('uni048E').contours.contour 1 - ERROR - Contour has duplicate non-adjacent points of differing on-curve states.",
+                        "msg_code": "V0297"
+                    },
+                    {
+                        "subroutine": "validate_846c8bb384884e1b99996eeb68588c5d.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2020-11-17T16:46:17.777393Z",
+                        "orig_output": "validate_846c8bb384884e1b99996eeb68588c5d.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
                     }
                 ]
             }
@@ -54,6 +70,6 @@
     "skipped": [],
     "fontio3_version": "3.7.20200604.317848rc4",
     "fontvalidator_version": "20200305.1",
-    "runningTime": 277252,
-    "completedDate": "2020-09-25 09:29:02.744854"
+    "runningTime": 79513,
+    "completedDate": "2020-11-17 16:46:40.752455"
 }

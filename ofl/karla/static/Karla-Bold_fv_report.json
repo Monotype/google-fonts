@@ -4,28 +4,28 @@
             "file": {
                 "name": "Karla-Bold.ttf",
                 "type": "ttf",
-                "size": 17868,
-                "md5": "b45be274b8b65fc9c72b038d72486edd",
-                "geometryMd5": "e7c84b36d4b27488c09594b70eb25977"
+                "size": 58284,
+                "md5": "d96c62b04ef8906e0840fa8bfc594689",
+                "geometryMd5": "d431baa7505dcc6f8efeeff5d4c5e9c5"
             },
             "name": {
                 "family": "Karla",
                 "subFamily": "Bold",
                 "fullName": "Karla Bold",
                 "psName": "Karla-Bold",
-                "versionText": "Version 1.000",
-                "copyright": "Copyright (c) 2011-2012, Jonathan Pinhorn (jonpinhorn.typedesign@gmail.com), with Reserved Font Names 'Karla'",
-                "trademark": "Unknown"
+                "versionText": "Version 2.002; ttfautohint (v1.8.3)",
+                "copyright": "Copyright 2019 The Karla Project Authors (https://github.com/googlefonts/karla)",
+                "trademark": "Karla is a trademark of Jonathan Pinhorn"
             },
             "format": {
                 "format": "OT",
                 "flavor": "TT"
             },
             "summary": {
-                "num_glyphs": 167,
+                "num_glyphs": 455,
                 "embedding": "Installable Embedding",
-                "font_vendor_id": "pyrs",
-                "font_vendor": "Unknown"
+                "font_vendor_id": "GOOG",
+                "font_vendor": "Google"
             },
             "validation": {
                 "font_full_name": "Karla Bold",
@@ -33,43 +33,83 @@
                 "last_success": "finished validation python",
                 "msg_count": {
                     "CRITICAL": 0,
-                    "ERROR": 4,
+                    "ERROR": 9,
                     "WARNING": 0,
                     "INFO": 0,
                     "DEBUG": 0
                 },
                 "result": [
                     {
-                        "subroutine": "validate_d6e51b09b074460bafbbcd4574aae151.OS_2.unicodeRanges",
+                        "subroutine": "validate_f47b68d835d5413685e854d3a8c88111.glyf.glyph 164 ('Cdotaccent')",
                         "levelname": "ERROR",
-                        "message": "Unicode range 'hasCJKIdeographs' claimed to be present but is not.",
-                        "timestamp": "2020-09-25T07:05:24.039393Z",
-                        "orig_output": "validate_d6e51b09b074460bafbbcd4574aae151.OS_2.unicodeRanges - ERROR - Unicode range 'hasCJKIdeographs' claimed to be present but is not.",
-                        "msg_code": "E2113"
+                        "message": "Bounds should be [94, -28, 1176, 1771], but are [94, -28, 1176, 1783].",
+                        "timestamp": "2020-11-17T17:05:56.427743Z",
+                        "orig_output": "validate_f47b68d835d5413685e854d3a8c88111.glyf.glyph 164 ('Cdotaccent') - ERROR - Bounds should be [94, -28, 1176, 1771], but are [94, -28, 1176, 1783].",
+                        "msg_code": "E1112"
                     },
                     {
-                        "subroutine": "validate_d6e51b09b074460bafbbcd4574aae151.OS_2.unicodeRanges",
+                        "subroutine": "validate_f47b68d835d5413685e854d3a8c88111.glyf.glyph 170 ('Edotaccent')",
                         "levelname": "ERROR",
-                        "message": "Unicode range 'hasPlane1516Private' claimed to be present but is not.",
-                        "timestamp": "2020-09-25T07:05:24.039535Z",
-                        "orig_output": "validate_d6e51b09b074460bafbbcd4574aae151.OS_2.unicodeRanges - ERROR - Unicode range 'hasPlane1516Private' claimed to be present but is not.",
-                        "msg_code": "E2113"
+                        "message": "Bounds should be [184, 0, 1018, 1771], but are [184, 0, 1018, 1783].",
+                        "timestamp": "2020-11-17T17:05:56.460264Z",
+                        "orig_output": "validate_f47b68d835d5413685e854d3a8c88111.glyf.glyph 170 ('Edotaccent') - ERROR - Bounds should be [184, 0, 1018, 1771], but are [184, 0, 1018, 1783].",
+                        "msg_code": "E1112"
                     },
                     {
-                        "subroutine": "validate_d6e51b09b074460bafbbcd4574aae151.OS_2.unicodeRanges",
+                        "subroutine": "validate_f47b68d835d5413685e854d3a8c88111.glyf.glyph 177 ('Gdotaccent')",
                         "levelname": "ERROR",
-                        "message": "Unicode range 'hasTags' claimed to be present but is not.",
-                        "timestamp": "2020-09-25T07:05:24.039596Z",
-                        "orig_output": "validate_d6e51b09b074460bafbbcd4574aae151.OS_2.unicodeRanges - ERROR - Unicode range 'hasTags' claimed to be present but is not.",
-                        "msg_code": "E2113"
+                        "message": "Bounds should be [94, -28, 1206, 1771], but are [94, -28, 1206, 1783].",
+                        "timestamp": "2020-11-17T17:05:56.564496Z",
+                        "orig_output": "validate_f47b68d835d5413685e854d3a8c88111.glyf.glyph 177 ('Gdotaccent') - ERROR - Bounds should be [94, -28, 1206, 1771], but are [94, -28, 1206, 1783].",
+                        "msg_code": "E1112"
                     },
                     {
-                        "subroutine": "validate_d6e51b09b074460bafbbcd4574aae151.OS_2.xAvgCharWidth",
+                        "subroutine": "validate_f47b68d835d5413685e854d3a8c88111.glyf.glyph 180 ('Idotaccent')",
                         "levelname": "ERROR",
-                        "message": "The xAvgCharWidth should be 543, but is 541",
-                        "timestamp": "2020-09-25T07:05:24.146615Z",
-                        "orig_output": "validate_d6e51b09b074460bafbbcd4574aae151.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 543, but is 541",
-                        "msg_code": "E2135"
+                        "message": "Bounds should be [150, 0, 470, 1771], but are [152, 0, 472, 1783].",
+                        "timestamp": "2020-11-17T17:05:56.607102Z",
+                        "orig_output": "validate_f47b68d835d5413685e854d3a8c88111.glyf.glyph 180 ('Idotaccent') - ERROR - Bounds should be [150, 0, 470, 1771], but are [152, 0, 472, 1783].",
+                        "msg_code": "E1112"
+                    },
+                    {
+                        "subroutine": "validate_f47b68d835d5413685e854d3a8c88111.glyf.glyph 222 ('Zdotaccent')",
+                        "levelname": "ERROR",
+                        "message": "Bounds should be [146, 0, 1128, 1771], but are [146, 0, 1128, 1783].",
+                        "timestamp": "2020-11-17T17:05:57.025007Z",
+                        "orig_output": "validate_f47b68d835d5413685e854d3a8c88111.glyf.glyph 222 ('Zdotaccent') - ERROR - Bounds should be [146, 0, 1128, 1771], but are [146, 0, 1128, 1783].",
+                        "msg_code": "E1112"
+                    },
+                    {
+                        "subroutine": "validate_f47b68d835d5413685e854d3a8c88111.glyf.glyph 236 ('bullet')",
+                        "levelname": "ERROR",
+                        "message": "Bounds should be [46, 24, 609, 560], but are [46, 299, 609, 835].",
+                        "timestamp": "2020-11-17T17:05:57.211362Z",
+                        "orig_output": "validate_f47b68d835d5413685e854d3a8c88111.glyf.glyph 236 ('bullet') - ERROR - Bounds should be [46, 24, 609, 560], but are [46, 299, 609, 835].",
+                        "msg_code": "E1112"
+                    },
+                    {
+                        "subroutine": "validate_f47b68d835d5413685e854d3a8c88111.glyf.glyph 300 ('uni0123')",
+                        "levelname": "ERROR",
+                        "message": "Bounds should be [-243, -502, 1124, 1400], but are [30, -502, 1124, 1400].",
+                        "timestamp": "2020-11-17T17:05:58.373203Z",
+                        "orig_output": "validate_f47b68d835d5413685e854d3a8c88111.glyf.glyph 300 ('uni0123') - ERROR - Bounds should be [-243, -502, 1124, 1400], but are [30, -502, 1124, 1400].",
+                        "msg_code": "E1112"
+                    },
+                    {
+                        "subroutine": "validate_f47b68d835d5413685e854d3a8c88111.glyf.glyph 314 ('i.loclTRK')",
+                        "levelname": "ERROR",
+                        "message": "Bounds should be [169, 0, 489, 1457], but are [172, 0, 492, 1457].",
+                        "timestamp": "2020-11-17T17:05:58.528105Z",
+                        "orig_output": "validate_f47b68d835d5413685e854d3a8c88111.glyf.glyph 314 ('i.loclTRK') - ERROR - Bounds should be [169, 0, 489, 1457], but are [172, 0, 492, 1457].",
+                        "msg_code": "E1112"
+                    },
+                    {
+                        "subroutine": "validate_f47b68d835d5413685e854d3a8c88111.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2020-11-17T17:06:25.349966Z",
+                        "orig_output": "validate_f47b68d835d5413685e854d3a8c88111.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
                     }
                 ]
             }
@@ -78,6 +118,6 @@
     "skipped": [],
     "fontio3_version": "3.7.20200604.317848rc4",
     "fontvalidator_version": "20200305.1",
-    "runningTime": 5919,
-    "completedDate": "2020-09-25 07:05:26.646751"
+    "runningTime": 56898,
+    "completedDate": "2020-11-17 17:06:46.186880"
 }

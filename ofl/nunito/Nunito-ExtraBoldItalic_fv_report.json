@@ -4,18 +4,18 @@
             "file": {
                 "name": "Nunito-ExtraBoldItalic.ttf",
                 "type": "ttf",
-                "size": 172744,
-                "md5": "b9177052962518f35bbd4793a16d9973",
-                "geometryMd5": "d3e5b0f8dec80b255c5940d17ab27cac"
+                "size": 161768,
+                "md5": "8a715d13970e39aecc973af57f348036",
+                "geometryMd5": "9adf0294ad02fb3a7bce7ea5c9154580"
             },
             "name": {
                 "family": "Nunito ExtraBold",
                 "subFamily": "Italic",
                 "fullName": "Nunito ExtraBold Italic",
                 "psName": "Nunito-ExtraBoldItalic",
-                "versionText": "Version 3.504",
-                "copyright": "Copyright 2014 The Nunito Project Authors (https://github.com/googlefonts/NunitoFont)",
-                "trademark": "Nunito is a trademark of Vernon Adams and may be registered in certain jurisdictions.",
+                "versionText": "Version 3.600; ttfautohint (v1.8.3)",
+                "copyright": "Copyright 2014 The Nunito Project Authors (https://github.com/googlefonts/nunito)",
+                "trademark": "Unknown",
                 "typographicFamily": "Nunito",
                 "typographicSubFamily": "ExtraBold Italic"
             },
@@ -24,9 +24,9 @@
                 "flavor": "TT"
             },
             "summary": {
-                "num_glyphs": 1041,
+                "num_glyphs": 1103,
                 "embedding": "Installable Embedding",
-                "font_vendor_id": "NeWT",
+                "font_vendor_id": "NONE",
                 "font_vendor": "Unknown"
             },
             "validation": {
@@ -35,27 +35,19 @@
                 "last_success": "finished validation python",
                 "msg_count": {
                     "CRITICAL": 0,
-                    "ERROR": 2,
+                    "ERROR": 1,
                     "WARNING": 0,
                     "INFO": 0,
                     "DEBUG": 0
                 },
                 "result": [
                     {
-                        "subroutine": "validate_f11de4ed04f941a2ab5418bb9d443176.fontedit.OS_2.PANOSE.weight",
+                        "subroutine": "validate_305c5c14c3d14afca0bd17bed35afb15.name",
                         "levelname": "ERROR",
-                        "message": "Value 9 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
-                        "timestamp": "2020-09-25T08:31:22.028710Z",
-                        "orig_output": "validate_f11de4ed04f941a2ab5418bb9d443176.fontedit.OS_2.PANOSE.weight - ERROR - Value 9 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
-                        "msg_code": "E2111"
-                    },
-                    {
-                        "subroutine": "validate_f11de4ed04f941a2ab5418bb9d443176.glyf.glyph 885 ('colonmonetary').contours.contour 0",
-                        "levelname": "ERROR",
-                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
-                        "timestamp": "2020-09-25T08:31:31.711073Z",
-                        "orig_output": "validate_f11de4ed04f941a2ab5418bb9d443176.glyf.glyph 885 ('colonmonetary').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
-                        "msg_code": "V0295"
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2020-11-17T17:02:31.892138Z",
+                        "orig_output": "validate_305c5c14c3d14afca0bd17bed35afb15.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
                     }
                 ]
             }
@@ -64,6 +56,6 @@
     "skipped": [],
     "fontio3_version": "3.7.20200604.317848rc4",
     "fontvalidator_version": "20200305.1",
-    "runningTime": 191584,
-    "completedDate": "2020-09-25 08:34:30.433053"
+    "runningTime": 113798,
+    "completedDate": "2020-11-17 17:03:17.362310"
 }
