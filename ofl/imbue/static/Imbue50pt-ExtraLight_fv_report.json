@@ -1,0 +1,93 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Imbue50pt-ExtraLight.ttf",
+                "type": "ttf",
+                "size": 127292,
+                "md5": "9789be164f00c5f7eb6466f90cc8ecc9",
+                "geometryMd5": "bc2a180bdf8332f6d4af0a498733c9fe"
+            },
+            "name": {
+                "family": "Imbue 50pt ExtraLight",
+                "subFamily": "Regular",
+                "fullName": "Imbue 50pt ExtraLight",
+                "psName": "Imbue50pt-ExtraLight",
+                "versionText": "Version 1.102; ttfautohint (v1.8.3)",
+                "copyright": "Copyright 2020 The Imbue Project Authors (https://github.com/Etcetera-Type-Co/Imbue)",
+                "trademark": "Unknown",
+                "typographicFamily": "Imbue 50pt",
+                "typographicSubFamily": "ExtraLight"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 895,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "ETCO",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Imbue 50pt ExtraLight",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 5,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_564c2dd9708144358d77c3e8ca608c83.DSIG",
+                        "levelname": "ERROR",
+                        "message": "The digital signature of the file did not verify.",
+                        "timestamp": "2021-02-21T12:04:20.279538Z",
+                        "orig_output": "validate_564c2dd9708144358d77c3e8ca608c83.DSIG - ERROR - The digital signature of the file did not verify.",
+                        "msg_code": "E0502"
+                    },
+                    {
+                        "subroutine": "validate_564c2dd9708144358d77c3e8ca608c83.glyf.glyph 749 ('uni20B5').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2021-02-21T12:04:31.294172Z",
+                        "orig_output": "validate_564c2dd9708144358d77c3e8ca608c83.glyf.glyph 749 ('uni20B5').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_564c2dd9708144358d77c3e8ca608c83.GPOS.features.[b'mark0003'].[0]",
+                        "levelname": "ERROR",
+                        "message": "The following ligatures have inconsistent counts between the GSUB Ligature Lookup that created them and the length of the mark-to-ligature data in this table: [419, 420]",
+                        "timestamp": "2021-02-21T12:04:20.747201Z",
+                        "orig_output": "validate_564c2dd9708144358d77c3e8ca608c83.GPOS.features.[b'mark0003'].[0] - ERROR - The following ligatures have inconsistent counts between the GSUB Ligature Lookup that created them and the length of the mark-to-ligature data in this table: [419, 420]",
+                        "msg_code": "V1062"
+                    },
+                    {
+                        "subroutine": "validate_564c2dd9708144358d77c3e8ca608c83.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2021-02-21T12:05:22.455626Z",
+                        "orig_output": "validate_564c2dd9708144358d77c3e8ca608c83.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
+                    },
+                    {
+                        "subroutine": "validate_564c2dd9708144358d77c3e8ca608c83.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 634, but is 635",
+                        "timestamp": "2021-02-21T12:04:22.112066Z",
+                        "orig_output": "validate_564c2dd9708144358d77c3e8ca608c83.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 634, but is 635",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20201030.330639rc3",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 107415,
+    "completedDate": "2021-02-21 12:06:03.977522"
+}

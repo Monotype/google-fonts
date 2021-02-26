@@ -4,16 +4,16 @@
             "file": {
                 "name": "Nunito-Light.ttf",
                 "type": "ttf",
-                "size": 152548,
-                "md5": "27a23ed6e0ab5ff089a9c4a503ddc118",
-                "geometryMd5": "605ccccf0cd9231a60733b58357b0e56"
+                "size": 152784,
+                "md5": "bf15505b814472a003a56ec970b427f0",
+                "geometryMd5": "94c2332aa14709aae66734ee3e02bbb7"
             },
             "name": {
                 "family": "Nunito Light",
                 "subFamily": "Regular",
                 "fullName": "Nunito Light",
                 "psName": "Nunito-Light",
-                "versionText": "Version 3.600; ttfautohint (v1.8.3)",
+                "versionText": "Version 3.601; ttfautohint (v1.8.2.53-6de2)",
                 "copyright": "Copyright 2014 The Nunito Project Authors (https://github.com/googlefonts/nunito)",
                 "trademark": "Unknown",
                 "typographicFamily": "Nunito",
@@ -35,26 +35,34 @@
                 "last_success": "finished validation python",
                 "msg_count": {
                     "CRITICAL": 0,
-                    "ERROR": 2,
+                    "ERROR": 3,
                     "WARNING": 0,
                     "INFO": 0,
                     "DEBUG": 0
                 },
                 "result": [
                     {
-                        "subroutine": "validate_df10cacce3e642a6b8715e0cf276bd73.name",
+                        "subroutine": "validate_d18baf7fd0ea40dca03eb79f3e3e104e.DSIG",
+                        "levelname": "ERROR",
+                        "message": "The digital signature of the file did not verify.",
+                        "timestamp": "2021-02-20T03:08:47.560013Z",
+                        "orig_output": "validate_d18baf7fd0ea40dca03eb79f3e3e104e.DSIG - ERROR - The digital signature of the file did not verify.",
+                        "msg_code": "E0502"
+                    },
+                    {
+                        "subroutine": "validate_d18baf7fd0ea40dca03eb79f3e3e104e.name",
                         "levelname": "ERROR",
                         "message": "Postscript name not present for both Mac and Windows.",
-                        "timestamp": "2020-11-17T17:30:23.859080Z",
-                        "orig_output": "validate_df10cacce3e642a6b8715e0cf276bd73.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2021-02-20T03:09:24.799030Z",
+                        "orig_output": "validate_d18baf7fd0ea40dca03eb79f3e3e104e.name - ERROR - Postscript name not present for both Mac and Windows.",
                         "msg_code": "E2008"
                     },
                     {
-                        "subroutine": "validate_df10cacce3e642a6b8715e0cf276bd73.OS_2.xAvgCharWidth",
+                        "subroutine": "validate_d18baf7fd0ea40dca03eb79f3e3e104e.OS_2.xAvgCharWidth",
                         "levelname": "ERROR",
                         "message": "The xAvgCharWidth should be 573, but is 574",
-                        "timestamp": "2020-11-17T17:29:35.458262Z",
-                        "orig_output": "validate_df10cacce3e642a6b8715e0cf276bd73.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 573, but is 574",
+                        "timestamp": "2021-02-20T03:08:50.375504Z",
+                        "orig_output": "validate_d18baf7fd0ea40dca03eb79f3e3e104e.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 573, but is 574",
                         "msg_code": "E2135"
                     }
                 ]
@@ -62,8 +70,8 @@
         }
     ],
     "skipped": [],
-    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontio3_version": "3.7.20201030.330639rc3",
     "fontvalidator_version": "20200305.1",
-    "runningTime": 92570,
-    "completedDate": "2020-11-17 17:31:00.710494"
+    "runningTime": 67346,
+    "completedDate": "2021-02-20 03:09:49.814710"
 }

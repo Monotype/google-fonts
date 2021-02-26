@@ -1,0 +1,85 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "NotoSansThaiLooped-Thin.ttf",
+                "type": "ttf",
+                "size": 39616,
+                "md5": "11c1e5581e039fddd9884cf41d60084e",
+                "geometryMd5": "55fef81cd708c9c35e890d2a697ab694"
+            },
+            "name": {
+                "family": "Noto Sans Thai Looped Thin",
+                "subFamily": "Regular",
+                "fullName": "Noto Sans Thai Looped Thin",
+                "psName": "NotoSansThaiLooped-Thin",
+                "versionText": "Version 1.00",
+                "copyright": "Copyright 2020 Google LLC. All rights reserved",
+                "trademark": "Noto is a trademark of Google LLC.",
+                "typographicFamily": "Noto Sans Thai Looped",
+                "typographicSubFamily": "Thin"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 212,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "GOOG",
+                "font_vendor": "Google"
+            },
+            "validation": {
+                "font_full_name": "Noto Sans Thai Looped Thin",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 4,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_be1cdcc2306845cd911d5541c6ad9d63.DSIG",
+                        "levelname": "ERROR",
+                        "message": "The digital signature of the file did not verify.",
+                        "timestamp": "2021-02-21T12:23:01.698804Z",
+                        "orig_output": "validate_be1cdcc2306845cd911d5541c6ad9d63.DSIG - ERROR - The digital signature of the file did not verify.",
+                        "msg_code": "E0502"
+                    },
+                    {
+                        "subroutine": "validate_be1cdcc2306845cd911d5541c6ad9d63.glyf.glyph 64 ('uni0E2B').contours.contour 3",
+                        "levelname": "ERROR",
+                        "message": "Contour is degenerate (only two (x,y) locations).",
+                        "timestamp": "2021-02-21T12:23:05.175228Z",
+                        "orig_output": "validate_be1cdcc2306845cd911d5541c6ad9d63.glyf.glyph 64 ('uni0E2B').contours.contour 3 - ERROR - Contour is degenerate (only two (x,y) locations).",
+                        "msg_code": "V1013"
+                    },
+                    {
+                        "subroutine": "validate_be1cdcc2306845cd911d5541c6ad9d63.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2021-02-21T12:23:07.265275Z",
+                        "orig_output": "validate_be1cdcc2306845cd911d5541c6ad9d63.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
+                    },
+                    {
+                        "subroutine": "validate_be1cdcc2306845cd911d5541c6ad9d63.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 562, but is 563",
+                        "timestamp": "2021-02-21T12:23:02.956069Z",
+                        "orig_output": "validate_be1cdcc2306845cd911d5541c6ad9d63.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 562, but is 563",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20201030.330639rc3",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 9153,
+    "completedDate": "2021-02-21 12:23:07.477588"
+}

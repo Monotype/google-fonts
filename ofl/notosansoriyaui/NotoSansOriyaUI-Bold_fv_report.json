@@ -1,0 +1,91 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "NotoSansOriyaUI-Bold.ttf",
+                "type": "ttf",
+                "size": 93020,
+                "md5": "5a1c1764232652d1c91a38736199cfe5",
+                "geometryMd5": "9814d21eccdafb80fc3e4095484b3b7f"
+            },
+            "name": {
+                "family": "Noto Sans Oriya UI",
+                "subFamily": "Bold",
+                "fullName": "Noto Sans Oriya UI Bold",
+                "psName": "NotoSansOriyaUI-Bold",
+                "versionText": "Version 2.000",
+                "copyright": "Copyright 2019 Google LLC. All Rights Reserved.",
+                "trademark": "Noto is a trademark of Google Inc."
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 513,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "GOOG",
+                "font_vendor": "Google"
+            },
+            "validation": {
+                "font_full_name": "Noto Sans Oriya UI Bold",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 5,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_c0ba217b8f084442bbbf1a85f24898c3.DSIG",
+                        "levelname": "ERROR",
+                        "message": "The digital signature of the file did not verify.",
+                        "timestamp": "2021-02-20T23:19:55.662637Z",
+                        "orig_output": "validate_c0ba217b8f084442bbbf1a85f24898c3.DSIG - ERROR - The digital signature of the file did not verify.",
+                        "msg_code": "E0502"
+                    },
+                    {
+                        "subroutine": "validate_c0ba217b8f084442bbbf1a85f24898c3.glyf.glyph 189 ('uni0B4D0B1D').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2021-02-20T23:20:01.953846Z",
+                        "orig_output": "validate_c0ba217b8f084442bbbf1a85f24898c3.glyf.glyph 189 ('uni0B4D0B1D').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_c0ba217b8f084442bbbf1a85f24898c3.glyf.glyph 380 ('hajaoriya').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2021-02-20T23:20:08.791428Z",
+                        "orig_output": "validate_c0ba217b8f084442bbbf1a85f24898c3.glyf.glyph 380 ('hajaoriya').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_c0ba217b8f084442bbbf1a85f24898c3.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2021-02-20T23:20:15.239591Z",
+                        "orig_output": "validate_c0ba217b8f084442bbbf1a85f24898c3.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
+                    },
+                    {
+                        "subroutine": "validate_c0ba217b8f084442bbbf1a85f24898c3.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 719, but is 720",
+                        "timestamp": "2021-02-20T23:19:57.042146Z",
+                        "orig_output": "validate_c0ba217b8f084442bbbf1a85f24898c3.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 719, but is 720",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20201030.330639rc3",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 23645,
+    "completedDate": "2021-02-20 23:20:15.898095"
+}

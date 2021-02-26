@@ -4,16 +4,16 @@
             "file": {
                 "name": "Nunito-ExtraLightItalic.ttf",
                 "type": "ttf",
-                "size": 157484,
-                "md5": "349fd3e5c1824b30ebee3fde6ff3ff4a",
-                "geometryMd5": "8d533a599589bdd01e1ba1d36e1750f0"
+                "size": 155676,
+                "md5": "17dd7188abc0e1ed26b1c99498592a0d",
+                "geometryMd5": "d8afa26771959dd0fd6336ad13929a43"
             },
             "name": {
                 "family": "Nunito ExtraLight",
                 "subFamily": "Italic",
                 "fullName": "Nunito ExtraLight Italic",
                 "psName": "Nunito-ExtraLightItalic",
-                "versionText": "Version 3.600; ttfautohint (v1.8.3)",
+                "versionText": "Version 3.601; ttfautohint (v1.8.2.53-6de2)",
                 "copyright": "Copyright 2014 The Nunito Project Authors (https://github.com/googlefonts/nunito)",
                 "trademark": "Unknown",
                 "typographicFamily": "Nunito",
@@ -35,34 +35,42 @@
                 "last_success": "finished validation python",
                 "msg_count": {
                     "CRITICAL": 0,
-                    "ERROR": 3,
+                    "ERROR": 4,
                     "WARNING": 0,
                     "INFO": 0,
                     "DEBUG": 0
                 },
                 "result": [
                     {
-                        "subroutine": "validate_9801538d2ab44a2688f50ee6687329e4.glyf.glyph 231 ('uni01B3').contours.contour 0",
+                        "subroutine": "validate_e05c64bb7c754f089e1913399e749bbb.DSIG",
+                        "levelname": "ERROR",
+                        "message": "The digital signature of the file did not verify.",
+                        "timestamp": "2021-02-20T03:22:46.568502Z",
+                        "orig_output": "validate_e05c64bb7c754f089e1913399e749bbb.DSIG - ERROR - The digital signature of the file did not verify.",
+                        "msg_code": "E0502"
+                    },
+                    {
+                        "subroutine": "validate_e05c64bb7c754f089e1913399e749bbb.glyf.glyph 231 ('uni01B3').contours.contour 0",
                         "levelname": "ERROR",
                         "message": "Contour has duplicate adjacent points of differing on-curve states.",
-                        "timestamp": "2020-11-17T17:14:15.458110Z",
-                        "orig_output": "validate_9801538d2ab44a2688f50ee6687329e4.glyf.glyph 231 ('uni01B3').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2021-02-20T03:22:51.102884Z",
+                        "orig_output": "validate_e05c64bb7c754f089e1913399e749bbb.glyf.glyph 231 ('uni01B3').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
                         "msg_code": "V0295"
                     },
                     {
-                        "subroutine": "validate_9801538d2ab44a2688f50ee6687329e4.name",
+                        "subroutine": "validate_e05c64bb7c754f089e1913399e749bbb.name",
                         "levelname": "ERROR",
                         "message": "Postscript name not present for both Mac and Windows.",
-                        "timestamp": "2020-11-17T17:15:18.154898Z",
-                        "orig_output": "validate_9801538d2ab44a2688f50ee6687329e4.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2021-02-20T03:23:44.542394Z",
+                        "orig_output": "validate_e05c64bb7c754f089e1913399e749bbb.name - ERROR - Postscript name not present for both Mac and Windows.",
                         "msg_code": "E2008"
                     },
                     {
-                        "subroutine": "validate_9801538d2ab44a2688f50ee6687329e4.OS_2.xAvgCharWidth",
+                        "subroutine": "validate_e05c64bb7c754f089e1913399e749bbb.OS_2.xAvgCharWidth",
                         "levelname": "ERROR",
                         "message": "The xAvgCharWidth should be 566, but is 567",
-                        "timestamp": "2020-11-17T17:14:13.225820Z",
-                        "orig_output": "validate_9801538d2ab44a2688f50ee6687329e4.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 566, but is 567",
+                        "timestamp": "2021-02-20T03:22:49.180823Z",
+                        "orig_output": "validate_e05c64bb7c754f089e1913399e749bbb.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 566, but is 567",
                         "msg_code": "E2135"
                     }
                 ]
@@ -70,8 +78,8 @@
         }
     ],
     "skipped": [],
-    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontio3_version": "3.7.20201030.330639rc3",
     "fontvalidator_version": "20200305.1",
-    "runningTime": 122606,
-    "completedDate": "2020-11-17 17:16:09.955890"
+    "runningTime": 109481,
+    "completedDate": "2021-02-20 03:24:32.315129"
 }

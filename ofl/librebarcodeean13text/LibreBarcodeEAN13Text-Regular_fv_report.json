@@ -4,17 +4,17 @@
             "file": {
                 "name": "LibreBarcodeEAN13Text-Regular.ttf",
                 "type": "ttf",
-                "size": 27700,
-                "md5": "a9f4d8c8b2acb048ff09511b02fc4bd9",
-                "geometryMd5": "0896c3b462564aa592698ad07997394f"
+                "size": 72692,
+                "md5": "2820569a824005a807875073f29ea657",
+                "geometryMd5": "832b17fc4a8d4cb5c0185833948f314b"
             },
             "name": {
                 "family": "Libre Barcode EAN13 Text",
                 "subFamily": "Regular",
                 "fullName": "Libre Barcode EAN13 Text Regular",
                 "psName": "LibreBarcodeEAN13Text-Regular",
-                "versionText": "Version 1.004; ttfautohint (v1.8.3)",
-                "copyright": "Copyright 2017-2019 The Libre Barcode Project Authors (https://github.com/graphicore/librebarcode)",
+                "versionText": "Version 1.008; ttfautohint (v1.8.3)",
+                "copyright": "Copyright 2017-2020 The Libre Barcode Project Authors (https://github.com/graphicore/librebarcode)",
                 "trademark": "Unknown"
             },
             "format": {
@@ -22,7 +22,7 @@
                 "flavor": "TT"
             },
             "summary": {
-                "num_glyphs": 82,
+                "num_glyphs": 155,
                 "embedding": "Installable Embedding",
                 "font_vendor_id": "GRCR",
                 "font_vendor": "Graphicore"
@@ -33,98 +33,638 @@
                 "last_success": "finished validation python",
                 "msg_count": {
                     "CRITICAL": 0,
-                    "ERROR": 11,
+                    "ERROR": 78,
                     "WARNING": 0,
                     "INFO": 0,
                     "DEBUG": 0
                 },
                 "result": [
                     {
-                        "subroutine": "validate_df0450b3b5704bee950d5520a567e56e.GSUB.scripts.[b'calt0001'].[1].[(({10}, {20}), ({16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}), ({19},))]",
+                        "subroutine": "validate_ee6f4bc16cfe4578ad37efadbc06a172.DSIG",
+                        "levelname": "ERROR",
+                        "message": "The digital signature of the file did not verify.",
+                        "timestamp": "2021-02-24T00:34:17.123541Z",
+                        "orig_output": "validate_ee6f4bc16cfe4578ad37efadbc06a172.DSIG - ERROR - The digital signature of the file did not verify.",
+                        "msg_code": "E0502"
+                    },
+                    {
+                        "subroutine": "validate_ee6f4bc16cfe4578ad37efadbc06a172.glyf.glyph 111 ('two.addOn.setA').contours.contour 2",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2021-02-24T00:34:20.675373Z",
+                        "orig_output": "validate_ee6f4bc16cfe4578ad37efadbc06a172.glyf.glyph 111 ('two.addOn.setA').contours.contour 2 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_ee6f4bc16cfe4578ad37efadbc06a172.glyf.glyph 112 ('two.addOn.setB').contours.contour 2",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2021-02-24T00:34:20.712509Z",
+                        "orig_output": "validate_ee6f4bc16cfe4578ad37efadbc06a172.glyf.glyph 112 ('two.addOn.setB').contours.contour 2 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_ee6f4bc16cfe4578ad37efadbc06a172.glyf.glyph 113 ('two.below').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2021-02-24T00:34:20.728393Z",
+                        "orig_output": "validate_ee6f4bc16cfe4578ad37efadbc06a172.glyf.glyph 113 ('two.below').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_ee6f4bc16cfe4578ad37efadbc06a172.glyf.glyph 114 ('two.below.upcquietzone').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2021-02-24T00:34:20.743781Z",
+                        "orig_output": "validate_ee6f4bc16cfe4578ad37efadbc06a172.glyf.glyph 114 ('two.below.upcquietzone').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_ee6f4bc16cfe4578ad37efadbc06a172.glyf.glyph 116 ('two.ean8.setA').contours.contour 2",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2021-02-24T00:34:20.764504Z",
+                        "orig_output": "validate_ee6f4bc16cfe4578ad37efadbc06a172.glyf.glyph 116 ('two.ean8.setA').contours.contour 2 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_ee6f4bc16cfe4578ad37efadbc06a172.glyf.glyph 117 ('two.ean8.setC').contours.contour 2",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2021-02-24T00:34:20.782527Z",
+                        "orig_output": "validate_ee6f4bc16cfe4578ad37efadbc06a172.glyf.glyph 117 ('two.ean8.setC').contours.contour 2 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_ee6f4bc16cfe4578ad37efadbc06a172.glyf.glyph 118 ('two.setA').contours.contour 2",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2021-02-24T00:34:20.800302Z",
+                        "orig_output": "validate_ee6f4bc16cfe4578ad37efadbc06a172.glyf.glyph 118 ('two.setA').contours.contour 2 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_ee6f4bc16cfe4578ad37efadbc06a172.glyf.glyph 119 ('two.setB').contours.contour 2",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2021-02-24T00:34:20.818147Z",
+                        "orig_output": "validate_ee6f4bc16cfe4578ad37efadbc06a172.glyf.glyph 119 ('two.setB').contours.contour 2 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_ee6f4bc16cfe4578ad37efadbc06a172.glyf.glyph 120 ('two.setC').contours.contour 2",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2021-02-24T00:34:20.835962Z",
+                        "orig_output": "validate_ee6f4bc16cfe4578ad37efadbc06a172.glyf.glyph 120 ('two.setC').contours.contour 2 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((110, 10), ruleOrder=7)]",
                         "levelname": "ERROR",
                         "message": "The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
-                        "timestamp": "2020-11-17T17:38:53.921863Z",
-                        "orig_output": "validate_df0450b3b5704bee950d5520a567e56e.GSUB.scripts.[b'calt0001'].[1].[(({10}, {20}), ({16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}), ({19},))] - ERROR - The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "timestamp": "2021-02-24T00:34:17.873825Z",
+                        "orig_output": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((110, 10), ruleOrder=7)] - ERROR - The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
                         "msg_code": "V0998"
                     },
                     {
-                        "subroutine": "validate_df0450b3b5704bee950d5520a567e56e.GSUB.scripts.[b'calt0001'].[2].[(({14}, {20}), ({16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}), ({19},))]",
+                        "subroutine": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((110, 142), ruleOrder=0)]",
                         "levelname": "ERROR",
                         "message": "The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
-                        "timestamp": "2020-11-17T17:38:53.939517Z",
-                        "orig_output": "validate_df0450b3b5704bee950d5520a567e56e.GSUB.scripts.[b'calt0001'].[2].[(({14}, {20}), ({16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}), ({19},))] - ERROR - The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "timestamp": "2021-02-24T00:34:17.872649Z",
+                        "orig_output": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((110, 142), ruleOrder=0)] - ERROR - The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
                         "msg_code": "V0998"
                     },
                     {
-                        "subroutine": "validate_df0450b3b5704bee950d5520a567e56e.GSUB.scripts.[b'calt0001'].[3].[(({13}, {20}), ({16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}), ({19},))]",
+                        "subroutine": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((110, 21), ruleOrder=4)]",
                         "levelname": "ERROR",
                         "message": "The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
-                        "timestamp": "2020-11-17T17:38:53.940946Z",
-                        "orig_output": "validate_df0450b3b5704bee950d5520a567e56e.GSUB.scripts.[b'calt0001'].[3].[(({13}, {20}), ({16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}), ({19},))] - ERROR - The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "timestamp": "2021-02-24T00:34:17.873324Z",
+                        "orig_output": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((110, 21), ruleOrder=4)] - ERROR - The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
                         "msg_code": "V0998"
                     },
                     {
-                        "subroutine": "validate_df0450b3b5704bee950d5520a567e56e.GSUB.scripts.[b'calt0001'].[4].[(({8}, {20}), ({16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}), ({19},))]",
+                        "subroutine": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((110, 32), ruleOrder=3)]",
                         "levelname": "ERROR",
                         "message": "The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
-                        "timestamp": "2020-11-17T17:38:53.942293Z",
-                        "orig_output": "validate_df0450b3b5704bee950d5520a567e56e.GSUB.scripts.[b'calt0001'].[4].[(({8}, {20}), ({16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}), ({19},))] - ERROR - The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "timestamp": "2021-02-24T00:34:17.873156Z",
+                        "orig_output": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((110, 32), ruleOrder=3)] - ERROR - The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
                         "msg_code": "V0998"
                     },
                     {
-                        "subroutine": "validate_df0450b3b5704bee950d5520a567e56e.GSUB.scripts.[b'calt0001'].[5].[(({7}, {20}), ({16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}), ({19},))]",
+                        "subroutine": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((110, 53), ruleOrder=8)]",
                         "levelname": "ERROR",
                         "message": "The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
-                        "timestamp": "2020-11-17T17:38:53.943655Z",
-                        "orig_output": "validate_df0450b3b5704bee950d5520a567e56e.GSUB.scripts.[b'calt0001'].[5].[(({7}, {20}), ({16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}), ({19},))] - ERROR - The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "timestamp": "2021-02-24T00:34:17.873991Z",
+                        "orig_output": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((110, 53), ruleOrder=8)] - ERROR - The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
                         "msg_code": "V0998"
                     },
                     {
-                        "subroutine": "validate_df0450b3b5704bee950d5520a567e56e.GSUB.scripts.[b'calt0001'].[6].[(({12}, {20}), ({16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}), ({19},))]",
+                        "subroutine": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((110, 64), ruleOrder=1)]",
                         "levelname": "ERROR",
                         "message": "The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
-                        "timestamp": "2020-11-17T17:38:53.944995Z",
-                        "orig_output": "validate_df0450b3b5704bee950d5520a567e56e.GSUB.scripts.[b'calt0001'].[6].[(({12}, {20}), ({16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}), ({19},))] - ERROR - The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "timestamp": "2021-02-24T00:34:17.872816Z",
+                        "orig_output": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((110, 64), ruleOrder=1)] - ERROR - The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
                         "msg_code": "V0998"
                     },
                     {
-                        "subroutine": "validate_df0450b3b5704bee950d5520a567e56e.GSUB.scripts.[b'calt0001'].[7].[(({11}, {20}), ({16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}), ({19},))]",
+                        "subroutine": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((110, 75), ruleOrder=6)]",
                         "levelname": "ERROR",
                         "message": "The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
-                        "timestamp": "2020-11-17T17:38:53.946339Z",
-                        "orig_output": "validate_df0450b3b5704bee950d5520a567e56e.GSUB.scripts.[b'calt0001'].[7].[(({11}, {20}), ({16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}), ({19},))] - ERROR - The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "timestamp": "2021-02-24T00:34:17.873658Z",
+                        "orig_output": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((110, 75), ruleOrder=6)] - ERROR - The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
                         "msg_code": "V0998"
                     },
                     {
-                        "subroutine": "validate_df0450b3b5704bee950d5520a567e56e.GSUB.scripts.[b'calt0001'].[8].[(({6}, {20}), ({16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}), ({19},))]",
+                        "subroutine": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((110, 87), ruleOrder=5)]",
                         "levelname": "ERROR",
                         "message": "The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
-                        "timestamp": "2020-11-17T17:38:53.947681Z",
-                        "orig_output": "validate_df0450b3b5704bee950d5520a567e56e.GSUB.scripts.[b'calt0001'].[8].[(({6}, {20}), ({16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}), ({19},))] - ERROR - The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "timestamp": "2021-02-24T00:34:17.873491Z",
+                        "orig_output": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((110, 87), ruleOrder=5)] - ERROR - The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
                         "msg_code": "V0998"
                     },
                     {
-                        "subroutine": "validate_df0450b3b5704bee950d5520a567e56e.GSUB.scripts.[b'calt0001'].[9].[(({9}, {20}), ({16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}), ({19},))]",
+                        "subroutine": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((110, 99), ruleOrder=2)]",
                         "levelname": "ERROR",
                         "message": "The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
-                        "timestamp": "2020-11-17T17:38:53.948981Z",
-                        "orig_output": "validate_df0450b3b5704bee950d5520a567e56e.GSUB.scripts.[b'calt0001'].[9].[(({9}, {20}), ({16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}, {16, 17, 18, 23, 24, 75, 76, 78, 79, 81}), ({19},))] - ERROR - The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "timestamp": "2021-02-24T00:34:17.872983Z",
+                        "orig_output": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((110, 99), ruleOrder=2)] - ERROR - The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
                         "msg_code": "V0998"
                     },
                     {
-                        "subroutine": "validate_df0450b3b5704bee950d5520a567e56e.name",
+                        "subroutine": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((142, 10), ruleOrder=7)]",
+                        "levelname": "ERROR",
+                        "message": "The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "timestamp": "2021-02-24T00:34:17.875362Z",
+                        "orig_output": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((142, 10), ruleOrder=7)] - ERROR - The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "msg_code": "V0998"
+                    },
+                    {
+                        "subroutine": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((142, 110), ruleOrder=1)]",
+                        "levelname": "ERROR",
+                        "message": "The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "timestamp": "2021-02-24T00:34:17.874349Z",
+                        "orig_output": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((142, 110), ruleOrder=1)] - ERROR - The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "msg_code": "V0998"
+                    },
+                    {
+                        "subroutine": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((142, 21), ruleOrder=4)]",
+                        "levelname": "ERROR",
+                        "message": "The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "timestamp": "2021-02-24T00:34:17.874856Z",
+                        "orig_output": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((142, 21), ruleOrder=4)] - ERROR - The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "msg_code": "V0998"
+                    },
+                    {
+                        "subroutine": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((142, 32), ruleOrder=3)]",
+                        "levelname": "ERROR",
+                        "message": "The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "timestamp": "2021-02-24T00:34:17.874688Z",
+                        "orig_output": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((142, 32), ruleOrder=3)] - ERROR - The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "msg_code": "V0998"
+                    },
+                    {
+                        "subroutine": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((142, 53), ruleOrder=8)]",
+                        "levelname": "ERROR",
+                        "message": "The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "timestamp": "2021-02-24T00:34:17.875527Z",
+                        "orig_output": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((142, 53), ruleOrder=8)] - ERROR - The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "msg_code": "V0998"
+                    },
+                    {
+                        "subroutine": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((142, 64), ruleOrder=0)]",
+                        "levelname": "ERROR",
+                        "message": "The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "timestamp": "2021-02-24T00:34:17.874166Z",
+                        "orig_output": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((142, 64), ruleOrder=0)] - ERROR - The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "msg_code": "V0998"
+                    },
+                    {
+                        "subroutine": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((142, 75), ruleOrder=6)]",
+                        "levelname": "ERROR",
+                        "message": "The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "timestamp": "2021-02-24T00:34:17.875196Z",
+                        "orig_output": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((142, 75), ruleOrder=6)] - ERROR - The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "msg_code": "V0998"
+                    },
+                    {
+                        "subroutine": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((142, 87), ruleOrder=5)]",
+                        "levelname": "ERROR",
+                        "message": "The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "timestamp": "2021-02-24T00:34:17.875022Z",
+                        "orig_output": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((142, 87), ruleOrder=5)] - ERROR - The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "msg_code": "V0998"
+                    },
+                    {
+                        "subroutine": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((142, 99), ruleOrder=2)]",
+                        "levelname": "ERROR",
+                        "message": "The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "timestamp": "2021-02-24T00:34:17.874519Z",
+                        "orig_output": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((142, 99), ruleOrder=2)] - ERROR - The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "msg_code": "V0998"
+                    },
+                    {
+                        "subroutine": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((64, 10), ruleOrder=7)]",
+                        "levelname": "ERROR",
+                        "message": "The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "timestamp": "2021-02-24T00:34:17.872312Z",
+                        "orig_output": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((64, 10), ruleOrder=7)] - ERROR - The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "msg_code": "V0998"
+                    },
+                    {
+                        "subroutine": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((64, 110), ruleOrder=1)]",
+                        "levelname": "ERROR",
+                        "message": "The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "timestamp": "2021-02-24T00:34:17.871270Z",
+                        "orig_output": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((64, 110), ruleOrder=1)] - ERROR - The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "msg_code": "V0998"
+                    },
+                    {
+                        "subroutine": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((64, 142), ruleOrder=0)]",
+                        "levelname": "ERROR",
+                        "message": "The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "timestamp": "2021-02-24T00:34:17.871062Z",
+                        "orig_output": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((64, 142), ruleOrder=0)] - ERROR - The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "msg_code": "V0998"
+                    },
+                    {
+                        "subroutine": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((64, 21), ruleOrder=4)]",
+                        "levelname": "ERROR",
+                        "message": "The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "timestamp": "2021-02-24T00:34:17.871793Z",
+                        "orig_output": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((64, 21), ruleOrder=4)] - ERROR - The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "msg_code": "V0998"
+                    },
+                    {
+                        "subroutine": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((64, 32), ruleOrder=3)]",
+                        "levelname": "ERROR",
+                        "message": "The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "timestamp": "2021-02-24T00:34:17.871622Z",
+                        "orig_output": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((64, 32), ruleOrder=3)] - ERROR - The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "msg_code": "V0998"
+                    },
+                    {
+                        "subroutine": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((64, 53), ruleOrder=8)]",
+                        "levelname": "ERROR",
+                        "message": "The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "timestamp": "2021-02-24T00:34:17.872481Z",
+                        "orig_output": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((64, 53), ruleOrder=8)] - ERROR - The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "msg_code": "V0998"
+                    },
+                    {
+                        "subroutine": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((64, 75), ruleOrder=6)]",
+                        "levelname": "ERROR",
+                        "message": "The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "timestamp": "2021-02-24T00:34:17.872141Z",
+                        "orig_output": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((64, 75), ruleOrder=6)] - ERROR - The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "msg_code": "V0998"
+                    },
+                    {
+                        "subroutine": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((64, 87), ruleOrder=5)]",
+                        "levelname": "ERROR",
+                        "message": "The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "timestamp": "2021-02-24T00:34:17.871964Z",
+                        "orig_output": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((64, 87), ruleOrder=5)] - ERROR - The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "msg_code": "V0998"
+                    },
+                    {
+                        "subroutine": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((64, 99), ruleOrder=2)]",
+                        "levelname": "ERROR",
+                        "message": "The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "timestamp": "2021-02-24T00:34:17.871449Z",
+                        "orig_output": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((64, 99), ruleOrder=2)] - ERROR - The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "msg_code": "V0998"
+                    },
+                    {
+                        "subroutine": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((ClassTuple((1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)), ClassTuple((1, 8)), ClassTuple(())), ruleOrder=0)]",
+                        "levelname": "ERROR",
+                        "message": "The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "timestamp": "2021-02-24T00:34:17.826032Z",
+                        "orig_output": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((ClassTuple((1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)), ClassTuple((1, 8)), ClassTuple(())), ruleOrder=0)] - ERROR - The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "msg_code": "V0998"
+                    },
+                    {
+                        "subroutine": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((ClassTuple((1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)), ClassTuple((10, 8)), ClassTuple(())), ruleOrder=0)]",
+                        "levelname": "ERROR",
+                        "message": "The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "timestamp": "2021-02-24T00:34:17.827561Z",
+                        "orig_output": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((ClassTuple((1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)), ClassTuple((10, 8)), ClassTuple(())), ruleOrder=0)] - ERROR - The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "msg_code": "V0998"
+                    },
+                    {
+                        "subroutine": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((ClassTuple((1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)), ClassTuple((11, 8)), ClassTuple(())), ruleOrder=0)]",
+                        "levelname": "ERROR",
+                        "message": "The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "timestamp": "2021-02-24T00:34:17.827735Z",
+                        "orig_output": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((ClassTuple((1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)), ClassTuple((11, 8)), ClassTuple(())), ruleOrder=0)] - ERROR - The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "msg_code": "V0998"
+                    },
+                    {
+                        "subroutine": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((ClassTuple((1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)), ClassTuple((2, 8)), ClassTuple(())), ruleOrder=0)]",
+                        "levelname": "ERROR",
+                        "message": "The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "timestamp": "2021-02-24T00:34:17.826298Z",
+                        "orig_output": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((ClassTuple((1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)), ClassTuple((2, 8)), ClassTuple(())), ruleOrder=0)] - ERROR - The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "msg_code": "V0998"
+                    },
+                    {
+                        "subroutine": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((ClassTuple((1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)), ClassTuple((3, 8)), ClassTuple(())), ruleOrder=0)]",
+                        "levelname": "ERROR",
+                        "message": "The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "timestamp": "2021-02-24T00:34:17.826490Z",
+                        "orig_output": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((ClassTuple((1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)), ClassTuple((3, 8)), ClassTuple(())), ruleOrder=0)] - ERROR - The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "msg_code": "V0998"
+                    },
+                    {
+                        "subroutine": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((ClassTuple((1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)), ClassTuple((4, 8)), ClassTuple(())), ruleOrder=0)]",
+                        "levelname": "ERROR",
+                        "message": "The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "timestamp": "2021-02-24T00:34:17.826670Z",
+                        "orig_output": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((ClassTuple((1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)), ClassTuple((4, 8)), ClassTuple(())), ruleOrder=0)] - ERROR - The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "msg_code": "V0998"
+                    },
+                    {
+                        "subroutine": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((ClassTuple((1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)), ClassTuple((5, 8)), ClassTuple(())), ruleOrder=0)]",
+                        "levelname": "ERROR",
+                        "message": "The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "timestamp": "2021-02-24T00:34:17.826848Z",
+                        "orig_output": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((ClassTuple((1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)), ClassTuple((5, 8)), ClassTuple(())), ruleOrder=0)] - ERROR - The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "msg_code": "V0998"
+                    },
+                    {
+                        "subroutine": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((ClassTuple((1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)), ClassTuple((6, 8)), ClassTuple(())), ruleOrder=0)]",
+                        "levelname": "ERROR",
+                        "message": "The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "timestamp": "2021-02-24T00:34:17.827024Z",
+                        "orig_output": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((ClassTuple((1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)), ClassTuple((6, 8)), ClassTuple(())), ruleOrder=0)] - ERROR - The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "msg_code": "V0998"
+                    },
+                    {
+                        "subroutine": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((ClassTuple((1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)), ClassTuple((7, 8)), ClassTuple(())), ruleOrder=0)]",
+                        "levelname": "ERROR",
+                        "message": "The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "timestamp": "2021-02-24T00:34:17.827209Z",
+                        "orig_output": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((ClassTuple((1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)), ClassTuple((7, 8)), ClassTuple(())), ruleOrder=0)] - ERROR - The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "msg_code": "V0998"
+                    },
+                    {
+                        "subroutine": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((ClassTuple((1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)), ClassTuple((9, 8)), ClassTuple(())), ruleOrder=0)]",
+                        "levelname": "ERROR",
+                        "message": "The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "timestamp": "2021-02-24T00:34:17.827385Z",
+                        "orig_output": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((ClassTuple((1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)), ClassTuple((9, 8)), ClassTuple(())), ruleOrder=0)] - ERROR - The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "msg_code": "V0998"
+                    },
+                    {
+                        "subroutine": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((ClassTuple((1,)), ClassTuple((1, 1, 1, 1, 1, 1)), ClassTuple((8, 1))), ruleOrder=0)]",
+                        "levelname": "ERROR",
+                        "message": "The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "timestamp": "2021-02-24T00:34:17.885311Z",
+                        "orig_output": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((ClassTuple((1,)), ClassTuple((1, 1, 1, 1, 1, 1)), ClassTuple((8, 1))), ruleOrder=0)] - ERROR - The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "msg_code": "V0998"
+                    },
+                    {
+                        "subroutine": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((ClassTuple((1,)), ClassTuple((1, 1, 1, 1, 1, 1)), ClassTuple((8, 10))), ruleOrder=5)]",
+                        "levelname": "ERROR",
+                        "message": "The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "timestamp": "2021-02-24T00:34:17.887102Z",
+                        "orig_output": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((ClassTuple((1,)), ClassTuple((1, 1, 1, 1, 1, 1)), ClassTuple((8, 10))), ruleOrder=5)] - ERROR - The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "msg_code": "V0998"
+                    },
+                    {
+                        "subroutine": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((ClassTuple((1,)), ClassTuple((1, 1, 1, 1, 1, 1)), ClassTuple((8, 11))), ruleOrder=8)]",
+                        "levelname": "ERROR",
+                        "message": "The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "timestamp": "2021-02-24T00:34:17.888146Z",
+                        "orig_output": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((ClassTuple((1,)), ClassTuple((1, 1, 1, 1, 1, 1)), ClassTuple((8, 11))), ruleOrder=8)] - ERROR - The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "msg_code": "V0998"
+                    },
+                    {
+                        "subroutine": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((ClassTuple((1,)), ClassTuple((1, 1, 1, 1, 1, 1)), ClassTuple((8, 2))), ruleOrder=2)]",
+                        "levelname": "ERROR",
+                        "message": "The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "timestamp": "2021-02-24T00:34:17.886060Z",
+                        "orig_output": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((ClassTuple((1,)), ClassTuple((1, 1, 1, 1, 1, 1)), ClassTuple((8, 2))), ruleOrder=2)] - ERROR - The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "msg_code": "V0998"
+                    },
+                    {
+                        "subroutine": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((ClassTuple((1,)), ClassTuple((1, 1, 1, 1, 1, 1)), ClassTuple((8, 3))), ruleOrder=3)]",
+                        "levelname": "ERROR",
+                        "message": "The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "timestamp": "2021-02-24T00:34:17.886419Z",
+                        "orig_output": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((ClassTuple((1,)), ClassTuple((1, 1, 1, 1, 1, 1)), ClassTuple((8, 3))), ruleOrder=3)] - ERROR - The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "msg_code": "V0998"
+                    },
+                    {
+                        "subroutine": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((ClassTuple((1,)), ClassTuple((1, 1, 1, 1, 1, 1)), ClassTuple((8, 4))), ruleOrder=6)]",
+                        "levelname": "ERROR",
+                        "message": "The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "timestamp": "2021-02-24T00:34:17.887441Z",
+                        "orig_output": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((ClassTuple((1,)), ClassTuple((1, 1, 1, 1, 1, 1)), ClassTuple((8, 4))), ruleOrder=6)] - ERROR - The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "msg_code": "V0998"
+                    },
+                    {
+                        "subroutine": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((ClassTuple((1,)), ClassTuple((1, 1, 1, 1, 1, 1)), ClassTuple((8, 5))), ruleOrder=7)]",
+                        "levelname": "ERROR",
+                        "message": "The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "timestamp": "2021-02-24T00:34:17.887786Z",
+                        "orig_output": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((ClassTuple((1,)), ClassTuple((1, 1, 1, 1, 1, 1)), ClassTuple((8, 5))), ruleOrder=7)] - ERROR - The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "msg_code": "V0998"
+                    },
+                    {
+                        "subroutine": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((ClassTuple((1,)), ClassTuple((1, 1, 1, 1, 1, 1)), ClassTuple((8, 6))), ruleOrder=1)]",
+                        "levelname": "ERROR",
+                        "message": "The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "timestamp": "2021-02-24T00:34:17.885682Z",
+                        "orig_output": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((ClassTuple((1,)), ClassTuple((1, 1, 1, 1, 1, 1)), ClassTuple((8, 6))), ruleOrder=1)] - ERROR - The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "msg_code": "V0998"
+                    },
+                    {
+                        "subroutine": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((ClassTuple((1,)), ClassTuple((1, 1, 1, 1, 1, 1)), ClassTuple((8, 7))), ruleOrder=9)]",
+                        "levelname": "ERROR",
+                        "message": "The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "timestamp": "2021-02-24T00:34:17.888484Z",
+                        "orig_output": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((ClassTuple((1,)), ClassTuple((1, 1, 1, 1, 1, 1)), ClassTuple((8, 7))), ruleOrder=9)] - ERROR - The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "msg_code": "V0998"
+                    },
+                    {
+                        "subroutine": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((ClassTuple((1,)), ClassTuple((1, 1, 1, 1, 1, 1)), ClassTuple((8, 9))), ruleOrder=4)]",
+                        "levelname": "ERROR",
+                        "message": "The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "timestamp": "2021-02-24T00:34:17.886758Z",
+                        "orig_output": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((ClassTuple((1,)), ClassTuple((1, 1, 1, 1, 1, 1)), ClassTuple((8, 9))), ruleOrder=4)] - ERROR - The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "msg_code": "V0998"
+                    },
+                    {
+                        "subroutine": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((ClassTuple((10, 8)), ClassTuple((1, 1, 1, 1, 1, 1)), ClassTuple((1,))), ruleOrder=5)]",
+                        "levelname": "ERROR",
+                        "message": "The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "timestamp": "2021-02-24T00:34:17.848763Z",
+                        "orig_output": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((ClassTuple((10, 8)), ClassTuple((1, 1, 1, 1, 1, 1)), ClassTuple((1,))), ruleOrder=5)] - ERROR - The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "msg_code": "V0998"
+                    },
+                    {
+                        "subroutine": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((ClassTuple((11, 1)), ClassTuple((1, 1, 1, 1, 1)), ClassTuple(())), ruleOrder=0)]",
+                        "levelname": "ERROR",
+                        "message": "The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "timestamp": "2021-02-24T00:34:18.272175Z",
+                        "orig_output": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((ClassTuple((11, 1)), ClassTuple((1, 1, 1, 1, 1)), ClassTuple(())), ruleOrder=0)] - ERROR - The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "msg_code": "V0998"
+                    },
+                    {
+                        "subroutine": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((ClassTuple((11, 10)), ClassTuple((1, 1, 1, 1, 1)), ClassTuple(())), ruleOrder=8)]",
+                        "levelname": "ERROR",
+                        "message": "The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "timestamp": "2021-02-24T00:34:18.274358Z",
+                        "orig_output": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((ClassTuple((11, 10)), ClassTuple((1, 1, 1, 1, 1)), ClassTuple(())), ruleOrder=8)] - ERROR - The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "msg_code": "V0998"
+                    },
+                    {
+                        "subroutine": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((ClassTuple((11, 2)), ClassTuple((1, 1, 1, 1, 1)), ClassTuple(())), ruleOrder=2)]",
+                        "levelname": "ERROR",
+                        "message": "The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "timestamp": "2021-02-24T00:34:18.272789Z",
+                        "orig_output": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((ClassTuple((11, 2)), ClassTuple((1, 1, 1, 1, 1)), ClassTuple(())), ruleOrder=2)] - ERROR - The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "msg_code": "V0998"
+                    },
+                    {
+                        "subroutine": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((ClassTuple((11, 3)), ClassTuple((1, 1, 1, 1, 1)), ClassTuple(())), ruleOrder=3)]",
+                        "levelname": "ERROR",
+                        "message": "The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "timestamp": "2021-02-24T00:34:18.273065Z",
+                        "orig_output": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((ClassTuple((11, 3)), ClassTuple((1, 1, 1, 1, 1)), ClassTuple(())), ruleOrder=3)] - ERROR - The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "msg_code": "V0998"
+                    },
+                    {
+                        "subroutine": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((ClassTuple((11, 5)), ClassTuple((1, 1, 1, 1, 1)), ClassTuple(())), ruleOrder=7)]",
+                        "levelname": "ERROR",
+                        "message": "The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "timestamp": "2021-02-24T00:34:18.274075Z",
+                        "orig_output": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((ClassTuple((11, 5)), ClassTuple((1, 1, 1, 1, 1)), ClassTuple(())), ruleOrder=7)] - ERROR - The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "msg_code": "V0998"
+                    },
+                    {
+                        "subroutine": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((ClassTuple((11, 6)), ClassTuple((1, 1, 1, 1, 1)), ClassTuple(())), ruleOrder=1)]",
+                        "levelname": "ERROR",
+                        "message": "The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "timestamp": "2021-02-24T00:34:18.272515Z",
+                        "orig_output": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((ClassTuple((11, 6)), ClassTuple((1, 1, 1, 1, 1)), ClassTuple(())), ruleOrder=1)] - ERROR - The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "msg_code": "V0998"
+                    },
+                    {
+                        "subroutine": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((ClassTuple((11, 7)), ClassTuple((1, 1, 1, 1, 1)), ClassTuple(())), ruleOrder=9)]",
+                        "levelname": "ERROR",
+                        "message": "The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "timestamp": "2021-02-24T00:34:18.274625Z",
+                        "orig_output": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((ClassTuple((11, 7)), ClassTuple((1, 1, 1, 1, 1)), ClassTuple(())), ruleOrder=9)] - ERROR - The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "msg_code": "V0998"
+                    },
+                    {
+                        "subroutine": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((ClassTuple((11, 8)), ClassTuple((1, 1, 1, 1, 1)), ClassTuple(())), ruleOrder=4)]",
+                        "levelname": "ERROR",
+                        "message": "The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "timestamp": "2021-02-24T00:34:18.273334Z",
+                        "orig_output": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((ClassTuple((11, 8)), ClassTuple((1, 1, 1, 1, 1)), ClassTuple(())), ruleOrder=4)] - ERROR - The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "msg_code": "V0998"
+                    },
+                    {
+                        "subroutine": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((ClassTuple((11, 8)), ClassTuple((1, 1, 1, 1, 1, 1)), ClassTuple((1,))), ruleOrder=8)]",
+                        "levelname": "ERROR",
+                        "message": "The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "timestamp": "2021-02-24T00:34:17.849671Z",
+                        "orig_output": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((ClassTuple((11, 8)), ClassTuple((1, 1, 1, 1, 1, 1)), ClassTuple((1,))), ruleOrder=8)] - ERROR - The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "msg_code": "V0998"
+                    },
+                    {
+                        "subroutine": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((ClassTuple((11, 9)), ClassTuple((1, 1, 1, 1, 1)), ClassTuple(())), ruleOrder=5)]",
+                        "levelname": "ERROR",
+                        "message": "The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "timestamp": "2021-02-24T00:34:18.273601Z",
+                        "orig_output": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((ClassTuple((11, 9)), ClassTuple((1, 1, 1, 1, 1)), ClassTuple(())), ruleOrder=5)] - ERROR - The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "msg_code": "V0998"
+                    },
+                    {
+                        "subroutine": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((ClassTuple((2, 8)), ClassTuple((1, 1, 1, 1, 1, 1)), ClassTuple((1,))), ruleOrder=2)]",
+                        "levelname": "ERROR",
+                        "message": "The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "timestamp": "2021-02-24T00:34:17.847806Z",
+                        "orig_output": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((ClassTuple((2, 8)), ClassTuple((1, 1, 1, 1, 1, 1)), ClassTuple((1,))), ruleOrder=2)] - ERROR - The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "msg_code": "V0998"
+                    },
+                    {
+                        "subroutine": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((ClassTuple((3, 8)), ClassTuple((1, 1, 1, 1, 1, 1)), ClassTuple((1,))), ruleOrder=3)]",
+                        "levelname": "ERROR",
+                        "message": "The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "timestamp": "2021-02-24T00:34:17.848108Z",
+                        "orig_output": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((ClassTuple((3, 8)), ClassTuple((1, 1, 1, 1, 1, 1)), ClassTuple((1,))), ruleOrder=3)] - ERROR - The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "msg_code": "V0998"
+                    },
+                    {
+                        "subroutine": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((ClassTuple((4, 8)), ClassTuple((1, 1, 1, 1, 1, 1)), ClassTuple((1,))), ruleOrder=6)]",
+                        "levelname": "ERROR",
+                        "message": "The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "timestamp": "2021-02-24T00:34:17.849076Z",
+                        "orig_output": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((ClassTuple((4, 8)), ClassTuple((1, 1, 1, 1, 1, 1)), ClassTuple((1,))), ruleOrder=6)] - ERROR - The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "msg_code": "V0998"
+                    },
+                    {
+                        "subroutine": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((ClassTuple((5, 8)), ClassTuple((1, 1, 1, 1, 1, 1)), ClassTuple((1,))), ruleOrder=7)]",
+                        "levelname": "ERROR",
+                        "message": "The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "timestamp": "2021-02-24T00:34:17.849374Z",
+                        "orig_output": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((ClassTuple((5, 8)), ClassTuple((1, 1, 1, 1, 1, 1)), ClassTuple((1,))), ruleOrder=7)] - ERROR - The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "msg_code": "V0998"
+                    },
+                    {
+                        "subroutine": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((ClassTuple((6, 8)), ClassTuple((1, 1, 1, 1, 1, 1)), ClassTuple((1,))), ruleOrder=1)]",
+                        "levelname": "ERROR",
+                        "message": "The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "timestamp": "2021-02-24T00:34:17.847484Z",
+                        "orig_output": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((ClassTuple((6, 8)), ClassTuple((1, 1, 1, 1, 1, 1)), ClassTuple((1,))), ruleOrder=1)] - ERROR - The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "msg_code": "V0998"
+                    },
+                    {
+                        "subroutine": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((ClassTuple((7, 8)), ClassTuple((1, 1, 1, 1, 1, 1)), ClassTuple((1,))), ruleOrder=9)]",
+                        "levelname": "ERROR",
+                        "message": "The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "timestamp": "2021-02-24T00:34:17.849965Z",
+                        "orig_output": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((ClassTuple((7, 8)), ClassTuple((1, 1, 1, 1, 1, 1)), ClassTuple((1,))), ruleOrder=9)] - ERROR - The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "msg_code": "V0998"
+                    },
+                    {
+                        "subroutine": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((ClassTuple((9, 8)), ClassTuple((1, 1, 1, 1, 1, 1)), ClassTuple((1,))), ruleOrder=4)]",
+                        "levelname": "ERROR",
+                        "message": "The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "timestamp": "2021-02-24T00:34:17.848400Z",
+                        "orig_output": "validate_ee6f4bc16cfe4578ad37efadbc06a172.GSUB.scripts.[b'calt0001'].[0].[Key((ClassTuple((9, 8)), ClassTuple((1, 1, 1, 1, 1, 1)), ClassTuple((1,))), ruleOrder=4)] - ERROR - The order of rules is out-of-sync with respect to the order of the associated Lookups. This will result in inconsistent behavior of the font in WTLE and Uniscribe!",
+                        "msg_code": "V0998"
+                    },
+                    {
+                        "subroutine": "validate_ee6f4bc16cfe4578ad37efadbc06a172.hints.glyph 0.FDEF 23.FDEF 21.FDEF 139.FDEF 79.FDEF 70.FDEF 4",
+                        "levelname": "ERROR",
+                        "message": "RCVT[] in FDEF 4 (PC 31) is attempting to read from CVT index 40, which does not exist!",
+                        "timestamp": "2021-02-24T00:34:40.884293Z",
+                        "orig_output": "validate_ee6f4bc16cfe4578ad37efadbc06a172.hints.glyph 0.FDEF 23.FDEF 21.FDEF 139.FDEF 79.FDEF 70.FDEF 4 - ERROR - RCVT[] in FDEF 4 (PC 31) is attempting to read from CVT index 40, which does not exist!",
+                        "glyph": {
+                            "id": 0,
+                            "name": ".notdef"
+                        },
+                        "msg_code": "G0029"
+                    },
+                    {
+                        "subroutine": "validate_ee6f4bc16cfe4578ad37efadbc06a172.name",
                         "levelname": "ERROR",
                         "message": "Postscript name not present for both Mac and Windows.",
-                        "timestamp": "2020-11-17T17:39:02.793195Z",
-                        "orig_output": "validate_df0450b3b5704bee950d5520a567e56e.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2021-02-24T00:34:40.795120Z",
+                        "orig_output": "validate_ee6f4bc16cfe4578ad37efadbc06a172.name - ERROR - Postscript name not present for both Mac and Windows.",
                         "msg_code": "E2008"
                     },
                     {
-                        "subroutine": "validate_df0450b3b5704bee950d5520a567e56e.OS_2.xAvgCharWidth",
+                        "subroutine": "validate_ee6f4bc16cfe4578ad37efadbc06a172.OS_2.xAvgCharWidth",
                         "levelname": "ERROR",
-                        "message": "The xAvgCharWidth should be 243, but is 244",
-                        "timestamp": "2020-11-17T17:38:55.178247Z",
-                        "orig_output": "validate_df0450b3b5704bee950d5520a567e56e.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 243, but is 244",
+                        "message": "The xAvgCharWidth should be 125, but is 126",
+                        "timestamp": "2021-02-24T00:34:18.971989Z",
+                        "orig_output": "validate_ee6f4bc16cfe4578ad37efadbc06a172.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 125, but is 126",
                         "msg_code": "E2135"
                     }
                 ]
@@ -132,8 +672,8 @@
         }
     ],
     "skipped": [],
-    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontio3_version": "3.7.20201030.330639rc3",
     "fontvalidator_version": "20200305.1",
-    "runningTime": 16679,
-    "completedDate": "2020-11-17 17:39:08.349374"
+    "runningTime": 44704,
+    "completedDate": "2021-02-24 00:34:58.473235"
 }

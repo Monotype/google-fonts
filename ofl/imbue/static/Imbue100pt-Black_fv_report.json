@@ -1,0 +1,77 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Imbue100pt-Black.ttf",
+                "type": "ttf",
+                "size": 122772,
+                "md5": "40b99ec270d96ed5670b7148e7abd566",
+                "geometryMd5": "4b7611fa10d88bdf7c72b2b68c40b758"
+            },
+            "name": {
+                "family": "Imbue 100pt Black",
+                "subFamily": "Regular",
+                "fullName": "Imbue 100pt Black",
+                "psName": "Imbue100pt-Black",
+                "versionText": "Version 1.102; ttfautohint (v1.8.3)",
+                "copyright": "Copyright 2020 The Imbue Project Authors (https://github.com/Etcetera-Type-Co/Imbue)",
+                "trademark": "Unknown",
+                "typographicFamily": "Imbue 100pt",
+                "typographicSubFamily": "Black"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 895,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "ETCO",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Imbue 100pt Black",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 3,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_9793f44e172d434caacaa120d357373c.DSIG",
+                        "levelname": "ERROR",
+                        "message": "The digital signature of the file did not verify.",
+                        "timestamp": "2021-02-21T08:37:39.501748Z",
+                        "orig_output": "validate_9793f44e172d434caacaa120d357373c.DSIG - ERROR - The digital signature of the file did not verify.",
+                        "msg_code": "E0502"
+                    },
+                    {
+                        "subroutine": "validate_9793f44e172d434caacaa120d357373c.GPOS.features.[b'mark0003'].[0]",
+                        "levelname": "ERROR",
+                        "message": "The following ligatures have inconsistent counts between the GSUB Ligature Lookup that created them and the length of the mark-to-ligature data in this table: [419, 420]",
+                        "timestamp": "2021-02-21T08:37:39.911934Z",
+                        "orig_output": "validate_9793f44e172d434caacaa120d357373c.GPOS.features.[b'mark0003'].[0] - ERROR - The following ligatures have inconsistent counts between the GSUB Ligature Lookup that created them and the length of the mark-to-ligature data in this table: [419, 420]",
+                        "msg_code": "V1062"
+                    },
+                    {
+                        "subroutine": "validate_9793f44e172d434caacaa120d357373c.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2021-02-21T08:38:24.694228Z",
+                        "orig_output": "validate_9793f44e172d434caacaa120d357373c.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20201030.330639rc3",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 74691,
+    "completedDate": "2021-02-21 08:38:50.836136"
+}

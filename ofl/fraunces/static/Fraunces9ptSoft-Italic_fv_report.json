@@ -1,0 +1,84 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Fraunces9ptSoft-Italic.ttf",
+                "type": "ttf",
+                "size": 75548,
+                "md5": "e5232e627b3c4189568d33a9426215cd",
+                "geometryMd5": "5b1819aec8fa63c4f4feb109059a001d"
+            },
+            "name": {
+                "family": "Fraunces 9pt Soft",
+                "subFamily": "Italic",
+                "fullName": "Fraunces 9pt Soft Italic",
+                "psName": "Fraunces9ptSoft-Italic",
+                "versionText": "Version 1.000;[b76b70a41]",
+                "copyright": "Copyright 2020 The Fraunces Project Authors (github.com/undercasetype/Fraunces)",
+                "trademark": "Unknown",
+                "variationsPSNamePrefix": "FrauncesItalic"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 698,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "UCT ",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Fraunces 9pt Soft Italic",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 4,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_383499148b4e49f798ff1d8bef0f2b7d.DSIG",
+                        "levelname": "ERROR",
+                        "message": "The digital signature of the file did not verify.",
+                        "timestamp": "2021-02-21T14:18:05.118305Z",
+                        "orig_output": "validate_383499148b4e49f798ff1d8bef0f2b7d.DSIG - ERROR - The digital signature of the file did not verify.",
+                        "msg_code": "E0502"
+                    },
+                    {
+                        "subroutine": "validate_383499148b4e49f798ff1d8bef0f2b7d.glyf.glyph 81 ('guillemetright')",
+                        "levelname": "ERROR",
+                        "message": "Bounds should be [465, 110, 1457, 868], but are [34, 108, 1026, 866].",
+                        "timestamp": "2021-02-21T14:18:09.020303Z",
+                        "orig_output": "validate_383499148b4e49f798ff1d8bef0f2b7d.glyf.glyph 81 ('guillemetright') - ERROR - Bounds should be [465, 110, 1457, 868], but are [34, 108, 1026, 866].",
+                        "msg_code": "E1112"
+                    },
+                    {
+                        "subroutine": "validate_383499148b4e49f798ff1d8bef0f2b7d.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2021-02-21T14:18:20.270340Z",
+                        "orig_output": "validate_383499148b4e49f798ff1d8bef0f2b7d.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
+                    },
+                    {
+                        "subroutine": "validate_383499148b4e49f798ff1d8bef0f2b7d.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 1109, but is 1110",
+                        "timestamp": "2021-02-21T14:18:06.755617Z",
+                        "orig_output": "validate_383499148b4e49f798ff1d8bef0f2b7d.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 1109, but is 1110",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20201030.330639rc3",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 19368,
+    "completedDate": "2021-02-21 14:18:20.621734"
+}

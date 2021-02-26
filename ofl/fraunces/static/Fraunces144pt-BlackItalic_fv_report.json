@@ -1,0 +1,86 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Fraunces144pt-BlackItalic.ttf",
+                "type": "ttf",
+                "size": 75176,
+                "md5": "7cd7fff07cba32d2cc27f8601ced5358",
+                "geometryMd5": "440177ada3994dc2edd0984a57d8cc17"
+            },
+            "name": {
+                "family": "Fraunces 144pt Black",
+                "subFamily": "Italic",
+                "fullName": "Fraunces 144pt Black Italic",
+                "psName": "Fraunces144pt-BlackItalic",
+                "versionText": "Version 1.000;[b76b70a41]",
+                "copyright": "Copyright 2020 The Fraunces Project Authors (github.com/undercasetype/Fraunces)",
+                "trademark": "Unknown",
+                "typographicFamily": "Fraunces 144pt",
+                "typographicSubFamily": "Black Italic",
+                "variationsPSNamePrefix": "FrauncesItalic"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 698,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "UCT ",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Fraunces 144pt Black Italic",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 4,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_1c6e85be199743509c502a850ddb85d3.DSIG",
+                        "levelname": "ERROR",
+                        "message": "The digital signature of the file did not verify.",
+                        "timestamp": "2021-02-21T12:15:34.001982Z",
+                        "orig_output": "validate_1c6e85be199743509c502a850ddb85d3.DSIG - ERROR - The digital signature of the file did not verify.",
+                        "msg_code": "E0502"
+                    },
+                    {
+                        "subroutine": "validate_1c6e85be199743509c502a850ddb85d3.glyf.glyph 81 ('guillemetright')",
+                        "levelname": "ERROR",
+                        "message": "Bounds should be [444, 138, 1451, 893], but are [25, 138, 1032, 893].",
+                        "timestamp": "2021-02-21T12:15:37.389989Z",
+                        "orig_output": "validate_1c6e85be199743509c502a850ddb85d3.glyf.glyph 81 ('guillemetright') - ERROR - Bounds should be [444, 138, 1451, 893], but are [25, 138, 1032, 893].",
+                        "msg_code": "E1112"
+                    },
+                    {
+                        "subroutine": "validate_1c6e85be199743509c502a850ddb85d3.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2021-02-21T12:15:50.160593Z",
+                        "orig_output": "validate_1c6e85be199743509c502a850ddb85d3.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
+                    },
+                    {
+                        "subroutine": "validate_1c6e85be199743509c502a850ddb85d3.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 1085, but is 1086",
+                        "timestamp": "2021-02-21T12:15:35.667800Z",
+                        "orig_output": "validate_1c6e85be199743509c502a850ddb85d3.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 1085, but is 1086",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20201030.330639rc3",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 20179,
+    "completedDate": "2021-02-21 12:15:50.620978"
+}

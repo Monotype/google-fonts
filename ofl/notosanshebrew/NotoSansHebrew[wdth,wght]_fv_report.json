@@ -1,0 +1,77 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "NotoSansHebrew[wdth,wght].ttf",
+                "type": "ttf",
+                "size": 37992,
+                "md5": "3f3f578e594c1a72827505cde80a60fc",
+                "geometryMd5": "31fc3cdff120b6d363fa1062b7aed49b"
+            },
+            "name": {
+                "family": "Noto Sans Hebrew Light",
+                "subFamily": "Regular",
+                "fullName": "Noto Sans Hebrew Light",
+                "psName": "NotoSansHebrew-Light",
+                "versionText": "Version 3.000",
+                "copyright": "Copyright 2019 Google Inc. All Rights Reserved.",
+                "trademark": "Noto is a trademark of Google Inc.",
+                "typographicFamily": "Noto Sans Hebrew",
+                "typographicSubFamily": "Light"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 149,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "GOOG",
+                "font_vendor": "Google"
+            },
+            "validation": {
+                "font_full_name": "Noto Sans Hebrew Light",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 3,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_26400bd13cc24adbadcafb2bea244ca6.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2021-02-21T15:26:19.958907Z",
+                        "orig_output": "validate_26400bd13cc24adbadcafb2bea244ca6.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
+                    },
+                    {
+                        "subroutine": "validate_26400bd13cc24adbadcafb2bea244ca6.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 510, but is 511",
+                        "timestamp": "2021-02-21T15:26:16.356949Z",
+                        "orig_output": "validate_26400bd13cc24adbadcafb2bea244ca6.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 510, but is 511",
+                        "msg_code": "E2135"
+                    },
+                    {
+                        "subroutine": "validate_26400bd13cc24adbadcafb2bea244ca6.STAT",
+                        "levelname": "ERROR",
+                        "message": "The following axes have no AxisValueTables associated with them: ['wdth', 'wght']",
+                        "timestamp": "2021-02-21T15:26:16.360206Z",
+                        "orig_output": "validate_26400bd13cc24adbadcafb2bea244ca6.STAT - ERROR - The following axes have no AxisValueTables associated with them: ['wdth', 'wght']",
+                        "msg_code": "Vxxxx"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20201030.330639rc3",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 8708,
+    "completedDate": "2021-02-21 15:26:20.366836"
+}

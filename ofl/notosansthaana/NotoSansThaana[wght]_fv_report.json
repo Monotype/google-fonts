@@ -1,0 +1,75 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "NotoSansThaana[wght].ttf",
+                "type": "ttf",
+                "size": 50520,
+                "md5": "e2fba27c4c0ec5a3f79684d782688467",
+                "geometryMd5": "564fd91f5cb39004766d5077ae24936d"
+            },
+            "name": {
+                "family": "Noto Sans Thaana",
+                "subFamily": "Regular",
+                "fullName": "Noto Sans Thaana Regular",
+                "psName": "NotoSansThaana-Regular",
+                "versionText": "Version 2.000",
+                "copyright": "Copyright 2018 Google Inc. All Rights Reserved.",
+                "trademark": "Noto is a trademark of Google Inc."
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 90,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "GOOG",
+                "font_vendor": "Google"
+            },
+            "validation": {
+                "font_full_name": "Noto Sans Thaana Regular",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 3,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_fc15123e195844c1ab8d7c06dccef4b0.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2021-02-21T10:58:20.119691Z",
+                        "orig_output": "validate_fc15123e195844c1ab8d7c06dccef4b0.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
+                    },
+                    {
+                        "subroutine": "validate_fc15123e195844c1ab8d7c06dccef4b0.OS_2.usMaxContext",
+                        "levelname": "ERROR",
+                        "message": "The usMaxContext should be 1, but is 0",
+                        "timestamp": "2021-02-21T10:58:08.989689Z",
+                        "orig_output": "validate_fc15123e195844c1ab8d7c06dccef4b0.OS_2.usMaxContext - ERROR - The usMaxContext should be 1, but is 0",
+                        "msg_code": "V0831"
+                    },
+                    {
+                        "subroutine": "validate_fc15123e195844c1ab8d7c06dccef4b0.STAT",
+                        "levelname": "ERROR",
+                        "message": "The following axes have no AxisValueTables associated with them: ['wght']",
+                        "timestamp": "2021-02-21T10:58:08.990578Z",
+                        "orig_output": "validate_fc15123e195844c1ab8d7c06dccef4b0.STAT - ERROR - The following axes have no AxisValueTables associated with them: ['wght']",
+                        "msg_code": "Vxxxx"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20201030.330639rc3",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 15334,
+    "completedDate": "2021-02-21 10:58:20.446255"
+}

@@ -1,0 +1,77 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Imbue100pt-ExtraLight.ttf",
+                "type": "ttf",
+                "size": 122916,
+                "md5": "f516a420d54114adc6ac897fa509accc",
+                "geometryMd5": "01ea2026345edf2d65e18d1f6a7aeeb7"
+            },
+            "name": {
+                "family": "Imbue 100pt ExtraLight",
+                "subFamily": "Regular",
+                "fullName": "Imbue 100pt ExtraLight",
+                "psName": "Imbue100pt-ExtraLight",
+                "versionText": "Version 1.102; ttfautohint (v1.8.3)",
+                "copyright": "Copyright 2020 The Imbue Project Authors (https://github.com/Etcetera-Type-Co/Imbue)",
+                "trademark": "Unknown",
+                "typographicFamily": "Imbue 100pt",
+                "typographicSubFamily": "ExtraLight"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 895,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "ETCO",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Imbue 100pt ExtraLight",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 3,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_8cbd40f73dff4651a0a7780bbf61b540.DSIG",
+                        "levelname": "ERROR",
+                        "message": "The digital signature of the file did not verify.",
+                        "timestamp": "2021-02-21T09:06:06.824855Z",
+                        "orig_output": "validate_8cbd40f73dff4651a0a7780bbf61b540.DSIG - ERROR - The digital signature of the file did not verify.",
+                        "msg_code": "E0502"
+                    },
+                    {
+                        "subroutine": "validate_8cbd40f73dff4651a0a7780bbf61b540.GPOS.features.[b'mark0003'].[0]",
+                        "levelname": "ERROR",
+                        "message": "The following ligatures have inconsistent counts between the GSUB Ligature Lookup that created them and the length of the mark-to-ligature data in this table: [419, 420]",
+                        "timestamp": "2021-02-21T09:06:07.132831Z",
+                        "orig_output": "validate_8cbd40f73dff4651a0a7780bbf61b540.GPOS.features.[b'mark0003'].[0] - ERROR - The following ligatures have inconsistent counts between the GSUB Ligature Lookup that created them and the length of the mark-to-ligature data in this table: [419, 420]",
+                        "msg_code": "V1062"
+                    },
+                    {
+                        "subroutine": "validate_8cbd40f73dff4651a0a7780bbf61b540.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2021-02-21T09:06:57.651578Z",
+                        "orig_output": "validate_8cbd40f73dff4651a0a7780bbf61b540.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20201030.330639rc3",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 81715,
+    "completedDate": "2021-02-21 09:07:25.327456"
+}

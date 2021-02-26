@@ -1,0 +1,94 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Fraunces144ptSuperSoft-SemiBoldItalic.ttf",
+                "type": "ttf",
+                "size": 76160,
+                "md5": "77b2abb02b97fae9a5dacc14419bd3d1",
+                "geometryMd5": "cb42fbc56ba050808698673ac0d07f13"
+            },
+            "name": {
+                "family": "Fraunces 144pt SuperSoft SemiBold",
+                "subFamily": "Italic",
+                "fullName": "Fraunces 144pt SuperSoft SemiBold Italic",
+                "psName": "Fraunces144ptSuperSoft-SemiBoldItalic",
+                "versionText": "Version 1.000;[b76b70a41]",
+                "copyright": "Copyright 2020 The Fraunces Project Authors (github.com/undercasetype/Fraunces)",
+                "trademark": "Unknown",
+                "typographicFamily": "Fraunces 144pt SuperSoft",
+                "typographicSubFamily": "SemiBold Italic",
+                "variationsPSNamePrefix": "FrauncesItalic"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 698,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "UCT ",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Fraunces 144pt SuperSoft SemiBold Italic",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 5,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_65a9f6cd324047109941b8075e8d1f83.DSIG",
+                        "levelname": "ERROR",
+                        "message": "The digital signature of the file did not verify.",
+                        "timestamp": "2021-02-21T09:55:42.319251Z",
+                        "orig_output": "validate_65a9f6cd324047109941b8075e8d1f83.DSIG - ERROR - The digital signature of the file did not verify.",
+                        "msg_code": "E0502"
+                    },
+                    {
+                        "subroutine": "validate_65a9f6cd324047109941b8075e8d1f83.glyf.glyph 263 ('Oslash').contours.contour 2",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2021-02-21T09:55:49.375274Z",
+                        "orig_output": "validate_65a9f6cd324047109941b8075e8d1f83.glyf.glyph 263 ('Oslash').contours.contour 2 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_65a9f6cd324047109941b8075e8d1f83.glyf.glyph 81 ('guillemetright')",
+                        "levelname": "ERROR",
+                        "message": "Bounds should be [412, 44, 1403, 785], but are [-9, 44, 982, 785].",
+                        "timestamp": "2021-02-21T09:55:46.019043Z",
+                        "orig_output": "validate_65a9f6cd324047109941b8075e8d1f83.glyf.glyph 81 ('guillemetright') - ERROR - Bounds should be [412, 44, 1403, 785], but are [-9, 44, 982, 785].",
+                        "msg_code": "E1112"
+                    },
+                    {
+                        "subroutine": "validate_65a9f6cd324047109941b8075e8d1f83.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2021-02-21T09:56:02.235808Z",
+                        "orig_output": "validate_65a9f6cd324047109941b8075e8d1f83.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
+                    },
+                    {
+                        "subroutine": "validate_65a9f6cd324047109941b8075e8d1f83.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 1004, but is 1005",
+                        "timestamp": "2021-02-21T09:55:44.143647Z",
+                        "orig_output": "validate_65a9f6cd324047109941b8075e8d1f83.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 1004, but is 1005",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20201030.330639rc3",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 24059,
+    "completedDate": "2021-02-21 09:56:02.908424"
+}

@@ -481,7 +481,7 @@
   </head>
   <body onload="toggle_all_results()">
     <h1>FontSniffer Report</h1>
-    <p>Library Project, start: 2020-09-26 - 09:00.43, end: 09:00.44</p>
+    <p>Library Project, start: 2021-02-19 - 09:19.29, end: 09:19.30</p>
     <table class='togglemessages'>
       <tr>
         <td>Show messages:</td>
@@ -613,8 +613,28 @@
                     <td class="fontname"><p>Libre Barcode 128 Text Regular (LibreBarcode128Text-Regular.ttf)</p></td>
                     <td class="table"><p>OS/2</p></td>
                     <td class="feature"><p>usWeightClass</p></td>
-                    <td class="message"><p>OS/2 weight class should be greater then 250 otherwise it cause issues in MS PowerPoint.</p></td>
-                    <td class="detail"><p>OK: usWeightClass is '400'</p></td>
+                    <td class="message"><p>OS/2 weight class values from 1 to 1000 are valid.</p></td>
+                    <td class="detail"><p>usWeightClass is '400'<br><a href='https://photorank.atlassian.net/wiki/spaces/TYPE/pages/585269263/Unified+Monotype+Weight+Name+Rules' target='_blank'>Unified Monotype Weight Name Rules</a></p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Libre Barcode 128 Text Regular (LibreBarcode128Text-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>usWeightClass</p></td>
+                    <td class="message"><p>CSS only supports one of the following OS/2 weight class values '100, 200, 300, 400, 500, 600, 700, 800, 900'.</p></td>
+                    <td class="detail"><p>usWeightClass is '400'<br><a href='https://photorank.atlassian.net/wiki/spaces/TYPE/pages/585269263/Unified+Monotype+Weight+Name+Rules' target='_blank'>Unified Monotype Weight Name Rules</a></p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Libre Barcode 128 Text Regular (LibreBarcode128Text-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>usWeightClass</p></td>
+                    <td class="message"><p>OS/2 weight class value according Monotype specifications</p></td>
+                    <td class="detail"><p>usWeightClass is '400'</p></td>
                     <!--<td class="time"><p><input type="checkbox"></p></td>-->
                 </tr>
                       </tbody>
@@ -681,6 +701,16 @@
                     <td class="detail"><p>It seems to be not bold.<br>OS2.fsSelection.bold: False<br>head.macStyle.bold: False</p></td>
                     <!--<td class="time"><p><input type="checkbox"></p></td>-->
                 </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Libre Barcode 128 Text Regular (LibreBarcode128Text-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>usWeightClass</p></td>
+                    <td class="message"><p>OS/2 weight class should be 400 for 'Regular' weight.</p></td>
+                    <td class="detail"><p>It seems this font is the 'Regular' weight and usWeightclass is '400'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
                       </tbody>
             </table>				<h2>Empty Glyphs</h2>
 				<table class="results">
@@ -700,7 +730,7 @@
                     <td class="table"><p>glyf</p></td>
                     <td class="feature"><p>outline</p></td>
                     <td class="message"><p>Unicodes should have outlines.</p></td>
-                    <td class="detail"><p>The following glyphs have no outlines, but this is correct:<br>ZERO WIDTH SPACE (uni200B)<br>Monotype NULL (uni0000)<br>NO-BREAK SPACE (uni00A0)</p></td>
+                    <td class="detail"><p>The following glyphs have no outlines, but this is correct:<br>Monotype NULL (uni0000)<br>SPACE (uni0020)<br>NO-BREAK SPACE (uni00A0)<br>ZERO WIDTH SPACE (uni200B)<br>ZERO WIDTH NON-JOINER (uni200C)<br> (uni000D)</p></td>
                     <!--<td class="time"><p><input type="checkbox"></p></td>-->
                 </tr>
                       </tbody>
@@ -766,7 +796,7 @@
                     <td class="table"><p>hmtx</p></td>
                     <td class="feature"><p>-/-</p></td>
                     <td class="message"><p>Compare advance width against base glyph advance width (tolerance 2 units).</p></td>
-                    <td class="detail"><p>'uni0020' (ID 204): width is 330, base glyph ('code.space' (ID 191)) width is 330<br>'uni0021' (ID 205): width is 330, base glyph ('code.exclam' (ID 155)) width is 330<br>'uni0022' (ID 206): width is 330, base glyph ('code.quotedbl' (ID 183)) width is 330<br>'uni0023' (ID 207): width is 330, base glyph ('code.numbersign' (ID 172)) width is 330<br>'uni0024' (ID 208): width is 330, base glyph ('code.dollar' (ID 151)) width is 330<br>'uni0025' (ID 209): width is 330, base glyph ('code.percent' (ID 178)) width is 330<br>'uni0026' (ID 210): width is 330, base glyph ('code.ampersand' (ID 135)) width is 330<br>'uni0027' (ID 211): width is 330, base glyph ('code.quotesingle' (ID 184)) width is 330<br>'uni0028' (ID 212): width is 330, base glyph ('code.parenleft' (ID 176)) width is 330<br>'uni0029' (ID 213): width is 330, base glyph ('code.parenright' (ID 177)) width is 330<br>'uni002A' (ID 214): width is 330, base glyph ('code.asterisk' (ID 138)) width is 330<br>'uni002B' (ID 215): width is 330, base glyph ('code.plus' (ID 180)) width is 330<br>'uni002C' (ID 216): width is 330, base glyph ('code.comma' (ID 149)) width is 330<br>'uni002D' (ID 217): width is 330, base glyph ('code.minus' (ID 169)) width is 330<br>'uni002E' (ID 218): width is 330, base glyph ('code.period' (ID 179)) width is 330<br>'uni002F' (ID 219): width is 330, base glyph ('code.slash' (ID 190)) width is 330<br>'uni0030' (ID 220): width is 330, base glyph ('code.zero' (ID 203)) width is 330<br>'uni0031' (ID 221): width is 330, base glyph ('code.one' (ID 174)) width is 330<br>'uni0032' (ID 222): width is 330, base glyph ('code.two' (ID 195)) width is 330<br>'uni0033' (ID 223): width is 330, base glyph ('code.three' (ID 194)) width is 330<br>'uni0034' (ID 224): width is 330, base glyph ('code.four' (ID 158)) width is 330<br>'uni0035' (ID 225): width is 330, base glyph ('code.five' (ID 157)) width is 330<br>'uni0036' (ID 226): width is 330, base glyph ('code.six' (ID 189)) width is 330<br>'uni0037' (ID 227): width is 330, base glyph ('code.seven' (ID 188)) width is 330<br>'uni0038' (ID 228): width is 330, base glyph ('code.eight' (ID 153)) width is 330<br>'uni0039' (ID 229): width is 330, base glyph ('code.nine' (ID 171)) width is 330<br>'uni003A' (ID 230): width is 330, base glyph ('code.colon' (ID 148)) width is 330<br>'uni003B' (ID 231): width is 330, base glyph ('code.semicolon' (ID 187)) width is 330<br>'uni003C' (ID 232): width is 330, base glyph ('code.less' (ID 167)) width is 330<br>'uni003D' (ID 233): width is 330, base glyph ('code.equal' (ID 154)) width is 330<br>'uni003E' (ID 234): width is 330, base glyph ('code.greater' (ID 161)) width is 330<br>'uni003F' (ID 235): width is 330, base glyph ('code.question' (ID 182)) width is 330<br>'uni0040' (ID 236): width is 330, base glyph ('code.at' (ID 139)) width is 330<br>'uni0041' (ID 237): width is 330, base glyph ('code.A' (ID 97)) width is 330<br>'uni0042' (ID 238): width is 330, base glyph ('code.B' (ID 98)) width is 330<br>'uni0043' (ID 239): width is 330, base glyph ('code.C' (ID 99)) width is 330<br>'uni0044' (ID 240): width is 330, base glyph ('code.D' (ID 102)) width is 330<br>'uni0045' (ID 241): width is 330, base glyph ('code.E' (ID 104)) width is 330<br>'uni0046' (ID 242): width is 330, base glyph ('code.F' (ID 105)) width is 330<br>'uni0047' (ID 243): width is 330, base glyph ('code.G' (ID 110)) width is 330<br>'uni0048' (ID 244): width is 330, base glyph ('code.H' (ID 111)) width is 330<br>'uni0049' (ID 245): width is 330, base glyph ('code.I' (ID 112)) width is 330<br>'uni004A' (ID 246): width is 330, base glyph ('code.J' (ID 113)) width is 330<br>'uni004B' (ID 247): width is 330, base glyph ('code.K' (ID 114)) width is 330<br>'uni004C' (ID 248): width is 330, base glyph ('code.L' (ID 115)) width is 330<br>'uni004D' (ID 249): width is 330, base glyph ('code.M' (ID 116)) width is 330<br>'uni004E' (ID 250): width is 330, base glyph ('code.N' (ID 117)) width is 330<br>'uni004F' (ID 251): width is 330, base glyph ('code.O' (ID 118)) width is 330<br>'uni0050' (ID 252): width is 330, base glyph ('code.P' (ID 119)) width is 330<br>'uni0051' (ID 253): width is 330, base glyph ('code.Q' (ID 120)) width is 330<br>'uni0052' (ID 254): width is 330, base glyph ('code.R' (ID 121)) width is 330<br>'uni0053' (ID 255): width is 330, base glyph ('code.S' (ID 122)) width is 330<br>'uni0054' (ID 256): width is 330, base glyph ('code.T' (ID 127)) width is 330<br>'uni0055' (ID 257): width is 330, base glyph ('code.U' (ID 128)) width is 330<br>'uni0056' (ID 258): width is 330, base glyph ('code.V' (ID 129)) width is 330<br>'uni0057' (ID 259): width is 330, base glyph ('code.W' (ID 130)) width is 330<br>'uni0058' (ID 260): width is 330, base glyph ('code.X' (ID 131)) width is 330<br>'uni0059' (ID 261): width is 330, base glyph ('code.Y' (ID 132)) width is 330<br>'uni005A' (ID 262): width is 330, base glyph ('code.Z' (ID 133)) width is 330<br>'uni005B' (ID 263): width is 330, base glyph ('code.bracketleft' (ID 145)) width is 330<br>'uni005C' (ID 264): width is 330, base glyph ('code.backslash' (ID 141)) width is 330<br>'uni005D' (ID 265): width is 330, base glyph ('code.bracketright' (ID 146)) width is 330<br>'uni005E' (ID 266): width is 330, base glyph ('code.asciicircum' (ID 136)) width is 330<br>'uni005F' (ID 267): width is 330, base glyph ('code.underscore' (ID 197)) width is 330<br>'uni0060' (ID 268): width is 330, base glyph ('code.grave' (ID 160)) width is 330<br>'uni0061' (ID 269): width is 330, base glyph ('code.a' (ID 134)) width is 330<br>'uni0062' (ID 270): width is 330, base glyph ('code.b' (ID 140)) width is 330<br>'uni0063' (ID 271): width is 330, base glyph ('code.c' (ID 147)) width is 330<br>'uni0064' (ID 272): width is 330, base glyph ('code.d' (ID 150)) width is 330<br>'uni0065' (ID 273): width is 330, base glyph ('code.e' (ID 152)) width is 330<br>'uni0066' (ID 274): width is 330, base glyph ('code.f' (ID 156)) width is 330<br>'uni0067' (ID 275): width is 330, base glyph ('code.g' (ID 159)) width is 330<br>'uni0068' (ID 276): width is 330, base glyph ('code.h' (ID 162)) width is 330<br>'uni0069' (ID 277): width is 330, base glyph ('code.i' (ID 163)) width is 330<br>'uni006A' (ID 278): width is 330, base glyph ('code.j' (ID 164)) width is 330<br>'uni006B' (ID 279): width is 330, base glyph ('code.k' (ID 165)) width is 330<br>'uni006C' (ID 280): width is 330, base glyph ('code.l' (ID 166)) width is 330<br>'uni006D' (ID 281): width is 330, base glyph ('code.m' (ID 168)) width is 330<br>'uni006E' (ID 282): width is 330, base glyph ('code.n' (ID 170)) width is 330<br>'uni006F' (ID 283): width is 330, base glyph ('code.o' (ID 173)) width is 330<br>'uni0070' (ID 284): width is 330, base glyph ('code.p' (ID 175)) width is 330<br>'uni0071' (ID 285): width is 330, base glyph ('code.q' (ID 181)) width is 330<br>'uni0072' (ID 286): width is 330, base glyph ('code.r' (ID 185)) width is 330<br>'uni0073' (ID 287): width is 330, base glyph ('code.s' (ID 186)) width is 330<br>'uni0074' (ID 288): width is 330, base glyph ('code.t' (ID 193)) width is 330<br>'uni0075' (ID 289): width is 330, base glyph ('code.u' (ID 196)) width is 330<br>'uni0076' (ID 290): width is 330, base glyph ('code.v' (ID 198)) width is 330<br>'uni0077' (ID 291): width is 330, base glyph ('code.w' (ID 199)) width is 330<br>'uni0078' (ID 292): width is 330, base glyph ('code.x' (ID 200)) width is 330<br>'uni0079' (ID 293): width is 330, base glyph ('code.y' (ID 201)) width is 330<br>'uni007A' (ID 294): width is 330, base glyph ('code.z' (ID 202)) width is 330<br>'uni007B' (ID 295): width is 330, base glyph ('code.braceleft' (ID 143)) width is 330<br>'uni007C' (ID 296): width is 330, base glyph ('code.bar' (ID 142)) width is 330<br>'uni007D' (ID 297): width is 330, base glyph ('code.braceright' (ID 144)) width is 330<br>'uni007E' (ID 298): width is 330, base glyph ('code.asciitilde' (ID 137)) width is 330<br>'uni00C2' (ID 300): width is 330, base glyph ('code.space' (ID 191)) width is 330<br>'uni00C3' (ID 301): width is 330, base glyph ('code.DEL' (ID 103)) width is 330<br>'uni00C4' (ID 302): width is 330, base glyph ('code.FNC3' (ID 108)) width is 330<br>'uni00C5' (ID 303): width is 330, base glyph ('code.FNC2' (ID 107)) width is 330<br>'uni00C6' (ID 304): width is 330, base glyph ('code.ShiftA' (ID 123)) width is 330<br>'uni00C7' (ID 305): width is 330, base glyph ('code.CodeC' (ID 101)) width is 330<br>'uni00C8' (ID 306): width is 330, base glyph ('code.FNC4' (ID 109)) width is 330<br>'uni00C9' (ID 307): width is 330, base glyph ('code.CodeA' (ID 100)) width is 330<br>'uni00CA' (ID 308): width is 330, base glyph ('code.FNC1' (ID 106)) width is 330<br>'uni00CB' (ID 309): width is 330, base glyph ('code.StartCodeA' (ID 124)) width is 330<br>'uni00CC' (ID 310): width is 330, base glyph ('code.StartCodeB' (ID 125)) width is 330<br>'uni00CD' (ID 311): width is 330, base glyph ('code.StartCodeC' (ID 126)) width is 330<br>'uni00CE' (ID 312): width is 390, base glyph ('code.stoppattern' (ID 192)) width is 390</p></td>
+                    <td class="detail"><p>'code.C00' (ID 100): width is 330, base glyph ('code.space' (ID 291)) width is 330<br>'code.C01' (ID 101): width is 330, base glyph ('code.exclam' (ID 255)) width is 330<br>'code.C02' (ID 102): width is 330, base glyph ('code.quotedbl' (ID 283)) width is 330<br>'code.C03' (ID 103): width is 330, base glyph ('code.numbersign' (ID 272)) width is 330<br>'code.C04' (ID 104): width is 330, base glyph ('code.dollar' (ID 251)) width is 330<br>'code.C05' (ID 105): width is 330, base glyph ('code.percent' (ID 278)) width is 330<br>'code.C06' (ID 106): width is 330, base glyph ('code.ampersand' (ID 235)) width is 330<br>'code.C07' (ID 107): width is 330, base glyph ('code.quotesingle' (ID 284)) width is 330<br>'code.C08' (ID 108): width is 330, base glyph ('code.parenleft' (ID 276)) width is 330<br>'code.C09' (ID 109): width is 330, base glyph ('code.parenright' (ID 277)) width is 330<br>'code.C10' (ID 110): width is 330, base glyph ('code.asterisk' (ID 238)) width is 330<br>'code.C11' (ID 111): width is 330, base glyph ('code.plus' (ID 280)) width is 330<br>'code.C12' (ID 112): width is 330, base glyph ('code.comma' (ID 249)) width is 330<br>'code.C13' (ID 113): width is 330, base glyph ('code.minus' (ID 269)) width is 330<br>'code.C14' (ID 114): width is 330, base glyph ('code.period' (ID 279)) width is 330<br>'code.C15' (ID 115): width is 330, base glyph ('code.slash' (ID 290)) width is 330<br>'code.C16' (ID 116): width is 330, base glyph ('code.zero' (ID 303)) width is 330<br>'code.C17' (ID 117): width is 330, base glyph ('code.one' (ID 274)) width is 330<br>'code.C18' (ID 118): width is 330, base glyph ('code.two' (ID 295)) width is 330<br>'code.C19' (ID 119): width is 330, base glyph ('code.three' (ID 294)) width is 330<br>'code.C20' (ID 120): width is 330, base glyph ('code.four' (ID 258)) width is 330<br>'code.C21' (ID 121): width is 330, base glyph ('code.five' (ID 257)) width is 330<br>'code.C22' (ID 122): width is 330, base glyph ('code.six' (ID 289)) width is 330<br>'code.C23' (ID 123): width is 330, base glyph ('code.seven' (ID 288)) width is 330<br>'code.C24' (ID 124): width is 330, base glyph ('code.eight' (ID 253)) width is 330<br>'code.C25' (ID 125): width is 330, base glyph ('code.nine' (ID 271)) width is 330<br>'code.C26' (ID 126): width is 330, base glyph ('code.colon' (ID 248)) width is 330<br>'code.C27' (ID 127): width is 330, base glyph ('code.semicolon' (ID 287)) width is 330<br>'code.C28' (ID 128): width is 330, base glyph ('code.less' (ID 267)) width is 330<br>'code.C29' (ID 129): width is 330, base glyph ('code.equal' (ID 254)) width is 330<br>'code.C30' (ID 130): width is 330, base glyph ('code.greater' (ID 261)) width is 330<br>'code.C31' (ID 131): width is 330, base glyph ('code.question' (ID 282)) width is 330<br>'code.C32' (ID 132): width is 330, base glyph ('code.at' (ID 239)) width is 330<br>'code.C33' (ID 133): width is 330, base glyph ('code.A' (ID 97)) width is 330<br>'code.C34' (ID 134): width is 330, base glyph ('code.B' (ID 98)) width is 330<br>'code.C35' (ID 135): width is 330, base glyph ('code.C' (ID 99)) width is 330<br>'code.C36' (ID 136): width is 330, base glyph ('code.D' (ID 202)) width is 330<br>'code.C37' (ID 137): width is 330, base glyph ('code.E' (ID 204)) width is 330<br>'code.C38' (ID 138): width is 330, base glyph ('code.F' (ID 205)) width is 330<br>'code.C39' (ID 139): width is 330, base glyph ('code.G' (ID 210)) width is 330<br>'code.C40' (ID 140): width is 330, base glyph ('code.H' (ID 211)) width is 330<br>'code.C41' (ID 141): width is 330, base glyph ('code.I' (ID 212)) width is 330<br>'code.C42' (ID 142): width is 330, base glyph ('code.J' (ID 213)) width is 330<br>'code.C43' (ID 143): width is 330, base glyph ('code.K' (ID 214)) width is 330<br>'code.C44' (ID 144): width is 330, base glyph ('code.L' (ID 215)) width is 330<br>'code.C45' (ID 145): width is 330, base glyph ('code.M' (ID 216)) width is 330<br>'code.C46' (ID 146): width is 330, base glyph ('code.N' (ID 217)) width is 330<br>'code.C47' (ID 147): width is 330, base glyph ('code.O' (ID 218)) width is 330<br>'code.C48' (ID 148): width is 330, base glyph ('code.P' (ID 219)) width is 330<br>'code.C49' (ID 149): width is 330, base glyph ('code.Q' (ID 220)) width is 330<br>'code.C50' (ID 150): width is 330, base glyph ('code.R' (ID 221)) width is 330<br>'code.C51' (ID 151): width is 330, base glyph ('code.S' (ID 222)) width is 330<br>'code.C52' (ID 152): width is 330, base glyph ('code.T' (ID 227)) width is 330<br>'code.C53' (ID 153): width is 330, base glyph ('code.U' (ID 228)) width is 330<br>'code.C54' (ID 154): width is 330, base glyph ('code.V' (ID 229)) width is 330<br>'code.C55' (ID 155): width is 330, base glyph ('code.W' (ID 230)) width is 330<br>'code.C56' (ID 156): width is 330, base glyph ('code.X' (ID 231)) width is 330<br>'code.C57' (ID 157): width is 330, base glyph ('code.Y' (ID 232)) width is 330<br>'code.C58' (ID 158): width is 330, base glyph ('code.Z' (ID 233)) width is 330<br>'code.C59' (ID 159): width is 330, base glyph ('code.bracketleft' (ID 245)) width is 330<br>'code.C60' (ID 160): width is 330, base glyph ('code.backslash' (ID 241)) width is 330<br>'code.C61' (ID 161): width is 330, base glyph ('code.bracketright' (ID 246)) width is 330<br>'code.C62' (ID 162): width is 330, base glyph ('code.asciicircum' (ID 236)) width is 330<br>'code.C63' (ID 163): width is 330, base glyph ('code.underscore' (ID 297)) width is 330<br>'code.C64' (ID 164): width is 330, base glyph ('code.grave' (ID 260)) width is 330<br>'code.C65' (ID 165): width is 330, base glyph ('code.a' (ID 234)) width is 330<br>'code.C66' (ID 166): width is 330, base glyph ('code.b' (ID 240)) width is 330<br>'code.C67' (ID 167): width is 330, base glyph ('code.c' (ID 247)) width is 330<br>'code.C68' (ID 168): width is 330, base glyph ('code.d' (ID 250)) width is 330<br>'code.C69' (ID 169): width is 330, base glyph ('code.e' (ID 252)) width is 330<br>'code.C70' (ID 170): width is 330, base glyph ('code.f' (ID 256)) width is 330<br>'code.C71' (ID 171): width is 330, base glyph ('code.g' (ID 259)) width is 330<br>'code.C72' (ID 172): width is 330, base glyph ('code.h' (ID 262)) width is 330<br>'code.C73' (ID 173): width is 330, base glyph ('code.i' (ID 263)) width is 330<br>'code.C74' (ID 174): width is 330, base glyph ('code.j' (ID 264)) width is 330<br>'code.C75' (ID 175): width is 330, base glyph ('code.k' (ID 265)) width is 330<br>'code.C76' (ID 176): width is 330, base glyph ('code.l' (ID 266)) width is 330<br>'code.C77' (ID 177): width is 330, base glyph ('code.m' (ID 268)) width is 330<br>'code.C78' (ID 178): width is 330, base glyph ('code.n' (ID 270)) width is 330<br>'code.C79' (ID 179): width is 330, base glyph ('code.o' (ID 273)) width is 330<br>'code.C80' (ID 180): width is 330, base glyph ('code.p' (ID 275)) width is 330<br>'code.C81' (ID 181): width is 330, base glyph ('code.q' (ID 281)) width is 330<br>'code.C82' (ID 182): width is 330, base glyph ('code.r' (ID 285)) width is 330<br>'code.C83' (ID 183): width is 330, base glyph ('code.s' (ID 286)) width is 330<br>'code.C84' (ID 184): width is 330, base glyph ('code.t' (ID 293)) width is 330<br>'code.C85' (ID 185): width is 330, base glyph ('code.u' (ID 296)) width is 330<br>'code.C86' (ID 186): width is 330, base glyph ('code.v' (ID 298)) width is 330<br>'code.C87' (ID 187): width is 330, base glyph ('code.w' (ID 299)) width is 330<br>'code.C88' (ID 188): width is 330, base glyph ('code.x' (ID 300)) width is 330<br>'code.C89' (ID 189): width is 330, base glyph ('code.y' (ID 301)) width is 330<br>'code.C90' (ID 190): width is 330, base glyph ('code.z' (ID 302)) width is 330<br>'code.C91' (ID 191): width is 330, base glyph ('code.braceleft' (ID 243)) width is 330<br>'code.C92' (ID 192): width is 330, base glyph ('code.bar' (ID 242)) width is 330<br>'code.C93' (ID 193): width is 330, base glyph ('code.braceright' (ID 244)) width is 330<br>'code.C94' (ID 194): width is 330, base glyph ('code.asciitilde' (ID 237)) width is 330<br>'code.C95' (ID 195): width is 330, base glyph ('code.DEL' (ID 203)) width is 330<br>'code.C96' (ID 196): width is 330, base glyph ('code.FNC3' (ID 208)) width is 330<br>'code.C97' (ID 197): width is 330, base glyph ('code.FNC2' (ID 207)) width is 330<br>'code.C98' (ID 198): width is 330, base glyph ('code.ShiftA' (ID 223)) width is 330<br>'code.C99' (ID 199): width is 330, base glyph ('code.CodeC' (ID 201)) width is 330<br>'uni0021.code.exclam' (ID 305): width is 330, base glyph ('code.exclam' (ID 255)) width is 330<br>'uni0022.code.quotedbl' (ID 306): width is 330, base glyph ('code.quotedbl' (ID 283)) width is 330<br>'uni0023.code.numbersign' (ID 307): width is 330, base glyph ('code.numbersign' (ID 272)) width is 330<br>'uni0024.code.dollar' (ID 308): width is 330, base glyph ('code.dollar' (ID 251)) width is 330<br>'uni0025.code.percent' (ID 309): width is 330, base glyph ('code.percent' (ID 278)) width is 330<br>'uni0026.code.ampersand' (ID 310): width is 330, base glyph ('code.ampersand' (ID 235)) width is 330<br>'uni0027.code.quotesingle' (ID 311): width is 330, base glyph ('code.quotesingle' (ID 284)) width is 330<br>'uni0028.code.parenleft' (ID 312): width is 330, base glyph ('code.parenleft' (ID 276)) width is 330<br>'uni0029.code.parenright' (ID 313): width is 330, base glyph ('code.parenright' (ID 277)) width is 330<br>'uni002A.code.asterisk' (ID 314): width is 330, base glyph ('code.asterisk' (ID 238)) width is 330<br>'uni002B.code.plus' (ID 315): width is 330, base glyph ('code.plus' (ID 280)) width is 330<br>'uni002C.code.comma' (ID 316): width is 330, base glyph ('code.comma' (ID 249)) width is 330<br>'uni002D.code.minus' (ID 317): width is 330, base glyph ('code.minus' (ID 269)) width is 330<br>'uni002E.code.period' (ID 318): width is 330, base glyph ('code.period' (ID 279)) width is 330<br>'uni002F.code.slash' (ID 319): width is 330, base glyph ('code.slash' (ID 290)) width is 330<br>'uni0030.code.zero' (ID 320): width is 330, base glyph ('code.zero' (ID 303)) width is 330<br>'uni0031.code.one' (ID 321): width is 330, base glyph ('code.one' (ID 274)) width is 330<br>'uni0032.code.two' (ID 322): width is 330, base glyph ('code.two' (ID 295)) width is 330<br>'uni0033.code.three' (ID 323): width is 330, base glyph ('code.three' (ID 294)) width is 330<br>'uni0034.code.four' (ID 324): width is 330, base glyph ('code.four' (ID 258)) width is 330<br>'uni0035.code.five' (ID 325): width is 330, base glyph ('code.five' (ID 257)) width is 330<br>'uni0036.code.six' (ID 326): width is 330, base glyph ('code.six' (ID 289)) width is 330<br>'uni0037.code.seven' (ID 327): width is 330, base glyph ('code.seven' (ID 288)) width is 330<br>'uni0038.code.eight' (ID 328): width is 330, base glyph ('code.eight' (ID 253)) width is 330<br>'uni0039.code.nine' (ID 329): width is 330, base glyph ('code.nine' (ID 271)) width is 330<br>'uni003A.code.colon' (ID 330): width is 330, base glyph ('code.colon' (ID 248)) width is 330<br>'uni003B.code.semicolon' (ID 331): width is 330, base glyph ('code.semicolon' (ID 287)) width is 330<br>'uni003C.code.less' (ID 332): width is 330, base glyph ('code.less' (ID 267)) width is 330<br>'uni003D.code.equal' (ID 333): width is 330, base glyph ('code.equal' (ID 254)) width is 330<br>'uni003E.code.greater' (ID 334): width is 330, base glyph ('code.greater' (ID 261)) width is 330<br>'uni003F.code.question' (ID 335): width is 330, base glyph ('code.question' (ID 282)) width is 330<br>'uni0040.code.at' (ID 336): width is 330, base glyph ('code.at' (ID 239)) width is 330<br>'uni0041.code.A' (ID 337): width is 330, base glyph ('code.A' (ID 97)) width is 330<br>'uni0042.code.B' (ID 338): width is 330, base glyph ('code.B' (ID 98)) width is 330<br>'uni0043.code.C' (ID 339): width is 330, base glyph ('code.C' (ID 99)) width is 330<br>'uni0044.code.D' (ID 340): width is 330, base glyph ('code.D' (ID 202)) width is 330<br>'uni0045.code.E' (ID 341): width is 330, base glyph ('code.E' (ID 204)) width is 330<br>'uni0046.code.F' (ID 342): width is 330, base glyph ('code.F' (ID 205)) width is 330<br>'uni0047.code.G' (ID 343): width is 330, base glyph ('code.G' (ID 210)) width is 330<br>'uni0048.code.H' (ID 344): width is 330, base glyph ('code.H' (ID 211)) width is 330<br>'uni0049.code.I' (ID 345): width is 330, base glyph ('code.I' (ID 212)) width is 330<br>'uni004A.code.J' (ID 346): width is 330, base glyph ('code.J' (ID 213)) width is 330<br>'uni004B.code.K' (ID 347): width is 330, base glyph ('code.K' (ID 214)) width is 330<br>'uni004C.code.L' (ID 348): width is 330, base glyph ('code.L' (ID 215)) width is 330<br>'uni004D.code.M' (ID 349): width is 330, base glyph ('code.M' (ID 216)) width is 330<br>'uni004E.code.N' (ID 350): width is 330, base glyph ('code.N' (ID 217)) width is 330<br>'uni004F.code.O' (ID 351): width is 330, base glyph ('code.O' (ID 218)) width is 330<br>'uni0050.code.P' (ID 352): width is 330, base glyph ('code.P' (ID 219)) width is 330<br>'uni0051.code.Q' (ID 353): width is 330, base glyph ('code.Q' (ID 220)) width is 330<br>'uni0052.code.R' (ID 354): width is 330, base glyph ('code.R' (ID 221)) width is 330<br>'uni0053.code.S' (ID 355): width is 330, base glyph ('code.S' (ID 222)) width is 330<br>'uni0054.code.T' (ID 356): width is 330, base glyph ('code.T' (ID 227)) width is 330<br>'uni0055.code.U' (ID 357): width is 330, base glyph ('code.U' (ID 228)) width is 330<br>'uni0056.code.V' (ID 358): width is 330, base glyph ('code.V' (ID 229)) width is 330<br>'uni0057.code.W' (ID 359): width is 330, base glyph ('code.W' (ID 230)) width is 330<br>'uni0058.code.X' (ID 360): width is 330, base glyph ('code.X' (ID 231)) width is 330<br>'uni0059.code.Y' (ID 361): width is 330, base glyph ('code.Y' (ID 232)) width is 330<br>'uni005A.code.Z' (ID 362): width is 330, base glyph ('code.Z' (ID 233)) width is 330<br>'uni005B.code.bracketleft' (ID 363): width is 330, base glyph ('code.bracketleft' (ID 245)) width is 330<br>'uni005C.code.backslash' (ID 364): width is 330, base glyph ('code.backslash' (ID 241)) width is 330<br>'uni005D.code.bracketright' (ID 365): width is 330, base glyph ('code.bracketright' (ID 246)) width is 330<br>'uni005E.code.asciicircum' (ID 366): width is 330, base glyph ('code.asciicircum' (ID 236)) width is 330<br>'uni005F.code.underscore' (ID 367): width is 330, base glyph ('code.underscore' (ID 297)) width is 330<br>'uni0060.code.grave' (ID 368): width is 330, base glyph ('code.grave' (ID 260)) width is 330<br>'uni0061.code.a' (ID 369): width is 330, base glyph ('code.a' (ID 234)) width is 330<br>'uni0062.code.b' (ID 370): width is 330, base glyph ('code.b' (ID 240)) width is 330<br>'uni0063.code.c' (ID 371): width is 330, base glyph ('code.c' (ID 247)) width is 330<br>'uni0064.code.d' (ID 372): width is 330, base glyph ('code.d' (ID 250)) width is 330<br>'uni0065.code.e' (ID 373): width is 330, base glyph ('code.e' (ID 252)) width is 330<br>'uni0066.code.f' (ID 374): width is 330, base glyph ('code.f' (ID 256)) width is 330<br>'uni0067.code.g' (ID 375): width is 330, base glyph ('code.g' (ID 259)) width is 330<br>'uni0068.code.h' (ID 376): width is 330, base glyph ('code.h' (ID 262)) width is 330<br>'uni0069.code.i' (ID 377): width is 330, base glyph ('code.i' (ID 263)) width is 330<br>'uni006A.code.j' (ID 378): width is 330, base glyph ('code.j' (ID 264)) width is 330<br>'uni006B.code.k' (ID 379): width is 330, base glyph ('code.k' (ID 265)) width is 330<br>'uni006C.code.l' (ID 380): width is 330, base glyph ('code.l' (ID 266)) width is 330<br>'uni006D.code.m' (ID 381): width is 330, base glyph ('code.m' (ID 268)) width is 330<br>'uni006E.code.n' (ID 382): width is 330, base glyph ('code.n' (ID 270)) width is 330<br>'uni006F.code.o' (ID 383): width is 330, base glyph ('code.o' (ID 273)) width is 330<br>'uni0070.code.p' (ID 384): width is 330, base glyph ('code.p' (ID 275)) width is 330<br>'uni0071.code.q' (ID 385): width is 330, base glyph ('code.q' (ID 281)) width is 330<br>'uni0072.code.r' (ID 386): width is 330, base glyph ('code.r' (ID 285)) width is 330<br>'uni0073.code.s' (ID 387): width is 330, base glyph ('code.s' (ID 286)) width is 330<br>'uni0074.code.t' (ID 388): width is 330, base glyph ('code.t' (ID 293)) width is 330<br>'uni0075.code.u' (ID 389): width is 330, base glyph ('code.u' (ID 296)) width is 330<br>'uni0076.code.v' (ID 390): width is 330, base glyph ('code.v' (ID 298)) width is 330<br>'uni0077.code.w' (ID 391): width is 330, base glyph ('code.w' (ID 299)) width is 330<br>'uni0078.code.x' (ID 392): width is 330, base glyph ('code.x' (ID 300)) width is 330<br>'uni0079.code.y' (ID 393): width is 330, base glyph ('code.y' (ID 301)) width is 330<br>'uni007A.code.z' (ID 394): width is 330, base glyph ('code.z' (ID 302)) width is 330<br>'uni007B.code.braceleft' (ID 395): width is 330, base glyph ('code.braceleft' (ID 243)) width is 330<br>'uni007C.code.bar' (ID 396): width is 330, base glyph ('code.bar' (ID 242)) width is 330<br>'uni007D.code.braceright' (ID 397): width is 330, base glyph ('code.braceright' (ID 244)) width is 330<br>'uni007E.code.asciitilde' (ID 398): width is 330, base glyph ('code.asciitilde' (ID 237)) width is 330<br>'uni00C2.code.space' (ID 400): width is 330, base glyph ('code.space' (ID 291)) width is 330<br>'uni00C3.code.DEL' (ID 401): width is 330, base glyph ('code.DEL' (ID 203)) width is 330<br>'uni00C4.code.FNC3' (ID 402): width is 330, base glyph ('code.FNC3' (ID 208)) width is 330<br>'uni00C5.code.FNC2' (ID 403): width is 330, base glyph ('code.FNC2' (ID 207)) width is 330<br>'uni00C6.code.ShiftA' (ID 404): width is 330, base glyph ('code.ShiftA' (ID 223)) width is 330<br>'uni00C7.code.CodeC' (ID 405): width is 330, base glyph ('code.CodeC' (ID 201)) width is 330<br>'uni00C8.code.FNC4' (ID 406): width is 330, base glyph ('code.FNC4' (ID 209)) width is 330<br>'uni00C9.code.CodeA' (ID 407): width is 330, base glyph ('code.CodeA' (ID 200)) width is 330<br>'uni00CA.code.FNC1' (ID 408): width is 330, base glyph ('code.FNC1' (ID 206)) width is 330<br>'uni00CB.code.StartCodeA' (ID 409): width is 330, base glyph ('code.StartCodeA' (ID 224)) width is 330<br>'uni00CC.code.StartCodeB' (ID 410): width is 330, base glyph ('code.StartCodeB' (ID 225)) width is 330<br>'uni00CD.code.StartCodeC' (ID 411): width is 330, base glyph ('code.StartCodeC' (ID 226)) width is 330<br>'uni00CE.code.stoppattern' (ID 412): width is 390, base glyph ('code.stoppattern' (ID 292)) width is 390</p></td>
                     <!--<td class="time"><p><input type="checkbox"></p></td>-->
                 </tr>
                       </tbody>
@@ -804,13 +834,13 @@
             </thead>
             <tbody id="Individual Glyphs" class="result_body">
                     
-                <tr class="E">
-                    <td class="code"><p>Error</p></td>
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
                     <td class="fontname"><p>Libre Barcode 128 Text Regular (LibreBarcode128Text-Regular.ttf)</p></td>
                     <td class="table"><p>post</p></td>
                     <td class="feature"><p>PostScript names</p></td>
                     <td class="message"><p>Check double NULL</p></td>
-                    <td class="detail"><p>Font does not have NULL at all. Please investigate.</p></td>
+                    <td class="detail"><p>Font only has one NULL: 'NULL'</p></td>
                     <!--<td class="time"><p><input type="checkbox"></p></td>-->
                 </tr>
                     
@@ -858,7 +888,7 @@
                     <td class="code"><p>Pass</p></td>
                     <td class="fontname"><p>Libre Barcode 128 Text Regular (LibreBarcode128Text-Regular.ttf)</p></td>
                     <td class="table"><p>hmtx</p></td>
-                    <td class="feature"><p>Index 204 and 299</p></td>
+                    <td class="feature"><p>Index 304 and 399</p></td>
                     <td class="message"><p>Advance width of nonbreakingspace (uni00A0) should match the space (uni0020) width.</p></td>
                     <td class="detail"><p>OK: Advance width nonbreakingspace (uni00A0) does match the space (uni0020) width:<br>330 = 330</p></td>
                     <!--<td class="time"><p><input type="checkbox"></p></td>-->
@@ -984,7 +1014,7 @@
                     <td class="table"><p>glyf</p></td>
                     <td class="feature"><p>-/-</p></td>
                     <td class="message"><p>Glyphs (LATIN) which are made from components.<br>Great.</p></td>
-                    <td class="detail"><p>'uni00C2' (uni00C2) (ID 300)<br>'uni00C4' (uni00C4) (ID 302)<br>'uni00C5' (uni00C5) (ID 303)<br>'uni00C3' (uni00C3) (ID 301)<br>'uni00C9' (uni00C9) (ID 307)<br>'uni00CA' (uni00CA) (ID 308)<br>'uni00CB' (uni00CB) (ID 309)<br>'uni00C8' (uni00C8) (ID 306)<br>'uni00CD' (uni00CD) (ID 311)<br>'uni00CE' (uni00CE) (ID 312)<br>'uni00CC' (uni00CC) (ID 310)</p></td>
+                    <td class="detail"><p>'uni00C2.code.space' (uni00C2) (ID 400)<br>'uni00C4.code.FNC3' (uni00C4) (ID 402)<br>'uni00C5.code.FNC2' (uni00C5) (ID 403)<br>'uni00C3.code.DEL' (uni00C3) (ID 401)<br>'uni00C9.code.CodeA' (uni00C9) (ID 407)<br>'uni00CA.code.FNC1' (uni00CA) (ID 408)<br>'uni00CB.code.StartCodeA' (uni00CB) (ID 409)<br>'uni00C8.code.FNC4' (uni00C8) (ID 406)<br>'uni00CD.code.StartCodeC' (uni00CD) (ID 411)<br>'uni00CE.code.stoppattern' (uni00CE) (ID 412)<br>'uni00CC.code.StartCodeB' (uni00CC) (ID 410)</p></td>
                     <!--<td class="time"><p><input type="checkbox"></p></td>-->
                 </tr>
                       </tbody>
@@ -1028,7 +1058,7 @@
                     <td class="table"><p>hmtx</p></td>
                     <td class="feature"><p>advance</p></td>
                     <td class="message"><p>Pull glyphs with advance width zero.</p></td>
-                    <td class="detail"><p>'uni200B' (uni200B) (ID 1) = '0'.<br>'uni0000' (uni0000) (ID 2) = '0'.</p></td>
+                    <td class="detail"><p>'zwspace' (uni200B) (ID 414) = '0'<br>'NULL' (ID 2) = '0'<br>'CR' (uni000D) (ID 1) = '0'<br>'zwnj' (uni200C) (ID 413) = '0'</p></td>
                     <!--<td class="time"><p><input type="checkbox"></p></td>-->
                 </tr>
                       </tbody>
@@ -1102,7 +1132,7 @@
                     <td class="table"><p>post</p></td>
                     <td class="feature"><p>Index 1</p></td>
                     <td class="message"><p>PostScript name should be one of the names:<br>".null"<br>"null"<br>"NULL".</p></td>
-                    <td class="detail"><p>Index 1 = "uni200B".<br>Check that character is the correct glyph.</p></td>
+                    <td class="detail"><p>Index 1 = "CR".<br>Check that character is the correct glyph.</p></td>
                     <!--<td class="time"><p><input type="checkbox"></p></td>-->
                 </tr>
                     
@@ -1112,7 +1142,7 @@
                     <td class="table"><p>post</p></td>
                     <td class="feature"><p>Index 2</p></td>
                     <td class="message"><p>PostScript name should be one of the names:<br>"nonmarkingreturn"<br>"CR".</p></td>
-                    <td class="detail"><p>Index 2 = "uni0000". Check that character is the correct glyph.</p></td>
+                    <td class="detail"><p>Index 2 = "NULL". Check that character is the correct glyph.</p></td>
                     <!--<td class="time"><p><input type="checkbox"></p></td>-->
                 </tr>
                     
@@ -1213,8 +1243,8 @@
                     <td class="fontname"><p>Libre Barcode 128 Text Regular (LibreBarcode128Text-Regular.ttf)</p></td>
                     <td class="table"><p>OS/2</p></td>
                     <td class="feature"><p>usLastCharIndex</p></td>
-                    <td class="message"><p>'OS/2' usLastCharIndex should be 0x200B</p></td>
-                    <td class="detail"><p>OK: 'OS/2' usLastCharIndex is 0x200B.</p></td>
+                    <td class="message"><p>'OS/2' usLastCharIndex should be 0x200C</p></td>
+                    <td class="detail"><p>OK: 'OS/2' usLastCharIndex is 0x200C.</p></td>
                     <!--<td class="time"><p><input type="checkbox"></p></td>-->
                 </tr>
                     
@@ -1304,13 +1334,13 @@
                     <!--<td class="time"><p><input type="checkbox"></p></td>-->
                 </tr>
                     
-                <tr class="E">
-                    <td class="code"><p>Error</p></td>
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
                     <td class="fontname"><p>Libre Barcode 128 Text Regular (LibreBarcode128Text-Regular.ttf)</p></td>
                     <td class="table"><p>cmap</p></td>
                     <td class="feature"><p>cmap(0, 3, 0)</p></td>
                     <td class="message"><p>Missing uni0000 and uni000D in cmap MS/BMP(0,3,0) and Unicode/2.0, BMP only(3,1,0).</p></td>
-                    <td class="detail"><p>Please verify with spec or Project Manager if uni000D is required, if so: PLEASE ADD.</p></td>
+                    <td class="detail"><p>cmap(0, 3, 0) contains U+000D</p></td>
                     <!--<td class="time"><p><input type="checkbox"></p></td>-->
                 </tr>
                     
@@ -1324,13 +1354,13 @@
                     <!--<td class="time"><p><input type="checkbox"></p></td>-->
                 </tr>
                     
-                <tr class="E">
-                    <td class="code"><p>Error</p></td>
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
                     <td class="fontname"><p>Libre Barcode 128 Text Regular (LibreBarcode128Text-Regular.ttf)</p></td>
                     <td class="table"><p>cmap</p></td>
                     <td class="feature"><p>cmap(3, 1, 0)</p></td>
                     <td class="message"><p>Missing uni0000 and uni000D in cmap MS/BMP(0,3,0) and Unicode/2.0, BMP only(3,1,0).</p></td>
-                    <td class="detail"><p>Please verify with spec or Project Manager if uni000D is required, if so: PLEASE ADD.</p></td>
+                    <td class="detail"><p>cmap(3, 1, 0) contains U+000D</p></td>
                     <!--<td class="time"><p><input type="checkbox"></p></td>-->
                 </tr>
                       </tbody>
@@ -1374,7 +1404,7 @@
                     <td class="table"><p>name</p></td>
                     <td class="feature"><p>MS NID 0 (3, 1, 1033, 0)</p></td>
                     <td class="message"><p>MS NID 0, Copyright.</p></td>
-                    <td class="detail"><p>Please verify agains spec.<br>MS NID 0 is 'Copyright <mark>2017 The Libre Barcode Project Authors (lasse@graphicore.de)</mark>'<br>It should follow this structure: 'Copyright (c) XXXX - XXXX /entity/. All rights reserved.' </p></td>
+                    <td class="detail"><p>Please verify agains spec.<br>MS NID 0 is 'Copyright <mark>2017-2020 The Libre Barcode Project Authors (https://github.com/graphicore/librebarcode)</mark>'<br>It should follow this structure: 'Copyright (c) XXXX - XXXX /entity/. All rights reserved.' </p></td>
                     <!--<td class="time"><p><input type="checkbox"></p></td>-->
                 </tr>
                     
@@ -1403,7 +1433,7 @@
                     <td class="fontname"><p>Libre Barcode 128 Text Regular (LibreBarcode128Text-Regular.ttf)</p></td>
                     <td class="table"><p>name</p></td>
                     <td class="feature"><p>MS NID 1</p></td>
-                    <td class="message"><p>Reserved word used in Family Name NID1 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="message"><p>Reserved word used in Family NID1 and not allowed in Microsoft Office applications.</p></td>
                     <td class="detail"><p>NID 1 does not contain any of the following keywords: 'Book, Ultra, Normal'</p></td>
                     <!--<td class="time"><p><input type="checkbox"></p></td>-->
                 </tr>
@@ -1413,7 +1443,7 @@
                     <td class="fontname"><p>Libre Barcode 128 Text Regular (LibreBarcode128Text-Regular.ttf)</p></td>
                     <td class="table"><p>name</p></td>
                     <td class="feature"><p>MS NID 1</p></td>
-                    <td class="message"><p>Reserved word used in Family Name NID1 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="message"><p>Reserved word used in Family NID1 and not allowed in Microsoft Office applications.</p></td>
                     <td class="detail"><p>NID 1 does not contain any of the following keywords: 'Roman'</p></td>
                     <!--<td class="time"><p><input type="checkbox"></p></td>-->
                 </tr>
@@ -1423,7 +1453,7 @@
                     <td class="fontname"><p>Libre Barcode 128 Text Regular (LibreBarcode128Text-Regular.ttf)</p></td>
                     <td class="table"><p>name</p></td>
                     <td class="feature"><p>MS NID 1</p></td>
-                    <td class="message"><p>Reserved word used in Family Name NID1 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="message"><p>Reserved word used in Family NID1 and not allowed in Microsoft Office applications.</p></td>
                     <td class="detail"><p>NID 1 does not contain any of the following keywords: 'Regular, Bold, Italic, Extra, Light, Black, Thin, Wide, Ultra'</p></td>
                     <!--<td class="time"><p><input type="checkbox"></p></td>-->
                 </tr>
@@ -1433,7 +1463,7 @@
                     <td class="fontname"><p>Libre Barcode 128 Text Regular (LibreBarcode128Text-Regular.ttf)</p></td>
                     <td class="table"><p>name</p></td>
                     <td class="feature"><p>MS NID 1</p></td>
-                    <td class="message"><p>Should be camel case Family Name NID1</p></td>
+                    <td class="message"><p>Should be camel case Family NID1</p></td>
                     <td class="detail"><p>NID 1: OK. No camel case required.</p></td>
                     <!--<td class="time"><p><input type="checkbox"></p></td>-->
                 </tr>
@@ -1443,8 +1473,8 @@
                     <td class="fontname"><p>Libre Barcode 128 Text Regular (LibreBarcode128Text-Regular.ttf)</p></td>
                     <td class="table"><p>name</p></td>
                     <td class="feature"><p>MS NID 1</p></td>
-                    <td class="message"><p>Check style extentions Family Name NID1</p></td>
-                    <td class="detail"><p>NID 1 does not contain any of the following beginnings: 'Demi, Ex, Dm, Sm, Ultra, Extra, X, Xtra, Semi'</p></td>
+                    <td class="message"><p>Check style extentions Family NID1</p></td>
+                    <td class="detail"><p>NID 1 does not contain any of the following beginnings: 'Sm, Semi, Ex, Xtra, Demi, Ultra, X, Extra, Dm'</p></td>
                     <!--<td class="time"><p><input type="checkbox"></p></td>-->
                 </tr>
                     
@@ -1453,7 +1483,7 @@
                     <td class="fontname"><p>Libre Barcode 128 Text Regular (LibreBarcode128Text-Regular.ttf)</p></td>
                     <td class="table"><p>name/OS/2</p></td>
                     <td class="feature"><p>MS NID 1</p></td>
-                    <td class="message"><p>Width Names Family Name NID1</p></td>
+                    <td class="message"><p>Width Names Family NID1</p></td>
                     <td class="detail"><p>OS/2 usWidthClass seems to be correct. Cannot find any specific width name in the name:<br>'Libre Barcode 128 Text'</p></td>
                     <!--<td class="time"><p><input type="checkbox"></p></td>-->
                 </tr>
@@ -1473,7 +1503,7 @@
                     <td class="fontname"><p>Libre Barcode 128 Text Regular (LibreBarcode128Text-Regular.ttf)</p></td>
                     <td class="table"><p>name</p></td>
                     <td class="feature"><p>MS NID 2</p></td>
-                    <td class="message"><p>Reserved word used in Subfamily Name NID2 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="message"><p>Reserved word used in Subfamily NID2 and not allowed in Microsoft Office applications.</p></td>
                     <td class="detail"><p>NID 2 does not contain any of the following keywords: 'Book, Ultra, Normal'</p></td>
                     <!--<td class="time"><p><input type="checkbox"></p></td>-->
                 </tr>
@@ -1483,8 +1513,28 @@
                     <td class="fontname"><p>Libre Barcode 128 Text Regular (LibreBarcode128Text-Regular.ttf)</p></td>
                     <td class="table"><p>name</p></td>
                     <td class="feature"><p>MS NID 2</p></td>
-                    <td class="message"><p>Reserved word used in Subfamily Name NID2 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="message"><p>Reserved word used in Subfamily NID2 and not allowed in Microsoft Office applications.</p></td>
                     <td class="detail"><p>NID 2 does not contain any of the following keywords: 'Roman'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Libre Barcode 128 Text Regular (LibreBarcode128Text-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 2</p></td>
+                    <td class="message"><p>NID 2 'MS/BMP/English (U.S.)' should match 'MS/BMP/English (U.S.)'.</p></td>
+                    <td class="detail"><p>NID 2 is the same 'Regular' = 'Regular'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Libre Barcode 128 Text Regular (LibreBarcode128Text-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 3</p></td>
+                    <td class="message"><p>NID 3 'MS/BMP/English (U.S.)' should match 'MS/BMP/English (U.S.)'.</p></td>
+                    <td class="detail"><p>NID 3 is the same '1.005;GRCR;LibreBarcode128Text-Regular' = '1.005;GRCR;LibreBarcode128Text-Regular'.</p></td>
                     <!--<td class="time"><p><input type="checkbox"></p></td>-->
                 </tr>
                     
@@ -1513,7 +1563,7 @@
                     <td class="fontname"><p>Libre Barcode 128 Text Regular (LibreBarcode128Text-Regular.ttf)</p></td>
                     <td class="table"><p>name</p></td>
                     <td class="feature"><p>MS NID 4</p></td>
-                    <td class="message"><p>Reserved word used in Full Font Name NID4 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="message"><p>Reserved word used in Full Name NID4 and not allowed in Microsoft Office applications.</p></td>
                     <td class="detail"><p>NID 4 does not contain any of the following keywords: 'Book, Ultra, Normal'</p></td>
                     <!--<td class="time"><p><input type="checkbox"></p></td>-->
                 </tr>
@@ -1523,7 +1573,7 @@
                     <td class="fontname"><p>Libre Barcode 128 Text Regular (LibreBarcode128Text-Regular.ttf)</p></td>
                     <td class="table"><p>name</p></td>
                     <td class="feature"><p>MS NID 4</p></td>
-                    <td class="message"><p>Reserved word used in Full Font Name NID4 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="message"><p>Reserved word used in Full Name NID4 and not allowed in Microsoft Office applications.</p></td>
                     <td class="detail"><p>NID 4 does not contain any of the following keywords: 'Roman'</p></td>
                     <!--<td class="time"><p><input type="checkbox"></p></td>-->
                 </tr>
@@ -1533,7 +1583,7 @@
                     <td class="fontname"><p>Libre Barcode 128 Text Regular (LibreBarcode128Text-Regular.ttf)</p></td>
                     <td class="table"><p>name</p></td>
                     <td class="feature"><p>MS NID 4</p></td>
-                    <td class="message"><p>Should be camel case Full Font Name NID4</p></td>
+                    <td class="message"><p>Should be camel case Full Name NID4</p></td>
                     <td class="detail"><p>NID 4: OK. No camel case required.</p></td>
                     <!--<td class="time"><p><input type="checkbox"></p></td>-->
                 </tr>
@@ -1543,8 +1593,8 @@
                     <td class="fontname"><p>Libre Barcode 128 Text Regular (LibreBarcode128Text-Regular.ttf)</p></td>
                     <td class="table"><p>name</p></td>
                     <td class="feature"><p>MS NID 4</p></td>
-                    <td class="message"><p>Check style extentions Full Font Name NID4</p></td>
-                    <td class="detail"><p>NID 4 does not contain any of the following beginnings: 'Demi, Ex, Dm, Sm, Ultra, Extra, X, Xtra, Semi'</p></td>
+                    <td class="message"><p>Check style extentions Full Name NID4</p></td>
+                    <td class="detail"><p>NID 4 does not contain any of the following beginnings: 'Sm, Semi, Ex, Xtra, Demi, Ultra, X, Extra, Dm'</p></td>
                     <!--<td class="time"><p><input type="checkbox"></p></td>-->
                 </tr>
                     
@@ -1553,18 +1603,8 @@
                     <td class="fontname"><p>Libre Barcode 128 Text Regular (LibreBarcode128Text-Regular.ttf)</p></td>
                     <td class="table"><p>name/OS/2</p></td>
                     <td class="feature"><p>MS NID 4</p></td>
-                    <td class="message"><p>Width Names Full Font Name NID4</p></td>
+                    <td class="message"><p>Width Names Full Name NID4</p></td>
                     <td class="detail"><p>OS/2 usWidthClass seems to be correct. Cannot find any specific width name in the name:<br>'Libre Barcode 128 Text Regular'</p></td>
-                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
-                </tr>
-                    
-                <tr class="W">
-                    <td class="code"><p>Warning</p></td>
-                    <td class="fontname"><p>Libre Barcode 128 Text Regular (LibreBarcode128Text-Regular.ttf)</p></td>
-                    <td class="table"><p>name</p></td>
-                    <td class="feature"><p>MS NID 5, Version</p></td>
-                    <td class="message"><p>'Version' has leading or trailing spaces.</p></td>
-                    <td class="detail"><p>leading or trailing spaces are highlighted with <mark>[&#160&#160]</mark>:<br>'Version 1.003; ttfautohint (v1.6) -l 8 -r 50 -G 200 -x 14 -D latn -f none -w G -X <mark>[""]</mark>' </p></td>
                     <!--<td class="time"><p><input type="checkbox"></p></td>-->
                 </tr>
                     
@@ -1574,7 +1614,17 @@
                     <td class="table"><p>name/head</p></td>
                     <td class="feature"><p>MS NID 5</p></td>
                     <td class="message"><p>name table version should match head table fontRevision.</p></td>
-                    <td class="detail"><p>OK: name table version entry 'Version 1.003; ttfautohint (v1.6) -l 8 -r 50 -G 200 -x 14 -D latn -f none -w G -X ""' does match fontRevision 'Version 1.003'.</p></td>
+                    <td class="detail"><p>OK: name table version entry 'Version 1.005; ttfautohint (v1.8.3)' does match fontRevision 'Version 1.005'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Libre Barcode 128 Text Regular (LibreBarcode128Text-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 5</p></td>
+                    <td class="message"><p>NID 5 'MS/BMP/English (U.S.)' should match 'MS/BMP/English (U.S.)'.</p></td>
+                    <td class="detail"><p>NID 5 is the same 'Version 1.005; ttfautohint (v1.8.3)' = 'Version 1.005; ttfautohint (v1.8.3)'.</p></td>
                     <!--<td class="time"><p><input type="checkbox"></p></td>-->
                 </tr>
                     
@@ -1613,7 +1663,7 @@
                     <td class="fontname"><p>Libre Barcode 128 Text Regular (LibreBarcode128Text-Regular.ttf)</p></td>
                     <td class="table"><p>name</p></td>
                     <td class="feature"><p>MS NID 6</p></td>
-                    <td class="message"><p>Reserved word used in PostScript Name NID6 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="message"><p>Reserved word used in Postscript NID6 and not allowed in Microsoft Office applications.</p></td>
                     <td class="detail"><p>NID 6 does not contain any of the following keywords: 'Book, Ultra, Normal'</p></td>
                     <!--<td class="time"><p><input type="checkbox"></p></td>-->
                 </tr>
@@ -1623,7 +1673,7 @@
                     <td class="fontname"><p>Libre Barcode 128 Text Regular (LibreBarcode128Text-Regular.ttf)</p></td>
                     <td class="table"><p>name</p></td>
                     <td class="feature"><p>MS NID 6</p></td>
-                    <td class="message"><p>Reserved word used in PostScript Name NID6 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="message"><p>Reserved word used in Postscript NID6 and not allowed in Microsoft Office applications.</p></td>
                     <td class="detail"><p>NID 6 does not contain any of the following keywords: 'Roman'</p></td>
                     <!--<td class="time"><p><input type="checkbox"></p></td>-->
                 </tr>
@@ -1633,8 +1683,18 @@
                     <td class="fontname"><p>Libre Barcode 128 Text Regular (LibreBarcode128Text-Regular.ttf)</p></td>
                     <td class="table"><p>name</p></td>
                     <td class="feature"><p>MS NID 6</p></td>
-                    <td class="message"><p>Should be camel case PostScript Name NID6</p></td>
+                    <td class="message"><p>Should be camel case Postscript NID6</p></td>
                     <td class="detail"><p>NID 6: OK. No camel case required.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Libre Barcode 128 Text Regular (LibreBarcode128Text-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 6</p></td>
+                    <td class="message"><p>NID 6 'MS/BMP/English (U.S.)' should match 'MS/BMP/English (U.S.)'.</p></td>
+                    <td class="detail"><p>NID 6 is the same 'LibreBarcode128Text-Regular' = 'LibreBarcode128Text-Regular'.</p></td>
                     <!--<td class="time"><p><input type="checkbox"></p></td>-->
                 </tr>
                     
@@ -1644,97 +1704,7 @@
                     <td class="table"><p>name</p></td>
                     <td class="feature"><p>MS NID 8/13</p></td>
                     <td class="message"><p>License text.</p></td>
-                    <td class="detail"><p>There is a license text but no manufactur. Please verify agains spec.<br>The license text is:<br>This Font Software is licensed under the SIL Open Font License, Version 1.1. This license is available with a FAQ at: http://scripts.sil.org/OFL </p></td>
-                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
-                </tr>
-                    
-                <tr class="E">
-                    <td class="code"><p>Error</p></td>
-                    <td class="fontname"><p>Libre Barcode 128 Text Regular (LibreBarcode128Text-Regular.ttf)</p></td>
-                    <td class="table"><p>name</p></td>
-                    <td class="feature"><p>Mac and MS NID 0</p></td>
-                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
-                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: 'No entry.'<br>MS [3, 1, 1033] is: '<mark>Copyright 2017 The Libre Barcode Project Authors (lasse@graphicore.de)</mark>'</p></td>
-                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
-                </tr>
-                    
-                <tr class="E">
-                    <td class="code"><p>Error</p></td>
-                    <td class="fontname"><p>Libre Barcode 128 Text Regular (LibreBarcode128Text-Regular.ttf)</p></td>
-                    <td class="table"><p>name</p></td>
-                    <td class="feature"><p>Mac and MS NID 1</p></td>
-                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
-                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: 'No entry.'<br>MS [3, 1, 1033] is: '<mark>Libre Barcode 128 Text</mark>'</p></td>
-                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
-                </tr>
-                    
-                <tr class="E">
-                    <td class="code"><p>Error</p></td>
-                    <td class="fontname"><p>Libre Barcode 128 Text Regular (LibreBarcode128Text-Regular.ttf)</p></td>
-                    <td class="table"><p>name</p></td>
-                    <td class="feature"><p>Mac and MS NID 2</p></td>
-                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
-                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: '<mark>No entry.</mark>'<br>MS [3, 1, 1033] is: 'Regular'</p></td>
-                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
-                </tr>
-                    
-                <tr class="E">
-                    <td class="code"><p>Error</p></td>
-                    <td class="fontname"><p>Libre Barcode 128 Text Regular (LibreBarcode128Text-Regular.ttf)</p></td>
-                    <td class="table"><p>name</p></td>
-                    <td class="feature"><p>Mac and MS NID 3</p></td>
-                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
-                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: 'No entry.'<br>MS [3, 1, 1033] is: '<mark>1.003;GRCR;LibreBarcode128Text-Regular</mark>'</p></td>
-                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
-                </tr>
-                    
-                <tr class="E">
-                    <td class="code"><p>Error</p></td>
-                    <td class="fontname"><p>Libre Barcode 128 Text Regular (LibreBarcode128Text-Regular.ttf)</p></td>
-                    <td class="table"><p>name</p></td>
-                    <td class="feature"><p>Mac and MS NID 4</p></td>
-                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
-                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: 'No entry.'<br>MS [3, 1, 1033] is: '<mark>Libre Barcode 128 Text Regular</mark>'</p></td>
-                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
-                </tr>
-                    
-                <tr class="E">
-                    <td class="code"><p>Error</p></td>
-                    <td class="fontname"><p>Libre Barcode 128 Text Regular (LibreBarcode128Text-Regular.ttf)</p></td>
-                    <td class="table"><p>name</p></td>
-                    <td class="feature"><p>Mac and MS NID 5</p></td>
-                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
-                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: 'No entry.'<br>MS [3, 1, 1033] is: '<mark>Version 1.003; ttfautohint (v1.6) -l 8 -r 50 -G 200 -x 14 -D latn -f none -w G -X ""</mark>'</p></td>
-                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
-                </tr>
-                    
-                <tr class="E">
-                    <td class="code"><p>Error</p></td>
-                    <td class="fontname"><p>Libre Barcode 128 Text Regular (LibreBarcode128Text-Regular.ttf)</p></td>
-                    <td class="table"><p>name</p></td>
-                    <td class="feature"><p>Mac and MS NID 6</p></td>
-                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
-                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: 'No entry.'<br>MS [3, 1, 1033] is: '<mark>LibreBarcode128Text-Regular</mark>'</p></td>
-                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
-                </tr>
-                    
-                <tr class="E">
-                    <td class="code"><p>Error</p></td>
-                    <td class="fontname"><p>Libre Barcode 128 Text Regular (LibreBarcode128Text-Regular.ttf)</p></td>
-                    <td class="table"><p>name</p></td>
-                    <td class="feature"><p>Mac and MS NID 13</p></td>
-                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
-                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: 'No entry.'<br>MS [3, 1, 1033] is: '<mark>This Font Software is licensed under the SIL Open Font License, Version 1.1. This license is available with a FAQ at: http://scripts.sil.org/OFL</mark>'</p></td>
-                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
-                </tr>
-                    
-                <tr class="E">
-                    <td class="code"><p>Error</p></td>
-                    <td class="fontname"><p>Libre Barcode 128 Text Regular (LibreBarcode128Text-Regular.ttf)</p></td>
-                    <td class="table"><p>name</p></td>
-                    <td class="feature"><p>Mac and MS NID 14</p></td>
-                    <td class="message"><p>Mac and MS name table entries should be the same (English).</p></td>
-                    <td class="detail"><p>Entries are different.<br>Mac [1, 0, 0] is: 'No entry.'<br>MS [3, 1, 1033] is: '<mark>http://scripts.sil.org/OFL</mark>'</p></td>
+                    <td class="detail"><p>There is a license text but no manufactur. Please verify agains spec.<br>The license text is:<br>This Font Software is licensed under the SIL Open Font License, Version 1.1. This license is available with a FAQ at: https://scripts.sil.org/OFL </p></td>
                     <!--<td class="time"><p><input type="checkbox"></p></td>-->
                 </tr>
                     
@@ -1742,8 +1712,18 @@
                     <td class="code"><p>Pass</p></td>
                     <td class="fontname"><p>Libre Barcode 128 Text Regular (LibreBarcode128Text-Regular.ttf)</p></td>
                     <td class="table"><p>name</p></td>
-                    <td class="feature"><p>Windows NID 0 (MS/BMP/English (U.S.))</p></td>
-                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 0, Copyright' (MS/BMP/English (U.S.))</p></td>
+                    <td class="feature"><p>Mac names</p></td>
+                    <td class="message"><p>Mac name table entries are not necessary anymore.</p></td>
+                    <td class="detail"><p>This font has no Mac name table entries. This is correct.<br>Further read: <a href='https://photorank.atlassian.net/wiki/spaces/TYPE/pages/825852095/App+test+no+Mac+name+table' target='_blank'>App test: no Mac name table</a></p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Libre Barcode 128 Text Regular (LibreBarcode128Text-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 0 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'MS NID 0, Copyright' (MS/BMP/English (U.S.))</p></td>
                     <td class="detail"><p>Copyright is present.</p></td>
                     <!--<td class="time"><p><input type="checkbox"></p></td>-->
                 </tr>
@@ -1752,9 +1732,9 @@
                     <td class="code"><p>Pass</p></td>
                     <td class="fontname"><p>Libre Barcode 128 Text Regular (LibreBarcode128Text-Regular.ttf)</p></td>
                     <td class="table"><p>name</p></td>
-                    <td class="feature"><p>Windows NID 1 (MS/BMP/English (U.S.))</p></td>
-                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 1, Family Name' (MS/BMP/English (U.S.))</p></td>
-                    <td class="detail"><p>Family Name is present.</p></td>
+                    <td class="feature"><p>MS NID 1 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'MS NID 1, Family' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Family is present.</p></td>
                     <!--<td class="time"><p><input type="checkbox"></p></td>-->
                 </tr>
                     
@@ -1762,9 +1742,9 @@
                     <td class="code"><p>Pass</p></td>
                     <td class="fontname"><p>Libre Barcode 128 Text Regular (LibreBarcode128Text-Regular.ttf)</p></td>
                     <td class="table"><p>name</p></td>
-                    <td class="feature"><p>Windows NID 2 (MS/BMP/English (U.S.))</p></td>
-                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 2, Subfamily Name' (MS/BMP/English (U.S.))</p></td>
-                    <td class="detail"><p>Subfamily Name is present.</p></td>
+                    <td class="feature"><p>MS NID 2 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'MS NID 2, Subfamily' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Subfamily is present.</p></td>
                     <!--<td class="time"><p><input type="checkbox"></p></td>-->
                 </tr>
                     
@@ -1772,9 +1752,9 @@
                     <td class="code"><p>Pass</p></td>
                     <td class="fontname"><p>Libre Barcode 128 Text Regular (LibreBarcode128Text-Regular.ttf)</p></td>
                     <td class="table"><p>name</p></td>
-                    <td class="feature"><p>Windows NID 3 (MS/BMP/English (U.S.))</p></td>
-                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 3, Unique Font Identifier' (MS/BMP/English (U.S.))</p></td>
-                    <td class="detail"><p>Unique Font Identifier is present.</p></td>
+                    <td class="feature"><p>MS NID 3 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'MS NID 3, Unique ID' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Unique ID is present.</p></td>
                     <!--<td class="time"><p><input type="checkbox"></p></td>-->
                 </tr>
                     
@@ -1782,9 +1762,9 @@
                     <td class="code"><p>Pass</p></td>
                     <td class="fontname"><p>Libre Barcode 128 Text Regular (LibreBarcode128Text-Regular.ttf)</p></td>
                     <td class="table"><p>name</p></td>
-                    <td class="feature"><p>Windows NID 4 (MS/BMP/English (U.S.))</p></td>
-                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 4, Full Font Name' (MS/BMP/English (U.S.))</p></td>
-                    <td class="detail"><p>Full Font Name is present.</p></td>
+                    <td class="feature"><p>MS NID 4 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'MS NID 4, Full Name' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Full Name is present.</p></td>
                     <!--<td class="time"><p><input type="checkbox"></p></td>-->
                 </tr>
                     
@@ -1792,8 +1772,8 @@
                     <td class="code"><p>Pass</p></td>
                     <td class="fontname"><p>Libre Barcode 128 Text Regular (LibreBarcode128Text-Regular.ttf)</p></td>
                     <td class="table"><p>name</p></td>
-                    <td class="feature"><p>Windows NID 5 (MS/BMP/English (U.S.))</p></td>
-                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 5, Version' (MS/BMP/English (U.S.))</p></td>
+                    <td class="feature"><p>MS NID 5 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'MS NID 5, Version' (MS/BMP/English (U.S.))</p></td>
                     <td class="detail"><p>Version is present.</p></td>
                     <!--<td class="time"><p><input type="checkbox"></p></td>-->
                 </tr>
@@ -1802,9 +1782,9 @@
                     <td class="code"><p>Pass</p></td>
                     <td class="fontname"><p>Libre Barcode 128 Text Regular (LibreBarcode128Text-Regular.ttf)</p></td>
                     <td class="table"><p>name</p></td>
-                    <td class="feature"><p>Windows NID 6 (MS/BMP/English (U.S.))</p></td>
-                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 6, PostScript Name' (MS/BMP/English (U.S.))</p></td>
-                    <td class="detail"><p>PostScript Name is present.</p></td>
+                    <td class="feature"><p>MS NID 6 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'MS NID 6, Postscript' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Postscript is present.</p></td>
                     <!--<td class="time"><p><input type="checkbox"></p></td>-->
                 </tr>
                     
@@ -1812,8 +1792,8 @@
                     <td class="code"><p>Error</p></td>
                     <td class="fontname"><p>Libre Barcode 128 Text Regular (LibreBarcode128Text-Regular.ttf)</p></td>
                     <td class="table"><p>name</p></td>
-                    <td class="feature"><p>Windows NID 7 (MS/BMP/English (U.S.))</p></td>
-                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 7, Trademark' (MS/BMP/English (U.S.))</p></td>
+                    <td class="feature"><p>MS NID 7 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'MS NID 7, Trademark' (MS/BMP/English (U.S.))</p></td>
                     <td class="detail"><p>Trademark NID 7 (MS/BMP/English (U.S.)) is missing.<br>Please verify agains spec. It might be ok if it's a symbol font.</p></td>
                     <!--<td class="time"><p><input type="checkbox"></p></td>-->
                 </tr>
@@ -1822,8 +1802,8 @@
                     <td class="code"><p>Error</p></td>
                     <td class="fontname"><p>Libre Barcode 128 Text Regular (LibreBarcode128Text-Regular.ttf)</p></td>
                     <td class="table"><p>name</p></td>
-                    <td class="feature"><p>Windows NID 8 (MS/BMP/English (U.S.))</p></td>
-                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 8, Manufacturer' (MS/BMP/English (U.S.))</p></td>
+                    <td class="feature"><p>MS NID 8 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'MS NID 8, Manufacturer' (MS/BMP/English (U.S.))</p></td>
                     <td class="detail"><p>Manufacturer NID 8 (MS/BMP/English (U.S.)) is missing.<br>Please verify agains spec. It might be ok if it's a symbol font.</p></td>
                     <!--<td class="time"><p><input type="checkbox"></p></td>-->
                 </tr>
@@ -1832,8 +1812,8 @@
                     <td class="code"><p>Error</p></td>
                     <td class="fontname"><p>Libre Barcode 128 Text Regular (LibreBarcode128Text-Regular.ttf)</p></td>
                     <td class="table"><p>name</p></td>
-                    <td class="feature"><p>Windows NID 9 (MS/BMP/English (U.S.))</p></td>
-                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 9, Designer' (MS/BMP/English (U.S.))</p></td>
+                    <td class="feature"><p>MS NID 9 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'MS NID 9, Designer' (MS/BMP/English (U.S.))</p></td>
                     <td class="detail"><p>Designer NID 9 (MS/BMP/English (U.S.)) is missing.<br>Please verify agains spec. It might be ok if it's a symbol font.</p></td>
                     <!--<td class="time"><p><input type="checkbox"></p></td>-->
                 </tr>
@@ -1842,8 +1822,8 @@
                     <td class="code"><p>Error</p></td>
                     <td class="fontname"><p>Libre Barcode 128 Text Regular (LibreBarcode128Text-Regular.ttf)</p></td>
                     <td class="table"><p>name</p></td>
-                    <td class="feature"><p>Windows NID 10 (MS/BMP/English (U.S.))</p></td>
-                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 10, Description' (MS/BMP/English (U.S.))</p></td>
+                    <td class="feature"><p>MS NID 10 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'MS NID 10, Description' (MS/BMP/English (U.S.))</p></td>
                     <td class="detail"><p>Description NID 10 (MS/BMP/English (U.S.)) is missing.<br>Please verify agains spec. It might be ok if it's a symbol font.</p></td>
                     <!--<td class="time"><p><input type="checkbox"></p></td>-->
                 </tr>
@@ -1852,9 +1832,9 @@
                     <td class="code"><p>Error</p></td>
                     <td class="fontname"><p>Libre Barcode 128 Text Regular (LibreBarcode128Text-Regular.ttf)</p></td>
                     <td class="table"><p>name</p></td>
-                    <td class="feature"><p>Windows NID 11 (MS/BMP/English (U.S.))</p></td>
-                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 11, Vendor URL' (MS/BMP/English (U.S.))</p></td>
-                    <td class="detail"><p>Vendor URL NID 11 (MS/BMP/English (U.S.)) is missing.<br>Please verify agains spec. It might be ok if it's a symbol font.</p></td>
+                    <td class="feature"><p>MS NID 11 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'MS NID 11, URL Vendor' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>URL Vendor NID 11 (MS/BMP/English (U.S.)) is missing.<br>Please verify agains spec. It might be ok if it's a symbol font.</p></td>
                     <!--<td class="time"><p><input type="checkbox"></p></td>-->
                 </tr>
                     
@@ -1862,9 +1842,9 @@
                     <td class="code"><p>Pass</p></td>
                     <td class="fontname"><p>Libre Barcode 128 Text Regular (LibreBarcode128Text-Regular.ttf)</p></td>
                     <td class="table"><p>name</p></td>
-                    <td class="feature"><p>Windows NID 13 (MS/BMP/English (U.S.))</p></td>
-                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 13, License Text' (MS/BMP/English (U.S.))</p></td>
-                    <td class="detail"><p>License Text is present.</p></td>
+                    <td class="feature"><p>MS NID 13 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'MS NID 13, License Description' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>License Description is present.</p></td>
                     <!--<td class="time"><p><input type="checkbox"></p></td>-->
                 </tr>
                     
@@ -1872,9 +1852,9 @@
                     <td class="code"><p>Pass</p></td>
                     <td class="fontname"><p>Libre Barcode 128 Text Regular (LibreBarcode128Text-Regular.ttf)</p></td>
                     <td class="table"><p>name</p></td>
-                    <td class="feature"><p>Windows NID 14 (MS/BMP/English (U.S.))</p></td>
-                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 14, License URL' (MS/BMP/English (U.S.))</p></td>
-                    <td class="detail"><p>License URL is present.</p></td>
+                    <td class="feature"><p>MS NID 14 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'MS NID 14, License Info URL' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>License Info URL is present.</p></td>
                     <!--<td class="time"><p><input type="checkbox"></p></td>-->
                 </tr>
                     
@@ -1882,9 +1862,9 @@
                     <td class="code"><p>Error</p></td>
                     <td class="fontname"><p>Libre Barcode 128 Text Regular (LibreBarcode128Text-Regular.ttf)</p></td>
                     <td class="table"><p>name</p></td>
-                    <td class="feature"><p>Windows NID 16 (MS/BMP/English (U.S.))</p></td>
-                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 16, Typographic Family Name' (MS/BMP/English (U.S.))</p></td>
-                    <td class="detail"><p>Typographic Family Name NID 16 (MS/BMP/English (U.S.)) is missing.<br>Please verify agains spec. It might be ok if it's a symbol font.</p></td>
+                    <td class="feature"><p>MS NID 16 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'MS NID 16, Typographic Family name' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Typographic Family name NID 16 (MS/BMP/English (U.S.)) is missing.<br>Please verify agains spec. It might be ok if it's a symbol font.</p></td>
                     <!--<td class="time"><p><input type="checkbox"></p></td>-->
                 </tr>
                     
@@ -1892,9 +1872,9 @@
                     <td class="code"><p>Error</p></td>
                     <td class="fontname"><p>Libre Barcode 128 Text Regular (LibreBarcode128Text-Regular.ttf)</p></td>
                     <td class="table"><p>name</p></td>
-                    <td class="feature"><p>Windows NID 17 (MS/BMP/English (U.S.))</p></td>
-                    <td class="message"><p>Necessary name table entry according Monotype: 'Windows NID 17, Typographic Subfamily Name' (MS/BMP/English (U.S.))</p></td>
-                    <td class="detail"><p>Typographic Subfamily Name NID 17 (MS/BMP/English (U.S.)) is missing.<br>Please verify agains spec. It might be ok if it's a symbol font.</p></td>
+                    <td class="feature"><p>MS NID 17 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'MS NID 17, Typographic Subfamily name' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Typographic Subfamily name NID 17 (MS/BMP/English (U.S.)) is missing.<br>Please verify agains spec. It might be ok if it's a symbol font.</p></td>
                     <!--<td class="time"><p><input type="checkbox"></p></td>-->
                 </tr>
                       </tbody>
@@ -1937,18 +1917,18 @@
                     <td class="fontname"><p>Libre Barcode 128 Text Regular (LibreBarcode128Text-Regular.ttf)</p></td>
                     <td class="table"><p>GPOS</p></td>
                     <td class="feature"><p>-/-</p></td>
-                    <td class="message"><p>Simple check if kern feature in GPOS table.</p></td>
+                    <td class="message"><p>Simple technical test if kern feature in GPOS table. This cannot replace a visual kerning validation.</p></td>
                     <td class="detail"><p>Font does not have GPOS table/kerning. Please investigate if this meets requirements.</p></td>
                     <!--<td class="time"><p><input type="checkbox"></p></td>-->
                 </tr>
                     
-                <tr class="I">
-                    <td class="code"><p>Info</p></td>
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
                     <td class="fontname"><p>Libre Barcode 128 Text Regular (LibreBarcode128Text-Regular.ttf)</p></td>
                     <td class="table"><p>kern</p></td>
                     <td class="feature"><p>-/-</p></td>
-                    <td class="message"><p>Check if 'kern' table in font.</p></td>
-                    <td class="detail"><p>Font has no 'kern' table. Please verify if font requires kern table or if only GPOS kerning should be in font.</p></td>
+                    <td class="message"><p>Check if 'kern' table in font.<br>Further reading: <a href='https://photorank.atlassian.net/wiki/spaces/TYPE/pages/791314455/Kern+table' target='_blank'>Kern table</a></p></td>
+                    <td class="detail"><p>TTF is missing a 'kern' table. This is required for custom fonts and recommended for Library fonts (only TTF not CFF), because PowerPoint still does not support GPOS kerning (Nov. 2020)</p></td>
                     <!--<td class="time"><p><input type="checkbox"></p></td>-->
                 </tr>
                       </tbody>
@@ -2032,7 +2012,7 @@
                     <td class="table"><p>OS/2</p></td>
                     <td class="feature"><p>xAvgCharWidth</p></td>
                     <td class="message"><p>Get 'OS/2' xAvgCharWidth.</p></td>
-                    <td class="detail"><p>xAvgCharWidth = 287.</p></td>
+                    <td class="detail"><p>xAvgCharWidth = 298.</p></td>
                     <!--<td class="time"><p><input type="checkbox"></p></td>-->
                 </tr>
                     

@@ -4,16 +4,16 @@
             "file": {
                 "name": "Castoro-Italic.ttf",
                 "type": "ttf",
-                "size": 129400,
-                "md5": "5e05aa069bbce1654da74f5309e4c513",
-                "geometryMd5": "91adb87378953a86b4fee5350603b279"
+                "size": 128708,
+                "md5": "ddfc795f649cba3f05dcfbade4befa45",
+                "geometryMd5": "f07553838083d5c88d47f0269b5eff1b"
             },
             "name": {
                 "family": "Castoro",
                 "subFamily": "Italic",
                 "fullName": "Castoro Italic",
                 "psName": "Castoro-Italic",
-                "versionText": "Version 1.19 Build 011; ttfautohint (v1.8.3)",
+                "versionText": "Version 1.20 Build 015",
                 "copyright": "Copyright 2020 The Castoro Project Authors (https://github.com/TiroTypeworks/Castoro)",
                 "trademark": "Castoro is a trademark of Tiro Typeworks Ltd.."
             },
@@ -22,7 +22,7 @@
                 "flavor": "TT"
             },
             "summary": {
-                "num_glyphs": 896,
+                "num_glyphs": 897,
                 "embedding": "Installable Embedding",
                 "font_vendor_id": "TIRO",
                 "font_vendor": "Tiro Typeworks"
@@ -33,18 +33,34 @@
                 "last_success": "finished validation python",
                 "msg_count": {
                     "CRITICAL": 0,
-                    "ERROR": 1,
+                    "ERROR": 3,
                     "WARNING": 0,
                     "INFO": 0,
                     "DEBUG": 0
                 },
                 "result": [
                     {
-                        "subroutine": "validate_efb83d3098d041369e6893e9bed0c36a.name",
+                        "subroutine": "validate_c0221514d9334daa8ea4af0426e55030.glyf.glyph 708 ('cedillacomb').contours.contour 1",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2021-02-20T08:38:28.253854Z",
+                        "orig_output": "validate_c0221514d9334daa8ea4af0426e55030.glyf.glyph 708 ('cedillacomb').contours.contour 1 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_c0221514d9334daa8ea4af0426e55030.glyf.glyph 708 ('cedillacomb').contours.contour 1",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate non-adjacent points of differing on-curve states.",
+                        "timestamp": "2021-02-20T08:38:28.254016Z",
+                        "orig_output": "validate_c0221514d9334daa8ea4af0426e55030.glyf.glyph 708 ('cedillacomb').contours.contour 1 - ERROR - Contour has duplicate non-adjacent points of differing on-curve states.",
+                        "msg_code": "V0297"
+                    },
+                    {
+                        "subroutine": "validate_c0221514d9334daa8ea4af0426e55030.name",
                         "levelname": "ERROR",
                         "message": "Postscript name not present for both Mac and Windows.",
-                        "timestamp": "2020-11-17T16:29:23.812472Z",
-                        "orig_output": "validate_efb83d3098d041369e6893e9bed0c36a.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2021-02-20T08:39:06.052145Z",
+                        "orig_output": "validate_c0221514d9334daa8ea4af0426e55030.name - ERROR - Postscript name not present for both Mac and Windows.",
                         "msg_code": "E2008"
                     }
                 ]
@@ -52,8 +68,8 @@
         }
     ],
     "skipped": [],
-    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontio3_version": "3.7.20201030.330639rc3",
     "fontvalidator_version": "20200305.1",
-    "runningTime": 75177,
-    "completedDate": "2020-11-17 16:29:54.197439"
+    "runningTime": 85180,
+    "completedDate": "2021-02-20 08:39:37.264588"
 }

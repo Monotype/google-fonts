@@ -1,0 +1,75 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "NotoMusic-Regular.ttf",
+                "type": "ttf",
+                "size": 80984,
+                "md5": "dba2e62e7406f663aa6f528b9660cb8c",
+                "geometryMd5": "f06da41953798342222507f251d294e8"
+            },
+            "name": {
+                "family": "Noto Music",
+                "subFamily": "Regular",
+                "fullName": "Noto Music Regular",
+                "psName": "NotoMusic-Regular",
+                "versionText": "Version 2.000",
+                "copyright": "Copyright 2018 Google Inc. All Rights Reserved.",
+                "trademark": "Noto is a trademark of Google Inc."
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 579,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "GOOG",
+                "font_vendor": "Google"
+            },
+            "validation": {
+                "font_full_name": "Noto Music Regular",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 3,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_f400e90d1ca746ddbe589c81eefc2cea.DSIG",
+                        "levelname": "ERROR",
+                        "message": "The digital signature of the file did not verify.",
+                        "timestamp": "2021-02-19T20:17:38.186981Z",
+                        "orig_output": "validate_f400e90d1ca746ddbe589c81eefc2cea.DSIG - ERROR - The digital signature of the file did not verify.",
+                        "msg_code": "E0502"
+                    },
+                    {
+                        "subroutine": "validate_f400e90d1ca746ddbe589c81eefc2cea.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2021-02-19T20:17:49.663055Z",
+                        "orig_output": "validate_f400e90d1ca746ddbe589c81eefc2cea.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
+                    },
+                    {
+                        "subroutine": "validate_f400e90d1ca746ddbe589c81eefc2cea.OS_2.usMaxContext",
+                        "levelname": "ERROR",
+                        "message": "The usMaxContext should be 8, but is 0",
+                        "timestamp": "2021-02-19T20:17:39.577426Z",
+                        "orig_output": "validate_f400e90d1ca746ddbe589c81eefc2cea.OS_2.usMaxContext - ERROR - The usMaxContext should be 8, but is 0",
+                        "msg_code": "V0831"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20201030.330639rc3",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 15239,
+    "completedDate": "2021-02-19 20:17:50.234507"
+}

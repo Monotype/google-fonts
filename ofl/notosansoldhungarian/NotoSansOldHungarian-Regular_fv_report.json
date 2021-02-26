@@ -1,0 +1,84 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "NotoSansOldHungarian-Regular.ttf",
+                "type": "ttf",
+                "size": 54112,
+                "md5": "9f2bc0f0300d801817be48900daf5196",
+                "geometryMd5": "9731056ed0ee58729071bb5162534eb5"
+            },
+            "name": {
+                "family": "Noto Sans OldHung",
+                "subFamily": "Regular",
+                "fullName": "Noto Sans Old Hungarian Regular",
+                "psName": "NotoSansOldHungarian-Regular",
+                "versionText": "Version 2.002",
+                "copyright": "Copyright 2018-2020 Google LLC. All Rights Reserved.",
+                "trademark": "Noto is a trademark of Google LLC.",
+                "typographicFamily": "Noto Sans Old Hungarian"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 360,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "GOOG",
+                "font_vendor": "Google"
+            },
+            "validation": {
+                "font_full_name": "Noto Sans Old Hungarian Regular",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 4,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_9a774f31b16741248bbfc99c5bef0a80.DSIG",
+                        "levelname": "ERROR",
+                        "message": "The digital signature of the file did not verify.",
+                        "timestamp": "2021-02-20T16:30:04.771795Z",
+                        "orig_output": "validate_9a774f31b16741248bbfc99c5bef0a80.DSIG - ERROR - The digital signature of the file did not verify.",
+                        "msg_code": "E0502"
+                    },
+                    {
+                        "subroutine": "validate_9a774f31b16741248bbfc99c5bef0a80.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2021-02-20T16:30:11.363668Z",
+                        "orig_output": "validate_9a774f31b16741248bbfc99c5bef0a80.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
+                    },
+                    {
+                        "subroutine": "validate_9a774f31b16741248bbfc99c5bef0a80.OS_2.unicodeRanges",
+                        "levelname": "ERROR",
+                        "message": "Font has non-BMP characters but surrogates bit not set.",
+                        "timestamp": "2021-02-20T16:30:05.387378Z",
+                        "orig_output": "validate_9a774f31b16741248bbfc99c5bef0a80.OS_2.unicodeRanges - ERROR - Font has non-BMP characters but surrogates bit not set.",
+                        "msg_code": "E2122"
+                    },
+                    {
+                        "subroutine": "validate_9a774f31b16741248bbfc99c5bef0a80.OS_2.usMaxContext",
+                        "levelname": "ERROR",
+                        "message": "The usMaxContext should be 5, but is 0",
+                        "timestamp": "2021-02-20T16:30:05.481608Z",
+                        "orig_output": "validate_9a774f31b16741248bbfc99c5bef0a80.OS_2.usMaxContext - ERROR - The usMaxContext should be 5, but is 0",
+                        "msg_code": "V0831"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20201030.330639rc3",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 10454,
+    "completedDate": "2021-02-20 16:30:11.602975"
+}

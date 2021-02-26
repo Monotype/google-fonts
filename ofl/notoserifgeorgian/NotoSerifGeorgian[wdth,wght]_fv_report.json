@@ -1,0 +1,75 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "NotoSerifGeorgian[wdth,wght].ttf",
+                "type": "ttf",
+                "size": 227264,
+                "md5": "080685fb9e51ad8d01f23c857b6c374d",
+                "geometryMd5": "a4b2eaa9350098b979aae87e56aca7ba"
+            },
+            "name": {
+                "family": "Noto Serif Georgian",
+                "subFamily": "Regular",
+                "fullName": "Noto Serif Georgian Regular",
+                "psName": "NotoSerifGeorgian-Regular",
+                "versionText": "Version 2.001",
+                "copyright": "Copyright 2019 Google LLC. All Rights Reserved.",
+                "trademark": "Noto is a trademark of Google Inc."
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 225,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "GOOG",
+                "font_vendor": "Google"
+            },
+            "validation": {
+                "font_full_name": "Noto Serif Georgian Regular",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 3,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_6a996b98998946d091bce73551708fa7.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2021-02-19T22:37:52.167926Z",
+                        "orig_output": "validate_6a996b98998946d091bce73551708fa7.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
+                    },
+                    {
+                        "subroutine": "validate_6a996b98998946d091bce73551708fa7.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 662, but is 663",
+                        "timestamp": "2021-02-19T22:36:49.719717Z",
+                        "orig_output": "validate_6a996b98998946d091bce73551708fa7.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 662, but is 663",
+                        "msg_code": "E2135"
+                    },
+                    {
+                        "subroutine": "validate_6a996b98998946d091bce73551708fa7.STAT",
+                        "levelname": "ERROR",
+                        "message": "The following axes have no AxisValueTables associated with them: ['wdth', 'wght']",
+                        "timestamp": "2021-02-19T22:36:49.720170Z",
+                        "orig_output": "validate_6a996b98998946d091bce73551708fa7.STAT - ERROR - The following axes have no AxisValueTables associated with them: ['wdth', 'wght']",
+                        "msg_code": "Vxxxx"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20201030.330639rc3",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 77553,
+    "completedDate": "2021-02-19 22:37:52.413445"
+}

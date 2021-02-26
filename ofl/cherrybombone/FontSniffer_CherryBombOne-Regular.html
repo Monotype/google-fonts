@@ -1,0 +1,2317 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv='content-type' content='text/html; charset=utf-8'>
+    <title>MT FontSniffer Report</title>
+    <style type="text/css">
+      body {
+        background-color: #fff;
+        color: #000;
+        font-family: "Kootenay Pro", Axel, "System Font", "Fira Sans", sans-serif;
+        line-height: 1.3em;
+        margin: 0;
+        padding: 1em;
+        font-size: 14px;
+      }
+      mark {
+        background-color: #fff990;
+        color: black;
+      }
+      h2 {
+        padding: 2em 0 0.2em 2.35em;
+        border-bottom: 2px solid #606060;
+        margin: 0;
+      }
+      h3 {
+        padding: 0.2em 0 0.3em 0;
+        margin: 0;
+      }
+      table {
+        border-collapse: collapse; 
+        margin: 1em 0; 
+        /* width: 100%; */
+        padding: 0;
+      }
+      table.togglemessages {
+        border: none; 
+        background-color: #f0f0f0;
+      }
+      td, th {
+        line-height: 1.3em; 
+        padding: 0.25em 0.5em; 
+        vertical-align: top;
+        text-align: left;
+      }
+      .summary th {
+        border-bottom: 1px solid #000;
+      }
+      td p, th p {
+        margin: 0 0 0em 0;
+        padding: 0;
+      }
+      td.num, th.num {
+        text-align: right;
+        width: 6em;
+      }
+      
+      td.time, th.time {
+        text-align: right;
+        width: 4.5em;
+        color: #c8c8c8;
+        font-size: 0.9em;
+        background-color: #fff;
+      }
+      
+      th.time p {
+        color: #d8d8d8;
+        padding-top: 0.5em;
+      }
+      
+      .summary {
+        width: auto;
+      }
+      
+      .summary tbody tr:nth-child(odd) {
+        background-color: #f8f8f8;
+      }
+      
+      .summary tbody tr:nth-last-child(1) {
+        background-color: #f0f0f0;
+      }
+      
+      .code {
+        font-weight: bold;
+        color: #fff;
+        width: 2em; 
+        text-align: center
+      }
+      
+      .results th {
+        border-radius: 0.0em;
+      }
+      
+      .results th button{
+        font-family: "Erler Dingbats", Arial;
+        line-height: 1.4em;
+        width: 2.6em;
+        padding-top: 0.2em;
+        margin-top: 0.2em;
+        background-color: rgba(255, 255, 255, 0.0);
+        border-radius: 0.0em;
+        border: 0px solid rgba(0, 0, 0, 0.3);
+      }
+
+      .A, .S, .E, .W, .I, .P {
+        width: 5em; 
+      }
+
+      tr.S {                                  color: hsl(  0,  0%,  90%) }
+      tr.S .code {                            color: hsl(  0,  0%,  90%) }
+      tr.S:nth-child(odd)        { background-color: hsl(  0,  0%,  10%) }
+      tr.S:nth-child(even)       { background-color: hsl(  0,  0%,  20%) }
+      tr.S:nth-child(odd)  .code { background-color: hsl(  0,  0%,  20%) }
+      tr.S:nth-child(even) .code { background-color: hsl(  0,  0%,  10%) }
+
+      tr.C {                                  color: hsl(  0,  0%,  90%) }
+      tr.C .code {                            color: hsl(  0,  0%,  90%) }
+      tr.C:nth-child(odd)        { background-color: hsl(  0,  100%,  20%) }
+      tr.C:nth-child(even)       { background-color: hsl(  0,  100%,  25%) }
+      tr.C:nth-child(odd)  .code { background-color: hsl(  0,  100%,  27%) }
+      tr.C:nth-child(even) .code { background-color: hsl(  0,  100%,  30%) }
+
+      tr.E {                                  color: #000 }
+      tr.E .code {                            color: #fff }
+      tr.E:nth-child(odd)        { background-color: hsl( 24,  100%, 95%) }
+      tr.E:nth-child(even)       { background-color: hsl( 24,  100%, 90%) }
+      tr.E:nth-child(odd)  .code { background-color: hsl( 24,  100%, 45%) }
+      tr.E:nth-child(even) .code { background-color: hsl( 24,  100%, 40%) }
+      
+      tr.W {                                  color: #000 }
+      tr.W .code {                            color: #fff }
+      tr.W:nth-child(odd)        { background-color: hsl( 50,  65%, 95%) }
+      tr.W:nth-child(even)       { background-color: hsl( 50,  65%, 90%) }
+      tr.W:nth-child(odd)  .code { background-color: hsl( 50,  65%, 52%) }
+      tr.W:nth-child(even) .code { background-color: hsl( 50,  65%, 48%) }
+      
+      tr.I {                                  color: #000 }
+      tr.I .code {                            color: #fff }
+      tr.I:nth-child(odd)        { background-color: hsl( 200,  50%, 95%) }
+      tr.I:nth-child(even)       { background-color: hsl( 200,  50%, 90%) }
+      tr.I:nth-child(odd)  .code { background-color: hsl( 200,  50%, 52%) }
+      tr.I:nth-child(even) .code { background-color: hsl( 200,  50%, 48%) }
+      
+      tr.P {                                  color: #000 }
+      tr.P .code {                            color: #fff }
+      tr.P:nth-child(odd)        { background-color: hsl( 130,  40%, 95%) }
+      tr.P:nth-child(even)       { background-color: hsl( 130,  40%, 90%) }
+      tr.P:nth-child(odd)  .code { background-color: hsl( 130,  40%, 60%) }
+      tr.P:nth-child(even) .code { background-color: hsl( 130,  40%, 55%) }
+      
+      tr.A {                                  color: hsl(  0,  0%,  50%) }
+      tr.A .code {                            color: hsl(  0,  0%,  50%) }
+      tr.A:nth-child(odd)        { background-color: hsl(  0,  0%,  75%) }
+      tr.A:nth-child(even)       { background-color: hsl(  0,  0%,  80%) }
+      tr.A:nth-child(odd)  .code { background-color: hsl(  0,  0%,  85%) }
+      tr.A:nth-child(even) .code { background-color: hsl(  0,  0%,  90%) }
+      
+      
+      /* Summary backgrounds */
+
+      th.S {
+        background: hsl(  0,  0%,  85%);
+      }
+      
+      th.A {
+        background: hsl(  0,  0%,  85%);
+      }
+      
+      th.E {
+        background: hsl( 24,  100%, 45%);
+      }
+      
+      th.I {
+        background: hsl( 200,  50%, 52%);
+      }
+      
+      th.P {
+        background: hsl( 130,  40%, 60%);
+      }
+      
+      th.W {
+        background: hsl( 50,  65%, 52%);
+      }
+      
+      
+      th.AE {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 24,  100%, 45%) 100%
+        );
+      }
+      
+      th.AI {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 200,  50%, 52%) 100%
+        );
+      }
+      
+      th.AP {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 130,  40%, 60%) 100%
+        );
+      }
+      
+      th.AW {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.EI {
+        background: linear-gradient(
+          90deg,
+          hsl( 24,  100%, 45%) 0%,
+          hsl( 200,  50%, 52%) 100%
+        );
+      }
+      
+      th.EP {
+        background: linear-gradient(
+          90deg,
+          hsl( 24,  100%, 45%) 0%,
+          hsl( 130,  40%, 60%) 100%
+        );
+      }
+      
+      th.EW {
+        background: linear-gradient(
+          90deg,
+          hsl( 24,  100%, 45%) 0%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.IP {
+        background: linear-gradient(
+          90deg,
+          hsl( 200,  50%, 52%) 0%,
+          hsl( 130,  40%, 60%) 100%
+        );
+      }
+      
+      th.IW {
+        background: linear-gradient(
+          90deg,
+          hsl( 200,  50%, 52%) 0%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.PW {
+        background: linear-gradient(
+          90deg,
+          hsl( 130,  40%, 60%) 0%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      
+      th.AEI {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 24,  100%, 45%) 50%,
+          hsl( 200,  50%, 52%) 100%
+        );
+      }
+      
+      th.AEP {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 24,  100%, 45%) 50%,
+          hsl( 130,  40%, 60%) 100%
+        );
+      }
+      
+      th.AEW {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 24,  100%, 45%) 50%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.AIP {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 200,  50%, 52%) 50%,
+          hsl( 130,  40%, 60%) 100%
+        );
+      }
+      
+      th.AIW {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 200,  50%, 52%) 50%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.APW {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 130,  40%, 60%) 50%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.EIP {
+        background: linear-gradient(
+          90deg,
+          hsl( 24,  100%, 45%) 0%,
+          hsl( 200,  50%, 52%) 50%,
+          hsl( 130,  40%, 60%) 100%
+        );
+      }
+      
+      th.EIW {
+        background: linear-gradient(
+          90deg,
+          hsl( 24,  100%, 45%) 0%,
+          hsl( 200,  50%, 52%) 50%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.IPW {
+        background: linear-gradient(
+          90deg,
+          hsl( 200,  50%, 52%) 0%,
+          hsl( 130,  40%, 60%) 50%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      
+      /* AEIPW */
+      
+      
+      th.AEIP {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 24,  100%, 45%) 33%,
+          hsl( 200,  50%, 52%) 66%,
+          hsl( 130,  40%, 60%) 100%
+        );
+      }
+      
+      th.AEIW {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 24,  100%, 45%) 33%,
+          hsl( 200,  50%, 52%) 66%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.AEPW {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 24,  100%, 45%) 33%,
+          hsl( 130,  40%, 60%) 66%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.AIPW {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 200,  50%, 52%) 33%,
+          hsl( 130,  40%, 60%) 66%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      th.EIPW {
+        background: linear-gradient(
+          90deg,
+          hsl( 24,  100%, 45%) 0%,
+          hsl( 200,  50%, 52%) 33%,
+          hsl( 130,  40%, 60%) 66%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      
+      th.AEIPW {
+        background: linear-gradient(
+          90deg,
+          hsl(  0,  0%,  85%) 0%,
+          hsl( 24,  100%, 45%) 25%,
+          hsl( 200,  50%, 52%) 50%,
+          hsl( 130,  40%, 60%) 75%,
+          hsl( 50,  65%, 52%) 100%
+        );
+      }
+      
+      
+      .fontname {
+        width: 20em;
+      }
+      .table {
+        width: 2.5em;
+      }
+      .feature {
+        width: 7.5em;
+      }
+      .message {
+        /*width: 20em;*/
+      }
+      .detail {
+        width: 40em;
+      }
+      .detail p {
+      }
+      .name { background-color: #eee }
+      .name th { padding-top: 1em }
+
+    </style>
+    <script type='text/javascript'>
+      function toggle(toggle_class){
+        var elements = document.getElementsByTagName('tr')
+        for (var i = 0; i < elements.length; i++){
+          var e = elements[i]
+          if (e.className == toggle_class) {
+            if (e.style.display != 'none') {
+              e.style.display = 'none'
+            } else {
+              e.style.display = 'table-row'
+            }
+          }
+        }
+      }
+    </script>
+    
+    <script type='text/javascript'>
+      function toggle_detail(my_id){
+        var element = document.getElementById(my_id)
+        var buttoncell = document.getElementById(my_id+"_cell")
+        var button = document.getElementById(my_id+"_btn")
+        if (element.style.display != 'none') {
+          element.style.display = 'none'
+          buttoncell.style.borderRadius = '0.0em'
+          button.firstChild.data = '\u25bc'
+        } else {
+          element.style.display = ''
+          buttoncell.style.borderRadius = '0.0em 0.0em 0 0'
+          button.firstChild.data = '\u25b2'
+        }
+      }
+    </script>
+    
+    <script type='text/javascript'>
+      function toggle_all_results(){
+        var elements = document.getElementsByClassName('result_body')
+        for (var i = 0; i < elements.length; i++){
+          var e = elements[i]
+          if (e.style.display != 'none') {
+            e.style.display = 'none'
+          } else {
+            e.style.display = ''
+          }
+        }
+      }
+    </script>
+  </head>
+  <body onload="toggle_all_results()">
+    <h1>FontSniffer Report</h1>
+    <p>Library Project, start: 2021-02-19 - 10:35.35, end: 10:35.37</p>
+    <table class='togglemessages'>
+      <tr>
+        <td>Show messages:</td>
+        <td><input type='checkbox' checked name='P' id='itoggle' onclick='toggle("P");'>
+          <label for='itoggle'>Pass</label></td>
+        <td><input type='checkbox' checked name='I' id='itoggle' onclick='toggle("I");'>
+          <label for='itoggle'>Info</label></td>
+        <td><input type='checkbox' checked name='W' id='wtoggle'onclick='toggle("W");'>
+          <label for='wtoggle'>Warning</label></td>
+        <td><input type='checkbox' checked name='E' id='etoggle' onclick='toggle("E");'>
+          <label for='etoggle'>Error</label></td>
+        <td><input type='checkbox' checked name='C' id='ctoggle' onclick='toggle("C");'>
+          <label for='ctoggle'>Critical</label></td>
+          
+        <td><button onclick='toggle_all_results();'>Toggle all details</button></td>
+      </tr>
+    </table>
+    
+        <table class="fontlist">
+
+            <thead>
+                <tr><th>Font List</th></tr>
+            </thead>
+            <tbody>
+								<tr><td>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</td></tr>
+						</tbody>
+        </table>
+
+            <h2>Table Description</h2>
+            <table class="results">
+
+                <thead>
+                    <tr>
+                    <th class="A code" id="Table Description_cell">
+                    <button id="Table Description_btn" onclick='toggle_detail("Table Description");' title="Toggle details">&#x25bc;</button>
+                    </th>
+                    <th colspan="3"><h3>Table Description</h3></th></tr>
+                </thead>
+              <tbody id="Table Description" class="result_body">
+                    
+                <tr class="A">
+                    <td class="code"><p>Level</p></td>
+                    <td class="fontname"><p>Font Name</p></td>
+                    <td class="table"><p>Table</p></td>
+                    <td class="feature"><p>Feature/Item</p></td>
+                    <td class="message"><p>Description</p></td>
+                    <td class="detail"><p>Notes</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+              </tbody>
+            </table>				<h2>Table Version</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Table Version_cell">
+                <button id="Table Version_btn" onclick='toggle_detail("Table Version");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Table Version</h3></th></tr>
+            </thead>
+            <tbody id="Table Version" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>head</p></td>
+                    <td class="feature"><p>version</p></td>
+                    <td class="message"><p>head table version should be 1.0.</p></td>
+                    <td class="detail"><p>head table version is 1.0.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>version</p></td>
+                    <td class="message"><p>OS/2 table version should be 4.</p></td>
+                    <td class="detail"><p>OS/2 table version is 4.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>post</p></td>
+                    <td class="feature"><p>format</p></td>
+                    <td class="message"><p>If not CFF, post table format should be 2.</p></td>
+                    <td class="detail"><p>Format is 2.0</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>OT Sanitizer</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="OT Sanitizer_cell">
+                <button id="OT Sanitizer_btn" onclick='toggle_detail("OT Sanitizer");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>OT Sanitizer</h3></th></tr>
+            </thead>
+            <tbody id="OT Sanitizer" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>-/-</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>OT Sanitizer</p></td>
+                    <td class="detail"><p>Passed:<br>&emsp;&emsp;&emsp;&emsp;Process start (TTF file)<br>&emsp;&emsp;&emsp;&emsp;&emsp;ProcessGeneric start<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Validating font<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Reading font<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Processing glyphs...<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; 1000<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Processing glyphs done<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Writing new font<br>&emsp;&emsp;&emsp;&emsp;&emsp;ProcessGeneric end<br>&emsp;&emsp;&emsp;&emsp;Process end<br>&emsp;&emsp;&emsp;&emsp;Process start (TTF file)<br>&emsp;&emsp;&emsp;&emsp;&emsp;ProcessGeneric start<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Validating font<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Reading font<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Processing glyphs...<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; 1000<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Processing glyphs done<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Writing new font<br>&emsp;&emsp;&emsp;&emsp;&emsp;ProcessGeneric end<br>&emsp;&emsp;&emsp;&emsp;Process end<br></p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Weight Class</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Weight Class_cell">
+                <button id="Weight Class_btn" onclick='toggle_detail("Weight Class");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Weight Class</h3></th></tr>
+            </thead>
+            <tbody id="Weight Class" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>usWeightClass</p></td>
+                    <td class="message"><p>OS/2 weight class values from 1 to 1000 are valid.</p></td>
+                    <td class="detail"><p>usWeightClass is '400'<br><a href='https://photorank.atlassian.net/wiki/spaces/TYPE/pages/585269263/Unified+Monotype+Weight+Name+Rules' target='_blank'>Unified Monotype Weight Name Rules</a></p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>usWeightClass</p></td>
+                    <td class="message"><p>CSS only supports one of the following OS/2 weight class values '100, 200, 300, 400, 500, 600, 700, 800, 900'.</p></td>
+                    <td class="detail"><p>usWeightClass is '400'<br><a href='https://photorank.atlassian.net/wiki/spaces/TYPE/pages/585269263/Unified+Monotype+Weight+Name+Rules' target='_blank'>Unified Monotype Weight Name Rules</a></p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>usWeightClass</p></td>
+                    <td class="message"><p>OS/2 weight class value according Monotype specifications</p></td>
+                    <td class="detail"><p>usWeightClass is '400'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>File Name</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="File Name_cell">
+                <button id="File Name_btn" onclick='toggle_detail("File Name");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>File Name</h3></th></tr>
+            </thead>
+            <tbody id="File Name" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>-/-</p></td>
+                    <td class="feature"><p>File Name</p></td>
+                    <td class="message"><p>File name should not be longer than 31 characters, otherwise style linking does not work in MS Word/Mac.</p></td>
+                    <td class="detail"><p>file name length is '25': 'CherryBombOne-Regular.ttf'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>-/-</p></td>
+                    <td class="feature"><p>File Name</p></td>
+                    <td class="message"><p>File name should not be longer than 31 characters, contain space and have more then one dot for ending.</p></td>
+                    <td class="detail"><p>Everything is fine: 'CherryBombOne-Regular.ttf'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Style Linking</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Style Linking_cell">
+                <button id="Style Linking_btn" onclick='toggle_detail("Style Linking");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Style Linking</h3></th></tr>
+            </thead>
+            <tbody id="Style Linking" class="result_body">
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>-/-</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Check if italic or upright.</p></td>
+                    <td class="detail"><p>It seems to be an upright font.<br>OS2.fsSelection.italic: False<br>head.macStyle.italic: False<br>post.header.italicAngle: 0.0</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>-/-</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Check if bold.</p></td>
+                    <td class="detail"><p>It seems to be not bold.<br>OS2.fsSelection.bold: False<br>head.macStyle.bold: False</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>usWeightClass</p></td>
+                    <td class="message"><p>OS/2 weight class should be 400 for 'Regular' weight.</p></td>
+                    <td class="detail"><p>It seems this font is the 'Regular' weight and usWeightclass is '400'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Empty Glyphs</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Empty Glyphs_cell">
+                <button id="Empty Glyphs_btn" onclick='toggle_detail("Empty Glyphs");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Empty Glyphs</h3></th></tr>
+            </thead>
+            <tbody id="Empty Glyphs" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>glyf</p></td>
+                    <td class="feature"><p>outline</p></td>
+                    <td class="message"><p>Unicodes should have outlines.</p></td>
+                    <td class="detail"><p>The following glyphs have no outlines, but this is correct:<br>IDEOGRAPHIC SPACE (uni3000)<br>SPACE (uni0020)<br> (uni000D)<br>NO-BREAK SPACE (uni00A0)</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Supplementary NFC</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Supplementary NFC_cell">
+                <button id="Supplementary NFC_btn" onclick='toggle_detail("Supplementary NFC");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Supplementary NFC</h3></th></tr>
+            </thead>
+            <tbody id="Supplementary NFC" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>unicode</p></td>
+                    <td class="message"><p>Supplementary glyphs</p></td>
+                    <td class="detail"><p>No issues found.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Supplementary Glyphs</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Supplementary Glyphs_cell">
+                <button id="Supplementary Glyphs_btn" onclick='toggle_detail("Supplementary Glyphs");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Supplementary Glyphs</h3></th></tr>
+            </thead>
+            <tbody id="Supplementary Glyphs" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>unicode</p></td>
+                    <td class="message"><p>Supplementary glyphs</p></td>
+                    <td class="detail"><p>uni0022 (QUOTATION MARK) is present, and the following 'uni2033', too.<br>uni0027 (APOSTROPHE) is present, and the following 'uni2032', too.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Check against Base Glyph Advance Width</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Check against Base Glyph Advance Width_cell">
+                <button id="Check against Base Glyph Advance Width_btn" onclick='toggle_detail("Check against Base Glyph Advance Width");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Check against Base Glyph Advance Width</h3></th></tr>
+            </thead>
+            <tbody id="Check against Base Glyph Advance Width" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>hmtx</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Compare advance width against base glyph advance width (tolerance 2 units).</p></td>
+                    <td class="detail"><p>'Aacute' (ID 2): width is 700, base glyph ('A' (ID 1)) width is 699<br>'Abreve' (ID 3): width is 700, base glyph ('A' (ID 1)) width is 699<br>'uni1EB6' (ID 5): width is 699, base glyph ('A' (ID 1)) width is 699<br>'Acircumflex' (ID 9): width is 700, base glyph ('A' (ID 1)) width is 699<br>'uni1EAC' (ID 11): width is 699, base glyph ('A' (ID 1)) width is 699<br>'uni0200' (ID 15): width is 699, base glyph ('A' (ID 1)) width is 699<br>'Adieresis' (ID 16): width is 700, base glyph ('A' (ID 1)) width is 699<br>'uni1EA0' (ID 17): width is 699, base glyph ('A' (ID 1)) width is 699<br>'Agrave' (ID 18): width is 699, base glyph ('A' (ID 1)) width is 699<br>'uni1EA2' (ID 19): width is 699, base glyph ('A' (ID 1)) width is 699<br>'uni0202' (ID 20): width is 699, base glyph ('A' (ID 1)) width is 699<br>'Amacron' (ID 21): width is 699, base glyph ('A' (ID 1)) width is 699<br>'Aogonek' (ID 22): width is 699, base glyph ('A' (ID 1)) width is 699<br>'Aring' (ID 23): width is 699, base glyph ('A' (ID 1)) width is 699<br>'Aringacute' (ID 24): width is 699, base glyph ('A' (ID 1)) width is 699<br>'Atilde' (ID 25): width is 699, base glyph ('A' (ID 1)) width is 699<br>'AEacute' (ID 27): width is 1002, base glyph ('AE' (ID 26)) width is 1002<br>'Cacute' (ID 30): width is 672, base glyph ('C' (ID 29)) width is 672<br>'Ccaron' (ID 31): width is 672, base glyph ('C' (ID 29)) width is 672<br>'Ccedilla' (ID 32): width is 672, base glyph ('C' (ID 29)) width is 672<br>'Ccircumflex' (ID 33): width is 672, base glyph ('C' (ID 29)) width is 672<br>'Cdotaccent' (ID 34): width is 672, base glyph ('C' (ID 29)) width is 672<br>'Dcaron' (ID 38): width is 675, base glyph ('D' (ID 35)) width is 675<br>'Eacute' (ID 42): width is 605, base glyph ('E' (ID 41)) width is 605<br>'Ebreve' (ID 43): width is 605, base glyph ('E' (ID 41)) width is 605<br>'Ecaron' (ID 44): width is 605, base glyph ('E' (ID 41)) width is 605<br>'Ecircumflex' (ID 45): width is 605, base glyph ('E' (ID 41)) width is 605<br>'uni1EC6' (ID 47): width is 605, base glyph ('E' (ID 41)) width is 605<br>'uni0204' (ID 51): width is 605, base glyph ('E' (ID 41)) width is 605<br>'Edieresis' (ID 52): width is 605, base glyph ('E' (ID 41)) width is 605<br>'Edotaccent' (ID 53): width is 605, base glyph ('E' (ID 41)) width is 605<br>'uni1EB8' (ID 54): width is 605, base glyph ('E' (ID 41)) width is 605<br>'Egrave' (ID 55): width is 605, base glyph ('E' (ID 41)) width is 605<br>'uni1EBA' (ID 56): width is 605, base glyph ('E' (ID 41)) width is 605<br>'uni0206' (ID 57): width is 605, base glyph ('E' (ID 41)) width is 605<br>'Emacron' (ID 58): width is 605, base glyph ('E' (ID 41)) width is 605<br>'Eogonek' (ID 59): width is 605, base glyph ('E' (ID 41)) width is 605<br>'uni1EBC' (ID 60): width is 605, base glyph ('E' (ID 41)) width is 605<br>'Gbreve' (ID 63): width is 675, base glyph ('G' (ID 62)) width is 675<br>'Gcaron' (ID 64): width is 675, base glyph ('G' (ID 62)) width is 675<br>'Gcircumflex' (ID 65): width is 675, base glyph ('G' (ID 62)) width is 675<br>'uni0122' (ID 66): width is 675, base glyph ('G' (ID 62)) width is 675<br>'Gdotaccent' (ID 67): width is 675, base glyph ('G' (ID 62)) width is 675<br>'Hcircumflex' (ID 70): width is 740, base glyph ('H' (ID 68)) width is 740<br>'Ibreve' (ID 73): width is 501, base glyph ('I' (ID 71)) width is 501<br>'Icircumflex' (ID 74): width is 501, base glyph ('I' (ID 71)) width is 501<br>'uni0208' (ID 75): width is 501, base glyph ('I' (ID 71)) width is 501<br>'Idotaccent' (ID 77): width is 501, base glyph ('I' (ID 71)) width is 501<br>'uni1ECA' (ID 78): width is 501, base glyph ('I' (ID 71)) width is 501<br>'uni1EC8' (ID 80): width is 501, base glyph ('I' (ID 71)) width is 501<br>'uni020A' (ID 81): width is 501, base glyph ('I' (ID 71)) width is 501<br>'Jcircumflex' (ID 86): width is 680, base glyph ('J' (ID 85)) width is 680<br>'uni0136' (ID 88): width is 638, base glyph ('K' (ID 87)) width is 638<br>'Lacute' (ID 91): width is 615, base glyph ('L' (ID 89)) width is 615<br>'Lcaron' (ID 92): width is 615, base glyph ('L' (ID 89)) width is 615<br>'uni013B' (ID 93): width is 615, base glyph ('L' (ID 89)) width is 615<br>'Ldot' (ID 94): width is 615, base glyph ('L' (ID 89)) width is 615<br>'Oacute' (ID 107): width is 732, base glyph ('O' (ID 106)) width is 732<br>'Obreve' (ID 108): width is 732, base glyph ('O' (ID 106)) width is 732<br>'Ocircumflex' (ID 109): width is 732, base glyph ('O' (ID 106)) width is 732<br>'uni1ED8' (ID 111): width is 732, base glyph ('O' (ID 106)) width is 732<br>'uni020C' (ID 115): width is 732, base glyph ('O' (ID 106)) width is 732<br>'Odieresis' (ID 116): width is 732, base glyph ('O' (ID 106)) width is 732<br>'uni022A' (ID 117): width is 732, base glyph ('O' (ID 106)) width is 732<br>'uni0230' (ID 118): width is 732, base glyph ('O' (ID 106)) width is 732<br>'uni1ECC' (ID 119): width is 732, base glyph ('O' (ID 106)) width is 732<br>'Ograve' (ID 120): width is 732, base glyph ('O' (ID 106)) width is 732<br>'uni1ECE' (ID 121): width is 732, base glyph ('O' (ID 106)) width is 732<br>'Ohorn' (ID 122): width is 732, base glyph ('O' (ID 106)) width is 732<br>'uni1EDA' (ID 123): width is 732, base glyph ('O' (ID 106)) width is 732<br>'uni1EE2' (ID 124): width is 732, base glyph ('O' (ID 106)) width is 732<br>'uni1EDC' (ID 125): width is 732, base glyph ('O' (ID 106)) width is 732<br>'uni1EDE' (ID 126): width is 732, base glyph ('O' (ID 106)) width is 732<br>'Ohungarumlaut' (ID 128): width is 732, base glyph ('O' (ID 106)) width is 732<br>'uni020E' (ID 129): width is 732, base glyph ('O' (ID 106)) width is 732<br>'Omacron' (ID 130): width is 732, base glyph ('O' (ID 106)) width is 732<br>'uni01EA' (ID 131): width is 732, base glyph ('O' (ID 106)) width is 732<br>'Oslashacute' (ID 133): width is 731, base glyph ('Oslash' (ID 132)) width is 731<br>'Otilde' (ID 134): width is 732, base glyph ('O' (ID 106)) width is 732<br>'uni022C' (ID 135): width is 732, base glyph ('O' (ID 106)) width is 732<br>'Racute' (ID 141): width is 658, base glyph ('R' (ID 140)) width is 658<br>'Rcaron' (ID 142): width is 658, base glyph ('R' (ID 140)) width is 658<br>'uni0156' (ID 143): width is 658, base glyph ('R' (ID 140)) width is 658<br>'uni0210' (ID 144): width is 658, base glyph ('R' (ID 140)) width is 658<br>'uni0212' (ID 145): width is 658, base glyph ('R' (ID 140)) width is 658<br>'Sacute' (ID 147): width is 596, base glyph ('S' (ID 146)) width is 596<br>'Scaron' (ID 148): width is 596, base glyph ('S' (ID 146)) width is 596<br>'Scedilla' (ID 149): width is 596, base glyph ('S' (ID 146)) width is 596<br>'Scircumflex' (ID 150): width is 596, base glyph ('S' (ID 146)) width is 596<br>'uni0218' (ID 151): width is 596, base glyph ('S' (ID 146)) width is 596<br>'Tcaron' (ID 156): width is 757, base glyph ('T' (ID 154)) width is 757<br>'uni0162' (ID 157): width is 757, base glyph ('T' (ID 154)) width is 757<br>'uni021A' (ID 158): width is 757, base glyph ('T' (ID 154)) width is 757<br>'Uacute' (ID 160): width is 756, base glyph ('U' (ID 159)) width is 756<br>'Ubreve' (ID 161): width is 756, base glyph ('U' (ID 159)) width is 756<br>'Ucircumflex' (ID 162): width is 756, base glyph ('U' (ID 159)) width is 756<br>'uni0214' (ID 163): width is 756, base glyph ('U' (ID 159)) width is 756<br>'Udieresis' (ID 164): width is 756, base glyph ('U' (ID 159)) width is 756<br>'uni1EE4' (ID 165): width is 756, base glyph ('U' (ID 159)) width is 756<br>'Ugrave' (ID 166): width is 756, base glyph ('U' (ID 159)) width is 756<br>'uni1EE6' (ID 167): width is 756, base glyph ('U' (ID 159)) width is 756<br>'Uhungarumlaut' (ID 174): width is 756, base glyph ('U' (ID 159)) width is 756<br>'uni0216' (ID 175): width is 756, base glyph ('U' (ID 159)) width is 756<br>'Umacron' (ID 176): width is 756, base glyph ('U' (ID 159)) width is 756<br>'Uogonek' (ID 177): width is 756, base glyph ('U' (ID 159)) width is 756<br>'Uring' (ID 178): width is 756, base glyph ('U' (ID 159)) width is 756<br>'Utilde' (ID 179): width is 756, base glyph ('U' (ID 159)) width is 756<br>'Wacute' (ID 182): width is 904, base glyph ('W' (ID 181)) width is 904<br>'Wcircumflex' (ID 183): width is 904, base glyph ('W' (ID 181)) width is 904<br>'Wdieresis' (ID 184): width is 904, base glyph ('W' (ID 181)) width is 904<br>'Wgrave' (ID 185): width is 904, base glyph ('W' (ID 181)) width is 904<br>'Yacute' (ID 188): width is 717, base glyph ('Y' (ID 187)) width is 717<br>'Ycircumflex' (ID 189): width is 717, base glyph ('Y' (ID 187)) width is 717<br>'Ydieresis' (ID 190): width is 717, base glyph ('Y' (ID 187)) width is 717<br>'uni1EF4' (ID 191): width is 717, base glyph ('Y' (ID 187)) width is 717<br>'Ygrave' (ID 192): width is 717, base glyph ('Y' (ID 187)) width is 717<br>'uni1EF6' (ID 193): width is 717, base glyph ('Y' (ID 187)) width is 717<br>'uni0232' (ID 194): width is 717, base glyph ('Y' (ID 187)) width is 717<br>'uni1EF8' (ID 195): width is 717, base glyph ('Y' (ID 187)) width is 717<br>'Zacute' (ID 197): width is 650, base glyph ('Z' (ID 196)) width is 650<br>'Zcaron' (ID 198): width is 650, base glyph ('Z' (ID 196)) width is 650<br>'Zdotaccent' (ID 199): width is 650, base glyph ('Z' (ID 196)) width is 650<br>'uniFF21' (ID 200): width is 699, base glyph ('A' (ID 1)) width is 699<br>'uniFF22' (ID 201): width is 652, base glyph ('B' (ID 28)) width is 652<br>'uniFF23' (ID 202): width is 672, base glyph ('C' (ID 29)) width is 672<br>'uniFF24' (ID 203): width is 675, base glyph ('D' (ID 35)) width is 675<br>'uniFF25' (ID 204): width is 605, base glyph ('E' (ID 41)) width is 605<br>'uniFF26' (ID 205): width is 618, base glyph ('F' (ID 61)) width is 618<br>'uniFF27' (ID 206): width is 675, base glyph ('G' (ID 62)) width is 675<br>'uniFF28' (ID 207): width is 740, base glyph ('H' (ID 68)) width is 740<br>'uniFF29' (ID 208): width is 501, base glyph ('I' (ID 71)) width is 501<br>'uniFF2A' (ID 209): width is 680, base glyph ('J' (ID 85)) width is 680<br>'uniFF2B' (ID 210): width is 638, base glyph ('K' (ID 87)) width is 638<br>'uniFF2C' (ID 211): width is 615, base glyph ('L' (ID 89)) width is 615<br>'uniFF2D' (ID 212): width is 829, base glyph ('M' (ID 97)) width is 829<br>'uniFF2E' (ID 213): width is 713, base glyph ('N' (ID 98)) width is 713<br>'uniFF2F' (ID 214): width is 732, base glyph ('O' (ID 106)) width is 732<br>'uniFF30' (ID 215): width is 658, base glyph ('P' (ID 137)) width is 658<br>'uniFF31' (ID 216): width is 727, base glyph ('Q' (ID 139)) width is 727<br>'uniFF32' (ID 217): width is 658, base glyph ('R' (ID 140)) width is 658<br>'uniFF33' (ID 218): width is 596, base glyph ('S' (ID 146)) width is 596<br>'uniFF34' (ID 219): width is 757, base glyph ('T' (ID 154)) width is 757<br>'uniFF35' (ID 220): width is 756, base glyph ('U' (ID 159)) width is 756<br>'uniFF36' (ID 221): width is 767, base glyph ('V' (ID 180)) width is 767<br>'uniFF37' (ID 222): width is 904, base glyph ('W' (ID 181)) width is 904<br>'uniFF38' (ID 223): width is 725, base glyph ('X' (ID 186)) width is 725<br>'uniFF39' (ID 224): width is 717, base glyph ('Y' (ID 187)) width is 717<br>'uniFF3A' (ID 225): width is 650, base glyph ('Z' (ID 196)) width is 650<br>'aacute' (ID 227): width is 500, base glyph ('a' (ID 226)) width is 500<br>'abreve' (ID 228): width is 500, base glyph ('a' (ID 226)) width is 500<br>'uni1EAF' (ID 229): width is 500, base glyph ('a' (ID 226)) width is 500<br>'uni1EB7' (ID 230): width is 500, base glyph ('a' (ID 226)) width is 500<br>'uni1EB1' (ID 231): width is 500, base glyph ('a' (ID 226)) width is 500<br>'uni1EB3' (ID 232): width is 500, base glyph ('a' (ID 226)) width is 500<br>'acircumflex' (ID 234): width is 500, base glyph ('a' (ID 226)) width is 500<br>'uni1EAD' (ID 236): width is 500, base glyph ('a' (ID 226)) width is 500<br>'uni0201' (ID 240): width is 500, base glyph ('a' (ID 226)) width is 500<br>'adieresis' (ID 241): width is 500, base glyph ('a' (ID 226)) width is 500<br>'uni1EA1' (ID 242): width is 500, base glyph ('a' (ID 226)) width is 500<br>'agrave' (ID 243): width is 500, base glyph ('a' (ID 226)) width is 500<br>'uni1EA3' (ID 244): width is 500, base glyph ('a' (ID 226)) width is 500<br>'uni0203' (ID 245): width is 500, base glyph ('a' (ID 226)) width is 500<br>'amacron' (ID 246): width is 500, base glyph ('a' (ID 226)) width is 500<br>'aring' (ID 248): width is 500, base glyph ('a' (ID 226)) width is 500<br>'atilde' (ID 250): width is 499, base glyph ('a' (ID 226)) width is 500<br>'aeacute' (ID 252): width is 776, base glyph ('ae' (ID 251)) width is 777<br>'cacute' (ID 255): width is 505, base glyph ('c' (ID 254)) width is 505<br>'ccaron' (ID 256): width is 505, base glyph ('c' (ID 254)) width is 505<br>'ccedilla' (ID 257): width is 505, base glyph ('c' (ID 254)) width is 505<br>'ccircumflex' (ID 258): width is 505, base glyph ('c' (ID 254)) width is 505<br>'cdotaccent' (ID 259): width is 505, base glyph ('c' (ID 254)) width is 505<br>'eacute' (ID 266): width is 510, base glyph ('e' (ID 265)) width is 510<br>'ebreve' (ID 267): width is 510, base glyph ('e' (ID 265)) width is 510<br>'ecaron' (ID 268): width is 510, base glyph ('e' (ID 265)) width is 510<br>'ecircumflex' (ID 269): width is 510, base glyph ('e' (ID 265)) width is 510<br>'uni1EC7' (ID 271): width is 510, base glyph ('e' (ID 265)) width is 510<br>'uni0205' (ID 275): width is 510, base glyph ('e' (ID 265)) width is 510<br>'edieresis' (ID 276): width is 510, base glyph ('e' (ID 265)) width is 510<br>'edotaccent' (ID 277): width is 510, base glyph ('e' (ID 265)) width is 510<br>'uni1EB9' (ID 278): width is 510, base glyph ('e' (ID 265)) width is 510<br>'egrave' (ID 279): width is 510, base glyph ('e' (ID 265)) width is 510<br>'uni1EBB' (ID 280): width is 510, base glyph ('e' (ID 265)) width is 510<br>'uni0207' (ID 281): width is 510, base glyph ('e' (ID 265)) width is 510<br>'emacron' (ID 282): width is 510, base glyph ('e' (ID 265)) width is 510<br>'gbreve' (ID 288): width is 589, base glyph ('g' (ID 287)) width is 589<br>'gcaron' (ID 289): width is 589, base glyph ('g' (ID 287)) width is 589<br>'gcircumflex' (ID 290): width is 589, base glyph ('g' (ID 287)) width is 589<br>'gdotaccent' (ID 292): width is 589, base glyph ('g' (ID 287)) width is 589<br>'hcircumflex' (ID 295): width is 561, base glyph ('h' (ID 293)) width is 561<br>'iacute' (ID 299): width is 284, base glyph ('dotlessi' (ID 297)) width is 284<br>'uni0209' (ID 302): width is 284, base glyph ('dotlessi' (ID 297)) width is 284<br>'uni1ECB' (ID 305): width is 284, base glyph ('i' (ID 296)) width is 284<br>'uni020B' (ID 308): width is 284, base glyph ('dotlessi' (ID 297)) width is 284<br>'uni0137' (ID 316): width is 542, base glyph ('k' (ID 315)) width is 542<br>'lacute' (ID 319): width is 286, base glyph ('l' (ID 318)) width is 286<br>'uni013C' (ID 321): width is 286, base glyph ('l' (ID 318)) width is 286<br>'nacute' (ID 327): width is 540, base glyph ('n' (ID 326)) width is 540<br>'ncaron' (ID 328): width is 540, base glyph ('n' (ID 326)) width is 540<br>'uni0146' (ID 329): width is 540, base glyph ('n' (ID 326)) width is 540<br>'ntilde' (ID 332): width is 540, base glyph ('n' (ID 326)) width is 540<br>'oacute' (ID 334): width is 551, base glyph ('o' (ID 333)) width is 551<br>'obreve' (ID 335): width is 551, base glyph ('o' (ID 333)) width is 551<br>'ocircumflex' (ID 336): width is 551, base glyph ('o' (ID 333)) width is 551<br>'uni1ED9' (ID 338): width is 551, base glyph ('o' (ID 333)) width is 551<br>'uni020D' (ID 342): width is 551, base glyph ('o' (ID 333)) width is 551<br>'odieresis' (ID 343): width is 551, base glyph ('o' (ID 333)) width is 551<br>'uni022B' (ID 344): width is 551, base glyph ('o' (ID 333)) width is 551<br>'uni0231' (ID 345): width is 551, base glyph ('o' (ID 333)) width is 551<br>'uni1ECD' (ID 346): width is 551, base glyph ('o' (ID 333)) width is 551<br>'ograve' (ID 347): width is 551, base glyph ('o' (ID 333)) width is 551<br>'uni1ECF' (ID 348): width is 551, base glyph ('o' (ID 333)) width is 551<br>'ohorn' (ID 349): width is 551, base glyph ('o' (ID 333)) width is 551<br>'uni1EDB' (ID 350): width is 551, base glyph ('o' (ID 333)) width is 551<br>'uni1EE3' (ID 351): width is 551, base glyph ('o' (ID 333)) width is 551<br>'uni1EDD' (ID 352): width is 551, base glyph ('o' (ID 333)) width is 551<br>'uni1EDF' (ID 353): width is 551, base glyph ('o' (ID 333)) width is 551<br>'ohungarumlaut' (ID 355): width is 551, base glyph ('o' (ID 333)) width is 551<br>'uni020F' (ID 356): width is 551, base glyph ('o' (ID 333)) width is 551<br>'omacron' (ID 357): width is 551, base glyph ('o' (ID 333)) width is 551<br>'uni01EB' (ID 358): width is 551, base glyph ('o' (ID 333)) width is 551<br>'otilde' (ID 361): width is 551, base glyph ('o' (ID 333)) width is 551<br>'racute' (ID 368): width is 502, base glyph ('r' (ID 367)) width is 502<br>'rcaron' (ID 369): width is 502, base glyph ('r' (ID 367)) width is 502<br>'uni0157' (ID 370): width is 502, base glyph ('r' (ID 367)) width is 502<br>'uni0211' (ID 371): width is 502, base glyph ('r' (ID 367)) width is 502<br>'uni0213' (ID 372): width is 502, base glyph ('r' (ID 367)) width is 502<br>'sacute' (ID 374): width is 476, base glyph ('s' (ID 373)) width is 476<br>'scaron' (ID 375): width is 476, base glyph ('s' (ID 373)) width is 476<br>'scircumflex' (ID 377): width is 476, base glyph ('s' (ID 373)) width is 476<br>'uni0219' (ID 378): width is 476, base glyph ('s' (ID 373)) width is 476<br>'uni0163' (ID 383): width is 538, base glyph ('t' (ID 380)) width is 538<br>'uni021B' (ID 384): width is 538, base glyph ('t' (ID 380)) width is 538<br>'uacute' (ID 386): width is 537, base glyph ('u' (ID 385)) width is 537<br>'ubreve' (ID 387): width is 537, base glyph ('u' (ID 385)) width is 537<br>'ucircumflex' (ID 388): width is 537, base glyph ('u' (ID 385)) width is 537<br>'uni0215' (ID 389): width is 537, base glyph ('u' (ID 385)) width is 537<br>'udieresis' (ID 390): width is 537, base glyph ('u' (ID 385)) width is 537<br>'uni1EE5' (ID 391): width is 537, base glyph ('u' (ID 385)) width is 537<br>'ugrave' (ID 392): width is 537, base glyph ('u' (ID 385)) width is 537<br>'uni1EE7' (ID 393): width is 537, base glyph ('u' (ID 385)) width is 537<br>'uhungarumlaut' (ID 400): width is 537, base glyph ('u' (ID 385)) width is 537<br>'uni0217' (ID 401): width is 537, base glyph ('u' (ID 385)) width is 537<br>'umacron' (ID 402): width is 537, base glyph ('u' (ID 385)) width is 537<br>'uogonek' (ID 403): width is 537, base glyph ('u' (ID 385)) width is 537<br>'uring' (ID 404): width is 537, base glyph ('u' (ID 385)) width is 537<br>'utilde' (ID 405): width is 537, base glyph ('u' (ID 385)) width is 537<br>'wacute' (ID 408): width is 693, base glyph ('w' (ID 407)) width is 693<br>'wcircumflex' (ID 409): width is 693, base glyph ('w' (ID 407)) width is 693<br>'wdieresis' (ID 410): width is 693, base glyph ('w' (ID 407)) width is 693<br>'wgrave' (ID 411): width is 693, base glyph ('w' (ID 407)) width is 693<br>'yacute' (ID 414): width is 555, base glyph ('y' (ID 413)) width is 555<br>'ycircumflex' (ID 415): width is 555, base glyph ('y' (ID 413)) width is 555<br>'ydieresis' (ID 416): width is 555, base glyph ('y' (ID 413)) width is 555<br>'uni1EF5' (ID 417): width is 555, base glyph ('y' (ID 413)) width is 555<br>'ygrave' (ID 418): width is 555, base glyph ('y' (ID 413)) width is 555<br>'uni1EF7' (ID 419): width is 555, base glyph ('y' (ID 413)) width is 555<br>'uni0233' (ID 420): width is 555, base glyph ('y' (ID 413)) width is 555<br>'uniFF41' (ID 427): width is 500, base glyph ('a' (ID 226)) width is 500<br>'uniFF42' (ID 428): width is 575, base glyph ('b' (ID 253)) width is 575<br>'uniFF43' (ID 429): width is 505, base glyph ('c' (ID 254)) width is 505<br>'uniFF44' (ID 430): width is 575, base glyph ('d' (ID 260)) width is 575<br>'uniFF45' (ID 431): width is 510, base glyph ('e' (ID 265)) width is 510<br>'uniFF46' (ID 432): width is 545, base glyph ('f' (ID 286)) width is 545<br>'uniFF47' (ID 433): width is 589, base glyph ('g' (ID 287)) width is 589<br>'uniFF48' (ID 434): width is 561, base glyph ('h' (ID 293)) width is 561<br>'uniFF49' (ID 435): width is 284, base glyph ('i' (ID 296)) width is 284<br>'uniFF4A' (ID 436): width is 337, base glyph ('j' (ID 312)) width is 337<br>'uniFF4B' (ID 437): width is 542, base glyph ('k' (ID 315)) width is 542<br>'uniFF4C' (ID 438): width is 286, base glyph ('l' (ID 318)) width is 286<br>'uniFF4D' (ID 439): width is 718, base glyph ('m' (ID 325)) width is 718<br>'uniFF4E' (ID 440): width is 540, base glyph ('n' (ID 326)) width is 540<br>'uniFF4F' (ID 441): width is 551, base glyph ('o' (ID 333)) width is 551<br>'uniFF50' (ID 442): width is 600, base glyph ('p' (ID 364)) width is 600<br>'uniFF51' (ID 443): width is 600, base glyph ('q' (ID 366)) width is 600<br>'uniFF52' (ID 444): width is 502, base glyph ('r' (ID 367)) width is 502<br>'uniFF53' (ID 445): width is 476, base glyph ('s' (ID 373)) width is 476<br>'uniFF54' (ID 447): width is 538, base glyph ('t' (ID 380)) width is 538<br>'uniFF55' (ID 448): width is 537, base glyph ('u' (ID 385)) width is 537<br>'uniFF56' (ID 449): width is 561, base glyph ('v' (ID 406)) width is 561<br>'uniFF57' (ID 450): width is 693, base glyph ('w' (ID 407)) width is 693<br>'uniFF58' (ID 451): width is 497, base glyph ('x' (ID 412)) width is 497<br>'uniFF59' (ID 452): width is 555, base glyph ('y' (ID 413)) width is 555<br>'uniFF5A' (ID 453): width is 482, base glyph ('z' (ID 422)) width is 482<br>'uni305A' (ID 488): width is 724, base glyph ('uni3059' (ID 487)) width is 723<br>'uni30C0' (ID 581): width is 745, base glyph ('uni30BF' (ID 580)) width is 745<br>'uni30D3' (ID 600): width is 694, base glyph ('uni30D2' (ID 599)) width is 694<br>'uni30DC' (ID 609): width is 816, base glyph ('uni30DB' (ID 608)) width is 816<br>'uni30FA' (ID 635): width is 728, base glyph ('uni30F2' (ID 634)) width is 728<br>'uniFF10' (ID 817): width is 637, base glyph ('zero' (ID 827)) width is 637<br>'uniFF11' (ID 818): width is 548, base glyph ('one' (ID 828)) width is 548<br>'uniFF12' (ID 819): width is 582, base glyph ('two' (ID 829)) width is 582<br>'uniFF13' (ID 820): width is 526, base glyph ('three' (ID 830)) width is 526<br>'uniFF14' (ID 821): width is 638, base glyph ('four' (ID 831)) width is 638<br>'uniFF15' (ID 822): width is 554, base glyph ('five' (ID 832)) width is 554<br>'uniFF16' (ID 823): width is 600, base glyph ('six' (ID 833)) width is 600<br>'uniFF17' (ID 824): width is 656, base glyph ('seven' (ID 834)) width is 656<br>'uniFF18' (ID 825): width is 561, base glyph ('eight' (ID 835)) width is 561<br>'uniFF19' (ID 826): width is 569, base glyph ('nine' (ID 836)) width is 569<br>'zero.zero' (ID 837): width is 637, base glyph ('zero' (ID 827)) width is 637<br>'zero.lf' (ID 838): width is 637, base glyph ('zero' (ID 827)) width is 637<br>'three.lf' (ID 841): width is 526, base glyph ('three' (ID 830)) width is 526<br>'four.lf' (ID 842): width is 638, base glyph ('four' (ID 831)) width is 638<br>'five.lf' (ID 843): width is 554, base glyph ('five' (ID 832)) width is 554<br>'six.lf' (ID 844): width is 600, base glyph ('six' (ID 833)) width is 600<br>'seven.lf' (ID 845): width is 656, base glyph ('seven' (ID 834)) width is 656<br>'eight.lf' (ID 846): width is 561, base glyph ('eight' (ID 835)) width is 561<br>'nine.lf' (ID 847): width is 569, base glyph ('nine' (ID 836)) width is 569<br>'uniFF06' (ID 871): width is 647, base glyph ('ampersand' (ID 1032)) width is 647<br>'uniFF0A' (ID 872): width is 518, base glyph ('asterisk' (ID 867)) width is 518<br>'uniFF20' (ID 873): width is 912, base glyph ('at' (ID 1031)) width is 912<br>'uniFF3C' (ID 874): width is 600, base glyph ('backslash' (ID 870)) width is 600<br>'uniFF1A' (ID 876): width is 396, base glyph ('colon' (ID 858)) width is 396<br>'uniFF01' (ID 878): width is 329, base glyph ('exclam' (ID 861)) width is 329<br>'ellipsis.full' (ID 879): width is 668, base glyph ('ellipsis' (ID 860)) width is 668<br>'uniFF03' (ID 881): width is 650, base glyph ('numbersign' (ID 868)) width is 650<br>'uniFF05' (ID 882): width is 804, base glyph ('percent' (ID 1010)) width is 804<br>'uniFF1F' (ID 883): width is 532, base glyph ('question' (ID 863)) width is 532<br>'uniFF1B' (ID 884): width is 398, base glyph ('semicolon' (ID 859)) width is 398<br>'uniFF3F' (ID 885): width is 540, base glyph ('endash' (ID 925)) width is 540<br>'uniFF5B' (ID 895): width is 533, base glyph ('braceleft' (ID 891)) width is 533<br>'uniFF5D' (ID 896): width is 553, base glyph ('braceright' (ID 892)) width is 553<br>'uniFF08' (ID 915): width is 412, base glyph ('parenleft' (ID 889)) width is 412<br>'uniFF09' (ID 916): width is 422, base glyph ('parenright' (ID 890)) width is 422<br>'uni00AD' (ID 924): width is 447, base glyph ('hyphen' (ID 923)) width is 447<br>'underscore' (ID 929): width is 540, base glyph ('endash' (ID 925)) width is 540<br>'uniFF04' (ID 985): width is 596, base glyph ('dollar' (ID 967)) width is 596<br>'uniFFE5' (ID 986): width is 713, base glyph ('yen' (ID 984)) width is 713<br>'uniFF5C' (ID 1012): width is 380, base glyph ('bar' (ID 1041)) width is 380<br>'uniFF1D' (ID 1013): width is 597, base glyph ('equal' (ID 998)) width is 597<br>'uni2267.full' (ID 1014): width is 494, base glyph ('uni2267' (ID 990)) width is 494<br>'uni2266.full' (ID 1015): width is 494, base glyph ('uni2266' (ID 991)) width is 494<br>'uni226B.full' (ID 1016): width is 677, base glyph ('uni226B' (ID 992)) width is 677<br>'uni226A.full' (ID 1017): width is 677, base glyph ('uni226A' (ID 993)) width is 677<br>'uniFF1E' (ID 1018): width is 610, base glyph ('greater' (ID 1000)) width is 610<br>'uniFF1C' (ID 1019): width is 610, base glyph ('less' (ID 1001)) width is 610<br>'uniFF0B' (ID 1020): width is 597, base glyph ('plus' (ID 994)) width is 597<br>'uniFF3E' (ID 1047): width is 355, base glyph ('asciicircum' (ID 1008)) width is 355<br>'uniFF40' (ID 1048): width is 600, base glyph ('grave' (ID 1080)) width is 600<br>'hookabovecomb.case' (ID 1102): width is 0, base glyph ('hookabovecomb' (ID 1065)) width is 0<br>'uni0311.case' (ID 1104): width is 0, base glyph ('uni0311' (ID 1067)) width is 0<br>'uni0312.case' (ID 1105): width is 0, base glyph ('uni0312' (ID 1068)) width is 0<br>'uni031B.case' (ID 1106): width is 0, base glyph ('uni031B' (ID 1069)) width is 0<br>'Oslashacute' (ID 133): width is 731, base glyph ('O' (ID 106)) width is 732<br>'Tbar' (ID 155): width is 757, base glyph ('T' (ID 154)) width is 757<br>'aringacute' (ID 249): width is 500, base glyph ('a' (ID 226)) width is 500<br>'eogonek' (ID 283): width is 510, base glyph ('e' (ID 265)) width is 510<br>'iacute' (ID 299): width is 284, base glyph ('i' (ID 296)) width is 284<br>'iogonek' (ID 310): width is 284, base glyph ('i' (ID 296)) width is 284<br>'tcaron' (ID 382): width is 538, base glyph ('t' (ID 380)) width is 538</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>hmtx</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Compare advance width against base glyph advance width (tolerance 2 units).</p></td>
+                    <td class="detail"><p>'Dcroat' (ID 39): width is 780, base glyph ('D' (ID 35)) width is 675<br>'Iacute' (ID 72): width is 501, base glyph ('I' (ID 71)) width is 501<br>'Idieresis' (ID 76): width is 501, base glyph ('I' (ID 71)) width is 501<br>'Igrave' (ID 79): width is 501, base glyph ('I' (ID 71)) width is 501<br>'Imacron' (ID 82): width is 501, base glyph ('I' (ID 71)) width is 501<br>'Iogonek' (ID 83): width is 501, base glyph ('I' (ID 71)) width is 501<br>'Itilde' (ID 84): width is 501, base glyph ('I' (ID 71)) width is 501<br>'ibreve' (ID 300): width is 284, base glyph ('dotlessi' (ID 297)) width is 284<br>'icircumflex' (ID 301): width is 284, base glyph ('dotlessi' (ID 297)) width is 284<br>'igrave' (ID 306): width is 284, base glyph ('dotlessi' (ID 297)) width is 284<br>'imacron' (ID 309): width is 284, base glyph ('dotlessi' (ID 297)) width is 284<br>'itilde' (ID 311): width is 284, base glyph ('dotlessi' (ID 297)) width is 284<br>'lcaron' (ID 320): width is 286, base glyph ('l' (ID 318)) width is 286<br>'ldot' (ID 322): width is 531, base glyph ('l' (ID 318)) width is 286<br>'oslashacute' (ID 360): width is 600, base glyph ('oslash' (ID 359)) width is 600<br>'scedilla' (ID 376): width is 476, base glyph ('s' (ID 373)) width is 476<br>'fi' (ID 457): width is 826, base glyph ('f' (ID 286)) width is 545<br>'fl' (ID 458): width is 828, base glyph ('f' (ID 286)) width is 545<br>'quotedblleft' (ID 934): width is 625, base glyph ('quoteleft' (ID 936)) width is 397<br>'guillemotleft' (ID 938): width is 769, base glyph ('guilsinglleft' (ID 940)) width is 600<br>'uni02C9' (ID 1051): width is 600, base glyph ('macron' (ID 1088)) width is 600<br>'gravecomb' (ID 1055): width is 0, base glyph ('grave' (ID 1080)) width is 600<br>'tildecomb' (ID 1063): width is 0, base glyph ('tilde' (ID 1087)) width is 600<br>'Dcroat' (ID 39): width is 780, base glyph ('D' (ID 35)) width is 675<br>'Hbar' (ID 69): width is 873, base glyph ('H' (ID 68)) width is 740<br>'Iacute' (ID 72): width is 501, base glyph ('I' (ID 71)) width is 501<br>'Idieresis' (ID 76): width is 501, base glyph ('I' (ID 71)) width is 501<br>'Igrave' (ID 79): width is 501, base glyph ('I' (ID 71)) width is 501<br>'Imacron' (ID 82): width is 501, base glyph ('I' (ID 71)) width is 501<br>'Iogonek' (ID 83): width is 501, base glyph ('I' (ID 71)) width is 501<br>'Itilde' (ID 84): width is 501, base glyph ('I' (ID 71)) width is 501<br>'Lslash' (ID 96): width is 727, base glyph ('L' (ID 89)) width is 615<br>'Oslash' (ID 132): width is 731, base glyph ('O' (ID 106)) width is 732<br>'dcaron' (ID 262): width is 709, base glyph ('d' (ID 260)) width is 575<br>'dcroat' (ID 263): width is 600, base glyph ('d' (ID 260)) width is 575<br>'hbar' (ID 294): width is 600, base glyph ('h' (ID 293)) width is 561<br>'ibreve' (ID 300): width is 284, base glyph ('i' (ID 296)) width is 284<br>'icircumflex' (ID 301): width is 284, base glyph ('i' (ID 296)) width is 284<br>'idieresis' (ID 303): width is 284, base glyph ('i' (ID 296)) width is 284<br>'igrave' (ID 306): width is 284, base glyph ('i' (ID 296)) width is 284<br>'imacron' (ID 309): width is 284, base glyph ('i' (ID 296)) width is 284<br>'itilde' (ID 311): width is 284, base glyph ('i' (ID 296)) width is 284<br>'lcaron' (ID 320): width is 286, base glyph ('l' (ID 318)) width is 286<br>'ldot' (ID 322): width is 531, base glyph ('l' (ID 318)) width is 286<br>'lslash' (ID 324): width is 434, base glyph ('l' (ID 318)) width is 286<br>'oslash' (ID 359): width is 600, base glyph ('o' (ID 333)) width is 551<br>'oslashacute' (ID 360): width is 600, base glyph ('o' (ID 333)) width is 551<br>'scedilla' (ID 376): width is 476, base glyph ('s' (ID 373)) width is 476<br>'gravecomb' (ID 1055): width is 0, base glyph ('grave' (ID 1080)) width is 600<br>'tildecomb' (ID 1063): width is 0, base glyph ('tilde' (ID 1087)) width is 600</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="W">
+                    <td class="code"><p>Warning</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>hmtx</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Compare advance width against base glyph advance width (tolerance 2 units).</p></td>
+                    <td class="detail"><p>'uni01C4' (ID 36): width is 1277, base glyph ('D' (ID 35)) width is 675<br>'uni01C5' (ID 40): width is 1137, base glyph ('D' (ID 35)) width is 675<br>'uni01C7' (ID 90): width is 1269, base glyph ('L' (ID 89)) width is 615<br>'uni01C8' (ID 95): width is 881, base glyph ('L' (ID 89)) width is 615<br>'uni01CA' (ID 99): width is 1385, base glyph ('N' (ID 98)) width is 713<br>'Nacute' (ID 100): width is 739, base glyph ('N' (ID 98)) width is 713<br>'Ncaron' (ID 101): width is 739, base glyph ('N' (ID 98)) width is 713<br>'uni0145' (ID 102): width is 739, base glyph ('N' (ID 98)) width is 713<br>'uni01CB' (ID 104): width is 1025, base glyph ('N' (ID 98)) width is 713<br>'Ntilde' (ID 105): width is 739, base glyph ('N' (ID 98)) width is 713<br>'OE' (ID 136): width is 1065, base glyph ('O' (ID 106)) width is 732<br>'uni1E9E' (ID 152): width is 1170, base glyph ('S' (ID 146)) width is 596<br>'Uhorn' (ID 168): width is 785, base glyph ('U' (ID 159)) width is 756<br>'uni1EE8' (ID 169): width is 785, base glyph ('U' (ID 159)) width is 756<br>'uni1EF0' (ID 170): width is 785, base glyph ('U' (ID 159)) width is 756<br>'uni1EEA' (ID 171): width is 785, base glyph ('U' (ID 159)) width is 756<br>'uni1EEC' (ID 172): width is 785, base glyph ('U' (ID 159)) width is 756<br>'uni1EEE' (ID 173): width is 785, base glyph ('U' (ID 159)) width is 756<br>'uni01C6' (ID 264): width is 1026, base glyph ('d' (ID 260)) width is 575<br>'uni1EC9' (ID 307): width is 274, base glyph ('dotlessi' (ID 297)) width is 284<br>'jcircumflex' (ID 314): width is 364, base glyph ('uni0237' (ID 313)) width is 336<br>'uni01C9' (ID 323): width is 602, base glyph ('l' (ID 318)) width is 286<br>'uni01CC' (ID 331): width is 828, base glyph ('n' (ID 326)) width is 540<br>'oe' (ID 363): width is 835, base glyph ('o' (ID 333)) width is 551<br>'uni1EE9' (ID 395): width is 591, base glyph ('u' (ID 385)) width is 537<br>'uni1EF1' (ID 396): width is 591, base glyph ('u' (ID 385)) width is 537<br>'uni1EEB' (ID 397): width is 591, base glyph ('u' (ID 385)) width is 537<br>'uni1EED' (ID 398): width is 591, base glyph ('u' (ID 385)) width is 537<br>'uni1EEF' (ID 399): width is 591, base glyph ('u' (ID 385)) width is 537<br>'zacute' (ID 423): width is 452, base glyph ('z' (ID 422)) width is 482<br>'zcaron' (ID 424): width is 451, base glyph ('z' (ID 422)) width is 482<br>'zdotaccent' (ID 425): width is 452, base glyph ('z' (ID 422)) width is 482<br>'f_f' (ID 454): width is 1064, base glyph ('f' (ID 286)) width is 545<br>'f_f_i' (ID 455): width is 1349, base glyph ('f' (ID 286)) width is 545<br>'f_f_l' (ID 456): width is 1349, base glyph ('f' (ID 286)) width is 545<br>'uni304C' (ID 473): width is 873, base glyph ('uni304B' (ID 471)) width is 862<br>'uni304E' (ID 475): width is 676, base glyph ('uni304D' (ID 474)) width is 666<br>'uni3050' (ID 477): width is 671, base glyph ('uni304F' (ID 476)) width is 561<br>'uni3052' (ID 479): width is 867, base glyph ('uni3051' (ID 478)) width is 835<br>'uni3054' (ID 482): width is 627, base glyph ('uni3053' (ID 481)) width is 604<br>'uni3056' (ID 484): width is 730, base glyph ('uni3055' (ID 483)) width is 716<br>'uni3058' (ID 486): width is 640, base glyph ('uni3057' (ID 485)) width is 635<br>'uni305C' (ID 490): width is 898, base glyph ('uni305B' (ID 489)) width is 827<br>'uni305E' (ID 492): width is 814, base glyph ('uni305D' (ID 491)) width is 620<br>'uni3060' (ID 494): width is 724, base glyph ('uni305F' (ID 493)) width is 719<br>'uni3062' (ID 496): width is 706, base glyph ('uni3061' (ID 495)) width is 696<br>'uni3065' (ID 499): width is 750, base glyph ('uni3064' (ID 497)) width is 732<br>'uni3067' (ID 501): width is 782, base glyph ('uni3066' (ID 500)) width is 765<br>'uni3069' (ID 503): width is 660, base glyph ('uni3068' (ID 502)) width is 625<br>'uni3070' (ID 510): width is 903, base glyph ('uni306F' (ID 509)) width is 831<br>'uni3071' (ID 511): width is 1013, base glyph ('uni306F' (ID 509)) width is 831<br>'uni3073' (ID 513): width is 848, base glyph ('uni3072' (ID 512)) width is 824<br>'uni3074' (ID 514): width is 919, base glyph ('uni3072' (ID 512)) width is 824<br>'uni3076' (ID 516): width is 809, base glyph ('uni3075' (ID 515)) width is 741<br>'uni3077' (ID 517): width is 908, base glyph ('uni3075' (ID 515)) width is 741<br>'uni3079' (ID 519): width is 830, base glyph ('uni3078' (ID 518)) width is 815<br>'uni307A' (ID 520): width is 852, base glyph ('uni3078' (ID 518)) width is 815<br>'uni307C' (ID 522): width is 856, base glyph ('uni307B' (ID 521)) width is 821<br>'uni307D' (ID 523): width is 968, base glyph ('uni307B' (ID 521)) width is 821<br>'uni3094' (ID 546): width is 780, base glyph ('uni3046' (ID 465)) width is 608<br>'uni30AC' (ID 560): width is 745, base glyph ('uni30AB' (ID 558)) width is 731<br>'uni30AE' (ID 562): width is 724, base glyph ('uni30AD' (ID 561)) width is 735<br>'uni30B0' (ID 564): width is 754, base glyph ('uni30AF' (ID 563)) width is 700<br>'uni30B2' (ID 567): width is 808, base glyph ('uni30B1' (ID 565)) width is 791<br>'uni30B4' (ID 569): width is 718, base glyph ('uni30B3' (ID 568)) width is 700<br>'uni30B6' (ID 571): width is 903, base glyph ('uni30B5' (ID 570)) width is 844<br>'uni30B8' (ID 573): width is 808, base glyph ('uni30B7' (ID 572)) width is 760<br>'uni30BA' (ID 575): width is 687, base glyph ('uni30B9' (ID 574)) width is 678<br>'uni30BC' (ID 577): width is 855, base glyph ('uni30BB' (ID 576)) width is 822<br>'uni30BE' (ID 579): width is 773, base glyph ('uni30BD' (ID 578)) width is 766<br>'uni30C2' (ID 583): width is 885, base glyph ('uni30C1' (ID 582)) width is 748<br>'uni30C5' (ID 586): width is 830, base glyph ('uni30C4' (ID 584)) width is 823<br>'uni30C7' (ID 588): width is 745, base glyph ('uni30C6' (ID 587)) width is 750<br>'uni30C9' (ID 590): width is 649, base glyph ('uni30C8' (ID 589)) width is 669<br>'uni30D1' (ID 598): width is 908, base glyph ('uni30CF' (ID 596)) width is 829<br>'uni30D4' (ID 601): width is 762, base glyph ('uni30D2' (ID 599)) width is 694<br>'uni30D6' (ID 603): width is 809, base glyph ('uni30D5' (ID 602)) width is 739<br>'uni30D7' (ID 604): width is 841, base glyph ('uni30D5' (ID 602)) width is 739<br>'uni30D9' (ID 606): width is 901, base glyph ('uni30D8' (ID 605)) width is 881<br>'uni30DA' (ID 607): width is 891, base glyph ('uni30D8' (ID 605)) width is 881<br>'uni30DD' (ID 610): width is 835, base glyph ('uni30DB' (ID 608)) width is 816<br>'uni30F7' (ID 629): width is 820, base glyph ('uni30EF' (ID 627)) width is 790<br>'uni30F8' (ID 631): width is 837, base glyph ('uni30F0' (ID 630)) width is 827<br>'uni30F9' (ID 633): width is 813, base glyph ('uni30F1' (ID 632)) width is 804<br>'uni30F4' (ID 637): width is 731, base glyph ('uni30A6' (ID 552)) width is 761<br>'uni3042.vert' (ID 639): width is 1000, base glyph ('uni3042' (ID 461)) width is 724<br>'uni3044.vert' (ID 641): width is 1000, base glyph ('uni3044' (ID 463)) width is 791<br>'uni3043.vert' (ID 642): width is 1000, base glyph ('uni3043' (ID 464)) width is 624<br>'uni3046.vert' (ID 643): width is 1000, base glyph ('uni3046' (ID 465)) width is 608<br>'uni3045.vert' (ID 644): width is 1000, base glyph ('uni3045' (ID 466)) width is 477<br>'uni3048.vert' (ID 645): width is 1000, base glyph ('uni3048' (ID 467)) width is 586<br>'uni3047.vert' (ID 646): width is 1000, base glyph ('uni3047' (ID 468)) width is 459<br>'uni304A.vert' (ID 647): width is 1000, base glyph ('uni304A' (ID 469)) width is 781<br>'uni3049.vert' (ID 648): width is 1000, base glyph ('uni3049' (ID 470)) width is 629<br>'uni304B.vert' (ID 649): width is 1000, base glyph ('uni304B' (ID 471)) width is 862<br>'uni3095.vert' (ID 650): width is 1000, base glyph ('uni3095' (ID 472)) width is 684<br>'uni304C.vert' (ID 651): width is 1000, base glyph ('uni3099' (ID 1124)) width is 0<br>'uni304D.vert' (ID 652): width is 1000, base glyph ('uni304D' (ID 474)) width is 666<br>'uni304F.vert' (ID 654): width is 1000, base glyph ('uni304F' (ID 476)) width is 561<br>'uni3050.vert' (ID 655): width is 1000, base glyph ('uni3099' (ID 1124)) width is 0<br>'uni3051.vert' (ID 656): width is 1000, base glyph ('uni3051' (ID 478)) width is 835<br>'uni3052.vert' (ID 657): width is 1000, base glyph ('uni3099' (ID 1124)) width is 0<br>'uni3096.vert' (ID 658): width is 1000, base glyph ('uni3096' (ID 480)) width is 649<br>'uni3053.vert' (ID 659): width is 1000, base glyph ('uni3053' (ID 481)) width is 604<br>'uni3054.vert' (ID 660): width is 1000, base glyph ('uni3099' (ID 1124)) width is 0<br>'uni3055.vert' (ID 661): width is 1000, base glyph ('uni3055' (ID 483)) width is 716<br>'uni3056.vert' (ID 662): width is 1000, base glyph ('uni3099' (ID 1124)) width is 0<br>'uni3057.vert' (ID 663): width is 1000, base glyph ('uni3057' (ID 485)) width is 635<br>'uni3058.vert' (ID 664): width is 1000, base glyph ('uni3099' (ID 1124)) width is 0<br>'uni3059.vert' (ID 665): width is 1000, base glyph ('uni3059' (ID 487)) width is 723<br>'uni305A.vert' (ID 666): width is 1000, base glyph ('uni3059' (ID 487)) width is 723<br>'uni305B.vert' (ID 667): width is 1000, base glyph ('uni305B' (ID 489)) width is 827<br>'uni305C.vert' (ID 668): width is 1000, base glyph ('uni305B' (ID 489)) width is 827<br>'uni305D.vert' (ID 669): width is 1000, base glyph ('uni305D' (ID 491)) width is 620<br>'uni305F.vert' (ID 671): width is 1000, base glyph ('uni305F' (ID 493)) width is 719<br>'uni3061.vert' (ID 673): width is 1000, base glyph ('uni3061' (ID 495)) width is 696<br>'uni3064.vert' (ID 675): width is 1000, base glyph ('uni3064' (ID 497)) width is 732<br>'uni3063.vert' (ID 676): width is 1000, base glyph ('uni3063' (ID 498)) width is 565<br>'uni3065.vert' (ID 677): width is 1000, base glyph ('uni3064' (ID 497)) width is 732<br>'uni3066.vert' (ID 678): width is 1000, base glyph ('uni3066' (ID 500)) width is 765<br>'uni3067.vert' (ID 679): width is 1000, base glyph ('uni3066' (ID 500)) width is 765<br>'uni3068.vert' (ID 680): width is 1000, base glyph ('uni3068' (ID 502)) width is 625<br>'uni3069.vert' (ID 681): width is 1000, base glyph ('uni3068' (ID 502)) width is 625<br>'uni306A.vert' (ID 682): width is 1000, base glyph ('uni306A' (ID 504)) width is 810<br>'uni306B.vert' (ID 683): width is 1000, base glyph ('uni306B' (ID 505)) width is 758<br>'uni306C.vert' (ID 684): width is 1000, base glyph ('uni306C' (ID 506)) width is 812<br>'uni306D.vert' (ID 685): width is 1000, base glyph ('uni306D' (ID 507)) width is 775<br>'uni306E.vert' (ID 686): width is 1000, base glyph ('uni306E' (ID 508)) width is 770<br>'uni306F.vert' (ID 687): width is 1000, base glyph ('uni306F' (ID 509)) width is 831<br>'uni3072.vert' (ID 690): width is 1000, base glyph ('uni3072' (ID 512)) width is 824<br>'uni3073.vert' (ID 691): width is 1000, base glyph ('uni3072' (ID 512)) width is 824<br>'uni3075.vert' (ID 693): width is 1000, base glyph ('uni3075' (ID 515)) width is 741<br>'uni3076.vert' (ID 694): width is 1000, base glyph ('uni3075' (ID 515)) width is 741<br>'uni3078.vert' (ID 696): width is 1000, base glyph ('uni3078' (ID 518)) width is 815<br>'uni3079.vert' (ID 697): width is 1000, base glyph ('uni3099' (ID 1124)) width is 0<br>'uni307B.vert' (ID 699): width is 1000, base glyph ('uni307B' (ID 521)) width is 821<br>'uni307E.vert' (ID 702): width is 1000, base glyph ('uni307E' (ID 524)) width is 730<br>'uni307F.vert' (ID 703): width is 1000, base glyph ('uni307F' (ID 525)) width is 810<br>'uni3080.vert' (ID 704): width is 1000, base glyph ('uni3080' (ID 526)) width is 828<br>'uni3081.vert' (ID 705): width is 1000, base glyph ('uni3081' (ID 527)) width is 744<br>'uni3082.vert' (ID 706): width is 1000, base glyph ('uni3082' (ID 528)) width is 705<br>'uni3084.vert' (ID 707): width is 1000, base glyph ('uni3084' (ID 529)) width is 812<br>'uni3083.vert' (ID 708): width is 1000, base glyph ('uni3083' (ID 530)) width is 634<br>'uni3086.vert' (ID 709): width is 1000, base glyph ('uni3086' (ID 531)) width is 787<br>'uni3085.vert' (ID 710): width is 1000, base glyph ('uni3085' (ID 532)) width is 614<br>'uni3088.vert' (ID 711): width is 1000, base glyph ('uni3088' (ID 533)) width is 748<br>'uni3087.vert' (ID 712): width is 1000, base glyph ('uni3087' (ID 534)) width is 579<br>'uni3089.vert' (ID 713): width is 1000, base glyph ('uni3089' (ID 535)) width is 639<br>'uni308A.vert' (ID 714): width is 1000, base glyph ('uni308A' (ID 536)) width is 661<br>'uni308B.vert' (ID 715): width is 1000, base glyph ('uni308B' (ID 537)) width is 603<br>'uni308C.vert' (ID 716): width is 1000, base glyph ('uni308C' (ID 538)) width is 771<br>'uni308D.vert' (ID 717): width is 1000, base glyph ('uni308D' (ID 539)) width is 640<br>'uni308F.vert' (ID 718): width is 1000, base glyph ('uni308F' (ID 540)) width is 740<br>'uni308E.vert' (ID 719): width is 1000, base glyph ('uni308E' (ID 541)) width is 594<br>'uni3090.vert' (ID 720): width is 1000, base glyph ('uni3090' (ID 542)) width is 738<br>'uni3091.vert' (ID 721): width is 1000, base glyph ('uni3091' (ID 543)) width is 691<br>'uni3092.vert' (ID 722): width is 1000, base glyph ('uni3092' (ID 544)) width is 684<br>'uni3093.vert' (ID 723): width is 1000, base glyph ('uni3093' (ID 545)) width is 695<br>'uni3094.vert' (ID 724): width is 1000, base glyph ('uni3099' (ID 1124)) width is 0<br>'uni309F.vert' (ID 725): width is 1000, base glyph ('uni309F' (ID 547)) width is 677<br>'uni30A2.vert' (ID 726): width is 1000, base glyph ('uni30A2' (ID 548)) width is 777<br>'uni30A1.vert' (ID 727): width is 1000, base glyph ('uni30A1' (ID 549)) width is 608<br>'uni30A4.vert' (ID 728): width is 1000, base glyph ('uni30A4' (ID 550)) width is 724<br>'uni30A3.vert' (ID 729): width is 1000, base glyph ('uni30A3' (ID 551)) width is 561<br>'uni30A6.vert' (ID 730): width is 1000, base glyph ('uni30A6' (ID 552)) width is 761<br>'uni30A5.vert' (ID 731): width is 1000, base glyph ('uni30A5' (ID 553)) width is 587<br>'uni30A8.vert' (ID 732): width is 1000, base glyph ('uni30A8' (ID 554)) width is 731<br>'uni30A7.vert' (ID 733): width is 1000, base glyph ('uni30A7' (ID 555)) width is 574<br>'uni30AA.vert' (ID 734): width is 1000, base glyph ('uni30AA' (ID 556)) width is 787<br>'uni30A9.vert' (ID 735): width is 1000, base glyph ('uni30A9' (ID 557)) width is 625<br>'uni30AB.vert' (ID 736): width is 1000, base glyph ('uni30AB' (ID 558)) width is 731<br>'uni30F5.vert' (ID 737): width is 1000, base glyph ('uni30F5' (ID 559)) width is 572<br>'uni30AC.vert' (ID 738): width is 1000, base glyph ('uni30AB' (ID 558)) width is 731<br>'uni30AD.vert' (ID 739): width is 1000, base glyph ('uni30AD' (ID 561)) width is 735<br>'uni30AE.vert' (ID 740): width is 1000, base glyph ('uni30AD' (ID 561)) width is 735<br>'uni30AF.vert' (ID 741): width is 1000, base glyph ('uni30AF' (ID 563)) width is 700<br>'uni30B1.vert' (ID 743): width is 1000, base glyph ('uni30B1' (ID 565)) width is 791<br>'uni30F6.vert' (ID 744): width is 1000, base glyph ('uni30F6' (ID 566)) width is 586<br>'uni30B2.vert' (ID 745): width is 1000, base glyph ('uni30B1' (ID 565)) width is 791<br>'uni30B3.vert' (ID 746): width is 1000, base glyph ('uni30B3' (ID 568)) width is 700<br>'uni30B4.vert' (ID 747): width is 1000, base glyph ('uni30B3' (ID 568)) width is 700<br>'uni30B5.vert' (ID 748): width is 1000, base glyph ('uni30B5' (ID 570)) width is 844<br>'uni30B7.vert' (ID 750): width is 1000, base glyph ('uni30B7' (ID 572)) width is 760<br>'uni30B8.vert' (ID 751): width is 1000, base glyph ('uni30B7' (ID 572)) width is 760<br>'uni30B9.vert' (ID 752): width is 1000, base glyph ('uni30B9' (ID 574)) width is 678<br>'uni30BA.vert' (ID 753): width is 1000, base glyph ('uni30B9' (ID 574)) width is 678<br>'uni30BB.vert' (ID 754): width is 1000, base glyph ('uni30BB' (ID 576)) width is 822<br>'uni30BC.vert' (ID 755): width is 1000, base glyph ('uni30BB' (ID 576)) width is 822<br>'uni30BD.vert' (ID 756): width is 1000, base glyph ('uni30BD' (ID 578)) width is 766<br>'uni30BF.vert' (ID 758): width is 1000, base glyph ('uni30BF' (ID 580)) width is 745<br>'uni30C1.vert' (ID 760): width is 1000, base glyph ('uni30C1' (ID 582)) width is 748<br>'uni30C4.vert' (ID 762): width is 1000, base glyph ('uni30C4' (ID 584)) width is 823<br>'uni30C3.vert' (ID 763): width is 1000, base glyph ('uni30C3' (ID 585)) width is 641<br>'uni30C6.vert' (ID 765): width is 1000, base glyph ('uni30C6' (ID 587)) width is 750<br>'uni30C7.vert' (ID 766): width is 1000, base glyph ('uni30C6' (ID 587)) width is 750<br>'uni30C8.vert' (ID 767): width is 1000, base glyph ('uni30C8' (ID 589)) width is 669<br>'uni30C9.vert' (ID 768): width is 1000, base glyph ('uni30C8' (ID 589)) width is 669<br>'uni30CA.vert' (ID 769): width is 1000, base glyph ('uni30CA' (ID 591)) width is 865<br>'uni30CB.vert' (ID 770): width is 1000, base glyph ('uni30CB' (ID 592)) width is 826<br>'uni30CC.vert' (ID 771): width is 1000, base glyph ('uni30CC' (ID 593)) width is 733<br>'uni30CD.vert' (ID 772): width is 1000, base glyph ('uni30CD' (ID 594)) width is 677<br>'uni30CE.vert' (ID 773): width is 1000, base glyph ('uni30CE' (ID 595)) width is 615<br>'uni30CF.vert' (ID 774): width is 1000, base glyph ('uni30CF' (ID 596)) width is 829<br>'uni30D0.vert' (ID 775): width is 1000, base glyph ('uni30CF' (ID 596)) width is 829<br>'uni30D1.vert' (ID 776): width is 1000, base glyph ('uni309A' (ID 1125)) width is 0<br>'uni30D2.vert' (ID 777): width is 1000, base glyph ('uni30D2' (ID 599)) width is 694<br>'uni30D3.vert' (ID 778): width is 1000, base glyph ('uni30D2' (ID 599)) width is 694<br>'uni30D4.vert' (ID 779): width is 1000, base glyph ('uni309A' (ID 1125)) width is 0<br>'uni30D5.vert' (ID 780): width is 1000, base glyph ('uni30D5' (ID 602)) width is 739<br>'uni30D6.vert' (ID 781): width is 1000, base glyph ('uni30D5' (ID 602)) width is 739<br>'uni30D7.vert' (ID 782): width is 1000, base glyph ('uni309A' (ID 1125)) width is 0<br>'uni30D8.vert' (ID 783): width is 1000, base glyph ('uni30D8' (ID 605)) width is 881<br>'uni30D9.vert' (ID 784): width is 1000, base glyph ('uni30D8' (ID 605)) width is 881<br>'uni30DA.vert' (ID 785): width is 1000, base glyph ('uni309A' (ID 1125)) width is 0<br>'uni30DB.vert' (ID 786): width is 1000, base glyph ('uni30DB' (ID 608)) width is 816<br>'uni30DC.vert' (ID 787): width is 1000, base glyph ('uni30DB' (ID 608)) width is 816<br>'uni30DD.vert' (ID 788): width is 1000, base glyph ('uni309A' (ID 1125)) width is 0<br>'uni30DE.vert' (ID 789): width is 1000, base glyph ('uni30DE' (ID 611)) width is 764<br>'uni30DF.vert' (ID 790): width is 1000, base glyph ('uni30DF' (ID 612)) width is 636<br>'uni30E0.vert' (ID 791): width is 1000, base glyph ('uni30E0' (ID 613)) width is 797<br>'uni30E1.vert' (ID 792): width is 1000, base glyph ('uni30E1' (ID 614)) width is 730<br>'uni30E2.vert' (ID 793): width is 1000, base glyph ('uni30E2' (ID 615)) width is 749<br>'uni30E4.vert' (ID 794): width is 1000, base glyph ('uni30E4' (ID 616)) width is 848<br>'uni30E3.vert' (ID 795): width is 1000, base glyph ('uni30E3' (ID 617)) width is 684<br>'uni30E6.vert' (ID 796): width is 1000, base glyph ('uni30E6' (ID 618)) width is 800<br>'uni30E5.vert' (ID 797): width is 1000, base glyph ('uni30E5' (ID 619)) width is 641<br>'uni30E8.vert' (ID 798): width is 1000, base glyph ('uni30E8' (ID 620)) width is 717<br>'uni30E7.vert' (ID 799): width is 1000, base glyph ('uni30E7' (ID 621)) width is 552<br>'uni30E9.vert' (ID 800): width is 1000, base glyph ('uni30E9' (ID 622)) width is 710<br>'uni30EA.vert' (ID 801): width is 1000, base glyph ('uni30EA' (ID 623)) width is 694<br>'uni30EB.vert' (ID 802): width is 1000, base glyph ('uni30EB' (ID 624)) width is 851<br>'uni30EC.vert' (ID 803): width is 1000, base glyph ('uni30EC' (ID 625)) width is 664<br>'uni30ED.vert' (ID 804): width is 1000, base glyph ('uni30ED' (ID 626)) width is 744<br>'uni30EF.vert' (ID 805): width is 1000, base glyph ('uni30EF' (ID 627)) width is 790<br>'uni30EE.vert' (ID 806): width is 1000, base glyph ('uni30EE' (ID 628)) width is 613<br>'uni30F7.vert' (ID 807): width is 1000, base glyph ('uni3099' (ID 1124)) width is 0<br>'uni30F0.vert' (ID 808): width is 1000, base glyph ('uni30F0' (ID 630)) width is 827<br>'uni30F1.vert' (ID 810): width is 1000, base glyph ('uni30F1' (ID 632)) width is 804<br>'uni30F9.vert' (ID 811): width is 1000, base glyph ('uni30F1' (ID 632)) width is 804<br>'uni30F2.vert' (ID 812): width is 1000, base glyph ('uni30F2' (ID 634)) width is 728<br>'uni30FA.vert' (ID 813): width is 1000, base glyph ('uni30F2' (ID 634)) width is 728<br>'uni30F3.vert' (ID 814): width is 1000, base glyph ('uni30F3' (ID 636)) width is 763<br>'uni30F4.vert' (ID 815): width is 1000, base glyph ('uni3099' (ID 1124)) width is 0<br>'uni30FF.vert' (ID 816): width is 1000, base glyph ('uni30FF' (ID 638)) width is 673<br>'one.lf' (ID 839): width is 591, base glyph ('one' (ID 828)) width is 548<br>'two.lf' (ID 840): width is 592, base glyph ('two' (ID 829)) width is 582<br>'uniFE19' (ID 877): width is 1000, base glyph ('period' (ID 856)) width is 288<br>'quotesinglbase' (ID 932): width is 600, base glyph ('comma' (ID 857)) width is 277<br>'quotedblbase' (ID 933): width is 600, base glyph ('comma' (ID 857)) width is 277<br>'quotedblleft.vert' (ID 944): width is 1000, base glyph ('quoteleft' (ID 936)) width is 397<br>'quotedblright.vert' (ID 945): width is 1000, base glyph ('quotedblright' (ID 935)) width is 625<br>'uniFE11' (ID 954): width is 1000, base glyph ('uni3001' (ID 953)) width is 463<br>'uniFE12' (ID 956): width is 1000, base glyph ('uni3002' (ID 955)) width is 562<br>'uni0308' (ID 1053): width is 0, base glyph ('dieresis' (ID 1078)) width is 600<br>'uni0307' (ID 1054): width is 0, base glyph ('dotaccent' (ID 1079)) width is 600<br>'acutecomb' (ID 1056): width is 0, base glyph ('acute' (ID 1081)) width is 600<br>'uni030B' (ID 1057): width is 0, base glyph ('hungarumlaut' (ID 1082)) width is 600<br>'uni030C.alt' (ID 1058): width is 0, base glyph ('caron' (ID 1084)) width is 600<br>'uni0302' (ID 1059): width is 0, base glyph ('circumflex' (ID 1083)) width is 600<br>'uni030C' (ID 1060): width is 0, base glyph ('caron' (ID 1084)) width is 600<br>'uni0306' (ID 1061): width is 0, base glyph ('breve' (ID 1085)) width is 600<br>'uni030A' (ID 1062): width is 0, base glyph ('ring' (ID 1086)) width is 600<br>'uni0304' (ID 1064): width is 0, base glyph ('macron' (ID 1088)) width is 600<br>'dotbelowcomb' (ID 1070): width is 0, base glyph ('dotaccent' (ID 1079)) width is 600<br>'uni0324' (ID 1071): width is 0, base glyph ('dieresis' (ID 1078)) width is 600<br>'uni0326' (ID 1072): width is 0, base glyph ('acute' (ID 1081)) width is 600<br>'uni0327' (ID 1073): width is 0, base glyph ('cedilla' (ID 1089)) width is 600<br>'uni0328' (ID 1074): width is 0, base glyph ('ogonek' (ID 1090)) width is 600<br>'uni032E' (ID 1075): width is 0, base glyph ('breve' (ID 1085)) width is 600<br>'uni0331' (ID 1076): width is 0, base glyph ('macron' (ID 1088)) width is 600<br>'uni0308.case' (ID 1091): width is 0, base glyph ('dieresis' (ID 1078)) width is 600<br>'uni0307.case' (ID 1092): width is 0, base glyph ('dotaccent' (ID 1079)) width is 600<br>'gravecomb.case' (ID 1093): width is 0, base glyph ('grave' (ID 1080)) width is 600<br>'acutecomb.case' (ID 1094): width is 0, base glyph ('acute' (ID 1081)) width is 600<br>'uni030B.case' (ID 1095): width is 0, base glyph ('hungarumlaut' (ID 1082)) width is 600<br>'uni0302.case' (ID 1096): width is 0, base glyph ('circumflex' (ID 1083)) width is 600<br>'uni030C.case' (ID 1097): width is 0, base glyph ('caron' (ID 1084)) width is 600<br>'uni0306.case' (ID 1098): width is 0, base glyph ('breve' (ID 1085)) width is 600<br>'tildecomb.case' (ID 1100): width is 0, base glyph ('tilde' (ID 1087)) width is 600<br>'uni0304.case' (ID 1101): width is 0, base glyph ('macron' (ID 1088)) width is 600<br>'dotbelowcomb.case' (ID 1107): width is 0, base glyph ('dotaccent' (ID 1079)) width is 600<br>'uni0324.case' (ID 1108): width is 0, base glyph ('dieresis' (ID 1078)) width is 600<br>'uni0326.case' (ID 1109): width is 0, base glyph ('acute' (ID 1081)) width is 600<br>'uni0327.case' (ID 1110): width is 0, base glyph ('cedilla' (ID 1089)) width is 600<br>'uni0328.case' (ID 1111): width is 0, base glyph ('ogonek' (ID 1090)) width is 600<br>'uni032E.case' (ID 1112): width is 0, base glyph ('breve' (ID 1085)) width is 600<br>'uni0331.case' (ID 1113): width is 0, base glyph ('macron' (ID 1088)) width is 600<br>'uni309E' (ID 1115): width is 571, base glyph ('uni309D' (ID 1114)) width is 492<br>'uni30FE' (ID 1118): width is 569, base glyph ('uni30FD' (ID 1117)) width is 519<br>'uni309E.vert' (ID 1120): width is 1000, base glyph ('uni3099' (ID 1124)) width is 0<br>'uni30FE.vert' (ID 1123): width is 1000, base glyph ('uni3099' (ID 1124)) width is 0<br>'uni309B' (ID 1126): width is 254, base glyph ('uni3099' (ID 1124)) width is 0<br>'uni309C' (ID 1127): width is 307, base glyph ('uni309A' (ID 1125)) width is 0<br>'aogonek' (ID 247): width is 491, base glyph ('a' (ID 226)) width is 500<br>'jcircumflex' (ID 314): width is 364, base glyph ('j' (ID 312)) width is 337<br>'tbar' (ID 381): width is 600, base glyph ('t' (ID 380)) width is 538</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Compare Advance Width hmtx and CFF table</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Compare Advance Width hmtx and CFF table_cell">
+                <button id="Compare Advance Width hmtx and CFF table_btn" onclick='toggle_detail("Compare Advance Width hmtx and CFF table");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Compare Advance Width hmtx and CFF table</h3></th></tr>
+            </thead>
+            <tbody id="Compare Advance Width hmtx and CFF table" class="result_body">
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>hmtx/CFF</p></td>
+                    <td class="feature"><p>Advance width</p></td>
+                    <td class="message"><p>Advance width of hmtx and CFF table should be the same (tolerance 2 units).</p></td>
+                    <td class="detail"><p>This is a TrueType font. This test is only for CFF.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Individual Glyphs</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Individual Glyphs_cell">
+                <button id="Individual Glyphs_btn" onclick='toggle_detail("Individual Glyphs");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Individual Glyphs</h3></th></tr>
+            </thead>
+            <tbody id="Individual Glyphs" class="result_body">
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>post</p></td>
+                    <td class="feature"><p>PostScript names</p></td>
+                    <td class="message"><p>Check double NULL</p></td>
+                    <td class="detail"><p>Please investigate.<br>Font has multiple NULL, but should have only one:<br>'.null'<br>'NULL'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>glyf</p></td>
+                    <td class="feature"><p>Contours</p></td>
+                    <td class="message"><p>.notdef should be TOFU.</p></td>
+                    <td class="detail"><p>.notdef has 2 contours. It looks like it is a TOFU.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>uni200B</p></td>
+                    <td class="message"><p>Check ZERO WIDTH SPACE</p></td>
+                    <td class="detail"><p>Missing uni200B in cmap table.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>FEFF</p></td>
+                    <td class="message"><p>ZERO WIDTH NO-BREAK SPACE: Missing FEFF in cmap table.</p></td>
+                    <td class="detail"><p>Required for Monotype library. Please add unicode FEFF. Custom work refer to spec.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>00AD</p></td>
+                    <td class="message"><p>Soft hyphen 00AD in cmap table.</p></td>
+                    <td class="detail"><p>Soft hyphen is often used in web and in professional print publishing software like Adobe InDesign.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>hmtx</p></td>
+                    <td class="feature"><p>Index 958 and 959</p></td>
+                    <td class="message"><p>Advance width of nonbreakingspace (uni00A0) should match the space (uni0020) width.</p></td>
+                    <td class="detail"><p>OK: Advance width nonbreakingspace (uni00A0) does match the space (uni0020) width:<br>300 = 300</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>uni2009</p></td>
+                    <td class="message"><p>Advance width of 'thinspace' (uni2009) should be smaller than the width of space (uni0020).</p></td>
+                    <td class="detail"><p>Can not check, because no uni2009 in this font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>uni200A</p></td>
+                    <td class="message"><p>Advance width of 'hairspace' (uni200A) should be smaller than the width of space (uni0020).</p></td>
+                    <td class="detail"><p>Can not check, because no uni200A in this font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>uni2004</p></td>
+                    <td class="message"><p>Advance width of 'THREE-PER-EM SPACE' (uni2004) should be 1/3 of em-square.</p></td>
+                    <td class="detail"><p>Can not check, because no uni2004 in this font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>uni2005</p></td>
+                    <td class="message"><p>Advance width of 'FOUR-PER-EM SPACE' (uni2005) should be 1/4 of em-square.</p></td>
+                    <td class="detail"><p>Can not check, because no uni2005 in this font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>uni2006</p></td>
+                    <td class="message"><p>Advance width of 'SIX-PER-EM SPACE' (uni2006) should be 1/6 of em-square.</p></td>
+                    <td class="detail"><p>Can not check, because no uni2006 in this font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>uni2002</p></td>
+                    <td class="message"><p>Advance width of 'EN SPACE' (uni2002) should be 50%% of em-square.</p></td>
+                    <td class="detail"><p>Can not check, because no uni2002 in this font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>uni2003</p></td>
+                    <td class="message"><p>Advance width of 'EM SPACE' (uni2003) should be equal to UPM.</p></td>
+                    <td class="detail"><p>Can not check, because no uni2003 in this font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>uni2008</p></td>
+                    <td class="message"><p>Advance width of 'PUNCTUATION SPACE' (uni2008) should be equal to the 'period' advance width.</p></td>
+                    <td class="detail"><p>Can not check, because no uni2008 in this font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Nodes Close to Zones (CFF)</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Nodes Close to Zones (CFF)_cell">
+                <button id="Nodes Close to Zones (CFF)_btn" onclick='toggle_detail("Nodes Close to Zones (CFF)");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Nodes Close to Zones (CFF)</h3></th></tr>
+            </thead>
+            <tbody id="Nodes Close to Zones (CFF)" class="result_body">
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>CFF</p></td>
+                    <td class="feature"><p>Alignment Zones</p></td>
+                    <td class="message"><p>Check if nodes are close to a zone, but not in or touching it.</p></td>
+                    <td class="detail"><p>This is a TTF, but this test is only for CFF fonts.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Should be Composite (only .ttf)</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Should be Composite (only .ttf)_cell">
+                <button id="Should be Composite (only .ttf)_btn" onclick='toggle_detail("Should be Composite (only .ttf)");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Should be Composite (only .ttf)</h3></th></tr>
+            </thead>
+            <tbody id="Should be Composite (only .ttf)" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>glyf</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Glyphs (LATIN) which are made from components.<br>Great.</p></td>
+                    <td class="detail"><p>'Aacute' (uni00C1) (ID 2)<br>'Abreve' (uni0102) (ID 3)<br>'Acircumflex' (uni00C2) (ID 9)<br>'Adieresis' (uni00C4) (ID 16)<br>'Agrave' (uni00C0) (ID 18)<br>'Amacron' (uni0100) (ID 21)<br>'Aring' (uni00C5) (ID 23)<br>'Aringacute' (uni01FA) (ID 24)<br>'Atilde' (uni00C3) (ID 25)<br>'AEacute' (uni01FC) (ID 27)<br>'Cacute' (uni0106) (ID 30)<br>'Ccaron' (uni010C) (ID 31)<br>'Ccircumflex' (uni0108) (ID 33)<br>'Cdotaccent' (uni010A) (ID 34)<br>'Dcaron' (uni010E) (ID 38)<br>'Dcroat' (uni0110) (ID 39)<br>'Eacute' (uni00C9) (ID 42)<br>'Ebreve' (uni0114) (ID 43)<br>'Ecaron' (uni011A) (ID 44)<br>'Ecircumflex' (uni00CA) (ID 45)<br>'Edieresis' (uni00CB) (ID 52)<br>'Edotaccent' (uni0116) (ID 53)<br>'Egrave' (uni00C8) (ID 55)<br>'Emacron' (uni0112) (ID 58)<br>'Gbreve' (uni011E) (ID 63)<br>'Gcircumflex' (uni011C) (ID 65)<br>'uni0122' (uni0122) (ID 66)<br>'Gdotaccent' (uni0120) (ID 67)<br>'Hcircumflex' (uni0124) (ID 70)<br>'Iacute' (uni00CD) (ID 72)<br>'Ibreve' (uni012C) (ID 73)<br>'Icircumflex' (uni00CE) (ID 74)<br>'Idieresis' (uni00CF) (ID 76)<br>'Idotaccent' (uni0130) (ID 77)<br>'Igrave' (uni00CC) (ID 79)<br>'Imacron' (uni012A) (ID 82)<br>'Itilde' (uni0128) (ID 84)<br>'Jcircumflex' (uni0134) (ID 86)<br>'uni0136' (uni0136) (ID 88)<br>'Lacute' (uni0139) (ID 91)<br>'Lcaron' (uni013D) (ID 92)<br>'uni013B' (uni013B) (ID 93)<br>'Ldot' (uni013F) (ID 94)<br>'Nacute' (uni0143) (ID 100)<br>'Ncaron' (uni0147) (ID 101)<br>'uni0145' (uni0145) (ID 102)<br>'Ntilde' (uni00D1) (ID 105)<br>'Oacute' (uni00D3) (ID 107)<br>'Obreve' (uni014E) (ID 108)<br>'Ocircumflex' (uni00D4) (ID 109)<br>'Odieresis' (uni00D6) (ID 116)<br>'Ograve' (uni00D2) (ID 120)<br>'Ohungarumlaut' (uni0150) (ID 128)<br>'Omacron' (uni014C) (ID 130)<br>'Oslashacute' (uni01FE) (ID 133)<br>'Otilde' (uni00D5) (ID 134)<br>'Racute' (uni0154) (ID 141)<br>'Rcaron' (uni0158) (ID 142)<br>'uni0156' (uni0156) (ID 143)<br>'Scaron' (uni0160) (ID 148)<br>'Scircumflex' (uni015C) (ID 150)<br>'uni0218' (uni0218) (ID 151)<br>'Tcaron' (uni0164) (ID 156)<br>'uni021A' (uni021A) (ID 158)<br>'Uacute' (uni00DA) (ID 160)<br>'Ubreve' (uni016C) (ID 161)<br>'Ucircumflex' (uni00DB) (ID 162)<br>'Udieresis' (uni00DC) (ID 164)<br>'Ugrave' (uni00D9) (ID 166)<br>'Uhungarumlaut' (uni0170) (ID 174)<br>'Umacron' (uni016A) (ID 176)<br>'Uring' (uni016E) (ID 178)<br>'Utilde' (uni0168) (ID 179)<br>'Wacute' (uni1E82) (ID 182)<br>'Wcircumflex' (uni0174) (ID 183)<br>'Wdieresis' (uni1E84) (ID 184)<br>'Wgrave' (uni1E80) (ID 185)<br>'Yacute' (uni00DD) (ID 188)<br>'Ycircumflex' (uni0176) (ID 189)<br>'Ydieresis' (uni0178) (ID 190)<br>'Ygrave' (uni1EF2) (ID 192)<br>'Zacute' (uni0179) (ID 197)<br>'Zcaron' (uni017D) (ID 198)<br>'Zdotaccent' (uni017B) (ID 199)<br>'aacute' (uni00E1) (ID 227)<br>'abreve' (uni0103) (ID 228)<br>'acircumflex' (uni00E2) (ID 234)<br>'adieresis' (uni00E4) (ID 241)<br>'agrave' (uni00E0) (ID 243)<br>'amacron' (uni0101) (ID 246)<br>'aring' (uni00E5) (ID 248)<br>'atilde' (uni00E3) (ID 250)<br>'aeacute' (uni01FD) (ID 252)<br>'cacute' (uni0107) (ID 255)<br>'ccaron' (uni010D) (ID 256)<br>'ccircumflex' (uni0109) (ID 258)<br>'cdotaccent' (uni010B) (ID 259)<br>'eacute' (uni00E9) (ID 266)<br>'ebreve' (uni0115) (ID 267)<br>'ecaron' (uni011B) (ID 268)<br>'ecircumflex' (uni00EA) (ID 269)<br>'edieresis' (uni00EB) (ID 276)<br>'edotaccent' (uni0117) (ID 277)<br>'egrave' (uni00E8) (ID 279)<br>'emacron' (uni0113) (ID 282)<br>'gbreve' (uni011F) (ID 288)<br>'gcircumflex' (uni011D) (ID 290)<br>'gdotaccent' (uni0121) (ID 292)<br>'hcircumflex' (uni0125) (ID 295)<br>'iacute' (uni00ED) (ID 299)<br>'ibreve' (uni012D) (ID 300)<br>'icircumflex' (uni00EE) (ID 301)<br>'igrave' (uni00EC) (ID 306)<br>'imacron' (uni012B) (ID 309)<br>'itilde' (uni0129) (ID 311)<br>'jcircumflex' (uni0135) (ID 314)<br>'uni0137' (uni0137) (ID 316)<br>'lacute' (uni013A) (ID 319)<br>'lcaron' (uni013E) (ID 320)<br>'uni013C' (uni013C) (ID 321)<br>'ldot' (uni0140) (ID 322)<br>'nacute' (uni0144) (ID 327)<br>'ncaron' (uni0148) (ID 328)<br>'uni0146' (uni0146) (ID 329)<br>'ntilde' (uni00F1) (ID 332)<br>'oacute' (uni00F3) (ID 334)<br>'obreve' (uni014F) (ID 335)<br>'ocircumflex' (uni00F4) (ID 336)<br>'odieresis' (uni00F6) (ID 343)<br>'ograve' (uni00F2) (ID 347)<br>'ohungarumlaut' (uni0151) (ID 355)<br>'omacron' (uni014D) (ID 357)<br>'oslashacute' (uni01FF) (ID 360)<br>'otilde' (uni00F5) (ID 361)<br>'racute' (uni0155) (ID 368)<br>'rcaron' (uni0159) (ID 369)<br>'uni0157' (uni0157) (ID 370)<br>'sacute' (uni015B) (ID 374)<br>'scaron' (uni0161) (ID 375)<br>'scircumflex' (uni015D) (ID 377)<br>'uni0219' (uni0219) (ID 378)<br>'uni021B' (uni021B) (ID 384)<br>'uacute' (uni00FA) (ID 386)<br>'ubreve' (uni016D) (ID 387)<br>'ucircumflex' (uni00FB) (ID 388)<br>'udieresis' (uni00FC) (ID 390)<br>'ugrave' (uni00F9) (ID 392)<br>'uhungarumlaut' (uni0171) (ID 400)<br>'umacron' (uni016B) (ID 402)<br>'uring' (uni016F) (ID 404)<br>'utilde' (uni0169) (ID 405)<br>'wacute' (uni1E83) (ID 408)<br>'wcircumflex' (uni0175) (ID 409)<br>'wdieresis' (uni1E85) (ID 410)<br>'wgrave' (uni1E81) (ID 411)<br>'yacute' (uni00FD) (ID 414)<br>'ycircumflex' (uni0177) (ID 415)<br>'ydieresis' (uni00FF) (ID 416)<br>'ygrave' (uni1EF3) (ID 418)<br>'zacute' (uni017A) (ID 423)<br>'zcaron' (uni017E) (ID 424)<br>'zdotaccent' (uni017C) (ID 425)<br>'fi' (uniFB01) (ID 457)<br>'fl' (uniFB02) (ID 458)</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>glyf</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Glyphs (OTHER) which are made from components.<br>Great.</p></td>
+                    <td class="detail"><p>'uni00AD' (uni00AD) (ID 924)</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>glyf</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Glyphs (VIETNAMESE) which are made from components.<br>Great.</p></td>
+                    <td class="detail"><p>'uni1EB6' (uni1EB6) (ID 5)<br>'uni1EAC' (uni1EAC) (ID 11)<br>'uni1EA0' (uni1EA0) (ID 17)<br>'uni1EA2' (uni1EA2) (ID 19)<br>'uni1EC6' (uni1EC6) (ID 47)<br>'uni1EB8' (uni1EB8) (ID 54)<br>'uni1EBA' (uni1EBA) (ID 56)<br>'uni1EBC' (uni1EBC) (ID 60)<br>'uni1ECA' (uni1ECA) (ID 78)<br>'uni1EC8' (uni1EC8) (ID 80)<br>'uni1ED8' (uni1ED8) (ID 111)<br>'uni1ECC' (uni1ECC) (ID 119)<br>'uni1ECE' (uni1ECE) (ID 121)<br>'uni1EDA' (uni1EDA) (ID 123)<br>'uni1EE2' (uni1EE2) (ID 124)<br>'uni1EDC' (uni1EDC) (ID 125)<br>'uni1EDE' (uni1EDE) (ID 126)<br>'uni1EE4' (uni1EE4) (ID 165)<br>'uni1EE6' (uni1EE6) (ID 167)<br>'uni1EE8' (uni1EE8) (ID 169)<br>'uni1EF0' (uni1EF0) (ID 170)<br>'uni1EEA' (uni1EEA) (ID 171)<br>'uni1EEC' (uni1EEC) (ID 172)<br>'uni1EEE' (uni1EEE) (ID 173)<br>'uni1EF4' (uni1EF4) (ID 191)<br>'uni1EF6' (uni1EF6) (ID 193)<br>'uni1EF6' (uni1EF6) (ID 193)<br>'uni1EF8' (uni1EF8) (ID 195)<br>'uni1EAF' (uni1EAF) (ID 229)<br>'uni1EB7' (uni1EB7) (ID 230)<br>'uni1EB1' (uni1EB1) (ID 231)<br>'uni1EB3' (uni1EB3) (ID 232)<br>'uni1EAD' (uni1EAD) (ID 236)<br>'uni1EA1' (uni1EA1) (ID 242)<br>'uni1EA3' (uni1EA3) (ID 244)<br>'uni1EC7' (uni1EC7) (ID 271)<br>'uni1EB9' (uni1EB9) (ID 278)<br>'uni1EBB' (uni1EBB) (ID 280)<br>'uni1ECB' (uni1ECB) (ID 305)<br>'uni1EC9' (uni1EC9) (ID 307)<br>'uni1ED9' (uni1ED9) (ID 338)<br>'uni1ECD' (uni1ECD) (ID 346)<br>'uni1ECF' (uni1ECF) (ID 348)<br>'uni1EDB' (uni1EDB) (ID 350)<br>'uni1EE3' (uni1EE3) (ID 351)<br>'uni1EDD' (uni1EDD) (ID 352)<br>'uni1EDF' (uni1EDF) (ID 353)<br>'uni1EE5' (uni1EE5) (ID 391)<br>'uni1EE7' (uni1EE7) (ID 393)<br>'uni1EE9' (uni1EE9) (ID 395)<br>'uni1EF1' (uni1EF1) (ID 396)<br>'uni1EEB' (uni1EEB) (ID 397)<br>'uni1EED' (uni1EED) (ID 398)<br>'uni1EEF' (uni1EEF) (ID 399)<br>'uni1EF5' (uni1EF5) (ID 417)<br>'uni1EF7' (uni1EF7) (ID 419)</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>glyf</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Glyphs (LATIN) which chould be made from components (in many cases).<br>Please investigate and approve if correct.</p></td>
+                    <td class="detail"><p>'aringacute' (uni01FB) (ID 249)<br>'dcaron' (uni010F) (ID 262)<br>'uni0123' (uni0123) (ID 291)<br>'idieresis' (uni00EF) (ID 303)<br>'tcaron' (uni0165) (ID 382)</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>glyf</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Glyphs (FRACTIONS) which chould be made from components (in many cases).<br>Please investigate and approve if correct.</p></td>
+                    <td class="detail"><p>'onehalf' (uni00BD) (ID 853)<br>'onequarter' (uni00BC) (ID 854)<br>'threequarters' (uni00BE) (ID 855)</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>glyf</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Glyphs (VIETNAMESE) which chould be made from components (in many cases).<br>Please investigate and approve if correct.</p></td>
+                    <td class="detail"><p>'uni1EAE' (uni1EAE) (ID 4)<br>'uni1EB0' (uni1EB0) (ID 6)<br>'uni1EB2' (uni1EB2) (ID 7)<br>'uni1EB4' (uni1EB4) (ID 8)<br>'uni1EA4' (uni1EA4) (ID 10)<br>'uni1EA6' (uni1EA6) (ID 12)<br>'uni1EA8' (uni1EA8) (ID 13)<br>'uni1EAA' (uni1EAA) (ID 14)<br>'uni1EBE' (uni1EBE) (ID 46)<br>'uni1EC0' (uni1EC0) (ID 48)<br>'uni1EC2' (uni1EC2) (ID 49)<br>'uni1EC4' (uni1EC4) (ID 50)<br>'uni1ED0' (uni1ED0) (ID 110)<br>'uni1ED2' (uni1ED2) (ID 112)<br>'uni1ED4' (uni1ED4) (ID 113)<br>'uni1ED6' (uni1ED6) (ID 114)<br>'uni1EE0' (uni1EE0) (ID 127)<br>'uni1EB5' (uni1EB5) (ID 233)<br>'uni1EA5' (uni1EA5) (ID 235)<br>'uni1EA7' (uni1EA7) (ID 237)<br>'uni1EA9' (uni1EA9) (ID 238)<br>'uni1EAB' (uni1EAB) (ID 239)<br>'uni1EBF' (uni1EBF) (ID 270)<br>'uni1EC1' (uni1EC1) (ID 272)<br>'uni1EC3' (uni1EC3) (ID 273)<br>'uni1EC5' (uni1EC5) (ID 274)<br>'uni1EBD' (uni1EBD) (ID 284)<br>'uni1ED1' (uni1ED1) (ID 337)<br>'uni1ED3' (uni1ED3) (ID 339)<br>'uni1ED5' (uni1ED5) (ID 340)<br>'uni1ED7' (uni1ED7) (ID 341)<br>'uni1EE1' (uni1EE1) (ID 354)<br>'uni1EF9' (uni1EF9) (ID 421)</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Should not be Composite (CFF)</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Should not be Composite (CFF)_cell">
+                <button id="Should not be Composite (CFF)_btn" onclick='toggle_detail("Should not be Composite (CFF)");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Should not be Composite (CFF)</h3></th></tr>
+            </thead>
+            <tbody id="Should not be Composite (CFF)" class="result_body">
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>CFF </p></td>
+                    <td class="feature"><p>Composite</p></td>
+                    <td class="message"><p>CFF font should not have any composite.</p></td>
+                    <td class="detail"><p>This is not a CFF font. Skipped this check.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Advance Width (zero or negative)</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Advance Width (zero or negative)_cell">
+                <button id="Advance Width (zero or negative)_btn" onclick='toggle_detail("Advance Width (zero or negative)");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Advance Width (zero or negative)</h3></th></tr>
+            </thead>
+            <tbody id="Advance Width (zero or negative)" class="result_body">
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>hmtx</p></td>
+                    <td class="feature"><p>advance</p></td>
+                    <td class="message"><p>Pull glyphs with advance width zero.</p></td>
+                    <td class="detail"><p>'uni309A' (uni309A) (ID 1125) = '0'<br>'uni0326' (uni0326) (ID 1072) = '0'<br>'uni0312.case' (ID 1105) = '0'<br>'uni0324' (uni0324) (ID 1071) = '0'<br>'hookabovecomb' (uni0309) (ID 1065) = '0'<br>'gravecomb.case' (ID 1093) = '0'<br>'uni030B.case' (ID 1095) = '0'<br>'uni0312' (uni0312) (ID 1068) = '0'<br>'uni0327.case' (ID 1110) = '0'<br>'uni030C.case' (ID 1097) = '0'<br>'uni0304' (uni0304) (ID 1064) = '0'<br>'uni0331' (uni0331) (ID 1076) = '0'<br>'uni0302.case' (ID 1096) = '0'<br>'uni03060303' (ID 1131) = '0'<br>'uni03020303' (ID 1135) = '0'<br>'uni031B' (uni031B) (ID 1069) = '0'<br>'uni0311.case' (ID 1104) = '0'<br>'uni0328.case' (ID 1111) = '0'<br>'uni3099' (uni3099) (ID 1124) = '0'<br>'uni03020301' (ID 1132) = '0'<br>'uni0307' (uni0307) (ID 1054) = '0'<br>'uni0307.case' (ID 1092) = '0'<br>'uni0308.case' (ID 1091) = '0'<br>'uni0335' (uni0335) (ID 1077) = '0'<br>'hookabovecomb.case' (ID 1102) = '0'<br>'dotbelowcomb' (uni0323) (ID 1070) = '0'<br>'uni03060300' (ID 1129) = '0'<br>'uni030A' (uni030A) (ID 1062) = '0'<br>'dotbelowcomb.case' (ID 1107) = '0'<br>'uni0326.case' (ID 1109) = '0'<br>'tildecomb' (uni0303) (ID 1063) = '0'<br>'uni0311' (uni0311) (ID 1067) = '0'<br>'uni0328' (uni0328) (ID 1074) = '0'<br>'.null' (ID 962) = '0'<br>'uni03060301' (ID 1128) = '0'<br>'uni0302' (uni0302) (ID 1059) = '0'<br>'uni0306' (uni0306) (ID 1061) = '0'<br>'uni0331.case' (ID 1113) = '0'<br>'uni03060309' (ID 1130) = '0'<br>'uni03020309' (ID 1134) = '0'<br>'uni0308' (uni0308) (ID 1053) = '0'<br>'uni0327' (uni0327) (ID 1073) = '0'<br>'uni0324.case' (ID 1108) = '0'<br>'uni030F' (uni030F) (ID 1066) = '0'<br>'acutecomb' (uni0301) (ID 1056) = '0'<br>'uni032E' (uni032E) (ID 1075) = '0'<br>'uni031B.case' (ID 1106) = '0'<br>'uni030B' (uni030B) (ID 1057) = '0'<br>'uni0304.case' (ID 1101) = '0'<br>'uni030A.case' (ID 1099) = '0'<br>'tildecomb.case' (ID 1100) = '0'<br>'gravecomb' (uni0300) (ID 1055) = '0'<br>'uni030F.case' (ID 1103) = '0'<br>'uni0306.case' (ID 1098) = '0'<br>'acutecomb.case' (ID 1094) = '0'<br>'uni032E.case' (ID 1112) = '0'<br>'uni03020300' (ID 1133) = '0'<br>'uni030C' (uni030C) (ID 1060) = '0'<br>'uni030C.alt' (ID 1058) = '0'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Un/Necessary Tables</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Un/Necessary Tables_cell">
+                <button id="Un/Necessary Tables_btn" onclick='toggle_detail("Un/Necessary Tables");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Un/Necessary Tables</h3></th></tr>
+            </thead>
+            <tbody id="Un/Necessary Tables" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>-/-</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Unnecessary tables (private tables and embedded bitmap tables).</p></td>
+                    <td class="detail"><p>OK: No unnecessary tables.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>DSIG</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Necessary tables.</p></td>
+                    <td class="detail"><p>'DSIG' is in the font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>First Four Characters</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="First Four Characters_cell">
+                <button id="First Four Characters_btn" onclick='toggle_detail("First Four Characters");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>First Four Characters</h3></th></tr>
+            </thead>
+            <tbody id="First Four Characters" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>post</p></td>
+                    <td class="feature"><p>Index 0</p></td>
+                    <td class="message"><p>PostScript name should be ".notdef".</p></td>
+                    <td class="detail"><p>OK: Index 0 = ".notdef".</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>hmtx</p></td>
+                    <td class="feature"><p>Index 0</p></td>
+                    <td class="message"><p>'.notdef' advance width should not be 0.</p></td>
+                    <td class="detail"><p>OK: '.notdef' advance width is 500.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>post</p></td>
+                    <td class="feature"><p>Index 1</p></td>
+                    <td class="message"><p>PostScript name should be one of the names:<br>".null"<br>"null"<br>"NULL".</p></td>
+                    <td class="detail"><p>Index 1 = "A".<br>Check that character is the correct glyph.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>post</p></td>
+                    <td class="feature"><p>Index 2</p></td>
+                    <td class="message"><p>PostScript name should be one of the names:<br>"nonmarkingreturn"<br>"CR".</p></td>
+                    <td class="detail"><p>Index 2 = "Aacute". Check that character is the correct glyph.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>post</p></td>
+                    <td class="feature"><p>Index 3</p></td>
+                    <td class="message"><p>PostScript name should be "space"</p></td>
+                    <td class="detail"><p>Index 3 = "Abreve". Check that character is the correct glyph.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>OS/2 table</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="OS/2 table_cell">
+                <button id="OS/2 table_btn" onclick='toggle_detail("OS/2 table");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>OS/2 table</h3></th></tr>
+            </thead>
+            <tbody id="OS/2 table" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>table version 4.</p></td>
+                    <td class="message"><p>'OS/2' table version should be 4.</p></td>
+                    <td class="detail"><p>OK: 'OS/2' table version is: 4.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>useTypoMetrics</p></td>
+                    <td class="message"><p>If the hhea metrics match the usWin metrics, it does not matter what the sTypo metrics are the fsSelection useTypoMetrics flag should be False.</p></td>
+                    <td class="detail"><p>OK: fsSelection useTypoMetrics flag should be False and is False.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>WWS</p></td>
+                    <td class="message"><p>If no NID 21 and 22, 'OS/2' fsSelection flag for WWS should be True.</p></td>
+                    <td class="detail"><p>'OS/2' fsSelection flag for WWS should be True but is False.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>italic flag</p></td>
+                    <td class="message"><p>'OS/2' fsSelection italic flag should match the 'head' macStyle italic flag. They should be the same.</p></td>
+                    <td class="detail"><p>OK: They are the same.'OS/2' fsSelection italic flag is False and 'head' macStyle italic flag is False.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>usBreakChar</p></td>
+                    <td class="message"><p>'OS/2' usBreakChar should be 0x0020.</p></td>
+                    <td class="detail"><p>OK: 'OS/2' usBreakChar is 0x0020.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>usDefaultChar</p></td>
+                    <td class="message"><p>'OS/2' usDefaultChar should be 0x0000.</p></td>
+                    <td class="detail"><p>OK: 'OS/2' usDefaultChar is 0x0000.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>usFirstCharIndex</p></td>
+                    <td class="message"><p>'OS/2' usFirstCharIndex should be 0x000D</p></td>
+                    <td class="detail"><p>OK: 'OS/2' usFirstCharIndex is 0x000D.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>usLastCharIndex</p></td>
+                    <td class="message"><p>'OS/2' usLastCharIndex should be 0xFFE5</p></td>
+                    <td class="detail"><p>OK: 'OS/2' usLastCharIndex is 0xFFE5.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>Embedding Level</p></td>
+                    <td class="message"><p>For library fonts embedding level should be 'Preview & Print Embedding'.</p></td>
+                    <td class="detail"><p>Embedding Level is 'Embedding Level = Installable Embedding'. If custom font please check against job spec.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>fsType</p></td>
+                    <td class="message"><p>Pull 'OS/2' fsType.</p></td>
+                    <td class="detail"><p>embedding level: Embedding Level = Installable Embedding<br>no subsetting flag: False<br>bitmap embedding only flag: False</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>fvar table</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="fvar table_cell">
+                <button id="fvar table_btn" onclick='toggle_detail("fvar table");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>fvar table</h3></th></tr>
+            </thead>
+            <tbody id="fvar table" class="result_body">
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>fvar</p></td>
+                    <td class="feature"><p>variable font</p></td>
+                    <td class="message"><p>Variable font must have a fvar table.</p></td>
+                    <td class="detail"><p>This font is not a variable font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>STAT table</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="STAT table_cell">
+                <button id="STAT table_btn" onclick='toggle_detail("STAT table");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>STAT table</h3></th></tr>
+            </thead>
+            <tbody id="STAT table" class="result_body">
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>STAT</p></td>
+                    <td class="feature"><p>static font</p></td>
+                    <td class="message"><p>Variable font must have a STAT table.</p></td>
+                    <td class="detail"><p>No check of STAT table for static fonts included, yet. Static fonts do not need to have a STAT table. It is only recommended by Microsoft, not required.<br>More infos here:<br><a href='https://docs.microsoft.com/en-us/typography/opentype/spec/stat'>https://docs.microsoft.com/en-us/typography/opentype/spec/stat</a></p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Missing uni0000 and uni000D in cmap Table</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Missing uni0000 and uni000D in cmap Table_cell">
+                <button id="Missing uni0000 and uni000D in cmap Table_btn" onclick='toggle_detail("Missing uni0000 and uni000D in cmap Table");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Missing uni0000 and uni000D in cmap Table</h3></th></tr>
+            </thead>
+            <tbody id="Missing uni0000 and uni000D in cmap Table" class="result_body">
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>cmap(0, 3, 0)</p></td>
+                    <td class="message"><p>Missing uni0000 and uni000D in cmap MS/BMP(0,3,0) and Unicode/2.0, BMP only(3,1,0).</p></td>
+                    <td class="detail"><p>Please verify with spec or Project Manager if uni0000 is required, if so: PLEASE ADD.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>cmap(0, 3, 0)</p></td>
+                    <td class="message"><p>Missing uni0000 and uni000D in cmap MS/BMP(0,3,0) and Unicode/2.0, BMP only(3,1,0).</p></td>
+                    <td class="detail"><p>cmap(0, 3, 0) contains U+000D</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>cmap(3, 1, 0)</p></td>
+                    <td class="message"><p>Missing uni0000 and uni000D in cmap MS/BMP(0,3,0) and Unicode/2.0, BMP only(3,1,0).</p></td>
+                    <td class="detail"><p>Please verify with spec or Project Manager if uni0000 is required, if so: PLEASE ADD.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>cmap</p></td>
+                    <td class="feature"><p>cmap(3, 1, 0)</p></td>
+                    <td class="message"><p>Missing uni0000 and uni000D in cmap MS/BMP(0,3,0) and Unicode/2.0, BMP only(3,1,0).</p></td>
+                    <td class="detail"><p>cmap(3, 1, 0) contains U+000D</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Obsolete Language Tag TUR</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Obsolete Language Tag TUR_cell">
+                <button id="Obsolete Language Tag TUR_btn" onclick='toggle_detail("Obsolete Language Tag TUR");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Obsolete Language Tag TUR</h3></th></tr>
+            </thead>
+            <tbody id="Obsolete Language Tag TUR" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>-/-</p></td>
+                    <td class="feature"><p>TRK</p></td>
+                    <td class="message"><p>Obsolete language tag 'TUR' should be TRK.</p></td>
+                    <td class="detail"><p>OK: No language tag 'TUR' in any table.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Name Table</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Name Table_cell">
+                <button id="Name Table_btn" onclick='toggle_detail("Name Table");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Name Table</h3></th></tr>
+            </thead>
+            <tbody id="Name Table" class="result_body">
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 0 (3, 1, 1033, 0)</p></td>
+                    <td class="message"><p>MS NID 0, Copyright.</p></td>
+                    <td class="detail"><p>Please verify agains spec.<br>MS NID 0 is 'Copyright <mark>2019 The Cherry Bomb Project Authors (https://github.com/satsuyako/CherryBomb)</mark>'<br>It should follow this structure: 'Copyright (c) XXXX - XXXX /entity/. All rights reserved.' </p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 1</p></td>
+                    <td class="message"><p>MS NID 1, Family Name length shouldn't be longer then 31.</p></td>
+                    <td class="detail"><p>OK: NID 1 length is '15'<br>'Cherry Bomb One' </p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 1</p></td>
+                    <td class="message"><p>Reserved word used in Family Name NID1 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 1 does not contain any of the following keywords: 'Regular, Bold, Roman'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 1</p></td>
+                    <td class="message"><p>Reserved word used in Family NID1 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 1 does not contain any of the following keywords: 'Book, Ultra, Normal'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 1</p></td>
+                    <td class="message"><p>Reserved word used in Family NID1 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 1 does not contain any of the following keywords: 'Roman'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 1</p></td>
+                    <td class="message"><p>Reserved word used in Family NID1 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 1 does not contain any of the following keywords: 'Regular, Bold, Italic, Extra, Light, Black, Thin, Wide, Ultra'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 1</p></td>
+                    <td class="message"><p>Should be camel case Family NID1</p></td>
+                    <td class="detail"><p>NID 1: OK. No camel case required.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 1</p></td>
+                    <td class="message"><p>Check style extentions Family NID1</p></td>
+                    <td class="detail"><p>NID 1 does not contain any of the following beginnings: 'Demi, Dm, Semi, Ex, Sm, X, Xtra, Extra, Ultra'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>name/OS/2</p></td>
+                    <td class="feature"><p>MS NID 1</p></td>
+                    <td class="message"><p>Width Names Family NID1</p></td>
+                    <td class="detail"><p>OS/2 usWidthClass seems to be correct. Cannot find any specific width name in the name:<br>'Cherry Bomb One'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 2</p></td>
+                    <td class="message"><p>MS NID 2, Subfamily.</p></td>
+                    <td class="detail"><p>OK: NID 2 is 'Regular'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 2</p></td>
+                    <td class="message"><p>Reserved word used in Subfamily NID2 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 2 does not contain any of the following keywords: 'Book, Ultra, Normal'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 2</p></td>
+                    <td class="message"><p>Reserved word used in Subfamily NID2 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 2 does not contain any of the following keywords: 'Roman'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 2</p></td>
+                    <td class="message"><p>NID 2 'MS/BMP/English (U.S.)' should match 'MS/BMP/English (U.S.)'.</p></td>
+                    <td class="detail"><p>NID 2 is the same 'Regular' = 'Regular'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 3</p></td>
+                    <td class="message"><p>NID 3 'MS/BMP/English (U.S.)' should match 'MS/BMP/English (U.S.)'.</p></td>
+                    <td class="detail"><p>NID 3 is the same '4.100;STYK;CherryBombOne-Regular' = '4.100;STYK;CherryBombOne-Regular'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 4</p></td>
+                    <td class="message"><p>MS NID 4, Full Name length shouldn't be longer than 31.</p></td>
+                    <td class="detail"><p>OK: NID 4 length is '23'<br>'Cherry Bomb One Regular' </p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="W">
+                    <td class="code"><p>Warning</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 4</p></td>
+                    <td class="message"><p>If NID 2 is 'Regular': MS NID 4 = NID 1</p></td>
+                    <td class="detail"><p>NID 4 'Cherry Bomb One Regular' ≠ NID 1 'Cherry Bomb One'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 4</p></td>
+                    <td class="message"><p>Reserved word used in Full Name NID4 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 4 does not contain any of the following keywords: 'Book, Ultra, Normal'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 4</p></td>
+                    <td class="message"><p>Reserved word used in Full Name NID4 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 4 does not contain any of the following keywords: 'Roman'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 4</p></td>
+                    <td class="message"><p>Should be camel case Full Name NID4</p></td>
+                    <td class="detail"><p>NID 4: OK. No camel case required.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 4</p></td>
+                    <td class="message"><p>Check style extentions Full Name NID4</p></td>
+                    <td class="detail"><p>NID 4 does not contain any of the following beginnings: 'Demi, Dm, Semi, Ex, Sm, X, Xtra, Extra, Ultra'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>name/OS/2</p></td>
+                    <td class="feature"><p>MS NID 4</p></td>
+                    <td class="message"><p>Width Names Full Name NID4</p></td>
+                    <td class="detail"><p>OS/2 usWidthClass seems to be correct. Cannot find any specific width name in the name:<br>'Cherry Bomb One Regular'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>name/head</p></td>
+                    <td class="feature"><p>MS NID 5</p></td>
+                    <td class="message"><p>name table version should match head table fontRevision.</p></td>
+                    <td class="detail"><p>OK: name table version entry 'Version 4.100; ttfautohint (v1.8.3)' does match fontRevision 'Version 4.1'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 5</p></td>
+                    <td class="message"><p>NID 5 'MS/BMP/English (U.S.)' should match 'MS/BMP/English (U.S.)'.</p></td>
+                    <td class="detail"><p>NID 5 is the same 'Version 4.100; ttfautohint (v1.8.3)' = 'Version 4.100; ttfautohint (v1.8.3)'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 6</p></td>
+                    <td class="message"><p>MS NID 6, PostScript Name length shouldn't be longer then 27.<br>(Otherwise it may cause issues in MS Word.)</p></td>
+                    <td class="detail"><p>NID 6 length is '21'<br>'CherryBombOne-Regular' </p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 6</p></td>
+                    <td class="message"><p>MS NID 6, PostScript Name check for illegal characters.<br>Monotype uses NID 6 for creating CSS classes for their demo HTML. The following characters cause issues in the CSS code: '<br>, ,  , &, _, [, ], (, ), {, }, <, >, /, \, %'</p></td>
+                    <td class="detail"><p>NID 6 is 'CherryBombOne-Regular', Everything looks good.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 6</p></td>
+                    <td class="message"><p>MS NID 6, PostScript Name check for illegal characters.<br>'space' in NID 6 cause issues in fontbook for Mac.</p></td>
+                    <td class="detail"><p>NID 6 is 'CherryBombOne-Regular', Everything looks good.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 6</p></td>
+                    <td class="message"><p>Reserved word used in Postscript NID6 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 6 does not contain any of the following keywords: 'Book, Ultra, Normal'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 6</p></td>
+                    <td class="message"><p>Reserved word used in Postscript NID6 and not allowed in Microsoft Office applications.</p></td>
+                    <td class="detail"><p>NID 6 does not contain any of the following keywords: 'Roman'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 6</p></td>
+                    <td class="message"><p>Should be camel case Postscript NID6</p></td>
+                    <td class="detail"><p>NID 6: OK. No camel case required.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 6</p></td>
+                    <td class="message"><p>NID 6 'MS/BMP/English (U.S.)' should match 'MS/BMP/English (U.S.)'.</p></td>
+                    <td class="detail"><p>NID 6 is the same 'CherryBombOne-Regular' = 'CherryBombOne-Regular'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 8</p></td>
+                    <td class="message"><p>Manufactur (NID 8) should be Monotype IP</p></td>
+                    <td class="detail"><p>MS NID 8 is 'satsuyako', but should be one of these: 'Monotype Imaging Inc.', 'Monotype Imaging Inc', 'Monotype ITC Inc.', 'Monotype Hong Kong Limited', 'Monotype Limited', 'Monotype KK', 'Monotype Solutions India Private Limited', 'Monotype GmbH', 'MyFonts Inc.', 'MyFonts Inc', 'Fontsmith Ltd.', 'Fontsmith Ltd'.<br></p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 11</p></td>
+                    <td class="message"><p>MS NID 11, URL Vendor should be 'http://www.monotype.com'. </p></td>
+                    <td class="detail"><p>NID 11 is https://satsuyako.com/, but should be http://www.monotype.com. Please verify against job spec.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 12</p></td>
+                    <td class="message"><p>MS NID 12, URL Vendor should be 'http://www.monotype.com'. </p></td>
+                    <td class="detail"><p>NID 12 is https://satsuyako.com/, but should be http://www.monotype.com. Please verify against job spec.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 8/13</p></td>
+                    <td class="message"><p>License text</p></td>
+                    <td class="detail"><p>Cannot check license text because of unkown entity 'satsuyako' (NID8). Please verify against job spec.<br>MS NID 13 is:<br>This Font Software is licensed under the SIL Open Font License, Version 1.1. This license is available with a FAQ at: https://scripts.sil.org/OFL<br>, most common Monotype license test is:<br>This <mark>font software is the property of Monotype Imaging Inc., or one of its affiliated entities (collectively, Monotype) and its use by you is covered under the terms of a license agreement. You have obtained this font software either directly from Monotype or together with software distributed by one of the licensees of Monotype. This software is a valuable asset of Monotype. Unless you have entered into a specific license agreement granting you additional rights, your use of this software is limited by the terms of the actual license agreement you have entered into with Monotype. You may not copy or distribute this software. If you have any questions concerning your rights you should review the license agreement you received with the software. You can learn more about Monotype by clicking here: www.monotype.com.</mark></p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 14</p></td>
+                    <td class="message"><p>MS NID 14, URL Vendor should be 'http://www.monotype.com'. </p></td>
+                    <td class="detail"><p>NID 14 is https://scripts.sil.org/OFL, but should be http://www.monotype.com. Please verify against job spec.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Mac names</p></td>
+                    <td class="message"><p>Mac name table entries are not necessary anymore.</p></td>
+                    <td class="detail"><p>This font has no Mac name table entries. This is correct.<br>Further read: <a href='https://photorank.atlassian.net/wiki/spaces/TYPE/pages/825852095/App+test+no+Mac+name+table' target='_blank'>App test: no Mac name table</a></p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 0 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'MS NID 0, Copyright' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Copyright is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 1 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'MS NID 1, Family' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Family is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 2 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'MS NID 2, Subfamily' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Subfamily is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 3 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'MS NID 3, Unique ID' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Unique ID is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 4 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'MS NID 4, Full Name' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Full Name is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 5 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'MS NID 5, Version' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Version is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 6 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'MS NID 6, Postscript' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Postscript is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 7 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'MS NID 7, Trademark' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Trademark NID 7 (MS/BMP/English (U.S.)) is missing.<br>Please verify agains spec. It might be ok if it's a symbol font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 8 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'MS NID 8, Manufacturer' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Manufacturer is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 9 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'MS NID 9, Designer' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Designer is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 10 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'MS NID 10, Description' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Description NID 10 (MS/BMP/English (U.S.)) is missing.<br>Please verify agains spec. It might be ok if it's a symbol font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 11 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'MS NID 11, URL Vendor' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>URL Vendor is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 13 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'MS NID 13, License Description' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>License Description is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 14 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'MS NID 14, License Info URL' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>License Info URL is present.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 16 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'MS NID 16, Typographic Family name' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Typographic Family name NID 16 (MS/BMP/English (U.S.)) is missing.<br>Please verify agains spec. It might be ok if it's a symbol font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>MS NID 17 (MS/BMP/English (U.S.))</p></td>
+                    <td class="message"><p>Necessary name table entry according Monotype: 'MS NID 17, Typographic Subfamily name' (MS/BMP/English (U.S.))</p></td>
+                    <td class="detail"><p>Typographic Subfamily name NID 17 (MS/BMP/English (U.S.)) is missing.<br>Please verify agains spec. It might be ok if it's a symbol font.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Underline Position and Thickness</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Underline Position and Thickness_cell">
+                <button id="Underline Position and Thickness_btn" onclick='toggle_detail("Underline Position and Thickness");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Underline Position and Thickness</h3></th></tr>
+            </thead>
+            <tbody id="Underline Position and Thickness" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>post</p></td>
+                    <td class="feature"><p>underline position and thickness</p></td>
+                    <td class="message"><p>underlinePosition should be a negative and underlineThickness not 0 or negative.</p></td>
+                    <td class="detail"><p>underlinePosition is '-100'.<br>underlineThicknes is '50'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Kerning (kern Table and GPOS Kerning)</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Kerning (kern Table and GPOS Kerning)_cell">
+                <button id="Kerning (kern Table and GPOS Kerning)_btn" onclick='toggle_detail("Kerning (kern Table and GPOS Kerning)");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Kerning (kern Table and GPOS Kerning)</h3></th></tr>
+            </thead>
+            <tbody id="Kerning (kern Table and GPOS Kerning)" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>GPOS</p></td>
+                    <td class="feature"><p>kern feature</p></td>
+                    <td class="message"><p>Simple technical test if kern feature in GPOS table. This cannot replace a visual kerning validation.</p></td>
+                    <td class="detail"><p>The font has GPOS kerning.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>kern</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Check if 'kern' table in font.<br>Further reading: <a href='https://photorank.atlassian.net/wiki/spaces/TYPE/pages/791314455/Kern+table' target='_blank'>Kern table</a></p></td>
+                    <td class="detail"><p>TTF is missing a 'kern' table. This is required for custom fonts and recommended for Library fonts (only TTF not CFF), because PowerPoint still does not support GPOS kerning (Nov. 2020)</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Vendor ID</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Vendor ID_cell">
+                <button id="Vendor ID_btn" onclick='toggle_detail("Vendor ID");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Vendor ID</h3></th></tr>
+            </thead>
+            <tbody id="Vendor ID" class="result_body">
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>achVendID</p></td>
+                    <td class="message"><p>Vendor ID should be 'MONO'</p></td>
+                    <td class="detail"><p>Vendor ID is 'STYK'. Please change to 'MONO'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>Vertical Metrics</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="Vertical Metrics_cell">
+                <button id="Vertical Metrics_btn" onclick='toggle_detail("Vertical Metrics");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>Vertical Metrics</h3></th></tr>
+            </thead>
+            <tbody id="Vertical Metrics" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2 and head</p></td>
+                    <td class="feature"><p>sTypeAsc/Desc and unitsPerEm</p></td>
+                    <td class="message"><p>The result of sTypoAscender – sTypoDescender should match or exceed the unitsPerEm value.</p></td>
+                    <td class="detail"><p>The result of sTypoAscender – sTypoDescender (1000) match or exceed the unitsPerEm value (1000).</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>hhea</p></td>
+                    <td class="feature"><p>Vertical Metrics</p></td>
+                    <td class="message"><p>Pull hhea Metrics</p></td>
+                    <td class="detail"><p>hhea.ascent: 1160<br>hhea.descent: -288<br>hhea.lineGap: 0</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>Vertical Metrics</p></td>
+                    <td class="message"><p>Pull OS/2 sTypo Metrics</p></td>
+                    <td class="detail"><p>OS2.sTypoAscender: 880<br>OS2.sTypoDescender: -120<br>OS2.sTypoLineGap: 0</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>Vertical Metrics</p></td>
+                    <td class="message"><p>Pull OS/2 usWin Metrics</p></td>
+                    <td class="detail"><p>OS2.usWinAscent: 1160<br>OS2.usWinDescent: 288</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>xAvgCharWidth</p></td>
+                    <td class="message"><p>Get 'OS/2' xAvgCharWidth.</p></td>
+                    <td class="detail"><p>xAvgCharWidth = 703.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>hhea</p></td>
+                    <td class="feature"><p>advanceWidthMax</p></td>
+                    <td class="message"><p>Get advanceWidthMax.</p></td>
+                    <td class="detail"><p>advanceWidthMax = 1385.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>hhea</p></td>
+                    <td class="feature"><p>xMin, yMin, xMax, yMax</p></td>
+                    <td class="message"><p>Get xMin, yMin, xMax, yMax.</p></td>
+                    <td class="detail"><p>xMin: -734<br>yMin: -272<br>xMax: 1360<br>yMax: 1054<br></p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>sTypoAscender</p></td>
+                    <td class="message"><p>Vertical Metrics 'sTypoAscender' shouldn't be negative.</p></td>
+                    <td class="detail"><p>sTypoAscender = '880'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>sTypoDescender</p></td>
+                    <td class="message"><p>Vertical Metrics 'sTypoDescender' should be negative.</p></td>
+                    <td class="detail"><p>sTypoDescender = '-120'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>sTypoLineGap</p></td>
+                    <td class="message"><p>Vertical Metrics 'sTypoLineGap' shouldn't be negative.</p></td>
+                    <td class="detail"><p>sTypoLineGap = '0'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>usWinAscent</p></td>
+                    <td class="message"><p>Vertical Metrics 'usWinAscent' shouldn't be negative.</p></td>
+                    <td class="detail"><p>usWinAscent = '1160'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>OS/2</p></td>
+                    <td class="feature"><p>usWinDescent</p></td>
+                    <td class="message"><p>Vertical Metrics 'usWinDescent' shouldn't be negative.</p></td>
+                    <td class="detail"><p>usWinDescent = '288'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>hhea</p></td>
+                    <td class="feature"><p>ascent</p></td>
+                    <td class="message"><p>Vertical Metrics 'ascent' shouldn't be negative.</p></td>
+                    <td class="detail"><p>ascent = '1160'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>hhea</p></td>
+                    <td class="feature"><p>descent</p></td>
+                    <td class="message"><p>Vertical Metrics 'descent' should be negative.</p></td>
+                    <td class="detail"><p>descent = '-288'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>hhea</p></td>
+                    <td class="feature"><p>lineGap</p></td>
+                    <td class="message"><p>Vertical Metrics 'lineGap' shouldn't be negative.</p></td>
+                    <td class="detail"><p>lineGap = '0'.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>gasp Table</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="gasp Table_cell">
+                <button id="gasp Table_btn" onclick='toggle_detail("gasp Table");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>gasp Table</h3></th></tr>
+            </thead>
+            <tbody id="gasp Table" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>gasp</p></td>
+                    <td class="feature"><p>Version</p></td>
+                    <td class="message"><p>gasp table verison should be 1.</p></td>
+                    <td class="detail"><p>Verison = 1</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="I">
+                    <td class="code"><p>Info</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>gasp</p></td>
+                    <td class="feature"><p>Default</p></td>
+                    <td class="message"><p>Pull gasp table Default.</p></td>
+                    <td class="detail"><p>Grid-fit = True, Do gray = True, Symmetric grid-fit = True, Symmetric smoothing = True</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>gasp</p></td>
+                    <td class="feature"><p>Default</p></td>
+                    <td class="message"><p>Check gasp table Default.</p></td>
+                    <td class="detail"><p>gasp table default is:<br>Grid-fit = True, Do gray = True, Symmetric grid-fit = True, Symmetric smoothing = True<br>and should be:<br>Grid-fit = True, Do gray = True, Symmetric grid-fit = True, Symmetric smoothing = True</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>PostScript names</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="PostScript names_cell">
+                <button id="PostScript names_btn" onclick='toggle_detail("PostScript names");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>PostScript names</h3></th></tr>
+            </thead>
+            <tbody id="PostScript names" class="result_body">
+                    
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>post</p></td>
+                    <td class="feature"><p>PostScript names</p></td>
+                    <td class="message"><p>Postscript names should not be longer then 29 characters. May cause issues in PDF.</p></td>
+                    <td class="detail"><p>Every PostScript name is fine.</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>				<h2>OT Features</h2>
+				<table class="results">
+
+						<thead>
+                <tr>
+                <th class="A code" id="OT Features_cell">
+                <button id="OT Features_btn" onclick='toggle_detail("OT Features");' title="Toggle details">&#x25bc;</button>
+                </th>
+                <th colspan="3"><h3>OT Features</h3></th></tr>
+            </thead>
+            <tbody id="OT Features" class="result_body">
+                    
+                <tr class="W">
+                    <td class="code"><p>Warning</p></td>
+                    <td class="fontname"><p>Cherry Bomb One Regular (CherryBombOne-Regular.ttf)</p></td>
+                    <td class="table"><p>name</p></td>
+                    <td class="feature"><p>Friendly Name</p></td>
+                    <td class="message"><p>Check if Stylistic Set has friendly name.</p></td>
+                    <td class="detail"><p>Friendly Stylistc Set Name is missing for: 'ss01'</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                      </tbody>
+            </table>
+    </body>
+</html>

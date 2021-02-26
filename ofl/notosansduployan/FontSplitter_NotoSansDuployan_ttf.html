@@ -1,0 +1,2658 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv='content-type' content='text/html; charset=utf-8'>
+    <meta name="code" content="Olli Meier">
+    <title>MT FontSplitter</title>
+    <style type="text/css">
+      body {
+        /*background-color: #fff; #fdfdfb;*/
+        color: #131313;
+        font-family: "Kootenay Pro", Axel, "System Font", "Fira Sans", sans-serif;
+        /*line-height: 1.3em;*/
+        margin: 0;
+        /*padding: 1em;*/
+        font-size: 14px;
+        /*padding-right: 50px;*/
+        /*background: linear-gradient(to bottom, #383838, white);*/
+      }
+
+    table {width:100%;}
+    tr {margin: 10px;}
+    td {border: 1px solid #fff; /*#fdfdfb;*/}
+/*
+    table th, table td {
+    overflow: scroll !important;
+    white-space: nowrap;
+}
+*/
+
+    mark {
+        background-color: #fff990;
+        color: black;
+        opacity: 0.7;
+    }
+
+    .containerMain {
+        position: absolute;
+        z-index: 2;
+        /*top:-2000px;*/
+        left: 15px; 
+        background-color: white;
+        overflow: scroll;
+        width: calc(100% - 15px);
+    }
+
+
+    .containerCSScode {
+        overflow: scroll;
+        position: absolute;
+        z-index: 1;
+        top:0px;
+        padding-top: 200px;
+        padding-left: 20px;
+        width: 100%;
+        background-color: #383838;
+    }
+
+    .cssButton {
+        z-index: 3;
+        position: fixed;
+        top: 49%;
+    }
+
+    .cssButtonStyle {
+        /*text-align: center;*/
+        /*text-transform: uppercase;*/
+        transform-origin: left bottom 0;
+        /*writing-mode:tb-rl;*/
+        -webkit-transform:rotate(-90deg);
+        -moz-transform:rotate(-90deg);
+        -o-transform: rotate(-90deg);
+        -ms-transform:rotate(-90deg);
+        transform: rotate(-90deg);
+        white-space:nowrap;
+        display:block;
+        /*bottom:0;
+        width:20px;
+        height:20px;*/
+
+    }
+
+    .comment{color:#FCD833}
+    .rule{color:#009FE3}
+    .element{color:#FFF}
+    .keyword{color:#E50051}
+    .prop{color:#FF9700}
+    .whitetext{color:#FFF}
+    /*.deepgray{background-color:#383838}*/
+    .darkgray{background-color: #787878}
+    .darkgray_text{color:#BBB}
+    .lightgray{background-color:rgb(252,252,252)}
+    .lightgray_text{color:rgb(252,252,252)}
+    .gray_text{color:lightgrey}
+
+    pre{font-family:Consolas,Courier,monospace;
+        /*font-size:.81em;*/
+        line-height:1.1em;
+        margin:0;
+        /*padding:1em;*/
+        border:0;
+        -webkit-touch-callout:text!important;
+        -webkit-user-select:text!important;
+        -khtml-user-select:text!important;
+        -moz-user-select:text!important;
+        -ms-user-select:text!important;
+        user-select:text!important
+    }
+    .gradientBG {
+        background:
+            linear-gradient(
+                limegreen,
+                transparent
+            ),
+            linear-gradient(
+                90deg,
+                skyblue,
+                transparent
+            ),
+            linear-gradient(
+                -90deg,
+                coral,
+                transparent
+            );
+            
+        background-blend-mode: screen;
+        }
+
+    .linearGradientBG{
+        background:
+            repeating-linear-gradient(
+                -45deg,
+                transparent,
+                transparent 25%,
+                tomato 0,
+                tomato 50%
+            ),
+            repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 25%,
+                dodgerblue 0,
+                dodgerblue 50%
+            ), wheat;
+
+        background-size: 10em 10em;
+        background-blend-mode: multiply;
+    }
+
+    .linearGradient2BG{
+        background:
+            repeating-linear-gradient(
+                50deg,
+                #F7A37B,
+                #F7A37B 1em,
+                #FFDEA8 1em,
+                #FFDEA8 2em,
+                #D0E4B0 2em,
+                #D0E4B0 3em,
+                #7CC5D0 3em,
+                #7CC5D0 4em,
+                #00A2E1 4em,
+                #00A2E1 5em,
+                #0085C8 5em,
+                #0085C8 6em
+            ),
+            repeating-linear-gradient(
+                -50deg,
+                #F7A37B,
+                #F7A37B 1em,
+                #FFDEA8 1em,
+                #FFDEA8 2em,
+                #D0E4B0 2em,
+                #D0E4B0 3em,
+                #7CC5D0 3em,
+                #7CC5D0 4em,
+                #00A2E1 4em,
+                #00A2E1 5em,
+                #0085C8 5em,
+                #0085C8 6em
+            );
+            
+        background-blend-mode: multiply;
+    }
+
+    .chr {
+        line-height: 1.45em;
+        font-size:2.5em;
+        		display:inline-block;
+width:1.45em;
+white-space: pre;
+        min-width:1.45em;
+        height:1.45em;
+        text-align:center;
+        /*margin:-1px -1px -1px -4px;*/
+        background-color: #fff; /*#fdfdfb;*/
+        border:1px solid #efefef;/*#FAF7F5;*/ 
+        /*overflow: scroll !important;*/
+        white-space: nowrap;
+        font-size: 30px;
+    }
+
+    .characterZoom {
+        display:inline-block;
+        white-space: pre;
+        text-align:center;
+        background-color: #fff; /*#fdfdfb;*/
+        border:10px solid #efefef;/*#FAF7F5;*/ 
+        white-space: nowrap;
+        font-size: 35vh;
+        z-index:1000; 
+        width:50%; 
+        height:50%;
+        position: fixed; 
+        left: 25%; 
+        top:25%; 
+        display: none;"
+    }
+
+    .characterUniRanges{
+        font-size:2.5em;
+        display:inline-block;
+        /*width:1.45em;*/
+        min-width:2em;
+        height:2em;
+        text-align:center;
+        margin:-0px -0px -1px -4px;
+        background-color:#fff;
+        border:1px solid rgb(240,240,240); 
+        white-space: pre;
+    }
+
+    .characterUniRanges[title-B]:active {
+        z-index: 999;
+      content: attr(title-B);
+      position: relative;
+        background:#B3D4FC;
+        font-size: 20.5em;
+        display:inline-block;
+        /*width:10.45em;*/
+        min-width:500px;
+        height:500px;
+        text-align:center;
+        margin:-0px -0px -1px -4px;
+        border:1px solid rgb(240,240,240); 
+        white-space: pre;
+    }
+
+    [data-title] {
+      transition-timing-function: ease-in;
+          transition: 0.4s;
+      position: relative;
+    }
+
+    [data-title]:hover::before {
+      content: attr(data-title);
+      position: absolute;
+      z-index: 999;
+      bottom: -26px;
+      display: inline-block;
+      padding: 3px 6px;
+      border-radius: 2px;
+      background: #000;
+      color: #fff;
+      font-size: 12px;
+      font-family: sans-serif;
+      white-space: nowrap;
+      left: -20px;
+    }
+
+    [data-title]:hover::after {
+          z-index: 999;
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 8px;
+      display: inline-block;
+      color: #fff;
+      border: 8px solid transparent;    
+      border-bottom: 8px solid #000;
+    }
+
+    .characterMetaData {
+        line-height: 1.45em;
+        font-size:2.5em;
+        		display:inline-block;
+width:1.45em;
+white-space: pre;
+        max-width:1.45em !important;
+        min-width:1.45em;
+        height:1.45em;
+        text-align:center;
+        /*margin:-1px -1px -1px -4px;*/
+        background-color: #fff; /*#fdfdfb;*/
+        border:1px solid #efefef;/*#FAF7F5;*/ 
+        /*overflow: scroll !important;*/
+        white-space: nowrap;
+        font-size: 30px;
+    }
+
+    .characterFix {
+        font-size:2.5em;
+        		display:inline-block;
+width:1.45em;
+white-space: pre;
+        min-width:1.45em;
+        height:1.45em;
+        text-align:center;
+        /*margin:-1px -1px -1px -4px;*/
+        background-color: #fff; /*#fdfdfb;*/
+        border:1px solid #efefef;/*#FAF7F5;*/
+        overflow-x: scroll !important;
+        white-space: nowrap;
+        font-size: 30px;
+    }
+
+    .characterFontNames {
+        font-size:2.5em;
+        		display:inline-block;
+width:1.45em;
+white-space: pre;
+        min-width: 1.45em;
+        height:1.45em;
+        text-align:center;
+        /*margin:-1px -1px -1px -4px;*/
+        background-color: #fff; /*#fdfdfb;*/
+        border: 1px solid #fff; /*#fdfdfb;*/ 
+        position: -webkit-sticky;
+        position: sticky;
+        white-space: pre !important;
+        font-size: 30px;
+    }
+
+    .buttonBlack {
+        background-color: #131313;
+        border: 1px solid #fff; /*#fdfdfb;*/
+        color: #fff; /*#fdfdfb;*/
+        padding: 5px 15px;
+        text-align: center;
+        /*text-decoration: none;*/
+        display: inline-block;
+        margin: 1px 1px;
+        cursor: pointer;
+        border-radius: 0.0em;
+
+    }
+
+    .features-head {
+        content:"";
+        display:inline-block;
+        float:left;
+        width:100%;
+        border-bottom:1px solid rgb(240,240,240);
+        padding-top:10px;
+        margin-top:30px; 
+        margin-bottom:10px
+    }
+
+    input {
+        /*width: 44px;
+        height: 23px;
+        background-color: buttonface;*/
+        cursor: default;
+        border-width: 0px;
+        border-style: solid;
+        border-color: ; #fff; /*#fdfdfb;*//*rgb(169, 169, 169);*/
+        border-image: initial;
+        padding: 0px opx;
+    }
+
+    .inputColor{
+        width: 25px;
+        height: 29px;
+        cursor: default;
+        border: none;
+    }
+
+    button {
+        border: 0;
+        height: 100%;
+        /*width: 100%;*/
+        padding: 5px 15px;
+        text-align: center;
+        /*text-decoration: none;*/
+        display: inline-block;
+        margin: 1px 1px;
+        cursor: pointer;
+        border-radius: 0.0em;
+        vertical-align: top;
+        background: #fff; /*#fdfdfb;*/
+        outline: none;
+    }
+
+    .buttonBorder {
+        border: 0;
+        height: 100%;
+        /*width: 100%;*/
+        padding: 5px 15px;
+        text-align: center;
+        /*text-decoration: none;*/
+        display: inline-block;
+        margin: 1px 1px;
+        cursor: pointer;
+        border-radius: 0.0em;
+        vertical-align: top;
+        background: #fff; /*#fdfdfb;*/
+        outline: none;
+        border:1px solid #efefef;/*#FAF7F5;*/
+    }
+
+    .buttonOT {
+        border:1px solid #efefef;/*#FAF7F5;*/
+        width: 40px;
+        padding: 5px 5px;
+    }
+    .buttonExtra{
+        vertical-align: bottom;
+        line-height: 2em;
+
+        border: 0;
+        height: 100%;
+        /*width: 100%;*/
+        padding: 5px 15px;
+        text-align: center;
+        /*text-decoration: none;*/
+        display: inline-block;
+        margin: 1px 1px;
+        cursor: pointer;
+        border-radius: 0.0em;
+        background: #fff; /*#fdfdfb;*/
+        outline: none;
+    }
+
+    select {
+        border: 0;
+        height: 100%;
+        width: 100%;
+        padding: 5px 15px;
+        text-align: center;
+        /*text-decoration: none;*/
+        display: inline-block;
+        margin: 1px 1px;
+        cursor: pointer;
+        border-radius: 0.0em;
+        vertical-align: top;
+        background: #131313;
+        color: #fff; /*#fdfdfb;*/
+    }
+
+    .selectSampleText {
+        border: 0;
+        height: 100%;
+        width: 200px;
+        /*padding: 5px 15px;*/
+        text-align: center;
+        /*text-decoration: none;*/
+        display: inline-block;
+        margin: 5px 1px;
+        cursor: pointer;
+        border-radius: 0.0em;
+        vertical-align: top;
+        background: #fff; /*#fdfdfb;*/
+        color: #131313;
+    }
+
+    .textTop {vertical-align: top;}
+    .compareBoxes{word-break: break-all;}
+
+    .flyingFont{
+        font-size: 300px;
+        text-align: center;
+        /*text-transform: uppercase;*/
+        width: 100%;
+    }
+
+    .flyingFont1{
+        color: #FF4136/*#131313*/; 
+        z-index: 900; 
+        position: absolute;
+    }
+    .flyingFont2{
+        /*-webkit-text-stroke-width: 2px;
+           -webkit-text-stroke-color: #FF4136;
+           -webkit-text-fill-color: transparent;*/
+        z-index: 899; 
+        position: absolute;
+           opacity: .5;
+           margin-top: 10px;
+           margin-left: 10px;
+    }
+    .flyingFont3{
+        /*-webkit-text-stroke-width: 2px;
+           -webkit-text-stroke-color: #FF4136;
+           -webkit-text-fill-color: transparent;*/
+        z-index: 898; 
+        position: absolute;
+           opacity: .2;
+           margin-top: 20px;
+           margin-left: 20px;
+    }
+
+    .buttonToggle {
+        border: 0;
+        /*background-color: #131313;*/
+        /*color: #fff; /*#fdfdfb;*/*/
+        text-align: center;
+        /*text-decoration: none;*/
+        display: inline-block;
+        margin: 1px 1px;
+        cursor: pointer;
+        border-radius: 0.0em;
+    }
+
+    button:hover, .selectSampleText:hover {background-color: #131313; color: #fff; /*#fdfdfb;*/}
+    .buttonOT:hover {background-color: #131313; color: #fff; /*#fdfdfb;*/}
+    .buttonExtra:hover {background-color: #fff; /*#fdfdfb;*/ color: #131313;}
+
+    hr { border: 0; height: 1px; background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0));}
+
+    .underline {text-decoration: underline; text-decoration-color: #131313; color: hsl(  0,  0%,  95%); overflow: hidden;} /* for the future: text-underline-offset: from-font; text-decoration-width: from-font; */
+    .strikeout {text-decoration: line-through; text-decoration-color: #131313; color: hsl(  0,  0%,  95%); overflow: hidden;} 
+
+    .chr:hover {background:#B3D4FC}
+    .characterUniRanges:hover {background:#B3D4FC}
+    /*.characterUniRanges:active {
+        background:#B3D4FC;
+        font-size: 20.5em;
+        display:inline-block;
+        /*width:10.45em;*/
+        min-width:500px;
+        height:500px;
+        text-align:center;
+        margin:-0px -0px -1px -4px;
+        border:1px solid rgb(240,240,240); 
+        white-space: pre;
+    }
+    */
+    .characterFix:hover {background:#B3D4FC}
+    .character_name {/*padding-top: 5px; padding-left: 25px;*/}
+    
+    @keyframes blinkblink {
+        0% 100%   {background-color: hsl( 24,  100%, 50%); }
+        50% {background-color: hsl( 24,  100%, 45%); }
+    }
+
+    .serious {animation: blinkblink 0.9s ease-in-out 0s infinite;}
+    .critical {background-color: hsl( 0,  100%, 20%); color: hsl( 0,  0%, 90%);}
+    .error {background-color: hsl( 24,  100%, 45%); color: hsl( 24,  100%, 70%);}
+    .warning {background-color: hsl( 50,  65%, 52%); color: hsl( 50,  65%, 70%);}
+    .info {background-color: #f9f7f6;/*hsl(  0,  0%,  95%);*/ color: hsl(  0,  0%,  70%);}
+
+    .extra {background-color: hsl( 200,  50%, 95%);}
+    .extra_info {background-color: hsl( 200,  50%, 96%); color: hsl( 200,  50%, 80%);}
+
+    .colLeft {
+        width: 50%;
+        padding-left: 25px;
+        text-align: right;
+        padding-right: 25px;
+        vertical-align: text-top;
+    }
+
+    .header {
+      text-transform: none;
+      text-decoration: none;
+      background-color: #fff; /*#fdfdfb;*/
+      text-align: left;
+      color: #131313;
+      position: fixed;
+      padding: 15px 15px 0px 0px;
+      width: 100%;
+      box-shadow: 0px 0px 5px #888888;
+      z-index: 99;
+    }
+
+    .header1 {
+      text-transform: none;
+      text-decoration: none;
+      background-color: #fff; /*#fdfdfb;*/
+      text-align: left;
+      color: #131313;
+      position: fixed;
+      padding: 15px 15px 0px 0px;
+      width: 100%;
+      z-index: 99;
+    }
+    
+    .header:hover  { opacity: 0.95; }
+    .header1:hover  { opacity: 0.95; }
+
+
+    .splitter{width:100%; font-weight: bold;}
+    .center{text-align: center;}
+    .left{text-align: left;}
+    .content{padding-top: 500px;}
+    .sampleBig {/*font-size: 50px !important*/; color:#fff; /*#fdfdfb;*/ padding: 20px 50px 20px 50px; }
+    .sampleWaterfall {padding: 20px 50px 20px 20px;}
+    .waterfallOverflow {white-space:nowrap; overflow: hidden; text-overflow: clip; }
+    .sampleContent {/*empty*/ font-size: 30px;}
+    .compareBoxCSS {vertical-align: top; font-size: 30px;}
+    .blackBG {background-color: #131313;}
+
+    .defaultFont {font-size: 30px;}
+    .infoFont {font-family: "Kootenay Pro", Axel, "System Font", "Fira Sans", sans-serif; font-size: 14px; vertical-align: 5px;}
+    
+    .hidden {display:none;}
+    .sliderbar {vertical-align: 4px;}
+
+    /* Slider design Start */
+
+    .inputRangeCompareBox {
+      padding-bottom: 7px !important;
+      padding-left: 10px;
+    }
+
+    .inputNumberCompareBox{
+        max-width: 50px;
+    }
+
+    input[type=range] {
+      padding-bottom: 3px;
+      -webkit-appearance: none;
+      /*position: relative*/
+    }
+
+    input[type=range]::-webkit-slider-runnable-track {
+      width: 300px;
+      height: 2px;
+      border: none;
+      border-radius: 3px;
+      border: 1px solid #131313;
+    }
+
+    input[type=range]::-moz-range-track {
+      background-color: #131313;
+    }
+
+    input::-moz-range-thumb {
+        background-color: #fff; /*#fdfdfb;*/
+        border: solid 2px #131313;
+        border-radius: 0;
+        height: 10px;
+        width: 10px;
+      }
+
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      border: none;
+      height: 12px;
+      width: 12px;
+      border-radius: 510%;
+      background: #fff; /*#fdfdfb;*/
+      border: 2px solid #131313;
+      margin-top: -5px;
+      cursor: pointer
+    }
+
+    input[type=range]:focus {
+      outline: none
+    }
+
+    /* Slider design End */
+
+    .infoToggle {border-bottom:1px solid #efefef;/*#FAF7F5;*/}
+    .colLeftToggle {
+        width: 50%;
+        padding-left: 25px;
+        text-align: right;
+        padding-right: 25px;
+        vertical-align: mittle;
+    }
+
+    td.rotateSAVE {*/height: 140px;*/ white-space: nowrap; /*float: left;*/ }
+    td.rotate > div {-webkit-transform: rotate(270deg); transform: rotate(270deg); width: 30px;}
+    td.rotate > div > span {/*padding: 5px 10px;*/}
+
+
+    
+
+    
+		@font-face {font-family: 'om_NotoSansDuployanRegularttf'; src: url('NotoSansDuployan-Regular.ttf');}
+	.om_NotoSansDuployanRegularttf {font-family: 'om_NotoSansDuployanRegularttf'; /*font-size: 30px;*/}
+
+    
+
+    /*.animationON {animation: LooperOne 5.0s ease-in-out 0s infinite;}
+    .animationOFF {/*empty*/}*/
+
+
+    </style>
+
+  </head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <body style="-webkit-print-color-adjust:exact;" id="body_all" >
+
+      <div id="zoom_characters" class="characterZoom" onclick="mUp()"></div>
+
+    <div class="header1 center" style="z-index:999; ">
+            Monotype
+        <table class="splitter">
+          <tr>
+            <td class="center">F</td>
+            <td class="center">O</td>
+            <td class="center">N</td>
+            <td class="center">T</td>
+            <td class="center">S</td>
+            <td class="center">P</td>
+            <td class="center">L</td>
+            <td class="center">I</td>
+            <td class="center">T</td>
+            <td class="center">T</td>
+            <td class="center">E</td>
+            <td class="center">R</td>
+          </tr>
+        </table>
+        <br>
+    </div>
+
+       <div class="header center">
+        <table style="width:100%">
+            <tbody id="otFeature" >
+                <td>
+                    <!-- OT feature buttons -->
+                    <table>
+		<tr>
+			<td class="colLeft">Select HTML Language</td><td class="left">
+		<select onchange="functionChangeLanguage(this.value)" class="selectSampleText">		<option value=>Default</option>
+			</select>
+			</td>
+		</tr>
+</table>
+
+                    <!-- fonts size slider
+                    <table>
+                        <tr>
+                        <td class="colLeft">Font Size</td><td class="left"><input type="range" min="0.5" max="20" value="2.5" step=".01" id="slider" /></td>
+                        </tr>
+                    </table>
+                     -->
+
+                    <!-- axis variable fonts -->
+                    
+
+                </td>
+            </tbody>
+
+            <th><button class="buttonExtra" id="otFeature_btn" onclick='functionShowHeader(".header", "otFeature");' title="Toggle details">&#x25bc;</button>
+            </th>
+        </table>
+    </div>  
+
+<div id="cssCodeForCustomerPreview" class="containerCSScode deepgray whitetext">
+<pre>
+
+<span class="comment">/* first assign web font */</span>
+
+<span class="rule">@font-face</span> {
+    <span class="keyword">font-family</span>: 'Noto Sans Duployan Regular'; 
+    <span class="prop">src</span>: <span class="prop">url</span>('../NotoSansDuployan-Regular.ttf') <span class="prop">format</span>('truetype');
+    }
+
+<span class="comment">/* go on with normal style definitions */</span>
+<span class="rule">body</span> {
+    <span class="keyword">font-family</span>: 'Noto Sans Duployan Regular'; <span class="comment">/* this is only an example for one style */</span>
+    <span class="featurestring">
+    <span class="comment">/* setup OpenType features */</span>
+    <span class="keyword">font-feature-settings: </span><span id="w3cfeatures"></span>;
+
+    <span class="comment">/* vendor prefixes */</span>
+    <span class="keyword">-webkit-font-feature-settings: </span><span id="webkitfeatures"></span>;
+    <span class="keyword">-moz-font-feature-settings: </span><span id="mozfeatures-up-to-14"></span>;
+    <span class="keyword">-moz-font-feature-settings: </span><span id="mozfeatures"></span>;
+    <span class="keyword">-ms-font-feature-settings: </span><span id="msfeatures"></span>;
+    <span class="keyword">-o-font-feature-settings: </span><span id="ofeatures"></span>;
+    
+}
+    
+
+<span class="comment">/* language tag */</span>
+<code><</code><span class="keyword">html</span><span class="prop"> lang</span>=<span class="rule">"<span id="htmlLangTag"></span>"</span><code>></code>
+
+...
+
+<code><</code>/<span class="keyword">html</span><code>></code>
+
+</pre>
+</div>
+
+
+<div id="containerMainID" class="containerMain" onscroll="scrollXNamesFunc()">
+
+    <div class="cssButton">
+        <a class="cssButtonStyle whitetext" onclick="functionShowCSSCode('.containerMain')" href="#" style="text-decoration:None;"> 
+            css code
+        </a>
+    </div>
+
+    <div id="showFontNames" class="content" style="background: white; opacity: 0; transition: opacity 1s ease-in-out; position: fixed; z-index: -1; width:100%;">
+        <table style="width:100%; border-bottom: 1px solid #FAF7F5;">
+            <tr>
+                <td class="colLeft">
+                </td>
+                <td class="rotate characterFontNames defaultFont"><div><span class="infoFont"> </span></div></td>
+				<td class="rotate characterFontNames om_NotoSansDuployanRegularttf"><div><span>Noto Sans Duployan</span></div></td>
+				
+            </tr>
+        </table>
+    </div>
+
+    <div id="showFontNames_div" class="center" style="position: fixed; bottom: -50px; z-index:998; width:100%;">
+        <button class="buttonBlack" id="showFontNames_btn" onclick='showhide_div("showFontNames", "font names");' title="Toggle details">show font names</button>
+    </div>
+
+    <div id="varFont" class="content">
+
+        <table>
+            <tr>
+                <td class="colLeft">
+                <!-- <a href="#splitterContent">Character Set Compare</a> https://css-tricks.com/snippets/jquery/smooth-scrolling/ -->
+                2021-02-19 - 13:31.13
+                <br>
+                13:31.13
+                <br>
+                <button class="buttonBorder" onClick="window.print()">
+                Print this page
+                </button>
+                </td>
+                <td class="rotate characterFontNames defaultFont"><div><span class="infoFont"> </span></div></td>
+				<td class="rotate characterFontNames om_NotoSansDuployanRegularttf"><div><span>Noto Sans Duployan</span></div></td>
+				
+            </tr>
+        </table>
+
+            
+		<hr>
+		<table>
+<tr>
+<td class="colLeft">Format<br>(by file ending)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Duployan Regular" data-original-title=".ttf"><span class="infoFont">.ttf</span></td>
+</tr>
+<tr>
+<td class="colLeft">Outline Flavour<br>(CFF or glyf table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Duployan Regular" data-original-title="OT TTF"><span class="infoFont">OT TTF</span></td>
+</tr>
+<tr>
+<td class="colLeft">Number of Glyphs<br>(maxp table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Duployan Regular" data-original-title="158"><span class="infoFont">158</span></td>
+</tr>
+<tr>
+<td class="colLeft">Weight Class<br>(OS/2 table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont " title="Noto Sans Duployan Regular" data-original-title="400"><span class="infoFont">400</span></td>
+</tr>
+<tr>
+<td class="colLeft">Width Class<br>(OS/2 table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont " title="Noto Sans Duployan Regular" data-original-title="5"><span class="infoFont">5</span></td>
+</tr>
+<tr>
+<td class="colLeft">Units per Em<br>(head table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Duployan Regular" data-original-title="1000"><div><span class="infoFont">1000</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">Font Revision<br>(head table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Duployan Regular" data-original-title="2.0"><div><span class="infoFont">2.0</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">OS/2 Table Version<br></td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Duployan Regular" data-original-title="4"><div><span class="infoFont">4</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">sTypeAscender<br>(OS/2 table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Duployan Regular" data-original-title="1069"><div><span class="infoFont">1069</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">sTypeDescender<br>(OS/2 table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Duployan Regular" data-original-title="-293"><div><span class="infoFont">-293</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">sTypeLineGap<br>(OS/2 table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Duployan Regular" data-original-title="0"><div><span class="infoFont">0</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">usWinAscent<br>(OS/2 table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Duployan Regular" data-original-title="1069"><div><span class="infoFont">1069</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">usWinDescent<br>(OS/2 table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Duployan Regular" data-original-title="293"><div><span class="infoFont">293</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">Ascender<br>(hhea table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Duployan Regular" data-original-title="1069"><div><span class="infoFont">1069</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">Descender<br>(hhea table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Duployan Regular" data-original-title="-293"><div><span class="infoFont">-293</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">LineGap<br>(hhea table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Duployan Regular" data-original-title="0"><div><span class="infoFont">0</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">post table format<br>(post table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Duployan Regular" data-original-title="2.0"><div><span class="infoFont">2.0</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">Underline Position<br>(post table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Duployan Regular" data-original-title="-100"><div><span class="infoFont">-100</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">Underline Thickness<br>(post table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Duployan Regular" data-original-title="50"><div><span class="infoFont">50</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">Hgo<br>visual check underline</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData om_NotoSansDuployanRegularttf underline" title="Noto Sans Duployan Regular" data-original-title="Hgo">Hgo</td>
+</tr>
+<tr>
+<td class="colLeft">yStrikeoutPosition<br>(OS/2 table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Duployan Regular" data-original-title="322"><div><span class="infoFont">322</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">yStrikeoutSize<br>(OS/2 table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Duployan Regular" data-original-title="50"><div><span class="infoFont">50</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">strikeout<br>visual check</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData om_NotoSansDuployanRegularttf strikeout" title="Noto Sans Duployan Regular" data-original-title="Hgo">Hgo</td>
+</tr>
+<tr>
+<td class="colLeft">Italic Flag<br>(OS/2 table fsSelection)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Duployan Regular" data-original-title="False"><div><span class="infoFont">False</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">Italic Angle<br>(post table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterFix defaultFont" title="Noto Sans Duployan Regular" data-original-title="0.0"><div><span class="infoFont">0.0</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">Panose: Family<br>(Value 1)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterFix defaultFont" title="Noto Sans Duployan Regular" data-original-title="Latin Text"><div><span class="infoFont">Latin Text</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">Panose: Serif<br>(Value 2)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterFix defaultFont" title="Noto Sans Duployan Regular" data-original-title="Normal Sans"><div><span class="infoFont">Normal Sans</span></div></td>
+</tr>
+
+		</table>
+
+
+            
+
+            
+            <hr>
+            <table id="compareBoxID">
+            <tr id="tableTR" class="textTop sampleBig blackBG compareBoxes">
+
+            <button class="buttonBorder" title="add column" onclick="functionBoxAdd()">+</button>
+            <button class="buttonBorder" title="remove column" onclick="functionBoxRemove()">-</button>
+            <select id="mySelectSampleText" onchange="functionSelectSampleText('mySelectSampleText')" class="selectSampleText">
+
+            <option value='Default Sample'>Default Sample</option><option value='All Unicodes'>All Unicodes</option>
+
+            </select>
+            <input type="color" class="inputColor" value="#82e5fe" title="Background Color" onchange="functionGetColorBG(this.value, '.compareBoxes')">
+            <input type="color" class="inputColor" value="#ff79ad" title="Text Color" onchange="functionGetColorText(this.value, '.compareBoxes')">
+            <button class="buttonBorder" title="Swap Colors" onclick="functionSwapColorTextBG('.compareBoxes')">&#x02B14</button>
+            <button class="buttonBorder" title="have fun, change background" onclick="functionGetRandomBG(['gradientBG', 'linearGradientBG', 'linearGradient2BG', 'blackBG'])">∞</button>
+            <input type="range" class="inputRangeCompareBox" title="Text Size" min="0.5" max="100" value="30" step=".01" id="sliderCompareBoxCSS"/>
+            <input type="number" class="inputNumberCompareBox" value="30" step="1" id="numberCompareBoxCSS"/>
+            <button class="buttonOT" id="leftcompareBox_btn" title="text alignment left" onclick="functionTextAlignment('compareBoxID', 'left')">L</button>
+            <button class="buttonOT" id="centercompareBox_btn" title="text alignment center" onclick="functionTextAlignment('compareBoxID', 'center')">C</button>
+            <button class="buttonOT" id="rightcompareBox_btn" title="text alignment right" onclick="functionTextAlignment('compareBoxID', 'right')">R</button>
+            <span style="vertical-align: super; color: #efefef;">|</span>
+            <button class="buttonOT" id="left-to-rightcompareBox_btn" title="reading direction: left to right" onclick="functionReadDirection('compareBoxID', 'left-to-right')">LR</button>
+            <button class="buttonOT" id="right-to-leftcompareBox_btn" title="reading direction: right to left" onclick="functionReadDirection('compareBoxID', 'right-to-left')">RL</button>
+            <!--<button class="buttonOT" id="top-to-downcompareBox_btn" title="reading direction: top to down" onclick="functionReadDirection('compareBoxID', 'top-to-down')">TD</button>-->
+            <button class="buttonBlack" id="hintingOnOff_btn" onclick="hintingOnOff('.compareBoxes', 'hintingOnOff');" title="activate/deactivate hinting">hinting on</button>
+            
+<td id="myBox" class="compareBox om_NotoSansDuployanRegularttf"><select id="mySelect" name="myBox" onchange="functionSelect('mySelect')"><option value='om_NotoSansDuployanRegularttf'>Noto Sans Duployan (ttf)</option>
+</select>
+
+<span id="myBoxContent" contenteditable="true" class="compareBoxCSS ">1234567890 xozszn HOZD 1/3 @ 1a ;#& ? % $ € ! In August of 2016, four unlikely collaborators in the world of type, fonts and font technology stood on a stage at the ATypI conference in Warsaw, Poland. The collaborators were Apple, Microsoft, Adobe and Google. Together they announced the publishing of OpenType 1.8, an update to the now ubiquitous font standard which was originally an amalgam of Apple & Microsoft’s TrueType, and Adobe’s PostScript font formats. The OpenType 1.8 announcement, ATypI, Warsaw, Poland, September 14, 2016.</span></td>
+
+</tr>
+            </table>
+    
+
+            
+		<hr>
+		<table>
+<thead><tr><tr>
+<td class="colLeft">Copyright<br>NID0 MS (3, 1, 1033, 0)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 0)_btn" onclick='toggle_detail("(3, 1, 1033, 0)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 0)0')" onMouseOut="hover('(3, 1, 1033, 0)0')" class="chr defaultFont " title="Noto Sans Duployan Regular" data-original-title="(3, 1, 1033, 0)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 0)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Duployan Regular"><td onMouseOver="hover('(3, 1, 1033, 0)0')" onMouseOut="hover('(3, 1, 1033, 0)0')" id="(3, 1, 1033, 0)0" class="infoToggle" colspan="1">Copyright 2018 Google LLC. All Rights Reserved.</td></tr></tbody><tr>
+<td class="colLeft">Family<br>NID1 MS (3, 1, 1033, 1)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 1)_btn" onclick='toggle_detail("(3, 1, 1033, 1)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 1)0')" onMouseOut="hover('(3, 1, 1033, 1)0')" class="chr defaultFont " title="Noto Sans Duployan Regular" data-original-title="(3, 1, 1033, 1)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 1)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID 1 and 2 together should be unique within the family.</td><tr class="" title="Noto Sans Duployan Regular"><td onMouseOver="hover('(3, 1, 1033, 1)0')" onMouseOut="hover('(3, 1, 1033, 1)0')" id="(3, 1, 1033, 1)0" class="infoToggle" colspan="1">NID1: 'Noto Sans Duployan' + NID2: 'Regular'</td></tr></tbody><tr>
+<td class="colLeft">Subfamily<br>NID2 MS (3, 1, 1033, 2)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 2)_btn" onclick='toggle_detail("(3, 1, 1033, 2)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 2)0')" onMouseOut="hover('(3, 1, 1033, 2)0')" class="chr defaultFont " title="Noto Sans Duployan Regular" data-original-title="(3, 1, 1033, 2)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 2)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be 'Regular', 'Italic', 'Bold' or 'Bold Italic'.</td><tr class="" title="Noto Sans Duployan Regular"><td onMouseOver="hover('(3, 1, 1033, 2)0')" onMouseOut="hover('(3, 1, 1033, 2)0')" id="(3, 1, 1033, 2)0" class="infoToggle" colspan="1">Regular</td></tr></tbody><tr>
+<td class="colLeft">Unique ID<br>NID3 MS (3, 1, 1033, 3)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 3)_btn" onclick='toggle_detail("(3, 1, 1033, 3)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 3)0')" onMouseOut="hover('(3, 1, 1033, 3)0')" class="chr defaultFont " title="Noto Sans Duployan Regular" data-original-title="(3, 1, 1033, 3)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 3)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be DIFFERENT within the family.</td><tr class="" title="Noto Sans Duployan Regular"><td onMouseOver="hover('(3, 1, 1033, 3)0')" onMouseOut="hover('(3, 1, 1033, 3)0')" id="(3, 1, 1033, 3)0" class="infoToggle" colspan="1">2.000;GOOG;NotoSansDuployan-Regular</td></tr></tbody><tr>
+<td class="colLeft">Full Name<br>NID4 MS (3, 1, 1033, 4)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 4)_btn" onclick='toggle_detail("(3, 1, 1033, 4)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 4)0')" onMouseOut="hover('(3, 1, 1033, 4)0')" class="chr defaultFont " title="Noto Sans Duployan Regular" data-original-title="(3, 1, 1033, 4)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 4)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be DIFFERENT within the family.</td><tr class="" title="Noto Sans Duployan Regular"><td onMouseOver="hover('(3, 1, 1033, 4)0')" onMouseOut="hover('(3, 1, 1033, 4)0')" id="(3, 1, 1033, 4)0" class="infoToggle" colspan="1">Noto Sans Duployan Regular</td></tr></tbody><tr>
+<td class="colLeft">Version<br>NID5 MS (3, 1, 1033, 5)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 5)_btn" onclick='toggle_detail("(3, 1, 1033, 5)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 5)0')" onMouseOut="hover('(3, 1, 1033, 5)0')" class="chr defaultFont " title="Noto Sans Duployan Regular" data-original-title="(3, 1, 1033, 5)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 5)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Duployan Regular"><td onMouseOver="hover('(3, 1, 1033, 5)0')" onMouseOut="hover('(3, 1, 1033, 5)0')" id="(3, 1, 1033, 5)0" class="infoToggle" colspan="1">Version 2.000</td></tr></tbody><tr>
+<td class="colLeft">Postscript<br>NID6 MS (3, 1, 1033, 6)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 6)_btn" onclick='toggle_detail("(3, 1, 1033, 6)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 6)0')" onMouseOut="hover('(3, 1, 1033, 6)0')" class="chr defaultFont " title="Noto Sans Duployan Regular" data-original-title="(3, 1, 1033, 6)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 6)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be DIFFERENT within the family.</td><tr class="" title="Noto Sans Duployan Regular"><td onMouseOver="hover('(3, 1, 1033, 6)0')" onMouseOut="hover('(3, 1, 1033, 6)0')" id="(3, 1, 1033, 6)0" class="infoToggle" colspan="1">NotoSansDuployan-Regular</td></tr></tbody><tr>
+<td class="colLeft">Trademark<br>NID7 MS (3, 1, 1033, 7)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 7)_btn" onclick='toggle_detail("(3, 1, 1033, 7)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 7)0')" onMouseOut="hover('(3, 1, 1033, 7)0')" class="chr defaultFont " title="Noto Sans Duployan Regular" data-original-title="(3, 1, 1033, 7)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 7)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Duployan Regular"><td onMouseOver="hover('(3, 1, 1033, 7)0')" onMouseOut="hover('(3, 1, 1033, 7)0')" id="(3, 1, 1033, 7)0" class="infoToggle" colspan="1">Noto is a trademark of Google Inc.</td></tr></tbody><tr>
+<td class="colLeft">Manufacturer<br>NID8 MS (3, 1, 1033, 8)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 8)_btn" onclick='toggle_detail("(3, 1, 1033, 8)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 8)0')" onMouseOut="hover('(3, 1, 1033, 8)0')" class="chr defaultFont " title="Noto Sans Duployan Regular" data-original-title="(3, 1, 1033, 8)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 8)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Duployan Regular"><td onMouseOver="hover('(3, 1, 1033, 8)0')" onMouseOut="hover('(3, 1, 1033, 8)0')" id="(3, 1, 1033, 8)0" class="infoToggle" colspan="1">Monotype Imaging Inc.</td></tr></tbody><tr>
+<td class="colLeft">Designer<br>NID9 MS (3, 1, 1033, 9)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 9)_btn" onclick='toggle_detail("(3, 1, 1033, 9)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 9)0')" onMouseOut="hover('(3, 1, 1033, 9)0')" class="chr defaultFont " title="Noto Sans Duployan Regular" data-original-title="(3, 1, 1033, 9)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 9)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Duployan Regular"><td onMouseOver="hover('(3, 1, 1033, 9)0')" onMouseOut="hover('(3, 1, 1033, 9)0')" id="(3, 1, 1033, 9)0" class="infoToggle" colspan="1">Monotype Design Team</td></tr></tbody><tr>
+<td class="colLeft">Description<br>NID10 MS (3, 1, 1033, 10)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 10)_btn" onclick='toggle_detail("(3, 1, 1033, 10)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 10)0')" onMouseOut="hover('(3, 1, 1033, 10)0')" class="chr defaultFont " title="Noto Sans Duployan Regular" data-original-title="(3, 1, 1033, 10)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 10)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Duployan Regular"><td onMouseOver="hover('(3, 1, 1033, 10)0')" onMouseOut="hover('(3, 1, 1033, 10)0')" id="(3, 1, 1033, 10)0" class="infoToggle" colspan="1">Designed by Monotype design team.</td></tr></tbody><tr>
+<td class="colLeft">URL Vendor<br>NID11 MS (3, 1, 1033, 11)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 11)_btn" onclick='toggle_detail("(3, 1, 1033, 11)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 11)0')" onMouseOut="hover('(3, 1, 1033, 11)0')" class="chr defaultFont " title="Noto Sans Duployan Regular" data-original-title="(3, 1, 1033, 11)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 11)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Duployan Regular"><td onMouseOver="hover('(3, 1, 1033, 11)0')" onMouseOut="hover('(3, 1, 1033, 11)0')" id="(3, 1, 1033, 11)0" class="infoToggle" colspan="1">http://www.google.com/get/noto/</td></tr></tbody><tr>
+<td class="colLeft">URL Designer<br>NID12 MS (3, 1, 1033, 12)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 12)_btn" onclick='toggle_detail("(3, 1, 1033, 12)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 12)0')" onMouseOut="hover('(3, 1, 1033, 12)0')" class="chr defaultFont " title="Noto Sans Duployan Regular" data-original-title="(3, 1, 1033, 12)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 12)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Duployan Regular"><td onMouseOver="hover('(3, 1, 1033, 12)0')" onMouseOut="hover('(3, 1, 1033, 12)0')" id="(3, 1, 1033, 12)0" class="infoToggle" colspan="1">http://www.monotype.com/studio</td></tr></tbody><tr>
+<td class="colLeft">License Description<br>NID13 MS (3, 1, 1033, 13)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 13)_btn" onclick='toggle_detail("(3, 1, 1033, 13)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 13)0')" onMouseOut="hover('(3, 1, 1033, 13)0')" class="chr defaultFont " title="Noto Sans Duployan Regular" data-original-title="(3, 1, 1033, 13)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 13)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Duployan Regular"><td onMouseOver="hover('(3, 1, 1033, 13)0')" onMouseOut="hover('(3, 1, 1033, 13)0')" id="(3, 1, 1033, 13)0" class="infoToggle" colspan="1">This Font Software is licensed under the SIL Open Font License, Version 1.1. This Font Software is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the SIL Open Font License for the specific language, permissions and limitations governing your use of this Font Software.</td></tr></tbody><tr>
+<td class="colLeft">License Info URL<br>NID14 MS (3, 1, 1033, 14)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 14)_btn" onclick='toggle_detail("(3, 1, 1033, 14)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 14)0')" onMouseOut="hover('(3, 1, 1033, 14)0')" class="chr defaultFont " title="Noto Sans Duployan Regular" data-original-title="(3, 1, 1033, 14)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 14)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Duployan Regular"><td onMouseOver="hover('(3, 1, 1033, 14)0')" onMouseOut="hover('(3, 1, 1033, 14)0')" id="(3, 1, 1033, 14)0" class="infoToggle" colspan="1">http://scripts.sil.org/OFL</td></tr></tbody>
+		</table>
+
+
+            
+
+            
+
+        <!-- big text on black backround -->
+            
+
+            
+
+            
+
+            
+		<hr>
+		<table id="splitterContent">
+<tr>
+<td class="colLeft"><br>uni0000</td>
+<td class="chr defaultFont info" onmousedown="mDn(0, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0000">&#x0000</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(0, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni0000">&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER H<br>uni1BC00</td>
+<td class="chr defaultFont info" onmousedown="mDn(113664, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC00">&#x1BC00</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113664, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC00">&#x1BC00</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER X<br>uni1BC01</td>
+<td class="chr defaultFont info" onmousedown="mDn(113665, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC01">&#x1BC01</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113665, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC01">&#x1BC01</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER P<br>uni1BC02</td>
+<td class="chr defaultFont info" onmousedown="mDn(113666, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC02">&#x1BC02</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113666, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC02">&#x1BC02</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER T<br>uni1BC03</td>
+<td class="chr defaultFont info" onmousedown="mDn(113667, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC03">&#x1BC03</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113667, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC03">&#x1BC03</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER F<br>uni1BC04</td>
+<td class="chr defaultFont info" onmousedown="mDn(113668, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC04">&#x1BC04</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113668, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC04">&#x1BC04</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER K<br>uni1BC05</td>
+<td class="chr defaultFont info" onmousedown="mDn(113669, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC05">&#x1BC05</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113669, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC05">&#x1BC05</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER L<br>uni1BC06</td>
+<td class="chr defaultFont info" onmousedown="mDn(113670, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC06">&#x1BC06</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113670, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC06">&#x1BC06</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER B<br>uni1BC07</td>
+<td class="chr defaultFont info" onmousedown="mDn(113671, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC07">&#x1BC07</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113671, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC07">&#x1BC07</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER D<br>uni1BC08</td>
+<td class="chr defaultFont info" onmousedown="mDn(113672, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC08">&#x1BC08</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113672, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC08">&#x1BC08</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER V<br>uni1BC09</td>
+<td class="chr defaultFont info" onmousedown="mDn(113673, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC09">&#x1BC09</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113673, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC09">&#x1BC09</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER G<br>uni1BC0A</td>
+<td class="chr defaultFont info" onmousedown="mDn(113674, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC0A">&#x1BC0A</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113674, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC0A">&#x1BC0A</td>
+</tr>
+<tr>
+<td class="colLeft">ZERO WIDTH NON-JOINER<br>uni200C</td>
+<td class="chr defaultFont info" onmousedown="mDn(8204, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni200C">&#x200C</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(8204, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni200C">&#x200C</td>
+</tr>
+<tr>
+<td class="colLeft"><br>uni000D</td>
+<td class="chr defaultFont info" onmousedown="mDn(13, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni000D">&#x000D</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(13, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni000D">&#x000D</td>
+</tr>
+<tr>
+<td class="colLeft">ZERO WIDTH JOINER<br>uni200D</td>
+<td class="chr defaultFont info" onmousedown="mDn(8205, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni200D">&#x200D</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(8205, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni200D">&#x200D</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER R<br>uni1BC0B</td>
+<td class="chr defaultFont info" onmousedown="mDn(113675, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC0B">&#x1BC0B</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113675, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC0B">&#x1BC0B</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER P N<br>uni1BC0C</td>
+<td class="chr defaultFont info" onmousedown="mDn(113676, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC0C">&#x1BC0C</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113676, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC0C">&#x1BC0C</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER D S<br>uni1BC0D</td>
+<td class="chr defaultFont info" onmousedown="mDn(113677, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC0D">&#x1BC0D</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113677, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC0D">&#x1BC0D</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER F N<br>uni1BC0E</td>
+<td class="chr defaultFont info" onmousedown="mDn(113678, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC0E">&#x1BC0E</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113678, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC0E">&#x1BC0E</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER K M<br>uni1BC0F</td>
+<td class="chr defaultFont info" onmousedown="mDn(113679, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC0F">&#x1BC0F</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113679, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC0F">&#x1BC0F</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER R S<br>uni1BC10</td>
+<td class="chr defaultFont info" onmousedown="mDn(113680, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC10">&#x1BC10</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113680, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC10">&#x1BC10</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER TH<br>uni1BC11</td>
+<td class="chr defaultFont info" onmousedown="mDn(113681, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC11">&#x1BC11</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113681, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC11">&#x1BC11</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER SLOAN DH<br>uni1BC12</td>
+<td class="chr defaultFont info" onmousedown="mDn(113682, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC12">&#x1BC12</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113682, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC12">&#x1BC12</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER DH<br>uni1BC13</td>
+<td class="chr defaultFont info" onmousedown="mDn(113683, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC13">&#x1BC13</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113683, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC13">&#x1BC13</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER KK<br>uni1BC14</td>
+<td class="chr defaultFont info" onmousedown="mDn(113684, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC14">&#x1BC14</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113684, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC14">&#x1BC14</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER SLOAN J<br>uni1BC15</td>
+<td class="chr defaultFont info" onmousedown="mDn(113685, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC15">&#x1BC15</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113685, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC15">&#x1BC15</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER HL<br>uni1BC16</td>
+<td class="chr defaultFont info" onmousedown="mDn(113686, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC16">&#x1BC16</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113686, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC16">&#x1BC16</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER LH<br>uni1BC17</td>
+<td class="chr defaultFont info" onmousedown="mDn(113687, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC17">&#x1BC17</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113687, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC17">&#x1BC17</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER RH<br>uni1BC18</td>
+<td class="chr defaultFont info" onmousedown="mDn(113688, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC18">&#x1BC18</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113688, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC18">&#x1BC18</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER M<br>uni1BC19</td>
+<td class="chr defaultFont info" onmousedown="mDn(113689, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC19">&#x1BC19</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113689, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC19">&#x1BC19</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER N<br>uni1BC1A</td>
+<td class="chr defaultFont info" onmousedown="mDn(113690, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC1A">&#x1BC1A</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113690, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC1A">&#x1BC1A</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER J<br>uni1BC1B</td>
+<td class="chr defaultFont info" onmousedown="mDn(113691, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC1B">&#x1BC1B</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113691, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC1B">&#x1BC1B</td>
+</tr>
+<tr>
+<td class="colLeft">SPACE<br>uni0020</td>
+<td class="chr defaultFont info" onmousedown="mDn(32, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0020">&#x0020</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(32, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni0020">&#x0020</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER S<br>uni1BC1C</td>
+<td class="chr defaultFont info" onmousedown="mDn(113692, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC1C">&#x1BC1C</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113692, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC1C">&#x1BC1C</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER M N<br>uni1BC1D</td>
+<td class="chr defaultFont info" onmousedown="mDn(113693, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC1D">&#x1BC1D</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113693, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC1D">&#x1BC1D</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER N M<br>uni1BC1E</td>
+<td class="chr defaultFont info" onmousedown="mDn(113694, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC1E">&#x1BC1E</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113694, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC1E">&#x1BC1E</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER J M<br>uni1BC1F</td>
+<td class="chr defaultFont info" onmousedown="mDn(113695, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC1F">&#x1BC1F</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113695, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC1F">&#x1BC1F</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER S J<br>uni1BC20</td>
+<td class="chr defaultFont info" onmousedown="mDn(113696, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC20">&#x1BC20</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113696, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC20">&#x1BC20</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER M WITH DOT<br>uni1BC21</td>
+<td class="chr defaultFont info" onmousedown="mDn(113697, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC21">&#x1BC21</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113697, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC21">&#x1BC21</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER N WITH DOT<br>uni1BC22</td>
+<td class="chr defaultFont info" onmousedown="mDn(113698, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC22">&#x1BC22</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113698, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC22">&#x1BC22</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER J WITH DOT<br>uni1BC23</td>
+<td class="chr defaultFont info" onmousedown="mDn(113699, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC23">&#x1BC23</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113699, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC23">&#x1BC23</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER J WITH DOTS INSIDE AND ABOVE<br>uni1BC24</td>
+<td class="chr defaultFont info" onmousedown="mDn(113700, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC24">&#x1BC24</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113700, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC24">&#x1BC24</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER S WITH DOT<br>uni1BC25</td>
+<td class="chr defaultFont info" onmousedown="mDn(113701, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC25">&#x1BC25</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113701, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC25">&#x1BC25</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER S WITH DOT BELOW<br>uni1BC26</td>
+<td class="chr defaultFont info" onmousedown="mDn(113702, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC26">&#x1BC26</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113702, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC26">&#x1BC26</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER M S<br>uni1BC27</td>
+<td class="chr defaultFont info" onmousedown="mDn(113703, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC27">&#x1BC27</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113703, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC27">&#x1BC27</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER N S<br>uni1BC28</td>
+<td class="chr defaultFont info" onmousedown="mDn(113704, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC28">&#x1BC28</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113704, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC28">&#x1BC28</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER J S<br>uni1BC29</td>
+<td class="chr defaultFont info" onmousedown="mDn(113705, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC29">&#x1BC29</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113705, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC29">&#x1BC29</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER S S<br>uni1BC2A</td>
+<td class="chr defaultFont info" onmousedown="mDn(113706, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC2A">&#x1BC2A</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113706, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC2A">&#x1BC2A</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER M N S<br>uni1BC2B</td>
+<td class="chr defaultFont info" onmousedown="mDn(113707, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC2B">&#x1BC2B</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113707, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC2B">&#x1BC2B</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER N M S<br>uni1BC2C</td>
+<td class="chr defaultFont info" onmousedown="mDn(113708, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC2C">&#x1BC2C</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113708, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC2C">&#x1BC2C</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER J M S<br>uni1BC2D</td>
+<td class="chr defaultFont info" onmousedown="mDn(113709, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC2D">&#x1BC2D</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113709, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC2D">&#x1BC2D</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER S J S<br>uni1BC2E</td>
+<td class="chr defaultFont info" onmousedown="mDn(113710, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC2E">&#x1BC2E</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113710, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC2E">&#x1BC2E</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER J S WITH DOT<br>uni1BC2F</td>
+<td class="chr defaultFont info" onmousedown="mDn(113711, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC2F">&#x1BC2F</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113711, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC2F">&#x1BC2F</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER J N<br>uni1BC30</td>
+<td class="chr defaultFont info" onmousedown="mDn(113712, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC30">&#x1BC30</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113712, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC30">&#x1BC30</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER J N S<br>uni1BC31</td>
+<td class="chr defaultFont info" onmousedown="mDn(113713, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC31">&#x1BC31</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113713, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC31">&#x1BC31</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER S T<br>uni1BC32</td>
+<td class="chr defaultFont info" onmousedown="mDn(113714, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC32">&#x1BC32</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113714, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC32">&#x1BC32</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER S T R<br>uni1BC33</td>
+<td class="chr defaultFont info" onmousedown="mDn(113715, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC33">&#x1BC33</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113715, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC33">&#x1BC33</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER S P<br>uni1BC34</td>
+<td class="chr defaultFont info" onmousedown="mDn(113716, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC34">&#x1BC34</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113716, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC34">&#x1BC34</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER S P R<br>uni1BC35</td>
+<td class="chr defaultFont info" onmousedown="mDn(113717, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC35">&#x1BC35</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113717, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC35">&#x1BC35</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER T S<br>uni1BC36</td>
+<td class="chr defaultFont info" onmousedown="mDn(113718, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC36">&#x1BC36</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113718, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC36">&#x1BC36</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER T R S<br>uni1BC37</td>
+<td class="chr defaultFont info" onmousedown="mDn(113719, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC37">&#x1BC37</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113719, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC37">&#x1BC37</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER W<br>uni1BC38</td>
+<td class="chr defaultFont info" onmousedown="mDn(113720, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC38">&#x1BC38</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113720, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC38">&#x1BC38</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER WH<br>uni1BC39</td>
+<td class="chr defaultFont info" onmousedown="mDn(113721, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC39">&#x1BC39</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113721, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC39">&#x1BC39</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER W R<br>uni1BC3A</td>
+<td class="chr defaultFont info" onmousedown="mDn(113722, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC3A">&#x1BC3A</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113722, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC3A">&#x1BC3A</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER S N<br>uni1BC3B</td>
+<td class="chr defaultFont info" onmousedown="mDn(113723, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC3B">&#x1BC3B</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113723, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC3B">&#x1BC3B</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER S M<br>uni1BC3C</td>
+<td class="chr defaultFont info" onmousedown="mDn(113724, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC3C">&#x1BC3C</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113724, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC3C">&#x1BC3C</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER K R S<br>uni1BC3D</td>
+<td class="chr defaultFont info" onmousedown="mDn(113725, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC3D">&#x1BC3D</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113725, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC3D">&#x1BC3D</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER G R S<br>uni1BC3E</td>
+<td class="chr defaultFont info" onmousedown="mDn(113726, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC3E">&#x1BC3E</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113726, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC3E">&#x1BC3E</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER S K<br>uni1BC3F</td>
+<td class="chr defaultFont info" onmousedown="mDn(113727, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC3F">&#x1BC3F</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113727, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC3F">&#x1BC3F</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER S K R<br>uni1BC40</td>
+<td class="chr defaultFont info" onmousedown="mDn(113728, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC40">&#x1BC40</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113728, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC40">&#x1BC40</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER A<br>uni1BC41</td>
+<td class="chr defaultFont info" onmousedown="mDn(113729, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC41">&#x1BC41</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113729, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC41">&#x1BC41</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER SLOAN OW<br>uni1BC42</td>
+<td class="chr defaultFont info" onmousedown="mDn(113730, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC42">&#x1BC42</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113730, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC42">&#x1BC42</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER OA<br>uni1BC43</td>
+<td class="chr defaultFont info" onmousedown="mDn(113731, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC43">&#x1BC43</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113731, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC43">&#x1BC43</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER O<br>uni1BC44</td>
+<td class="chr defaultFont info" onmousedown="mDn(113732, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC44">&#x1BC44</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113732, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC44">&#x1BC44</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER AOU<br>uni1BC45</td>
+<td class="chr defaultFont info" onmousedown="mDn(113733, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC45">&#x1BC45</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113733, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC45">&#x1BC45</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER I<br>uni1BC46</td>
+<td class="chr defaultFont info" onmousedown="mDn(113734, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC46">&#x1BC46</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113734, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC46">&#x1BC46</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER E<br>uni1BC47</td>
+<td class="chr defaultFont info" onmousedown="mDn(113735, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC47">&#x1BC47</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113735, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC47">&#x1BC47</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER IE<br>uni1BC48</td>
+<td class="chr defaultFont info" onmousedown="mDn(113736, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC48">&#x1BC48</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113736, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC48">&#x1BC48</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER SHORT I<br>uni1BC49</td>
+<td class="chr defaultFont info" onmousedown="mDn(113737, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC49">&#x1BC49</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113737, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC49">&#x1BC49</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER UI<br>uni1BC4A</td>
+<td class="chr defaultFont info" onmousedown="mDn(113738, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC4A">&#x1BC4A</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113738, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC4A">&#x1BC4A</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER EE<br>uni1BC4B</td>
+<td class="chr defaultFont info" onmousedown="mDn(113739, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC4B">&#x1BC4B</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113739, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC4B">&#x1BC4B</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER SLOAN EH<br>uni1BC4C</td>
+<td class="chr defaultFont info" onmousedown="mDn(113740, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC4C">&#x1BC4C</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113740, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC4C">&#x1BC4C</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER ROMANIAN I<br>uni1BC4D</td>
+<td class="chr defaultFont info" onmousedown="mDn(113741, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC4D">&#x1BC4D</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113741, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC4D">&#x1BC4D</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER SLOAN EE<br>uni1BC4E</td>
+<td class="chr defaultFont info" onmousedown="mDn(113742, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC4E">&#x1BC4E</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113742, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC4E">&#x1BC4E</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER LONG I<br>uni1BC4F</td>
+<td class="chr defaultFont info" onmousedown="mDn(113743, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC4F">&#x1BC4F</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113743, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC4F">&#x1BC4F</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER YE<br>uni1BC50</td>
+<td class="chr defaultFont info" onmousedown="mDn(113744, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC50">&#x1BC50</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113744, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC50">&#x1BC50</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER U<br>uni1BC51</td>
+<td class="chr defaultFont info" onmousedown="mDn(113745, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC51">&#x1BC51</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113745, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC51">&#x1BC51</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER EU<br>uni1BC52</td>
+<td class="chr defaultFont info" onmousedown="mDn(113746, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC52">&#x1BC52</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113746, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC52">&#x1BC52</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER XW<br>uni1BC53</td>
+<td class="chr defaultFont info" onmousedown="mDn(113747, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC53">&#x1BC53</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113747, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC53">&#x1BC53</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER U N<br>uni1BC54</td>
+<td class="chr defaultFont info" onmousedown="mDn(113748, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC54">&#x1BC54</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113748, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC54">&#x1BC54</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER LONG U<br>uni1BC55</td>
+<td class="chr defaultFont info" onmousedown="mDn(113749, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC55">&#x1BC55</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113749, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC55">&#x1BC55</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER ROMANIAN U<br>uni1BC56</td>
+<td class="chr defaultFont info" onmousedown="mDn(113750, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC56">&#x1BC56</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113750, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC56">&#x1BC56</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER UH<br>uni1BC57</td>
+<td class="chr defaultFont info" onmousedown="mDn(113751, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC57">&#x1BC57</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113751, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC57">&#x1BC57</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER SLOAN U<br>uni1BC58</td>
+<td class="chr defaultFont info" onmousedown="mDn(113752, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC58">&#x1BC58</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113752, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC58">&#x1BC58</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER OOH<br>uni1BC59</td>
+<td class="chr defaultFont info" onmousedown="mDn(113753, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC59">&#x1BC59</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113753, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC59">&#x1BC59</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER OW<br>uni1BC5A</td>
+<td class="chr defaultFont info" onmousedown="mDn(113754, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC5A">&#x1BC5A</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113754, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC5A">&#x1BC5A</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER OU<br>uni1BC5B</td>
+<td class="chr defaultFont info" onmousedown="mDn(113755, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC5B">&#x1BC5B</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113755, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC5B">&#x1BC5B</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER WA<br>uni1BC5C</td>
+<td class="chr defaultFont info" onmousedown="mDn(113756, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC5C">&#x1BC5C</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113756, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC5C">&#x1BC5C</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER WO<br>uni1BC5D</td>
+<td class="chr defaultFont info" onmousedown="mDn(113757, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC5D">&#x1BC5D</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113757, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC5D">&#x1BC5D</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER WI<br>uni1BC5E</td>
+<td class="chr defaultFont info" onmousedown="mDn(113758, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC5E">&#x1BC5E</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113758, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC5E">&#x1BC5E</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER WEI<br>uni1BC5F</td>
+<td class="chr defaultFont info" onmousedown="mDn(113759, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC5F">&#x1BC5F</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113759, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC5F">&#x1BC5F</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER WOW<br>uni1BC60</td>
+<td class="chr defaultFont info" onmousedown="mDn(113760, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC60">&#x1BC60</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113760, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC60">&#x1BC60</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER NASAL U<br>uni1BC61</td>
+<td class="chr defaultFont info" onmousedown="mDn(113761, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC61">&#x1BC61</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113761, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC61">&#x1BC61</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER NASAL O<br>uni1BC62</td>
+<td class="chr defaultFont info" onmousedown="mDn(113762, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC62">&#x1BC62</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113762, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC62">&#x1BC62</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER NASAL I<br>uni1BC63</td>
+<td class="chr defaultFont info" onmousedown="mDn(113763, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC63">&#x1BC63</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113763, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC63">&#x1BC63</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER NASAL A<br>uni1BC64</td>
+<td class="chr defaultFont info" onmousedown="mDn(113764, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC64">&#x1BC64</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113764, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC64">&#x1BC64</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER PERNIN AN<br>uni1BC65</td>
+<td class="chr defaultFont info" onmousedown="mDn(113765, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC65">&#x1BC65</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113765, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC65">&#x1BC65</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER PERNIN AM<br>uni1BC66</td>
+<td class="chr defaultFont info" onmousedown="mDn(113766, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC66">&#x1BC66</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113766, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC66">&#x1BC66</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER SLOAN EN<br>uni1BC67</td>
+<td class="chr defaultFont info" onmousedown="mDn(113767, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC67">&#x1BC67</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113767, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC67">&#x1BC67</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER SLOAN AN<br>uni1BC68</td>
+<td class="chr defaultFont info" onmousedown="mDn(113768, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC68">&#x1BC68</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113768, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC68">&#x1BC68</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER SLOAN ON<br>uni1BC69</td>
+<td class="chr defaultFont info" onmousedown="mDn(113769, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC69">&#x1BC69</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113769, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC69">&#x1BC69</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN LETTER VOCALIC M<br>uni1BC6A</td>
+<td class="chr defaultFont info" onmousedown="mDn(113770, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC6A">&#x1BC6A</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113770, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC6A">&#x1BC6A</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN AFFIX LEFT HORIZONTAL SECANT<br>uni1BC70</td>
+<td class="chr defaultFont info" onmousedown="mDn(113776, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC70">&#x1BC70</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113776, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC70">&#x1BC70</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN AFFIX MID HORIZONTAL SECANT<br>uni1BC71</td>
+<td class="chr defaultFont info" onmousedown="mDn(113777, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC71">&#x1BC71</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113777, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC71">&#x1BC71</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN AFFIX RIGHT HORIZONTAL SECANT<br>uni1BC72</td>
+<td class="chr defaultFont info" onmousedown="mDn(113778, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC72">&#x1BC72</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113778, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC72">&#x1BC72</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN AFFIX LOW VERTICAL SECANT<br>uni1BC73</td>
+<td class="chr defaultFont info" onmousedown="mDn(113779, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC73">&#x1BC73</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113779, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC73">&#x1BC73</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN AFFIX MID VERTICAL SECANT<br>uni1BC74</td>
+<td class="chr defaultFont info" onmousedown="mDn(113780, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC74">&#x1BC74</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113780, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC74">&#x1BC74</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN AFFIX HIGH VERTICAL SECANT<br>uni1BC75</td>
+<td class="chr defaultFont info" onmousedown="mDn(113781, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC75">&#x1BC75</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113781, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC75">&#x1BC75</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN AFFIX ATTACHED SECANT<br>uni1BC76</td>
+<td class="chr defaultFont info" onmousedown="mDn(113782, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC76">&#x1BC76</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113782, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC76">&#x1BC76</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN AFFIX ATTACHED LEFT-TO-RIGHT SECANT<br>uni1BC77</td>
+<td class="chr defaultFont info" onmousedown="mDn(113783, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC77">&#x1BC77</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113783, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC77">&#x1BC77</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN AFFIX ATTACHED TANGENT<br>uni1BC78</td>
+<td class="chr defaultFont info" onmousedown="mDn(113784, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC78">&#x1BC78</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113784, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC78">&#x1BC78</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN AFFIX ATTACHED TAIL<br>uni1BC79</td>
+<td class="chr defaultFont info" onmousedown="mDn(113785, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC79">&#x1BC79</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113785, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC79">&#x1BC79</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN AFFIX ATTACHED E HOOK<br>uni1BC7A</td>
+<td class="chr defaultFont info" onmousedown="mDn(113786, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC7A">&#x1BC7A</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113786, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC7A">&#x1BC7A</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN AFFIX ATTACHED I HOOK<br>uni1BC7B</td>
+<td class="chr defaultFont info" onmousedown="mDn(113787, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC7B">&#x1BC7B</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113787, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC7B">&#x1BC7B</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN AFFIX ATTACHED TANGENT HOOK<br>uni1BC7C</td>
+<td class="chr defaultFont info" onmousedown="mDn(113788, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC7C">&#x1BC7C</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113788, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC7C">&#x1BC7C</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN AFFIX HIGH ACUTE<br>uni1BC80</td>
+<td class="chr defaultFont info" onmousedown="mDn(113792, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC80">&#x1BC80</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113792, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC80">&#x1BC80</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN AFFIX HIGH TIGHT ACUTE<br>uni1BC81</td>
+<td class="chr defaultFont info" onmousedown="mDn(113793, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC81">&#x1BC81</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113793, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC81">&#x1BC81</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN AFFIX HIGH GRAVE<br>uni1BC82</td>
+<td class="chr defaultFont info" onmousedown="mDn(113794, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC82">&#x1BC82</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113794, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC82">&#x1BC82</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN AFFIX HIGH LONG GRAVE<br>uni1BC83</td>
+<td class="chr defaultFont info" onmousedown="mDn(113795, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC83">&#x1BC83</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113795, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC83">&#x1BC83</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN AFFIX HIGH DOT<br>uni1BC84</td>
+<td class="chr defaultFont info" onmousedown="mDn(113796, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC84">&#x1BC84</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113796, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC84">&#x1BC84</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN AFFIX HIGH CIRCLE<br>uni1BC85</td>
+<td class="chr defaultFont info" onmousedown="mDn(113797, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC85">&#x1BC85</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113797, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC85">&#x1BC85</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN AFFIX HIGH LINE<br>uni1BC86</td>
+<td class="chr defaultFont info" onmousedown="mDn(113798, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC86">&#x1BC86</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113798, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC86">&#x1BC86</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN AFFIX HIGH WAVE<br>uni1BC87</td>
+<td class="chr defaultFont info" onmousedown="mDn(113799, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC87">&#x1BC87</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113799, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC87">&#x1BC87</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN AFFIX HIGH VERTICAL<br>uni1BC88</td>
+<td class="chr defaultFont info" onmousedown="mDn(113800, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC88">&#x1BC88</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113800, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC88">&#x1BC88</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN AFFIX LOW ACUTE<br>uni1BC90</td>
+<td class="chr defaultFont info" onmousedown="mDn(113808, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC90">&#x1BC90</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113808, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC90">&#x1BC90</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN AFFIX LOW TIGHT ACUTE<br>uni1BC91</td>
+<td class="chr defaultFont info" onmousedown="mDn(113809, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC91">&#x1BC91</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113809, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC91">&#x1BC91</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN AFFIX LOW GRAVE<br>uni1BC92</td>
+<td class="chr defaultFont info" onmousedown="mDn(113810, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC92">&#x1BC92</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113810, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC92">&#x1BC92</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN AFFIX LOW LONG GRAVE<br>uni1BC93</td>
+<td class="chr defaultFont info" onmousedown="mDn(113811, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC93">&#x1BC93</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113811, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC93">&#x1BC93</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN AFFIX LOW DOT<br>uni1BC94</td>
+<td class="chr defaultFont info" onmousedown="mDn(113812, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC94">&#x1BC94</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113812, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC94">&#x1BC94</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN AFFIX LOW CIRCLE<br>uni1BC95</td>
+<td class="chr defaultFont info" onmousedown="mDn(113813, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC95">&#x1BC95</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113813, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC95">&#x1BC95</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN AFFIX LOW LINE<br>uni1BC96</td>
+<td class="chr defaultFont info" onmousedown="mDn(113814, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC96">&#x1BC96</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113814, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC96">&#x1BC96</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN AFFIX LOW WAVE<br>uni1BC97</td>
+<td class="chr defaultFont info" onmousedown="mDn(113815, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC97">&#x1BC97</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113815, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC97">&#x1BC97</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN AFFIX LOW VERTICAL<br>uni1BC98</td>
+<td class="chr defaultFont info" onmousedown="mDn(113816, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC98">&#x1BC98</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113816, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC98">&#x1BC98</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN AFFIX LOW ARROW<br>uni1BC99</td>
+<td class="chr defaultFont info" onmousedown="mDn(113817, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC99">&#x1BC99</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113817, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC99">&#x1BC99</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN SIGN O WITH CROSS<br>uni1BC9C</td>
+<td class="chr defaultFont info" onmousedown="mDn(113820, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC9C">&#x1BC9C</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113820, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC9C">&#x1BC9C</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN THICK LETTER SELECTOR<br>uni1BC9D</td>
+<td class="chr defaultFont info" onmousedown="mDn(113821, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC9D">&#x1BC9D</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113821, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC9D">&#x1BC9D</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN DOUBLE MARK<br>uni1BC9E</td>
+<td class="chr defaultFont info" onmousedown="mDn(113822, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC9E">&#x1BC9E</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113822, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC9E">&#x1BC9E</td>
+</tr>
+<tr>
+<td class="colLeft">DUPLOYAN PUNCTUATION CHINOOK FULL STOP<br>uni1BC9F</td>
+<td class="chr defaultFont info" onmousedown="mDn(113823, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BC9F">&#x1BC9F</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113823, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BC9F">&#x1BC9F</td>
+</tr>
+<tr>
+<td class="colLeft">NO-BREAK SPACE<br>uni00A0</td>
+<td class="chr defaultFont info" onmousedown="mDn(160, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni00A0">&#x00A0</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(160, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni00A0">&#x00A0</td>
+</tr>
+<tr>
+<td class="colLeft">SHORTHAND FORMAT LETTER OVERLAP<br>uni1BCA0</td>
+<td class="chr defaultFont info" onmousedown="mDn(113824, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BCA0">&#x1BCA0</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113824, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BCA0">&#x1BCA0</td>
+</tr>
+<tr>
+<td class="colLeft">SHORTHAND FORMAT CONTINUING OVERLAP<br>uni1BCA1</td>
+<td class="chr defaultFont info" onmousedown="mDn(113825, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BCA1">&#x1BCA1</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113825, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BCA1">&#x1BCA1</td>
+</tr>
+<tr>
+<td class="colLeft">SHORTHAND FORMAT DOWN STEP<br>uni1BCA2</td>
+<td class="chr defaultFont info" onmousedown="mDn(113826, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BCA2">&#x1BCA2</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113826, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BCA2">&#x1BCA2</td>
+</tr>
+<tr>
+<td class="colLeft">SHORTHAND FORMAT UP STEP<br>uni1BCA3</td>
+<td class="chr defaultFont info" onmousedown="mDn(113827, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1BCA3">&#x1BCA3</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(113827, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni1BCA3">&#x1BCA3</td>
+</tr>
+<tr>
+<td class="colLeft">DOTTED CIRCLE<br>uni25CC</td>
+<td class="chr defaultFont info" onmousedown="mDn(9676, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni25CC">&#x25CC</td>
+<td class="chr om_NotoSansDuployanRegularttf " onmousedown="mDn(9676, ['om_NotoSansDuployanRegularttf'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="uni25CC">&#x25CC</td>
+</tr>
+
+		</table>
+
+
+            
+		<hr>
+		<table id="splitterContent_unencoded">
+<tr>
+<td class="colLeft">dot1<br>Cannot display because feature tag is missing in name.</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="dot1 Cannot display because feature tag is missing in name.">&#x0000</td>
+<td class="chr om_NotoSansDuployanRegularttf warning" onmousedown="mDn(&#x0000, ['om_NotoSansDuployanRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="dot1 Cannot display because feature tag is missing in name.">&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">horiz.1<br>Ending "1" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="horiz.1 Ending "1" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
+<td class="chr om_NotoSansDuployanRegularttf warning" onmousedown="mDn(&#x0000, ['om_NotoSansDuployanRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="horiz.1 Ending "1" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">vertical<br>Cannot display because feature tag is missing in name.</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="vertical Cannot display because feature tag is missing in name.">&#x0000</td>
+<td class="chr om_NotoSansDuployanRegularttf warning" onmousedown="mDn(&#x0000, ['om_NotoSansDuployanRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Duployan" data-original-title="vertical Cannot display because feature tag is missing in name.">&#x0000</td>
+</tr>
+
+		</table>
+
+
+
+    </div>
+    </div>
+
+
+    <script type="text/javascript">
+
+    //var elementCustomerPreview = document.getElementById("cssCodeForCustomerPreview");
+    //console.log('element.height: ', elementCustomerPreview.offsetHeight)
+    //$('.containerMain').css("top", '-' + elementCustomerPreview.offsetHeight + 'px')
+
+    var elementCustomerPreview = document.getElementById("containerMainID");
+    console.log('element.height: ', elementCustomerPreview.offsetHeight)
+    $('.containerCSScode').css("height", elementCustomerPreview.offsetHeight -200 + 'px')
+
+    var elementHeader = document.getElementById('otFeature');
+    console.log('element.height: ', elementHeader.offsetHeight)
+    divHeight = elementHeader.offsetHeight - 50
+    $('.header').css("top", '-' + divHeight + 'px')
+
+    //document.getElementById("varFont").style.color = "blue";
+
+    $('.sampleContent').on('blur keyup paste input', function() {$(".sampleContent").not(this).html($(this).html());});
+
+    
+    $('#slider').on('change',function(){
+    var val = $(this).val();
+    $(".om_NotoSansDuployanRegularttf").css("font-size",(val+"em"));
+    $(".colLeft").css("width",(50 - (val*2)) +"%");
+    });
+
+    
+
+    function toggle_detail(my_id){
+        var element = document.getElementById(my_id)
+        //var buttoncell = document.getElementById(my_id+"_cell")
+        var button = document.getElementById(my_id+"_btn")
+        if (element.style.display != 'none') {
+          element.style.display = 'none'; //$("#" + my_id).slideUp(); smooth in/out does not work currently
+          button.innerHTML = '▼';
+        } else {
+          element.style.display = ''; //$("#" + my_id).slideDown(); smooth in/out does not work currently
+          button.innerHTML = '▲';
+        }
+    }
+
+    function showhide_div(my_id, buttomName){
+        var element = document.getElementById(my_id)
+        //var buttoncell = document.getElementById(my_id+"_cell")
+        var button = document.getElementById(my_id+"_btn")
+        if (element.style.opacity != '0') {
+          element.style.opacity = '0'; 
+          setTimeout(function () {
+            element.style.zIndex = '-1';
+            }, 1000);
+          button.innerHTML = 'show ' + buttomName;
+        } else {
+          element.style.opacity = '1';
+          element.style.zIndex = '998';
+          button.innerHTML = 'hide ' + buttomName;
+        }
+    }
+
+    function hover(my_id){
+        var element = document.getElementById(my_id)
+        if (element.style.background != '') {
+          element.style.background = '';
+          element.style.color = ''; 
+        } else {
+          element.style.background = '#B3D4FC';
+          element.style.color = 'black'; 
+        }
+    }
+
+    var HTMLCodeCompareBoxes = '1234567890 xozszn HOZD 1/3 @ 1a ;#& ? % $ € ! In August of 2016, four unlikely collaborators in the world of type, fonts and font technology stood on a stage at the ATypI conference in Warsaw, Poland. The collaborators were Apple, Microsoft, Adobe and Google. Together they announced the publishing of OpenType 1.8, an update to the now ubiquitous font standard which was originally an amalgam of Apple & Microsoft’s TrueType, and Adobe’s PostScript font formats. The OpenType 1.8 announcement, ATypI, Warsaw, Poland, September 14, 2016.'
+    var fontWeightsDict = {'Noto Sans Duployan (ttf)':'om_NotoSansDuployanRegularttf'};
+
+    var sampleTexts = {'All Unicodes': '\x00 𛰀 𛰁 𛰂 𛰃 𛰄 𛰅 𛰆 𛰇 𛰈 𛰉 𛰊 \u200c \r \u200d 𛰋 𛰌 𛰍 𛰎 𛰏 𛰐 𛰑 𛰒 𛰓 𛰔 𛰕 𛰖 𛰗 𛰘 𛰙 𛰚 𛰛   𛰜 𛰝 𛰞 𛰟 𛰠 𛰡 𛰢 𛰣 𛰤 𛰥 𛰦 𛰧 𛰨 𛰩 𛰪 𛰫 𛰬 𛰭 𛰮 𛰯 𛰰 𛰱 𛰲 𛰳 𛰴 𛰵 𛰶 𛰷 𛰸 𛰹 𛰺 𛰻 𛰼 𛰽 𛰾 𛰿 𛱀 𛱁 𛱂 𛱃 𛱄 𛱅 𛱆 𛱇 𛱈 𛱉 𛱊 𛱋 𛱌 𛱍 𛱎 𛱏 𛱐 𛱑 𛱒 𛱓 𛱔 𛱕 𛱖 𛱗 𛱘 𛱙 𛱚 𛱛 𛱜 𛱝 𛱞 𛱟 𛱠 𛱡 𛱢 𛱣 𛱤 𛱥 𛱦 𛱧 𛱨 𛱩 𛱪 𛱰 𛱱 𛱲 𛱳 𛱴 𛱵 𛱶 𛱷 𛱸 𛱹 𛱺 𛱻 𛱼 𛲀 𛲁 𛲂 𛲃 𛲄 𛲅 𛲆 𛲇 𛲈 𛲐 𛲑 𛲒 𛲓 𛲔 𛲕 𛲖 𛲗 𛲘 𛲙 𛲜 𛲝 𛲞 𛲟 \xa0 \U0001bca0 \U0001bca1 \U0001bca2 \U0001bca3 ◌', 'Default Sample': '1234567890 xozszn HOZD 1/3 @ 1a ;#& ? % $ € ! In August of 2016, four unlikely collaborators in the world of type, fonts and font technology stood on a stage at the ATypI conference in Warsaw, Poland. The collaborators were Apple, Microsoft, Adobe and Google. Together they announced the publishing of OpenType 1.8, an update to the now ubiquitous font standard which was originally an amalgam of Apple & Microsoft’s TrueType, and Adobe’s PostScript font formats. The OpenType 1.8 announcement, ATypI, Warsaw, Poland, September 14, 2016.'}
+
+    var clicks = 0;
+    var arrList = [];
+    var mySpanIDList = [];
+
+    var supported_features = [];
+
+    function functionAddSupportedFeatures(item){
+        var button = document.getElementById(item+"_btn")
+        if (supported_features.includes(item) === true){
+            button.style.color = 'black';
+            button.style.backgroundColor = 'white';
+            var index = supported_features.indexOf(item);
+            if (index > -1) {
+                supported_features.splice(index, 1);
+            }
+        }
+        else { 
+            button.style.color = 'white';
+            button.style.backgroundColor = 'black';
+            supported_features.push(item);
+        }
+        functionSetCSSFeatureCode(supported_features)
+    }
+
+    function functionChangeLanguage(item){
+        document.documentElement.lang = item;
+        $("#htmlLangTag").html(item);
+        if (['ar', 'fa', 'ur'].indexOf(item) >= 0) {
+            document.getElementById('compareBoxID').dir = 'rtl';
+            functionReadDirection('compareBoxID', 'right-to-left');
+        } else {
+            document.getElementById('compareBoxID').dir = '';
+            functionReadDirection('compareBoxID', 'left-to-right')
+        }
+
+    }
+
+
+    function functionSetCSSFeatureCode(arr){
+        var supported_features = arr;
+        var default_features =  []; //['kern', 'vkrn', 'liga', 'clig', 'calt', 'mark', 'mkmk', 'rvrm' ];
+
+        var cssCode_features = "";//font-feature-settings:
+        var moz_features = "";
+        
+
+        var arrayLength = supported_features.length;
+        for (var i = 0; i < arrayLength; i++) {
+            var item = supported_features[i];
+            cssCode_features += "'" + item + "' 1,";
+            moz_features += item + "=1,";
+        }
+
+        var defaultLength = default_features.length;
+        for (var i = 0; i < defaultLength; i++) {
+            var item = default_features[i];
+            if (supported_features.includes(item) === false){
+                cssCode_features += "'" + item + "' 0,";
+                moz_features += item + "=0,";
+            }
+        }
+
+        var stringLength = cssCode_features.length;
+        if (cssCode_features[stringLength-1] === ','){
+            var cleanedCSS = cssCode_features.substring(',', stringLength - 1);
+        } else {
+            var cleanedCSS = cssCode_features;
+        }
+
+        var element = document.getElementById('body_all');
+        element.style.fontFeatureSettings = cleanedCSS;
+
+        var stringLength = moz_features.length;
+        if (moz_features[stringLength-1] === ','){
+            var cleanedCSSmoz_features = moz_features.substring(',', stringLength - 1);
+        } else {
+            var cleanedCSSmoz_features = moz_features;
+        }
+
+        console.log('cleanedCSS: ', cleanedCSS)
+        var webkit_features = cleanedCSS 
+
+        $("#w3cfeatures").html(webkit_features);
+        $("#webkitfeatures").html(webkit_features);
+        $("#mozfeatures-up-to-14").html(webkit_features);
+        $("#mozfeatures").html(cleanedCSSmoz_features);
+        $("#msfeatures").html(webkit_features);
+        $("#ofeatures").html(webkit_features);
+
+      };
+
+
+    function functionBoxAdd() {
+
+        clicks += 1;
+        //arrList.push(clicks.toString())
+        console.log(arrList)
+        //var tdID = 'myTD_' + clicks;
+        //arrList.push(tdID.toString())
+        
+        //var x = document.createElement("TD");
+        //x.setAttribute("id", tdID);
+        //document.getElementById("tableTR").appendChild(x);
+
+        //var optionID = 'myOption_' + clicks;
+        //var d1 = document.createElement("DIV");
+        //d1.setAttribute("id", optionID);
+        //document.getElementById(tdID).appendChild(d1);
+
+        //var copyTextID = 'myText_' + clicks;
+        //var d2 = document.createElement("DIV");
+        //d2.setAttribute("id", copyTextID);
+        //d2.setAttribute("contenteditable", 'true');
+        //document.getElementById(tdID).appendChild(d2);
+        //var SampleText = document.createTextNode(HTMLCodeCompareBoxes);
+        //document.getElementById(copyTextID).innerHTML = HTMLCodeCompareBoxes;
+
+        var nameID = 'myBox_' + clicks;
+        arrList.push(nameID.toString())
+        var x = document.createElement("TD");
+        x.setAttribute("id", nameID);
+        //x.setAttribute("contenteditable", 'true');
+
+
+         var selectID = 'mySelect_' + clicks;
+         var s = document.createElement("SELECT");
+         s.setAttribute("id", selectID);
+         s.setAttribute("name", nameID);
+         s.setAttribute("onchange", "functionSelect('" + selectID + "')");
+
+         var arrListFontname = [];
+         var arrListCSSName = [];
+         lenClicks = 0;
+
+         for(fontName in fontWeightsDict){
+                 lenClicks += 1;
+                 arrListFontname.push(fontName.toString())
+                  var fontCSScode = fontWeightsDict[fontName];
+                  arrListCSSName.push(fontCSScode.toString())
+
+                  var z = document.createElement("option");
+                z.setAttribute("value", fontCSScode);
+                if (clicks + 1 == lenClicks){
+                    var FontSelected = arrListCSSName[lenClicks-1]; //minus one because array starts with zero
+                    z.setAttribute("selected", 'selected');
+                }
+                var t = document.createTextNode(fontName);
+                z.appendChild(t);
+                s.appendChild(z);
+                console.log(arrListFontname[-1])
+        }
+
+        var numberFonts = Object.keys(fontWeightsDict).length;
+        if (numberFonts <= clicks){var FontSelected = arrListCSSName[0];}
+        
+        x.setAttribute("class", "compareBox "+FontSelected);
+        document.getElementById("tableTR").appendChild(x);
+
+
+        //document.getElementById(nameID).appendChild(z);
+        document.getElementById(nameID).appendChild(s);
+
+        //var SampleText = document.createTextNode(HTMLCodeCompareBoxes);
+        var mySpanID = 'myBoxContent_' + clicks;
+        mySpanIDList.push(mySpanID.toString())
+        var span = document.createElement("SPAN");
+        span.setAttribute("id", mySpanID);
+        span.setAttribute("contenteditable", 'true');
+        span.setAttribute("class", 'compareBoxCSS');
+
+        var compareBoxFontSize = document.getElementById("myBoxContent").style.fontSize;
+        //console.log('Font-Size: ', compareBoxFontSize)
+        span.setAttribute("style", "font-size: " + compareBoxFontSize);
+
+        var getSampleText = document.getElementById('myBoxContent').innerHTML
+        //var mySampleText = document.getElementById('mySelectSampleText').value;
+        //var getSampleText = sampleTexts[mySampleText];
+        span.innerHTML = getSampleText;
+
+        //var sp = document.createTextNode(getSampleText);
+        //span.appendChild(sp);
+
+        document.getElementById(nameID).appendChild(span);
+     
+    }
+     
+    function functionBoxRemove() {
+        var item = arrList.pop() ;
+        //var nameID2 = 'myBox_' + (item);
+
+        if (item != 'myBox'){
+            var x = document.getElementById(item);
+            document.getElementById("tableTR").removeChild(x);
+        }
+
+        var index = mySpanIDList.length;
+        if (index > 1){
+            var listIndex = index -1;
+            mySpanIDList.splice(listIndex, 1);
+        }
+
+    }
+
+    var allBoxBG = arrList;
+    allBoxBG.push('myBox'); //first fixed box
+    function functionBoxBG(){
+        for (var item in allBoxBG){
+            console.log(allBoxBG[item])
+            var element = document.getElementById(allBoxBG[item])
+            if (element.style.backgroundColor != "white"){
+                element.style.backgroundColor = "white";
+                element.style.color = 'black';
+            } else {
+                element.style.backgroundColor = "black";
+                element.style.color = 'white';                
+            }
+        }
+    }
+
+    //$('#myBox').on('blur keyup paste input', function() {
+    //    var sampleText = document.getElementById('myBox').innerHTML;
+    //    for (var item in arrList){
+    //        var element = document.getElementById(arrList[item]);
+    //        element.innerHTML = sampleText;
+    //    }
+    //});
+
+    function functionSelect(selectID) {
+        console.log(selectID)
+        //var box = document.getElementById(selectID).parentElement; //.nodeName;
+        var CSScode = document.getElementById(selectID).value;
+        var boxID = document.getElementById(selectID).name;
+        console.log(CSScode)
+        console.log(boxID)
+        //document.getElementById(boxID).classList.add(value);
+        //box.classList.add(value);
+        document.getElementById(boxID).classList = CSScode;
+    }
+
+    mySpanIDList.push('myBoxContent'); //first add "fixed box"
+    function functionSelectSampleText(mySelectSampleText){
+        console.log('LISTE mySpanIDList::::', mySpanIDList)
+        var mySampleText = document.getElementById(mySelectSampleText).value;
+        var sampleText = sampleTexts[mySampleText];
+        for (var item in mySpanIDList){
+            document.getElementById(mySpanIDList[item]).innerHTML = sampleText;
+        }
+
+    }
+
+    function functionGetColorBG(item, CSSClass){
+        $(CSSClass).css('background-color', item);
+    }
+
+    function functionGetColorText(item, CSSClass){
+        $(CSSClass).css('color', item);
+    }
+
+    function functionSwapColorTextBG(CSSClass){
+        var colorText = $(CSSClass).css('color');
+        var colorBG = $(CSSClass).css('backgroundColor');
+        $(CSSClass).css('background-color', colorText);
+        $(CSSClass).css('color', colorBG);
+
+    }
+
+    $('.compareBoxCSS').on('blur keyup paste input', function() {$(".compareBoxCSS").not(this).html($(this).html());});
+
+    $('#sliderCompareBoxCSS').on('change',function(){
+        var val = $(this).val();
+        $(".compareBoxCSS").css("font-size",(val+"px"));
+        
+        document.getElementById("numberCompareBoxCSS").value = val;
+    });
+
+    $('#numberCompareBoxCSS').on('change',function(){
+        var val = $(this).val();
+        $(".compareBoxCSS").css("font-size",(val+"px"));
+        
+        document.getElementById("sliderCompareBoxCSS").value = val;
+    });
+
+    $('#sliderSampleContent').on('change',function(){
+        var val = $(this).val();
+        $(".sampleContent").css("font-size",(val+"px"));
+        if (val <= 30){
+            $(".sampleContent").css("padding",(val+"px 50px "+ val+"px 50px"));
+        } else {
+            $(".sampleContent").css("padding",("30px 50px 30px 50px"));              
+        }        
+        document.getElementById("numberSampleContent").value = val;
+    });
+
+    $('#numberSampleContent').on('change',function(){
+        var val = $(this).val();
+        $(".sampleContent").css("font-size",(val+"px"));
+        if (val <= 30){
+            $(".sampleContent").css("padding",(val+"px 50px "+ val+"px 50px"));
+        } else {
+            $(".sampleContent").css("padding",("30px 50px 30px 50px"));              
+        }           
+        document.getElementById("sliderSampleContent").value = val;
+    });
+
+    clicksBG = 0;
+    function functionGetRandomBG(cssItem){
+        
+        var arrListCSSClasses = [];
+        var numberCSSClasses = Object.keys(cssItem).length;
+        var cssClasses = document.getElementById("tableTR").className;
+
+        var oldCSSClasses = cssClasses.split(' ');
+
+        for (var item in cssItem){
+            if (item == clicksBG){
+                oldCSSClasses.push(cssItem[clicksBG]);
+            } else {
+                var index = oldCSSClasses.indexOf(cssItem[item]);
+                if (index > -1) {
+                    oldCSSClasses.splice(index, 1);
+                }
+                
+            }
+        }
+
+        var newClassNames = oldCSSClasses.join(' ')
+
+        document.getElementById("tableTR").className = newClassNames;
+        
+        clicksBG += 1;
+
+        if (clicksBG === 4){
+            clicksBG = 0;
+        }
+        
+
+    }
+
+    function functionShowCSSCode(CSSClass){
+        if ($(CSSClass).css("left") == '15px'){
+            $(CSSClass).css("transition-timing-function", "ease-in");
+            $(CSSClass).css("transition", "0.4s");
+            $(CSSClass).css("left", "80%");
+        } else {
+            $(CSSClass).css("left", "15px");
+        }
+    }
+
+    function functionShowHeader(CSSClass, my_id){
+        //var element = document.getElementById(my_id)
+        //var buttoncell = document.getElementById(my_id+"_cell")
+
+        var button = document.getElementById(my_id+"_btn");
+        if (button.innerHTML != '▼') {
+            $(CSSClass).css("top", '-' + divHeight + 'px');
+            button.innerHTML = '▼';
+        } else {
+          //$("#" + my_id).slideDown();
+            $(CSSClass).css("transition-timing-function", "ease-in");
+            $(CSSClass).css("transition", "0.4s");
+          $(CSSClass).css("top", "50px");
+          button.innerHTML = '▲';
+        }
+
+    }
+
+        /*function myFunctionAnimate(my_id, CSSClassList){
+            var button = document.getElementById(my_id+"_btn");
+            if (button.innerHTML === 'Play') {
+                button.innerHTML = 'Pause';
+                var countingUp = 1;
+                var minValue = document.getElementById(my_id).min;
+                var maxValue = document.getElementById(my_id).max;
+                var value = document.getElementById(my_id).value;
+                var i = Math.round(value);
+                var speed = Math.round(1000/maxValue);
+                myTimer = setInterval(function() {
+                    console.log(maxValue)
+                    i = i + (1 * countingUp);
+
+                    if (i == maxValue || i == minValue)
+                    {
+                        countingUp *= -1;
+                    }
+
+                    console.log(i)
+                  document.getElementById(my_id).value = i;
+                  document.getElementById(my_id+"_range").innerHTML = i;
+                  //om_AvenirNextVariableRomanttfWeight_showValue(i, CSSClassList)
+                  
+                }, speed);
+
+            } else {
+                button.innerHTML = 'Play';
+                clearInterval(myTimer);
+            }
+        }*/
+
+        
+
+        function functionTextAlignment(ID, item){
+            textAligment = ['left', 'center', 'right'];
+            console.log('ID: ', ID)
+            nameID = ID.replace('ID', '');
+            console.log('nameID: ', nameID)
+            console.log('item: ', item)
+
+            buttonName = item + nameID + "_btn";
+
+            console.log('buttonName: ', buttonName)
+
+            var button = document.getElementById(buttonName);
+            button.style.backgroundColor = 'black';
+            button.style.color = 'white';
+
+            $('#' +ID).css("text-align", item);
+
+            var textAligmentLength = textAligment.length;
+            for (var i = 0; i < textAligmentLength; i++) {
+                var itemLoop = textAligment[i];
+                if (itemLoop != item){
+                    otherButtonName = itemLoop + nameID + "_btn";
+                    console.log('otherButtonName: ', otherButtonName)
+                    var otherButton = document.getElementById(otherButtonName);
+                    otherButton.style.backgroundColor = 'white';
+                    otherButton.style.color = 'black';
+
+                }
+            }
+        }
+
+        function functionReadDirection(ID, item){
+            textAligment = ['left-to-right', 'right-to-left', 'top-to-down'];
+            console.log('ID: ', ID)
+            nameID = ID.replace('ID', '');
+            console.log('nameID: ', nameID)
+            console.log('item: ', item)
+
+            buttonName = item + nameID + "_btn";
+
+            console.log('buttonName: ', buttonName)
+
+            var button = document.getElementById(buttonName);
+            button.style.backgroundColor = 'black';
+            button.style.color = 'white';
+
+            if (item === 'right-to-left'){document.getElementById('compareBoxID').dir = 'rtl';}
+            if (item === 'left-to-right'){document.getElementById('compareBoxID').dir = '';}
+
+            // if (item === 'top-to-down'){
+            //     document.getElementById('compareBoxID').dir = '';
+
+            //     //var elt = document.documentElement
+            //     var elt = document.getElementById(ID);
+            //     elt.setAttribute("style", "writing-mode: vertical-rl;");
+            //     //$("body").css("writing-mode", 'vertical-rl;');
+            //     //document.documentElement.css("writing-mode", 'vertical-rl;');
+
+            //     /* writing-mode: vertical-rl; */
+            // }            
+
+            var textAligmentLength = textAligment.length;
+            for (var i = 0; i < textAligmentLength; i++) {
+                var itemLoop = textAligment[i];
+                if (itemLoop != item){
+                    otherButtonName = itemLoop + nameID + "_btn";
+                    console.log('otherButtonName: ', otherButtonName)
+                    var otherButton = document.getElementById(otherButtonName);
+                    otherButton.style.backgroundColor = 'white';
+                    otherButton.style.color = 'black';
+
+                }
+            }
+        }
+
+    function functionTest(CSSClass){
+            $(CSSClass).css("transition-timing-function", "ease-in");
+            $(CSSClass).css("transition", "1.4s");
+            $(CSSClass).css("transform", 'translate3d(0px,0px,0px)');
+    }
+
+
+    delta = 0;
+    beta = 0;
+    lastPos = null;
+
+    function clearBeta() {
+      beta = 0;
+    }
+
+    window.onscroll = function(){
+
+        function clear() {
+          lastPos = null;
+          delta = 0;
+        }
+
+        newPos = window.scrollY;
+        if ( lastPos != null ){
+          delta = newPos - lastPos;
+        }
+        lastPos = newPos;
+
+        //console.log(100 - delta)
+        //console.log('newPos: ', newPos)
+
+        if (delta < 0){if (beta < (delta * -1)){beta = (delta * 6)} }
+        if (delta > 0){if (beta < delta){beta = delta} }
+
+        //console.log('beta: ', beta)
+
+        setTimeout(clear, 500);
+        setTimeout(clearBeta, 500);
+
+        //console.log(100 - Pos)
+      //var distanz =  window.scrollY
+      //console.log('distanz: ', distanz);
+      //console.log( 'PositivVal: ', PositivVal );
+      //console.log(Int(distanz))
+      $('.flyingFont1').css("transform", 'translate3d(0px,' + (beta * -1) + 'px,0px)');
+      $('.flyingFont2').css("transform", 'translate3d(0px,' + (beta * -2) + 'px,0px)');
+      $('.flyingFont3').css("transform", 'translate3d(0px,' + (beta * -3) + 'px,0px)');
+    };
+
+
+    window.addEventListener("scroll", functionTest('.flyingFont1'), false);
+    window.addEventListener("scroll", functionTest('.flyingFont2'), false);
+    window.addEventListener("scroll", functionTest('.flyingFont3'), false);
+
+    $('.flyingFont').on('blur keyup paste input', function() {$(".flyingFont").not(this).html($(this).html());});
+
+    function adjustHeightOfTwoDiv(div1_ID, div2_ID){
+        var offsetHeight = document.getElementById(div1_ID).offsetHeight;
+        document.getElementById(div2_ID).style.height = offsetHeight + 'px';
+    } 
+
+    $('.flyingFont1').on('blur keyup paste input', function() {adjustHeightOfTwoDiv('flyingFont_ID1', 'flyingFont_ID0')});
+
+    function mDn(uniID, CSSClassFontList) {
+        console.log('uniID: ', uniID)
+        if (typeof uniID === 'string' || uniID instanceof String){
+            console.log('str: True ')
+            var UID = uniID
+        } else {
+            console.log('else: True ')
+            var UID = '&#x' + uniID.toString(16);
+        }
+        console.log('UID: ', UID)
+        var obj = document.getElementById('zoom_characters');
+        obj.style.display = 'block';
+
+        var w = window.innerWidth;
+        var h = window.innerHeight;
+
+        if (w < h){
+            var nW = w / 2;
+            var nH = nW;
+
+        } else {
+            var nW = h / 2;
+            var nH = nW;
+        }
+        var top = (h - nH) / 2;
+        var left = (w - nW) / 2;
+
+        obj.style.height = nH + 'px';
+        obj.style.top = top + 'px';
+        obj.style.width = nW + 'px';
+        obj.style.left = left + 'px';        
+        obj.innerHTML = UID;
+        
+        var arrayLength = CSSClassFontList.length;
+        for (var i = 0; i < arrayLength; i++) {
+            var item = CSSClassFontList[i];
+            obj.classList.add(item);
+        }
+
+
+        
+
+        
+
+
+    }
+
+    function mUp() {
+        var obj = document.getElementById('zoom_characters');
+        obj.innerHTML = '';
+        obj.style.display = 'none';
+        obj.className = "characterZoom";
+    }
+
+    var prevScrollpos = window.pageYOffset;
+    window.onscroll = function() {
+    var currentScrollPos = window.pageYOffset;
+    if (prevScrollpos > currentScrollPos) {
+        document.getElementById("showFontNames_div").style.bottom = "-50px";
+        } else {
+            document.getElementById("showFontNames_div").style.bottom = "0";
+        }
+        prevScrollpos = currentScrollPos;
+    }
+
+    function scrollXNamesFunc() {
+        var elmnt = document.getElementById("containerMainID");
+        var x = elmnt.scrollLeft;
+        $('#showFontNames').css({
+            'left': 15 - x
+        });
+    }
+
+    function hintingOnOff(CSSClass, my_id){
+        var button = document.getElementById(my_id+"_btn");
+        var elements = document.getElementsByClassName('compareBox')
+
+        if (button.innerHTML != 'hinting on') {
+            Array.prototype.filter.call(elements, function(el){
+                el.style.transform = 'rotate(0.0deg)';
+                el.style.transformOrigin = 'top left';
+            });
+
+            button.className = "buttonBlack";
+            button.innerHTML = 'hinting on';
+            button.style.backgroundColor = 'black';
+
+        } else {
+            Array.prototype.filter.call(elements, function(el){
+                el.style.transform = 'rotate(0.03deg)';
+                el.style.transformOrigin = 'top center';
+            });
+
+            button.innerHTML = 'hinting off';
+            button.className = ".buttonBorder";
+
+            button.style.backgroundColor = 'red';
+
+        }
+
+    }
+
+    </script>
+
+  </body>
+</html>
+

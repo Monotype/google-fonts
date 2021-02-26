@@ -1,0 +1,83 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "NotoSerifKhmer[wdth,wght].ttf",
+                "type": "ttf",
+                "size": 372656,
+                "md5": "2e8a33ecfc24a8ca6c89484dac2bca36",
+                "geometryMd5": "37959836bd51f12e2486ccd2576971c6"
+            },
+            "name": {
+                "family": "Noto Serif Khmer",
+                "subFamily": "Regular",
+                "fullName": "Noto Serif Khmer Regular",
+                "psName": "NotoSerifKhmer-Regular",
+                "versionText": "Version 2.001",
+                "copyright": "Copyright 2016 Google Inc. All Rights Reserved.",
+                "trademark": "Noto is a trademark of Google Inc."
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 361,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "GOOG",
+                "font_vendor": "Google"
+            },
+            "validation": {
+                "font_full_name": "Noto Serif Khmer Regular",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 4,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_143ac10c2627463d9630f8bf9e29ddf4.GDEF.glyphClasses",
+                        "levelname": "ERROR",
+                        "message": "The following mark glyphs have nonzero advances: [311, 312]",
+                        "timestamp": "2021-02-19T21:11:10.478073Z",
+                        "orig_output": "validate_143ac10c2627463d9630f8bf9e29ddf4.GDEF.glyphClasses - ERROR - The following mark glyphs have nonzero advances: [311, 312]",
+                        "msg_code": "V1102"
+                    },
+                    {
+                        "subroutine": "validate_143ac10c2627463d9630f8bf9e29ddf4.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2021-02-19T21:12:29.331283Z",
+                        "orig_output": "validate_143ac10c2627463d9630f8bf9e29ddf4.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
+                    },
+                    {
+                        "subroutine": "validate_143ac10c2627463d9630f8bf9e29ddf4.OS_2.usMaxContext",
+                        "levelname": "ERROR",
+                        "message": "The usMaxContext should be 5, but is 0",
+                        "timestamp": "2021-02-19T21:11:16.809795Z",
+                        "orig_output": "validate_143ac10c2627463d9630f8bf9e29ddf4.OS_2.usMaxContext - ERROR - The usMaxContext should be 5, but is 0",
+                        "msg_code": "V0831"
+                    },
+                    {
+                        "subroutine": "validate_143ac10c2627463d9630f8bf9e29ddf4.STAT",
+                        "levelname": "ERROR",
+                        "message": "The following axes have no AxisValueTables associated with them: ['wdth', 'wght']",
+                        "timestamp": "2021-02-19T21:11:16.822466Z",
+                        "orig_output": "validate_143ac10c2627463d9630f8bf9e29ddf4.STAT - ERROR - The following axes have no AxisValueTables associated with them: ['wdth', 'wght']",
+                        "msg_code": "Vxxxx"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20201030.330639rc3",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 85037,
+    "completedDate": "2021-02-19 21:12:29.697924"
+}

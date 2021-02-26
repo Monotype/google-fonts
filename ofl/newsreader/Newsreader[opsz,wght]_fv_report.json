@@ -4,20 +4,21 @@
             "file": {
                 "name": "Newsreader[opsz,wght].ttf",
                 "type": "ttf",
-                "size": 451856,
-                "md5": "98f5c53d943b5d36ce641afd499b08f1",
-                "geometryMd5": "c3c21e64c9539c6b52420d85bab7b276"
+                "size": 451664,
+                "md5": "d76b049ce532c1326074a93116466515",
+                "geometryMd5": "e03cea0dbaa1ed8e5b37fbdcae9fb1ab"
             },
             "name": {
-                "family": "Newsreader Text",
+                "family": "Newsreader 16pt",
                 "subFamily": "Regular",
-                "fullName": "Newsreader Text Regular",
-                "psName": "Newsreader-TextRegular",
-                "versionText": "Version 1.001",
+                "fullName": "Newsreader 16pt Regular",
+                "psName": "Newsreader16pt-Regular",
+                "versionText": "Version 1.003",
                 "copyright": "Copyright 2020 The Newsreader Project Authors (http://github.com/productiontype/Newsreader)",
                 "trademark": "Newsreader is a registered trademark of Production Systems SAS.",
                 "typographicFamily": "Newsreader",
-                "typographicSubFamily": "Regular"
+                "typographicSubFamily": "Regular",
+                "variationsPSNamePrefix": "NewsreaderRoman"
             },
             "format": {
                 "format": "OT",
@@ -30,56 +31,48 @@
                 "font_vendor": "Production Type"
             },
             "validation": {
-                "font_full_name": "Newsreader Text Regular",
+                "font_full_name": "Newsreader 16pt Regular",
                 "level": "ERROR",
                 "last_success": "finished validation python",
                 "msg_count": {
                     "CRITICAL": 0,
-                    "ERROR": 4,
+                    "ERROR": 3,
                     "WARNING": 0,
                     "INFO": 0,
                     "DEBUG": 0
                 },
                 "result": [
                     {
-                        "subroutine": "validate_e73d3c8de38f45b996d57fca9f4b7de6.fvar",
+                        "subroutine": "validate_58d03a123ffe4915bc9dbb842041f150.DSIG",
                         "levelname": "ERROR",
-                        "message": "minValue 0.0 is out of range for 'opsz' axis",
-                        "timestamp": "2020-09-25T11:30:06.336801Z",
-                        "orig_output": "validate_e73d3c8de38f45b996d57fca9f4b7de6.fvar - ERROR - minValue 0.0 is out of range for 'opsz' axis",
-                        "msg_code": "V1081"
+                        "message": "The digital signature of the file did not verify.",
+                        "timestamp": "2021-02-24T00:39:55.802913Z",
+                        "orig_output": "validate_58d03a123ffe4915bc9dbb842041f150.DSIG - ERROR - The digital signature of the file did not verify.",
+                        "msg_code": "E0502"
                     },
                     {
-                        "subroutine": "validate_e73d3c8de38f45b996d57fca9f4b7de6.name",
+                        "subroutine": "validate_58d03a123ffe4915bc9dbb842041f150.name",
                         "levelname": "ERROR",
                         "message": "Postscript name not present for both Mac and Windows.",
-                        "timestamp": "2020-09-25T11:30:40.815169Z",
-                        "orig_output": "validate_e73d3c8de38f45b996d57fca9f4b7de6.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2021-02-24T00:42:28.110369Z",
+                        "orig_output": "validate_58d03a123ffe4915bc9dbb842041f150.name - ERROR - Postscript name not present for both Mac and Windows.",
                         "msg_code": "E2008"
                     },
                     {
-                        "subroutine": "validate_e73d3c8de38f45b996d57fca9f4b7de6.OS_2.xAvgCharWidth",
+                        "subroutine": "validate_58d03a123ffe4915bc9dbb842041f150.OS_2.xAvgCharWidth",
                         "levelname": "ERROR",
                         "message": "The xAvgCharWidth should be 1086, but is 1087",
-                        "timestamp": "2020-09-25T11:30:06.318446Z",
-                        "orig_output": "validate_e73d3c8de38f45b996d57fca9f4b7de6.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 1086, but is 1087",
+                        "timestamp": "2021-02-24T00:41:45.981458Z",
+                        "orig_output": "validate_58d03a123ffe4915bc9dbb842041f150.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 1086, but is 1087",
                         "msg_code": "E2135"
-                    },
-                    {
-                        "subroutine": "validate_e73d3c8de38f45b996d57fca9f4b7de6.STAT",
-                        "levelname": "ERROR",
-                        "message": "value 0.0 is out of range for axis 'opsz'",
-                        "timestamp": "2020-09-25T11:30:06.319114Z",
-                        "orig_output": "validate_e73d3c8de38f45b996d57fca9f4b7de6.STAT - ERROR - value 0.0 is out of range for axis 'opsz'",
-                        "msg_code": "V1081"
                     }
                 ]
             }
         }
     ],
     "skipped": [],
-    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontio3_version": "3.7.20201030.330639rc3",
     "fontvalidator_version": "20200305.1",
-    "runningTime": 130151,
-    "completedDate": "2020-09-25 11:30:41.079935"
+    "runningTime": 159862,
+    "completedDate": "2021-02-24 00:42:28.401484"
 }

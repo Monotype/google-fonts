@@ -1,0 +1,91 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "NotoSansBuhid-Regular.ttf",
+                "type": "ttf",
+                "size": 11440,
+                "md5": "4a096d35423e010ef7f200817f0d593f",
+                "geometryMd5": "f160cb66073ccb5bc8fbdaf74e0a89cf"
+            },
+            "name": {
+                "family": "Noto Sans Buhid",
+                "subFamily": "Regular",
+                "fullName": "Noto Sans Buhid Regular",
+                "psName": "NotoSansBuhid-Regular",
+                "versionText": "Version 2.000; ttfautohint (v1.8.3) -l 8 -r 50 -G 200 -x 14 -D buhd -f none -a qsq -X \"\"",
+                "copyright": "Copyright 2017 Google Inc. All Rights Reserved.",
+                "trademark": "Noto is a trademark of Google Inc."
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 44,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "GOOG",
+                "font_vendor": "Google"
+            },
+            "validation": {
+                "font_full_name": "Noto Sans Buhid Regular",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 4,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_3b6fec3848634173bebd53a7d5cbed1b.DSIG",
+                        "levelname": "ERROR",
+                        "message": "The digital signature of the file did not verify.",
+                        "timestamp": "2021-02-24T00:55:39.020966Z",
+                        "orig_output": "validate_3b6fec3848634173bebd53a7d5cbed1b.DSIG - ERROR - The digital signature of the file did not verify.",
+                        "msg_code": "E0502"
+                    },
+                    {
+                        "subroutine": "validate_3b6fec3848634173bebd53a7d5cbed1b.hints.glyph 0.FDEF 23.FDEF 21.FDEF 139.FDEF 79.FDEF 70.FDEF 4",
+                        "levelname": "ERROR",
+                        "message": "RCVT[] in FDEF 4 (PC 31) is attempting to read from CVT index 89, which does not exist!",
+                        "timestamp": "2021-02-24T00:55:40.872947Z",
+                        "orig_output": "validate_3b6fec3848634173bebd53a7d5cbed1b.hints.glyph 0.FDEF 23.FDEF 21.FDEF 139.FDEF 79.FDEF 70.FDEF 4 - ERROR - RCVT[] in FDEF 4 (PC 31) is attempting to read from CVT index 89, which does not exist!",
+                        "glyph": {
+                            "id": 0,
+                            "name": ".notdef"
+                        },
+                        "msg_code": "G0029"
+                    },
+                    {
+                        "subroutine": "validate_3b6fec3848634173bebd53a7d5cbed1b.hints.glyph 43.FDEF 31.FDEF 21.FDEF 139.FDEF 81.FDEF 70.FDEF 4",
+                        "levelname": "ERROR",
+                        "message": "RCVT[] in FDEF 4 (PC 31) is attempting to read from CVT index 89, which does not exist!",
+                        "timestamp": "2021-02-24T00:55:41.642579Z",
+                        "orig_output": "validate_3b6fec3848634173bebd53a7d5cbed1b.hints.glyph 43.FDEF 31.FDEF 21.FDEF 139.FDEF 81.FDEF 70.FDEF 4 - ERROR - RCVT[] in FDEF 4 (PC 31) is attempting to read from CVT index 89, which does not exist!",
+                        "glyph": {
+                            "id": 43,
+                            "name": "uni25CC"
+                        },
+                        "msg_code": "G0029"
+                    },
+                    {
+                        "subroutine": "validate_3b6fec3848634173bebd53a7d5cbed1b.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2021-02-24T00:55:40.804609Z",
+                        "orig_output": "validate_3b6fec3848634173bebd53a7d5cbed1b.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20201030.330639rc3",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 5761,
+    "completedDate": "2021-02-24 00:55:41.743600"
+}

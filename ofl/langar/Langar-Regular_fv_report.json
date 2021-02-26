@@ -1,0 +1,83 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Langar-Regular.ttf",
+                "type": "ttf",
+                "size": 192308,
+                "md5": "878dda9a66f9a95ad0891d2e7494b5af",
+                "geometryMd5": "e3e404d7a2ca2d69e1debf6619a2a90c"
+            },
+            "name": {
+                "family": "Langar",
+                "subFamily": "Regular",
+                "fullName": "Langar Regular",
+                "psName": "Langar-Regular",
+                "versionText": "Version 1.001; ttfautohint (v1.8.3)",
+                "copyright": "Copyright 2016 The Langar Project Authors (https://github.com/typeland/Langar)",
+                "trademark": "Langar is a trademark of Alessia Mazzarella"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 640,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "LAND",
+                "font_vendor": "Typeland"
+            },
+            "validation": {
+                "font_full_name": "Langar Regular",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 4,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_54711585e8fd4e9285ef36f973d82218.DSIG",
+                        "levelname": "ERROR",
+                        "message": "The digital signature of the file did not verify.",
+                        "timestamp": "2021-02-24T00:30:51.384626Z",
+                        "orig_output": "validate_54711585e8fd4e9285ef36f973d82218.DSIG - ERROR - The digital signature of the file did not verify.",
+                        "msg_code": "E0502"
+                    },
+                    {
+                        "subroutine": "validate_54711585e8fd4e9285ef36f973d82218.GDEF.glyphClasses",
+                        "levelname": "ERROR",
+                        "message": "The following mark glyphs have nonzero advances: [631]",
+                        "timestamp": "2021-02-24T00:30:51.385441Z",
+                        "orig_output": "validate_54711585e8fd4e9285ef36f973d82218.GDEF.glyphClasses - ERROR - The following mark glyphs have nonzero advances: [631]",
+                        "msg_code": "V1102"
+                    },
+                    {
+                        "subroutine": "validate_54711585e8fd4e9285ef36f973d82218.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2021-02-24T00:31:34.871979Z",
+                        "orig_output": "validate_54711585e8fd4e9285ef36f973d82218.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
+                    },
+                    {
+                        "subroutine": "validate_54711585e8fd4e9285ef36f973d82218.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 548, but is 549",
+                        "timestamp": "2021-02-24T00:30:53.917689Z",
+                        "orig_output": "validate_54711585e8fd4e9285ef36f973d82218.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 548, but is 549",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20201030.330639rc3",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 91896,
+    "completedDate": "2021-02-24 00:32:19.243615"
+}

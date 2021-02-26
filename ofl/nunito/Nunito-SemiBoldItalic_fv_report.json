@@ -4,16 +4,16 @@
             "file": {
                 "name": "Nunito-SemiBoldItalic.ttf",
                 "type": "ttf",
-                "size": 159692,
-                "md5": "9b278b024220e8efcbfe544609c7bfac",
-                "geometryMd5": "d5e85642f31e1fa6770462e64fa44467"
+                "size": 160052,
+                "md5": "646b843e4e0f2716fc94a74345f36938",
+                "geometryMd5": "04a10fd8741bafb6f4be3fdf57f20708"
             },
             "name": {
                 "family": "Nunito SemiBold",
                 "subFamily": "Italic",
                 "fullName": "Nunito SemiBold Italic",
                 "psName": "Nunito-SemiBoldItalic",
-                "versionText": "Version 3.600; ttfautohint (v1.8.3)",
+                "versionText": "Version 3.601; ttfautohint (v1.8.2.53-6de2)",
                 "copyright": "Copyright 2014 The Nunito Project Authors (https://github.com/googlefonts/nunito)",
                 "trademark": "Unknown",
                 "typographicFamily": "Nunito",
@@ -35,34 +35,42 @@
                 "last_success": "finished validation python",
                 "msg_count": {
                     "CRITICAL": 0,
-                    "ERROR": 3,
+                    "ERROR": 4,
                     "WARNING": 0,
                     "INFO": 0,
                     "DEBUG": 0
                 },
                 "result": [
                     {
-                        "subroutine": "validate_c0ba84b6b7154064af5d252428027c35.glyf.glyph 646 ('uni048E').contours.contour 1",
+                        "subroutine": "validate_fa9f06914bf74dcc8203553cdfe486b4.DSIG",
+                        "levelname": "ERROR",
+                        "message": "The digital signature of the file did not verify.",
+                        "timestamp": "2021-02-20T03:32:50.710313Z",
+                        "orig_output": "validate_fa9f06914bf74dcc8203553cdfe486b4.DSIG - ERROR - The digital signature of the file did not verify.",
+                        "msg_code": "E0502"
+                    },
+                    {
+                        "subroutine": "validate_fa9f06914bf74dcc8203553cdfe486b4.glyf.glyph 646 ('uni048E').contours.contour 1",
                         "levelname": "ERROR",
                         "message": "Contour has duplicate adjacent points of differing on-curve states.",
-                        "timestamp": "2020-11-17T18:03:33.254709Z",
-                        "orig_output": "validate_c0ba84b6b7154064af5d252428027c35.glyf.glyph 646 ('uni048E').contours.contour 1 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2021-02-20T03:32:59.938415Z",
+                        "orig_output": "validate_fa9f06914bf74dcc8203553cdfe486b4.glyf.glyph 646 ('uni048E').contours.contour 1 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
                         "msg_code": "V0295"
                     },
                     {
-                        "subroutine": "validate_c0ba84b6b7154064af5d252428027c35.glyf.glyph 753 ('uni04E9').contours.contour 2",
+                        "subroutine": "validate_fa9f06914bf74dcc8203553cdfe486b4.glyf.glyph 753 ('uni04E9').contours.contour 2",
                         "levelname": "ERROR",
                         "message": "Contour has duplicate adjacent points of differing on-curve states.",
-                        "timestamp": "2020-11-17T18:03:35.126714Z",
-                        "orig_output": "validate_c0ba84b6b7154064af5d252428027c35.glyf.glyph 753 ('uni04E9').contours.contour 2 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2021-02-20T03:33:01.749165Z",
+                        "orig_output": "validate_fa9f06914bf74dcc8203553cdfe486b4.glyf.glyph 753 ('uni04E9').contours.contour 2 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
                         "msg_code": "V0295"
                     },
                     {
-                        "subroutine": "validate_c0ba84b6b7154064af5d252428027c35.name",
+                        "subroutine": "validate_fa9f06914bf74dcc8203553cdfe486b4.name",
                         "levelname": "ERROR",
                         "message": "Postscript name not present for both Mac and Windows.",
-                        "timestamp": "2020-11-17T18:04:15.719435Z",
-                        "orig_output": "validate_c0ba84b6b7154064af5d252428027c35.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2021-02-20T03:33:44.304010Z",
+                        "orig_output": "validate_fa9f06914bf74dcc8203553cdfe486b4.name - ERROR - Postscript name not present for both Mac and Windows.",
                         "msg_code": "E2008"
                     }
                 ]
@@ -70,8 +78,8 @@
         }
     ],
     "skipped": [],
-    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontio3_version": "3.7.20201030.330639rc3",
     "fontvalidator_version": "20200305.1",
-    "runningTime": 86164,
-    "completedDate": "2020-11-17 18:04:41.121583"
+    "runningTime": 86200,
+    "completedDate": "2021-02-20 03:34:12.502228"
 }

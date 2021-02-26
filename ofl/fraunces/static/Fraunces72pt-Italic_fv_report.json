@@ -1,0 +1,76 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Fraunces72pt-Italic.ttf",
+                "type": "ttf",
+                "size": 74784,
+                "md5": "5b350cb39a057c675bf1de6a5ed94b51",
+                "geometryMd5": "c9300364f815474d1fc6a7b37b3aa8d2"
+            },
+            "name": {
+                "family": "Fraunces 72pt",
+                "subFamily": "Italic",
+                "fullName": "Fraunces 72pt Italic",
+                "psName": "Fraunces72pt-Italic",
+                "versionText": "Version 1.000;[b76b70a41]",
+                "copyright": "Copyright 2020 The Fraunces Project Authors (github.com/undercasetype/Fraunces)",
+                "trademark": "Unknown",
+                "variationsPSNamePrefix": "FrauncesItalic"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 698,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "UCT ",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Fraunces 72pt Italic",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 3,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_0f5ecb771cdf4d2eb2781bc7e60793f6.DSIG",
+                        "levelname": "ERROR",
+                        "message": "The digital signature of the file did not verify.",
+                        "timestamp": "2021-02-20T04:14:25.018374Z",
+                        "orig_output": "validate_0f5ecb771cdf4d2eb2781bc7e60793f6.DSIG - ERROR - The digital signature of the file did not verify.",
+                        "msg_code": "E0502"
+                    },
+                    {
+                        "subroutine": "validate_0f5ecb771cdf4d2eb2781bc7e60793f6.glyf.glyph 81 ('guillemetright')",
+                        "levelname": "ERROR",
+                        "message": "Bounds should be [399, 142, 1294, 835], but are [31, 142, 926, 835].",
+                        "timestamp": "2021-02-20T04:14:27.970429Z",
+                        "orig_output": "validate_0f5ecb771cdf4d2eb2781bc7e60793f6.glyf.glyph 81 ('guillemetright') - ERROR - Bounds should be [399, 142, 1294, 835], but are [31, 142, 926, 835].",
+                        "msg_code": "E1112"
+                    },
+                    {
+                        "subroutine": "validate_0f5ecb771cdf4d2eb2781bc7e60793f6.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2021-02-20T04:14:43.617756Z",
+                        "orig_output": "validate_0f5ecb771cdf4d2eb2781bc7e60793f6.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20201030.330639rc3",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 22635,
+    "completedDate": "2021-02-20 04:14:44.155369"
+}

@@ -1,0 +1,84 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Fraunces9pt-Italic.ttf",
+                "type": "ttf",
+                "size": 75336,
+                "md5": "6afc29a826edca7fed988589c35d713f",
+                "geometryMd5": "a56b867410f43b32329858ff99cbaa4d"
+            },
+            "name": {
+                "family": "Fraunces 9pt",
+                "subFamily": "Italic",
+                "fullName": "Fraunces 9pt Italic",
+                "psName": "Fraunces9pt-Italic",
+                "versionText": "Version 1.000;[b76b70a41]",
+                "copyright": "Copyright 2020 The Fraunces Project Authors (github.com/undercasetype/Fraunces)",
+                "trademark": "Unknown",
+                "variationsPSNamePrefix": "FrauncesItalic"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 698,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "UCT ",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Fraunces 9pt Italic",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 4,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_521675e15c6c447d8ab08fedda897403.DSIG",
+                        "levelname": "ERROR",
+                        "message": "The digital signature of the file did not verify.",
+                        "timestamp": "2021-02-21T14:27:12.599630Z",
+                        "orig_output": "validate_521675e15c6c447d8ab08fedda897403.DSIG - ERROR - The digital signature of the file did not verify.",
+                        "msg_code": "E0502"
+                    },
+                    {
+                        "subroutine": "validate_521675e15c6c447d8ab08fedda897403.glyf.glyph 81 ('guillemetright')",
+                        "levelname": "ERROR",
+                        "message": "Bounds should be [448, 127, 1423, 867], but are [31, 125, 1006, 865].",
+                        "timestamp": "2021-02-21T14:27:16.787652Z",
+                        "orig_output": "validate_521675e15c6c447d8ab08fedda897403.glyf.glyph 81 ('guillemetright') - ERROR - Bounds should be [448, 127, 1423, 867], but are [31, 125, 1006, 865].",
+                        "msg_code": "E1112"
+                    },
+                    {
+                        "subroutine": "validate_521675e15c6c447d8ab08fedda897403.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2021-02-21T14:27:32.017204Z",
+                        "orig_output": "validate_521675e15c6c447d8ab08fedda897403.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
+                    },
+                    {
+                        "subroutine": "validate_521675e15c6c447d8ab08fedda897403.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 1102, but is 1103",
+                        "timestamp": "2021-02-21T14:27:14.367635Z",
+                        "orig_output": "validate_521675e15c6c447d8ab08fedda897403.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 1102, but is 1103",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20201030.330639rc3",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 23928,
+    "completedDate": "2021-02-21 14:27:32.394749"
+}

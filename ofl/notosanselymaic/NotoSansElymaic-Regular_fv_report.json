@@ -1,0 +1,91 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "NotoSansElymaic-Regular.ttf",
+                "type": "ttf",
+                "size": 9024,
+                "md5": "1b6f5ba0214a093a86ff7a909598614b",
+                "geometryMd5": "a527a68212b90adeabf65f6f4f4e7d6e"
+            },
+            "name": {
+                "family": "Noto Sans Elymaic",
+                "subFamily": "Regular",
+                "fullName": "Noto Sans Elymaic Regular",
+                "psName": "NotoSansElymaic-Regular",
+                "versionText": "Version 1.000",
+                "copyright": "Copyright 2019 Google LLC. All Rights Reserved.",
+                "trademark": "Noto is a trademark of Google LLC"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 46,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "GOOG",
+                "font_vendor": "Google"
+            },
+            "validation": {
+                "font_full_name": "Noto Sans Elymaic Regular",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 5,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_ea50f8033a54454e949023f5a802ae0e.DSIG",
+                        "levelname": "ERROR",
+                        "message": "The digital signature of the file did not verify.",
+                        "timestamp": "2021-02-20T12:32:42.976442Z",
+                        "orig_output": "validate_ea50f8033a54454e949023f5a802ae0e.DSIG - ERROR - The digital signature of the file did not verify.",
+                        "msg_code": "E0502"
+                    },
+                    {
+                        "subroutine": "validate_ea50f8033a54454e949023f5a802ae0e.head",
+                        "levelname": "ERROR",
+                        "message": "The macStyle italic bit is False but post.italicAngle is  -5.0",
+                        "timestamp": "2021-02-20T12:32:44.119962Z",
+                        "orig_output": "validate_ea50f8033a54454e949023f5a802ae0e.head - ERROR - The macStyle italic bit is False but post.italicAngle is  -5.0",
+                        "msg_code": "E1316"
+                    },
+                    {
+                        "subroutine": "validate_ea50f8033a54454e949023f5a802ae0e.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2021-02-20T12:32:44.161590Z",
+                        "orig_output": "validate_ea50f8033a54454e949023f5a802ae0e.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
+                    },
+                    {
+                        "subroutine": "validate_ea50f8033a54454e949023f5a802ae0e.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 738, but is 725",
+                        "timestamp": "2021-02-20T12:32:43.666293Z",
+                        "orig_output": "validate_ea50f8033a54454e949023f5a802ae0e.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 738, but is 725",
+                        "msg_code": "E2135"
+                    },
+                    {
+                        "subroutine": "validate_ea50f8033a54454e949023f5a802ae0e.post",
+                        "levelname": "ERROR",
+                        "message": "Nonzero italic angle but head.macStyle.italic is False.",
+                        "timestamp": "2021-02-20T12:32:44.162739Z",
+                        "orig_output": "validate_ea50f8033a54454e949023f5a802ae0e.post - ERROR - Nonzero italic angle but head.macStyle.italic is False.",
+                        "msg_code": "E2308"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20201030.330639rc3",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 5009,
+    "completedDate": "2021-02-20 12:32:44.380375"
+}

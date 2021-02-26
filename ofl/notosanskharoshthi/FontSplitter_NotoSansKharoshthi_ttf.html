@@ -1,0 +1,2689 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv='content-type' content='text/html; charset=utf-8'>
+    <meta name="code" content="Olli Meier">
+    <title>MT FontSplitter</title>
+    <style type="text/css">
+      body {
+        /*background-color: #fff; #fdfdfb;*/
+        color: #131313;
+        font-family: "Kootenay Pro", Axel, "System Font", "Fira Sans", sans-serif;
+        /*line-height: 1.3em;*/
+        margin: 0;
+        /*padding: 1em;*/
+        font-size: 14px;
+        /*padding-right: 50px;*/
+        /*background: linear-gradient(to bottom, #383838, white);*/
+      }
+
+    table {width:100%;}
+    tr {margin: 10px;}
+    td {border: 1px solid #fff; /*#fdfdfb;*/}
+/*
+    table th, table td {
+    overflow: scroll !important;
+    white-space: nowrap;
+}
+*/
+
+    mark {
+        background-color: #fff990;
+        color: black;
+        opacity: 0.7;
+    }
+
+    .containerMain {
+        position: absolute;
+        z-index: 2;
+        /*top:-2000px;*/
+        left: 15px; 
+        background-color: white;
+        overflow: scroll;
+        width: calc(100% - 15px);
+    }
+
+
+    .containerCSScode {
+        overflow: scroll;
+        position: absolute;
+        z-index: 1;
+        top:0px;
+        padding-top: 200px;
+        padding-left: 20px;
+        width: 100%;
+        background-color: #383838;
+    }
+
+    .cssButton {
+        z-index: 3;
+        position: fixed;
+        top: 49%;
+    }
+
+    .cssButtonStyle {
+        /*text-align: center;*/
+        /*text-transform: uppercase;*/
+        transform-origin: left bottom 0;
+        /*writing-mode:tb-rl;*/
+        -webkit-transform:rotate(-90deg);
+        -moz-transform:rotate(-90deg);
+        -o-transform: rotate(-90deg);
+        -ms-transform:rotate(-90deg);
+        transform: rotate(-90deg);
+        white-space:nowrap;
+        display:block;
+        /*bottom:0;
+        width:20px;
+        height:20px;*/
+
+    }
+
+    .comment{color:#FCD833}
+    .rule{color:#009FE3}
+    .element{color:#FFF}
+    .keyword{color:#E50051}
+    .prop{color:#FF9700}
+    .whitetext{color:#FFF}
+    /*.deepgray{background-color:#383838}*/
+    .darkgray{background-color: #787878}
+    .darkgray_text{color:#BBB}
+    .lightgray{background-color:rgb(252,252,252)}
+    .lightgray_text{color:rgb(252,252,252)}
+    .gray_text{color:lightgrey}
+
+    pre{font-family:Consolas,Courier,monospace;
+        /*font-size:.81em;*/
+        line-height:1.1em;
+        margin:0;
+        /*padding:1em;*/
+        border:0;
+        -webkit-touch-callout:text!important;
+        -webkit-user-select:text!important;
+        -khtml-user-select:text!important;
+        -moz-user-select:text!important;
+        -ms-user-select:text!important;
+        user-select:text!important
+    }
+    .gradientBG {
+        background:
+            linear-gradient(
+                limegreen,
+                transparent
+            ),
+            linear-gradient(
+                90deg,
+                skyblue,
+                transparent
+            ),
+            linear-gradient(
+                -90deg,
+                coral,
+                transparent
+            );
+            
+        background-blend-mode: screen;
+        }
+
+    .linearGradientBG{
+        background:
+            repeating-linear-gradient(
+                -45deg,
+                transparent,
+                transparent 25%,
+                tomato 0,
+                tomato 50%
+            ),
+            repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 25%,
+                dodgerblue 0,
+                dodgerblue 50%
+            ), wheat;
+
+        background-size: 10em 10em;
+        background-blend-mode: multiply;
+    }
+
+    .linearGradient2BG{
+        background:
+            repeating-linear-gradient(
+                50deg,
+                #F7A37B,
+                #F7A37B 1em,
+                #FFDEA8 1em,
+                #FFDEA8 2em,
+                #D0E4B0 2em,
+                #D0E4B0 3em,
+                #7CC5D0 3em,
+                #7CC5D0 4em,
+                #00A2E1 4em,
+                #00A2E1 5em,
+                #0085C8 5em,
+                #0085C8 6em
+            ),
+            repeating-linear-gradient(
+                -50deg,
+                #F7A37B,
+                #F7A37B 1em,
+                #FFDEA8 1em,
+                #FFDEA8 2em,
+                #D0E4B0 2em,
+                #D0E4B0 3em,
+                #7CC5D0 3em,
+                #7CC5D0 4em,
+                #00A2E1 4em,
+                #00A2E1 5em,
+                #0085C8 5em,
+                #0085C8 6em
+            );
+            
+        background-blend-mode: multiply;
+    }
+
+    .chr {
+        line-height: 1.45em;
+        font-size:2.5em;
+        		display:inline-block;
+width:1.45em;
+white-space: pre;
+        min-width:1.45em;
+        height:1.45em;
+        text-align:center;
+        /*margin:-1px -1px -1px -4px;*/
+        background-color: #fff; /*#fdfdfb;*/
+        border:1px solid #efefef;/*#FAF7F5;*/ 
+        /*overflow: scroll !important;*/
+        white-space: nowrap;
+        font-size: 30px;
+    }
+
+    .characterZoom {
+        display:inline-block;
+        white-space: pre;
+        text-align:center;
+        background-color: #fff; /*#fdfdfb;*/
+        border:10px solid #efefef;/*#FAF7F5;*/ 
+        white-space: nowrap;
+        font-size: 35vh;
+        z-index:1000; 
+        width:50%; 
+        height:50%;
+        position: fixed; 
+        left: 25%; 
+        top:25%; 
+        display: none;"
+    }
+
+    .characterUniRanges{
+        font-size:2.5em;
+        display:inline-block;
+        /*width:1.45em;*/
+        min-width:2em;
+        height:2em;
+        text-align:center;
+        margin:-0px -0px -1px -4px;
+        background-color:#fff;
+        border:1px solid rgb(240,240,240); 
+        white-space: pre;
+    }
+
+    .characterUniRanges[title-B]:active {
+        z-index: 999;
+      content: attr(title-B);
+      position: relative;
+        background:#B3D4FC;
+        font-size: 20.5em;
+        display:inline-block;
+        /*width:10.45em;*/
+        min-width:500px;
+        height:500px;
+        text-align:center;
+        margin:-0px -0px -1px -4px;
+        border:1px solid rgb(240,240,240); 
+        white-space: pre;
+    }
+
+    [data-title] {
+      transition-timing-function: ease-in;
+          transition: 0.4s;
+      position: relative;
+    }
+
+    [data-title]:hover::before {
+      content: attr(data-title);
+      position: absolute;
+      z-index: 999;
+      bottom: -26px;
+      display: inline-block;
+      padding: 3px 6px;
+      border-radius: 2px;
+      background: #000;
+      color: #fff;
+      font-size: 12px;
+      font-family: sans-serif;
+      white-space: nowrap;
+      left: -20px;
+    }
+
+    [data-title]:hover::after {
+          z-index: 999;
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 8px;
+      display: inline-block;
+      color: #fff;
+      border: 8px solid transparent;    
+      border-bottom: 8px solid #000;
+    }
+
+    .characterMetaData {
+        line-height: 1.45em;
+        font-size:2.5em;
+        		display:inline-block;
+width:1.45em;
+white-space: pre;
+        max-width:1.45em !important;
+        min-width:1.45em;
+        height:1.45em;
+        text-align:center;
+        /*margin:-1px -1px -1px -4px;*/
+        background-color: #fff; /*#fdfdfb;*/
+        border:1px solid #efefef;/*#FAF7F5;*/ 
+        /*overflow: scroll !important;*/
+        white-space: nowrap;
+        font-size: 30px;
+    }
+
+    .characterFix {
+        font-size:2.5em;
+        		display:inline-block;
+width:1.45em;
+white-space: pre;
+        min-width:1.45em;
+        height:1.45em;
+        text-align:center;
+        /*margin:-1px -1px -1px -4px;*/
+        background-color: #fff; /*#fdfdfb;*/
+        border:1px solid #efefef;/*#FAF7F5;*/
+        overflow-x: scroll !important;
+        white-space: nowrap;
+        font-size: 30px;
+    }
+
+    .characterFontNames {
+        font-size:2.5em;
+        		display:inline-block;
+width:1.45em;
+white-space: pre;
+        min-width: 1.45em;
+        height:1.45em;
+        text-align:center;
+        /*margin:-1px -1px -1px -4px;*/
+        background-color: #fff; /*#fdfdfb;*/
+        border: 1px solid #fff; /*#fdfdfb;*/ 
+        position: -webkit-sticky;
+        position: sticky;
+        white-space: pre !important;
+        font-size: 30px;
+    }
+
+    .buttonBlack {
+        background-color: #131313;
+        border: 1px solid #fff; /*#fdfdfb;*/
+        color: #fff; /*#fdfdfb;*/
+        padding: 5px 15px;
+        text-align: center;
+        /*text-decoration: none;*/
+        display: inline-block;
+        margin: 1px 1px;
+        cursor: pointer;
+        border-radius: 0.0em;
+
+    }
+
+    .features-head {
+        content:"";
+        display:inline-block;
+        float:left;
+        width:100%;
+        border-bottom:1px solid rgb(240,240,240);
+        padding-top:10px;
+        margin-top:30px; 
+        margin-bottom:10px
+    }
+
+    input {
+        /*width: 44px;
+        height: 23px;
+        background-color: buttonface;*/
+        cursor: default;
+        border-width: 0px;
+        border-style: solid;
+        border-color: ; #fff; /*#fdfdfb;*//*rgb(169, 169, 169);*/
+        border-image: initial;
+        padding: 0px opx;
+    }
+
+    .inputColor{
+        width: 25px;
+        height: 29px;
+        cursor: default;
+        border: none;
+    }
+
+    button {
+        border: 0;
+        height: 100%;
+        /*width: 100%;*/
+        padding: 5px 15px;
+        text-align: center;
+        /*text-decoration: none;*/
+        display: inline-block;
+        margin: 1px 1px;
+        cursor: pointer;
+        border-radius: 0.0em;
+        vertical-align: top;
+        background: #fff; /*#fdfdfb;*/
+        outline: none;
+    }
+
+    .buttonBorder {
+        border: 0;
+        height: 100%;
+        /*width: 100%;*/
+        padding: 5px 15px;
+        text-align: center;
+        /*text-decoration: none;*/
+        display: inline-block;
+        margin: 1px 1px;
+        cursor: pointer;
+        border-radius: 0.0em;
+        vertical-align: top;
+        background: #fff; /*#fdfdfb;*/
+        outline: none;
+        border:1px solid #efefef;/*#FAF7F5;*/
+    }
+
+    .buttonOT {
+        border:1px solid #efefef;/*#FAF7F5;*/
+        width: 40px;
+        padding: 5px 5px;
+    }
+    .buttonExtra{
+        vertical-align: bottom;
+        line-height: 2em;
+
+        border: 0;
+        height: 100%;
+        /*width: 100%;*/
+        padding: 5px 15px;
+        text-align: center;
+        /*text-decoration: none;*/
+        display: inline-block;
+        margin: 1px 1px;
+        cursor: pointer;
+        border-radius: 0.0em;
+        background: #fff; /*#fdfdfb;*/
+        outline: none;
+    }
+
+    select {
+        border: 0;
+        height: 100%;
+        width: 100%;
+        padding: 5px 15px;
+        text-align: center;
+        /*text-decoration: none;*/
+        display: inline-block;
+        margin: 1px 1px;
+        cursor: pointer;
+        border-radius: 0.0em;
+        vertical-align: top;
+        background: #131313;
+        color: #fff; /*#fdfdfb;*/
+    }
+
+    .selectSampleText {
+        border: 0;
+        height: 100%;
+        width: 200px;
+        /*padding: 5px 15px;*/
+        text-align: center;
+        /*text-decoration: none;*/
+        display: inline-block;
+        margin: 5px 1px;
+        cursor: pointer;
+        border-radius: 0.0em;
+        vertical-align: top;
+        background: #fff; /*#fdfdfb;*/
+        color: #131313;
+    }
+
+    .textTop {vertical-align: top;}
+    .compareBoxes{word-break: break-all;}
+
+    .flyingFont{
+        font-size: 300px;
+        text-align: center;
+        /*text-transform: uppercase;*/
+        width: 100%;
+    }
+
+    .flyingFont1{
+        color: #FF4136/*#131313*/; 
+        z-index: 900; 
+        position: absolute;
+    }
+    .flyingFont2{
+        /*-webkit-text-stroke-width: 2px;
+           -webkit-text-stroke-color: #FF4136;
+           -webkit-text-fill-color: transparent;*/
+        z-index: 899; 
+        position: absolute;
+           opacity: .5;
+           margin-top: 10px;
+           margin-left: 10px;
+    }
+    .flyingFont3{
+        /*-webkit-text-stroke-width: 2px;
+           -webkit-text-stroke-color: #FF4136;
+           -webkit-text-fill-color: transparent;*/
+        z-index: 898; 
+        position: absolute;
+           opacity: .2;
+           margin-top: 20px;
+           margin-left: 20px;
+    }
+
+    .buttonToggle {
+        border: 0;
+        /*background-color: #131313;*/
+        /*color: #fff; /*#fdfdfb;*/*/
+        text-align: center;
+        /*text-decoration: none;*/
+        display: inline-block;
+        margin: 1px 1px;
+        cursor: pointer;
+        border-radius: 0.0em;
+    }
+
+    button:hover, .selectSampleText:hover {background-color: #131313; color: #fff; /*#fdfdfb;*/}
+    .buttonOT:hover {background-color: #131313; color: #fff; /*#fdfdfb;*/}
+    .buttonExtra:hover {background-color: #fff; /*#fdfdfb;*/ color: #131313;}
+
+    hr { border: 0; height: 1px; background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0));}
+
+    .underline {text-decoration: underline; text-decoration-color: #131313; color: hsl(  0,  0%,  95%); overflow: hidden;} /* for the future: text-underline-offset: from-font; text-decoration-width: from-font; */
+    .strikeout {text-decoration: line-through; text-decoration-color: #131313; color: hsl(  0,  0%,  95%); overflow: hidden;} 
+
+    .chr:hover {background:#B3D4FC}
+    .characterUniRanges:hover {background:#B3D4FC}
+    /*.characterUniRanges:active {
+        background:#B3D4FC;
+        font-size: 20.5em;
+        display:inline-block;
+        /*width:10.45em;*/
+        min-width:500px;
+        height:500px;
+        text-align:center;
+        margin:-0px -0px -1px -4px;
+        border:1px solid rgb(240,240,240); 
+        white-space: pre;
+    }
+    */
+    .characterFix:hover {background:#B3D4FC}
+    .character_name {/*padding-top: 5px; padding-left: 25px;*/}
+    
+    @keyframes blinkblink {
+        0% 100%   {background-color: hsl( 24,  100%, 50%); }
+        50% {background-color: hsl( 24,  100%, 45%); }
+    }
+
+    .serious {animation: blinkblink 0.9s ease-in-out 0s infinite;}
+    .critical {background-color: hsl( 0,  100%, 20%); color: hsl( 0,  0%, 90%);}
+    .error {background-color: hsl( 24,  100%, 45%); color: hsl( 24,  100%, 70%);}
+    .warning {background-color: hsl( 50,  65%, 52%); color: hsl( 50,  65%, 70%);}
+    .info {background-color: #f9f7f6;/*hsl(  0,  0%,  95%);*/ color: hsl(  0,  0%,  70%);}
+
+    .extra {background-color: hsl( 200,  50%, 95%);}
+    .extra_info {background-color: hsl( 200,  50%, 96%); color: hsl( 200,  50%, 80%);}
+
+    .colLeft {
+        width: 50%;
+        padding-left: 25px;
+        text-align: right;
+        padding-right: 25px;
+        vertical-align: text-top;
+    }
+
+    .header {
+      text-transform: none;
+      text-decoration: none;
+      background-color: #fff; /*#fdfdfb;*/
+      text-align: left;
+      color: #131313;
+      position: fixed;
+      padding: 15px 15px 0px 0px;
+      width: 100%;
+      box-shadow: 0px 0px 5px #888888;
+      z-index: 99;
+    }
+
+    .header1 {
+      text-transform: none;
+      text-decoration: none;
+      background-color: #fff; /*#fdfdfb;*/
+      text-align: left;
+      color: #131313;
+      position: fixed;
+      padding: 15px 15px 0px 0px;
+      width: 100%;
+      z-index: 99;
+    }
+    
+    .header:hover  { opacity: 0.95; }
+    .header1:hover  { opacity: 0.95; }
+
+
+    .splitter{width:100%; font-weight: bold;}
+    .center{text-align: center;}
+    .left{text-align: left;}
+    .content{padding-top: 500px;}
+    .sampleBig {/*font-size: 50px !important*/; color:#fff; /*#fdfdfb;*/ padding: 20px 50px 20px 50px; }
+    .sampleWaterfall {padding: 20px 50px 20px 20px;}
+    .waterfallOverflow {white-space:nowrap; overflow: hidden; text-overflow: clip; }
+    .sampleContent {/*empty*/ font-size: 30px;}
+    .compareBoxCSS {vertical-align: top; font-size: 30px;}
+    .blackBG {background-color: #131313;}
+
+    .defaultFont {font-size: 30px;}
+    .infoFont {font-family: "Kootenay Pro", Axel, "System Font", "Fira Sans", sans-serif; font-size: 14px; vertical-align: 5px;}
+    
+    .hidden {display:none;}
+    .sliderbar {vertical-align: 4px;}
+
+    /* Slider design Start */
+
+    .inputRangeCompareBox {
+      padding-bottom: 7px !important;
+      padding-left: 10px;
+    }
+
+    .inputNumberCompareBox{
+        max-width: 50px;
+    }
+
+    input[type=range] {
+      padding-bottom: 3px;
+      -webkit-appearance: none;
+      /*position: relative*/
+    }
+
+    input[type=range]::-webkit-slider-runnable-track {
+      width: 300px;
+      height: 2px;
+      border: none;
+      border-radius: 3px;
+      border: 1px solid #131313;
+    }
+
+    input[type=range]::-moz-range-track {
+      background-color: #131313;
+    }
+
+    input::-moz-range-thumb {
+        background-color: #fff; /*#fdfdfb;*/
+        border: solid 2px #131313;
+        border-radius: 0;
+        height: 10px;
+        width: 10px;
+      }
+
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      border: none;
+      height: 12px;
+      width: 12px;
+      border-radius: 510%;
+      background: #fff; /*#fdfdfb;*/
+      border: 2px solid #131313;
+      margin-top: -5px;
+      cursor: pointer
+    }
+
+    input[type=range]:focus {
+      outline: none
+    }
+
+    /* Slider design End */
+
+    .infoToggle {border-bottom:1px solid #efefef;/*#FAF7F5;*/}
+    .colLeftToggle {
+        width: 50%;
+        padding-left: 25px;
+        text-align: right;
+        padding-right: 25px;
+        vertical-align: mittle;
+    }
+
+    td.rotateSAVE {*/height: 140px;*/ white-space: nowrap; /*float: left;*/ }
+    td.rotate > div {-webkit-transform: rotate(270deg); transform: rotate(270deg); width: 30px;}
+    td.rotate > div > span {/*padding: 5px 10px;*/}
+
+
+    
+        .blws {-webkit-font-feature-settings: "blws" 1; -moz-font-feature-settings: "blws" 1; -moz-font-feature-settings: "blws=1"; -ms-font-feature-settings: "blws" 1; -o-font-feature-settings: "blws" 1;}
+        
+        .mkmk {-webkit-font-feature-settings: "mkmk" 1; -moz-font-feature-settings: "mkmk" 1; -moz-font-feature-settings: "mkmk=1"; -ms-font-feature-settings: "mkmk" 1; -o-font-feature-settings: "mkmk" 1;}
+        
+        .kern {-webkit-font-feature-settings: "kern" 1; -moz-font-feature-settings: "kern" 1; -moz-font-feature-settings: "kern=1"; -ms-font-feature-settings: "kern" 1; -o-font-feature-settings: "kern" 1;}
+        
+        .rclt {-webkit-font-feature-settings: "rclt" 1; -moz-font-feature-settings: "rclt" 1; -moz-font-feature-settings: "rclt=1"; -ms-font-feature-settings: "rclt" 1; -o-font-feature-settings: "rclt" 1;}
+        
+        .abvs {-webkit-font-feature-settings: "abvs" 1; -moz-font-feature-settings: "abvs" 1; -moz-font-feature-settings: "abvs=1"; -ms-font-feature-settings: "abvs" 1; -o-font-feature-settings: "abvs" 1;}
+        
+        .dist {-webkit-font-feature-settings: "dist" 1; -moz-font-feature-settings: "dist" 1; -moz-font-feature-settings: "dist=1"; -ms-font-feature-settings: "dist" 1; -o-font-feature-settings: "dist" 1;}
+        
+        .ss01 {-webkit-font-feature-settings: "ss01" 1; -moz-font-feature-settings: "ss01" 1; -moz-font-feature-settings: "ss01=1"; -ms-font-feature-settings: "ss01" 1; -o-font-feature-settings: "ss01" 1;}
+        
+        .cjct {-webkit-font-feature-settings: "cjct" 1; -moz-font-feature-settings: "cjct" 1; -moz-font-feature-settings: "cjct=1"; -ms-font-feature-settings: "cjct" 1; -o-font-feature-settings: "cjct" 1;}
+        
+        .psts {-webkit-font-feature-settings: "psts" 1; -moz-font-feature-settings: "psts" 1; -moz-font-feature-settings: "psts=1"; -ms-font-feature-settings: "psts" 1; -o-font-feature-settings: "psts" 1;}
+        
+        .mark {-webkit-font-feature-settings: "mark" 1; -moz-font-feature-settings: "mark" 1; -moz-font-feature-settings: "mark=1"; -ms-font-feature-settings: "mark" 1; -o-font-feature-settings: "mark" 1;}
+        
+
+    
+		@font-face {font-family: 'om_NotoSansKharoshthiRegularttf'; src: url('NotoSansKharoshthi-Regular.ttf');}
+	.om_NotoSansKharoshthiRegularttf {font-family: 'om_NotoSansKharoshthiRegularttf'; /*font-size: 30px;*/}
+
+    
+
+    /*.animationON {animation: LooperOne 5.0s ease-in-out 0s infinite;}
+    .animationOFF {/*empty*/}*/
+
+
+    </style>
+
+  </head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <body style="-webkit-print-color-adjust:exact;" id="body_all" onload="functionAddSupportedFeatures('kern'),functionAddSupportedFeatures('mark'),functionAddSupportedFeatures('mkmk')">
+
+      <div id="zoom_characters" class="characterZoom" onclick="mUp()"></div>
+
+    <div class="header1 center" style="z-index:999; ">
+            Monotype
+        <table class="splitter">
+          <tr>
+            <td class="center">F</td>
+            <td class="center">O</td>
+            <td class="center">N</td>
+            <td class="center">T</td>
+            <td class="center">S</td>
+            <td class="center">P</td>
+            <td class="center">L</td>
+            <td class="center">I</td>
+            <td class="center">T</td>
+            <td class="center">T</td>
+            <td class="center">E</td>
+            <td class="center">R</td>
+          </tr>
+        </table>
+        <br>
+    </div>
+
+       <div class="header center">
+        <table style="width:100%">
+            <tbody id="otFeature" >
+                <td>
+                    <!-- OT feature buttons -->
+                    <table>
+		<tr>
+			<td class="colLeft">Select HTML Language</td><td class="left">
+		<select onchange="functionChangeLanguage(this.value)" class="selectSampleText">		<option value=>Default</option>
+			</select>
+			</td>
+		</tr>
+		<tr>
+			<td class="colLeft">Stylistic Set Features</td><td class="left">
+		<button class="buttonOT" data-title="Stylistic Set 1" id="ss01_btn" onclick="functionAddSupportedFeatures('ss01')">ss01</button>
+
+			</td>
+		</tr>
+		<tr>
+			<td class="colLeft">South-Asian alphasyllabary (Indic/Brahmic) Features</td><td class="left">
+		<button class="buttonOT" data-title="Above-base Substitutions" id="abvs_btn" onclick="functionAddSupportedFeatures('abvs')">abvs</button>
+		<button class="buttonOT" data-title="Below-base Substitutions" id="blws_btn" onclick="functionAddSupportedFeatures('blws')">blws</button>
+		<button class="buttonOT" data-title="Post-base Substitutions" id="psts_btn" onclick="functionAddSupportedFeatures('psts')">psts</button>
+		<button class="buttonOT" data-title="Distances" id="dist_btn" onclick="functionAddSupportedFeatures('dist')">dist</button>
+		<button class="buttonOT" data-title="Conjunct Forms" id="cjct_btn" onclick="functionAddSupportedFeatures('cjct')">cjct</button>
+
+			</td>
+		</tr>
+		<tr>
+			<td class="colLeft">Positioning Features</td><td class="left">
+		<button class="buttonOT" data-title="Kerning" id="kern_btn" onclick="functionAddSupportedFeatures('kern')">kern</button>
+		<button class="buttonOT" data-title="Mark Positioning" id="mark_btn" onclick="functionAddSupportedFeatures('mark')">mark</button>
+		<button class="buttonOT" data-title="Mark to Mark Positioning" id="mkmk_btn" onclick="functionAddSupportedFeatures('mkmk')">mkmk</button>
+		<button class="buttonOT" data-title="Distances" id="dist_btn" onclick="functionAddSupportedFeatures('dist')">dist</button>
+
+			</td>
+		</tr>
+		<tr>
+			<td class="colLeft">Other Features</td><td class="left">
+		<button class="buttonOT" data-title="Required Contextual Alternates" id="rclt_btn" onclick="functionAddSupportedFeatures('rclt')">rclt</button>
+
+			</td>
+		</tr>
+</table>
+
+                    <!-- fonts size slider
+                    <table>
+                        <tr>
+                        <td class="colLeft">Font Size</td><td class="left"><input type="range" min="0.5" max="20" value="2.5" step=".01" id="slider" /></td>
+                        </tr>
+                    </table>
+                     -->
+
+                    <!-- axis variable fonts -->
+                    
+
+                </td>
+            </tbody>
+
+            <th><button class="buttonExtra" id="otFeature_btn" onclick='functionShowHeader(".header", "otFeature");' title="Toggle details">&#x25bc;</button>
+            </th>
+        </table>
+    </div>  
+
+<div id="cssCodeForCustomerPreview" class="containerCSScode deepgray whitetext">
+<pre>
+
+<span class="comment">/* first assign web font */</span>
+
+<span class="rule">@font-face</span> {
+    <span class="keyword">font-family</span>: 'Noto Sans Kharoshthi Regular'; 
+    <span class="prop">src</span>: <span class="prop">url</span>('../NotoSansKharoshthi-Regular.ttf') <span class="prop">format</span>('truetype');
+    }
+
+<span class="comment">/* go on with normal style definitions */</span>
+<span class="rule">body</span> {
+    <span class="keyword">font-family</span>: 'Noto Sans Kharoshthi Regular'; <span class="comment">/* this is only an example for one style */</span>
+    <span class="featurestring">
+    <span class="comment">/* setup OpenType features */</span>
+    <span class="keyword">font-feature-settings: </span><span id="w3cfeatures"></span>;
+
+    <span class="comment">/* vendor prefixes */</span>
+    <span class="keyword">-webkit-font-feature-settings: </span><span id="webkitfeatures"></span>;
+    <span class="keyword">-moz-font-feature-settings: </span><span id="mozfeatures-up-to-14"></span>;
+    <span class="keyword">-moz-font-feature-settings: </span><span id="mozfeatures"></span>;
+    <span class="keyword">-ms-font-feature-settings: </span><span id="msfeatures"></span>;
+    <span class="keyword">-o-font-feature-settings: </span><span id="ofeatures"></span>;
+    
+}
+    
+
+<span class="comment">/* language tag */</span>
+<code><</code><span class="keyword">html</span><span class="prop"> lang</span>=<span class="rule">"<span id="htmlLangTag"></span>"</span><code>></code>
+
+...
+
+<code><</code>/<span class="keyword">html</span><code>></code>
+
+</pre>
+</div>
+
+
+<div id="containerMainID" class="containerMain" onscroll="scrollXNamesFunc()">
+
+    <div class="cssButton">
+        <a class="cssButtonStyle whitetext" onclick="functionShowCSSCode('.containerMain')" href="#" style="text-decoration:None;"> 
+            css code
+        </a>
+    </div>
+
+    <div id="showFontNames" class="content" style="background: white; opacity: 0; transition: opacity 1s ease-in-out; position: fixed; z-index: -1; width:100%;">
+        <table style="width:100%; border-bottom: 1px solid #FAF7F5;">
+            <tr>
+                <td class="colLeft">
+                </td>
+                <td class="rotate characterFontNames defaultFont"><div><span class="infoFont"> </span></div></td>
+				<td class="rotate characterFontNames om_NotoSansKharoshthiRegularttf"><div><span>Noto Sans Kharoshthi</span></div></td>
+				
+            </tr>
+        </table>
+    </div>
+
+    <div id="showFontNames_div" class="center" style="position: fixed; bottom: -50px; z-index:998; width:100%;">
+        <button class="buttonBlack" id="showFontNames_btn" onclick='showhide_div("showFontNames", "font names");' title="Toggle details">show font names</button>
+    </div>
+
+    <div id="varFont" class="content">
+
+        <table>
+            <tr>
+                <td class="colLeft">
+                <!-- <a href="#splitterContent">Character Set Compare</a> https://css-tricks.com/snippets/jquery/smooth-scrolling/ -->
+                2021-02-19 - 10:49.05
+                <br>
+                10:49.06
+                <br>
+                <button class="buttonBorder" onClick="window.print()">
+                Print this page
+                </button>
+                </td>
+                <td class="rotate characterFontNames defaultFont"><div><span class="infoFont"> </span></div></td>
+				<td class="rotate characterFontNames om_NotoSansKharoshthiRegularttf"><div><span>Noto Sans Kharoshthi</span></div></td>
+				
+            </tr>
+        </table>
+
+            
+		<hr>
+		<table>
+<tr>
+<td class="colLeft">Format<br>(by file ending)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Kharoshthi Regular" data-original-title=".ttf"><span class="infoFont">.ttf</span></td>
+</tr>
+<tr>
+<td class="colLeft">Outline Flavour<br>(CFF or glyf table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Kharoshthi Regular" data-original-title="OT TTF"><span class="infoFont">OT TTF</span></td>
+</tr>
+<tr>
+<td class="colLeft">Number of Glyphs<br>(maxp table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Kharoshthi Regular" data-original-title="154"><span class="infoFont">154</span></td>
+</tr>
+<tr>
+<td class="colLeft">Weight Class<br>(OS/2 table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont " title="Noto Sans Kharoshthi Regular" data-original-title="400"><span class="infoFont">400</span></td>
+</tr>
+<tr>
+<td class="colLeft">Width Class<br>(OS/2 table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont " title="Noto Sans Kharoshthi Regular" data-original-title="5"><span class="infoFont">5</span></td>
+</tr>
+<tr>
+<td class="colLeft">Units per Em<br>(head table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Kharoshthi Regular" data-original-title="1000"><div><span class="infoFont">1000</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">Font Revision<br>(head table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Kharoshthi Regular" data-original-title="2.001"><div><span class="infoFont">2.001</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">OS/2 Table Version<br></td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Kharoshthi Regular" data-original-title="4"><div><span class="infoFont">4</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">sTypeAscender<br>(OS/2 table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Kharoshthi Regular" data-original-title="1069"><div><span class="infoFont">1069</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">sTypeDescender<br>(OS/2 table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Kharoshthi Regular" data-original-title="-301"><div><span class="infoFont">-301</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">sTypeLineGap<br>(OS/2 table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Kharoshthi Regular" data-original-title="0"><div><span class="infoFont">0</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">usWinAscent<br>(OS/2 table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Kharoshthi Regular" data-original-title="1069"><div><span class="infoFont">1069</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">usWinDescent<br>(OS/2 table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Kharoshthi Regular" data-original-title="301"><div><span class="infoFont">301</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">Ascender<br>(hhea table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Kharoshthi Regular" data-original-title="1069"><div><span class="infoFont">1069</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">Descender<br>(hhea table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Kharoshthi Regular" data-original-title="-301"><div><span class="infoFont">-301</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">LineGap<br>(hhea table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Kharoshthi Regular" data-original-title="0"><div><span class="infoFont">0</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">post table format<br>(post table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Kharoshthi Regular" data-original-title="2.0"><div><span class="infoFont">2.0</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">Underline Position<br>(post table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Kharoshthi Regular" data-original-title="-100"><div><span class="infoFont">-100</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">Underline Thickness<br>(post table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Kharoshthi Regular" data-original-title="50"><div><span class="infoFont">50</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">Hgo<br>visual check underline</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData om_NotoSansKharoshthiRegularttf underline" title="Noto Sans Kharoshthi Regular" data-original-title="Hgo">Hgo</td>
+</tr>
+<tr>
+<td class="colLeft">yStrikeoutPosition<br>(OS/2 table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Kharoshthi Regular" data-original-title="322"><div><span class="infoFont">322</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">yStrikeoutSize<br>(OS/2 table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Kharoshthi Regular" data-original-title="50"><div><span class="infoFont">50</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">strikeout<br>visual check</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData om_NotoSansKharoshthiRegularttf strikeout" title="Noto Sans Kharoshthi Regular" data-original-title="Hgo">Hgo</td>
+</tr>
+<tr>
+<td class="colLeft">Italic Flag<br>(OS/2 table fsSelection)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Kharoshthi Regular" data-original-title="False"><div><span class="infoFont">False</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">Italic Angle<br>(post table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterFix defaultFont" title="Noto Sans Kharoshthi Regular" data-original-title="0.0"><div><span class="infoFont">0.0</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">Panose: Family<br>(Value 1)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterFix defaultFont" title="Noto Sans Kharoshthi Regular" data-original-title="Latin Text"><div><span class="infoFont">Latin Text</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">Panose: Serif<br>(Value 2)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterFix defaultFont" title="Noto Sans Kharoshthi Regular" data-original-title="Normal Sans"><div><span class="infoFont">Normal Sans</span></div></td>
+</tr>
+
+		</table>
+
+
+            
+
+            
+            <hr>
+            <table id="compareBoxID">
+            <tr id="tableTR" class="textTop sampleBig blackBG compareBoxes">
+
+            <button class="buttonBorder" title="add column" onclick="functionBoxAdd()">+</button>
+            <button class="buttonBorder" title="remove column" onclick="functionBoxRemove()">-</button>
+            <select id="mySelectSampleText" onchange="functionSelectSampleText('mySelectSampleText')" class="selectSampleText">
+
+            <option value='Default Sample'>Default Sample</option><option value='All Unicodes'>All Unicodes</option>
+
+            </select>
+            <input type="color" class="inputColor" value="#82e5fe" title="Background Color" onchange="functionGetColorBG(this.value, '.compareBoxes')">
+            <input type="color" class="inputColor" value="#ff79ad" title="Text Color" onchange="functionGetColorText(this.value, '.compareBoxes')">
+            <button class="buttonBorder" title="Swap Colors" onclick="functionSwapColorTextBG('.compareBoxes')">&#x02B14</button>
+            <button class="buttonBorder" title="have fun, change background" onclick="functionGetRandomBG(['gradientBG', 'linearGradientBG', 'linearGradient2BG', 'blackBG'])">∞</button>
+            <input type="range" class="inputRangeCompareBox" title="Text Size" min="0.5" max="100" value="30" step=".01" id="sliderCompareBoxCSS"/>
+            <input type="number" class="inputNumberCompareBox" value="30" step="1" id="numberCompareBoxCSS"/>
+            <button class="buttonOT" id="leftcompareBox_btn" title="text alignment left" onclick="functionTextAlignment('compareBoxID', 'left')">L</button>
+            <button class="buttonOT" id="centercompareBox_btn" title="text alignment center" onclick="functionTextAlignment('compareBoxID', 'center')">C</button>
+            <button class="buttonOT" id="rightcompareBox_btn" title="text alignment right" onclick="functionTextAlignment('compareBoxID', 'right')">R</button>
+            <span style="vertical-align: super; color: #efefef;">|</span>
+            <button class="buttonOT" id="left-to-rightcompareBox_btn" title="reading direction: left to right" onclick="functionReadDirection('compareBoxID', 'left-to-right')">LR</button>
+            <button class="buttonOT" id="right-to-leftcompareBox_btn" title="reading direction: right to left" onclick="functionReadDirection('compareBoxID', 'right-to-left')">RL</button>
+            <!--<button class="buttonOT" id="top-to-downcompareBox_btn" title="reading direction: top to down" onclick="functionReadDirection('compareBoxID', 'top-to-down')">TD</button>-->
+            <button class="buttonBlack" id="hintingOnOff_btn" onclick="hintingOnOff('.compareBoxes', 'hintingOnOff');" title="activate/deactivate hinting">hinting on</button>
+            
+<td id="myBox" class="compareBox om_NotoSansKharoshthiRegularttf"><select id="mySelect" name="myBox" onchange="functionSelect('mySelect')"><option value='om_NotoSansKharoshthiRegularttf'>Noto Sans Kharoshthi (ttf)</option>
+</select>
+
+<span id="myBoxContent" contenteditable="true" class="compareBoxCSS ">1234567890 xozszn HOZD 1/3 @ 1a ;#& ? % $ € ! In August of 2016, four unlikely collaborators in the world of type, fonts and font technology stood on a stage at the ATypI conference in Warsaw, Poland. The collaborators were Apple, Microsoft, Adobe and Google. Together they announced the publishing of OpenType 1.8, an update to the now ubiquitous font standard which was originally an amalgam of Apple & Microsoft’s TrueType, and Adobe’s PostScript font formats. The OpenType 1.8 announcement, ATypI, Warsaw, Poland, September 14, 2016.</span></td>
+
+</tr>
+            </table>
+    
+
+            
+		<hr>
+		<table>
+<thead><tr><tr>
+<td class="colLeft">Copyright<br>NID0 MS (3, 1, 1033, 0)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 0)_btn" onclick='toggle_detail("(3, 1, 1033, 0)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 0)0')" onMouseOut="hover('(3, 1, 1033, 0)0')" class="chr defaultFont " title="Noto Sans Kharoshthi Regular" data-original-title="(3, 1, 1033, 0)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 0)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Kharoshthi Regular"><td onMouseOver="hover('(3, 1, 1033, 0)0')" onMouseOut="hover('(3, 1, 1033, 0)0')" id="(3, 1, 1033, 0)0" class="infoToggle" colspan="1">Copyright 2017 Google Inc. All Rights Reserved.</td></tr></tbody><tr>
+<td class="colLeft">Family<br>NID1 MS (3, 1, 1033, 1)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 1)_btn" onclick='toggle_detail("(3, 1, 1033, 1)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 1)0')" onMouseOut="hover('(3, 1, 1033, 1)0')" class="chr defaultFont " title="Noto Sans Kharoshthi Regular" data-original-title="(3, 1, 1033, 1)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 1)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID 1 and 2 together should be unique within the family.</td><tr class="" title="Noto Sans Kharoshthi Regular"><td onMouseOver="hover('(3, 1, 1033, 1)0')" onMouseOut="hover('(3, 1, 1033, 1)0')" id="(3, 1, 1033, 1)0" class="infoToggle" colspan="1">NID1: 'Noto Sans Kharoshthi' + NID2: 'Regular'</td></tr></tbody><tr>
+<td class="colLeft">Subfamily<br>NID2 MS (3, 1, 1033, 2)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 2)_btn" onclick='toggle_detail("(3, 1, 1033, 2)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 2)0')" onMouseOut="hover('(3, 1, 1033, 2)0')" class="chr defaultFont " title="Noto Sans Kharoshthi Regular" data-original-title="(3, 1, 1033, 2)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 2)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be 'Regular', 'Italic', 'Bold' or 'Bold Italic'.</td><tr class="" title="Noto Sans Kharoshthi Regular"><td onMouseOver="hover('(3, 1, 1033, 2)0')" onMouseOut="hover('(3, 1, 1033, 2)0')" id="(3, 1, 1033, 2)0" class="infoToggle" colspan="1">Regular</td></tr></tbody><tr>
+<td class="colLeft">Unique ID<br>NID3 MS (3, 1, 1033, 3)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 3)_btn" onclick='toggle_detail("(3, 1, 1033, 3)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 3)0')" onMouseOut="hover('(3, 1, 1033, 3)0')" class="chr defaultFont " title="Noto Sans Kharoshthi Regular" data-original-title="(3, 1, 1033, 3)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 3)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be DIFFERENT within the family.</td><tr class="" title="Noto Sans Kharoshthi Regular"><td onMouseOver="hover('(3, 1, 1033, 3)0')" onMouseOut="hover('(3, 1, 1033, 3)0')" id="(3, 1, 1033, 3)0" class="infoToggle" colspan="1">2.001;GOOG;NotoSansKharoshthi-Regular</td></tr></tbody><tr>
+<td class="colLeft">Full Name<br>NID4 MS (3, 1, 1033, 4)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 4)_btn" onclick='toggle_detail("(3, 1, 1033, 4)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 4)0')" onMouseOut="hover('(3, 1, 1033, 4)0')" class="chr defaultFont " title="Noto Sans Kharoshthi Regular" data-original-title="(3, 1, 1033, 4)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 4)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be DIFFERENT within the family.</td><tr class="" title="Noto Sans Kharoshthi Regular"><td onMouseOver="hover('(3, 1, 1033, 4)0')" onMouseOut="hover('(3, 1, 1033, 4)0')" id="(3, 1, 1033, 4)0" class="infoToggle" colspan="1">Noto Sans Kharoshthi Regular</td></tr></tbody><tr>
+<td class="colLeft">Version<br>NID5 MS (3, 1, 1033, 5)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 5)_btn" onclick='toggle_detail("(3, 1, 1033, 5)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 5)0')" onMouseOut="hover('(3, 1, 1033, 5)0')" class="chr defaultFont " title="Noto Sans Kharoshthi Regular" data-original-title="(3, 1, 1033, 5)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 5)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Kharoshthi Regular"><td onMouseOver="hover('(3, 1, 1033, 5)0')" onMouseOut="hover('(3, 1, 1033, 5)0')" id="(3, 1, 1033, 5)0" class="infoToggle" colspan="1">Version 2.001</td></tr></tbody><tr>
+<td class="colLeft">Postscript<br>NID6 MS (3, 1, 1033, 6)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 6)_btn" onclick='toggle_detail("(3, 1, 1033, 6)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 6)0')" onMouseOut="hover('(3, 1, 1033, 6)0')" class="chr defaultFont " title="Noto Sans Kharoshthi Regular" data-original-title="(3, 1, 1033, 6)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 6)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be DIFFERENT within the family.</td><tr class="" title="Noto Sans Kharoshthi Regular"><td onMouseOver="hover('(3, 1, 1033, 6)0')" onMouseOut="hover('(3, 1, 1033, 6)0')" id="(3, 1, 1033, 6)0" class="infoToggle" colspan="1">NotoSansKharoshthi-Regular</td></tr></tbody><tr>
+<td class="colLeft">Trademark<br>NID7 MS (3, 1, 1033, 7)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 7)_btn" onclick='toggle_detail("(3, 1, 1033, 7)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 7)0')" onMouseOut="hover('(3, 1, 1033, 7)0')" class="chr defaultFont " title="Noto Sans Kharoshthi Regular" data-original-title="(3, 1, 1033, 7)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 7)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Kharoshthi Regular"><td onMouseOver="hover('(3, 1, 1033, 7)0')" onMouseOut="hover('(3, 1, 1033, 7)0')" id="(3, 1, 1033, 7)0" class="infoToggle" colspan="1">Noto is a trademark of Google Inc.</td></tr></tbody><tr>
+<td class="colLeft">Manufacturer<br>NID8 MS (3, 1, 1033, 8)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 8)_btn" onclick='toggle_detail("(3, 1, 1033, 8)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 8)0')" onMouseOut="hover('(3, 1, 1033, 8)0')" class="chr defaultFont " title="Noto Sans Kharoshthi Regular" data-original-title="(3, 1, 1033, 8)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 8)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Kharoshthi Regular"><td onMouseOver="hover('(3, 1, 1033, 8)0')" onMouseOut="hover('(3, 1, 1033, 8)0')" id="(3, 1, 1033, 8)0" class="infoToggle" colspan="1">Monotype Imaging Inc.</td></tr></tbody><tr>
+<td class="colLeft">Designer<br>NID9 MS (3, 1, 1033, 9)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 9)_btn" onclick='toggle_detail("(3, 1, 1033, 9)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 9)0')" onMouseOut="hover('(3, 1, 1033, 9)0')" class="chr defaultFont " title="Noto Sans Kharoshthi Regular" data-original-title="(3, 1, 1033, 9)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 9)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Kharoshthi Regular"><td onMouseOver="hover('(3, 1, 1033, 9)0')" onMouseOut="hover('(3, 1, 1033, 9)0')" id="(3, 1, 1033, 9)0" class="infoToggle" colspan="1">Monotype Design Team</td></tr></tbody><tr>
+<td class="colLeft">Description<br>NID10 MS (3, 1, 1033, 10)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 10)_btn" onclick='toggle_detail("(3, 1, 1033, 10)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 10)0')" onMouseOut="hover('(3, 1, 1033, 10)0')" class="chr defaultFont " title="Noto Sans Kharoshthi Regular" data-original-title="(3, 1, 1033, 10)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 10)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Kharoshthi Regular"><td onMouseOver="hover('(3, 1, 1033, 10)0')" onMouseOut="hover('(3, 1, 1033, 10)0')" id="(3, 1, 1033, 10)0" class="infoToggle" colspan="1">Designed by Monotype design team.</td></tr></tbody><tr>
+<td class="colLeft">URL Vendor<br>NID11 MS (3, 1, 1033, 11)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 11)_btn" onclick='toggle_detail("(3, 1, 1033, 11)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 11)0')" onMouseOut="hover('(3, 1, 1033, 11)0')" class="chr defaultFont " title="Noto Sans Kharoshthi Regular" data-original-title="(3, 1, 1033, 11)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 11)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Kharoshthi Regular"><td onMouseOver="hover('(3, 1, 1033, 11)0')" onMouseOut="hover('(3, 1, 1033, 11)0')" id="(3, 1, 1033, 11)0" class="infoToggle" colspan="1">http://www.google.com/get/noto/</td></tr></tbody><tr>
+<td class="colLeft">URL Designer<br>NID12 MS (3, 1, 1033, 12)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 12)_btn" onclick='toggle_detail("(3, 1, 1033, 12)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 12)0')" onMouseOut="hover('(3, 1, 1033, 12)0')" class="chr defaultFont " title="Noto Sans Kharoshthi Regular" data-original-title="(3, 1, 1033, 12)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 12)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Kharoshthi Regular"><td onMouseOver="hover('(3, 1, 1033, 12)0')" onMouseOut="hover('(3, 1, 1033, 12)0')" id="(3, 1, 1033, 12)0" class="infoToggle" colspan="1">http://www.monotype.com/studio</td></tr></tbody><tr>
+<td class="colLeft">License Description<br>NID13 MS (3, 1, 1033, 13)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 13)_btn" onclick='toggle_detail("(3, 1, 1033, 13)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 13)0')" onMouseOut="hover('(3, 1, 1033, 13)0')" class="chr defaultFont " title="Noto Sans Kharoshthi Regular" data-original-title="(3, 1, 1033, 13)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 13)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Kharoshthi Regular"><td onMouseOver="hover('(3, 1, 1033, 13)0')" onMouseOut="hover('(3, 1, 1033, 13)0')" id="(3, 1, 1033, 13)0" class="infoToggle" colspan="1">This Font Software is licensed under the SIL Open Font License, Version 1.1. This Font Software is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the SIL Open Font License for the specific language, permissions and limitations governing your use of this Font Software.</td></tr></tbody><tr>
+<td class="colLeft">License Info URL<br>NID14 MS (3, 1, 1033, 14)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 14)_btn" onclick='toggle_detail("(3, 1, 1033, 14)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 14)0')" onMouseOut="hover('(3, 1, 1033, 14)0')" class="chr defaultFont " title="Noto Sans Kharoshthi Regular" data-original-title="(3, 1, 1033, 14)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 14)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Kharoshthi Regular"><td onMouseOver="hover('(3, 1, 1033, 14)0')" onMouseOut="hover('(3, 1, 1033, 14)0')" id="(3, 1, 1033, 14)0" class="infoToggle" colspan="1">http://scripts.sil.org/OFL</td></tr></tbody>
+		</table>
+
+
+            
+
+            
+
+        <!-- big text on black backround -->
+            
+
+            
+
+            
+
+            
+		<hr>
+		<table id="splitterContent">
+<tr>
+<td class="colLeft"><br>uni0000</td>
+<td class="chr defaultFont info" onmousedown="mDn(0, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0000">&#x0000</td>
+<td class="chr om_NotoSansKharoshthiRegularttf " onmousedown="mDn(0, ['om_NotoSansKharoshthiRegularttf'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="uni0000">&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">KHAROSHTHI LETTER A<br>uni10A00</td>
+<td class="chr defaultFont info" onmousedown="mDn(68096, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10A00">&#x10A00</td>
+<td class="chr om_NotoSansKharoshthiRegularttf " onmousedown="mDn(68096, ['om_NotoSansKharoshthiRegularttf'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="uni10A00">&#x10A00</td>
+</tr>
+<tr>
+<td class="colLeft">KHAROSHTHI VOWEL SIGN I<br>uni10A01</td>
+<td class="chr defaultFont info" onmousedown="mDn(68097, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10A01">&#x10A01</td>
+<td class="chr om_NotoSansKharoshthiRegularttf " onmousedown="mDn(68097, ['om_NotoSansKharoshthiRegularttf'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="uni10A01">&#x10A01</td>
+</tr>
+<tr>
+<td class="colLeft">KHAROSHTHI VOWEL SIGN U<br>uni10A02</td>
+<td class="chr defaultFont info" onmousedown="mDn(68098, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10A02">&#x10A02</td>
+<td class="chr om_NotoSansKharoshthiRegularttf " onmousedown="mDn(68098, ['om_NotoSansKharoshthiRegularttf'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="uni10A02">&#x10A02</td>
+</tr>
+<tr>
+<td class="colLeft">KHAROSHTHI VOWEL SIGN VOCALIC R<br>uni10A03</td>
+<td class="chr defaultFont info" onmousedown="mDn(68099, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10A03">&#x10A03</td>
+<td class="chr om_NotoSansKharoshthiRegularttf " onmousedown="mDn(68099, ['om_NotoSansKharoshthiRegularttf'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="uni10A03">&#x10A03</td>
+</tr>
+<tr>
+<td class="colLeft">KHAROSHTHI VOWEL SIGN E<br>uni10A05</td>
+<td class="chr defaultFont info" onmousedown="mDn(68101, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10A05">&#x10A05</td>
+<td class="chr om_NotoSansKharoshthiRegularttf " onmousedown="mDn(68101, ['om_NotoSansKharoshthiRegularttf'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="uni10A05">&#x10A05</td>
+</tr>
+<tr>
+<td class="colLeft">KHAROSHTHI VOWEL SIGN O<br>uni10A06</td>
+<td class="chr defaultFont info" onmousedown="mDn(68102, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10A06">&#x10A06</td>
+<td class="chr om_NotoSansKharoshthiRegularttf " onmousedown="mDn(68102, ['om_NotoSansKharoshthiRegularttf'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="uni10A06">&#x10A06</td>
+</tr>
+<tr>
+<td class="colLeft">ZERO WIDTH SPACE<br>uni200B</td>
+<td class="chr defaultFont info" onmousedown="mDn(8203, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni200B">&#x200B</td>
+<td class="chr om_NotoSansKharoshthiRegularttf " onmousedown="mDn(8203, ['om_NotoSansKharoshthiRegularttf'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="uni200B">&#x200B</td>
+</tr>
+<tr>
+<td class="colLeft">ZERO WIDTH NON-JOINER<br>uni200C</td>
+<td class="chr defaultFont info" onmousedown="mDn(8204, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni200C">&#x200C</td>
+<td class="chr om_NotoSansKharoshthiRegularttf " onmousedown="mDn(8204, ['om_NotoSansKharoshthiRegularttf'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="uni200C">&#x200C</td>
+</tr>
+<tr>
+<td class="colLeft"><br>uni000D</td>
+<td class="chr defaultFont info" onmousedown="mDn(13, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni000D">&#x000D</td>
+<td class="chr om_NotoSansKharoshthiRegularttf " onmousedown="mDn(13, ['om_NotoSansKharoshthiRegularttf'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="uni000D">&#x000D</td>
+</tr>
+<tr>
+<td class="colLeft">ZERO WIDTH JOINER<br>uni200D</td>
+<td class="chr defaultFont info" onmousedown="mDn(8205, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni200D">&#x200D</td>
+<td class="chr om_NotoSansKharoshthiRegularttf " onmousedown="mDn(8205, ['om_NotoSansKharoshthiRegularttf'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="uni200D">&#x200D</td>
+</tr>
+<tr>
+<td class="colLeft">KHAROSHTHI VOWEL LENGTH MARK<br>uni10A0C</td>
+<td class="chr defaultFont info" onmousedown="mDn(68108, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10A0C">&#x10A0C</td>
+<td class="chr om_NotoSansKharoshthiRegularttf " onmousedown="mDn(68108, ['om_NotoSansKharoshthiRegularttf'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="uni10A0C">&#x10A0C</td>
+</tr>
+<tr>
+<td class="colLeft">HYPHEN<br>uni2010</td>
+<td class="chr defaultFont info" onmousedown="mDn(8208, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2010">&#x2010</td>
+<td class="chr om_NotoSansKharoshthiRegularttf " onmousedown="mDn(8208, ['om_NotoSansKharoshthiRegularttf'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="uni2010">&#x2010</td>
+</tr>
+<tr>
+<td class="colLeft">KHAROSHTHI SIGN DOUBLE RING BELOW<br>uni10A0D</td>
+<td class="chr defaultFont info" onmousedown="mDn(68109, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10A0D">&#x10A0D</td>
+<td class="chr om_NotoSansKharoshthiRegularttf " onmousedown="mDn(68109, ['om_NotoSansKharoshthiRegularttf'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="uni10A0D">&#x10A0D</td>
+</tr>
+<tr>
+<td class="colLeft">KHAROSHTHI SIGN ANUSVARA<br>uni10A0E</td>
+<td class="chr defaultFont info" onmousedown="mDn(68110, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10A0E">&#x10A0E</td>
+<td class="chr om_NotoSansKharoshthiRegularttf " onmousedown="mDn(68110, ['om_NotoSansKharoshthiRegularttf'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="uni10A0E">&#x10A0E</td>
+</tr>
+<tr>
+<td class="colLeft">KHAROSHTHI SIGN VISARGA<br>uni10A0F</td>
+<td class="chr defaultFont info" onmousedown="mDn(68111, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10A0F">&#x10A0F</td>
+<td class="chr om_NotoSansKharoshthiRegularttf " onmousedown="mDn(68111, ['om_NotoSansKharoshthiRegularttf'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="uni10A0F">&#x10A0F</td>
+</tr>
+<tr>
+<td class="colLeft">KHAROSHTHI LETTER KA<br>uni10A10</td>
+<td class="chr defaultFont info" onmousedown="mDn(68112, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10A10">&#x10A10</td>
+<td class="chr om_NotoSansKharoshthiRegularttf " onmousedown="mDn(68112, ['om_NotoSansKharoshthiRegularttf'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="uni10A10">&#x10A10</td>
+</tr>
+<tr>
+<td class="colLeft">KHAROSHTHI LETTER KHA<br>uni10A11</td>
+<td class="chr defaultFont info" onmousedown="mDn(68113, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10A11">&#x10A11</td>
+<td class="chr om_NotoSansKharoshthiRegularttf " onmousedown="mDn(68113, ['om_NotoSansKharoshthiRegularttf'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="uni10A11">&#x10A11</td>
+</tr>
+<tr>
+<td class="colLeft">KHAROSHTHI LETTER GA<br>uni10A12</td>
+<td class="chr defaultFont info" onmousedown="mDn(68114, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10A12">&#x10A12</td>
+<td class="chr om_NotoSansKharoshthiRegularttf " onmousedown="mDn(68114, ['om_NotoSansKharoshthiRegularttf'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="uni10A12">&#x10A12</td>
+</tr>
+<tr>
+<td class="colLeft">KHAROSHTHI LETTER GHA<br>uni10A13</td>
+<td class="chr defaultFont info" onmousedown="mDn(68115, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10A13">&#x10A13</td>
+<td class="chr om_NotoSansKharoshthiRegularttf " onmousedown="mDn(68115, ['om_NotoSansKharoshthiRegularttf'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="uni10A13">&#x10A13</td>
+</tr>
+<tr>
+<td class="colLeft">KHAROSHTHI LETTER CA<br>uni10A15</td>
+<td class="chr defaultFont info" onmousedown="mDn(68117, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10A15">&#x10A15</td>
+<td class="chr om_NotoSansKharoshthiRegularttf " onmousedown="mDn(68117, ['om_NotoSansKharoshthiRegularttf'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="uni10A15">&#x10A15</td>
+</tr>
+<tr>
+<td class="colLeft">KHAROSHTHI LETTER CHA<br>uni10A16</td>
+<td class="chr defaultFont info" onmousedown="mDn(68118, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10A16">&#x10A16</td>
+<td class="chr om_NotoSansKharoshthiRegularttf " onmousedown="mDn(68118, ['om_NotoSansKharoshthiRegularttf'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="uni10A16">&#x10A16</td>
+</tr>
+<tr>
+<td class="colLeft">KHAROSHTHI LETTER JA<br>uni10A17</td>
+<td class="chr defaultFont info" onmousedown="mDn(68119, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10A17">&#x10A17</td>
+<td class="chr om_NotoSansKharoshthiRegularttf " onmousedown="mDn(68119, ['om_NotoSansKharoshthiRegularttf'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="uni10A17">&#x10A17</td>
+</tr>
+<tr>
+<td class="colLeft">KHAROSHTHI LETTER NYA<br>uni10A19</td>
+<td class="chr defaultFont info" onmousedown="mDn(68121, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10A19">&#x10A19</td>
+<td class="chr om_NotoSansKharoshthiRegularttf " onmousedown="mDn(68121, ['om_NotoSansKharoshthiRegularttf'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="uni10A19">&#x10A19</td>
+</tr>
+<tr>
+<td class="colLeft">KHAROSHTHI LETTER TTA<br>uni10A1A</td>
+<td class="chr defaultFont info" onmousedown="mDn(68122, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10A1A">&#x10A1A</td>
+<td class="chr om_NotoSansKharoshthiRegularttf " onmousedown="mDn(68122, ['om_NotoSansKharoshthiRegularttf'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="uni10A1A">&#x10A1A</td>
+</tr>
+<tr>
+<td class="colLeft">KHAROSHTHI LETTER TTHA<br>uni10A1B</td>
+<td class="chr defaultFont info" onmousedown="mDn(68123, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10A1B">&#x10A1B</td>
+<td class="chr om_NotoSansKharoshthiRegularttf " onmousedown="mDn(68123, ['om_NotoSansKharoshthiRegularttf'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="uni10A1B">&#x10A1B</td>
+</tr>
+<tr>
+<td class="colLeft">KHAROSHTHI LETTER DDA<br>uni10A1C</td>
+<td class="chr defaultFont info" onmousedown="mDn(68124, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10A1C">&#x10A1C</td>
+<td class="chr om_NotoSansKharoshthiRegularttf " onmousedown="mDn(68124, ['om_NotoSansKharoshthiRegularttf'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="uni10A1C">&#x10A1C</td>
+</tr>
+<tr>
+<td class="colLeft">KHAROSHTHI LETTER DDHA<br>uni10A1D</td>
+<td class="chr defaultFont info" onmousedown="mDn(68125, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10A1D">&#x10A1D</td>
+<td class="chr om_NotoSansKharoshthiRegularttf " onmousedown="mDn(68125, ['om_NotoSansKharoshthiRegularttf'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="uni10A1D">&#x10A1D</td>
+</tr>
+<tr>
+<td class="colLeft">SPACE<br>uni0020</td>
+<td class="chr defaultFont info" onmousedown="mDn(32, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0020">&#x0020</td>
+<td class="chr om_NotoSansKharoshthiRegularttf " onmousedown="mDn(32, ['om_NotoSansKharoshthiRegularttf'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="uni0020">&#x0020</td>
+</tr>
+<tr>
+<td class="colLeft">KHAROSHTHI LETTER NNA<br>uni10A1E</td>
+<td class="chr defaultFont info" onmousedown="mDn(68126, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10A1E">&#x10A1E</td>
+<td class="chr om_NotoSansKharoshthiRegularttf " onmousedown="mDn(68126, ['om_NotoSansKharoshthiRegularttf'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="uni10A1E">&#x10A1E</td>
+</tr>
+<tr>
+<td class="colLeft">KHAROSHTHI LETTER TA<br>uni10A1F</td>
+<td class="chr defaultFont info" onmousedown="mDn(68127, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10A1F">&#x10A1F</td>
+<td class="chr om_NotoSansKharoshthiRegularttf " onmousedown="mDn(68127, ['om_NotoSansKharoshthiRegularttf'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="uni10A1F">&#x10A1F</td>
+</tr>
+<tr>
+<td class="colLeft">KHAROSHTHI LETTER THA<br>uni10A20</td>
+<td class="chr defaultFont info" onmousedown="mDn(68128, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10A20">&#x10A20</td>
+<td class="chr om_NotoSansKharoshthiRegularttf " onmousedown="mDn(68128, ['om_NotoSansKharoshthiRegularttf'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="uni10A20">&#x10A20</td>
+</tr>
+<tr>
+<td class="colLeft">KHAROSHTHI LETTER DA<br>uni10A21</td>
+<td class="chr defaultFont info" onmousedown="mDn(68129, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10A21">&#x10A21</td>
+<td class="chr om_NotoSansKharoshthiRegularttf " onmousedown="mDn(68129, ['om_NotoSansKharoshthiRegularttf'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="uni10A21">&#x10A21</td>
+</tr>
+<tr>
+<td class="colLeft">KHAROSHTHI LETTER DHA<br>uni10A22</td>
+<td class="chr defaultFont info" onmousedown="mDn(68130, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10A22">&#x10A22</td>
+<td class="chr om_NotoSansKharoshthiRegularttf " onmousedown="mDn(68130, ['om_NotoSansKharoshthiRegularttf'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="uni10A22">&#x10A22</td>
+</tr>
+<tr>
+<td class="colLeft">KHAROSHTHI LETTER NA<br>uni10A23</td>
+<td class="chr defaultFont info" onmousedown="mDn(68131, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10A23">&#x10A23</td>
+<td class="chr om_NotoSansKharoshthiRegularttf " onmousedown="mDn(68131, ['om_NotoSansKharoshthiRegularttf'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="uni10A23">&#x10A23</td>
+</tr>
+<tr>
+<td class="colLeft">KHAROSHTHI LETTER PA<br>uni10A24</td>
+<td class="chr defaultFont info" onmousedown="mDn(68132, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10A24">&#x10A24</td>
+<td class="chr om_NotoSansKharoshthiRegularttf " onmousedown="mDn(68132, ['om_NotoSansKharoshthiRegularttf'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="uni10A24">&#x10A24</td>
+</tr>
+<tr>
+<td class="colLeft">KHAROSHTHI LETTER PHA<br>uni10A25</td>
+<td class="chr defaultFont info" onmousedown="mDn(68133, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10A25">&#x10A25</td>
+<td class="chr om_NotoSansKharoshthiRegularttf " onmousedown="mDn(68133, ['om_NotoSansKharoshthiRegularttf'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="uni10A25">&#x10A25</td>
+</tr>
+<tr>
+<td class="colLeft">KHAROSHTHI LETTER BA<br>uni10A26</td>
+<td class="chr defaultFont info" onmousedown="mDn(68134, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10A26">&#x10A26</td>
+<td class="chr om_NotoSansKharoshthiRegularttf " onmousedown="mDn(68134, ['om_NotoSansKharoshthiRegularttf'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="uni10A26">&#x10A26</td>
+</tr>
+<tr>
+<td class="colLeft">KHAROSHTHI LETTER BHA<br>uni10A27</td>
+<td class="chr defaultFont info" onmousedown="mDn(68135, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10A27">&#x10A27</td>
+<td class="chr om_NotoSansKharoshthiRegularttf " onmousedown="mDn(68135, ['om_NotoSansKharoshthiRegularttf'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="uni10A27">&#x10A27</td>
+</tr>
+<tr>
+<td class="colLeft">KHAROSHTHI LETTER MA<br>uni10A28</td>
+<td class="chr defaultFont info" onmousedown="mDn(68136, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10A28">&#x10A28</td>
+<td class="chr om_NotoSansKharoshthiRegularttf " onmousedown="mDn(68136, ['om_NotoSansKharoshthiRegularttf'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="uni10A28">&#x10A28</td>
+</tr>
+<tr>
+<td class="colLeft">KHAROSHTHI LETTER YA<br>uni10A29</td>
+<td class="chr defaultFont info" onmousedown="mDn(68137, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10A29">&#x10A29</td>
+<td class="chr om_NotoSansKharoshthiRegularttf " onmousedown="mDn(68137, ['om_NotoSansKharoshthiRegularttf'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="uni10A29">&#x10A29</td>
+</tr>
+<tr>
+<td class="colLeft">HYPHEN-MINUS<br>uni002D</td>
+<td class="chr defaultFont info" onmousedown="mDn(45, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni002D">&#x002D</td>
+<td class="chr om_NotoSansKharoshthiRegularttf " onmousedown="mDn(45, ['om_NotoSansKharoshthiRegularttf'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="uni002D">&#x002D</td>
+</tr>
+<tr>
+<td class="colLeft">KHAROSHTHI LETTER RA<br>uni10A2A</td>
+<td class="chr defaultFont info" onmousedown="mDn(68138, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10A2A">&#x10A2A</td>
+<td class="chr om_NotoSansKharoshthiRegularttf " onmousedown="mDn(68138, ['om_NotoSansKharoshthiRegularttf'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="uni10A2A">&#x10A2A</td>
+</tr>
+<tr>
+<td class="colLeft">KHAROSHTHI LETTER LA<br>uni10A2B</td>
+<td class="chr defaultFont info" onmousedown="mDn(68139, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10A2B">&#x10A2B</td>
+<td class="chr om_NotoSansKharoshthiRegularttf " onmousedown="mDn(68139, ['om_NotoSansKharoshthiRegularttf'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="uni10A2B">&#x10A2B</td>
+</tr>
+<tr>
+<td class="colLeft">KHAROSHTHI LETTER VA<br>uni10A2C</td>
+<td class="chr defaultFont info" onmousedown="mDn(68140, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10A2C">&#x10A2C</td>
+<td class="chr om_NotoSansKharoshthiRegularttf " onmousedown="mDn(68140, ['om_NotoSansKharoshthiRegularttf'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="uni10A2C">&#x10A2C</td>
+</tr>
+<tr>
+<td class="colLeft">KHAROSHTHI LETTER SHA<br>uni10A2D</td>
+<td class="chr defaultFont info" onmousedown="mDn(68141, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10A2D">&#x10A2D</td>
+<td class="chr om_NotoSansKharoshthiRegularttf " onmousedown="mDn(68141, ['om_NotoSansKharoshthiRegularttf'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="uni10A2D">&#x10A2D</td>
+</tr>
+<tr>
+<td class="colLeft">KHAROSHTHI LETTER SSA<br>uni10A2E</td>
+<td class="chr defaultFont info" onmousedown="mDn(68142, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10A2E">&#x10A2E</td>
+<td class="chr om_NotoSansKharoshthiRegularttf " onmousedown="mDn(68142, ['om_NotoSansKharoshthiRegularttf'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="uni10A2E">&#x10A2E</td>
+</tr>
+<tr>
+<td class="colLeft">KHAROSHTHI LETTER SA<br>uni10A2F</td>
+<td class="chr defaultFont info" onmousedown="mDn(68143, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10A2F">&#x10A2F</td>
+<td class="chr om_NotoSansKharoshthiRegularttf " onmousedown="mDn(68143, ['om_NotoSansKharoshthiRegularttf'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="uni10A2F">&#x10A2F</td>
+</tr>
+<tr>
+<td class="colLeft">KHAROSHTHI LETTER ZA<br>uni10A30</td>
+<td class="chr defaultFont info" onmousedown="mDn(68144, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10A30">&#x10A30</td>
+<td class="chr om_NotoSansKharoshthiRegularttf " onmousedown="mDn(68144, ['om_NotoSansKharoshthiRegularttf'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="uni10A30">&#x10A30</td>
+</tr>
+<tr>
+<td class="colLeft">KHAROSHTHI LETTER HA<br>uni10A31</td>
+<td class="chr defaultFont info" onmousedown="mDn(68145, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10A31">&#x10A31</td>
+<td class="chr om_NotoSansKharoshthiRegularttf " onmousedown="mDn(68145, ['om_NotoSansKharoshthiRegularttf'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="uni10A31">&#x10A31</td>
+</tr>
+<tr>
+<td class="colLeft">KHAROSHTHI LETTER KKA<br>uni10A32</td>
+<td class="chr defaultFont info" onmousedown="mDn(68146, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10A32">&#x10A32</td>
+<td class="chr om_NotoSansKharoshthiRegularttf " onmousedown="mDn(68146, ['om_NotoSansKharoshthiRegularttf'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="uni10A32">&#x10A32</td>
+</tr>
+<tr>
+<td class="colLeft">KHAROSHTHI LETTER TTTHA<br>uni10A33</td>
+<td class="chr defaultFont info" onmousedown="mDn(68147, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10A33">&#x10A33</td>
+<td class="chr om_NotoSansKharoshthiRegularttf " onmousedown="mDn(68147, ['om_NotoSansKharoshthiRegularttf'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="uni10A33">&#x10A33</td>
+</tr>
+<tr>
+<td class="colLeft">KHAROSHTHI LETTER TTTA<br>uni10A34</td>
+<td class="chr defaultFont info" onmousedown="mDn(68148, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10A34">&#x10A34</td>
+<td class="chr om_NotoSansKharoshthiRegularttf " onmousedown="mDn(68148, ['om_NotoSansKharoshthiRegularttf'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="uni10A34">&#x10A34</td>
+</tr>
+<tr>
+<td class="colLeft">KHAROSHTHI LETTER VHA<br>uni10A35</td>
+<td class="chr defaultFont info" onmousedown="mDn(68149, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10A35">&#x10A35</td>
+<td class="chr om_NotoSansKharoshthiRegularttf " onmousedown="mDn(68149, ['om_NotoSansKharoshthiRegularttf'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="uni10A35">&#x10A35</td>
+</tr>
+<tr>
+<td class="colLeft">KHAROSHTHI SIGN BAR ABOVE<br>uni10A38</td>
+<td class="chr defaultFont info" onmousedown="mDn(68152, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10A38">&#x10A38</td>
+<td class="chr om_NotoSansKharoshthiRegularttf " onmousedown="mDn(68152, ['om_NotoSansKharoshthiRegularttf'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="uni10A38">&#x10A38</td>
+</tr>
+<tr>
+<td class="colLeft">KHAROSHTHI SIGN CAUDA<br>uni10A39</td>
+<td class="chr defaultFont info" onmousedown="mDn(68153, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10A39">&#x10A39</td>
+<td class="chr om_NotoSansKharoshthiRegularttf " onmousedown="mDn(68153, ['om_NotoSansKharoshthiRegularttf'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="uni10A39">&#x10A39</td>
+</tr>
+<tr>
+<td class="colLeft">KHAROSHTHI SIGN DOT BELOW<br>uni10A3A</td>
+<td class="chr defaultFont info" onmousedown="mDn(68154, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10A3A">&#x10A3A</td>
+<td class="chr om_NotoSansKharoshthiRegularttf " onmousedown="mDn(68154, ['om_NotoSansKharoshthiRegularttf'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="uni10A3A">&#x10A3A</td>
+</tr>
+<tr>
+<td class="colLeft">KHAROSHTHI VIRAMA<br>uni10A3F</td>
+<td class="chr defaultFont info" onmousedown="mDn(68159, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10A3F">&#x10A3F</td>
+<td class="chr om_NotoSansKharoshthiRegularttf " onmousedown="mDn(68159, ['om_NotoSansKharoshthiRegularttf'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="uni10A3F">&#x10A3F</td>
+</tr>
+<tr>
+<td class="colLeft">KHAROSHTHI DIGIT ONE<br>uni10A40</td>
+<td class="chr defaultFont info" onmousedown="mDn(68160, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10A40">&#x10A40</td>
+<td class="chr om_NotoSansKharoshthiRegularttf " onmousedown="mDn(68160, ['om_NotoSansKharoshthiRegularttf'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="uni10A40">&#x10A40</td>
+</tr>
+<tr>
+<td class="colLeft">KHAROSHTHI DIGIT TWO<br>uni10A41</td>
+<td class="chr defaultFont info" onmousedown="mDn(68161, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10A41">&#x10A41</td>
+<td class="chr om_NotoSansKharoshthiRegularttf " onmousedown="mDn(68161, ['om_NotoSansKharoshthiRegularttf'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="uni10A41">&#x10A41</td>
+</tr>
+<tr>
+<td class="colLeft">KHAROSHTHI DIGIT THREE<br>uni10A42</td>
+<td class="chr defaultFont info" onmousedown="mDn(68162, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10A42">&#x10A42</td>
+<td class="chr om_NotoSansKharoshthiRegularttf " onmousedown="mDn(68162, ['om_NotoSansKharoshthiRegularttf'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="uni10A42">&#x10A42</td>
+</tr>
+<tr>
+<td class="colLeft">KHAROSHTHI DIGIT FOUR<br>uni10A43</td>
+<td class="chr defaultFont info" onmousedown="mDn(68163, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10A43">&#x10A43</td>
+<td class="chr om_NotoSansKharoshthiRegularttf " onmousedown="mDn(68163, ['om_NotoSansKharoshthiRegularttf'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="uni10A43">&#x10A43</td>
+</tr>
+<tr>
+<td class="colLeft">KHAROSHTHI NUMBER TEN<br>uni10A44</td>
+<td class="chr defaultFont info" onmousedown="mDn(68164, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10A44">&#x10A44</td>
+<td class="chr om_NotoSansKharoshthiRegularttf " onmousedown="mDn(68164, ['om_NotoSansKharoshthiRegularttf'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="uni10A44">&#x10A44</td>
+</tr>
+<tr>
+<td class="colLeft">KHAROSHTHI NUMBER TWENTY<br>uni10A45</td>
+<td class="chr defaultFont info" onmousedown="mDn(68165, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10A45">&#x10A45</td>
+<td class="chr om_NotoSansKharoshthiRegularttf " onmousedown="mDn(68165, ['om_NotoSansKharoshthiRegularttf'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="uni10A45">&#x10A45</td>
+</tr>
+<tr>
+<td class="colLeft">KHAROSHTHI NUMBER ONE HUNDRED<br>uni10A46</td>
+<td class="chr defaultFont info" onmousedown="mDn(68166, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10A46">&#x10A46</td>
+<td class="chr om_NotoSansKharoshthiRegularttf " onmousedown="mDn(68166, ['om_NotoSansKharoshthiRegularttf'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="uni10A46">&#x10A46</td>
+</tr>
+<tr>
+<td class="colLeft">KHAROSHTHI NUMBER ONE THOUSAND<br>uni10A47</td>
+<td class="chr defaultFont info" onmousedown="mDn(68167, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10A47">&#x10A47</td>
+<td class="chr om_NotoSansKharoshthiRegularttf " onmousedown="mDn(68167, ['om_NotoSansKharoshthiRegularttf'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="uni10A47">&#x10A47</td>
+</tr>
+<tr>
+<td class="colLeft">KHAROSHTHI FRACTION ONE HALF<br>uni10A48</td>
+<td class="chr defaultFont info" onmousedown="mDn(68168, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10A48">&#x10A48</td>
+<td class="chr om_NotoSansKharoshthiRegularttf " onmousedown="mDn(68168, ['om_NotoSansKharoshthiRegularttf'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="uni10A48">&#x10A48</td>
+</tr>
+<tr>
+<td class="colLeft">KHAROSHTHI PUNCTUATION DOT<br>uni10A50</td>
+<td class="chr defaultFont info" onmousedown="mDn(68176, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10A50">&#x10A50</td>
+<td class="chr om_NotoSansKharoshthiRegularttf " onmousedown="mDn(68176, ['om_NotoSansKharoshthiRegularttf'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="uni10A50">&#x10A50</td>
+</tr>
+<tr>
+<td class="colLeft">KHAROSHTHI PUNCTUATION SMALL CIRCLE<br>uni10A51</td>
+<td class="chr defaultFont info" onmousedown="mDn(68177, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10A51">&#x10A51</td>
+<td class="chr om_NotoSansKharoshthiRegularttf " onmousedown="mDn(68177, ['om_NotoSansKharoshthiRegularttf'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="uni10A51">&#x10A51</td>
+</tr>
+<tr>
+<td class="colLeft">KHAROSHTHI PUNCTUATION CIRCLE<br>uni10A52</td>
+<td class="chr defaultFont info" onmousedown="mDn(68178, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10A52">&#x10A52</td>
+<td class="chr om_NotoSansKharoshthiRegularttf " onmousedown="mDn(68178, ['om_NotoSansKharoshthiRegularttf'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="uni10A52">&#x10A52</td>
+</tr>
+<tr>
+<td class="colLeft">KHAROSHTHI PUNCTUATION CRESCENT BAR<br>uni10A53</td>
+<td class="chr defaultFont info" onmousedown="mDn(68179, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10A53">&#x10A53</td>
+<td class="chr om_NotoSansKharoshthiRegularttf " onmousedown="mDn(68179, ['om_NotoSansKharoshthiRegularttf'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="uni10A53">&#x10A53</td>
+</tr>
+<tr>
+<td class="colLeft">KHAROSHTHI PUNCTUATION MANGALAM<br>uni10A54</td>
+<td class="chr defaultFont info" onmousedown="mDn(68180, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10A54">&#x10A54</td>
+<td class="chr om_NotoSansKharoshthiRegularttf " onmousedown="mDn(68180, ['om_NotoSansKharoshthiRegularttf'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="uni10A54">&#x10A54</td>
+</tr>
+<tr>
+<td class="colLeft">KHAROSHTHI PUNCTUATION LOTUS<br>uni10A55</td>
+<td class="chr defaultFont info" onmousedown="mDn(68181, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10A55">&#x10A55</td>
+<td class="chr om_NotoSansKharoshthiRegularttf " onmousedown="mDn(68181, ['om_NotoSansKharoshthiRegularttf'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="uni10A55">&#x10A55</td>
+</tr>
+<tr>
+<td class="colLeft">KHAROSHTHI PUNCTUATION DANDA<br>uni10A56</td>
+<td class="chr defaultFont info" onmousedown="mDn(68182, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10A56">&#x10A56</td>
+<td class="chr om_NotoSansKharoshthiRegularttf " onmousedown="mDn(68182, ['om_NotoSansKharoshthiRegularttf'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="uni10A56">&#x10A56</td>
+</tr>
+<tr>
+<td class="colLeft">KHAROSHTHI PUNCTUATION DOUBLE DANDA<br>uni10A57</td>
+<td class="chr defaultFont info" onmousedown="mDn(68183, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10A57">&#x10A57</td>
+<td class="chr om_NotoSansKharoshthiRegularttf " onmousedown="mDn(68183, ['om_NotoSansKharoshthiRegularttf'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="uni10A57">&#x10A57</td>
+</tr>
+<tr>
+<td class="colLeft">KHAROSHTHI PUNCTUATION LINES<br>uni10A58</td>
+<td class="chr defaultFont info" onmousedown="mDn(68184, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10A58">&#x10A58</td>
+<td class="chr om_NotoSansKharoshthiRegularttf " onmousedown="mDn(68184, ['om_NotoSansKharoshthiRegularttf'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="uni10A58">&#x10A58</td>
+</tr>
+<tr>
+<td class="colLeft">NO-BREAK SPACE<br>uni00A0</td>
+<td class="chr defaultFont info" onmousedown="mDn(160, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni00A0">&#x00A0</td>
+<td class="chr om_NotoSansKharoshthiRegularttf " onmousedown="mDn(160, ['om_NotoSansKharoshthiRegularttf'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="uni00A0">&#x00A0</td>
+</tr>
+<tr>
+<td class="colLeft">DOTTED CIRCLE<br>uni25CC</td>
+<td class="chr defaultFont info" onmousedown="mDn(9676, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni25CC">&#x25CC</td>
+<td class="chr om_NotoSansKharoshthiRegularttf " onmousedown="mDn(9676, ['om_NotoSansKharoshthiRegularttf'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="uni25CC">&#x25CC</td>
+</tr>
+
+		</table>
+
+
+            
+		<hr>
+		<table id="splitterContent_unencoded">
+<tr>
+<td class="colLeft">AE_khar<br>liga feature (cannot find base glyph)</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x00C6&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="AE_khar liga feature (cannot find base glyph)">&#x00C6&#x0000</td>
+<td class="chr om_NotoSansKharoshthiRegularttf liga warning" onmousedown="mDn(&#x00C6&#x0000, ['om_NotoSansKharoshthiRegularttf', 'liga warning'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="AE_khar liga feature (cannot find base glyph)">&#x00C6&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">AI_khar<br>liga feature (cannot find base glyph) (cannot find base glyph)</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0000&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="AI_khar liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+<td class="chr om_NotoSansKharoshthiRegularttf liga warning warning" onmousedown="mDn(&#x0000&#x0000, ['om_NotoSansKharoshthiRegularttf', 'liga warning warning'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="AI_khar liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">Cauda_khar.short<br>Ending "short" ≠ OT Feature (cannot display this character) feature (cannot find base glyph) (cannot find base glyph)</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0000&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="Cauda_khar.short Ending "short" ≠ OT Feature (cannot display this character) feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+<td class="chr om_NotoSansKharoshthiRegularttf warning" onmousedown="mDn(&#x0000&#x0000, ['om_NotoSansKharoshthiRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="Cauda_khar.short Ending "short" ≠ OT Feature (cannot display this character) feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">Cauda_khar.short2<br>Ending "short2" ≠ OT Feature (cannot display this character) feature (cannot find base glyph) (cannot find base glyph)</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0000&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="Cauda_khar.short2 Ending "short2" ≠ OT Feature (cannot display this character) feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+<td class="chr om_NotoSansKharoshthiRegularttf warning" onmousedown="mDn(&#x0000&#x0000, ['om_NotoSansKharoshthiRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="Cauda_khar.short2 Ending "short2" ≠ OT Feature (cannot display this character) feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">De_khar<br>liga feature (cannot find base glyph) (cannot find base glyph)</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0000&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="De_khar liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+<td class="chr om_NotoSansKharoshthiRegularttf liga warning warning" onmousedown="mDn(&#x0000&#x0000, ['om_NotoSansKharoshthiRegularttf', 'liga warning warning'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="De_khar liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">Dhik_khar<br>liga feature (cannot find base glyph) (cannot find base glyph)</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0000&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="Dhik_khar liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+<td class="chr om_NotoSansKharoshthiRegularttf liga warning warning" onmousedown="mDn(&#x0000&#x0000, ['om_NotoSansKharoshthiRegularttf', 'liga warning warning'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="Dhik_khar liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">E_vertical<br>liga feature (cannot find base glyph)</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0045&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="E_vertical liga feature (cannot find base glyph)">&#x0045&#x0000</td>
+<td class="chr om_NotoSansKharoshthiRegularttf liga warning" onmousedown="mDn(&#x0045&#x0000, ['om_NotoSansKharoshthiRegularttf', 'liga warning'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="E_vertical liga feature (cannot find base glyph)">&#x0045&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">He_khar<br>liga feature (cannot find base glyph) (cannot find base glyph)</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0000&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="He_khar liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+<td class="chr om_NotoSansKharoshthiRegularttf liga warning warning" onmousedown="mDn(&#x0000&#x0000, ['om_NotoSansKharoshthiRegularttf', 'liga warning warning'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="He_khar liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">Hi_khar<br>liga feature (cannot find base glyph) (cannot find base glyph)</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0000&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="Hi_khar liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+<td class="chr om_NotoSansKharoshthiRegularttf liga warning warning" onmousedown="mDn(&#x0000&#x0000, ['om_NotoSansKharoshthiRegularttf', 'liga warning warning'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="Hi_khar liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">I_diagonal<br>liga feature (cannot find base glyph)</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0049&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="I_diagonal liga feature (cannot find base glyph)">&#x0049&#x0000</td>
+<td class="chr om_NotoSansKharoshthiRegularttf liga warning" onmousedown="mDn(&#x0049&#x0000, ['om_NotoSansKharoshthiRegularttf', 'liga warning'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="I_diagonal liga feature (cannot find base glyph)">&#x0049&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">I_diagonal_short<br>liga feature (cannot find base glyph) (cannot find base glyph)</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0049&#x0000&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="I_diagonal_short liga feature (cannot find base glyph) (cannot find base glyph)">&#x0049&#x0000&#x0000</td>
+<td class="chr om_NotoSansKharoshthiRegularttf liga warning warning" onmousedown="mDn(&#x0049&#x0000&#x0000, ['om_NotoSansKharoshthiRegularttf', 'liga warning warning'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="I_diagonal_short liga feature (cannot find base glyph) (cannot find base glyph)">&#x0049&#x0000&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">I_vertical<br>liga feature (cannot find base glyph)</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0049&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="I_vertical liga feature (cannot find base glyph)">&#x0049&#x0000</td>
+<td class="chr om_NotoSansKharoshthiRegularttf liga warning" onmousedown="mDn(&#x0049&#x0000, ['om_NotoSansKharoshthiRegularttf', 'liga warning'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="I_vertical liga feature (cannot find base glyph)">&#x0049&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">JNya_khar<br>liga feature (cannot find base glyph) (cannot find base glyph)</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0000&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="JNya_khar liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+<td class="chr om_NotoSansKharoshthiRegularttf liga warning warning" onmousedown="mDn(&#x0000&#x0000, ['om_NotoSansKharoshthiRegularttf', 'liga warning warning'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="JNya_khar liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">KSsa_khar<br>liga feature (cannot find base glyph) (cannot find base glyph)</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0000&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="KSsa_khar liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+<td class="chr om_NotoSansKharoshthiRegularttf liga warning warning" onmousedown="mDn(&#x0000&#x0000, ['om_NotoSansKharoshthiRegularttf', 'liga warning warning'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="KSsa_khar liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">KTa_khar<br>liga feature (cannot find base glyph) (cannot find base glyph)</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0000&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="KTa_khar liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+<td class="chr om_NotoSansKharoshthiRegularttf liga warning warning" onmousedown="mDn(&#x0000&#x0000, ['om_NotoSansKharoshthiRegularttf', 'liga warning warning'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="KTa_khar liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">KhKSsa_khar<br>liga feature (cannot find base glyph) (cannot find base glyph)</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0000&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="KhKSsa_khar liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+<td class="chr om_NotoSansKharoshthiRegularttf liga warning warning" onmousedown="mDn(&#x0000&#x0000, ['om_NotoSansKharoshthiRegularttf', 'liga warning warning'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="KhKSsa_khar liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">LPa_khar<br>liga feature (cannot find base glyph) (cannot find base glyph)</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0000&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="LPa_khar liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+<td class="chr om_NotoSansKharoshthiRegularttf liga warning warning" onmousedown="mDn(&#x0000&#x0000, ['om_NotoSansKharoshthiRegularttf', 'liga warning warning'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="LPa_khar liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">LYa_khar<br>liga feature (cannot find base glyph) (cannot find base glyph)</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0000&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="LYa_khar liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+<td class="chr om_NotoSansKharoshthiRegularttf liga warning warning" onmousedown="mDn(&#x0000&#x0000, ['om_NotoSansKharoshthiRegularttf', 'liga warning warning'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="LYa_khar liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">La_ZWJ_Ya_khar<br>liga feature (cannot find base glyph) (cannot find base glyph) (cannot find base glyph) (cannot find base glyph)</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0000&#x0000&#x0000&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="La_ZWJ_Ya_khar liga feature (cannot find base glyph) (cannot find base glyph) (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000&#x0000&#x0000</td>
+<td class="chr om_NotoSansKharoshthiRegularttf liga warning warning warning warning" onmousedown="mDn(&#x0000&#x0000&#x0000&#x0000, ['om_NotoSansKharoshthiRegularttf', 'liga warning warning warning warning'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="La_ZWJ_Ya_khar liga feature (cannot find base glyph) (cannot find base glyph) (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000&#x0000&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">MMa_khar<br>liga feature (cannot find base glyph) (cannot find base glyph)</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0000&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="MMa_khar liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+<td class="chr om_NotoSansKharoshthiRegularttf liga warning warning" onmousedown="mDn(&#x0000&#x0000, ['om_NotoSansKharoshthiRegularttf', 'liga warning warning'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="MMa_khar liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">MMe_khar<br>liga feature (cannot find base glyph) (cannot find base glyph)</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0000&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="MMe_khar liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+<td class="chr om_NotoSansKharoshthiRegularttf liga warning warning" onmousedown="mDn(&#x0000&#x0000, ['om_NotoSansKharoshthiRegularttf', 'liga warning warning'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="MMe_khar liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">MRa_khar<br>liga feature (cannot find base glyph) (cannot find base glyph)</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0000&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="MRa_khar liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+<td class="chr om_NotoSansKharoshthiRegularttf liga warning warning" onmousedown="mDn(&#x0000&#x0000, ['om_NotoSansKharoshthiRegularttf', 'liga warning warning'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="MRa_khar liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">Me_khar<br>liga feature (cannot find base glyph) (cannot find base glyph)</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0000&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="Me_khar liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+<td class="chr om_NotoSansKharoshthiRegularttf liga warning warning" onmousedown="mDn(&#x0000&#x0000, ['om_NotoSansKharoshthiRegularttf', 'liga warning warning'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="Me_khar liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">Mo_khar<br>liga feature (cannot find base glyph) (cannot find base glyph)</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0000&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="Mo_khar liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+<td class="chr om_NotoSansKharoshthiRegularttf liga warning warning" onmousedown="mDn(&#x0000&#x0000, ['om_NotoSansKharoshthiRegularttf', 'liga warning warning'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="Mo_khar liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">Mu_khar<br>liga feature (cannot find base glyph)</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x039C&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="Mu_khar liga feature (cannot find base glyph)">&#x039C&#x0000</td>
+<td class="chr om_NotoSansKharoshthiRegularttf liga warning" onmousedown="mDn(&#x039C&#x0000, ['om_NotoSansKharoshthiRegularttf', 'liga warning'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="Mu_khar liga feature (cannot find base glyph)">&#x039C&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">Ne_khar<br>liga feature (cannot find base glyph) (cannot find base glyph)</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0000&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="Ne_khar liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+<td class="chr om_NotoSansKharoshthiRegularttf liga warning warning" onmousedown="mDn(&#x0000&#x0000, ['om_NotoSansKharoshthiRegularttf', 'liga warning warning'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="Ne_khar liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">Ni_khar<br>liga feature (cannot find base glyph) (cannot find base glyph)</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0000&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="Ni_khar liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+<td class="chr om_NotoSansKharoshthiRegularttf liga warning warning" onmousedown="mDn(&#x0000&#x0000, ['om_NotoSansKharoshthiRegularttf', 'liga warning warning'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="Ni_khar liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">Nni_khar<br>liga feature (cannot find base glyph) (cannot find base glyph)</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0000&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="Nni_khar liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+<td class="chr om_NotoSansKharoshthiRegularttf liga warning warning" onmousedown="mDn(&#x0000&#x0000, ['om_NotoSansKharoshthiRegularttf', 'liga warning warning'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="Nni_khar liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">Nno_khar<br>liga feature (cannot find base glyph) (cannot find base glyph)</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0000&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="Nno_khar liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+<td class="chr om_NotoSansKharoshthiRegularttf liga warning warning" onmousedown="mDn(&#x0000&#x0000, ['om_NotoSansKharoshthiRegularttf', 'liga warning warning'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="Nno_khar liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">Nnu_khar<br>liga feature (cannot find base glyph) (cannot find base glyph)</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0000&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="Nnu_khar liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+<td class="chr om_NotoSansKharoshthiRegularttf liga warning warning" onmousedown="mDn(&#x0000&#x0000, ['om_NotoSansKharoshthiRegularttf', 'liga warning warning'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="Nnu_khar liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">O_diag.short<br>Ending "short" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x004F&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="O_diag.short Ending "short" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x004F&#x0000</td>
+<td class="chr om_NotoSansKharoshthiRegularttf warning" onmousedown="mDn(&#x004F&#x0000, ['om_NotoSansKharoshthiRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="O_diag.short Ending "short" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x004F&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">O_vertical<br>liga feature (cannot find base glyph)</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x004F&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="O_vertical liga feature (cannot find base glyph)">&#x004F&#x0000</td>
+<td class="chr om_NotoSansKharoshthiRegularttf liga warning" onmousedown="mDn(&#x004F&#x0000, ['om_NotoSansKharoshthiRegularttf', 'liga warning'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="O_vertical liga feature (cannot find base glyph)">&#x004F&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">O_vertical_short<br>liga feature (cannot find base glyph) (cannot find base glyph)</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x004F&#x0000&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="O_vertical_short liga feature (cannot find base glyph) (cannot find base glyph)">&#x004F&#x0000&#x0000</td>
+<td class="chr om_NotoSansKharoshthiRegularttf liga warning warning" onmousedown="mDn(&#x004F&#x0000&#x0000, ['om_NotoSansKharoshthiRegularttf', 'liga warning warning'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="O_vertical_short liga feature (cannot find base glyph) (cannot find base glyph)">&#x004F&#x0000&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">PGa_khar<br>liga feature (cannot find base glyph) (cannot find base glyph)</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0000&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="PGa_khar liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+<td class="chr om_NotoSansKharoshthiRegularttf liga warning warning" onmousedown="mDn(&#x0000&#x0000, ['om_NotoSansKharoshthiRegularttf', 'liga warning warning'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="PGa_khar liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">PTa_khar<br>liga feature (cannot find base glyph) (cannot find base glyph)</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0000&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="PTa_khar liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+<td class="chr om_NotoSansKharoshthiRegularttf liga warning warning" onmousedown="mDn(&#x0000&#x0000, ['om_NotoSansKharoshthiRegularttf', 'liga warning warning'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="PTa_khar liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">RMa_khar<br>liga feature (cannot find base glyph) (cannot find base glyph)</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0000&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="RMa_khar liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+<td class="chr om_NotoSansKharoshthiRegularttf liga warning warning" onmousedown="mDn(&#x0000&#x0000, ['om_NotoSansKharoshthiRegularttf', 'liga warning warning'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="RMa_khar liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">RTa_khar<br>liga feature (cannot find base glyph) (cannot find base glyph)</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0000&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="RTa_khar liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+<td class="chr om_NotoSansKharoshthiRegularttf liga warning warning" onmousedown="mDn(&#x0000&#x0000, ['om_NotoSansKharoshthiRegularttf', 'liga warning warning'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="RTa_khar liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">SPa_khar<br>liga feature (cannot find base glyph) (cannot find base glyph)</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0000&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="SPa_khar liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+<td class="chr om_NotoSansKharoshthiRegularttf liga warning warning" onmousedown="mDn(&#x0000&#x0000, ['om_NotoSansKharoshthiRegularttf', 'liga warning warning'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="SPa_khar liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">STa_khar<br>liga feature (cannot find base glyph) (cannot find base glyph)</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0000&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="STa_khar liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+<td class="chr om_NotoSansKharoshthiRegularttf liga warning warning" onmousedown="mDn(&#x0000&#x0000, ['om_NotoSansKharoshthiRegularttf', 'liga warning warning'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="STa_khar liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">STha_khar<br>liga feature (cannot find base glyph) (cannot find base glyph)</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0000&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="STha_khar liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+<td class="chr om_NotoSansKharoshthiRegularttf liga warning warning" onmousedown="mDn(&#x0000&#x0000, ['om_NotoSansKharoshthiRegularttf', 'liga warning warning'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="STha_khar liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">SYa_khar<br>liga feature (cannot find base glyph) (cannot find base glyph)</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0000&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="SYa_khar liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+<td class="chr om_NotoSansKharoshthiRegularttf liga warning warning" onmousedown="mDn(&#x0000&#x0000, ['om_NotoSansKharoshthiRegularttf', 'liga warning warning'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="SYa_khar liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">ShPa_khar<br>liga feature (cannot find base glyph) (cannot find base glyph)</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0000&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="ShPa_khar liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+<td class="chr om_NotoSansKharoshthiRegularttf liga warning warning" onmousedown="mDn(&#x0000&#x0000, ['om_NotoSansKharoshthiRegularttf', 'liga warning warning'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="ShPa_khar liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">SubLa.alt<br>Ending "alt" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="SubLa.alt Ending "alt" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
+<td class="chr om_NotoSansKharoshthiRegularttf warning" onmousedown="mDn(&#x0000, ['om_NotoSansKharoshthiRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="SubLa.alt Ending "alt" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">SubLa_khar<br>liga feature (cannot find base glyph) (cannot find base glyph)</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0000&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="SubLa_khar liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+<td class="chr om_NotoSansKharoshthiRegularttf liga warning warning" onmousedown="mDn(&#x0000&#x0000, ['om_NotoSansKharoshthiRegularttf', 'liga warning warning'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="SubLa_khar liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">SubMa.alt<br>Ending "alt" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="SubMa.alt Ending "alt" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
+<td class="chr om_NotoSansKharoshthiRegularttf warning" onmousedown="mDn(&#x0000, ['om_NotoSansKharoshthiRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="SubMa.alt Ending "alt" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">SubMa.alt1<br>Ending "alt1" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="SubMa.alt1 Ending "alt1" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
+<td class="chr om_NotoSansKharoshthiRegularttf warning" onmousedown="mDn(&#x0000, ['om_NotoSansKharoshthiRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="SubMa.alt1 Ending "alt1" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">SubMa.alt2<br>Ending "alt2" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="SubMa.alt2 Ending "alt2" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
+<td class="chr om_NotoSansKharoshthiRegularttf warning" onmousedown="mDn(&#x0000, ['om_NotoSansKharoshthiRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="SubMa.alt2 Ending "alt2" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">SubMa.alt3<br>Ending "alt3" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="SubMa.alt3 Ending "alt3" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
+<td class="chr om_NotoSansKharoshthiRegularttf warning" onmousedown="mDn(&#x0000, ['om_NotoSansKharoshthiRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="SubMa.alt3 Ending "alt3" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">SubMa_khar<br>liga feature (cannot find base glyph) (cannot find base glyph)</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0000&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="SubMa_khar liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+<td class="chr om_NotoSansKharoshthiRegularttf liga warning warning" onmousedown="mDn(&#x0000&#x0000, ['om_NotoSansKharoshthiRegularttf', 'liga warning warning'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="SubMa_khar liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">SubRa.alt<br>Ending "alt" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="SubRa.alt Ending "alt" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
+<td class="chr om_NotoSansKharoshthiRegularttf warning" onmousedown="mDn(&#x0000, ['om_NotoSansKharoshthiRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="SubRa.alt Ending "alt" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">SubRa.alt1<br>Ending "alt1" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="SubRa.alt1 Ending "alt1" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
+<td class="chr om_NotoSansKharoshthiRegularttf warning" onmousedown="mDn(&#x0000, ['om_NotoSansKharoshthiRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="SubRa.alt1 Ending "alt1" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">SubRa.alt3<br>Ending "alt3" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="SubRa.alt3 Ending "alt3" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
+<td class="chr om_NotoSansKharoshthiRegularttf warning" onmousedown="mDn(&#x0000, ['om_NotoSansKharoshthiRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="SubRa.alt3 Ending "alt3" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">SubRa.alt4<br>Ending "alt4" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="SubRa.alt4 Ending "alt4" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
+<td class="chr om_NotoSansKharoshthiRegularttf warning" onmousedown="mDn(&#x0000, ['om_NotoSansKharoshthiRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="SubRa.alt4 Ending "alt4" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">SubRa_khar<br>liga feature (cannot find base glyph) (cannot find base glyph)</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0000&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="SubRa_khar liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+<td class="chr om_NotoSansKharoshthiRegularttf liga warning warning" onmousedown="mDn(&#x0000&#x0000, ['om_NotoSansKharoshthiRegularttf', 'liga warning warning'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="SubRa_khar liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">SubVa.alt<br>Ending "alt" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="SubVa.alt Ending "alt" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
+<td class="chr om_NotoSansKharoshthiRegularttf warning" onmousedown="mDn(&#x0000, ['om_NotoSansKharoshthiRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="SubVa.alt Ending "alt" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">SubVa.alt1<br>Ending "alt1" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="SubVa.alt1 Ending "alt1" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
+<td class="chr om_NotoSansKharoshthiRegularttf warning" onmousedown="mDn(&#x0000, ['om_NotoSansKharoshthiRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="SubVa.alt1 Ending "alt1" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">SubVa.alt2<br>Ending "alt2" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="SubVa.alt2 Ending "alt2" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
+<td class="chr om_NotoSansKharoshthiRegularttf warning" onmousedown="mDn(&#x0000, ['om_NotoSansKharoshthiRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="SubVa.alt2 Ending "alt2" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">SubVa.alt3<br>Ending "alt3" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="SubVa.alt3 Ending "alt3" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
+<td class="chr om_NotoSansKharoshthiRegularttf warning" onmousedown="mDn(&#x0000, ['om_NotoSansKharoshthiRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="SubVa.alt3 Ending "alt3" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">SubVa.alt4<br>Ending "alt4" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="SubVa.alt4 Ending "alt4" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
+<td class="chr om_NotoSansKharoshthiRegularttf warning" onmousedown="mDn(&#x0000, ['om_NotoSansKharoshthiRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="SubVa.alt4 Ending "alt4" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">SubVa_khar<br>liga feature (cannot find base glyph) (cannot find base glyph)</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0000&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="SubVa_khar liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+<td class="chr om_NotoSansKharoshthiRegularttf liga warning warning" onmousedown="mDn(&#x0000&#x0000, ['om_NotoSansKharoshthiRegularttf', 'liga warning warning'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="SubVa_khar liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">SubYa.alt<br>Ending "alt" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="SubYa.alt Ending "alt" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
+<td class="chr om_NotoSansKharoshthiRegularttf warning" onmousedown="mDn(&#x0000, ['om_NotoSansKharoshthiRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="SubYa.alt Ending "alt" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">SubYa.alt1<br>Ending "alt1" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="SubYa.alt1 Ending "alt1" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
+<td class="chr om_NotoSansKharoshthiRegularttf warning" onmousedown="mDn(&#x0000, ['om_NotoSansKharoshthiRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="SubYa.alt1 Ending "alt1" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">SubYa.alt3<br>Ending "alt3" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="SubYa.alt3 Ending "alt3" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
+<td class="chr om_NotoSansKharoshthiRegularttf warning" onmousedown="mDn(&#x0000, ['om_NotoSansKharoshthiRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="SubYa.alt3 Ending "alt3" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">SubYa.alt4<br>Ending "alt4" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="SubYa.alt4 Ending "alt4" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
+<td class="chr om_NotoSansKharoshthiRegularttf warning" onmousedown="mDn(&#x0000, ['om_NotoSansKharoshthiRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="SubYa.alt4 Ending "alt4" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">SubYa_khar<br>liga feature (cannot find base glyph) (cannot find base glyph)</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0000&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="SubYa_khar liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+<td class="chr om_NotoSansKharoshthiRegularttf liga warning warning" onmousedown="mDn(&#x0000&#x0000, ['om_NotoSansKharoshthiRegularttf', 'liga warning warning'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="SubYa_khar liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">TRa_khar<br>liga feature (cannot find base glyph) (cannot find base glyph)</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0000&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="TRa_khar liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+<td class="chr om_NotoSansKharoshthiRegularttf liga warning warning" onmousedown="mDn(&#x0000&#x0000, ['om_NotoSansKharoshthiRegularttf', 'liga warning warning'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="TRa_khar liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">TSa_khar<br>liga feature (cannot find base glyph) (cannot find base glyph)</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0000&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="TSa_khar liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+<td class="chr om_NotoSansKharoshthiRegularttf liga warning warning" onmousedown="mDn(&#x0000&#x0000, ['om_NotoSansKharoshthiRegularttf', 'liga warning warning'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="TSa_khar liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">TVa_khar<br>liga feature (cannot find base glyph) (cannot find base glyph)</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0000&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="TVa_khar liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+<td class="chr om_NotoSansKharoshthiRegularttf liga warning warning" onmousedown="mDn(&#x0000&#x0000, ['om_NotoSansKharoshthiRegularttf', 'liga warning warning'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="TVa_khar liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">U.alt<br>Ending "alt" ≠ OT Feature (cannot display this character) feature</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0055, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="U.alt Ending "alt" ≠ OT Feature (cannot display this character) feature">&#x0055</td>
+<td class="chr om_NotoSansKharoshthiRegularttf warning" onmousedown="mDn(&#x0055, ['om_NotoSansKharoshthiRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="U.alt Ending "alt" ≠ OT Feature (cannot display this character) feature">&#x0055</td>
+</tr>
+<tr>
+<td class="colLeft">U.alt2<br>Ending "alt2" ≠ OT Feature (cannot display this character) feature</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0055, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="U.alt2 Ending "alt2" ≠ OT Feature (cannot display this character) feature">&#x0055</td>
+<td class="chr om_NotoSansKharoshthiRegularttf warning" onmousedown="mDn(&#x0055, ['om_NotoSansKharoshthiRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="U.alt2 Ending "alt2" ≠ OT Feature (cannot display this character) feature">&#x0055</td>
+</tr>
+<tr>
+<td class="colLeft">U.alt3<br>Ending "alt3" ≠ OT Feature (cannot display this character) feature</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0055, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="U.alt3 Ending "alt3" ≠ OT Feature (cannot display this character) feature">&#x0055</td>
+<td class="chr om_NotoSansKharoshthiRegularttf warning" onmousedown="mDn(&#x0055, ['om_NotoSansKharoshthiRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="U.alt3 Ending "alt3" ≠ OT Feature (cannot display this character) feature">&#x0055</td>
+</tr>
+<tr>
+<td class="colLeft">U_spacing<br>liga feature (cannot find base glyph)</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0055&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="U_spacing liga feature (cannot find base glyph)">&#x0055&#x0000</td>
+<td class="chr om_NotoSansKharoshthiRegularttf liga warning" onmousedown="mDn(&#x0055&#x0000, ['om_NotoSansKharoshthiRegularttf', 'liga warning'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="U_spacing liga feature (cannot find base glyph)">&#x0055&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">vocR.short<br>Ending "short" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="vocR.short Ending "short" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
+<td class="chr om_NotoSansKharoshthiRegularttf warning" onmousedown="mDn(&#x0000, ['om_NotoSansKharoshthiRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="vocR.short Ending "short" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">vocR.shorter<br>Ending "shorter" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="vocR.shorter Ending "shorter" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
+<td class="chr om_NotoSansKharoshthiRegularttf warning" onmousedown="mDn(&#x0000, ['om_NotoSansKharoshthiRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="vocR.shorter Ending "shorter" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">vocR.wide<br>Ending "wide" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="vocR.wide Ending "wide" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
+<td class="chr om_NotoSansKharoshthiRegularttf warning" onmousedown="mDn(&#x0000, ['om_NotoSansKharoshthiRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Kharoshthi" data-original-title="vocR.wide Ending "wide" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
+</tr>
+
+		</table>
+
+
+
+    </div>
+    </div>
+
+
+    <script type="text/javascript">
+
+    //var elementCustomerPreview = document.getElementById("cssCodeForCustomerPreview");
+    //console.log('element.height: ', elementCustomerPreview.offsetHeight)
+    //$('.containerMain').css("top", '-' + elementCustomerPreview.offsetHeight + 'px')
+
+    var elementCustomerPreview = document.getElementById("containerMainID");
+    console.log('element.height: ', elementCustomerPreview.offsetHeight)
+    $('.containerCSScode').css("height", elementCustomerPreview.offsetHeight -200 + 'px')
+
+    var elementHeader = document.getElementById('otFeature');
+    console.log('element.height: ', elementHeader.offsetHeight)
+    divHeight = elementHeader.offsetHeight - 50
+    $('.header').css("top", '-' + divHeight + 'px')
+
+    //document.getElementById("varFont").style.color = "blue";
+
+    $('.sampleContent').on('blur keyup paste input', function() {$(".sampleContent").not(this).html($(this).html());});
+
+    
+    $('#slider').on('change',function(){
+    var val = $(this).val();
+    $(".om_NotoSansKharoshthiRegularttf").css("font-size",(val+"em"));
+    $(".colLeft").css("width",(50 - (val*2)) +"%");
+    });
+
+    
+
+    function toggle_detail(my_id){
+        var element = document.getElementById(my_id)
+        //var buttoncell = document.getElementById(my_id+"_cell")
+        var button = document.getElementById(my_id+"_btn")
+        if (element.style.display != 'none') {
+          element.style.display = 'none'; //$("#" + my_id).slideUp(); smooth in/out does not work currently
+          button.innerHTML = '▼';
+        } else {
+          element.style.display = ''; //$("#" + my_id).slideDown(); smooth in/out does not work currently
+          button.innerHTML = '▲';
+        }
+    }
+
+    function showhide_div(my_id, buttomName){
+        var element = document.getElementById(my_id)
+        //var buttoncell = document.getElementById(my_id+"_cell")
+        var button = document.getElementById(my_id+"_btn")
+        if (element.style.opacity != '0') {
+          element.style.opacity = '0'; 
+          setTimeout(function () {
+            element.style.zIndex = '-1';
+            }, 1000);
+          button.innerHTML = 'show ' + buttomName;
+        } else {
+          element.style.opacity = '1';
+          element.style.zIndex = '998';
+          button.innerHTML = 'hide ' + buttomName;
+        }
+    }
+
+    function hover(my_id){
+        var element = document.getElementById(my_id)
+        if (element.style.background != '') {
+          element.style.background = '';
+          element.style.color = ''; 
+        } else {
+          element.style.background = '#B3D4FC';
+          element.style.color = 'black'; 
+        }
+    }
+
+    var HTMLCodeCompareBoxes = '1234567890 xozszn HOZD 1/3 @ 1a ;#& ? % $ € ! In August of 2016, four unlikely collaborators in the world of type, fonts and font technology stood on a stage at the ATypI conference in Warsaw, Poland. The collaborators were Apple, Microsoft, Adobe and Google. Together they announced the publishing of OpenType 1.8, an update to the now ubiquitous font standard which was originally an amalgam of Apple & Microsoft’s TrueType, and Adobe’s PostScript font formats. The OpenType 1.8 announcement, ATypI, Warsaw, Poland, September 14, 2016.'
+    var fontWeightsDict = {'Noto Sans Kharoshthi (ttf)':'om_NotoSansKharoshthiRegularttf'};
+
+    var sampleTexts = {'All Unicodes': '\x00 𐨀 𐨁 𐨂 𐨃 𐨅 𐨆 \u200b \u200c \r \u200d 𐨌 ‐ 𐨍 𐨎 𐨏 𐨐 𐨑 𐨒 𐨓 𐨕 𐨖 𐨗 𐨙 𐨚 𐨛 𐨜 𐨝   𐨞 𐨟 𐨠 𐨡 𐨢 𐨣 𐨤 𐨥 𐨦 𐨧 𐨨 𐨩 - 𐨪 𐨫 𐨬 𐨭 𐨮 𐨯 𐨰 𐨱 𐨲 𐨳 𐨴 𐨵 𐨸 𐨹 𐨺 𐨿 𐩀 𐩁 𐩂 𐩃 𐩄 𐩅 𐩆 𐩇 𐩈 𐩐 𐩑 𐩒 𐩓 𐩔 𐩕 𐩖 𐩗 𐩘 \xa0 ◌', 'Default Sample': '1234567890 xozszn HOZD 1/3 @ 1a ;#& ? % $ € ! In August of 2016, four unlikely collaborators in the world of type, fonts and font technology stood on a stage at the ATypI conference in Warsaw, Poland. The collaborators were Apple, Microsoft, Adobe and Google. Together they announced the publishing of OpenType 1.8, an update to the now ubiquitous font standard which was originally an amalgam of Apple & Microsoft’s TrueType, and Adobe’s PostScript font formats. The OpenType 1.8 announcement, ATypI, Warsaw, Poland, September 14, 2016.'}
+
+    var clicks = 0;
+    var arrList = [];
+    var mySpanIDList = [];
+
+    var supported_features = [];
+
+    function functionAddSupportedFeatures(item){
+        var button = document.getElementById(item+"_btn")
+        if (supported_features.includes(item) === true){
+            button.style.color = 'black';
+            button.style.backgroundColor = 'white';
+            var index = supported_features.indexOf(item);
+            if (index > -1) {
+                supported_features.splice(index, 1);
+            }
+        }
+        else { 
+            button.style.color = 'white';
+            button.style.backgroundColor = 'black';
+            supported_features.push(item);
+        }
+        functionSetCSSFeatureCode(supported_features)
+    }
+
+    function functionChangeLanguage(item){
+        document.documentElement.lang = item;
+        $("#htmlLangTag").html(item);
+        if (['ar', 'fa', 'ur'].indexOf(item) >= 0) {
+            document.getElementById('compareBoxID').dir = 'rtl';
+            functionReadDirection('compareBoxID', 'right-to-left');
+        } else {
+            document.getElementById('compareBoxID').dir = '';
+            functionReadDirection('compareBoxID', 'left-to-right')
+        }
+
+    }
+
+
+    function functionSetCSSFeatureCode(arr){
+        var supported_features = arr;
+        var default_features =  ['kern', 'mark', 'mkmk']; //['kern', 'vkrn', 'liga', 'clig', 'calt', 'mark', 'mkmk', 'rvrm' ];
+
+        var cssCode_features = "";//font-feature-settings:
+        var moz_features = "";
+        
+
+        var arrayLength = supported_features.length;
+        for (var i = 0; i < arrayLength; i++) {
+            var item = supported_features[i];
+            cssCode_features += "'" + item + "' 1,";
+            moz_features += item + "=1,";
+        }
+
+        var defaultLength = default_features.length;
+        for (var i = 0; i < defaultLength; i++) {
+            var item = default_features[i];
+            if (supported_features.includes(item) === false){
+                cssCode_features += "'" + item + "' 0,";
+                moz_features += item + "=0,";
+            }
+        }
+
+        var stringLength = cssCode_features.length;
+        if (cssCode_features[stringLength-1] === ','){
+            var cleanedCSS = cssCode_features.substring(',', stringLength - 1);
+        } else {
+            var cleanedCSS = cssCode_features;
+        }
+
+        var element = document.getElementById('body_all');
+        element.style.fontFeatureSettings = cleanedCSS;
+
+        var stringLength = moz_features.length;
+        if (moz_features[stringLength-1] === ','){
+            var cleanedCSSmoz_features = moz_features.substring(',', stringLength - 1);
+        } else {
+            var cleanedCSSmoz_features = moz_features;
+        }
+
+        console.log('cleanedCSS: ', cleanedCSS)
+        var webkit_features = cleanedCSS 
+
+        $("#w3cfeatures").html(webkit_features);
+        $("#webkitfeatures").html(webkit_features);
+        $("#mozfeatures-up-to-14").html(webkit_features);
+        $("#mozfeatures").html(cleanedCSSmoz_features);
+        $("#msfeatures").html(webkit_features);
+        $("#ofeatures").html(webkit_features);
+
+      };
+
+
+    function functionBoxAdd() {
+
+        clicks += 1;
+        //arrList.push(clicks.toString())
+        console.log(arrList)
+        //var tdID = 'myTD_' + clicks;
+        //arrList.push(tdID.toString())
+        
+        //var x = document.createElement("TD");
+        //x.setAttribute("id", tdID);
+        //document.getElementById("tableTR").appendChild(x);
+
+        //var optionID = 'myOption_' + clicks;
+        //var d1 = document.createElement("DIV");
+        //d1.setAttribute("id", optionID);
+        //document.getElementById(tdID).appendChild(d1);
+
+        //var copyTextID = 'myText_' + clicks;
+        //var d2 = document.createElement("DIV");
+        //d2.setAttribute("id", copyTextID);
+        //d2.setAttribute("contenteditable", 'true');
+        //document.getElementById(tdID).appendChild(d2);
+        //var SampleText = document.createTextNode(HTMLCodeCompareBoxes);
+        //document.getElementById(copyTextID).innerHTML = HTMLCodeCompareBoxes;
+
+        var nameID = 'myBox_' + clicks;
+        arrList.push(nameID.toString())
+        var x = document.createElement("TD");
+        x.setAttribute("id", nameID);
+        //x.setAttribute("contenteditable", 'true');
+
+
+         var selectID = 'mySelect_' + clicks;
+         var s = document.createElement("SELECT");
+         s.setAttribute("id", selectID);
+         s.setAttribute("name", nameID);
+         s.setAttribute("onchange", "functionSelect('" + selectID + "')");
+
+         var arrListFontname = [];
+         var arrListCSSName = [];
+         lenClicks = 0;
+
+         for(fontName in fontWeightsDict){
+                 lenClicks += 1;
+                 arrListFontname.push(fontName.toString())
+                  var fontCSScode = fontWeightsDict[fontName];
+                  arrListCSSName.push(fontCSScode.toString())
+
+                  var z = document.createElement("option");
+                z.setAttribute("value", fontCSScode);
+                if (clicks + 1 == lenClicks){
+                    var FontSelected = arrListCSSName[lenClicks-1]; //minus one because array starts with zero
+                    z.setAttribute("selected", 'selected');
+                }
+                var t = document.createTextNode(fontName);
+                z.appendChild(t);
+                s.appendChild(z);
+                console.log(arrListFontname[-1])
+        }
+
+        var numberFonts = Object.keys(fontWeightsDict).length;
+        if (numberFonts <= clicks){var FontSelected = arrListCSSName[0];}
+        
+        x.setAttribute("class", "compareBox "+FontSelected);
+        document.getElementById("tableTR").appendChild(x);
+
+
+        //document.getElementById(nameID).appendChild(z);
+        document.getElementById(nameID).appendChild(s);
+
+        //var SampleText = document.createTextNode(HTMLCodeCompareBoxes);
+        var mySpanID = 'myBoxContent_' + clicks;
+        mySpanIDList.push(mySpanID.toString())
+        var span = document.createElement("SPAN");
+        span.setAttribute("id", mySpanID);
+        span.setAttribute("contenteditable", 'true');
+        span.setAttribute("class", 'compareBoxCSS');
+
+        var compareBoxFontSize = document.getElementById("myBoxContent").style.fontSize;
+        //console.log('Font-Size: ', compareBoxFontSize)
+        span.setAttribute("style", "font-size: " + compareBoxFontSize);
+
+        var getSampleText = document.getElementById('myBoxContent').innerHTML
+        //var mySampleText = document.getElementById('mySelectSampleText').value;
+        //var getSampleText = sampleTexts[mySampleText];
+        span.innerHTML = getSampleText;
+
+        //var sp = document.createTextNode(getSampleText);
+        //span.appendChild(sp);
+
+        document.getElementById(nameID).appendChild(span);
+     
+    }
+     
+    function functionBoxRemove() {
+        var item = arrList.pop() ;
+        //var nameID2 = 'myBox_' + (item);
+
+        if (item != 'myBox'){
+            var x = document.getElementById(item);
+            document.getElementById("tableTR").removeChild(x);
+        }
+
+        var index = mySpanIDList.length;
+        if (index > 1){
+            var listIndex = index -1;
+            mySpanIDList.splice(listIndex, 1);
+        }
+
+    }
+
+    var allBoxBG = arrList;
+    allBoxBG.push('myBox'); //first fixed box
+    function functionBoxBG(){
+        for (var item in allBoxBG){
+            console.log(allBoxBG[item])
+            var element = document.getElementById(allBoxBG[item])
+            if (element.style.backgroundColor != "white"){
+                element.style.backgroundColor = "white";
+                element.style.color = 'black';
+            } else {
+                element.style.backgroundColor = "black";
+                element.style.color = 'white';                
+            }
+        }
+    }
+
+    //$('#myBox').on('blur keyup paste input', function() {
+    //    var sampleText = document.getElementById('myBox').innerHTML;
+    //    for (var item in arrList){
+    //        var element = document.getElementById(arrList[item]);
+    //        element.innerHTML = sampleText;
+    //    }
+    //});
+
+    function functionSelect(selectID) {
+        console.log(selectID)
+        //var box = document.getElementById(selectID).parentElement; //.nodeName;
+        var CSScode = document.getElementById(selectID).value;
+        var boxID = document.getElementById(selectID).name;
+        console.log(CSScode)
+        console.log(boxID)
+        //document.getElementById(boxID).classList.add(value);
+        //box.classList.add(value);
+        document.getElementById(boxID).classList = CSScode;
+    }
+
+    mySpanIDList.push('myBoxContent'); //first add "fixed box"
+    function functionSelectSampleText(mySelectSampleText){
+        console.log('LISTE mySpanIDList::::', mySpanIDList)
+        var mySampleText = document.getElementById(mySelectSampleText).value;
+        var sampleText = sampleTexts[mySampleText];
+        for (var item in mySpanIDList){
+            document.getElementById(mySpanIDList[item]).innerHTML = sampleText;
+        }
+
+    }
+
+    function functionGetColorBG(item, CSSClass){
+        $(CSSClass).css('background-color', item);
+    }
+
+    function functionGetColorText(item, CSSClass){
+        $(CSSClass).css('color', item);
+    }
+
+    function functionSwapColorTextBG(CSSClass){
+        var colorText = $(CSSClass).css('color');
+        var colorBG = $(CSSClass).css('backgroundColor');
+        $(CSSClass).css('background-color', colorText);
+        $(CSSClass).css('color', colorBG);
+
+    }
+
+    $('.compareBoxCSS').on('blur keyup paste input', function() {$(".compareBoxCSS").not(this).html($(this).html());});
+
+    $('#sliderCompareBoxCSS').on('change',function(){
+        var val = $(this).val();
+        $(".compareBoxCSS").css("font-size",(val+"px"));
+        
+        document.getElementById("numberCompareBoxCSS").value = val;
+    });
+
+    $('#numberCompareBoxCSS').on('change',function(){
+        var val = $(this).val();
+        $(".compareBoxCSS").css("font-size",(val+"px"));
+        
+        document.getElementById("sliderCompareBoxCSS").value = val;
+    });
+
+    $('#sliderSampleContent').on('change',function(){
+        var val = $(this).val();
+        $(".sampleContent").css("font-size",(val+"px"));
+        if (val <= 30){
+            $(".sampleContent").css("padding",(val+"px 50px "+ val+"px 50px"));
+        } else {
+            $(".sampleContent").css("padding",("30px 50px 30px 50px"));              
+        }        
+        document.getElementById("numberSampleContent").value = val;
+    });
+
+    $('#numberSampleContent').on('change',function(){
+        var val = $(this).val();
+        $(".sampleContent").css("font-size",(val+"px"));
+        if (val <= 30){
+            $(".sampleContent").css("padding",(val+"px 50px "+ val+"px 50px"));
+        } else {
+            $(".sampleContent").css("padding",("30px 50px 30px 50px"));              
+        }           
+        document.getElementById("sliderSampleContent").value = val;
+    });
+
+    clicksBG = 0;
+    function functionGetRandomBG(cssItem){
+        
+        var arrListCSSClasses = [];
+        var numberCSSClasses = Object.keys(cssItem).length;
+        var cssClasses = document.getElementById("tableTR").className;
+
+        var oldCSSClasses = cssClasses.split(' ');
+
+        for (var item in cssItem){
+            if (item == clicksBG){
+                oldCSSClasses.push(cssItem[clicksBG]);
+            } else {
+                var index = oldCSSClasses.indexOf(cssItem[item]);
+                if (index > -1) {
+                    oldCSSClasses.splice(index, 1);
+                }
+                
+            }
+        }
+
+        var newClassNames = oldCSSClasses.join(' ')
+
+        document.getElementById("tableTR").className = newClassNames;
+        
+        clicksBG += 1;
+
+        if (clicksBG === 4){
+            clicksBG = 0;
+        }
+        
+
+    }
+
+    function functionShowCSSCode(CSSClass){
+        if ($(CSSClass).css("left") == '15px'){
+            $(CSSClass).css("transition-timing-function", "ease-in");
+            $(CSSClass).css("transition", "0.4s");
+            $(CSSClass).css("left", "80%");
+        } else {
+            $(CSSClass).css("left", "15px");
+        }
+    }
+
+    function functionShowHeader(CSSClass, my_id){
+        //var element = document.getElementById(my_id)
+        //var buttoncell = document.getElementById(my_id+"_cell")
+
+        var button = document.getElementById(my_id+"_btn");
+        if (button.innerHTML != '▼') {
+            $(CSSClass).css("top", '-' + divHeight + 'px');
+            button.innerHTML = '▼';
+        } else {
+          //$("#" + my_id).slideDown();
+            $(CSSClass).css("transition-timing-function", "ease-in");
+            $(CSSClass).css("transition", "0.4s");
+          $(CSSClass).css("top", "50px");
+          button.innerHTML = '▲';
+        }
+
+    }
+
+        /*function myFunctionAnimate(my_id, CSSClassList){
+            var button = document.getElementById(my_id+"_btn");
+            if (button.innerHTML === 'Play') {
+                button.innerHTML = 'Pause';
+                var countingUp = 1;
+                var minValue = document.getElementById(my_id).min;
+                var maxValue = document.getElementById(my_id).max;
+                var value = document.getElementById(my_id).value;
+                var i = Math.round(value);
+                var speed = Math.round(1000/maxValue);
+                myTimer = setInterval(function() {
+                    console.log(maxValue)
+                    i = i + (1 * countingUp);
+
+                    if (i == maxValue || i == minValue)
+                    {
+                        countingUp *= -1;
+                    }
+
+                    console.log(i)
+                  document.getElementById(my_id).value = i;
+                  document.getElementById(my_id+"_range").innerHTML = i;
+                  //om_AvenirNextVariableRomanttfWeight_showValue(i, CSSClassList)
+                  
+                }, speed);
+
+            } else {
+                button.innerHTML = 'Play';
+                clearInterval(myTimer);
+            }
+        }*/
+
+        
+
+        function functionTextAlignment(ID, item){
+            textAligment = ['left', 'center', 'right'];
+            console.log('ID: ', ID)
+            nameID = ID.replace('ID', '');
+            console.log('nameID: ', nameID)
+            console.log('item: ', item)
+
+            buttonName = item + nameID + "_btn";
+
+            console.log('buttonName: ', buttonName)
+
+            var button = document.getElementById(buttonName);
+            button.style.backgroundColor = 'black';
+            button.style.color = 'white';
+
+            $('#' +ID).css("text-align", item);
+
+            var textAligmentLength = textAligment.length;
+            for (var i = 0; i < textAligmentLength; i++) {
+                var itemLoop = textAligment[i];
+                if (itemLoop != item){
+                    otherButtonName = itemLoop + nameID + "_btn";
+                    console.log('otherButtonName: ', otherButtonName)
+                    var otherButton = document.getElementById(otherButtonName);
+                    otherButton.style.backgroundColor = 'white';
+                    otherButton.style.color = 'black';
+
+                }
+            }
+        }
+
+        function functionReadDirection(ID, item){
+            textAligment = ['left-to-right', 'right-to-left', 'top-to-down'];
+            console.log('ID: ', ID)
+            nameID = ID.replace('ID', '');
+            console.log('nameID: ', nameID)
+            console.log('item: ', item)
+
+            buttonName = item + nameID + "_btn";
+
+            console.log('buttonName: ', buttonName)
+
+            var button = document.getElementById(buttonName);
+            button.style.backgroundColor = 'black';
+            button.style.color = 'white';
+
+            if (item === 'right-to-left'){document.getElementById('compareBoxID').dir = 'rtl';}
+            if (item === 'left-to-right'){document.getElementById('compareBoxID').dir = '';}
+
+            // if (item === 'top-to-down'){
+            //     document.getElementById('compareBoxID').dir = '';
+
+            //     //var elt = document.documentElement
+            //     var elt = document.getElementById(ID);
+            //     elt.setAttribute("style", "writing-mode: vertical-rl;");
+            //     //$("body").css("writing-mode", 'vertical-rl;');
+            //     //document.documentElement.css("writing-mode", 'vertical-rl;');
+
+            //     /* writing-mode: vertical-rl; */
+            // }            
+
+            var textAligmentLength = textAligment.length;
+            for (var i = 0; i < textAligmentLength; i++) {
+                var itemLoop = textAligment[i];
+                if (itemLoop != item){
+                    otherButtonName = itemLoop + nameID + "_btn";
+                    console.log('otherButtonName: ', otherButtonName)
+                    var otherButton = document.getElementById(otherButtonName);
+                    otherButton.style.backgroundColor = 'white';
+                    otherButton.style.color = 'black';
+
+                }
+            }
+        }
+
+    function functionTest(CSSClass){
+            $(CSSClass).css("transition-timing-function", "ease-in");
+            $(CSSClass).css("transition", "1.4s");
+            $(CSSClass).css("transform", 'translate3d(0px,0px,0px)');
+    }
+
+
+    delta = 0;
+    beta = 0;
+    lastPos = null;
+
+    function clearBeta() {
+      beta = 0;
+    }
+
+    window.onscroll = function(){
+
+        function clear() {
+          lastPos = null;
+          delta = 0;
+        }
+
+        newPos = window.scrollY;
+        if ( lastPos != null ){
+          delta = newPos - lastPos;
+        }
+        lastPos = newPos;
+
+        //console.log(100 - delta)
+        //console.log('newPos: ', newPos)
+
+        if (delta < 0){if (beta < (delta * -1)){beta = (delta * 6)} }
+        if (delta > 0){if (beta < delta){beta = delta} }
+
+        //console.log('beta: ', beta)
+
+        setTimeout(clear, 500);
+        setTimeout(clearBeta, 500);
+
+        //console.log(100 - Pos)
+      //var distanz =  window.scrollY
+      //console.log('distanz: ', distanz);
+      //console.log( 'PositivVal: ', PositivVal );
+      //console.log(Int(distanz))
+      $('.flyingFont1').css("transform", 'translate3d(0px,' + (beta * -1) + 'px,0px)');
+      $('.flyingFont2').css("transform", 'translate3d(0px,' + (beta * -2) + 'px,0px)');
+      $('.flyingFont3').css("transform", 'translate3d(0px,' + (beta * -3) + 'px,0px)');
+    };
+
+
+    window.addEventListener("scroll", functionTest('.flyingFont1'), false);
+    window.addEventListener("scroll", functionTest('.flyingFont2'), false);
+    window.addEventListener("scroll", functionTest('.flyingFont3'), false);
+
+    $('.flyingFont').on('blur keyup paste input', function() {$(".flyingFont").not(this).html($(this).html());});
+
+    function adjustHeightOfTwoDiv(div1_ID, div2_ID){
+        var offsetHeight = document.getElementById(div1_ID).offsetHeight;
+        document.getElementById(div2_ID).style.height = offsetHeight + 'px';
+    } 
+
+    $('.flyingFont1').on('blur keyup paste input', function() {adjustHeightOfTwoDiv('flyingFont_ID1', 'flyingFont_ID0')});
+
+    function mDn(uniID, CSSClassFontList) {
+        console.log('uniID: ', uniID)
+        if (typeof uniID === 'string' || uniID instanceof String){
+            console.log('str: True ')
+            var UID = uniID
+        } else {
+            console.log('else: True ')
+            var UID = '&#x' + uniID.toString(16);
+        }
+        console.log('UID: ', UID)
+        var obj = document.getElementById('zoom_characters');
+        obj.style.display = 'block';
+
+        var w = window.innerWidth;
+        var h = window.innerHeight;
+
+        if (w < h){
+            var nW = w / 2;
+            var nH = nW;
+
+        } else {
+            var nW = h / 2;
+            var nH = nW;
+        }
+        var top = (h - nH) / 2;
+        var left = (w - nW) / 2;
+
+        obj.style.height = nH + 'px';
+        obj.style.top = top + 'px';
+        obj.style.width = nW + 'px';
+        obj.style.left = left + 'px';        
+        obj.innerHTML = UID;
+        
+        var arrayLength = CSSClassFontList.length;
+        for (var i = 0; i < arrayLength; i++) {
+            var item = CSSClassFontList[i];
+            obj.classList.add(item);
+        }
+
+
+        
+
+        
+
+
+    }
+
+    function mUp() {
+        var obj = document.getElementById('zoom_characters');
+        obj.innerHTML = '';
+        obj.style.display = 'none';
+        obj.className = "characterZoom";
+    }
+
+    var prevScrollpos = window.pageYOffset;
+    window.onscroll = function() {
+    var currentScrollPos = window.pageYOffset;
+    if (prevScrollpos > currentScrollPos) {
+        document.getElementById("showFontNames_div").style.bottom = "-50px";
+        } else {
+            document.getElementById("showFontNames_div").style.bottom = "0";
+        }
+        prevScrollpos = currentScrollPos;
+    }
+
+    function scrollXNamesFunc() {
+        var elmnt = document.getElementById("containerMainID");
+        var x = elmnt.scrollLeft;
+        $('#showFontNames').css({
+            'left': 15 - x
+        });
+    }
+
+    function hintingOnOff(CSSClass, my_id){
+        var button = document.getElementById(my_id+"_btn");
+        var elements = document.getElementsByClassName('compareBox')
+
+        if (button.innerHTML != 'hinting on') {
+            Array.prototype.filter.call(elements, function(el){
+                el.style.transform = 'rotate(0.0deg)';
+                el.style.transformOrigin = 'top left';
+            });
+
+            button.className = "buttonBlack";
+            button.innerHTML = 'hinting on';
+            button.style.backgroundColor = 'black';
+
+        } else {
+            Array.prototype.filter.call(elements, function(el){
+                el.style.transform = 'rotate(0.03deg)';
+                el.style.transformOrigin = 'top center';
+            });
+
+            button.innerHTML = 'hinting off';
+            button.className = ".buttonBorder";
+
+            button.style.backgroundColor = 'red';
+
+        }
+
+    }
+
+    </script>
+
+  </body>
+</html>
+

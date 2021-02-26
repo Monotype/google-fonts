@@ -1,0 +1,3002 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv='content-type' content='text/html; charset=utf-8'>
+    <meta name="code" content="Olli Meier">
+    <title>MT FontSplitter</title>
+    <style type="text/css">
+      body {
+        /*background-color: #fff; #fdfdfb;*/
+        color: #131313;
+        font-family: "Kootenay Pro", Axel, "System Font", "Fira Sans", sans-serif;
+        /*line-height: 1.3em;*/
+        margin: 0;
+        /*padding: 1em;*/
+        font-size: 14px;
+        /*padding-right: 50px;*/
+        /*background: linear-gradient(to bottom, #383838, white);*/
+      }
+
+    table {width:100%;}
+    tr {margin: 10px;}
+    td {border: 1px solid #fff; /*#fdfdfb;*/}
+/*
+    table th, table td {
+    overflow: scroll !important;
+    white-space: nowrap;
+}
+*/
+
+    mark {
+        background-color: #fff990;
+        color: black;
+        opacity: 0.7;
+    }
+
+    .containerMain {
+        position: absolute;
+        z-index: 2;
+        /*top:-2000px;*/
+        left: 15px; 
+        background-color: white;
+        overflow: scroll;
+        width: calc(100% - 15px);
+    }
+
+
+    .containerCSScode {
+        overflow: scroll;
+        position: absolute;
+        z-index: 1;
+        top:0px;
+        padding-top: 200px;
+        padding-left: 20px;
+        width: 100%;
+        background-color: #383838;
+    }
+
+    .cssButton {
+        z-index: 3;
+        position: fixed;
+        top: 49%;
+    }
+
+    .cssButtonStyle {
+        /*text-align: center;*/
+        /*text-transform: uppercase;*/
+        transform-origin: left bottom 0;
+        /*writing-mode:tb-rl;*/
+        -webkit-transform:rotate(-90deg);
+        -moz-transform:rotate(-90deg);
+        -o-transform: rotate(-90deg);
+        -ms-transform:rotate(-90deg);
+        transform: rotate(-90deg);
+        white-space:nowrap;
+        display:block;
+        /*bottom:0;
+        width:20px;
+        height:20px;*/
+
+    }
+
+    .comment{color:#FCD833}
+    .rule{color:#009FE3}
+    .element{color:#FFF}
+    .keyword{color:#E50051}
+    .prop{color:#FF9700}
+    .whitetext{color:#FFF}
+    /*.deepgray{background-color:#383838}*/
+    .darkgray{background-color: #787878}
+    .darkgray_text{color:#BBB}
+    .lightgray{background-color:rgb(252,252,252)}
+    .lightgray_text{color:rgb(252,252,252)}
+    .gray_text{color:lightgrey}
+
+    pre{font-family:Consolas,Courier,monospace;
+        /*font-size:.81em;*/
+        line-height:1.1em;
+        margin:0;
+        /*padding:1em;*/
+        border:0;
+        -webkit-touch-callout:text!important;
+        -webkit-user-select:text!important;
+        -khtml-user-select:text!important;
+        -moz-user-select:text!important;
+        -ms-user-select:text!important;
+        user-select:text!important
+    }
+    .gradientBG {
+        background:
+            linear-gradient(
+                limegreen,
+                transparent
+            ),
+            linear-gradient(
+                90deg,
+                skyblue,
+                transparent
+            ),
+            linear-gradient(
+                -90deg,
+                coral,
+                transparent
+            );
+            
+        background-blend-mode: screen;
+        }
+
+    .linearGradientBG{
+        background:
+            repeating-linear-gradient(
+                -45deg,
+                transparent,
+                transparent 25%,
+                tomato 0,
+                tomato 50%
+            ),
+            repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 25%,
+                dodgerblue 0,
+                dodgerblue 50%
+            ), wheat;
+
+        background-size: 10em 10em;
+        background-blend-mode: multiply;
+    }
+
+    .linearGradient2BG{
+        background:
+            repeating-linear-gradient(
+                50deg,
+                #F7A37B,
+                #F7A37B 1em,
+                #FFDEA8 1em,
+                #FFDEA8 2em,
+                #D0E4B0 2em,
+                #D0E4B0 3em,
+                #7CC5D0 3em,
+                #7CC5D0 4em,
+                #00A2E1 4em,
+                #00A2E1 5em,
+                #0085C8 5em,
+                #0085C8 6em
+            ),
+            repeating-linear-gradient(
+                -50deg,
+                #F7A37B,
+                #F7A37B 1em,
+                #FFDEA8 1em,
+                #FFDEA8 2em,
+                #D0E4B0 2em,
+                #D0E4B0 3em,
+                #7CC5D0 3em,
+                #7CC5D0 4em,
+                #00A2E1 4em,
+                #00A2E1 5em,
+                #0085C8 5em,
+                #0085C8 6em
+            );
+            
+        background-blend-mode: multiply;
+    }
+
+    .chr {
+        line-height: 1.45em;
+        font-size:2.5em;
+        		display:inline-block;
+width:1.45em;
+white-space: pre;
+        min-width:1.45em;
+        height:1.45em;
+        text-align:center;
+        /*margin:-1px -1px -1px -4px;*/
+        background-color: #fff; /*#fdfdfb;*/
+        border:1px solid #efefef;/*#FAF7F5;*/ 
+        /*overflow: scroll !important;*/
+        white-space: nowrap;
+        font-size: 30px;
+    }
+
+    .characterZoom {
+        display:inline-block;
+        white-space: pre;
+        text-align:center;
+        background-color: #fff; /*#fdfdfb;*/
+        border:10px solid #efefef;/*#FAF7F5;*/ 
+        white-space: nowrap;
+        font-size: 35vh;
+        z-index:1000; 
+        width:50%; 
+        height:50%;
+        position: fixed; 
+        left: 25%; 
+        top:25%; 
+        display: none;"
+    }
+
+    .characterUniRanges{
+        font-size:2.5em;
+        display:inline-block;
+        /*width:1.45em;*/
+        min-width:2em;
+        height:2em;
+        text-align:center;
+        margin:-0px -0px -1px -4px;
+        background-color:#fff;
+        border:1px solid rgb(240,240,240); 
+        white-space: pre;
+    }
+
+    .characterUniRanges[title-B]:active {
+        z-index: 999;
+      content: attr(title-B);
+      position: relative;
+        background:#B3D4FC;
+        font-size: 20.5em;
+        display:inline-block;
+        /*width:10.45em;*/
+        min-width:500px;
+        height:500px;
+        text-align:center;
+        margin:-0px -0px -1px -4px;
+        border:1px solid rgb(240,240,240); 
+        white-space: pre;
+    }
+
+    [data-title] {
+      transition-timing-function: ease-in;
+          transition: 0.4s;
+      position: relative;
+    }
+
+    [data-title]:hover::before {
+      content: attr(data-title);
+      position: absolute;
+      z-index: 999;
+      bottom: -26px;
+      display: inline-block;
+      padding: 3px 6px;
+      border-radius: 2px;
+      background: #000;
+      color: #fff;
+      font-size: 12px;
+      font-family: sans-serif;
+      white-space: nowrap;
+      left: -20px;
+    }
+
+    [data-title]:hover::after {
+          z-index: 999;
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 8px;
+      display: inline-block;
+      color: #fff;
+      border: 8px solid transparent;    
+      border-bottom: 8px solid #000;
+    }
+
+    .characterMetaData {
+        line-height: 1.45em;
+        font-size:2.5em;
+        		display:inline-block;
+width:1.45em;
+white-space: pre;
+        max-width:1.45em !important;
+        min-width:1.45em;
+        height:1.45em;
+        text-align:center;
+        /*margin:-1px -1px -1px -4px;*/
+        background-color: #fff; /*#fdfdfb;*/
+        border:1px solid #efefef;/*#FAF7F5;*/ 
+        /*overflow: scroll !important;*/
+        white-space: nowrap;
+        font-size: 30px;
+    }
+
+    .characterFix {
+        font-size:2.5em;
+        		display:inline-block;
+width:1.45em;
+white-space: pre;
+        min-width:1.45em;
+        height:1.45em;
+        text-align:center;
+        /*margin:-1px -1px -1px -4px;*/
+        background-color: #fff; /*#fdfdfb;*/
+        border:1px solid #efefef;/*#FAF7F5;*/
+        overflow-x: scroll !important;
+        white-space: nowrap;
+        font-size: 30px;
+    }
+
+    .characterFontNames {
+        font-size:2.5em;
+        		display:inline-block;
+width:1.45em;
+white-space: pre;
+        min-width: 1.45em;
+        height:1.45em;
+        text-align:center;
+        /*margin:-1px -1px -1px -4px;*/
+        background-color: #fff; /*#fdfdfb;*/
+        border: 1px solid #fff; /*#fdfdfb;*/ 
+        position: -webkit-sticky;
+        position: sticky;
+        white-space: pre !important;
+        font-size: 30px;
+    }
+
+    .buttonBlack {
+        background-color: #131313;
+        border: 1px solid #fff; /*#fdfdfb;*/
+        color: #fff; /*#fdfdfb;*/
+        padding: 5px 15px;
+        text-align: center;
+        /*text-decoration: none;*/
+        display: inline-block;
+        margin: 1px 1px;
+        cursor: pointer;
+        border-radius: 0.0em;
+
+    }
+
+    .features-head {
+        content:"";
+        display:inline-block;
+        float:left;
+        width:100%;
+        border-bottom:1px solid rgb(240,240,240);
+        padding-top:10px;
+        margin-top:30px; 
+        margin-bottom:10px
+    }
+
+    input {
+        /*width: 44px;
+        height: 23px;
+        background-color: buttonface;*/
+        cursor: default;
+        border-width: 0px;
+        border-style: solid;
+        border-color: ; #fff; /*#fdfdfb;*//*rgb(169, 169, 169);*/
+        border-image: initial;
+        padding: 0px opx;
+    }
+
+    .inputColor{
+        width: 25px;
+        height: 29px;
+        cursor: default;
+        border: none;
+    }
+
+    button {
+        border: 0;
+        height: 100%;
+        /*width: 100%;*/
+        padding: 5px 15px;
+        text-align: center;
+        /*text-decoration: none;*/
+        display: inline-block;
+        margin: 1px 1px;
+        cursor: pointer;
+        border-radius: 0.0em;
+        vertical-align: top;
+        background: #fff; /*#fdfdfb;*/
+        outline: none;
+    }
+
+    .buttonBorder {
+        border: 0;
+        height: 100%;
+        /*width: 100%;*/
+        padding: 5px 15px;
+        text-align: center;
+        /*text-decoration: none;*/
+        display: inline-block;
+        margin: 1px 1px;
+        cursor: pointer;
+        border-radius: 0.0em;
+        vertical-align: top;
+        background: #fff; /*#fdfdfb;*/
+        outline: none;
+        border:1px solid #efefef;/*#FAF7F5;*/
+    }
+
+    .buttonOT {
+        border:1px solid #efefef;/*#FAF7F5;*/
+        width: 40px;
+        padding: 5px 5px;
+    }
+    .buttonExtra{
+        vertical-align: bottom;
+        line-height: 2em;
+
+        border: 0;
+        height: 100%;
+        /*width: 100%;*/
+        padding: 5px 15px;
+        text-align: center;
+        /*text-decoration: none;*/
+        display: inline-block;
+        margin: 1px 1px;
+        cursor: pointer;
+        border-radius: 0.0em;
+        background: #fff; /*#fdfdfb;*/
+        outline: none;
+    }
+
+    select {
+        border: 0;
+        height: 100%;
+        width: 100%;
+        padding: 5px 15px;
+        text-align: center;
+        /*text-decoration: none;*/
+        display: inline-block;
+        margin: 1px 1px;
+        cursor: pointer;
+        border-radius: 0.0em;
+        vertical-align: top;
+        background: #131313;
+        color: #fff; /*#fdfdfb;*/
+    }
+
+    .selectSampleText {
+        border: 0;
+        height: 100%;
+        width: 200px;
+        /*padding: 5px 15px;*/
+        text-align: center;
+        /*text-decoration: none;*/
+        display: inline-block;
+        margin: 5px 1px;
+        cursor: pointer;
+        border-radius: 0.0em;
+        vertical-align: top;
+        background: #fff; /*#fdfdfb;*/
+        color: #131313;
+    }
+
+    .textTop {vertical-align: top;}
+    .compareBoxes{word-break: break-all;}
+
+    .flyingFont{
+        font-size: 300px;
+        text-align: center;
+        /*text-transform: uppercase;*/
+        width: 100%;
+    }
+
+    .flyingFont1{
+        color: #FF4136/*#131313*/; 
+        z-index: 900; 
+        position: absolute;
+    }
+    .flyingFont2{
+        /*-webkit-text-stroke-width: 2px;
+           -webkit-text-stroke-color: #FF4136;
+           -webkit-text-fill-color: transparent;*/
+        z-index: 899; 
+        position: absolute;
+           opacity: .5;
+           margin-top: 10px;
+           margin-left: 10px;
+    }
+    .flyingFont3{
+        /*-webkit-text-stroke-width: 2px;
+           -webkit-text-stroke-color: #FF4136;
+           -webkit-text-fill-color: transparent;*/
+        z-index: 898; 
+        position: absolute;
+           opacity: .2;
+           margin-top: 20px;
+           margin-left: 20px;
+    }
+
+    .buttonToggle {
+        border: 0;
+        /*background-color: #131313;*/
+        /*color: #fff; /*#fdfdfb;*/*/
+        text-align: center;
+        /*text-decoration: none;*/
+        display: inline-block;
+        margin: 1px 1px;
+        cursor: pointer;
+        border-radius: 0.0em;
+    }
+
+    button:hover, .selectSampleText:hover {background-color: #131313; color: #fff; /*#fdfdfb;*/}
+    .buttonOT:hover {background-color: #131313; color: #fff; /*#fdfdfb;*/}
+    .buttonExtra:hover {background-color: #fff; /*#fdfdfb;*/ color: #131313;}
+
+    hr { border: 0; height: 1px; background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0));}
+
+    .underline {text-decoration: underline; text-decoration-color: #131313; color: hsl(  0,  0%,  95%); overflow: hidden;} /* for the future: text-underline-offset: from-font; text-decoration-width: from-font; */
+    .strikeout {text-decoration: line-through; text-decoration-color: #131313; color: hsl(  0,  0%,  95%); overflow: hidden;} 
+
+    .chr:hover {background:#B3D4FC}
+    .characterUniRanges:hover {background:#B3D4FC}
+    /*.characterUniRanges:active {
+        background:#B3D4FC;
+        font-size: 20.5em;
+        display:inline-block;
+        /*width:10.45em;*/
+        min-width:500px;
+        height:500px;
+        text-align:center;
+        margin:-0px -0px -1px -4px;
+        border:1px solid rgb(240,240,240); 
+        white-space: pre;
+    }
+    */
+    .characterFix:hover {background:#B3D4FC}
+    .character_name {/*padding-top: 5px; padding-left: 25px;*/}
+    
+    @keyframes blinkblink {
+        0% 100%   {background-color: hsl( 24,  100%, 50%); }
+        50% {background-color: hsl( 24,  100%, 45%); }
+    }
+
+    .serious {animation: blinkblink 0.9s ease-in-out 0s infinite;}
+    .critical {background-color: hsl( 0,  100%, 20%); color: hsl( 0,  0%, 90%);}
+    .error {background-color: hsl( 24,  100%, 45%); color: hsl( 24,  100%, 70%);}
+    .warning {background-color: hsl( 50,  65%, 52%); color: hsl( 50,  65%, 70%);}
+    .info {background-color: #f9f7f6;/*hsl(  0,  0%,  95%);*/ color: hsl(  0,  0%,  70%);}
+
+    .extra {background-color: hsl( 200,  50%, 95%);}
+    .extra_info {background-color: hsl( 200,  50%, 96%); color: hsl( 200,  50%, 80%);}
+
+    .colLeft {
+        width: 50%;
+        padding-left: 25px;
+        text-align: right;
+        padding-right: 25px;
+        vertical-align: text-top;
+    }
+
+    .header {
+      text-transform: none;
+      text-decoration: none;
+      background-color: #fff; /*#fdfdfb;*/
+      text-align: left;
+      color: #131313;
+      position: fixed;
+      padding: 15px 15px 0px 0px;
+      width: 100%;
+      box-shadow: 0px 0px 5px #888888;
+      z-index: 99;
+    }
+
+    .header1 {
+      text-transform: none;
+      text-decoration: none;
+      background-color: #fff; /*#fdfdfb;*/
+      text-align: left;
+      color: #131313;
+      position: fixed;
+      padding: 15px 15px 0px 0px;
+      width: 100%;
+      z-index: 99;
+    }
+    
+    .header:hover  { opacity: 0.95; }
+    .header1:hover  { opacity: 0.95; }
+
+
+    .splitter{width:100%; font-weight: bold;}
+    .center{text-align: center;}
+    .left{text-align: left;}
+    .content{padding-top: 500px;}
+    .sampleBig {/*font-size: 50px !important*/; color:#fff; /*#fdfdfb;*/ padding: 20px 50px 20px 50px; }
+    .sampleWaterfall {padding: 20px 50px 20px 20px;}
+    .waterfallOverflow {white-space:nowrap; overflow: hidden; text-overflow: clip; }
+    .sampleContent {/*empty*/ font-size: 30px;}
+    .compareBoxCSS {vertical-align: top; font-size: 30px;}
+    .blackBG {background-color: #131313;}
+
+    .defaultFont {font-size: 30px;}
+    .infoFont {font-family: "Kootenay Pro", Axel, "System Font", "Fira Sans", sans-serif; font-size: 14px; vertical-align: 5px;}
+    
+    .hidden {display:none;}
+    .sliderbar {vertical-align: 4px;}
+
+    /* Slider design Start */
+
+    .inputRangeCompareBox {
+      padding-bottom: 7px !important;
+      padding-left: 10px;
+    }
+
+    .inputNumberCompareBox{
+        max-width: 50px;
+    }
+
+    input[type=range] {
+      padding-bottom: 3px;
+      -webkit-appearance: none;
+      /*position: relative*/
+    }
+
+    input[type=range]::-webkit-slider-runnable-track {
+      width: 300px;
+      height: 2px;
+      border: none;
+      border-radius: 3px;
+      border: 1px solid #131313;
+    }
+
+    input[type=range]::-moz-range-track {
+      background-color: #131313;
+    }
+
+    input::-moz-range-thumb {
+        background-color: #fff; /*#fdfdfb;*/
+        border: solid 2px #131313;
+        border-radius: 0;
+        height: 10px;
+        width: 10px;
+      }
+
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      border: none;
+      height: 12px;
+      width: 12px;
+      border-radius: 510%;
+      background: #fff; /*#fdfdfb;*/
+      border: 2px solid #131313;
+      margin-top: -5px;
+      cursor: pointer
+    }
+
+    input[type=range]:focus {
+      outline: none
+    }
+
+    /* Slider design End */
+
+    .infoToggle {border-bottom:1px solid #efefef;/*#FAF7F5;*/}
+    .colLeftToggle {
+        width: 50%;
+        padding-left: 25px;
+        text-align: right;
+        padding-right: 25px;
+        vertical-align: mittle;
+    }
+
+    td.rotateSAVE {*/height: 140px;*/ white-space: nowrap; /*float: left;*/ }
+    td.rotate > div {-webkit-transform: rotate(270deg); transform: rotate(270deg); width: 30px;}
+    td.rotate > div > span {/*padding: 5px 10px;*/}
+
+
+    
+        .mark {-webkit-font-feature-settings: "mark" 1; -moz-font-feature-settings: "mark" 1; -moz-font-feature-settings: "mark=1"; -ms-font-feature-settings: "mark" 1; -o-font-feature-settings: "mark" 1;}
+        
+        .ccmp {-webkit-font-feature-settings: "ccmp" 1; -moz-font-feature-settings: "ccmp" 1; -moz-font-feature-settings: "ccmp=1"; -ms-font-feature-settings: "ccmp" 1; -o-font-feature-settings: "ccmp" 1;}
+        
+        .mkmk {-webkit-font-feature-settings: "mkmk" 1; -moz-font-feature-settings: "mkmk" 1; -moz-font-feature-settings: "mkmk=1"; -ms-font-feature-settings: "mkmk" 1; -o-font-feature-settings: "mkmk" 1;}
+        
+
+    
+		@font-face {font-family: 'om_NotoSansCopticRegularttf'; src: url('NotoSansCoptic-Regular.ttf');}
+	.om_NotoSansCopticRegularttf {font-family: 'om_NotoSansCopticRegularttf'; /*font-size: 30px;*/}
+
+    
+
+    /*.animationON {animation: LooperOne 5.0s ease-in-out 0s infinite;}
+    .animationOFF {/*empty*/}*/
+
+
+    </style>
+
+  </head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <body style="-webkit-print-color-adjust:exact;" id="body_all" onload="functionAddSupportedFeatures('mark'),functionAddSupportedFeatures('mkmk')">
+
+      <div id="zoom_characters" class="characterZoom" onclick="mUp()"></div>
+
+    <div class="header1 center" style="z-index:999; ">
+            Monotype
+        <table class="splitter">
+          <tr>
+            <td class="center">F</td>
+            <td class="center">O</td>
+            <td class="center">N</td>
+            <td class="center">T</td>
+            <td class="center">S</td>
+            <td class="center">P</td>
+            <td class="center">L</td>
+            <td class="center">I</td>
+            <td class="center">T</td>
+            <td class="center">T</td>
+            <td class="center">E</td>
+            <td class="center">R</td>
+          </tr>
+        </table>
+        <br>
+    </div>
+
+       <div class="header center">
+        <table style="width:100%">
+            <tbody id="otFeature" >
+                <td>
+                    <!-- OT feature buttons -->
+                    <table>
+		<tr>
+			<td class="colLeft">Select HTML Language</td><td class="left">
+		<select onchange="functionChangeLanguage(this.value)" class="selectSampleText">		<option value=>Default</option>
+			</select>
+			</td>
+		</tr>
+		<tr>
+			<td class="colLeft">Positioning Features</td><td class="left">
+		<button class="buttonOT" data-title="Glyph Composition / Decomposition" id="ccmp_btn" onclick="functionAddSupportedFeatures('ccmp')">ccmp</button>
+		<button class="buttonOT" data-title="Mark Positioning" id="mark_btn" onclick="functionAddSupportedFeatures('mark')">mark</button>
+		<button class="buttonOT" data-title="Mark to Mark Positioning" id="mkmk_btn" onclick="functionAddSupportedFeatures('mkmk')">mkmk</button>
+
+			</td>
+		</tr>
+</table>
+
+                    <!-- fonts size slider
+                    <table>
+                        <tr>
+                        <td class="colLeft">Font Size</td><td class="left"><input type="range" min="0.5" max="20" value="2.5" step=".01" id="slider" /></td>
+                        </tr>
+                    </table>
+                     -->
+
+                    <!-- axis variable fonts -->
+                    
+
+                </td>
+            </tbody>
+
+            <th><button class="buttonExtra" id="otFeature_btn" onclick='functionShowHeader(".header", "otFeature");' title="Toggle details">&#x25bc;</button>
+            </th>
+        </table>
+    </div>  
+
+<div id="cssCodeForCustomerPreview" class="containerCSScode deepgray whitetext">
+<pre>
+
+<span class="comment">/* first assign web font */</span>
+
+<span class="rule">@font-face</span> {
+    <span class="keyword">font-family</span>: 'Noto Sans Coptic Regular'; 
+    <span class="prop">src</span>: <span class="prop">url</span>('../NotoSansCoptic-Regular.ttf') <span class="prop">format</span>('truetype');
+    }
+
+<span class="comment">/* go on with normal style definitions */</span>
+<span class="rule">body</span> {
+    <span class="keyword">font-family</span>: 'Noto Sans Coptic Regular'; <span class="comment">/* this is only an example for one style */</span>
+    <span class="featurestring">
+    <span class="comment">/* setup OpenType features */</span>
+    <span class="keyword">font-feature-settings: </span><span id="w3cfeatures"></span>;
+
+    <span class="comment">/* vendor prefixes */</span>
+    <span class="keyword">-webkit-font-feature-settings: </span><span id="webkitfeatures"></span>;
+    <span class="keyword">-moz-font-feature-settings: </span><span id="mozfeatures-up-to-14"></span>;
+    <span class="keyword">-moz-font-feature-settings: </span><span id="mozfeatures"></span>;
+    <span class="keyword">-ms-font-feature-settings: </span><span id="msfeatures"></span>;
+    <span class="keyword">-o-font-feature-settings: </span><span id="ofeatures"></span>;
+    
+}
+    
+
+<span class="comment">/* language tag */</span>
+<code><</code><span class="keyword">html</span><span class="prop"> lang</span>=<span class="rule">"<span id="htmlLangTag"></span>"</span><code>></code>
+
+...
+
+<code><</code>/<span class="keyword">html</span><code>></code>
+
+</pre>
+</div>
+
+
+<div id="containerMainID" class="containerMain" onscroll="scrollXNamesFunc()">
+
+    <div class="cssButton">
+        <a class="cssButtonStyle whitetext" onclick="functionShowCSSCode('.containerMain')" href="#" style="text-decoration:None;"> 
+            css code
+        </a>
+    </div>
+
+    <div id="showFontNames" class="content" style="background: white; opacity: 0; transition: opacity 1s ease-in-out; position: fixed; z-index: -1; width:100%;">
+        <table style="width:100%; border-bottom: 1px solid #FAF7F5;">
+            <tr>
+                <td class="colLeft">
+                </td>
+                <td class="rotate characterFontNames defaultFont"><div><span class="infoFont"> </span></div></td>
+				<td class="rotate characterFontNames om_NotoSansCopticRegularttf"><div><span>Noto Sans Coptic</span></div></td>
+				
+            </tr>
+        </table>
+    </div>
+
+    <div id="showFontNames_div" class="center" style="position: fixed; bottom: -50px; z-index:998; width:100%;">
+        <button class="buttonBlack" id="showFontNames_btn" onclick='showhide_div("showFontNames", "font names");' title="Toggle details">show font names</button>
+    </div>
+
+    <div id="varFont" class="content">
+
+        <table>
+            <tr>
+                <td class="colLeft">
+                <!-- <a href="#splitterContent">Character Set Compare</a> https://css-tricks.com/snippets/jquery/smooth-scrolling/ -->
+                2021-02-19 - 09:59.28
+                <br>
+                09:59.28
+                <br>
+                <button class="buttonBorder" onClick="window.print()">
+                Print this page
+                </button>
+                </td>
+                <td class="rotate characterFontNames defaultFont"><div><span class="infoFont"> </span></div></td>
+				<td class="rotate characterFontNames om_NotoSansCopticRegularttf"><div><span>Noto Sans Coptic</span></div></td>
+				
+            </tr>
+        </table>
+
+            
+		<hr>
+		<table>
+<tr>
+<td class="colLeft">Format<br>(by file ending)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Coptic Regular" data-original-title=".ttf"><span class="infoFont">.ttf</span></td>
+</tr>
+<tr>
+<td class="colLeft">Outline Flavour<br>(CFF or glyf table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Coptic Regular" data-original-title="OT TTF"><span class="infoFont">OT TTF</span></td>
+</tr>
+<tr>
+<td class="colLeft">Number of Glyphs<br>(maxp table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Coptic Regular" data-original-title="224"><span class="infoFont">224</span></td>
+</tr>
+<tr>
+<td class="colLeft">Weight Class<br>(OS/2 table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont " title="Noto Sans Coptic Regular" data-original-title="400"><span class="infoFont">400</span></td>
+</tr>
+<tr>
+<td class="colLeft">Width Class<br>(OS/2 table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont " title="Noto Sans Coptic Regular" data-original-title="5"><span class="infoFont">5</span></td>
+</tr>
+<tr>
+<td class="colLeft">Units per Em<br>(head table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Coptic Regular" data-original-title="1000"><div><span class="infoFont">1000</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">Font Revision<br>(head table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Coptic Regular" data-original-title="2.0"><div><span class="infoFont">2.0</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">OS/2 Table Version<br></td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Coptic Regular" data-original-title="4"><div><span class="infoFont">4</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">sTypeAscender<br>(OS/2 table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Coptic Regular" data-original-title="1069"><div><span class="infoFont">1069</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">sTypeDescender<br>(OS/2 table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Coptic Regular" data-original-title="-293"><div><span class="infoFont">-293</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">sTypeLineGap<br>(OS/2 table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Coptic Regular" data-original-title="0"><div><span class="infoFont">0</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">usWinAscent<br>(OS/2 table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Coptic Regular" data-original-title="1069"><div><span class="infoFont">1069</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">usWinDescent<br>(OS/2 table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Coptic Regular" data-original-title="293"><div><span class="infoFont">293</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">Ascender<br>(hhea table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Coptic Regular" data-original-title="1069"><div><span class="infoFont">1069</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">Descender<br>(hhea table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Coptic Regular" data-original-title="-293"><div><span class="infoFont">-293</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">LineGap<br>(hhea table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Coptic Regular" data-original-title="0"><div><span class="infoFont">0</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">post table format<br>(post table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Coptic Regular" data-original-title="2.0"><div><span class="infoFont">2.0</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">Underline Position<br>(post table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Coptic Regular" data-original-title="-100"><div><span class="infoFont">-100</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">Underline Thickness<br>(post table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Coptic Regular" data-original-title="50"><div><span class="infoFont">50</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">Hgo<br>visual check underline</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData om_NotoSansCopticRegularttf underline" title="Noto Sans Coptic Regular" data-original-title="Hgo">Hgo</td>
+</tr>
+<tr>
+<td class="colLeft">yStrikeoutPosition<br>(OS/2 table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Coptic Regular" data-original-title="322"><div><span class="infoFont">322</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">yStrikeoutSize<br>(OS/2 table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Coptic Regular" data-original-title="50"><div><span class="infoFont">50</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">strikeout<br>visual check</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData om_NotoSansCopticRegularttf strikeout" title="Noto Sans Coptic Regular" data-original-title="Hgo">Hgo</td>
+</tr>
+<tr>
+<td class="colLeft">Italic Flag<br>(OS/2 table fsSelection)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Coptic Regular" data-original-title="False"><div><span class="infoFont">False</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">Italic Angle<br>(post table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterFix defaultFont" title="Noto Sans Coptic Regular" data-original-title="0.0"><div><span class="infoFont">0.0</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">Panose: Family<br>(Value 1)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterFix defaultFont" title="Noto Sans Coptic Regular" data-original-title="Latin Text"><div><span class="infoFont">Latin Text</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">Panose: Serif<br>(Value 2)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterFix defaultFont" title="Noto Sans Coptic Regular" data-original-title="Normal Sans"><div><span class="infoFont">Normal Sans</span></div></td>
+</tr>
+
+		</table>
+
+
+            
+
+            
+            <hr>
+            <table id="compareBoxID">
+            <tr id="tableTR" class="textTop sampleBig blackBG compareBoxes">
+
+            <button class="buttonBorder" title="add column" onclick="functionBoxAdd()">+</button>
+            <button class="buttonBorder" title="remove column" onclick="functionBoxRemove()">-</button>
+            <select id="mySelectSampleText" onchange="functionSelectSampleText('mySelectSampleText')" class="selectSampleText">
+
+            <option value='Default Sample'>Default Sample</option><option value='All Unicodes'>All Unicodes</option>
+
+            </select>
+            <input type="color" class="inputColor" value="#82e5fe" title="Background Color" onchange="functionGetColorBG(this.value, '.compareBoxes')">
+            <input type="color" class="inputColor" value="#ff79ad" title="Text Color" onchange="functionGetColorText(this.value, '.compareBoxes')">
+            <button class="buttonBorder" title="Swap Colors" onclick="functionSwapColorTextBG('.compareBoxes')">&#x02B14</button>
+            <button class="buttonBorder" title="have fun, change background" onclick="functionGetRandomBG(['gradientBG', 'linearGradientBG', 'linearGradient2BG', 'blackBG'])">∞</button>
+            <input type="range" class="inputRangeCompareBox" title="Text Size" min="0.5" max="100" value="30" step=".01" id="sliderCompareBoxCSS"/>
+            <input type="number" class="inputNumberCompareBox" value="30" step="1" id="numberCompareBoxCSS"/>
+            <button class="buttonOT" id="leftcompareBox_btn" title="text alignment left" onclick="functionTextAlignment('compareBoxID', 'left')">L</button>
+            <button class="buttonOT" id="centercompareBox_btn" title="text alignment center" onclick="functionTextAlignment('compareBoxID', 'center')">C</button>
+            <button class="buttonOT" id="rightcompareBox_btn" title="text alignment right" onclick="functionTextAlignment('compareBoxID', 'right')">R</button>
+            <span style="vertical-align: super; color: #efefef;">|</span>
+            <button class="buttonOT" id="left-to-rightcompareBox_btn" title="reading direction: left to right" onclick="functionReadDirection('compareBoxID', 'left-to-right')">LR</button>
+            <button class="buttonOT" id="right-to-leftcompareBox_btn" title="reading direction: right to left" onclick="functionReadDirection('compareBoxID', 'right-to-left')">RL</button>
+            <!--<button class="buttonOT" id="top-to-downcompareBox_btn" title="reading direction: top to down" onclick="functionReadDirection('compareBoxID', 'top-to-down')">TD</button>-->
+            <button class="buttonBlack" id="hintingOnOff_btn" onclick="hintingOnOff('.compareBoxes', 'hintingOnOff');" title="activate/deactivate hinting">hinting on</button>
+            
+<td id="myBox" class="compareBox om_NotoSansCopticRegularttf"><select id="mySelect" name="myBox" onchange="functionSelect('mySelect')"><option value='om_NotoSansCopticRegularttf'>Noto Sans Coptic (ttf)</option>
+</select>
+
+<span id="myBoxContent" contenteditable="true" class="compareBoxCSS ">1234567890 xozszn HOZD 1/3 @ 1a ;#& ? % $ € ! In August of 2016, four unlikely collaborators in the world of type, fonts and font technology stood on a stage at the ATypI conference in Warsaw, Poland. The collaborators were Apple, Microsoft, Adobe and Google. Together they announced the publishing of OpenType 1.8, an update to the now ubiquitous font standard which was originally an amalgam of Apple & Microsoft’s TrueType, and Adobe’s PostScript font formats. The OpenType 1.8 announcement, ATypI, Warsaw, Poland, September 14, 2016.</span></td>
+
+</tr>
+            </table>
+    
+
+            
+		<hr>
+		<table>
+<thead><tr><tr>
+<td class="colLeft">Copyright<br>NID0 MS (3, 1, 1033, 0)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 0)_btn" onclick='toggle_detail("(3, 1, 1033, 0)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 0)0')" onMouseOut="hover('(3, 1, 1033, 0)0')" class="chr defaultFont " title="Noto Sans Coptic Regular" data-original-title="(3, 1, 1033, 0)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 0)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Coptic Regular"><td onMouseOver="hover('(3, 1, 1033, 0)0')" onMouseOut="hover('(3, 1, 1033, 0)0')" id="(3, 1, 1033, 0)0" class="infoToggle" colspan="1">Copyright 2017 Google Inc. All Rights Reserved.</td></tr></tbody><tr>
+<td class="colLeft">Family<br>NID1 MS (3, 1, 1033, 1)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 1)_btn" onclick='toggle_detail("(3, 1, 1033, 1)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 1)0')" onMouseOut="hover('(3, 1, 1033, 1)0')" class="chr defaultFont " title="Noto Sans Coptic Regular" data-original-title="(3, 1, 1033, 1)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 1)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID 1 and 2 together should be unique within the family.</td><tr class="" title="Noto Sans Coptic Regular"><td onMouseOver="hover('(3, 1, 1033, 1)0')" onMouseOut="hover('(3, 1, 1033, 1)0')" id="(3, 1, 1033, 1)0" class="infoToggle" colspan="1">NID1: 'Noto Sans Coptic' + NID2: 'Regular'</td></tr></tbody><tr>
+<td class="colLeft">Subfamily<br>NID2 MS (3, 1, 1033, 2)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 2)_btn" onclick='toggle_detail("(3, 1, 1033, 2)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 2)0')" onMouseOut="hover('(3, 1, 1033, 2)0')" class="chr defaultFont " title="Noto Sans Coptic Regular" data-original-title="(3, 1, 1033, 2)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 2)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be 'Regular', 'Italic', 'Bold' or 'Bold Italic'.</td><tr class="" title="Noto Sans Coptic Regular"><td onMouseOver="hover('(3, 1, 1033, 2)0')" onMouseOut="hover('(3, 1, 1033, 2)0')" id="(3, 1, 1033, 2)0" class="infoToggle" colspan="1">Regular</td></tr></tbody><tr>
+<td class="colLeft">Unique ID<br>NID3 MS (3, 1, 1033, 3)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 3)_btn" onclick='toggle_detail("(3, 1, 1033, 3)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 3)0')" onMouseOut="hover('(3, 1, 1033, 3)0')" class="chr defaultFont " title="Noto Sans Coptic Regular" data-original-title="(3, 1, 1033, 3)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 3)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be DIFFERENT within the family.</td><tr class="" title="Noto Sans Coptic Regular"><td onMouseOver="hover('(3, 1, 1033, 3)0')" onMouseOut="hover('(3, 1, 1033, 3)0')" id="(3, 1, 1033, 3)0" class="infoToggle" colspan="1">2.000;GOOG;NotoSansCoptic-Regular</td></tr></tbody><tr>
+<td class="colLeft">Full Name<br>NID4 MS (3, 1, 1033, 4)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 4)_btn" onclick='toggle_detail("(3, 1, 1033, 4)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 4)0')" onMouseOut="hover('(3, 1, 1033, 4)0')" class="chr defaultFont " title="Noto Sans Coptic Regular" data-original-title="(3, 1, 1033, 4)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 4)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be DIFFERENT within the family.</td><tr class="" title="Noto Sans Coptic Regular"><td onMouseOver="hover('(3, 1, 1033, 4)0')" onMouseOut="hover('(3, 1, 1033, 4)0')" id="(3, 1, 1033, 4)0" class="infoToggle" colspan="1">Noto Sans Coptic Regular</td></tr></tbody><tr>
+<td class="colLeft">Version<br>NID5 MS (3, 1, 1033, 5)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 5)_btn" onclick='toggle_detail("(3, 1, 1033, 5)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 5)0')" onMouseOut="hover('(3, 1, 1033, 5)0')" class="chr defaultFont " title="Noto Sans Coptic Regular" data-original-title="(3, 1, 1033, 5)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 5)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Coptic Regular"><td onMouseOver="hover('(3, 1, 1033, 5)0')" onMouseOut="hover('(3, 1, 1033, 5)0')" id="(3, 1, 1033, 5)0" class="infoToggle" colspan="1">Version 2.000; ttfautohint (v1.8.3) -l 8 -r 50 -G 200 -x 14 -D copt -f none -a qsq -X ""</td></tr></tbody><tr>
+<td class="colLeft">Postscript<br>NID6 MS (3, 1, 1033, 6)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 6)_btn" onclick='toggle_detail("(3, 1, 1033, 6)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 6)0')" onMouseOut="hover('(3, 1, 1033, 6)0')" class="chr defaultFont " title="Noto Sans Coptic Regular" data-original-title="(3, 1, 1033, 6)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 6)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be DIFFERENT within the family.</td><tr class="" title="Noto Sans Coptic Regular"><td onMouseOver="hover('(3, 1, 1033, 6)0')" onMouseOut="hover('(3, 1, 1033, 6)0')" id="(3, 1, 1033, 6)0" class="infoToggle" colspan="1">NotoSansCoptic-Regular</td></tr></tbody><tr>
+<td class="colLeft">Trademark<br>NID7 MS (3, 1, 1033, 7)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 7)_btn" onclick='toggle_detail("(3, 1, 1033, 7)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 7)0')" onMouseOut="hover('(3, 1, 1033, 7)0')" class="chr defaultFont " title="Noto Sans Coptic Regular" data-original-title="(3, 1, 1033, 7)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 7)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Coptic Regular"><td onMouseOver="hover('(3, 1, 1033, 7)0')" onMouseOut="hover('(3, 1, 1033, 7)0')" id="(3, 1, 1033, 7)0" class="infoToggle" colspan="1">Noto is a trademark of Google Inc.</td></tr></tbody><tr>
+<td class="colLeft">Manufacturer<br>NID8 MS (3, 1, 1033, 8)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 8)_btn" onclick='toggle_detail("(3, 1, 1033, 8)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 8)0')" onMouseOut="hover('(3, 1, 1033, 8)0')" class="chr defaultFont " title="Noto Sans Coptic Regular" data-original-title="(3, 1, 1033, 8)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 8)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Coptic Regular"><td onMouseOver="hover('(3, 1, 1033, 8)0')" onMouseOut="hover('(3, 1, 1033, 8)0')" id="(3, 1, 1033, 8)0" class="infoToggle" colspan="1">Monotype Imaging Inc.</td></tr></tbody><tr>
+<td class="colLeft">Designer<br>NID9 MS (3, 1, 1033, 9)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 9)_btn" onclick='toggle_detail("(3, 1, 1033, 9)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 9)0')" onMouseOut="hover('(3, 1, 1033, 9)0')" class="chr defaultFont " title="Noto Sans Coptic Regular" data-original-title="(3, 1, 1033, 9)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 9)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Coptic Regular"><td onMouseOver="hover('(3, 1, 1033, 9)0')" onMouseOut="hover('(3, 1, 1033, 9)0')" id="(3, 1, 1033, 9)0" class="infoToggle" colspan="1">Monotype Design Team</td></tr></tbody><tr>
+<td class="colLeft">Description<br>NID10 MS (3, 1, 1033, 10)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 10)_btn" onclick='toggle_detail("(3, 1, 1033, 10)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 10)0')" onMouseOut="hover('(3, 1, 1033, 10)0')" class="chr defaultFont " title="Noto Sans Coptic Regular" data-original-title="(3, 1, 1033, 10)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 10)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Coptic Regular"><td onMouseOver="hover('(3, 1, 1033, 10)0')" onMouseOut="hover('(3, 1, 1033, 10)0')" id="(3, 1, 1033, 10)0" class="infoToggle" colspan="1">Designed by Monotype design team.</td></tr></tbody><tr>
+<td class="colLeft">URL Vendor<br>NID11 MS (3, 1, 1033, 11)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 11)_btn" onclick='toggle_detail("(3, 1, 1033, 11)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 11)0')" onMouseOut="hover('(3, 1, 1033, 11)0')" class="chr defaultFont " title="Noto Sans Coptic Regular" data-original-title="(3, 1, 1033, 11)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 11)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Coptic Regular"><td onMouseOver="hover('(3, 1, 1033, 11)0')" onMouseOut="hover('(3, 1, 1033, 11)0')" id="(3, 1, 1033, 11)0" class="infoToggle" colspan="1">http://www.google.com/get/noto/</td></tr></tbody><tr>
+<td class="colLeft">URL Designer<br>NID12 MS (3, 1, 1033, 12)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 12)_btn" onclick='toggle_detail("(3, 1, 1033, 12)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 12)0')" onMouseOut="hover('(3, 1, 1033, 12)0')" class="chr defaultFont " title="Noto Sans Coptic Regular" data-original-title="(3, 1, 1033, 12)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 12)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Coptic Regular"><td onMouseOver="hover('(3, 1, 1033, 12)0')" onMouseOut="hover('(3, 1, 1033, 12)0')" id="(3, 1, 1033, 12)0" class="infoToggle" colspan="1">http://www.monotype.com/studio</td></tr></tbody><tr>
+<td class="colLeft">License Description<br>NID13 MS (3, 1, 1033, 13)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 13)_btn" onclick='toggle_detail("(3, 1, 1033, 13)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 13)0')" onMouseOut="hover('(3, 1, 1033, 13)0')" class="chr defaultFont " title="Noto Sans Coptic Regular" data-original-title="(3, 1, 1033, 13)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 13)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Coptic Regular"><td onMouseOver="hover('(3, 1, 1033, 13)0')" onMouseOut="hover('(3, 1, 1033, 13)0')" id="(3, 1, 1033, 13)0" class="infoToggle" colspan="1">This Font Software is licensed under the SIL Open Font License, Version 1.1. This Font Software is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the SIL Open Font License for the specific language, permissions and limitations governing your use of this Font Software.</td></tr></tbody><tr>
+<td class="colLeft">License Info URL<br>NID14 MS (3, 1, 1033, 14)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 14)_btn" onclick='toggle_detail("(3, 1, 1033, 14)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 14)0')" onMouseOut="hover('(3, 1, 1033, 14)0')" class="chr defaultFont " title="Noto Sans Coptic Regular" data-original-title="(3, 1, 1033, 14)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 14)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Coptic Regular"><td onMouseOver="hover('(3, 1, 1033, 14)0')" onMouseOut="hover('(3, 1, 1033, 14)0')" id="(3, 1, 1033, 14)0" class="infoToggle" colspan="1">http://scripts.sil.org/OFL</td></tr></tbody>
+		</table>
+
+
+            
+
+            
+
+        <!-- big text on black backround -->
+            
+
+            
+
+            
+
+            
+		<hr>
+		<table id="splitterContent">
+<tr>
+<td class="colLeft"><br>uni0000</td>
+<td class="chr defaultFont info" onmousedown="mDn(0, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0000">&#x0000</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(0, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni0000">&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft"><br>uni000D</td>
+<td class="chr defaultFont info" onmousedown="mDn(13, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni000D">&#x000D</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(13, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni000D">&#x000D</td>
+</tr>
+<tr>
+<td class="colLeft">HYPHEN<br>uni2010</td>
+<td class="chr defaultFont info" onmousedown="mDn(8208, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2010">&#x2010</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(8208, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2010">&#x2010</td>
+</tr>
+<tr>
+<td class="colLeft">SPACE<br>uni0020</td>
+<td class="chr defaultFont info" onmousedown="mDn(32, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0020">&#x0020</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(32, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni0020">&#x0020</td>
+</tr>
+<tr>
+<td class="colLeft">COMBINING MACRON LEFT HALF<br>uniFE24</td>
+<td class="chr defaultFont info" onmousedown="mDn(65060, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uniFE24">&#xFE24</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(65060, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uniFE24">&#xFE24</td>
+</tr>
+<tr>
+<td class="colLeft">COMBINING MACRON RIGHT HALF<br>uniFE25</td>
+<td class="chr defaultFont info" onmousedown="mDn(65061, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uniFE25">&#xFE25</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(65061, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uniFE25">&#xFE25</td>
+</tr>
+<tr>
+<td class="colLeft">COMBINING CONJOINING MACRON<br>uniFE26</td>
+<td class="chr defaultFont info" onmousedown="mDn(65062, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uniFE26">&#xFE26</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(65062, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uniFE26">&#xFE26</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC EPACT NUMBER SEVENTY<br>uni102F0</td>
+<td class="chr defaultFont info" onmousedown="mDn(66288, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni102F0">&#x102F0</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(66288, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni102F0">&#x102F0</td>
+</tr>
+<tr>
+<td class="colLeft">HYPHEN-MINUS<br>uni002D</td>
+<td class="chr defaultFont info" onmousedown="mDn(45, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni002D">&#x002D</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(45, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni002D">&#x002D</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC EPACT NUMBER FIVE HUNDRED<br>uni102F7</td>
+<td class="chr defaultFont info" onmousedown="mDn(66295, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni102F7">&#x102F7</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(66295, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni102F7">&#x102F7</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC EPACT NUMBER EIGHTY<br>uni102F1</td>
+<td class="chr defaultFont info" onmousedown="mDn(66289, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni102F1">&#x102F1</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(66289, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni102F1">&#x102F1</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC EPACT NUMBER NINETY<br>uni102F2</td>
+<td class="chr defaultFont info" onmousedown="mDn(66290, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni102F2">&#x102F2</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(66290, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni102F2">&#x102F2</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC EPACT NUMBER ONE HUNDRED<br>uni102F3</td>
+<td class="chr defaultFont info" onmousedown="mDn(66291, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni102F3">&#x102F3</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(66291, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni102F3">&#x102F3</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC EPACT DIGIT THREE<br>uni102E3</td>
+<td class="chr defaultFont info" onmousedown="mDn(66275, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni102E3">&#x102E3</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(66275, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni102E3">&#x102E3</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC EPACT THOUSANDS MARK<br>uni102E0</td>
+<td class="chr defaultFont info" onmousedown="mDn(66272, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni102E0">&#x102E0</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(66272, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni102E0">&#x102E0</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC EPACT DIGIT ONE<br>uni102E1</td>
+<td class="chr defaultFont info" onmousedown="mDn(66273, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni102E1">&#x102E1</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(66273, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni102E1">&#x102E1</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC CAPITAL LETTER ALFA<br>uni2C80</td>
+<td class="chr defaultFont info" onmousedown="mDn(11392, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2C80">&#x2C80</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11392, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2C80">&#x2C80</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC SMALL LETTER ALFA<br>uni2C81</td>
+<td class="chr defaultFont info" onmousedown="mDn(11393, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2C81">&#x2C81</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11393, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2C81">&#x2C81</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC CAPITAL LETTER VIDA<br>uni2C82</td>
+<td class="chr defaultFont info" onmousedown="mDn(11394, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2C82">&#x2C82</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11394, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2C82">&#x2C82</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC SMALL LETTER VIDA<br>uni2C83</td>
+<td class="chr defaultFont info" onmousedown="mDn(11395, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2C83">&#x2C83</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11395, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2C83">&#x2C83</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC CAPITAL LETTER GAMMA<br>uni2C84</td>
+<td class="chr defaultFont info" onmousedown="mDn(11396, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2C84">&#x2C84</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11396, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2C84">&#x2C84</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC SMALL LETTER GAMMA<br>uni2C85</td>
+<td class="chr defaultFont info" onmousedown="mDn(11397, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2C85">&#x2C85</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11397, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2C85">&#x2C85</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC CAPITAL LETTER DALDA<br>uni2C86</td>
+<td class="chr defaultFont info" onmousedown="mDn(11398, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2C86">&#x2C86</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11398, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2C86">&#x2C86</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC SMALL LETTER DALDA<br>uni2C87</td>
+<td class="chr defaultFont info" onmousedown="mDn(11399, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2C87">&#x2C87</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11399, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2C87">&#x2C87</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC CAPITAL LETTER EIE<br>uni2C88</td>
+<td class="chr defaultFont info" onmousedown="mDn(11400, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2C88">&#x2C88</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11400, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2C88">&#x2C88</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC SMALL LETTER EIE<br>uni2C89</td>
+<td class="chr defaultFont info" onmousedown="mDn(11401, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2C89">&#x2C89</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11401, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2C89">&#x2C89</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC CAPITAL LETTER SOU<br>uni2C8A</td>
+<td class="chr defaultFont info" onmousedown="mDn(11402, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2C8A">&#x2C8A</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11402, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2C8A">&#x2C8A</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC SMALL LETTER SOU<br>uni2C8B</td>
+<td class="chr defaultFont info" onmousedown="mDn(11403, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2C8B">&#x2C8B</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11403, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2C8B">&#x2C8B</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC CAPITAL LETTER ZATA<br>uni2C8C</td>
+<td class="chr defaultFont info" onmousedown="mDn(11404, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2C8C">&#x2C8C</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11404, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2C8C">&#x2C8C</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC SMALL LETTER ZATA<br>uni2C8D</td>
+<td class="chr defaultFont info" onmousedown="mDn(11405, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2C8D">&#x2C8D</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11405, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2C8D">&#x2C8D</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC CAPITAL LETTER HATE<br>uni2C8E</td>
+<td class="chr defaultFont info" onmousedown="mDn(11406, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2C8E">&#x2C8E</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11406, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2C8E">&#x2C8E</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC SMALL LETTER HATE<br>uni2C8F</td>
+<td class="chr defaultFont info" onmousedown="mDn(11407, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2C8F">&#x2C8F</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11407, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2C8F">&#x2C8F</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC CAPITAL LETTER THETHE<br>uni2C90</td>
+<td class="chr defaultFont info" onmousedown="mDn(11408, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2C90">&#x2C90</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11408, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2C90">&#x2C90</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC SMALL LETTER THETHE<br>uni2C91</td>
+<td class="chr defaultFont info" onmousedown="mDn(11409, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2C91">&#x2C91</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11409, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2C91">&#x2C91</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC CAPITAL LETTER IAUDA<br>uni2C92</td>
+<td class="chr defaultFont info" onmousedown="mDn(11410, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2C92">&#x2C92</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11410, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2C92">&#x2C92</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC SMALL LETTER IAUDA<br>uni2C93</td>
+<td class="chr defaultFont info" onmousedown="mDn(11411, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2C93">&#x2C93</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11411, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2C93">&#x2C93</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC CAPITAL LETTER KAPA<br>uni2C94</td>
+<td class="chr defaultFont info" onmousedown="mDn(11412, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2C94">&#x2C94</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11412, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2C94">&#x2C94</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC SMALL LETTER KAPA<br>uni2C95</td>
+<td class="chr defaultFont info" onmousedown="mDn(11413, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2C95">&#x2C95</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11413, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2C95">&#x2C95</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC CAPITAL LETTER LAULA<br>uni2C96</td>
+<td class="chr defaultFont info" onmousedown="mDn(11414, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2C96">&#x2C96</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11414, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2C96">&#x2C96</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC SMALL LETTER LAULA<br>uni2C97</td>
+<td class="chr defaultFont info" onmousedown="mDn(11415, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2C97">&#x2C97</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11415, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2C97">&#x2C97</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC CAPITAL LETTER MI<br>uni2C98</td>
+<td class="chr defaultFont info" onmousedown="mDn(11416, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2C98">&#x2C98</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11416, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2C98">&#x2C98</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC SMALL LETTER MI<br>uni2C99</td>
+<td class="chr defaultFont info" onmousedown="mDn(11417, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2C99">&#x2C99</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11417, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2C99">&#x2C99</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC CAPITAL LETTER NI<br>uni2C9A</td>
+<td class="chr defaultFont info" onmousedown="mDn(11418, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2C9A">&#x2C9A</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11418, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2C9A">&#x2C9A</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC SMALL LETTER NI<br>uni2C9B</td>
+<td class="chr defaultFont info" onmousedown="mDn(11419, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2C9B">&#x2C9B</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11419, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2C9B">&#x2C9B</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC CAPITAL LETTER KSI<br>uni2C9C</td>
+<td class="chr defaultFont info" onmousedown="mDn(11420, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2C9C">&#x2C9C</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11420, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2C9C">&#x2C9C</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC SMALL LETTER KSI<br>uni2C9D</td>
+<td class="chr defaultFont info" onmousedown="mDn(11421, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2C9D">&#x2C9D</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11421, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2C9D">&#x2C9D</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC CAPITAL LETTER O<br>uni2C9E</td>
+<td class="chr defaultFont info" onmousedown="mDn(11422, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2C9E">&#x2C9E</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11422, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2C9E">&#x2C9E</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC SMALL LETTER O<br>uni2C9F</td>
+<td class="chr defaultFont info" onmousedown="mDn(11423, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2C9F">&#x2C9F</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11423, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2C9F">&#x2C9F</td>
+</tr>
+<tr>
+<td class="colLeft">NO-BREAK SPACE<br>uni00A0</td>
+<td class="chr defaultFont info" onmousedown="mDn(160, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni00A0">&#x00A0</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(160, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni00A0">&#x00A0</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC CAPITAL LETTER PI<br>uni2CA0</td>
+<td class="chr defaultFont info" onmousedown="mDn(11424, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CA0">&#x2CA0</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11424, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CA0">&#x2CA0</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC SMALL LETTER PI<br>uni2CA1</td>
+<td class="chr defaultFont info" onmousedown="mDn(11425, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CA1">&#x2CA1</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11425, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CA1">&#x2CA1</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC SMALL LETTER RO<br>uni2CA3</td>
+<td class="chr defaultFont info" onmousedown="mDn(11427, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CA3">&#x2CA3</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11427, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CA3">&#x2CA3</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC CAPITAL LETTER SIMA<br>uni2CA4</td>
+<td class="chr defaultFont info" onmousedown="mDn(11428, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CA4">&#x2CA4</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11428, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CA4">&#x2CA4</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC SMALL LETTER SIMA<br>uni2CA5</td>
+<td class="chr defaultFont info" onmousedown="mDn(11429, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CA5">&#x2CA5</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11429, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CA5">&#x2CA5</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC CAPITAL LETTER TAU<br>uni2CA6</td>
+<td class="chr defaultFont info" onmousedown="mDn(11430, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CA6">&#x2CA6</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11430, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CA6">&#x2CA6</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC SMALL LETTER TAU<br>uni2CA7</td>
+<td class="chr defaultFont info" onmousedown="mDn(11431, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CA7">&#x2CA7</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11431, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CA7">&#x2CA7</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC CAPITAL LETTER UA<br>uni2CA8</td>
+<td class="chr defaultFont info" onmousedown="mDn(11432, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CA8">&#x2CA8</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11432, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CA8">&#x2CA8</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC SMALL LETTER UA<br>uni2CA9</td>
+<td class="chr defaultFont info" onmousedown="mDn(11433, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CA9">&#x2CA9</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11433, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CA9">&#x2CA9</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC CAPITAL LETTER FI<br>uni2CAA</td>
+<td class="chr defaultFont info" onmousedown="mDn(11434, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CAA">&#x2CAA</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11434, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CAA">&#x2CAA</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC CAPITAL LETTER RO<br>uni2CA2</td>
+<td class="chr defaultFont info" onmousedown="mDn(11426, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CA2">&#x2CA2</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11426, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CA2">&#x2CA2</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC SMALL LETTER FI<br>uni2CAB</td>
+<td class="chr defaultFont info" onmousedown="mDn(11435, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CAB">&#x2CAB</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11435, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CAB">&#x2CAB</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC CAPITAL LETTER KHI<br>uni2CAC</td>
+<td class="chr defaultFont info" onmousedown="mDn(11436, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CAC">&#x2CAC</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11436, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CAC">&#x2CAC</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC SMALL LETTER KHI<br>uni2CAD</td>
+<td class="chr defaultFont info" onmousedown="mDn(11437, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CAD">&#x2CAD</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11437, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CAD">&#x2CAD</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC CAPITAL LETTER PSI<br>uni2CAE</td>
+<td class="chr defaultFont info" onmousedown="mDn(11438, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CAE">&#x2CAE</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11438, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CAE">&#x2CAE</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC SMALL LETTER PSI<br>uni2CAF</td>
+<td class="chr defaultFont info" onmousedown="mDn(11439, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CAF">&#x2CAF</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11439, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CAF">&#x2CAF</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC CAPITAL LETTER OOU<br>uni2CB0</td>
+<td class="chr defaultFont info" onmousedown="mDn(11440, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CB0">&#x2CB0</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11440, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CB0">&#x2CB0</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC SMALL LETTER OOU<br>uni2CB1</td>
+<td class="chr defaultFont info" onmousedown="mDn(11441, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CB1">&#x2CB1</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11441, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CB1">&#x2CB1</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC CAPITAL LETTER DIALECT-P ALEF<br>uni2CB2</td>
+<td class="chr defaultFont info" onmousedown="mDn(11442, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CB2">&#x2CB2</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11442, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CB2">&#x2CB2</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC SMALL LETTER DIALECT-P ALEF<br>uni2CB3</td>
+<td class="chr defaultFont info" onmousedown="mDn(11443, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CB3">&#x2CB3</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11443, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CB3">&#x2CB3</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC CAPITAL LETTER OLD COPTIC AIN<br>uni2CB4</td>
+<td class="chr defaultFont info" onmousedown="mDn(11444, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CB4">&#x2CB4</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11444, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CB4">&#x2CB4</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC SMALL LETTER OLD COPTIC AIN<br>uni2CB5</td>
+<td class="chr defaultFont info" onmousedown="mDn(11445, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CB5">&#x2CB5</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11445, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CB5">&#x2CB5</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC CAPITAL LETTER CRYPTOGRAMMIC EIE<br>uni2CB6</td>
+<td class="chr defaultFont info" onmousedown="mDn(11446, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CB6">&#x2CB6</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11446, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CB6">&#x2CB6</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC SMALL LETTER CRYPTOGRAMMIC EIE<br>uni2CB7</td>
+<td class="chr defaultFont info" onmousedown="mDn(11447, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CB7">&#x2CB7</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11447, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CB7">&#x2CB7</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC CAPITAL LETTER DIALECT-P KAPA<br>uni2CB8</td>
+<td class="chr defaultFont info" onmousedown="mDn(11448, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CB8">&#x2CB8</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11448, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CB8">&#x2CB8</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC SMALL LETTER DIALECT-P KAPA<br>uni2CB9</td>
+<td class="chr defaultFont info" onmousedown="mDn(11449, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CB9">&#x2CB9</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11449, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CB9">&#x2CB9</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC CAPITAL LETTER DIALECT-P NI<br>uni2CBA</td>
+<td class="chr defaultFont info" onmousedown="mDn(11450, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CBA">&#x2CBA</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11450, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CBA">&#x2CBA</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC SMALL LETTER DIALECT-P NI<br>uni2CBB</td>
+<td class="chr defaultFont info" onmousedown="mDn(11451, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CBB">&#x2CBB</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11451, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CBB">&#x2CBB</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC CAPITAL LETTER CRYPTOGRAMMIC NI<br>uni2CBC</td>
+<td class="chr defaultFont info" onmousedown="mDn(11452, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CBC">&#x2CBC</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11452, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CBC">&#x2CBC</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC SMALL LETTER CRYPTOGRAMMIC NI<br>uni2CBD</td>
+<td class="chr defaultFont info" onmousedown="mDn(11453, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CBD">&#x2CBD</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11453, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CBD">&#x2CBD</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC CAPITAL LETTER OLD COPTIC OOU<br>uni2CBE</td>
+<td class="chr defaultFont info" onmousedown="mDn(11454, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CBE">&#x2CBE</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11454, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CBE">&#x2CBE</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC SMALL LETTER OLD COPTIC OOU<br>uni2CBF</td>
+<td class="chr defaultFont info" onmousedown="mDn(11455, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CBF">&#x2CBF</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11455, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CBF">&#x2CBF</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC CAPITAL LETTER SAMPI<br>uni2CC0</td>
+<td class="chr defaultFont info" onmousedown="mDn(11456, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CC0">&#x2CC0</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11456, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CC0">&#x2CC0</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC SMALL LETTER SAMPI<br>uni2CC1</td>
+<td class="chr defaultFont info" onmousedown="mDn(11457, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CC1">&#x2CC1</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11457, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CC1">&#x2CC1</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC CAPITAL LETTER CROSSED SHEI<br>uni2CC2</td>
+<td class="chr defaultFont info" onmousedown="mDn(11458, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CC2">&#x2CC2</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11458, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CC2">&#x2CC2</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC SMALL LETTER CROSSED SHEI<br>uni2CC3</td>
+<td class="chr defaultFont info" onmousedown="mDn(11459, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CC3">&#x2CC3</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11459, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CC3">&#x2CC3</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC CAPITAL LETTER OLD COPTIC SHEI<br>uni2CC4</td>
+<td class="chr defaultFont info" onmousedown="mDn(11460, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CC4">&#x2CC4</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11460, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CC4">&#x2CC4</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC SMALL LETTER OLD COPTIC SHEI<br>uni2CC5</td>
+<td class="chr defaultFont info" onmousedown="mDn(11461, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CC5">&#x2CC5</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11461, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CC5">&#x2CC5</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC CAPITAL LETTER OLD COPTIC ESH<br>uni2CC6</td>
+<td class="chr defaultFont info" onmousedown="mDn(11462, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CC6">&#x2CC6</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11462, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CC6">&#x2CC6</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC SMALL LETTER OLD COPTIC ESH<br>uni2CC7</td>
+<td class="chr defaultFont info" onmousedown="mDn(11463, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CC7">&#x2CC7</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11463, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CC7">&#x2CC7</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC CAPITAL LETTER AKHMIMIC KHEI<br>uni2CC8</td>
+<td class="chr defaultFont info" onmousedown="mDn(11464, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CC8">&#x2CC8</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11464, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CC8">&#x2CC8</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC SMALL LETTER AKHMIMIC KHEI<br>uni2CC9</td>
+<td class="chr defaultFont info" onmousedown="mDn(11465, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CC9">&#x2CC9</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11465, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CC9">&#x2CC9</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC CAPITAL LETTER DIALECT-P HORI<br>uni2CCA</td>
+<td class="chr defaultFont info" onmousedown="mDn(11466, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CCA">&#x2CCA</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11466, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CCA">&#x2CCA</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC SMALL LETTER DIALECT-P HORI<br>uni2CCB</td>
+<td class="chr defaultFont info" onmousedown="mDn(11467, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CCB">&#x2CCB</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11467, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CCB">&#x2CCB</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC CAPITAL LETTER OLD COPTIC HORI<br>uni2CCC</td>
+<td class="chr defaultFont info" onmousedown="mDn(11468, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CCC">&#x2CCC</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11468, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CCC">&#x2CCC</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC SMALL LETTER OLD COPTIC HORI<br>uni2CCD</td>
+<td class="chr defaultFont info" onmousedown="mDn(11469, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CCD">&#x2CCD</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11469, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CCD">&#x2CCD</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC CAPITAL LETTER OLD COPTIC HA<br>uni2CCE</td>
+<td class="chr defaultFont info" onmousedown="mDn(11470, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CCE">&#x2CCE</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11470, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CCE">&#x2CCE</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC SMALL LETTER OLD COPTIC HA<br>uni2CCF</td>
+<td class="chr defaultFont info" onmousedown="mDn(11471, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CCF">&#x2CCF</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11471, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CCF">&#x2CCF</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC CAPITAL LETTER L-SHAPED HA<br>uni2CD0</td>
+<td class="chr defaultFont info" onmousedown="mDn(11472, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CD0">&#x2CD0</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11472, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CD0">&#x2CD0</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC SMALL LETTER L-SHAPED HA<br>uni2CD1</td>
+<td class="chr defaultFont info" onmousedown="mDn(11473, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CD1">&#x2CD1</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11473, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CD1">&#x2CD1</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC CAPITAL LETTER OLD COPTIC HEI<br>uni2CD2</td>
+<td class="chr defaultFont info" onmousedown="mDn(11474, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CD2">&#x2CD2</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11474, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CD2">&#x2CD2</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC SMALL LETTER OLD COPTIC HEI<br>uni2CD3</td>
+<td class="chr defaultFont info" onmousedown="mDn(11475, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CD3">&#x2CD3</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11475, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CD3">&#x2CD3</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC CAPITAL LETTER OLD COPTIC HAT<br>uni2CD4</td>
+<td class="chr defaultFont info" onmousedown="mDn(11476, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CD4">&#x2CD4</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11476, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CD4">&#x2CD4</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC SMALL LETTER OLD COPTIC HAT<br>uni2CD5</td>
+<td class="chr defaultFont info" onmousedown="mDn(11477, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CD5">&#x2CD5</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11477, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CD5">&#x2CD5</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC CAPITAL LETTER OLD COPTIC GANGIA<br>uni2CD6</td>
+<td class="chr defaultFont info" onmousedown="mDn(11478, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CD6">&#x2CD6</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11478, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CD6">&#x2CD6</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC SMALL LETTER OLD COPTIC GANGIA<br>uni2CD7</td>
+<td class="chr defaultFont info" onmousedown="mDn(11479, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CD7">&#x2CD7</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11479, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CD7">&#x2CD7</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC CAPITAL LETTER OLD COPTIC DJA<br>uni2CD8</td>
+<td class="chr defaultFont info" onmousedown="mDn(11480, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CD8">&#x2CD8</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11480, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CD8">&#x2CD8</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC SMALL LETTER OLD COPTIC DJA<br>uni2CD9</td>
+<td class="chr defaultFont info" onmousedown="mDn(11481, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CD9">&#x2CD9</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11481, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CD9">&#x2CD9</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC CAPITAL LETTER OLD COPTIC SHIMA<br>uni2CDA</td>
+<td class="chr defaultFont info" onmousedown="mDn(11482, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CDA">&#x2CDA</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11482, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CDA">&#x2CDA</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC SMALL LETTER OLD COPTIC SHIMA<br>uni2CDB</td>
+<td class="chr defaultFont info" onmousedown="mDn(11483, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CDB">&#x2CDB</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11483, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CDB">&#x2CDB</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC CAPITAL LETTER OLD NUBIAN SHIMA<br>uni2CDC</td>
+<td class="chr defaultFont info" onmousedown="mDn(11484, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CDC">&#x2CDC</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11484, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CDC">&#x2CDC</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC SMALL LETTER OLD NUBIAN SHIMA<br>uni2CDD</td>
+<td class="chr defaultFont info" onmousedown="mDn(11485, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CDD">&#x2CDD</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11485, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CDD">&#x2CDD</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC CAPITAL LETTER OLD NUBIAN NGI<br>uni2CDE</td>
+<td class="chr defaultFont info" onmousedown="mDn(11486, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CDE">&#x2CDE</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11486, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CDE">&#x2CDE</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC SMALL LETTER OLD NUBIAN NGI<br>uni2CDF</td>
+<td class="chr defaultFont info" onmousedown="mDn(11487, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CDF">&#x2CDF</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11487, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CDF">&#x2CDF</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC CAPITAL LETTER OLD NUBIAN NYI<br>uni2CE0</td>
+<td class="chr defaultFont info" onmousedown="mDn(11488, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CE0">&#x2CE0</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11488, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CE0">&#x2CE0</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC SMALL LETTER OLD NUBIAN NYI<br>uni2CE1</td>
+<td class="chr defaultFont info" onmousedown="mDn(11489, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CE1">&#x2CE1</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11489, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CE1">&#x2CE1</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC CAPITAL LETTER OLD NUBIAN WAU<br>uni2CE2</td>
+<td class="chr defaultFont info" onmousedown="mDn(11490, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CE2">&#x2CE2</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11490, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CE2">&#x2CE2</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC SMALL LETTER OLD NUBIAN WAU<br>uni2CE3</td>
+<td class="chr defaultFont info" onmousedown="mDn(11491, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CE3">&#x2CE3</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11491, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CE3">&#x2CE3</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC SYMBOL KAI<br>uni2CE4</td>
+<td class="chr defaultFont info" onmousedown="mDn(11492, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CE4">&#x2CE4</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11492, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CE4">&#x2CE4</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC SYMBOL MI RO<br>uni2CE5</td>
+<td class="chr defaultFont info" onmousedown="mDn(11493, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CE5">&#x2CE5</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11493, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CE5">&#x2CE5</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC SYMBOL PI RO<br>uni2CE6</td>
+<td class="chr defaultFont info" onmousedown="mDn(11494, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CE6">&#x2CE6</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11494, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CE6">&#x2CE6</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC SYMBOL STAUROS<br>uni2CE7</td>
+<td class="chr defaultFont info" onmousedown="mDn(11495, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CE7">&#x2CE7</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11495, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CE7">&#x2CE7</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC SYMBOL TAU RO<br>uni2CE8</td>
+<td class="chr defaultFont info" onmousedown="mDn(11496, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CE8">&#x2CE8</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11496, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CE8">&#x2CE8</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC SYMBOL KHI RO<br>uni2CE9</td>
+<td class="chr defaultFont info" onmousedown="mDn(11497, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CE9">&#x2CE9</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11497, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CE9">&#x2CE9</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC SYMBOL SHIMA SIMA<br>uni2CEA</td>
+<td class="chr defaultFont info" onmousedown="mDn(11498, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CEA">&#x2CEA</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11498, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CEA">&#x2CEA</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC CAPITAL LETTER CRYPTOGRAMMIC SHEI<br>uni2CEB</td>
+<td class="chr defaultFont info" onmousedown="mDn(11499, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CEB">&#x2CEB</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11499, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CEB">&#x2CEB</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC SMALL LETTER CRYPTOGRAMMIC SHEI<br>uni2CEC</td>
+<td class="chr defaultFont info" onmousedown="mDn(11500, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CEC">&#x2CEC</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11500, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CEC">&#x2CEC</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC CAPITAL LETTER CRYPTOGRAMMIC GANGIA<br>uni2CED</td>
+<td class="chr defaultFont info" onmousedown="mDn(11501, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CED">&#x2CED</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11501, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CED">&#x2CED</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC SMALL LETTER CRYPTOGRAMMIC GANGIA<br>uni2CEE</td>
+<td class="chr defaultFont info" onmousedown="mDn(11502, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CEE">&#x2CEE</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11502, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CEE">&#x2CEE</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC COMBINING NI ABOVE<br>uni2CEF</td>
+<td class="chr defaultFont info" onmousedown="mDn(11503, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CEF">&#x2CEF</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11503, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CEF">&#x2CEF</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC COMBINING SPIRITUS ASPER<br>uni2CF0</td>
+<td class="chr defaultFont info" onmousedown="mDn(11504, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CF0">&#x2CF0</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11504, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CF0">&#x2CF0</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC COMBINING SPIRITUS LENIS<br>uni2CF1</td>
+<td class="chr defaultFont info" onmousedown="mDn(11505, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CF1">&#x2CF1</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11505, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CF1">&#x2CF1</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC CAPITAL LETTER BOHAIRIC KHEI<br>uni2CF2</td>
+<td class="chr defaultFont info" onmousedown="mDn(11506, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CF2">&#x2CF2</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11506, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CF2">&#x2CF2</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC SMALL LETTER BOHAIRIC KHEI<br>uni2CF3</td>
+<td class="chr defaultFont info" onmousedown="mDn(11507, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CF3">&#x2CF3</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11507, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CF3">&#x2CF3</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC EPACT NUMBER THIRTY<br>uni102EC</td>
+<td class="chr defaultFont info" onmousedown="mDn(66284, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni102EC">&#x102EC</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(66284, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni102EC">&#x102EC</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC EPACT NUMBER FORTY<br>uni102ED</td>
+<td class="chr defaultFont info" onmousedown="mDn(66285, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni102ED">&#x102ED</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(66285, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni102ED">&#x102ED</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC EPACT NUMBER FIFTY<br>uni102EE</td>
+<td class="chr defaultFont info" onmousedown="mDn(66286, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni102EE">&#x102EE</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(66286, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni102EE">&#x102EE</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC EPACT NUMBER SIXTY<br>uni102EF</td>
+<td class="chr defaultFont info" onmousedown="mDn(66287, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni102EF">&#x102EF</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(66287, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni102EF">&#x102EF</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC OLD NUBIAN FULL STOP<br>uni2CF9</td>
+<td class="chr defaultFont info" onmousedown="mDn(11513, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CF9">&#x2CF9</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11513, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CF9">&#x2CF9</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC OLD NUBIAN DIRECT QUESTION MARK<br>uni2CFA</td>
+<td class="chr defaultFont info" onmousedown="mDn(11514, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CFA">&#x2CFA</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11514, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CFA">&#x2CFA</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC OLD NUBIAN INDIRECT QUESTION MARK<br>uni2CFB</td>
+<td class="chr defaultFont info" onmousedown="mDn(11515, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CFB">&#x2CFB</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11515, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CFB">&#x2CFB</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC OLD NUBIAN VERSE DIVIDER<br>uni2CFC</td>
+<td class="chr defaultFont info" onmousedown="mDn(11516, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CFC">&#x2CFC</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11516, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CFC">&#x2CFC</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC FRACTION ONE HALF<br>uni2CFD</td>
+<td class="chr defaultFont info" onmousedown="mDn(11517, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CFD">&#x2CFD</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11517, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CFD">&#x2CFD</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC FULL STOP<br>uni2CFE</td>
+<td class="chr defaultFont info" onmousedown="mDn(11518, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CFE">&#x2CFE</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11518, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CFE">&#x2CFE</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC MORPHOLOGICAL DIVIDER<br>uni2CFF</td>
+<td class="chr defaultFont info" onmousedown="mDn(11519, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2CFF">&#x2CFF</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(11519, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni2CFF">&#x2CFF</td>
+</tr>
+<tr>
+<td class="colLeft">COMBINING GRAVE ACCENT<br>uni0300</td>
+<td class="chr defaultFont info" onmousedown="mDn(768, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0300">&#x0300</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(768, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni0300">&#x0300</td>
+</tr>
+<tr>
+<td class="colLeft">COMBINING ACUTE ACCENT<br>uni0301</td>
+<td class="chr defaultFont info" onmousedown="mDn(769, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0301">&#x0301</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(769, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni0301">&#x0301</td>
+</tr>
+<tr>
+<td class="colLeft">COMBINING CIRCUMFLEX ACCENT<br>uni0302</td>
+<td class="chr defaultFont info" onmousedown="mDn(770, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0302">&#x0302</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(770, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni0302">&#x0302</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC EPACT DIGIT FOUR<br>uni102E4</td>
+<td class="chr defaultFont info" onmousedown="mDn(66276, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni102E4">&#x102E4</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(66276, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni102E4">&#x102E4</td>
+</tr>
+<tr>
+<td class="colLeft">COMBINING MACRON<br>uni0304</td>
+<td class="chr defaultFont info" onmousedown="mDn(772, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0304">&#x0304</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(772, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni0304">&#x0304</td>
+</tr>
+<tr>
+<td class="colLeft">COMBINING OVERLINE<br>uni0305</td>
+<td class="chr defaultFont info" onmousedown="mDn(773, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0305">&#x0305</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(773, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni0305">&#x0305</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC EPACT NUMBER NINE HUNDRED<br>uni102FB</td>
+<td class="chr defaultFont info" onmousedown="mDn(66299, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni102FB">&#x102FB</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(66299, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni102FB">&#x102FB</td>
+</tr>
+<tr>
+<td class="colLeft">COMBINING DOT ABOVE<br>uni0307</td>
+<td class="chr defaultFont info" onmousedown="mDn(775, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0307">&#x0307</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(775, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni0307">&#x0307</td>
+</tr>
+<tr>
+<td class="colLeft">COMBINING DIAERESIS<br>uni0308</td>
+<td class="chr defaultFont info" onmousedown="mDn(776, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0308">&#x0308</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(776, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni0308">&#x0308</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC EPACT NUMBER SEVEN HUNDRED<br>uni102F9</td>
+<td class="chr defaultFont info" onmousedown="mDn(66297, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni102F9">&#x102F9</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(66297, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni102F9">&#x102F9</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC EPACT DIGIT FIVE<br>uni102E5</td>
+<td class="chr defaultFont info" onmousedown="mDn(66277, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni102E5">&#x102E5</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(66277, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni102E5">&#x102E5</td>
+</tr>
+<tr>
+<td class="colLeft">COMBINING DOT BELOW<br>uni0323</td>
+<td class="chr defaultFont info" onmousedown="mDn(803, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0323">&#x0323</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(803, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni0323">&#x0323</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC EPACT NUMBER EIGHT HUNDRED<br>uni102FA</td>
+<td class="chr defaultFont info" onmousedown="mDn(66298, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni102FA">&#x102FA</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(66298, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni102FA">&#x102FA</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC EPACT DIGIT SIX<br>uni102E6</td>
+<td class="chr defaultFont info" onmousedown="mDn(66278, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni102E6">&#x102E6</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(66278, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni102E6">&#x102E6</td>
+</tr>
+<tr>
+<td class="colLeft">COMBINING DOUBLE OVERLINE<br>uni033F</td>
+<td class="chr defaultFont info" onmousedown="mDn(831, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni033F">&#x033F</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(831, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni033F">&#x033F</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC EPACT NUMBER THREE HUNDRED<br>uni102F5</td>
+<td class="chr defaultFont info" onmousedown="mDn(66293, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni102F5">&#x102F5</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(66293, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni102F5">&#x102F5</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC EPACT DIGIT SEVEN<br>uni102E7</td>
+<td class="chr defaultFont info" onmousedown="mDn(66279, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni102E7">&#x102E7</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(66279, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni102E7">&#x102E7</td>
+</tr>
+<tr>
+<td class="colLeft">COMBINING DOUBLE INVERTED BREVE<br>uni0361</td>
+<td class="chr defaultFont info" onmousedown="mDn(865, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0361">&#x0361</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(865, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni0361">&#x0361</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC EPACT DIGIT EIGHT<br>uni102E8</td>
+<td class="chr defaultFont info" onmousedown="mDn(66280, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni102E8">&#x102E8</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(66280, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni102E8">&#x102E8</td>
+</tr>
+<tr>
+<td class="colLeft">GREEK NUMERAL SIGN<br>uni0374</td>
+<td class="chr defaultFont info" onmousedown="mDn(884, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0374">&#x0374</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(884, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni0374">&#x0374</td>
+</tr>
+<tr>
+<td class="colLeft">GREEK LOWER NUMERAL SIGN<br>uni0375</td>
+<td class="chr defaultFont info" onmousedown="mDn(885, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0375">&#x0375</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(885, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni0375">&#x0375</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC EPACT DIGIT NINE<br>uni102E9</td>
+<td class="chr defaultFont info" onmousedown="mDn(66281, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni102E9">&#x102E9</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(66281, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni102E9">&#x102E9</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC EPACT NUMBER TEN<br>uni102EA</td>
+<td class="chr defaultFont info" onmousedown="mDn(66282, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni102EA">&#x102EA</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(66282, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni102EA">&#x102EA</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC EPACT NUMBER SIX HUNDRED<br>uni102F8</td>
+<td class="chr defaultFont info" onmousedown="mDn(66296, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni102F8">&#x102F8</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(66296, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni102F8">&#x102F8</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC EPACT NUMBER TWENTY<br>uni102EB</td>
+<td class="chr defaultFont info" onmousedown="mDn(66283, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni102EB">&#x102EB</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(66283, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni102EB">&#x102EB</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC EPACT NUMBER FOUR HUNDRED<br>uni102F6</td>
+<td class="chr defaultFont info" onmousedown="mDn(66294, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni102F6">&#x102F6</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(66294, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni102F6">&#x102F6</td>
+</tr>
+<tr>
+<td class="colLeft">DOTTED CIRCLE<br>uni25CC</td>
+<td class="chr defaultFont info" onmousedown="mDn(9676, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni25CC">&#x25CC</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(9676, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni25CC">&#x25CC</td>
+</tr>
+<tr>
+<td class="colLeft">COMBINING DOUBLE CIRCUMFLEX ABOVE<br>uni1DCD</td>
+<td class="chr defaultFont info" onmousedown="mDn(7629, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1DCD">&#x1DCD</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(7629, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni1DCD">&#x1DCD</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC EPACT NUMBER TWO HUNDRED<br>uni102F4</td>
+<td class="chr defaultFont info" onmousedown="mDn(66292, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni102F4">&#x102F4</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(66292, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni102F4">&#x102F4</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC CAPITAL LETTER SHEI<br>uni03E2</td>
+<td class="chr defaultFont info" onmousedown="mDn(994, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni03E2">&#x03E2</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(994, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni03E2">&#x03E2</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC SMALL LETTER SHEI<br>uni03E3</td>
+<td class="chr defaultFont info" onmousedown="mDn(995, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni03E3">&#x03E3</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(995, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni03E3">&#x03E3</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC CAPITAL LETTER FEI<br>uni03E4</td>
+<td class="chr defaultFont info" onmousedown="mDn(996, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni03E4">&#x03E4</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(996, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni03E4">&#x03E4</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC SMALL LETTER FEI<br>uni03E5</td>
+<td class="chr defaultFont info" onmousedown="mDn(997, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni03E5">&#x03E5</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(997, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni03E5">&#x03E5</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC CAPITAL LETTER KHEI<br>uni03E6</td>
+<td class="chr defaultFont info" onmousedown="mDn(998, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni03E6">&#x03E6</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(998, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni03E6">&#x03E6</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC SMALL LETTER KHEI<br>uni03E7</td>
+<td class="chr defaultFont info" onmousedown="mDn(999, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni03E7">&#x03E7</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(999, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni03E7">&#x03E7</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC CAPITAL LETTER HORI<br>uni03E8</td>
+<td class="chr defaultFont info" onmousedown="mDn(1000, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni03E8">&#x03E8</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(1000, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni03E8">&#x03E8</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC SMALL LETTER HORI<br>uni03E9</td>
+<td class="chr defaultFont info" onmousedown="mDn(1001, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni03E9">&#x03E9</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(1001, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni03E9">&#x03E9</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC CAPITAL LETTER GANGIA<br>uni03EA</td>
+<td class="chr defaultFont info" onmousedown="mDn(1002, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni03EA">&#x03EA</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(1002, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni03EA">&#x03EA</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC SMALL LETTER GANGIA<br>uni03EB</td>
+<td class="chr defaultFont info" onmousedown="mDn(1003, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni03EB">&#x03EB</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(1003, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni03EB">&#x03EB</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC CAPITAL LETTER SHIMA<br>uni03EC</td>
+<td class="chr defaultFont info" onmousedown="mDn(1004, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni03EC">&#x03EC</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(1004, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni03EC">&#x03EC</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC SMALL LETTER SHIMA<br>uni03ED</td>
+<td class="chr defaultFont info" onmousedown="mDn(1005, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni03ED">&#x03ED</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(1005, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni03ED">&#x03ED</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC CAPITAL LETTER DEI<br>uni03EE</td>
+<td class="chr defaultFont info" onmousedown="mDn(1006, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni03EE">&#x03EE</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(1006, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni03EE">&#x03EE</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC SMALL LETTER DEI<br>uni03EF</td>
+<td class="chr defaultFont info" onmousedown="mDn(1007, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni03EF">&#x03EF</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(1007, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni03EF">&#x03EF</td>
+</tr>
+<tr>
+<td class="colLeft">COPTIC EPACT DIGIT TWO<br>uni102E2</td>
+<td class="chr defaultFont info" onmousedown="mDn(66274, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni102E2">&#x102E2</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(66274, ['om_NotoSansCopticRegularttf'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni102E2">&#x102E2</td>
+</tr>
+
+		</table>
+
+
+            
+		<hr>
+		<table id="splitterContent_unencoded">
+<tr>
+<td class="colLeft">uni0305.cap<br>Ending "cap" ≠ OT Feature (cannot display this character) feature</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0305, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0305.cap Ending "cap" ≠ OT Feature (cannot display this character) feature">&#x0305</td>
+<td class="chr om_NotoSansCopticRegularttf warning" onmousedown="mDn(&#x0305, ['om_NotoSansCopticRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni0305.cap Ending "cap" ≠ OT Feature (cannot display this character) feature">&#x0305</td>
+</tr>
+<tr>
+<td class="colLeft">uni0305_large<br>liga feature (cannot find base glyph) (cannot find base glyph)</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0000&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0305_large liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+<td class="chr om_NotoSansCopticRegularttf liga warning warning" onmousedown="mDn(&#x0000&#x0000, ['om_NotoSansCopticRegularttf', 'liga warning warning'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni0305_large liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">uni0305_large.cap<br>Ending "cap" ≠ OT Feature (cannot display this character) feature (cannot find base glyph) (cannot find base glyph)</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0000&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0305_large.cap Ending "cap" ≠ OT Feature (cannot display this character) feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+<td class="chr om_NotoSansCopticRegularttf warning" onmousedown="mDn(&#x0000&#x0000, ['om_NotoSansCopticRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni0305_large.cap Ending "cap" ≠ OT Feature (cannot display this character) feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">uni0305_medium<br>liga feature (cannot find base glyph) (cannot find base glyph)</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0000&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0305_medium liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+<td class="chr om_NotoSansCopticRegularttf liga warning warning" onmousedown="mDn(&#x0000&#x0000, ['om_NotoSansCopticRegularttf', 'liga warning warning'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni0305_medium liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">uni0305_medium.cap<br>Ending "cap" ≠ OT Feature (cannot display this character) feature (cannot find base glyph) (cannot find base glyph)</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0000&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0305_medium.cap Ending "cap" ≠ OT Feature (cannot display this character) feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+<td class="chr om_NotoSansCopticRegularttf warning" onmousedown="mDn(&#x0000&#x0000, ['om_NotoSansCopticRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni0305_medium.cap Ending "cap" ≠ OT Feature (cannot display this character) feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">uni0305_small<br>liga feature (cannot find base glyph) (cannot find base glyph)</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0000&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0305_small liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+<td class="chr om_NotoSansCopticRegularttf liga warning warning" onmousedown="mDn(&#x0000&#x0000, ['om_NotoSansCopticRegularttf', 'liga warning warning'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni0305_small liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">uni0305_small.cap<br>Ending "cap" ≠ OT Feature (cannot display this character) feature (cannot find base glyph) (cannot find base glyph)</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0000&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0305_small.cap Ending "cap" ≠ OT Feature (cannot display this character) feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+<td class="chr om_NotoSansCopticRegularttf warning" onmousedown="mDn(&#x0000&#x0000, ['om_NotoSansCopticRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni0305_small.cap Ending "cap" ≠ OT Feature (cannot display this character) feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">uni0305_xlarge<br>liga feature (cannot find base glyph) (cannot find base glyph)</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0000&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0305_xlarge liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+<td class="chr om_NotoSansCopticRegularttf liga warning warning" onmousedown="mDn(&#x0000&#x0000, ['om_NotoSansCopticRegularttf', 'liga warning warning'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni0305_xlarge liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">uni0305_xlarge.cap<br>Ending "cap" ≠ OT Feature (cannot display this character) feature (cannot find base glyph) (cannot find base glyph)</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0000&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0305_xlarge.cap Ending "cap" ≠ OT Feature (cannot display this character) feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+<td class="chr om_NotoSansCopticRegularttf warning" onmousedown="mDn(&#x0000&#x0000, ['om_NotoSansCopticRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni0305_xlarge.cap Ending "cap" ≠ OT Feature (cannot display this character) feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">uni0305_xxlarge<br>liga feature (cannot find base glyph) (cannot find base glyph)</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0000&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0305_xxlarge liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+<td class="chr om_NotoSansCopticRegularttf liga warning warning" onmousedown="mDn(&#x0000&#x0000, ['om_NotoSansCopticRegularttf', 'liga warning warning'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni0305_xxlarge liga feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">uni0305_xxlarge.cap<br>Ending "cap" ≠ OT Feature (cannot display this character) feature (cannot find base glyph) (cannot find base glyph)</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x0000&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0305_xxlarge.cap Ending "cap" ≠ OT Feature (cannot display this character) feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+<td class="chr om_NotoSansCopticRegularttf warning" onmousedown="mDn(&#x0000&#x0000, ['om_NotoSansCopticRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni0305_xxlarge.cap Ending "cap" ≠ OT Feature (cannot display this character) feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">uni033F.cap<br>Ending "cap" ≠ OT Feature (cannot display this character) feature</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x033F, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni033F.cap Ending "cap" ≠ OT Feature (cannot display this character) feature">&#x033F</td>
+<td class="chr om_NotoSansCopticRegularttf warning" onmousedown="mDn(&#x033F, ['om_NotoSansCopticRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni033F.cap Ending "cap" ≠ OT Feature (cannot display this character) feature">&#x033F</td>
+</tr>
+<tr>
+<td class="colLeft">uni033F.large<br>Ending "large" ≠ OT Feature (cannot display this character) feature</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x033F, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni033F.large Ending "large" ≠ OT Feature (cannot display this character) feature">&#x033F</td>
+<td class="chr om_NotoSansCopticRegularttf warning" onmousedown="mDn(&#x033F, ['om_NotoSansCopticRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni033F.large Ending "large" ≠ OT Feature (cannot display this character) feature">&#x033F</td>
+</tr>
+<tr>
+<td class="colLeft">uni033F.large.cap<br>feature</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x033F, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni033F.large.cap feature">&#x033F</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(&#x033F, ['om_NotoSansCopticRegularttf', ''])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni033F.large.cap feature">&#x033F</td>
+</tr>
+<tr>
+<td class="colLeft">uni033F.medium<br>Ending "medium" ≠ OT Feature (cannot display this character) feature</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x033F, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni033F.medium Ending "medium" ≠ OT Feature (cannot display this character) feature">&#x033F</td>
+<td class="chr om_NotoSansCopticRegularttf warning" onmousedown="mDn(&#x033F, ['om_NotoSansCopticRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni033F.medium Ending "medium" ≠ OT Feature (cannot display this character) feature">&#x033F</td>
+</tr>
+<tr>
+<td class="colLeft">uni033F.medium.cap<br>feature</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x033F, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni033F.medium.cap feature">&#x033F</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(&#x033F, ['om_NotoSansCopticRegularttf', ''])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni033F.medium.cap feature">&#x033F</td>
+</tr>
+<tr>
+<td class="colLeft">uni033F.small<br>Ending "small" ≠ OT Feature (cannot display this character) feature</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x033F, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni033F.small Ending "small" ≠ OT Feature (cannot display this character) feature">&#x033F</td>
+<td class="chr om_NotoSansCopticRegularttf warning" onmousedown="mDn(&#x033F, ['om_NotoSansCopticRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni033F.small Ending "small" ≠ OT Feature (cannot display this character) feature">&#x033F</td>
+</tr>
+<tr>
+<td class="colLeft">uni033F.small.cap<br>feature</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x033F, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni033F.small.cap feature">&#x033F</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(&#x033F, ['om_NotoSansCopticRegularttf', ''])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni033F.small.cap feature">&#x033F</td>
+</tr>
+<tr>
+<td class="colLeft">uni033F.xlarge<br>Ending "xlarge" ≠ OT Feature (cannot display this character) feature</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x033F, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni033F.xlarge Ending "xlarge" ≠ OT Feature (cannot display this character) feature">&#x033F</td>
+<td class="chr om_NotoSansCopticRegularttf warning" onmousedown="mDn(&#x033F, ['om_NotoSansCopticRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni033F.xlarge Ending "xlarge" ≠ OT Feature (cannot display this character) feature">&#x033F</td>
+</tr>
+<tr>
+<td class="colLeft">uni033F.xlarge.cap<br>feature</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x033F, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni033F.xlarge.cap feature">&#x033F</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(&#x033F, ['om_NotoSansCopticRegularttf', ''])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni033F.xlarge.cap feature">&#x033F</td>
+</tr>
+<tr>
+<td class="colLeft">uni033F.xxlarge<br>Ending "xxlarge" ≠ OT Feature (cannot display this character) feature</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x033F, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni033F.xxlarge Ending "xxlarge" ≠ OT Feature (cannot display this character) feature">&#x033F</td>
+<td class="chr om_NotoSansCopticRegularttf warning" onmousedown="mDn(&#x033F, ['om_NotoSansCopticRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni033F.xxlarge Ending "xxlarge" ≠ OT Feature (cannot display this character) feature">&#x033F</td>
+</tr>
+<tr>
+<td class="colLeft">uni033F.xxlarge.cap<br>feature</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#x033F, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni033F.xxlarge.cap feature">&#x033F</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(&#x033F, ['om_NotoSansCopticRegularttf', ''])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uni033F.xxlarge.cap feature">&#x033F</td>
+</tr>
+<tr>
+<td class="colLeft">uniFE24.cap<br>Ending "cap" ≠ OT Feature (cannot display this character) feature</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#xFE24, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uniFE24.cap Ending "cap" ≠ OT Feature (cannot display this character) feature">&#xFE24</td>
+<td class="chr om_NotoSansCopticRegularttf warning" onmousedown="mDn(&#xFE24, ['om_NotoSansCopticRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uniFE24.cap Ending "cap" ≠ OT Feature (cannot display this character) feature">&#xFE24</td>
+</tr>
+<tr>
+<td class="colLeft">uniFE25.cap<br>Ending "cap" ≠ OT Feature (cannot display this character) feature</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#xFE25, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uniFE25.cap Ending "cap" ≠ OT Feature (cannot display this character) feature">&#xFE25</td>
+<td class="chr om_NotoSansCopticRegularttf warning" onmousedown="mDn(&#xFE25, ['om_NotoSansCopticRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uniFE25.cap Ending "cap" ≠ OT Feature (cannot display this character) feature">&#xFE25</td>
+</tr>
+<tr>
+<td class="colLeft">uniFE26.cap<br>Ending "cap" ≠ OT Feature (cannot display this character) feature</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#xFE26, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uniFE26.cap Ending "cap" ≠ OT Feature (cannot display this character) feature">&#xFE26</td>
+<td class="chr om_NotoSansCopticRegularttf warning" onmousedown="mDn(&#xFE26, ['om_NotoSansCopticRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uniFE26.cap Ending "cap" ≠ OT Feature (cannot display this character) feature">&#xFE26</td>
+</tr>
+<tr>
+<td class="colLeft">uniFE26.large<br>Ending "large" ≠ OT Feature (cannot display this character) feature</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#xFE26, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uniFE26.large Ending "large" ≠ OT Feature (cannot display this character) feature">&#xFE26</td>
+<td class="chr om_NotoSansCopticRegularttf warning" onmousedown="mDn(&#xFE26, ['om_NotoSansCopticRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uniFE26.large Ending "large" ≠ OT Feature (cannot display this character) feature">&#xFE26</td>
+</tr>
+<tr>
+<td class="colLeft">uniFE26.large.cap<br>feature</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#xFE26, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uniFE26.large.cap feature">&#xFE26</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(&#xFE26, ['om_NotoSansCopticRegularttf', ''])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uniFE26.large.cap feature">&#xFE26</td>
+</tr>
+<tr>
+<td class="colLeft">uniFE26.medium<br>Ending "medium" ≠ OT Feature (cannot display this character) feature</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#xFE26, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uniFE26.medium Ending "medium" ≠ OT Feature (cannot display this character) feature">&#xFE26</td>
+<td class="chr om_NotoSansCopticRegularttf warning" onmousedown="mDn(&#xFE26, ['om_NotoSansCopticRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uniFE26.medium Ending "medium" ≠ OT Feature (cannot display this character) feature">&#xFE26</td>
+</tr>
+<tr>
+<td class="colLeft">uniFE26.medium.cap<br>feature</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#xFE26, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uniFE26.medium.cap feature">&#xFE26</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(&#xFE26, ['om_NotoSansCopticRegularttf', ''])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uniFE26.medium.cap feature">&#xFE26</td>
+</tr>
+<tr>
+<td class="colLeft">uniFE26.small<br>Ending "small" ≠ OT Feature (cannot display this character) feature</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#xFE26, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uniFE26.small Ending "small" ≠ OT Feature (cannot display this character) feature">&#xFE26</td>
+<td class="chr om_NotoSansCopticRegularttf warning" onmousedown="mDn(&#xFE26, ['om_NotoSansCopticRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uniFE26.small Ending "small" ≠ OT Feature (cannot display this character) feature">&#xFE26</td>
+</tr>
+<tr>
+<td class="colLeft">uniFE26.small.cap<br>feature</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#xFE26, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uniFE26.small.cap feature">&#xFE26</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(&#xFE26, ['om_NotoSansCopticRegularttf', ''])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uniFE26.small.cap feature">&#xFE26</td>
+</tr>
+<tr>
+<td class="colLeft">uniFE26.xlarge<br>Ending "xlarge" ≠ OT Feature (cannot display this character) feature</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#xFE26, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uniFE26.xlarge Ending "xlarge" ≠ OT Feature (cannot display this character) feature">&#xFE26</td>
+<td class="chr om_NotoSansCopticRegularttf warning" onmousedown="mDn(&#xFE26, ['om_NotoSansCopticRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uniFE26.xlarge Ending "xlarge" ≠ OT Feature (cannot display this character) feature">&#xFE26</td>
+</tr>
+<tr>
+<td class="colLeft">uniFE26.xlarge.cap<br>feature</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#xFE26, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uniFE26.xlarge.cap feature">&#xFE26</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(&#xFE26, ['om_NotoSansCopticRegularttf', ''])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uniFE26.xlarge.cap feature">&#xFE26</td>
+</tr>
+<tr>
+<td class="colLeft">uniFE26.xxlarge<br>Ending "xxlarge" ≠ OT Feature (cannot display this character) feature</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#xFE26, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uniFE26.xxlarge Ending "xxlarge" ≠ OT Feature (cannot display this character) feature">&#xFE26</td>
+<td class="chr om_NotoSansCopticRegularttf warning" onmousedown="mDn(&#xFE26, ['om_NotoSansCopticRegularttf', 'warning'])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uniFE26.xxlarge Ending "xxlarge" ≠ OT Feature (cannot display this character) feature">&#xFE26</td>
+</tr>
+<tr>
+<td class="colLeft">uniFE26.xxlarge.cap<br>feature</td>
+<td class="chr defaultFont info" onmousedown="mDn(&#xFE26, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="uniFE26.xxlarge.cap feature">&#xFE26</td>
+<td class="chr om_NotoSansCopticRegularttf " onmousedown="mDn(&#xFE26, ['om_NotoSansCopticRegularttf', ''])" onmouseup="mUp()" title="Noto Sans Coptic" data-original-title="uniFE26.xxlarge.cap feature">&#xFE26</td>
+</tr>
+
+		</table>
+
+
+
+    </div>
+    </div>
+
+
+    <script type="text/javascript">
+
+    //var elementCustomerPreview = document.getElementById("cssCodeForCustomerPreview");
+    //console.log('element.height: ', elementCustomerPreview.offsetHeight)
+    //$('.containerMain').css("top", '-' + elementCustomerPreview.offsetHeight + 'px')
+
+    var elementCustomerPreview = document.getElementById("containerMainID");
+    console.log('element.height: ', elementCustomerPreview.offsetHeight)
+    $('.containerCSScode').css("height", elementCustomerPreview.offsetHeight -200 + 'px')
+
+    var elementHeader = document.getElementById('otFeature');
+    console.log('element.height: ', elementHeader.offsetHeight)
+    divHeight = elementHeader.offsetHeight - 50
+    $('.header').css("top", '-' + divHeight + 'px')
+
+    //document.getElementById("varFont").style.color = "blue";
+
+    $('.sampleContent').on('blur keyup paste input', function() {$(".sampleContent").not(this).html($(this).html());});
+
+    
+    $('#slider').on('change',function(){
+    var val = $(this).val();
+    $(".om_NotoSansCopticRegularttf").css("font-size",(val+"em"));
+    $(".colLeft").css("width",(50 - (val*2)) +"%");
+    });
+
+    
+
+    function toggle_detail(my_id){
+        var element = document.getElementById(my_id)
+        //var buttoncell = document.getElementById(my_id+"_cell")
+        var button = document.getElementById(my_id+"_btn")
+        if (element.style.display != 'none') {
+          element.style.display = 'none'; //$("#" + my_id).slideUp(); smooth in/out does not work currently
+          button.innerHTML = '▼';
+        } else {
+          element.style.display = ''; //$("#" + my_id).slideDown(); smooth in/out does not work currently
+          button.innerHTML = '▲';
+        }
+    }
+
+    function showhide_div(my_id, buttomName){
+        var element = document.getElementById(my_id)
+        //var buttoncell = document.getElementById(my_id+"_cell")
+        var button = document.getElementById(my_id+"_btn")
+        if (element.style.opacity != '0') {
+          element.style.opacity = '0'; 
+          setTimeout(function () {
+            element.style.zIndex = '-1';
+            }, 1000);
+          button.innerHTML = 'show ' + buttomName;
+        } else {
+          element.style.opacity = '1';
+          element.style.zIndex = '998';
+          button.innerHTML = 'hide ' + buttomName;
+        }
+    }
+
+    function hover(my_id){
+        var element = document.getElementById(my_id)
+        if (element.style.background != '') {
+          element.style.background = '';
+          element.style.color = ''; 
+        } else {
+          element.style.background = '#B3D4FC';
+          element.style.color = 'black'; 
+        }
+    }
+
+    var HTMLCodeCompareBoxes = '1234567890 xozszn HOZD 1/3 @ 1a ;#& ? % $ € ! In August of 2016, four unlikely collaborators in the world of type, fonts and font technology stood on a stage at the ATypI conference in Warsaw, Poland. The collaborators were Apple, Microsoft, Adobe and Google. Together they announced the publishing of OpenType 1.8, an update to the now ubiquitous font standard which was originally an amalgam of Apple & Microsoft’s TrueType, and Adobe’s PostScript font formats. The OpenType 1.8 announcement, ATypI, Warsaw, Poland, September 14, 2016.'
+    var fontWeightsDict = {'Noto Sans Coptic (ttf)':'om_NotoSansCopticRegularttf'};
+
+    var sampleTexts = {'All Unicodes': '\x00 \r ‐   ︤ ︥ ︦ 𐋰 - 𐋷 𐋱 𐋲 𐋳 𐋣 𐋠 𐋡 Ⲁ ⲁ Ⲃ ⲃ Ⲅ ⲅ Ⲇ ⲇ Ⲉ ⲉ Ⲋ ⲋ Ⲍ ⲍ Ⲏ ⲏ Ⲑ ⲑ Ⲓ ⲓ Ⲕ ⲕ Ⲗ ⲗ Ⲙ ⲙ Ⲛ ⲛ Ⲝ ⲝ Ⲟ ⲟ \xa0 Ⲡ ⲡ ⲣ Ⲥ ⲥ Ⲧ ⲧ Ⲩ ⲩ Ⲫ Ⲣ ⲫ Ⲭ ⲭ Ⲯ ⲯ Ⲱ ⲱ Ⲳ ⲳ Ⲵ ⲵ Ⲷ ⲷ Ⲹ ⲹ Ⲻ ⲻ Ⲽ ⲽ Ⲿ ⲿ Ⳁ ⳁ Ⳃ ⳃ Ⳅ ⳅ Ⳇ ⳇ Ⳉ ⳉ Ⳋ ⳋ Ⳍ ⳍ Ⳏ ⳏ Ⳑ ⳑ Ⳓ ⳓ Ⳕ ⳕ Ⳗ ⳗ Ⳙ ⳙ Ⳛ ⳛ Ⳝ ⳝ Ⳟ ⳟ Ⳡ ⳡ Ⳣ ⳣ ⳤ ⳥ ⳦ ⳧ ⳨ ⳩ ⳪ Ⳬ ⳬ Ⳮ ⳮ ⳯ ⳰ ⳱ Ⳳ ⳳ 𐋬 𐋭 𐋮 𐋯 ⳹ ⳺ ⳻ ⳼ ⳽ ⳾ ⳿ ̀ ́ ̂ 𐋤 ̄ ̅ 𐋻 ̇ ̈ 𐋹 𐋥 ̣ 𐋺 𐋦 ̿ 𐋵 𐋧 ͡ 𐋨 ʹ ͵ 𐋩 𐋪 𐋸 𐋫 𐋶 ◌ ᷍ 𐋴 Ϣ ϣ Ϥ ϥ Ϧ ϧ Ϩ ϩ Ϫ ϫ Ϭ ϭ Ϯ ϯ 𐋢', 'Default Sample': '1234567890 xozszn HOZD 1/3 @ 1a ;#& ? % $ € ! In August of 2016, four unlikely collaborators in the world of type, fonts and font technology stood on a stage at the ATypI conference in Warsaw, Poland. The collaborators were Apple, Microsoft, Adobe and Google. Together they announced the publishing of OpenType 1.8, an update to the now ubiquitous font standard which was originally an amalgam of Apple & Microsoft’s TrueType, and Adobe’s PostScript font formats. The OpenType 1.8 announcement, ATypI, Warsaw, Poland, September 14, 2016.'}
+
+    var clicks = 0;
+    var arrList = [];
+    var mySpanIDList = [];
+
+    var supported_features = [];
+
+    function functionAddSupportedFeatures(item){
+        var button = document.getElementById(item+"_btn")
+        if (supported_features.includes(item) === true){
+            button.style.color = 'black';
+            button.style.backgroundColor = 'white';
+            var index = supported_features.indexOf(item);
+            if (index > -1) {
+                supported_features.splice(index, 1);
+            }
+        }
+        else { 
+            button.style.color = 'white';
+            button.style.backgroundColor = 'black';
+            supported_features.push(item);
+        }
+        functionSetCSSFeatureCode(supported_features)
+    }
+
+    function functionChangeLanguage(item){
+        document.documentElement.lang = item;
+        $("#htmlLangTag").html(item);
+        if (['ar', 'fa', 'ur'].indexOf(item) >= 0) {
+            document.getElementById('compareBoxID').dir = 'rtl';
+            functionReadDirection('compareBoxID', 'right-to-left');
+        } else {
+            document.getElementById('compareBoxID').dir = '';
+            functionReadDirection('compareBoxID', 'left-to-right')
+        }
+
+    }
+
+
+    function functionSetCSSFeatureCode(arr){
+        var supported_features = arr;
+        var default_features =  ['mark', 'mkmk']; //['kern', 'vkrn', 'liga', 'clig', 'calt', 'mark', 'mkmk', 'rvrm' ];
+
+        var cssCode_features = "";//font-feature-settings:
+        var moz_features = "";
+        
+
+        var arrayLength = supported_features.length;
+        for (var i = 0; i < arrayLength; i++) {
+            var item = supported_features[i];
+            cssCode_features += "'" + item + "' 1,";
+            moz_features += item + "=1,";
+        }
+
+        var defaultLength = default_features.length;
+        for (var i = 0; i < defaultLength; i++) {
+            var item = default_features[i];
+            if (supported_features.includes(item) === false){
+                cssCode_features += "'" + item + "' 0,";
+                moz_features += item + "=0,";
+            }
+        }
+
+        var stringLength = cssCode_features.length;
+        if (cssCode_features[stringLength-1] === ','){
+            var cleanedCSS = cssCode_features.substring(',', stringLength - 1);
+        } else {
+            var cleanedCSS = cssCode_features;
+        }
+
+        var element = document.getElementById('body_all');
+        element.style.fontFeatureSettings = cleanedCSS;
+
+        var stringLength = moz_features.length;
+        if (moz_features[stringLength-1] === ','){
+            var cleanedCSSmoz_features = moz_features.substring(',', stringLength - 1);
+        } else {
+            var cleanedCSSmoz_features = moz_features;
+        }
+
+        console.log('cleanedCSS: ', cleanedCSS)
+        var webkit_features = cleanedCSS 
+
+        $("#w3cfeatures").html(webkit_features);
+        $("#webkitfeatures").html(webkit_features);
+        $("#mozfeatures-up-to-14").html(webkit_features);
+        $("#mozfeatures").html(cleanedCSSmoz_features);
+        $("#msfeatures").html(webkit_features);
+        $("#ofeatures").html(webkit_features);
+
+      };
+
+
+    function functionBoxAdd() {
+
+        clicks += 1;
+        //arrList.push(clicks.toString())
+        console.log(arrList)
+        //var tdID = 'myTD_' + clicks;
+        //arrList.push(tdID.toString())
+        
+        //var x = document.createElement("TD");
+        //x.setAttribute("id", tdID);
+        //document.getElementById("tableTR").appendChild(x);
+
+        //var optionID = 'myOption_' + clicks;
+        //var d1 = document.createElement("DIV");
+        //d1.setAttribute("id", optionID);
+        //document.getElementById(tdID).appendChild(d1);
+
+        //var copyTextID = 'myText_' + clicks;
+        //var d2 = document.createElement("DIV");
+        //d2.setAttribute("id", copyTextID);
+        //d2.setAttribute("contenteditable", 'true');
+        //document.getElementById(tdID).appendChild(d2);
+        //var SampleText = document.createTextNode(HTMLCodeCompareBoxes);
+        //document.getElementById(copyTextID).innerHTML = HTMLCodeCompareBoxes;
+
+        var nameID = 'myBox_' + clicks;
+        arrList.push(nameID.toString())
+        var x = document.createElement("TD");
+        x.setAttribute("id", nameID);
+        //x.setAttribute("contenteditable", 'true');
+
+
+         var selectID = 'mySelect_' + clicks;
+         var s = document.createElement("SELECT");
+         s.setAttribute("id", selectID);
+         s.setAttribute("name", nameID);
+         s.setAttribute("onchange", "functionSelect('" + selectID + "')");
+
+         var arrListFontname = [];
+         var arrListCSSName = [];
+         lenClicks = 0;
+
+         for(fontName in fontWeightsDict){
+                 lenClicks += 1;
+                 arrListFontname.push(fontName.toString())
+                  var fontCSScode = fontWeightsDict[fontName];
+                  arrListCSSName.push(fontCSScode.toString())
+
+                  var z = document.createElement("option");
+                z.setAttribute("value", fontCSScode);
+                if (clicks + 1 == lenClicks){
+                    var FontSelected = arrListCSSName[lenClicks-1]; //minus one because array starts with zero
+                    z.setAttribute("selected", 'selected');
+                }
+                var t = document.createTextNode(fontName);
+                z.appendChild(t);
+                s.appendChild(z);
+                console.log(arrListFontname[-1])
+        }
+
+        var numberFonts = Object.keys(fontWeightsDict).length;
+        if (numberFonts <= clicks){var FontSelected = arrListCSSName[0];}
+        
+        x.setAttribute("class", "compareBox "+FontSelected);
+        document.getElementById("tableTR").appendChild(x);
+
+
+        //document.getElementById(nameID).appendChild(z);
+        document.getElementById(nameID).appendChild(s);
+
+        //var SampleText = document.createTextNode(HTMLCodeCompareBoxes);
+        var mySpanID = 'myBoxContent_' + clicks;
+        mySpanIDList.push(mySpanID.toString())
+        var span = document.createElement("SPAN");
+        span.setAttribute("id", mySpanID);
+        span.setAttribute("contenteditable", 'true');
+        span.setAttribute("class", 'compareBoxCSS');
+
+        var compareBoxFontSize = document.getElementById("myBoxContent").style.fontSize;
+        //console.log('Font-Size: ', compareBoxFontSize)
+        span.setAttribute("style", "font-size: " + compareBoxFontSize);
+
+        var getSampleText = document.getElementById('myBoxContent').innerHTML
+        //var mySampleText = document.getElementById('mySelectSampleText').value;
+        //var getSampleText = sampleTexts[mySampleText];
+        span.innerHTML = getSampleText;
+
+        //var sp = document.createTextNode(getSampleText);
+        //span.appendChild(sp);
+
+        document.getElementById(nameID).appendChild(span);
+     
+    }
+     
+    function functionBoxRemove() {
+        var item = arrList.pop() ;
+        //var nameID2 = 'myBox_' + (item);
+
+        if (item != 'myBox'){
+            var x = document.getElementById(item);
+            document.getElementById("tableTR").removeChild(x);
+        }
+
+        var index = mySpanIDList.length;
+        if (index > 1){
+            var listIndex = index -1;
+            mySpanIDList.splice(listIndex, 1);
+        }
+
+    }
+
+    var allBoxBG = arrList;
+    allBoxBG.push('myBox'); //first fixed box
+    function functionBoxBG(){
+        for (var item in allBoxBG){
+            console.log(allBoxBG[item])
+            var element = document.getElementById(allBoxBG[item])
+            if (element.style.backgroundColor != "white"){
+                element.style.backgroundColor = "white";
+                element.style.color = 'black';
+            } else {
+                element.style.backgroundColor = "black";
+                element.style.color = 'white';                
+            }
+        }
+    }
+
+    //$('#myBox').on('blur keyup paste input', function() {
+    //    var sampleText = document.getElementById('myBox').innerHTML;
+    //    for (var item in arrList){
+    //        var element = document.getElementById(arrList[item]);
+    //        element.innerHTML = sampleText;
+    //    }
+    //});
+
+    function functionSelect(selectID) {
+        console.log(selectID)
+        //var box = document.getElementById(selectID).parentElement; //.nodeName;
+        var CSScode = document.getElementById(selectID).value;
+        var boxID = document.getElementById(selectID).name;
+        console.log(CSScode)
+        console.log(boxID)
+        //document.getElementById(boxID).classList.add(value);
+        //box.classList.add(value);
+        document.getElementById(boxID).classList = CSScode;
+    }
+
+    mySpanIDList.push('myBoxContent'); //first add "fixed box"
+    function functionSelectSampleText(mySelectSampleText){
+        console.log('LISTE mySpanIDList::::', mySpanIDList)
+        var mySampleText = document.getElementById(mySelectSampleText).value;
+        var sampleText = sampleTexts[mySampleText];
+        for (var item in mySpanIDList){
+            document.getElementById(mySpanIDList[item]).innerHTML = sampleText;
+        }
+
+    }
+
+    function functionGetColorBG(item, CSSClass){
+        $(CSSClass).css('background-color', item);
+    }
+
+    function functionGetColorText(item, CSSClass){
+        $(CSSClass).css('color', item);
+    }
+
+    function functionSwapColorTextBG(CSSClass){
+        var colorText = $(CSSClass).css('color');
+        var colorBG = $(CSSClass).css('backgroundColor');
+        $(CSSClass).css('background-color', colorText);
+        $(CSSClass).css('color', colorBG);
+
+    }
+
+    $('.compareBoxCSS').on('blur keyup paste input', function() {$(".compareBoxCSS").not(this).html($(this).html());});
+
+    $('#sliderCompareBoxCSS').on('change',function(){
+        var val = $(this).val();
+        $(".compareBoxCSS").css("font-size",(val+"px"));
+        
+        document.getElementById("numberCompareBoxCSS").value = val;
+    });
+
+    $('#numberCompareBoxCSS').on('change',function(){
+        var val = $(this).val();
+        $(".compareBoxCSS").css("font-size",(val+"px"));
+        
+        document.getElementById("sliderCompareBoxCSS").value = val;
+    });
+
+    $('#sliderSampleContent').on('change',function(){
+        var val = $(this).val();
+        $(".sampleContent").css("font-size",(val+"px"));
+        if (val <= 30){
+            $(".sampleContent").css("padding",(val+"px 50px "+ val+"px 50px"));
+        } else {
+            $(".sampleContent").css("padding",("30px 50px 30px 50px"));              
+        }        
+        document.getElementById("numberSampleContent").value = val;
+    });
+
+    $('#numberSampleContent').on('change',function(){
+        var val = $(this).val();
+        $(".sampleContent").css("font-size",(val+"px"));
+        if (val <= 30){
+            $(".sampleContent").css("padding",(val+"px 50px "+ val+"px 50px"));
+        } else {
+            $(".sampleContent").css("padding",("30px 50px 30px 50px"));              
+        }           
+        document.getElementById("sliderSampleContent").value = val;
+    });
+
+    clicksBG = 0;
+    function functionGetRandomBG(cssItem){
+        
+        var arrListCSSClasses = [];
+        var numberCSSClasses = Object.keys(cssItem).length;
+        var cssClasses = document.getElementById("tableTR").className;
+
+        var oldCSSClasses = cssClasses.split(' ');
+
+        for (var item in cssItem){
+            if (item == clicksBG){
+                oldCSSClasses.push(cssItem[clicksBG]);
+            } else {
+                var index = oldCSSClasses.indexOf(cssItem[item]);
+                if (index > -1) {
+                    oldCSSClasses.splice(index, 1);
+                }
+                
+            }
+        }
+
+        var newClassNames = oldCSSClasses.join(' ')
+
+        document.getElementById("tableTR").className = newClassNames;
+        
+        clicksBG += 1;
+
+        if (clicksBG === 4){
+            clicksBG = 0;
+        }
+        
+
+    }
+
+    function functionShowCSSCode(CSSClass){
+        if ($(CSSClass).css("left") == '15px'){
+            $(CSSClass).css("transition-timing-function", "ease-in");
+            $(CSSClass).css("transition", "0.4s");
+            $(CSSClass).css("left", "80%");
+        } else {
+            $(CSSClass).css("left", "15px");
+        }
+    }
+
+    function functionShowHeader(CSSClass, my_id){
+        //var element = document.getElementById(my_id)
+        //var buttoncell = document.getElementById(my_id+"_cell")
+
+        var button = document.getElementById(my_id+"_btn");
+        if (button.innerHTML != '▼') {
+            $(CSSClass).css("top", '-' + divHeight + 'px');
+            button.innerHTML = '▼';
+        } else {
+          //$("#" + my_id).slideDown();
+            $(CSSClass).css("transition-timing-function", "ease-in");
+            $(CSSClass).css("transition", "0.4s");
+          $(CSSClass).css("top", "50px");
+          button.innerHTML = '▲';
+        }
+
+    }
+
+        /*function myFunctionAnimate(my_id, CSSClassList){
+            var button = document.getElementById(my_id+"_btn");
+            if (button.innerHTML === 'Play') {
+                button.innerHTML = 'Pause';
+                var countingUp = 1;
+                var minValue = document.getElementById(my_id).min;
+                var maxValue = document.getElementById(my_id).max;
+                var value = document.getElementById(my_id).value;
+                var i = Math.round(value);
+                var speed = Math.round(1000/maxValue);
+                myTimer = setInterval(function() {
+                    console.log(maxValue)
+                    i = i + (1 * countingUp);
+
+                    if (i == maxValue || i == minValue)
+                    {
+                        countingUp *= -1;
+                    }
+
+                    console.log(i)
+                  document.getElementById(my_id).value = i;
+                  document.getElementById(my_id+"_range").innerHTML = i;
+                  //om_AvenirNextVariableRomanttfWeight_showValue(i, CSSClassList)
+                  
+                }, speed);
+
+            } else {
+                button.innerHTML = 'Play';
+                clearInterval(myTimer);
+            }
+        }*/
+
+        
+
+        function functionTextAlignment(ID, item){
+            textAligment = ['left', 'center', 'right'];
+            console.log('ID: ', ID)
+            nameID = ID.replace('ID', '');
+            console.log('nameID: ', nameID)
+            console.log('item: ', item)
+
+            buttonName = item + nameID + "_btn";
+
+            console.log('buttonName: ', buttonName)
+
+            var button = document.getElementById(buttonName);
+            button.style.backgroundColor = 'black';
+            button.style.color = 'white';
+
+            $('#' +ID).css("text-align", item);
+
+            var textAligmentLength = textAligment.length;
+            for (var i = 0; i < textAligmentLength; i++) {
+                var itemLoop = textAligment[i];
+                if (itemLoop != item){
+                    otherButtonName = itemLoop + nameID + "_btn";
+                    console.log('otherButtonName: ', otherButtonName)
+                    var otherButton = document.getElementById(otherButtonName);
+                    otherButton.style.backgroundColor = 'white';
+                    otherButton.style.color = 'black';
+
+                }
+            }
+        }
+
+        function functionReadDirection(ID, item){
+            textAligment = ['left-to-right', 'right-to-left', 'top-to-down'];
+            console.log('ID: ', ID)
+            nameID = ID.replace('ID', '');
+            console.log('nameID: ', nameID)
+            console.log('item: ', item)
+
+            buttonName = item + nameID + "_btn";
+
+            console.log('buttonName: ', buttonName)
+
+            var button = document.getElementById(buttonName);
+            button.style.backgroundColor = 'black';
+            button.style.color = 'white';
+
+            if (item === 'right-to-left'){document.getElementById('compareBoxID').dir = 'rtl';}
+            if (item === 'left-to-right'){document.getElementById('compareBoxID').dir = '';}
+
+            // if (item === 'top-to-down'){
+            //     document.getElementById('compareBoxID').dir = '';
+
+            //     //var elt = document.documentElement
+            //     var elt = document.getElementById(ID);
+            //     elt.setAttribute("style", "writing-mode: vertical-rl;");
+            //     //$("body").css("writing-mode", 'vertical-rl;');
+            //     //document.documentElement.css("writing-mode", 'vertical-rl;');
+
+            //     /* writing-mode: vertical-rl; */
+            // }            
+
+            var textAligmentLength = textAligment.length;
+            for (var i = 0; i < textAligmentLength; i++) {
+                var itemLoop = textAligment[i];
+                if (itemLoop != item){
+                    otherButtonName = itemLoop + nameID + "_btn";
+                    console.log('otherButtonName: ', otherButtonName)
+                    var otherButton = document.getElementById(otherButtonName);
+                    otherButton.style.backgroundColor = 'white';
+                    otherButton.style.color = 'black';
+
+                }
+            }
+        }
+
+    function functionTest(CSSClass){
+            $(CSSClass).css("transition-timing-function", "ease-in");
+            $(CSSClass).css("transition", "1.4s");
+            $(CSSClass).css("transform", 'translate3d(0px,0px,0px)');
+    }
+
+
+    delta = 0;
+    beta = 0;
+    lastPos = null;
+
+    function clearBeta() {
+      beta = 0;
+    }
+
+    window.onscroll = function(){
+
+        function clear() {
+          lastPos = null;
+          delta = 0;
+        }
+
+        newPos = window.scrollY;
+        if ( lastPos != null ){
+          delta = newPos - lastPos;
+        }
+        lastPos = newPos;
+
+        //console.log(100 - delta)
+        //console.log('newPos: ', newPos)
+
+        if (delta < 0){if (beta < (delta * -1)){beta = (delta * 6)} }
+        if (delta > 0){if (beta < delta){beta = delta} }
+
+        //console.log('beta: ', beta)
+
+        setTimeout(clear, 500);
+        setTimeout(clearBeta, 500);
+
+        //console.log(100 - Pos)
+      //var distanz =  window.scrollY
+      //console.log('distanz: ', distanz);
+      //console.log( 'PositivVal: ', PositivVal );
+      //console.log(Int(distanz))
+      $('.flyingFont1').css("transform", 'translate3d(0px,' + (beta * -1) + 'px,0px)');
+      $('.flyingFont2').css("transform", 'translate3d(0px,' + (beta * -2) + 'px,0px)');
+      $('.flyingFont3').css("transform", 'translate3d(0px,' + (beta * -3) + 'px,0px)');
+    };
+
+
+    window.addEventListener("scroll", functionTest('.flyingFont1'), false);
+    window.addEventListener("scroll", functionTest('.flyingFont2'), false);
+    window.addEventListener("scroll", functionTest('.flyingFont3'), false);
+
+    $('.flyingFont').on('blur keyup paste input', function() {$(".flyingFont").not(this).html($(this).html());});
+
+    function adjustHeightOfTwoDiv(div1_ID, div2_ID){
+        var offsetHeight = document.getElementById(div1_ID).offsetHeight;
+        document.getElementById(div2_ID).style.height = offsetHeight + 'px';
+    } 
+
+    $('.flyingFont1').on('blur keyup paste input', function() {adjustHeightOfTwoDiv('flyingFont_ID1', 'flyingFont_ID0')});
+
+    function mDn(uniID, CSSClassFontList) {
+        console.log('uniID: ', uniID)
+        if (typeof uniID === 'string' || uniID instanceof String){
+            console.log('str: True ')
+            var UID = uniID
+        } else {
+            console.log('else: True ')
+            var UID = '&#x' + uniID.toString(16);
+        }
+        console.log('UID: ', UID)
+        var obj = document.getElementById('zoom_characters');
+        obj.style.display = 'block';
+
+        var w = window.innerWidth;
+        var h = window.innerHeight;
+
+        if (w < h){
+            var nW = w / 2;
+            var nH = nW;
+
+        } else {
+            var nW = h / 2;
+            var nH = nW;
+        }
+        var top = (h - nH) / 2;
+        var left = (w - nW) / 2;
+
+        obj.style.height = nH + 'px';
+        obj.style.top = top + 'px';
+        obj.style.width = nW + 'px';
+        obj.style.left = left + 'px';        
+        obj.innerHTML = UID;
+        
+        var arrayLength = CSSClassFontList.length;
+        for (var i = 0; i < arrayLength; i++) {
+            var item = CSSClassFontList[i];
+            obj.classList.add(item);
+        }
+
+
+        
+
+        
+
+
+    }
+
+    function mUp() {
+        var obj = document.getElementById('zoom_characters');
+        obj.innerHTML = '';
+        obj.style.display = 'none';
+        obj.className = "characterZoom";
+    }
+
+    var prevScrollpos = window.pageYOffset;
+    window.onscroll = function() {
+    var currentScrollPos = window.pageYOffset;
+    if (prevScrollpos > currentScrollPos) {
+        document.getElementById("showFontNames_div").style.bottom = "-50px";
+        } else {
+            document.getElementById("showFontNames_div").style.bottom = "0";
+        }
+        prevScrollpos = currentScrollPos;
+    }
+
+    function scrollXNamesFunc() {
+        var elmnt = document.getElementById("containerMainID");
+        var x = elmnt.scrollLeft;
+        $('#showFontNames').css({
+            'left': 15 - x
+        });
+    }
+
+    function hintingOnOff(CSSClass, my_id){
+        var button = document.getElementById(my_id+"_btn");
+        var elements = document.getElementsByClassName('compareBox')
+
+        if (button.innerHTML != 'hinting on') {
+            Array.prototype.filter.call(elements, function(el){
+                el.style.transform = 'rotate(0.0deg)';
+                el.style.transformOrigin = 'top left';
+            });
+
+            button.className = "buttonBlack";
+            button.innerHTML = 'hinting on';
+            button.style.backgroundColor = 'black';
+
+        } else {
+            Array.prototype.filter.call(elements, function(el){
+                el.style.transform = 'rotate(0.03deg)';
+                el.style.transformOrigin = 'top center';
+            });
+
+            button.innerHTML = 'hinting off';
+            button.className = ".buttonBorder";
+
+            button.style.backgroundColor = 'red';
+
+        }
+
+    }
+
+    </script>
+
+  </body>
+</html>
+

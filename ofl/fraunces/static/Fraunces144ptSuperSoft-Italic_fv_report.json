@@ -1,0 +1,84 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Fraunces144ptSuperSoft-Italic.ttf",
+                "type": "ttf",
+                "size": 75536,
+                "md5": "4124be04ea808e68edc2e994a2ca5652",
+                "geometryMd5": "47663870ee783c0403cfc3d84f470385"
+            },
+            "name": {
+                "family": "Fraunces 144pt SuperSoft",
+                "subFamily": "Italic",
+                "fullName": "Fraunces 144pt SuperSoft Italic",
+                "psName": "Fraunces144ptSuperSoft-Italic",
+                "versionText": "Version 1.000;[b76b70a41]",
+                "copyright": "Copyright 2020 The Fraunces Project Authors (github.com/undercasetype/Fraunces)",
+                "trademark": "Unknown",
+                "variationsPSNamePrefix": "FrauncesItalic"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 698,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "UCT ",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Fraunces 144pt SuperSoft Italic",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 4,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_bd8783df6581457e80c7251142c4437b.DSIG",
+                        "levelname": "ERROR",
+                        "message": "The digital signature of the file did not verify.",
+                        "timestamp": "2021-02-21T15:29:27.288442Z",
+                        "orig_output": "validate_bd8783df6581457e80c7251142c4437b.DSIG - ERROR - The digital signature of the file did not verify.",
+                        "msg_code": "E0502"
+                    },
+                    {
+                        "subroutine": "validate_bd8783df6581457e80c7251142c4437b.glyf.glyph 81 ('guillemetright')",
+                        "levelname": "ERROR",
+                        "message": "Bounds should be [396, 64, 1318, 751], but are [6, 62, 928, 749].",
+                        "timestamp": "2021-02-21T15:29:29.665051Z",
+                        "orig_output": "validate_bd8783df6581457e80c7251142c4437b.glyf.glyph 81 ('guillemetright') - ERROR - Bounds should be [396, 64, 1318, 751], but are [6, 62, 928, 749].",
+                        "msg_code": "E1112"
+                    },
+                    {
+                        "subroutine": "validate_bd8783df6581457e80c7251142c4437b.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2021-02-21T15:29:45.120250Z",
+                        "orig_output": "validate_bd8783df6581457e80c7251142c4437b.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
+                    },
+                    {
+                        "subroutine": "validate_bd8783df6581457e80c7251142c4437b.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 952, but is 953",
+                        "timestamp": "2021-02-21T15:29:28.276171Z",
+                        "orig_output": "validate_bd8783df6581457e80c7251142c4437b.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 952, but is 953",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20201030.330639rc3",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 22456,
+    "completedDate": "2021-02-21 15:29:45.718703"
+}

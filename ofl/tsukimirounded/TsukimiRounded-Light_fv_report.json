@@ -1,0 +1,85 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "TsukimiRounded-Light.ttf",
+                "type": "ttf",
+                "size": 106680,
+                "md5": "ea1622cb9a8049180681edd979468178",
+                "geometryMd5": "969952a4b33e2ce6aa4a9d88441182fe"
+            },
+            "name": {
+                "family": "Tsukimi Rounded Light",
+                "subFamily": "Regular",
+                "fullName": "Tsukimi Rounded Light",
+                "psName": "TsukimiRounded-Light",
+                "versionText": "Version 1.032; ttfautohint (v1.8.3)",
+                "copyright": "Copyright 2020 The Tsukimi Rounded Project Authors (https://github.com/mt-funa/Tsukimi-Rounded), all rights reserved.",
+                "trademark": "Unknown",
+                "typographicFamily": "Tsukimi Rounded",
+                "typographicSubFamily": "Light"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 530,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "FUNA",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Tsukimi Rounded Light",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 4,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_d53f32dcb03142398d9a4c91281a3cb6.fontedit.OS_2.PANOSE.weight",
+                        "levelname": "ERROR",
+                        "message": "Value 4 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "timestamp": "2021-02-24T14:46:10.772588Z",
+                        "orig_output": "validate_d53f32dcb03142398d9a4c91281a3cb6.fontedit.OS_2.PANOSE.weight - ERROR - Value 4 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
+                        "msg_code": "E2111"
+                    },
+                    {
+                        "subroutine": "validate_d53f32dcb03142398d9a4c91281a3cb6.DSIG",
+                        "levelname": "ERROR",
+                        "message": "The digital signature of the file did not verify.",
+                        "timestamp": "2021-02-24T14:46:11.881199Z",
+                        "orig_output": "validate_d53f32dcb03142398d9a4c91281a3cb6.DSIG - ERROR - The digital signature of the file did not verify.",
+                        "msg_code": "E0502"
+                    },
+                    {
+                        "subroutine": "validate_d53f32dcb03142398d9a4c91281a3cb6.glyf.glyph 31 ('K').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2021-02-24T14:46:13.014950Z",
+                        "orig_output": "validate_d53f32dcb03142398d9a4c91281a3cb6.glyf.glyph 31 ('K').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_d53f32dcb03142398d9a4c91281a3cb6.vhea",
+                        "levelname": "ERROR",
+                        "message": "The vertTypoLineGap is 500, but zero is required.",
+                        "timestamp": "2021-02-24T14:46:47.739665Z",
+                        "orig_output": "validate_d53f32dcb03142398d9a4c91281a3cb6.vhea - ERROR - The vertTypoLineGap is 500, but zero is required.",
+                        "msg_code": "V0282"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20201030.330639rc3",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 65707,
+    "completedDate": "2021-02-24 14:47:14.999312"
+}

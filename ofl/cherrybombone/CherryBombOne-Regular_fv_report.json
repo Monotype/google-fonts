@@ -1,0 +1,83 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "CherryBombOne-Regular.ttf",
+                "type": "ttf",
+                "size": 214940,
+                "md5": "22680dfaf3d698df942f191d56689daa",
+                "geometryMd5": "471c39b3c22ea162551ac64df67a159e"
+            },
+            "name": {
+                "family": "Cherry Bomb One",
+                "subFamily": "Regular",
+                "fullName": "Cherry Bomb One Regular",
+                "psName": "CherryBombOne-Regular",
+                "versionText": "Version 4.100; ttfautohint (v1.8.3)",
+                "copyright": "Copyright 2019 The Cherry Bomb Project Authors (https://github.com/satsuyako/CherryBomb)",
+                "trademark": "Unknown"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 1140,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "STYK",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Cherry Bomb One Regular",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 4,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_ae097bc828bb4811b8b28dda182dc568.DSIG",
+                        "levelname": "ERROR",
+                        "message": "The digital signature of the file did not verify.",
+                        "timestamp": "2021-02-19T15:41:14.292890Z",
+                        "orig_output": "validate_ae097bc828bb4811b8b28dda182dc568.DSIG - ERROR - The digital signature of the file did not verify.",
+                        "msg_code": "E0502"
+                    },
+                    {
+                        "subroutine": "validate_ae097bc828bb4811b8b28dda182dc568.glyf.glyph 359 ('oslash').contours.contour 2",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2021-02-19T15:41:21.098380Z",
+                        "orig_output": "validate_ae097bc828bb4811b8b28dda182dc568.glyf.glyph 359 ('oslash').contours.contour 2 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_ae097bc828bb4811b8b28dda182dc568.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2021-02-19T15:42:52.766656Z",
+                        "orig_output": "validate_ae097bc828bb4811b8b28dda182dc568.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
+                    },
+                    {
+                        "subroutine": "validate_ae097bc828bb4811b8b28dda182dc568.vhea",
+                        "levelname": "ERROR",
+                        "message": "The vertTypoLineGap is 500, but zero is required.",
+                        "timestamp": "2021-02-19T15:42:52.805106Z",
+                        "orig_output": "validate_ae097bc828bb4811b8b28dda182dc568.vhea - ERROR - The vertTypoLineGap is 500, but zero is required.",
+                        "msg_code": "V0282"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20201030.330639rc3",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 184898,
+    "completedDate": "2021-02-19 15:44:13.699550"
+}

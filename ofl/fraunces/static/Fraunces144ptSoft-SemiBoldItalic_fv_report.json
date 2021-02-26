@@ -1,0 +1,102 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Fraunces144ptSoft-SemiBoldItalic.ttf",
+                "type": "ttf",
+                "size": 75288,
+                "md5": "0cb54d39148351926ce9e9d9e8fc2933",
+                "geometryMd5": "0d87f10a1c2d0ec74d947a63a392157b"
+            },
+            "name": {
+                "family": "Fraunces 144pt Soft SemiBold",
+                "subFamily": "Italic",
+                "fullName": "Fraunces 144pt Soft SemiBold Italic",
+                "psName": "Fraunces144ptSoft-SemiBoldItalic",
+                "versionText": "Version 1.000;[b76b70a41]",
+                "copyright": "Copyright 2020 The Fraunces Project Authors (github.com/undercasetype/Fraunces)",
+                "trademark": "Unknown",
+                "typographicFamily": "Fraunces 144pt Soft",
+                "typographicSubFamily": "SemiBold Italic",
+                "variationsPSNamePrefix": "FrauncesItalic"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 698,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "UCT ",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Fraunces 144pt Soft SemiBold Italic",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 6,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_5f3a9d196b65482693203768724044db.DSIG",
+                        "levelname": "ERROR",
+                        "message": "The digital signature of the file did not verify.",
+                        "timestamp": "2021-02-21T13:12:45.925007Z",
+                        "orig_output": "validate_5f3a9d196b65482693203768724044db.DSIG - ERROR - The digital signature of the file did not verify.",
+                        "msg_code": "E0502"
+                    },
+                    {
+                        "subroutine": "validate_5f3a9d196b65482693203768724044db.glyf.glyph 108 ('asterisk').contours.contour 1",
+                        "levelname": "ERROR",
+                        "message": "Contour is degenerate (only two (x,y) locations).",
+                        "timestamp": "2021-02-21T13:12:49.802686Z",
+                        "orig_output": "validate_5f3a9d196b65482693203768724044db.glyf.glyph 108 ('asterisk').contours.contour 1 - ERROR - Contour is degenerate (only two (x,y) locations).",
+                        "msg_code": "V1013"
+                    },
+                    {
+                        "subroutine": "validate_5f3a9d196b65482693203768724044db.glyf.glyph 471 ('oslash').contours.contour 2",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2021-02-21T13:12:53.433643Z",
+                        "orig_output": "validate_5f3a9d196b65482693203768724044db.glyf.glyph 471 ('oslash').contours.contour 2 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_5f3a9d196b65482693203768724044db.glyf.glyph 81 ('guillemetright')",
+                        "levelname": "ERROR",
+                        "message": "Bounds should be [394, 102, 1326, 808], but are [9, 102, 941, 808].",
+                        "timestamp": "2021-02-21T13:12:49.386972Z",
+                        "orig_output": "validate_5f3a9d196b65482693203768724044db.glyf.glyph 81 ('guillemetright') - ERROR - Bounds should be [394, 102, 1326, 808], but are [9, 102, 941, 808].",
+                        "msg_code": "E1112"
+                    },
+                    {
+                        "subroutine": "validate_5f3a9d196b65482693203768724044db.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2021-02-21T13:13:01.384770Z",
+                        "orig_output": "validate_5f3a9d196b65482693203768724044db.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
+                    },
+                    {
+                        "subroutine": "validate_5f3a9d196b65482693203768724044db.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 994, but is 995",
+                        "timestamp": "2021-02-21T13:12:47.424290Z",
+                        "orig_output": "validate_5f3a9d196b65482693203768724044db.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 994, but is 995",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20201030.330639rc3",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 19432,
+    "completedDate": "2021-02-21 13:13:01.733151"
+}

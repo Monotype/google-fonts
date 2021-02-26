@@ -1,0 +1,75 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "NotoSerifGujarati[wght].ttf",
+                "type": "ttf",
+                "size": 293360,
+                "md5": "f38c22731b4a46bfbe5f479e7508e895",
+                "geometryMd5": "8644024bd906f830930e5b3f9cefe674"
+            },
+            "name": {
+                "family": "Noto Serif Gujarati",
+                "subFamily": "Regular",
+                "fullName": "Noto Serif Gujarati Regular",
+                "psName": "NotoSerifGujarati-Regular",
+                "versionText": "Version 2.002",
+                "copyright": "Copyright 2017 Google LLC. All Rights Reserved.",
+                "trademark": "Noto is a trademark of Google LLC."
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 456,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "GOOG",
+                "font_vendor": "Google"
+            },
+            "validation": {
+                "font_full_name": "Noto Serif Gujarati Regular",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 3,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_7ebed394f3c44e98a55f38627b7efabc.GPOS.features.[b'blwm0002'].[0]",
+                        "levelname": "ERROR",
+                        "message": "The ligature glyph 206 has an inconsistent number of input components.",
+                        "timestamp": "2021-02-20T00:11:34.449514Z",
+                        "orig_output": "validate_7ebed394f3c44e98a55f38627b7efabc.GPOS.features.[b'blwm0002'].[0] - ERROR - The ligature glyph 206 has an inconsistent number of input components.",
+                        "msg_code": "Vxxxx"
+                    },
+                    {
+                        "subroutine": "validate_7ebed394f3c44e98a55f38627b7efabc.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2021-02-20T00:12:28.816390Z",
+                        "orig_output": "validate_7ebed394f3c44e98a55f38627b7efabc.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
+                    },
+                    {
+                        "subroutine": "validate_7ebed394f3c44e98a55f38627b7efabc.STAT",
+                        "levelname": "ERROR",
+                        "message": "The following axes have no AxisValueTables associated with them: ['wght']",
+                        "timestamp": "2021-02-20T00:11:37.508271Z",
+                        "orig_output": "validate_7ebed394f3c44e98a55f38627b7efabc.STAT - ERROR - The following axes have no AxisValueTables associated with them: ['wght']",
+                        "msg_code": "Vxxxx"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20201030.330639rc3",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 60293,
+    "completedDate": "2021-02-20 00:12:29.330639"
+}

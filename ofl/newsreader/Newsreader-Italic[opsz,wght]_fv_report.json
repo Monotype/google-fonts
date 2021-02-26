@@ -4,20 +4,21 @@
             "file": {
                 "name": "Newsreader-Italic[opsz,wght].ttf",
                 "type": "ttf",
-                "size": 496176,
-                "md5": "4f5e368fb66d8c530994bcb0948b4776",
-                "geometryMd5": "baeaf3906348e40ed7c9835aae14dda3"
+                "size": 495684,
+                "md5": "ff213d40d31981297e2b700f7cf9b048",
+                "geometryMd5": "c5d026e19e63e19b7d1d208e3fe21992"
             },
             "name": {
-                "family": "Newsreader Text",
+                "family": "Newsreader 16pt",
                 "subFamily": "Italic",
-                "fullName": "Newsreader Text Italic",
-                "psName": "Newsreader-TextItalic",
-                "versionText": "Version 1.001",
+                "fullName": "Newsreader 16pt Italic",
+                "psName": "Newsreader16pt-Italic",
+                "versionText": "Version 1.003",
                 "copyright": "Copyright 2020 The Newsreader Project Authors (http://github.com/productiontype/Newsreader)",
                 "trademark": "Newsreader is a registered trademark of Production Systems SAS.",
                 "typographicFamily": "Newsreader",
-                "typographicSubFamily": "Italic"
+                "typographicSubFamily": "Italic",
+                "variationsPSNamePrefix": "NewsreaderItalic"
             },
             "format": {
                 "format": "OT",
@@ -30,88 +31,48 @@
                 "font_vendor": "Production Type"
             },
             "validation": {
-                "font_full_name": "Newsreader Text Italic",
+                "font_full_name": "Newsreader 16pt Italic",
                 "level": "ERROR",
                 "last_success": "finished validation python",
                 "msg_count": {
                     "CRITICAL": 0,
-                    "ERROR": 8,
+                    "ERROR": 3,
                     "WARNING": 0,
                     "INFO": 0,
                     "DEBUG": 0
                 },
                 "result": [
                     {
-                        "subroutine": "validate_ebd24da5ad5e44fb9aa0f6ae49e950a3.fvar",
+                        "subroutine": "validate_38239b88c78a468989579f4dc9359e00.DSIG",
                         "levelname": "ERROR",
-                        "message": "minValue 0.0 is out of range for 'opsz' axis",
-                        "timestamp": "2020-09-25T11:27:48.899916Z",
-                        "orig_output": "validate_ebd24da5ad5e44fb9aa0f6ae49e950a3.fvar - ERROR - minValue 0.0 is out of range for 'opsz' axis",
-                        "msg_code": "V1081"
+                        "message": "The digital signature of the file did not verify.",
+                        "timestamp": "2021-02-24T00:36:48.409200Z",
+                        "orig_output": "validate_38239b88c78a468989579f4dc9359e00.DSIG - ERROR - The digital signature of the file did not verify.",
+                        "msg_code": "E0502"
                     },
                     {
-                        "subroutine": "validate_ebd24da5ad5e44fb9aa0f6ae49e950a3.hhea",
-                        "levelname": "ERROR",
-                        "message": "The caretSlopeRise/caretSlopeRun (1/0) angle ( 90.0) is not consistent with post.italicAngle (-17.0)",
-                        "timestamp": "2020-09-25T11:28:23.842370Z",
-                        "orig_output": "validate_ebd24da5ad5e44fb9aa0f6ae49e950a3.hhea - ERROR - The caretSlopeRise/caretSlopeRun (1/0) angle ( 90.0) is not consistent with post.italicAngle (-17.0)",
-                        "msg_code": "E1411"
-                    },
-                    {
-                        "subroutine": "validate_ebd24da5ad5e44fb9aa0f6ae49e950a3.hhea",
-                        "levelname": "ERROR",
-                        "message": "The caretSlopeRun is zero, but the post.italicAngle is nonzero (-17.0)",
-                        "timestamp": "2020-09-25T11:28:23.842474Z",
-                        "orig_output": "validate_ebd24da5ad5e44fb9aa0f6ae49e950a3.hhea - ERROR - The caretSlopeRun is zero, but the post.italicAngle is nonzero (-17.0)",
-                        "msg_code": "E1413"
-                    },
-                    {
-                        "subroutine": "validate_ebd24da5ad5e44fb9aa0f6ae49e950a3.name",
+                        "subroutine": "validate_38239b88c78a468989579f4dc9359e00.name",
                         "levelname": "ERROR",
                         "message": "Postscript name not present for both Mac and Windows.",
-                        "timestamp": "2020-09-25T11:28:24.218530Z",
-                        "orig_output": "validate_ebd24da5ad5e44fb9aa0f6ae49e950a3.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2021-02-24T00:39:42.893572Z",
+                        "orig_output": "validate_38239b88c78a468989579f4dc9359e00.name - ERROR - Postscript name not present for both Mac and Windows.",
                         "msg_code": "E2008"
                     },
                     {
-                        "subroutine": "validate_ebd24da5ad5e44fb9aa0f6ae49e950a3.OS_2.xAvgCharWidth",
+                        "subroutine": "validate_38239b88c78a468989579f4dc9359e00.OS_2.xAvgCharWidth",
                         "levelname": "ERROR",
                         "message": "The xAvgCharWidth should be 1041, but is 1042",
-                        "timestamp": "2020-09-25T11:27:48.887772Z",
-                        "orig_output": "validate_ebd24da5ad5e44fb9aa0f6ae49e950a3.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 1041, but is 1042",
+                        "timestamp": "2021-02-24T00:39:00.920498Z",
+                        "orig_output": "validate_38239b88c78a468989579f4dc9359e00.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 1041, but is 1042",
                         "msg_code": "E2135"
-                    },
-                    {
-                        "subroutine": "validate_ebd24da5ad5e44fb9aa0f6ae49e950a3.post",
-                        "levelname": "ERROR",
-                        "message": "Nonzero italic angle but zero hhea.caretSlopeRun",
-                        "timestamp": "2020-09-25T11:28:24.223651Z",
-                        "orig_output": "validate_ebd24da5ad5e44fb9aa0f6ae49e950a3.post - ERROR - Nonzero italic angle but zero hhea.caretSlopeRun",
-                        "msg_code": "E2306"
-                    },
-                    {
-                        "subroutine": "validate_ebd24da5ad5e44fb9aa0f6ae49e950a3.post",
-                        "levelname": "ERROR",
-                        "message": "The slope of the hhea caretSlopeRise/Run deviates from the italic angle of -17.0 by more than 0.5 degrees.",
-                        "timestamp": "2020-09-25T11:28:24.223739Z",
-                        "orig_output": "validate_ebd24da5ad5e44fb9aa0f6ae49e950a3.post - ERROR - The slope of the hhea caretSlopeRise/Run deviates from the italic angle of -17.0 by more than 0.5 degrees.",
-                        "msg_code": "E2307"
-                    },
-                    {
-                        "subroutine": "validate_ebd24da5ad5e44fb9aa0f6ae49e950a3.STAT",
-                        "levelname": "ERROR",
-                        "message": "value 0.0 is out of range for axis 'opsz'",
-                        "timestamp": "2020-09-25T11:27:48.888182Z",
-                        "orig_output": "validate_ebd24da5ad5e44fb9aa0f6ae49e950a3.STAT - ERROR - value 0.0 is out of range for axis 'opsz'",
-                        "msg_code": "V1081"
                     }
                 ]
             }
         }
     ],
     "skipped": [],
-    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontio3_version": "3.7.20201030.330639rc3",
     "fontvalidator_version": "20200305.1",
-    "runningTime": 138777,
-    "completedDate": "2020-09-25 11:28:24.488996"
+    "runningTime": 182757,
+    "completedDate": "2021-02-24 00:39:43.327067"
 }

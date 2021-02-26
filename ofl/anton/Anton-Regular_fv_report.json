@@ -4,17 +4,17 @@
             "file": {
                 "name": "Anton-Regular.ttf",
                 "type": "ttf",
-                "size": 79396,
-                "md5": "b13e6268396417d98199eb3468cd0bda",
-                "geometryMd5": "870c606bbb6ff55562d48924374fadfa"
+                "size": 170812,
+                "md5": "da0af4e9427ac8ddcac1a4eb0fb06f69",
+                "geometryMd5": "98d71bd7cbba43134a7c0992eb7f9d0a"
             },
             "name": {
                 "family": "Anton",
                 "subFamily": "Regular",
                 "fullName": "Anton Regular",
                 "psName": "Anton-Regular",
-                "versionText": "Version 2.000",
-                "copyright": "Copyright 2011 The Anton Project Authors",
+                "versionText": "Version 2.116; ttfautohint (v1.8.3)",
+                "copyright": "Copyright 2020 The Anton Project Authors (https://github.com/googlefonts/AntonFont.git)",
                 "trademark": "Unknown"
             },
             "format": {
@@ -22,7 +22,7 @@
                 "flavor": "TT"
             },
             "summary": {
-                "num_glyphs": 659,
+                "num_glyphs": 1373,
                 "embedding": "Installable Embedding",
                 "font_vendor_id": "newt",
                 "font_vendor": "Unknown"
@@ -33,43 +33,87 @@
                 "last_success": "finished validation python",
                 "msg_count": {
                     "CRITICAL": 0,
-                    "ERROR": 3,
+                    "ERROR": 7,
                     "WARNING": 0,
                     "INFO": 0,
                     "DEBUG": 0
                 },
                 "result": [
                     {
-                        "subroutine": "validate_26c9d109fcef404fb026a69d9c32e2c3.fontedit.OS_2.PANOSE.weight",
+                        "subroutine": "validate_9929aa06e365495c952f8b46d13b5fa2.DSIG",
                         "levelname": "ERROR",
-                        "message": "Value 5 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
-                        "timestamp": "2020-09-25T03:44:24.699698Z",
-                        "orig_output": "validate_26c9d109fcef404fb026a69d9c32e2c3.fontedit.OS_2.PANOSE.weight - ERROR - Value 5 is not a valid enum value. 0 will be used instead, but the font should be fixed.",
-                        "msg_code": "E2111"
+                        "message": "The digital signature of the file did not verify.",
+                        "timestamp": "2021-02-20T05:11:06.105451Z",
+                        "orig_output": "validate_9929aa06e365495c952f8b46d13b5fa2.DSIG - ERROR - The digital signature of the file did not verify.",
+                        "msg_code": "E0502"
                     },
                     {
-                        "subroutine": "validate_26c9d109fcef404fb026a69d9c32e2c3.glyf.glyph 218 ('uni1E0A')",
+                        "subroutine": "validate_9929aa06e365495c952f8b46d13b5fa2.GPOS.features.[b'mark0003'].[0]",
                         "levelname": "ERROR",
-                        "message": "Bounds should be [38, 0, 463, 1050], but are [38, 0, 462, 1050].",
-                        "timestamp": "2020-09-25T03:44:26.711344Z",
-                        "orig_output": "validate_26c9d109fcef404fb026a69d9c32e2c3.glyf.glyph 218 ('uni1E0A') - ERROR - Bounds should be [38, 0, 463, 1050], but are [38, 0, 462, 1050].",
-                        "msg_code": "E1112"
+                        "message": "The following ligatures have inconsistent counts between the GSUB Ligature Lookup that created them and the length of the mark-to-ligature data in this table: [677]",
+                        "timestamp": "2021-02-20T05:11:06.575133Z",
+                        "orig_output": "validate_9929aa06e365495c952f8b46d13b5fa2.GPOS.features.[b'mark0003'].[0] - ERROR - The following ligatures have inconsistent counts between the GSUB Ligature Lookup that created them and the length of the mark-to-ligature data in this table: [677]",
+                        "msg_code": "V1062"
                     },
                     {
-                        "subroutine": "validate_26c9d109fcef404fb026a69d9c32e2c3.glyf.glyph 42 ('Dcroat')",
+                        "subroutine": "validate_9929aa06e365495c952f8b46d13b5fa2.hints.glyph 1206.FDEF 22.FDEF 21.FDEF 139.FDEF 82.FDEF 70.FDEF 6.call FDEF 5",
                         "levelname": "ERROR",
-                        "message": "Bounds should be [1, 0, 463, 859], but are [1, 0, 462, 859].",
-                        "timestamp": "2020-09-25T03:44:25.969180Z",
-                        "orig_output": "validate_26c9d109fcef404fb026a69d9c32e2c3.glyf.glyph 42 ('Dcroat') - ERROR - Bounds should be [1, 0, 463, 859], but are [1, 0, 462, 859].",
-                        "msg_code": "E1112"
+                        "message": "RCVT[] in FDEF 5 (PC 1) is attempting to read from CVT index 95, which does not exist!",
+                        "timestamp": "2021-02-20T05:13:11.933620Z",
+                        "orig_output": "validate_9929aa06e365495c952f8b46d13b5fa2.hints.glyph 1206.FDEF 22.FDEF 21.FDEF 139.FDEF 82.FDEF 70.FDEF 6.call FDEF 5 - ERROR - RCVT[] in FDEF 5 (PC 1) is attempting to read from CVT index 95, which does not exist!",
+                        "glyph": {
+                            "id": 1206,
+                            "name": "three.sinf"
+                        },
+                        "msg_code": "G0029"
+                    },
+                    {
+                        "subroutine": "validate_9929aa06e365495c952f8b46d13b5fa2.hints.glyph 1207.FDEF 22.FDEF 21.FDEF 139.FDEF 82.FDEF 70.FDEF 6.call FDEF 5",
+                        "levelname": "ERROR",
+                        "message": "RCVT[] in FDEF 5 (PC 1) is attempting to read from CVT index 95, which does not exist!",
+                        "timestamp": "2021-02-20T05:13:12.093240Z",
+                        "orig_output": "validate_9929aa06e365495c952f8b46d13b5fa2.hints.glyph 1207.FDEF 22.FDEF 21.FDEF 139.FDEF 82.FDEF 70.FDEF 6.call FDEF 5 - ERROR - RCVT[] in FDEF 5 (PC 1) is attempting to read from CVT index 95, which does not exist!",
+                        "glyph": {
+                            "id": 1207,
+                            "name": "three.subs"
+                        },
+                        "msg_code": "G0029"
+                    },
+                    {
+                        "subroutine": "validate_9929aa06e365495c952f8b46d13b5fa2.hints.glyph 1208.FDEF 22.FDEF 21.FDEF 139.FDEF 82.FDEF 70.FDEF 6.call FDEF 5",
+                        "levelname": "ERROR",
+                        "message": "RCVT[] in FDEF 5 (PC 1) is attempting to read from CVT index 95, which does not exist!",
+                        "timestamp": "2021-02-20T05:13:12.405964Z",
+                        "orig_output": "validate_9929aa06e365495c952f8b46d13b5fa2.hints.glyph 1208.FDEF 22.FDEF 21.FDEF 139.FDEF 82.FDEF 70.FDEF 6.call FDEF 5 - ERROR - RCVT[] in FDEF 5 (PC 1) is attempting to read from CVT index 95, which does not exist!",
+                        "glyph": {
+                            "id": 1208,
+                            "name": "three.sups"
+                        },
+                        "msg_code": "G0029"
+                    },
+                    {
+                        "subroutine": "validate_9929aa06e365495c952f8b46d13b5fa2.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2021-02-20T05:12:19.317402Z",
+                        "orig_output": "validate_9929aa06e365495c952f8b46d13b5fa2.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
+                    },
+                    {
+                        "subroutine": "validate_9929aa06e365495c952f8b46d13b5fa2.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 937, but is 938",
+                        "timestamp": "2021-02-20T05:11:07.876987Z",
+                        "orig_output": "validate_9929aa06e365495c952f8b46d13b5fa2.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 937, but is 938",
+                        "msg_code": "E2135"
                     }
                 ]
             }
         }
     ],
     "skipped": [],
-    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontio3_version": "3.7.20201030.330639rc3",
     "fontvalidator_version": "20200305.1",
-    "runningTime": 58388,
-    "completedDate": "2020-09-25 03:45:20.474138"
+    "runningTime": 136016,
+    "completedDate": "2021-02-20 05:13:18.536515"
 }

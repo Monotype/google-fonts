@@ -1,0 +1,78 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "NotoSansDeseret-Regular.ttf",
+                "type": "ttf",
+                "size": 19928,
+                "md5": "5352d53e84587ccc2e6a11006d5acb39",
+                "geometryMd5": "b8a79481fcacd71c01678ee321adc94e"
+            },
+            "name": {
+                "family": "Noto Sans Deseret",
+                "subFamily": "Regular",
+                "fullName": "Noto Sans Deseret Regular",
+                "psName": "NotoSansDeseret-Regular",
+                "versionText": "Version 2.000; ttfautohint (v1.8.3) -l 8 -r 50 -G 200 -x 14 -D dsrt -f none -a qsq -X \"\"",
+                "copyright": "Copyright 2017 Google Inc. All Rights Reserved.",
+                "trademark": "Noto is a trademark of Google Inc."
+            },
+            "format": {
+                "format": "TT"
+            },
+            "summary": {
+                "num_glyphs": 85,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "GOOG",
+                "font_vendor": "Google"
+            },
+            "validation": {
+                "font_full_name": "Noto Sans Deseret Regular",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 3,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_ffe4e3b749594b9fa7bf4fe16524bcc1.DSIG",
+                        "levelname": "ERROR",
+                        "message": "The digital signature of the file did not verify.",
+                        "timestamp": "2021-02-20T06:00:48.938940Z",
+                        "orig_output": "validate_ffe4e3b749594b9fa7bf4fe16524bcc1.DSIG - ERROR - The digital signature of the file did not verify.",
+                        "msg_code": "E0502"
+                    },
+                    {
+                        "subroutine": "validate_ffe4e3b749594b9fa7bf4fe16524bcc1.hints.glyph 0.FDEF 23.FDEF 21.FDEF 139.FDEF 79.FDEF 70.FDEF 4",
+                        "levelname": "ERROR",
+                        "message": "RCVT[] in FDEF 4 (PC 31) is attempting to read from CVT index 71, which does not exist!",
+                        "timestamp": "2021-02-20T06:00:55.930100Z",
+                        "orig_output": "validate_ffe4e3b749594b9fa7bf4fe16524bcc1.hints.glyph 0.FDEF 23.FDEF 21.FDEF 139.FDEF 79.FDEF 70.FDEF 4 - ERROR - RCVT[] in FDEF 4 (PC 31) is attempting to read from CVT index 71, which does not exist!",
+                        "glyph": {
+                            "id": 0,
+                            "name": ".notdef"
+                        },
+                        "msg_code": "G0029"
+                    },
+                    {
+                        "subroutine": "validate_ffe4e3b749594b9fa7bf4fe16524bcc1.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2021-02-20T06:00:55.836674Z",
+                        "orig_output": "validate_ffe4e3b749594b9fa7bf4fe16524bcc1.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20201030.330639rc3",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 14264,
+    "completedDate": "2021-02-20 06:00:59.904811"
+}

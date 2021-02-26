@@ -1,0 +1,84 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "NotoSansOldSogdian-Regular.ttf",
+                "type": "ttf",
+                "size": 15540,
+                "md5": "816db1c4b9e0edc3e6303ff1542009e6",
+                "geometryMd5": "33d988a9e396b9b547595927e59b8721"
+            },
+            "name": {
+                "family": "Noto Sans OldSogdian",
+                "subFamily": "Regular",
+                "fullName": "Noto Sans Old Sogdian Regular",
+                "psName": "NotoSansOldSogdian-Regular",
+                "versionText": "Version 2.000",
+                "copyright": "Copyright 2019 Google Inc. All Rights Reserved.",
+                "trademark": "Noto is a trademark of Google Inc.",
+                "typographicFamily": "Noto Sans Old Sogdian"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 60,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "GOOG",
+                "font_vendor": "Google"
+            },
+            "validation": {
+                "font_full_name": "Noto Sans Old Sogdian Regular",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 4,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_0a1559cf67fa4e299bf38cc20b4531d1.DSIG",
+                        "levelname": "ERROR",
+                        "message": "The digital signature of the file did not verify.",
+                        "timestamp": "2021-02-20T17:22:58.289945Z",
+                        "orig_output": "validate_0a1559cf67fa4e299bf38cc20b4531d1.DSIG - ERROR - The digital signature of the file did not verify.",
+                        "msg_code": "E0502"
+                    },
+                    {
+                        "subroutine": "validate_0a1559cf67fa4e299bf38cc20b4531d1.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2021-02-20T17:23:00.329610Z",
+                        "orig_output": "validate_0a1559cf67fa4e299bf38cc20b4531d1.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
+                    },
+                    {
+                        "subroutine": "validate_0a1559cf67fa4e299bf38cc20b4531d1.OS_2.usMaxContext",
+                        "levelname": "ERROR",
+                        "message": "The usMaxContext should be 2, but is 0",
+                        "timestamp": "2021-02-20T17:22:59.176981Z",
+                        "orig_output": "validate_0a1559cf67fa4e299bf38cc20b4531d1.OS_2.usMaxContext - ERROR - The usMaxContext should be 2, but is 0",
+                        "msg_code": "V0831"
+                    },
+                    {
+                        "subroutine": "validate_0a1559cf67fa4e299bf38cc20b4531d1.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 595, but is 596",
+                        "timestamp": "2021-02-20T17:22:59.177171Z",
+                        "orig_output": "validate_0a1559cf67fa4e299bf38cc20b4531d1.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 595, but is 596",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20201030.330639rc3",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 5579,
+    "completedDate": "2021-02-20 17:23:00.490269"
+}

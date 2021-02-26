@@ -1,0 +1,91 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Imbue10pt-Bold.ttf",
+                "type": "ttf",
+                "size": 131776,
+                "md5": "fcedd08d345f29476855f4b4c90b68b3",
+                "geometryMd5": "cc3d7787caf2a927c169ed77bc13e333"
+            },
+            "name": {
+                "family": "Imbue 10pt",
+                "subFamily": "Bold",
+                "fullName": "Imbue 10pt Bold",
+                "psName": "Imbue10pt-Bold",
+                "versionText": "Version 1.102; ttfautohint (v1.8.3)",
+                "copyright": "Copyright 2020 The Imbue Project Authors (https://github.com/Etcetera-Type-Co/Imbue)",
+                "trademark": "Unknown"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 895,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "ETCO",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Imbue 10pt Bold",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 5,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_b45e4a25ddfe424c9b87dac7ac533293.DSIG",
+                        "levelname": "ERROR",
+                        "message": "The digital signature of the file did not verify.",
+                        "timestamp": "2021-02-21T10:09:33.146974Z",
+                        "orig_output": "validate_b45e4a25ddfe424c9b87dac7ac533293.DSIG - ERROR - The digital signature of the file did not verify.",
+                        "msg_code": "E0502"
+                    },
+                    {
+                        "subroutine": "validate_b45e4a25ddfe424c9b87dac7ac533293.glyf.glyph 242 ('g').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2021-02-21T10:09:38.091069Z",
+                        "orig_output": "validate_b45e4a25ddfe424c9b87dac7ac533293.glyf.glyph 242 ('g').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_b45e4a25ddfe424c9b87dac7ac533293.GPOS.features.[b'mark0003'].[0]",
+                        "levelname": "ERROR",
+                        "message": "The following ligatures have inconsistent counts between the GSUB Ligature Lookup that created them and the length of the mark-to-ligature data in this table: [419, 420]",
+                        "timestamp": "2021-02-21T10:09:33.585283Z",
+                        "orig_output": "validate_b45e4a25ddfe424c9b87dac7ac533293.GPOS.features.[b'mark0003'].[0] - ERROR - The following ligatures have inconsistent counts between the GSUB Ligature Lookup that created them and the length of the mark-to-ligature data in this table: [419, 420]",
+                        "msg_code": "V1062"
+                    },
+                    {
+                        "subroutine": "validate_b45e4a25ddfe424c9b87dac7ac533293.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2021-02-21T10:11:05.172013Z",
+                        "orig_output": "validate_b45e4a25ddfe424c9b87dac7ac533293.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
+                    },
+                    {
+                        "subroutine": "validate_b45e4a25ddfe424c9b87dac7ac533293.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 789, but is 790",
+                        "timestamp": "2021-02-21T10:09:34.804162Z",
+                        "orig_output": "validate_b45e4a25ddfe424c9b87dac7ac533293.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 789, but is 790",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20201030.330639rc3",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 143322,
+    "completedDate": "2021-02-21 10:11:52.295113"
+}

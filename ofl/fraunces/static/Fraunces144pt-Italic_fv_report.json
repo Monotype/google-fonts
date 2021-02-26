@@ -1,0 +1,92 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Fraunces144pt-Italic.ttf",
+                "type": "ttf",
+                "size": 74656,
+                "md5": "4cb8c5a4228339eed98354d4e231860e",
+                "geometryMd5": "3da11c81acfa43874a4749ecfd4730df"
+            },
+            "name": {
+                "family": "Fraunces 144pt",
+                "subFamily": "Italic",
+                "fullName": "Fraunces 144pt Italic",
+                "psName": "Fraunces144pt-Italic",
+                "versionText": "Version 1.000;[b76b70a41]",
+                "copyright": "Copyright 2020 The Fraunces Project Authors (github.com/undercasetype/Fraunces)",
+                "trademark": "Unknown",
+                "variationsPSNamePrefix": "FrauncesItalic"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 698,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "UCT ",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Fraunces 144pt Italic",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 5,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_38aca7c5e4434bdfa7a6735bdd28d791.DSIG",
+                        "levelname": "ERROR",
+                        "message": "The digital signature of the file did not verify.",
+                        "timestamp": "2021-02-19T22:15:18.925595Z",
+                        "orig_output": "validate_38aca7c5e4434bdfa7a6735bdd28d791.DSIG - ERROR - The digital signature of the file did not verify.",
+                        "msg_code": "E0502"
+                    },
+                    {
+                        "subroutine": "validate_38aca7c5e4434bdfa7a6735bdd28d791.glyf.glyph 55 ('v').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2021-02-19T22:15:21.795601Z",
+                        "orig_output": "validate_38aca7c5e4434bdfa7a6735bdd28d791.glyf.glyph 55 ('v').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_38aca7c5e4434bdfa7a6735bdd28d791.glyf.glyph 81 ('guillemetright')",
+                        "levelname": "ERROR",
+                        "message": "Bounds should be [343, 172, 1151, 799], but are [30, 172, 838, 799].",
+                        "timestamp": "2021-02-19T22:15:22.267238Z",
+                        "orig_output": "validate_38aca7c5e4434bdfa7a6735bdd28d791.glyf.glyph 81 ('guillemetright') - ERROR - Bounds should be [343, 172, 1151, 799], but are [30, 172, 838, 799].",
+                        "msg_code": "E1112"
+                    },
+                    {
+                        "subroutine": "validate_38aca7c5e4434bdfa7a6735bdd28d791.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2021-02-19T22:15:37.614594Z",
+                        "orig_output": "validate_38aca7c5e4434bdfa7a6735bdd28d791.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
+                    },
+                    {
+                        "subroutine": "validate_38aca7c5e4434bdfa7a6735bdd28d791.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 934, but is 935",
+                        "timestamp": "2021-02-19T22:15:20.278682Z",
+                        "orig_output": "validate_38aca7c5e4434bdfa7a6735bdd28d791.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 934, but is 935",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20201030.330639rc3",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 22945,
+    "completedDate": "2021-02-19 22:15:38.341005"
+}

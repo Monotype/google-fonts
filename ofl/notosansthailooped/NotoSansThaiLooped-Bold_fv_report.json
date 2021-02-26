@@ -1,0 +1,76 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "NotoSansThaiLooped-Bold.ttf",
+                "type": "ttf",
+                "size": 37872,
+                "md5": "45c49d34256e3002217c36373fef4acb",
+                "geometryMd5": "b3bcadde43f7a74aaeb8b46d70be68a4"
+            },
+            "name": {
+                "family": "Noto Sans Thai Looped Bold",
+                "subFamily": "Bold",
+                "fullName": "Noto Sans Thai Looped Bold",
+                "psName": "NotoSansThaiLooped-Bold",
+                "versionText": "Version 1.00",
+                "copyright": "Copyright 2020 Google LLC. All rights reserved",
+                "trademark": "Noto is a trademark of Google LLC.",
+                "typographicFamily": "Noto Sans Thai Looped"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 212,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "GOOG",
+                "font_vendor": "Google"
+            },
+            "validation": {
+                "font_full_name": "Noto Sans Thai Looped Bold",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 3,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_7262b2f7568d472fb08a8539bc0959e3.DSIG",
+                        "levelname": "ERROR",
+                        "message": "The digital signature of the file did not verify.",
+                        "timestamp": "2021-02-21T11:23:25.150843Z",
+                        "orig_output": "validate_7262b2f7568d472fb08a8539bc0959e3.DSIG - ERROR - The digital signature of the file did not verify.",
+                        "msg_code": "E0502"
+                    },
+                    {
+                        "subroutine": "validate_7262b2f7568d472fb08a8539bc0959e3.glyf.glyph 16 ('uni0E09').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2021-02-21T11:23:26.772238Z",
+                        "orig_output": "validate_7262b2f7568d472fb08a8539bc0959e3.glyf.glyph 16 ('uni0E09').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_7262b2f7568d472fb08a8539bc0959e3.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2021-02-21T11:23:32.504525Z",
+                        "orig_output": "validate_7262b2f7568d472fb08a8539bc0959e3.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20201030.330639rc3",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 11425,
+    "completedDate": "2021-02-21 11:23:32.974774"
+}

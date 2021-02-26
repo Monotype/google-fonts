@@ -1,0 +1,86 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Fraunces144ptSuperSoft-ThinItalic.ttf",
+                "type": "ttf",
+                "size": 74860,
+                "md5": "e90ade28bce746096772068df8da3a7e",
+                "geometryMd5": "30df1d6148d3288d0583e0840eddf985"
+            },
+            "name": {
+                "family": "Fraunces 144pt SuperSoft Thin",
+                "subFamily": "Italic",
+                "fullName": "Fraunces 144pt SuperSoft Thin Italic",
+                "psName": "Fraunces144ptSuperSoft-ThinItalic",
+                "versionText": "Version 1.000;[b76b70a41]",
+                "copyright": "Copyright 2020 The Fraunces Project Authors (github.com/undercasetype/Fraunces)",
+                "trademark": "Unknown",
+                "typographicFamily": "Fraunces 144pt SuperSoft",
+                "typographicSubFamily": "Thin Italic",
+                "variationsPSNamePrefix": "FrauncesItalic"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 698,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "UCT ",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Fraunces 144pt SuperSoft Thin Italic",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 4,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_a601c8b1dd26484fa3ce64f1015fa0d1.DSIG",
+                        "levelname": "ERROR",
+                        "message": "The digital signature of the file did not verify.",
+                        "timestamp": "2021-02-20T03:49:19.260152Z",
+                        "orig_output": "validate_a601c8b1dd26484fa3ce64f1015fa0d1.DSIG - ERROR - The digital signature of the file did not verify.",
+                        "msg_code": "E0502"
+                    },
+                    {
+                        "subroutine": "validate_a601c8b1dd26484fa3ce64f1015fa0d1.glyf.glyph 108 ('asterisk').contours.contour 1",
+                        "levelname": "ERROR",
+                        "message": "Contour is degenerate (only two (x,y) locations).",
+                        "timestamp": "2021-02-20T03:49:23.928126Z",
+                        "orig_output": "validate_a601c8b1dd26484fa3ce64f1015fa0d1.glyf.glyph 108 ('asterisk').contours.contour 1 - ERROR - Contour is degenerate (only two (x,y) locations).",
+                        "msg_code": "V1013"
+                    },
+                    {
+                        "subroutine": "validate_a601c8b1dd26484fa3ce64f1015fa0d1.glyf.glyph 81 ('guillemetright')",
+                        "levelname": "ERROR",
+                        "message": "Bounds should be [365, 102, 1148, 673], but are [38, 100, 821, 671].",
+                        "timestamp": "2021-02-20T03:49:23.454064Z",
+                        "orig_output": "validate_a601c8b1dd26484fa3ce64f1015fa0d1.glyf.glyph 81 ('guillemetright') - ERROR - Bounds should be [365, 102, 1148, 673], but are [38, 100, 821, 671].",
+                        "msg_code": "E1112"
+                    },
+                    {
+                        "subroutine": "validate_a601c8b1dd26484fa3ce64f1015fa0d1.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2021-02-20T03:49:42.118155Z",
+                        "orig_output": "validate_a601c8b1dd26484fa3ce64f1015fa0d1.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20201030.330639rc3",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 27387,
+    "completedDate": "2021-02-20 03:49:42.914830"
+}

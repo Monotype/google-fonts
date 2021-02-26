@@ -1,0 +1,83 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "NotoSerifBalinese-Regular.ttf",
+                "type": "ttf",
+                "size": 51200,
+                "md5": "0a3fb5e7a7791e5f27c7c9dc1759cfb9",
+                "geometryMd5": "9041377b1961600e60a1af659413b182"
+            },
+            "name": {
+                "family": "Noto Serif Balinese",
+                "subFamily": "Regular",
+                "fullName": "Noto Serif Balinese Regular",
+                "psName": "NotoSerifBalinese-Regular",
+                "versionText": "Version 2.000",
+                "copyright": "Copyright 2017 Google Inc. All Rights Reserved.",
+                "trademark": "Noto is a trademark of Google Inc."
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 217,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "GOOG",
+                "font_vendor": "Google"
+            },
+            "validation": {
+                "font_full_name": "Noto Serif Balinese Regular",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 4,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_1292e89975274a9589c5c2a7202356b3.DSIG",
+                        "levelname": "ERROR",
+                        "message": "The digital signature of the file did not verify.",
+                        "timestamp": "2021-02-19T19:48:28.344286Z",
+                        "orig_output": "validate_1292e89975274a9589c5c2a7202356b3.DSIG - ERROR - The digital signature of the file did not verify.",
+                        "msg_code": "E0502"
+                    },
+                    {
+                        "subroutine": "validate_1292e89975274a9589c5c2a7202356b3.GDEF.glyphClasses",
+                        "levelname": "ERROR",
+                        "message": "The following mark glyphs have nonzero advances: [158]",
+                        "timestamp": "2021-02-19T19:48:28.345049Z",
+                        "orig_output": "validate_1292e89975274a9589c5c2a7202356b3.GDEF.glyphClasses - ERROR - The following mark glyphs have nonzero advances: [158]",
+                        "msg_code": "V1102"
+                    },
+                    {
+                        "subroutine": "validate_1292e89975274a9589c5c2a7202356b3.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2021-02-19T19:48:37.330071Z",
+                        "orig_output": "validate_1292e89975274a9589c5c2a7202356b3.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
+                    },
+                    {
+                        "subroutine": "validate_1292e89975274a9589c5c2a7202356b3.OS_2.usMaxContext",
+                        "levelname": "ERROR",
+                        "message": "The usMaxContext should be 3, but is 0",
+                        "timestamp": "2021-02-19T19:48:29.169533Z",
+                        "orig_output": "validate_1292e89975274a9589c5c2a7202356b3.OS_2.usMaxContext - ERROR - The usMaxContext should be 3, but is 0",
+                        "msg_code": "V0831"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20201030.330639rc3",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 12508,
+    "completedDate": "2021-02-19 19:48:37.553051"
+}

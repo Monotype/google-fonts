@@ -4,16 +4,16 @@
             "file": {
                 "name": "Nunito-LightItalic.ttf",
                 "type": "ttf",
-                "size": 157256,
-                "md5": "ec6c6d39250d2df46f9b8e1dfc7fb385",
-                "geometryMd5": "b7f4d6ef8482e63c65cf3c0c620e1e82"
+                "size": 157416,
+                "md5": "b57968b5b480653895b120d9d33e9d07",
+                "geometryMd5": "62d127efcbbdd8d1a4183f438cbe6b53"
             },
             "name": {
                 "family": "Nunito Light",
                 "subFamily": "Italic",
                 "fullName": "Nunito Light Italic",
                 "psName": "Nunito-LightItalic",
-                "versionText": "Version 3.600; ttfautohint (v1.8.3)",
+                "versionText": "Version 3.601; ttfautohint (v1.8.2.53-6de2)",
                 "copyright": "Copyright 2014 The Nunito Project Authors (https://github.com/googlefonts/nunito)",
                 "trademark": "Unknown",
                 "typographicFamily": "Nunito",
@@ -35,26 +35,34 @@
                 "last_success": "finished validation python",
                 "msg_count": {
                     "CRITICAL": 0,
-                    "ERROR": 2,
+                    "ERROR": 3,
                     "WARNING": 0,
                     "INFO": 0,
                     "DEBUG": 0
                 },
                 "result": [
                     {
-                        "subroutine": "validate_0cd0803a81154f37a0e013046ab18ec5.glyf.glyph 231 ('uni01B3').contours.contour 0",
+                        "subroutine": "validate_bf6c3948f90c4b52937de15563ecc6ea.DSIG",
+                        "levelname": "ERROR",
+                        "message": "The digital signature of the file did not verify.",
+                        "timestamp": "2021-02-20T02:42:45.376264Z",
+                        "orig_output": "validate_bf6c3948f90c4b52937de15563ecc6ea.DSIG - ERROR - The digital signature of the file did not verify.",
+                        "msg_code": "E0502"
+                    },
+                    {
+                        "subroutine": "validate_bf6c3948f90c4b52937de15563ecc6ea.glyf.glyph 231 ('uni01B3').contours.contour 0",
                         "levelname": "ERROR",
                         "message": "Contour has duplicate adjacent points of differing on-curve states.",
-                        "timestamp": "2020-11-17T17:37:11.439826Z",
-                        "orig_output": "validate_0cd0803a81154f37a0e013046ab18ec5.glyf.glyph 231 ('uni01B3').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2021-02-20T02:42:48.883824Z",
+                        "orig_output": "validate_bf6c3948f90c4b52937de15563ecc6ea.glyf.glyph 231 ('uni01B3').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
                         "msg_code": "V0295"
                     },
                     {
-                        "subroutine": "validate_0cd0803a81154f37a0e013046ab18ec5.name",
+                        "subroutine": "validate_bf6c3948f90c4b52937de15563ecc6ea.name",
                         "levelname": "ERROR",
                         "message": "Postscript name not present for both Mac and Windows.",
-                        "timestamp": "2020-11-17T17:38:10.915028Z",
-                        "orig_output": "validate_0cd0803a81154f37a0e013046ab18ec5.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2021-02-20T02:43:27.061161Z",
+                        "orig_output": "validate_bf6c3948f90c4b52937de15563ecc6ea.name - ERROR - Postscript name not present for both Mac and Windows.",
                         "msg_code": "E2008"
                     }
                 ]
@@ -62,8 +70,8 @@
         }
     ],
     "skipped": [],
-    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontio3_version": "3.7.20201030.330639rc3",
     "fontvalidator_version": "20200305.1",
-    "runningTime": 106731,
-    "completedDate": "2020-11-17 17:38:50.857139"
+    "runningTime": 79123,
+    "completedDate": "2021-02-20 02:44:00.676144"
 }

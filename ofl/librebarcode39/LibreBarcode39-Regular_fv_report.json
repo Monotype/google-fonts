@@ -4,24 +4,25 @@
             "file": {
                 "name": "LibreBarcode39-Regular.ttf",
                 "type": "ttf",
-                "size": 14428,
-                "md5": "5beebbba7fc801bee1227c0f6a97d99a",
-                "geometryMd5": "6a2a7fc5f002df301a97495217eb70c1"
+                "size": 14800,
+                "md5": "ade869a1fbdd772d64c0cdd28110b882",
+                "geometryMd5": "fad44657cf331042c7a97ef4885ca965"
             },
             "name": {
                 "family": "Libre Barcode 39",
                 "subFamily": "Regular",
                 "fullName": "Libre Barcode 39 Regular",
                 "psName": "LibreBarcode39-Regular",
-                "versionText": "Version 1.003; ttfautohint (v1.6) -l 8 -r 50 -G 200 -x 14 -D latn -f none -w G -X \"\"",
-                "copyright": "Copyright 2017 The Libre Barcode Project Authors (lasse@graphicore.de)",
+                "versionText": "Version 1.005; ttfautohint (v1.8.3)",
+                "copyright": "Copyright 2017-2020 The Libre Barcode Project Authors (https://github.com/graphicore/librebarcode)",
                 "trademark": "Unknown"
             },
             "format": {
-                "format": "TT"
+                "format": "OT",
+                "flavor": "TT"
             },
             "summary": {
-                "num_glyphs": 118,
+                "num_glyphs": 121,
                 "embedding": "Installable Embedding",
                 "font_vendor_id": "GRCR",
                 "font_vendor": "Graphicore"
@@ -32,27 +33,55 @@
                 "last_success": "finished validation python",
                 "msg_count": {
                     "CRITICAL": 0,
-                    "ERROR": 1,
+                    "ERROR": 4,
                     "WARNING": 0,
                     "INFO": 0,
                     "DEBUG": 0
                 },
                 "result": [
                     {
-                        "subroutine": "validate_79a41a5ac074428f858515a3bb99b4f4.name",
+                        "subroutine": "validate_72e1722a012a497992d203ce36a08232.DSIG",
+                        "levelname": "ERROR",
+                        "message": "The digital signature of the file did not verify.",
+                        "timestamp": "2021-02-24T00:33:09.240097Z",
+                        "orig_output": "validate_72e1722a012a497992d203ce36a08232.DSIG - ERROR - The digital signature of the file did not verify.",
+                        "msg_code": "E0502"
+                    },
+                    {
+                        "subroutine": "validate_72e1722a012a497992d203ce36a08232.hints.glyph 0.FDEF 23.FDEF 21.FDEF 139.FDEF 79.FDEF 70.FDEF 4",
+                        "levelname": "ERROR",
+                        "message": "RCVT[] in FDEF 4 (PC 31) is attempting to read from CVT index -11, which does not exist!",
+                        "timestamp": "2021-02-24T00:33:13.101946Z",
+                        "orig_output": "validate_72e1722a012a497992d203ce36a08232.hints.glyph 0.FDEF 23.FDEF 21.FDEF 139.FDEF 79.FDEF 70.FDEF 4 - ERROR - RCVT[] in FDEF 4 (PC 31) is attempting to read from CVT index -11, which does not exist!",
+                        "glyph": {
+                            "id": 0,
+                            "name": ".notdef"
+                        },
+                        "msg_code": "G0029"
+                    },
+                    {
+                        "subroutine": "validate_72e1722a012a497992d203ce36a08232.name",
                         "levelname": "ERROR",
                         "message": "Postscript name not present for both Mac and Windows.",
-                        "timestamp": "2020-09-25T08:36:26.080304Z",
-                        "orig_output": "validate_79a41a5ac074428f858515a3bb99b4f4.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2021-02-24T00:33:12.943630Z",
+                        "orig_output": "validate_72e1722a012a497992d203ce36a08232.name - ERROR - Postscript name not present for both Mac and Windows.",
                         "msg_code": "E2008"
+                    },
+                    {
+                        "subroutine": "validate_72e1722a012a497992d203ce36a08232.OS_2.usMaxContext",
+                        "levelname": "ERROR",
+                        "message": "The usMaxContext should be 2, but is 1",
+                        "timestamp": "2021-02-24T00:33:09.937453Z",
+                        "orig_output": "validate_72e1722a012a497992d203ce36a08232.OS_2.usMaxContext - ERROR - The usMaxContext should be 2, but is 1",
+                        "msg_code": "V0831"
                     }
                 ]
             }
         }
     ],
     "skipped": [],
-    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontio3_version": "3.7.20201030.330639rc3",
     "fontvalidator_version": "20200305.1",
-    "runningTime": 8929,
-    "completedDate": "2020-09-25 08:36:28.069941"
+    "runningTime": 8779,
+    "completedDate": "2021-02-24 00:33:15.040050"
 }

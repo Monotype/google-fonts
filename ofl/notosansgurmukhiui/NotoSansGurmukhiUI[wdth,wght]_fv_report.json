@@ -1,0 +1,91 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "NotoSansGurmukhiUI[wdth,wght].ttf",
+                "type": "ttf",
+                "size": 165656,
+                "md5": "741aa649ca980d4b2c6d5712b027c95b",
+                "geometryMd5": "04f4dfe55d4a3789632f1662f374e070"
+            },
+            "name": {
+                "family": "Noto Sans Gurmukhi UI",
+                "subFamily": "Regular",
+                "fullName": "Noto Sans Gurmukhi UI Regular",
+                "psName": "NotoSansGurmukhiUI-Regular",
+                "versionText": "Version 2.001",
+                "copyright": "Copyright 2019 Google Inc. All Rights Reserved.",
+                "trademark": "Noto is a trademark of Google Inc."
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 344,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "GOOG",
+                "font_vendor": "Google"
+            },
+            "validation": {
+                "font_full_name": "Noto Sans Gurmukhi UI Regular",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 5,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_fc4cec24b73f46579b88b4517e1cb4fd.glyf.glyph 84 ('uni262C').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2021-02-21T20:00:05.556449Z",
+                        "orig_output": "validate_fc4cec24b73f46579b88b4517e1cb4fd.glyf.glyph 84 ('uni262C').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_fc4cec24b73f46579b88b4517e1cb4fd.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2021-02-21T20:00:39.531953Z",
+                        "orig_output": "validate_fc4cec24b73f46579b88b4517e1cb4fd.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
+                    },
+                    {
+                        "subroutine": "validate_fc4cec24b73f46579b88b4517e1cb4fd.OS_2.usMaxContext",
+                        "levelname": "ERROR",
+                        "message": "The usMaxContext should be 4, but is 0",
+                        "timestamp": "2021-02-21T20:00:04.038751Z",
+                        "orig_output": "validate_fc4cec24b73f46579b88b4517e1cb4fd.OS_2.usMaxContext - ERROR - The usMaxContext should be 4, but is 0",
+                        "msg_code": "V0831"
+                    },
+                    {
+                        "subroutine": "validate_fc4cec24b73f46579b88b4517e1cb4fd.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 579, but is 580",
+                        "timestamp": "2021-02-21T20:00:04.039031Z",
+                        "orig_output": "validate_fc4cec24b73f46579b88b4517e1cb4fd.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 579, but is 580",
+                        "msg_code": "E2135"
+                    },
+                    {
+                        "subroutine": "validate_fc4cec24b73f46579b88b4517e1cb4fd.STAT",
+                        "levelname": "ERROR",
+                        "message": "The following axes have no AxisValueTables associated with them: ['wdth', 'wght']",
+                        "timestamp": "2021-02-21T20:00:04.039433Z",
+                        "orig_output": "validate_fc4cec24b73f46579b88b4517e1cb4fd.STAT - ERROR - The following axes have no AxisValueTables associated with them: ['wdth', 'wght']",
+                        "msg_code": "Vxxxx"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20201030.330639rc3",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 44341,
+    "completedDate": "2021-02-21 20:00:39.918448"
+}

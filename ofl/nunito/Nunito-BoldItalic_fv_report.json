@@ -4,16 +4,16 @@
             "file": {
                 "name": "Nunito-BoldItalic.ttf",
                 "type": "ttf",
-                "size": 160828,
-                "md5": "9fa2e89c05a997fb61f8a1052d705f10",
-                "geometryMd5": "c05dbe0923fcc316b3fa7c6a851c55cd"
+                "size": 161216,
+                "md5": "9e2ee41c1fc1ae3a245d15c6a4d387f4",
+                "geometryMd5": "31be7e3650c7ae93677bf0ff1d33f52f"
             },
             "name": {
                 "family": "Nunito",
                 "subFamily": "Bold Italic",
                 "fullName": "Nunito Bold Italic",
                 "psName": "Nunito-BoldItalic",
-                "versionText": "Version 3.600; ttfautohint (v1.8.3)",
+                "versionText": "Version 3.601; ttfautohint (v1.8.2.53-6de2)",
                 "copyright": "Copyright 2014 The Nunito Project Authors (https://github.com/googlefonts/nunito)",
                 "trademark": "Unknown"
             },
@@ -33,18 +33,26 @@
                 "last_success": "finished validation python",
                 "msg_count": {
                     "CRITICAL": 0,
-                    "ERROR": 1,
+                    "ERROR": 2,
                     "WARNING": 0,
                     "INFO": 0,
                     "DEBUG": 0
                 },
                 "result": [
                     {
-                        "subroutine": "validate_188a69d409bf4274a66722c0511be534.name",
+                        "subroutine": "validate_4dd3eae05ddf429a92369e827eae7ac7.DSIG",
+                        "levelname": "ERROR",
+                        "message": "The digital signature of the file did not verify.",
+                        "timestamp": "2021-02-20T04:05:40.134218Z",
+                        "orig_output": "validate_4dd3eae05ddf429a92369e827eae7ac7.DSIG - ERROR - The digital signature of the file did not verify.",
+                        "msg_code": "E0502"
+                    },
+                    {
+                        "subroutine": "validate_4dd3eae05ddf429a92369e827eae7ac7.name",
                         "levelname": "ERROR",
                         "message": "Postscript name not present for both Mac and Windows.",
-                        "timestamp": "2020-11-17T16:52:13.332078Z",
-                        "orig_output": "validate_188a69d409bf4274a66722c0511be534.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2021-02-20T04:06:33.836001Z",
+                        "orig_output": "validate_4dd3eae05ddf429a92369e827eae7ac7.name - ERROR - Postscript name not present for both Mac and Windows.",
                         "msg_code": "E2008"
                     }
                 ]
@@ -52,8 +60,8 @@
         }
     ],
     "skipped": [],
-    "fontio3_version": "3.7.20200604.317848rc4",
+    "fontio3_version": "3.7.20201030.330639rc3",
     "fontvalidator_version": "20200305.1",
-    "runningTime": 98147,
-    "completedDate": "2020-11-17 16:52:50.974793"
+    "runningTime": 92812,
+    "completedDate": "2021-02-20 04:07:08.505796"
 }

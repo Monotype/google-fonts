@@ -1,0 +1,75 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "NotoSansAdlamUnjoined[wght].ttf",
+                "type": "ttf",
+                "size": 37112,
+                "md5": "62f4ce73948265f7475f0fa13556c01d",
+                "geometryMd5": "90c84e4613d3ddb842c48f6589fcd4ff"
+            },
+            "name": {
+                "family": "Noto Sans Adlam Unjoined",
+                "subFamily": "Regular",
+                "fullName": "Noto Sans Adlam Unjoined Regular",
+                "psName": "NotoSansAdlamUnjoined-Regular",
+                "versionText": "Version 3.000",
+                "copyright": "Copyright 2017-2019 Google LLC. All Rights Reserved.",
+                "trademark": "Noto is a trademark of Google LLC."
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 155,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "GOOG",
+                "font_vendor": "Google"
+            },
+            "validation": {
+                "font_full_name": "Noto Sans Adlam Unjoined Regular",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 3,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_5ee197c2e9fc485b940c5e92203acd60.fontedit.GSUB.GSUB.lookuplist.lookup 2.lookup.subtable 0.chaining.pschaincoverage.backtrack coverage 0.coverageset",
+                        "levelname": "ERROR",
+                        "message": "Format 2 segment (6, 19, 5) overlaps or contains duplicates of other ranges.",
+                        "timestamp": "2021-02-19T12:54:26.048326Z",
+                        "orig_output": "validate_5ee197c2e9fc485b940c5e92203acd60.fontedit.GSUB.GSUB.lookuplist.lookup 2.lookup.subtable 0.chaining.pschaincoverage.backtrack coverage 0.coverageset - ERROR - Format 2 segment (6, 19, 5) overlaps or contains duplicates of other ranges.",
+                        "msg_code": "V1014"
+                    },
+                    {
+                        "subroutine": "validate_5ee197c2e9fc485b940c5e92203acd60.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2021-02-19T12:54:32.148051Z",
+                        "orig_output": "validate_5ee197c2e9fc485b940c5e92203acd60.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
+                    },
+                    {
+                        "subroutine": "validate_5ee197c2e9fc485b940c5e92203acd60.STAT",
+                        "levelname": "ERROR",
+                        "message": "The following axes have no AxisValueTables associated with them: ['wght']",
+                        "timestamp": "2021-02-19T12:54:27.343166Z",
+                        "orig_output": "validate_5ee197c2e9fc485b940c5e92203acd60.STAT - ERROR - The following axes have no AxisValueTables associated with them: ['wght']",
+                        "msg_code": "Vxxxx"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20201030.330639rc3",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 8557,
+    "completedDate": "2021-02-19 12:54:32.370806"
+}

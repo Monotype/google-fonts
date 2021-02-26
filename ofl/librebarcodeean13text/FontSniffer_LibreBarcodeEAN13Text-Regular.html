@@ -481,7 +481,7 @@
   </head>
   <body onload="toggle_all_results()">
     <h1>FontSniffer Report</h1>
-    <p>Library Project, start: 2020-11-17 - 16:29.07, end: 16:29.07</p>
+    <p>Library Project, start: 2021-02-19 - 09:40.14, end: 09:40.15</p>
     <table class='togglemessages'>
       <tr>
         <td>Show messages:</td>
@@ -720,7 +720,7 @@
                     <td class="table"><p>glyf</p></td>
                     <td class="feature"><p>outline</p></td>
                     <td class="message"><p>Unicodes should have outlines.</p></td>
-                    <td class="detail"><p>The following glyphs have no outlines, but this is correct:<br>Monotype NULL (uni0000)<br>SPACE (uni0020)<br>ZERO WIDTH SPACE (uni200B)<br>NO-BREAK SPACE (uni00A0)</p></td>
+                    <td class="detail"><p>The following glyphs have no outlines, but this is correct:<br>Monotype NULL (uni0000)<br>SPACE (uni0020)<br>NO-BREAK SPACE (uni00A0)<br>ZERO WIDTH SPACE (uni200B)<br>ZERO WIDTH NON-JOINER (uni200C)<br> (uni000D)</p></td>
                     <!--<td class="time"><p><input type="checkbox"></p></td>-->
                 </tr>
                       </tbody>
@@ -780,13 +780,13 @@
             </thead>
             <tbody id="Check against Base Glyph Advance Width" class="result_body">
                     
-                <tr class="I">
-                    <td class="code"><p>Info</p></td>
+                <tr class="W">
+                    <td class="code"><p>Warning</p></td>
                     <td class="fontname"><p>Libre Barcode EAN13 Text Regular (LibreBarcodeEAN13Text-Regular.ttf)</p></td>
-                    <td class="table"><p>glyf</p></td>
+                    <td class="table"><p>hmtx</p></td>
                     <td class="feature"><p>-/-</p></td>
-                    <td class="message"><p>Check if advance width match base glyph advance width. eg. if the width of iacute is the same like i.</p></td>
-                    <td class="detail"><p>No composits.</p></td>
+                    <td class="message"><p>Compare advance width against base glyph advance width (tolerance 2 units).</p></td>
+                    <td class="detail"><p>'eight.compatibility' (ID 15): width is 168, base glyph ('eight.below' (ID 13)) width is 84<br>'five.compatibility' (ID 26): width is 168, base glyph ('five.below' (ID 24)) width is 84<br>'four.compatibility' (ID 37): width is 168, base glyph ('four.below' (ID 35)) width is 84<br>'gt.addon.quiet' (ID 43): width is 60, base glyph ('gt.below.quiet' (ID 44)) width is 84<br>'nine.compatibility' (ID 58): width is 168, base glyph ('nine.below' (ID 56)) width is 84<br>'one.compatibility' (ID 69): width is 168, base glyph ('one.below' (ID 67)) width is 84<br>'seven.compatibility' (ID 80): width is 168, base glyph ('seven.below' (ID 78)) width is 84<br>'six.compatibility' (ID 92): width is 168, base glyph ('six.below' (ID 90)) width is 84<br>'three.compatibility' (ID 104): width is 168, base glyph ('three.below' (ID 102)) width is 84<br>'two.compatibility' (ID 115): width is 168, base glyph ('two.below' (ID 113)) width is 84<br>'zero.compatibility' (ID 147): width is 168, base glyph ('zero.below' (ID 145)) width is 84</p></td>
                     <!--<td class="time"><p><input type="checkbox"></p></td>-->
                 </tr>
                       </tbody>
@@ -878,9 +878,9 @@
                     <td class="code"><p>Pass</p></td>
                     <td class="fontname"><p>Libre Barcode EAN13 Text Regular (LibreBarcodeEAN13Text-Regular.ttf)</p></td>
                     <td class="table"><p>hmtx</p></td>
-                    <td class="feature"><p>Index 77 and 80</p></td>
+                    <td class="feature"><p>Index 98 and 121</p></td>
                     <td class="message"><p>Advance width of nonbreakingspace (uni00A0) should match the space (uni0020) width.</p></td>
-                    <td class="detail"><p>OK: Advance width nonbreakingspace (uni00A0) does match the space (uni0020) width:<br>210 = 210</p></td>
+                    <td class="detail"><p>OK: Advance width nonbreakingspace (uni00A0) does match the space (uni0020) width:<br>108 = 108</p></td>
                     <!--<td class="time"><p><input type="checkbox"></p></td>-->
                 </tr>
                     
@@ -997,6 +997,26 @@
                 <th colspan="3"><h3>Should be Composite (only .ttf)</h3></th></tr>
             </thead>
             <tbody id="Should be Composite (only .ttf)" class="result_body">
+                    
+                <tr class="W">
+                    <td class="code"><p>Warning</p></td>
+                    <td class="fontname"><p>Libre Barcode EAN13 Text Regular (LibreBarcodeEAN13Text-Regular.ttf)</p></td>
+                    <td class="table"><p>glyf</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Glyphs (LATIN) which chould be made from components (in many cases).<br>Please investigate and approve if correct.</p></td>
+                    <td class="detail"><p>'five.ean8.setA' (uni00C5) (ID 27)</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
+                    
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
+                    <td class="fontname"><p>Libre Barcode EAN13 Text Regular (LibreBarcodeEAN13Text-Regular.ttf)</p></td>
+                    <td class="table"><p>glyf</p></td>
+                    <td class="feature"><p>-/-</p></td>
+                    <td class="message"><p>Glyphs (LATIN) which chould be made from components (in many cases).<br>Please investigate and approve if correct.</p></td>
+                    <td class="detail"><p>'one.ean8.setA' (uni00C1) (ID 70)<br>'two.ean8.setA' (uni00C2) (ID 116)<br>'four.ean8.setA' (uni00C4) (ID 38)<br>'zero.ean8.setA' (uni00C0) (ID 148)<br>'three.ean8.setA' (uni00C3) (ID 105)<br>'nine.ean8.setA' (uni00C9) (ID 59)<br>'zero.ean8.setC' (uni00CA) (ID 149)<br>'one.ean8.setC' (uni00CB) (ID 71)<br>'eight.ean8.setA' (uni00C8) (ID 16)<br>'three.ean8.setC' (uni00CD) (ID 106)<br>'four.ean8.setC' (uni00CE) (ID 39)<br>'five.ean8.setC' (uni00CF) (ID 28)<br>'two.ean8.setC' (uni00CC) (ID 117)<br>'seven.ean8.setC' (uni00D1) (ID 82)<br>'nine.ean8.setC' (uni00D3) (ID 60)<br>'xzero.upcA.setA' (uni00D4) (ID 140)<br>'xtwo.upcA.setA' (uni00D6) (ID 138)<br>'eight.ean8.setC' (uni00D2) (ID 17)<br>'xone.upcA.setA' (uni00D5) (ID 130)<br>'xsix.upcA.setA' (uni00DA) (ID 134)<br>'xseven.upcA.setA' (uni00DB) (ID 132)<br>'xeight.upcA.setA' (uni00DC) (ID 122)<br>'xfive.upcA.setA' (uni00D9) (ID 124)<br>'xnine.upcA.setA' (uni00DD) (ID 128)<br>'xthree.upcA.setC' (uni00E1) (ID 137)<br>'xfour.upcA.setC' (uni00E2) (ID 127)<br>'xsix.upcA.setC' (uni00E4) (ID 135)<br>'xtwo.upcA.setC' (uni00E0) (ID 139)<br>'xseven.upcA.setC' (uni00E5) (ID 133)<br>'xfive.upcA.setC' (uni00E3) (ID 125)<br>'one.addOn.setA' (uni00E9) (ID 65)<br>'two.addOn.setA' (uni00EA) (ID 111)<br>'three.addOn.setA' (uni00EB) (ID 100)<br>'zero.addOn.setA' (uni00E8) (ID 143)<br>'five.addOn.setA' (uni00ED) (ID 22)<br>'six.addOn.setA' (uni00EE) (ID 88)<br>'seven.addOn.setA' (uni00EF) (ID 76)<br>'four.addOn.setA' (uni00EC) (ID 33)<br>'nine.addOn.setA' (uni00F1) (ID 54)<br>'one.addOn.setB' (uni00F3) (ID 66)<br>'two.addOn.setB' (uni00F4) (ID 112)<br>'four.addOn.setB' (uni00F6) (ID 34)<br>'zero.addOn.setB' (uni00F2) (ID 144)<br>'three.addOn.setB' (uni00F5) (ID 101)<br>'eight.addOn.setB' (uni00FA) (ID 12)<br>'nine.addOn.setB' (uni00FB) (ID 55)<br>'zero.below.upcquietzone' (uni00FC) (ID 146)<br>'seven.addOn.setB' (uni00F9) (ID 77)<br>'one.below.upcquietzone' (uni00FD) (ID 68)<br>'three.below.upcquietzone' (uni00FF) (ID 103)</p></td>
+                    <!--<td class="time"><p><input type="checkbox"></p></td>-->
+                </tr>
                       </tbody>
             </table>				<h2>Should not be Composite (CFF)</h2>
 				<table class="results">
@@ -1038,7 +1058,7 @@
                     <td class="table"><p>hmtx</p></td>
                     <td class="feature"><p>advance</p></td>
                     <td class="message"><p>Pull glyphs with advance width zero.</p></td>
-                    <td class="detail"><p>'CR' (uni200B) (ID 1) = '0'<br>'NULL' (ID 2) = '0'</p></td>
+                    <td class="detail"><p>'zwnj' (uni200C) (ID 153) = '0'<br>'zwspace' (uni200B) (ID 154) = '0'<br>'CR' (uni000D) (ID 1) = '0'<br>'NULL' (ID 2) = '0'</p></td>
                     <!--<td class="time"><p><input type="checkbox"></p></td>-->
                 </tr>
                       </tbody>
@@ -1132,7 +1152,7 @@
                     <td class="table"><p>post</p></td>
                     <td class="feature"><p>Index 3</p></td>
                     <td class="message"><p>PostScript name should be "space"</p></td>
-                    <td class="detail"><p>Index 3 = "add_on.delineator". Check that character is the correct glyph.</p></td>
+                    <td class="detail"><p>Index 3 = "addOn.delineator". Check that character is the correct glyph.</p></td>
                     <!--<td class="time"><p><input type="checkbox"></p></td>-->
                 </tr>
                       </tbody>
@@ -1223,8 +1243,8 @@
                     <td class="fontname"><p>Libre Barcode EAN13 Text Regular (LibreBarcodeEAN13Text-Regular.ttf)</p></td>
                     <td class="table"><p>OS/2</p></td>
                     <td class="feature"><p>usLastCharIndex</p></td>
-                    <td class="message"><p>'OS/2' usLastCharIndex should be 0x200B</p></td>
-                    <td class="detail"><p>OK: 'OS/2' usLastCharIndex is 0x200B.</p></td>
+                    <td class="message"><p>'OS/2' usLastCharIndex should be 0x2026</p></td>
+                    <td class="detail"><p>OK: 'OS/2' usLastCharIndex is 0x2026.</p></td>
                     <!--<td class="time"><p><input type="checkbox"></p></td>-->
                 </tr>
                     
@@ -1314,13 +1334,13 @@
                     <!--<td class="time"><p><input type="checkbox"></p></td>-->
                 </tr>
                     
-                <tr class="E">
-                    <td class="code"><p>Error</p></td>
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
                     <td class="fontname"><p>Libre Barcode EAN13 Text Regular (LibreBarcodeEAN13Text-Regular.ttf)</p></td>
                     <td class="table"><p>cmap</p></td>
                     <td class="feature"><p>cmap(0, 3, 0)</p></td>
                     <td class="message"><p>Missing uni0000 and uni000D in cmap MS/BMP(0,3,0) and Unicode/2.0, BMP only(3,1,0).</p></td>
-                    <td class="detail"><p>Please verify with spec or Project Manager if uni000D is required, if so: PLEASE ADD.</p></td>
+                    <td class="detail"><p>cmap(0, 3, 0) contains U+000D</p></td>
                     <!--<td class="time"><p><input type="checkbox"></p></td>-->
                 </tr>
                     
@@ -1334,13 +1354,13 @@
                     <!--<td class="time"><p><input type="checkbox"></p></td>-->
                 </tr>
                     
-                <tr class="E">
-                    <td class="code"><p>Error</p></td>
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
                     <td class="fontname"><p>Libre Barcode EAN13 Text Regular (LibreBarcodeEAN13Text-Regular.ttf)</p></td>
                     <td class="table"><p>cmap</p></td>
                     <td class="feature"><p>cmap(3, 1, 0)</p></td>
                     <td class="message"><p>Missing uni0000 and uni000D in cmap MS/BMP(0,3,0) and Unicode/2.0, BMP only(3,1,0).</p></td>
-                    <td class="detail"><p>Please verify with spec or Project Manager if uni000D is required, if so: PLEASE ADD.</p></td>
+                    <td class="detail"><p>cmap(3, 1, 0) contains U+000D</p></td>
                     <!--<td class="time"><p><input type="checkbox"></p></td>-->
                 </tr>
                       </tbody>
@@ -1384,7 +1404,7 @@
                     <td class="table"><p>name</p></td>
                     <td class="feature"><p>MS NID 0 (3, 1, 1033, 0)</p></td>
                     <td class="message"><p>MS NID 0, Copyright.</p></td>
-                    <td class="detail"><p>Please verify agains spec.<br>MS NID 0 is 'Copyright <mark>2017-2019 The Libre Barcode Project Authors (https://github.com/graphicore/librebarcode)</mark>'<br>It should follow this structure: 'Copyright (c) XXXX - XXXX /entity/. All rights reserved.' </p></td>
+                    <td class="detail"><p>Please verify agains spec.<br>MS NID 0 is 'Copyright <mark>2017-2020 The Libre Barcode Project Authors (https://github.com/graphicore/librebarcode)</mark>'<br>It should follow this structure: 'Copyright (c) XXXX - XXXX /entity/. All rights reserved.' </p></td>
                     <!--<td class="time"><p><input type="checkbox"></p></td>-->
                 </tr>
                     
@@ -1454,7 +1474,7 @@
                     <td class="table"><p>name</p></td>
                     <td class="feature"><p>MS NID 1</p></td>
                     <td class="message"><p>Check style extentions Family NID1</p></td>
-                    <td class="detail"><p>NID 1 does not contain any of the following beginnings: 'Sm, Ex, Semi, Dm, Xtra, Extra, Demi, X, Ultra'</p></td>
+                    <td class="detail"><p>NID 1 does not contain any of the following beginnings: 'Xtra, Ultra, Demi, Ex, X, Semi, Extra, Dm, Sm'</p></td>
                     <!--<td class="time"><p><input type="checkbox"></p></td>-->
                 </tr>
                     
@@ -1514,7 +1534,7 @@
                     <td class="table"><p>name</p></td>
                     <td class="feature"><p>MS NID 3</p></td>
                     <td class="message"><p>NID 3 'MS/BMP/English (U.S.)' should match 'MS/BMP/English (U.S.)'.</p></td>
-                    <td class="detail"><p>NID 3 is the same '1.004;GRCR;LibreBarcodeEAN13Text-Regular' = '1.004;GRCR;LibreBarcodeEAN13Text-Regular'.</p></td>
+                    <td class="detail"><p>NID 3 is the same '1.008;GRCR;LibreBarcodeEAN13Text-Regular' = '1.008;GRCR;LibreBarcodeEAN13Text-Regular'.</p></td>
                     <!--<td class="time"><p><input type="checkbox"></p></td>-->
                 </tr>
                     
@@ -1574,7 +1594,7 @@
                     <td class="table"><p>name</p></td>
                     <td class="feature"><p>MS NID 4</p></td>
                     <td class="message"><p>Check style extentions Full Name NID4</p></td>
-                    <td class="detail"><p>NID 4 does not contain any of the following beginnings: 'Sm, Ex, Semi, Dm, Xtra, Extra, Demi, X, Ultra'</p></td>
+                    <td class="detail"><p>NID 4 does not contain any of the following beginnings: 'Xtra, Ultra, Demi, Ex, X, Semi, Extra, Dm, Sm'</p></td>
                     <!--<td class="time"><p><input type="checkbox"></p></td>-->
                 </tr>
                     
@@ -1594,7 +1614,7 @@
                     <td class="table"><p>name/head</p></td>
                     <td class="feature"><p>MS NID 5</p></td>
                     <td class="message"><p>name table version should match head table fontRevision.</p></td>
-                    <td class="detail"><p>OK: name table version entry 'Version 1.004; ttfautohint (v1.8.3)' does match fontRevision 'Version 1.004'.</p></td>
+                    <td class="detail"><p>OK: name table version entry 'Version 1.008; ttfautohint (v1.8.3)' does match fontRevision 'Version 1.008'.</p></td>
                     <!--<td class="time"><p><input type="checkbox"></p></td>-->
                 </tr>
                     
@@ -1604,7 +1624,7 @@
                     <td class="table"><p>name</p></td>
                     <td class="feature"><p>MS NID 5</p></td>
                     <td class="message"><p>NID 5 'MS/BMP/English (U.S.)' should match 'MS/BMP/English (U.S.)'.</p></td>
-                    <td class="detail"><p>NID 5 is the same 'Version 1.004; ttfautohint (v1.8.3)' = 'Version 1.004; ttfautohint (v1.8.3)'.</p></td>
+                    <td class="detail"><p>NID 5 is the same 'Version 1.008; ttfautohint (v1.8.3)' = 'Version 1.008; ttfautohint (v1.8.3)'.</p></td>
                     <!--<td class="time"><p><input type="checkbox"></p></td>-->
                 </tr>
                     
@@ -1892,13 +1912,13 @@
             </thead>
             <tbody id="Kerning (kern Table and GPOS Kerning)" class="result_body">
                     
-                <tr class="E">
-                    <td class="code"><p>Error</p></td>
+                <tr class="P">
+                    <td class="code"><p>Pass</p></td>
                     <td class="fontname"><p>Libre Barcode EAN13 Text Regular (LibreBarcodeEAN13Text-Regular.ttf)</p></td>
                     <td class="table"><p>GPOS</p></td>
                     <td class="feature"><p>kern feature</p></td>
                     <td class="message"><p>Simple technical test if kern feature in GPOS table. This cannot replace a visual kerning validation.</p></td>
-                    <td class="detail"><p>GPOS table does not have kerning feature. Please investigate if this meets requirements.</p></td>
+                    <td class="detail"><p>The font has GPOS kerning.</p></td>
                     <!--<td class="time"><p><input type="checkbox"></p></td>-->
                 </tr>
                     
@@ -1946,13 +1966,13 @@
             </thead>
             <tbody id="Vertical Metrics" class="result_body">
                     
-                <tr class="P">
-                    <td class="code"><p>Pass</p></td>
+                <tr class="E">
+                    <td class="code"><p>Error</p></td>
                     <td class="fontname"><p>Libre Barcode EAN13 Text Regular (LibreBarcodeEAN13Text-Regular.ttf)</p></td>
                     <td class="table"><p>OS/2 and head</p></td>
                     <td class="feature"><p>sTypeAsc/Desc and unitsPerEm</p></td>
                     <td class="message"><p>The result of sTypoAscender – sTypoDescender should match or exceed the unitsPerEm value.</p></td>
-                    <td class="detail"><p>The result of sTypoAscender – sTypoDescender (1215) match or exceed the unitsPerEm value (1024).</p></td>
+                    <td class="detail"><p>The result of sTypoAscender – sTypoDescender (960) should match or exceed the unitsPerEm value (1024), but it is smaller. Consciously?</p></td>
                     <!--<td class="time"><p><input type="checkbox"></p></td>-->
                 </tr>
                     
@@ -1962,7 +1982,7 @@
                     <td class="table"><p>hhea</p></td>
                     <td class="feature"><p>Vertical Metrics</p></td>
                     <td class="message"><p>Pull hhea Metrics</p></td>
-                    <td class="detail"><p>hhea.ascent: 900<br>hhea.descent: -315<br>hhea.lineGap: 0</p></td>
+                    <td class="detail"><p>hhea.ascent: 840<br>hhea.descent: -120<br>hhea.lineGap: 0</p></td>
                     <!--<td class="time"><p><input type="checkbox"></p></td>-->
                 </tr>
                     
@@ -1972,7 +1992,7 @@
                     <td class="table"><p>OS/2</p></td>
                     <td class="feature"><p>Vertical Metrics</p></td>
                     <td class="message"><p>Pull OS/2 sTypo Metrics</p></td>
-                    <td class="detail"><p>OS2.sTypoAscender: 900<br>OS2.sTypoDescender: -315<br>OS2.sTypoLineGap: 0</p></td>
+                    <td class="detail"><p>OS2.sTypoAscender: 840<br>OS2.sTypoDescender: -120<br>OS2.sTypoLineGap: 0</p></td>
                     <!--<td class="time"><p><input type="checkbox"></p></td>-->
                 </tr>
                     
@@ -1982,7 +2002,7 @@
                     <td class="table"><p>OS/2</p></td>
                     <td class="feature"><p>Vertical Metrics</p></td>
                     <td class="message"><p>Pull OS/2 usWin Metrics</p></td>
-                    <td class="detail"><p>OS2.usWinAscent: 900<br>OS2.usWinDescent: 315</p></td>
+                    <td class="detail"><p>OS2.usWinAscent: 840<br>OS2.usWinDescent: 120</p></td>
                     <!--<td class="time"><p><input type="checkbox"></p></td>-->
                 </tr>
                     
@@ -1992,7 +2012,7 @@
                     <td class="table"><p>OS/2</p></td>
                     <td class="feature"><p>xAvgCharWidth</p></td>
                     <td class="message"><p>Get 'OS/2' xAvgCharWidth.</p></td>
-                    <td class="detail"><p>xAvgCharWidth = 244.</p></td>
+                    <td class="detail"><p>xAvgCharWidth = 126.</p></td>
                     <!--<td class="time"><p><input type="checkbox"></p></td>-->
                 </tr>
                     
@@ -2012,7 +2032,7 @@
                     <td class="table"><p>hhea</p></td>
                     <td class="feature"><p>xMin, yMin, xMax, yMax</p></td>
                     <td class="message"><p>Get xMin, yMin, xMax, yMax.</p></td>
-                    <td class="detail"><p>xMin: 0<br>yMin: -315<br>xMax: 472<br>yMax: 900<br></p></td>
+                    <td class="detail"><p>xMin: -1<br>yMin: -120<br>xMax: 472<br>yMax: 840<br></p></td>
                     <!--<td class="time"><p><input type="checkbox"></p></td>-->
                 </tr>
                     
@@ -2022,7 +2042,7 @@
                     <td class="table"><p>OS/2</p></td>
                     <td class="feature"><p>sTypoAscender</p></td>
                     <td class="message"><p>Vertical Metrics 'sTypoAscender' shouldn't be negative.</p></td>
-                    <td class="detail"><p>sTypoAscender = '900'.</p></td>
+                    <td class="detail"><p>sTypoAscender = '840'.</p></td>
                     <!--<td class="time"><p><input type="checkbox"></p></td>-->
                 </tr>
                     
@@ -2032,7 +2052,7 @@
                     <td class="table"><p>OS/2</p></td>
                     <td class="feature"><p>sTypoDescender</p></td>
                     <td class="message"><p>Vertical Metrics 'sTypoDescender' should be negative.</p></td>
-                    <td class="detail"><p>sTypoDescender = '-315'.</p></td>
+                    <td class="detail"><p>sTypoDescender = '-120'.</p></td>
                     <!--<td class="time"><p><input type="checkbox"></p></td>-->
                 </tr>
                     
@@ -2052,7 +2072,7 @@
                     <td class="table"><p>OS/2</p></td>
                     <td class="feature"><p>usWinAscent</p></td>
                     <td class="message"><p>Vertical Metrics 'usWinAscent' shouldn't be negative.</p></td>
-                    <td class="detail"><p>usWinAscent = '900'.</p></td>
+                    <td class="detail"><p>usWinAscent = '840'.</p></td>
                     <!--<td class="time"><p><input type="checkbox"></p></td>-->
                 </tr>
                     
@@ -2062,7 +2082,7 @@
                     <td class="table"><p>OS/2</p></td>
                     <td class="feature"><p>usWinDescent</p></td>
                     <td class="message"><p>Vertical Metrics 'usWinDescent' shouldn't be negative.</p></td>
-                    <td class="detail"><p>usWinDescent = '315'.</p></td>
+                    <td class="detail"><p>usWinDescent = '120'.</p></td>
                     <!--<td class="time"><p><input type="checkbox"></p></td>-->
                 </tr>
                     
@@ -2072,7 +2092,7 @@
                     <td class="table"><p>hhea</p></td>
                     <td class="feature"><p>ascent</p></td>
                     <td class="message"><p>Vertical Metrics 'ascent' shouldn't be negative.</p></td>
-                    <td class="detail"><p>ascent = '900'.</p></td>
+                    <td class="detail"><p>ascent = '840'.</p></td>
                     <!--<td class="time"><p><input type="checkbox"></p></td>-->
                 </tr>
                     
@@ -2082,7 +2102,7 @@
                     <td class="table"><p>hhea</p></td>
                     <td class="feature"><p>descent</p></td>
                     <td class="message"><p>Vertical Metrics 'descent' should be negative.</p></td>
-                    <td class="detail"><p>descent = '-315'.</p></td>
+                    <td class="detail"><p>descent = '-120'.</p></td>
                     <!--<td class="time"><p><input type="checkbox"></p></td>-->
                 </tr>
                     

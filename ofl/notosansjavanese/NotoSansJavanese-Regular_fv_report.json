@@ -1,0 +1,83 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "NotoSansJavanese-Regular.ttf",
+                "type": "ttf",
+                "size": 127040,
+                "md5": "c1b863f53c0b633eac1dabfc63954178",
+                "geometryMd5": "970b5e5d11177b3e5011b0a1855a2c1e"
+            },
+            "name": {
+                "family": "Noto Sans Javanese",
+                "subFamily": "Regular",
+                "fullName": "Noto Sans Javanese Regular",
+                "psName": "NotoSansJavanese-Regular",
+                "versionText": "Version 2.000",
+                "copyright": "Copyright 2018 Google Inc. All Rights Reserved.",
+                "trademark": "Noto is a trademark of Google Inc."
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 405,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "GOOG",
+                "font_vendor": "Google"
+            },
+            "validation": {
+                "font_full_name": "Noto Sans Javanese Regular",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 4,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_44f273285e124b1d8c51812c24469f6b.DSIG",
+                        "levelname": "ERROR",
+                        "message": "The digital signature of the file did not verify.",
+                        "timestamp": "2021-02-20T04:19:47.328691Z",
+                        "orig_output": "validate_44f273285e124b1d8c51812c24469f6b.DSIG - ERROR - The digital signature of the file did not verify.",
+                        "msg_code": "E0502"
+                    },
+                    {
+                        "subroutine": "validate_44f273285e124b1d8c51812c24469f6b.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2021-02-20T04:20:09.793081Z",
+                        "orig_output": "validate_44f273285e124b1d8c51812c24469f6b.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
+                    },
+                    {
+                        "subroutine": "validate_44f273285e124b1d8c51812c24469f6b.OS_2.usMaxContext",
+                        "levelname": "ERROR",
+                        "message": "The usMaxContext should be 5, but is 0",
+                        "timestamp": "2021-02-20T04:19:49.325835Z",
+                        "orig_output": "validate_44f273285e124b1d8c51812c24469f6b.OS_2.usMaxContext - ERROR - The usMaxContext should be 5, but is 0",
+                        "msg_code": "V0831"
+                    },
+                    {
+                        "subroutine": "validate_44f273285e124b1d8c51812c24469f6b.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 944, but is 945",
+                        "timestamp": "2021-02-20T04:19:49.326134Z",
+                        "orig_output": "validate_44f273285e124b1d8c51812c24469f6b.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 944, but is 945",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20201030.330639rc3",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 26680,
+    "completedDate": "2021-02-20 04:20:10.374831"
+}

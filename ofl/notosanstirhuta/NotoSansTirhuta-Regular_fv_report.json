@@ -1,0 +1,91 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "NotoSansTirhuta-Regular.ttf",
+                "type": "ttf",
+                "size": 96864,
+                "md5": "e7e14ef440ee5f57176bdc926658f699",
+                "geometryMd5": "bb19c00b118b83c478d1bf60af8709ac"
+            },
+            "name": {
+                "family": "Noto Sans Tirhuta",
+                "subFamily": "Regular",
+                "fullName": "Noto Sans Tirhuta Regular",
+                "psName": "NotoSansTirhuta-Regular",
+                "versionText": "Version 2.001; ttfautohint (v1.8.3) -l 8 -r 50 -G 200 -x 14 -D latn -f none -a qsq -X \"\"",
+                "copyright": "Copyright 2018 Google Inc. All Rights Reserved.",
+                "trademark": "Noto is a trademark of Google Inc."
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 262,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "GOOG",
+                "font_vendor": "Google"
+            },
+            "validation": {
+                "font_full_name": "Noto Sans Tirhuta Regular",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 5,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_17bfe4e177c44bc49f092e2e4feb40bf.DSIG",
+                        "levelname": "ERROR",
+                        "message": "The digital signature of the file did not verify.",
+                        "timestamp": "2021-02-21T20:50:16.168508Z",
+                        "orig_output": "validate_17bfe4e177c44bc49f092e2e4feb40bf.DSIG - ERROR - The digital signature of the file did not verify.",
+                        "msg_code": "E0502"
+                    },
+                    {
+                        "subroutine": "validate_17bfe4e177c44bc49f092e2e4feb40bf.glyf.glyph 130 ('SaYa').contours.contour 1",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2021-02-21T20:50:23.052171Z",
+                        "orig_output": "validate_17bfe4e177c44bc49f092e2e4feb40bf.glyf.glyph 130 ('SaYa').contours.contour 1 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_17bfe4e177c44bc49f092e2e4feb40bf.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2021-02-21T20:51:02.250383Z",
+                        "orig_output": "validate_17bfe4e177c44bc49f092e2e4feb40bf.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
+                    },
+                    {
+                        "subroutine": "validate_17bfe4e177c44bc49f092e2e4feb40bf.OS_2.usMaxContext",
+                        "levelname": "ERROR",
+                        "message": "The usMaxContext should be 6, but is 0",
+                        "timestamp": "2021-02-21T20:50:17.933513Z",
+                        "orig_output": "validate_17bfe4e177c44bc49f092e2e4feb40bf.OS_2.usMaxContext - ERROR - The usMaxContext should be 6, but is 0",
+                        "msg_code": "V0831"
+                    },
+                    {
+                        "subroutine": "validate_17bfe4e177c44bc49f092e2e4feb40bf.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 617, but is 618",
+                        "timestamp": "2021-02-21T20:50:17.933764Z",
+                        "orig_output": "validate_17bfe4e177c44bc49f092e2e4feb40bf.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 617, but is 618",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20201030.330639rc3",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 83290,
+    "completedDate": "2021-02-21 20:51:35.402168"
+}

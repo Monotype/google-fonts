@@ -1,0 +1,3233 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv='content-type' content='text/html; charset=utf-8'>
+    <meta name="code" content="Olli Meier">
+    <title>MT FontSplitter</title>
+    <style type="text/css">
+      body {
+        /*background-color: #fff; #fdfdfb;*/
+        color: #131313;
+        font-family: "Kootenay Pro", Axel, "System Font", "Fira Sans", sans-serif;
+        /*line-height: 1.3em;*/
+        margin: 0;
+        /*padding: 1em;*/
+        font-size: 14px;
+        /*padding-right: 50px;*/
+        /*background: linear-gradient(to bottom, #383838, white);*/
+      }
+
+    table {width:100%;}
+    tr {margin: 10px;}
+    td {border: 1px solid #fff; /*#fdfdfb;*/}
+/*
+    table th, table td {
+    overflow: scroll !important;
+    white-space: nowrap;
+}
+*/
+
+    mark {
+        background-color: #fff990;
+        color: black;
+        opacity: 0.7;
+    }
+
+    .containerMain {
+        position: absolute;
+        z-index: 2;
+        /*top:-2000px;*/
+        left: 15px; 
+        background-color: white;
+        overflow: scroll;
+        width: calc(100% - 15px);
+    }
+
+
+    .containerCSScode {
+        overflow: scroll;
+        position: absolute;
+        z-index: 1;
+        top:0px;
+        padding-top: 200px;
+        padding-left: 20px;
+        width: 100%;
+        background-color: #383838;
+    }
+
+    .cssButton {
+        z-index: 3;
+        position: fixed;
+        top: 49%;
+    }
+
+    .cssButtonStyle {
+        /*text-align: center;*/
+        /*text-transform: uppercase;*/
+        transform-origin: left bottom 0;
+        /*writing-mode:tb-rl;*/
+        -webkit-transform:rotate(-90deg);
+        -moz-transform:rotate(-90deg);
+        -o-transform: rotate(-90deg);
+        -ms-transform:rotate(-90deg);
+        transform: rotate(-90deg);
+        white-space:nowrap;
+        display:block;
+        /*bottom:0;
+        width:20px;
+        height:20px;*/
+
+    }
+
+    .comment{color:#FCD833}
+    .rule{color:#009FE3}
+    .element{color:#FFF}
+    .keyword{color:#E50051}
+    .prop{color:#FF9700}
+    .whitetext{color:#FFF}
+    /*.deepgray{background-color:#383838}*/
+    .darkgray{background-color: #787878}
+    .darkgray_text{color:#BBB}
+    .lightgray{background-color:rgb(252,252,252)}
+    .lightgray_text{color:rgb(252,252,252)}
+    .gray_text{color:lightgrey}
+
+    pre{font-family:Consolas,Courier,monospace;
+        /*font-size:.81em;*/
+        line-height:1.1em;
+        margin:0;
+        /*padding:1em;*/
+        border:0;
+        -webkit-touch-callout:text!important;
+        -webkit-user-select:text!important;
+        -khtml-user-select:text!important;
+        -moz-user-select:text!important;
+        -ms-user-select:text!important;
+        user-select:text!important
+    }
+    .gradientBG {
+        background:
+            linear-gradient(
+                limegreen,
+                transparent
+            ),
+            linear-gradient(
+                90deg,
+                skyblue,
+                transparent
+            ),
+            linear-gradient(
+                -90deg,
+                coral,
+                transparent
+            );
+            
+        background-blend-mode: screen;
+        }
+
+    .linearGradientBG{
+        background:
+            repeating-linear-gradient(
+                -45deg,
+                transparent,
+                transparent 25%,
+                tomato 0,
+                tomato 50%
+            ),
+            repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 25%,
+                dodgerblue 0,
+                dodgerblue 50%
+            ), wheat;
+
+        background-size: 10em 10em;
+        background-blend-mode: multiply;
+    }
+
+    .linearGradient2BG{
+        background:
+            repeating-linear-gradient(
+                50deg,
+                #F7A37B,
+                #F7A37B 1em,
+                #FFDEA8 1em,
+                #FFDEA8 2em,
+                #D0E4B0 2em,
+                #D0E4B0 3em,
+                #7CC5D0 3em,
+                #7CC5D0 4em,
+                #00A2E1 4em,
+                #00A2E1 5em,
+                #0085C8 5em,
+                #0085C8 6em
+            ),
+            repeating-linear-gradient(
+                -50deg,
+                #F7A37B,
+                #F7A37B 1em,
+                #FFDEA8 1em,
+                #FFDEA8 2em,
+                #D0E4B0 2em,
+                #D0E4B0 3em,
+                #7CC5D0 3em,
+                #7CC5D0 4em,
+                #00A2E1 4em,
+                #00A2E1 5em,
+                #0085C8 5em,
+                #0085C8 6em
+            );
+            
+        background-blend-mode: multiply;
+    }
+
+    .chr {
+        line-height: 1.45em;
+        font-size:2.5em;
+        		display:inline-block;
+width:1.45em;
+white-space: pre;
+        min-width:1.45em;
+        height:1.45em;
+        text-align:center;
+        /*margin:-1px -1px -1px -4px;*/
+        background-color: #fff; /*#fdfdfb;*/
+        border:1px solid #efefef;/*#FAF7F5;*/ 
+        /*overflow: scroll !important;*/
+        white-space: nowrap;
+        font-size: 30px;
+    }
+
+    .characterZoom {
+        display:inline-block;
+        white-space: pre;
+        text-align:center;
+        background-color: #fff; /*#fdfdfb;*/
+        border:10px solid #efefef;/*#FAF7F5;*/ 
+        white-space: nowrap;
+        font-size: 35vh;
+        z-index:1000; 
+        width:50%; 
+        height:50%;
+        position: fixed; 
+        left: 25%; 
+        top:25%; 
+        display: none;"
+    }
+
+    .characterUniRanges{
+        font-size:2.5em;
+        display:inline-block;
+        /*width:1.45em;*/
+        min-width:2em;
+        height:2em;
+        text-align:center;
+        margin:-0px -0px -1px -4px;
+        background-color:#fff;
+        border:1px solid rgb(240,240,240); 
+        white-space: pre;
+    }
+
+    .characterUniRanges[title-B]:active {
+        z-index: 999;
+      content: attr(title-B);
+      position: relative;
+        background:#B3D4FC;
+        font-size: 20.5em;
+        display:inline-block;
+        /*width:10.45em;*/
+        min-width:500px;
+        height:500px;
+        text-align:center;
+        margin:-0px -0px -1px -4px;
+        border:1px solid rgb(240,240,240); 
+        white-space: pre;
+    }
+
+    [data-title] {
+      transition-timing-function: ease-in;
+          transition: 0.4s;
+      position: relative;
+    }
+
+    [data-title]:hover::before {
+      content: attr(data-title);
+      position: absolute;
+      z-index: 999;
+      bottom: -26px;
+      display: inline-block;
+      padding: 3px 6px;
+      border-radius: 2px;
+      background: #000;
+      color: #fff;
+      font-size: 12px;
+      font-family: sans-serif;
+      white-space: nowrap;
+      left: -20px;
+    }
+
+    [data-title]:hover::after {
+          z-index: 999;
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 8px;
+      display: inline-block;
+      color: #fff;
+      border: 8px solid transparent;    
+      border-bottom: 8px solid #000;
+    }
+
+    .characterMetaData {
+        line-height: 1.45em;
+        font-size:2.5em;
+        		display:inline-block;
+width:1.45em;
+white-space: pre;
+        max-width:1.45em !important;
+        min-width:1.45em;
+        height:1.45em;
+        text-align:center;
+        /*margin:-1px -1px -1px -4px;*/
+        background-color: #fff; /*#fdfdfb;*/
+        border:1px solid #efefef;/*#FAF7F5;*/ 
+        /*overflow: scroll !important;*/
+        white-space: nowrap;
+        font-size: 30px;
+    }
+
+    .characterFix {
+        font-size:2.5em;
+        		display:inline-block;
+width:1.45em;
+white-space: pre;
+        min-width:1.45em;
+        height:1.45em;
+        text-align:center;
+        /*margin:-1px -1px -1px -4px;*/
+        background-color: #fff; /*#fdfdfb;*/
+        border:1px solid #efefef;/*#FAF7F5;*/
+        overflow-x: scroll !important;
+        white-space: nowrap;
+        font-size: 30px;
+    }
+
+    .characterFontNames {
+        font-size:2.5em;
+        		display:inline-block;
+width:1.45em;
+white-space: pre;
+        min-width: 1.45em;
+        height:1.45em;
+        text-align:center;
+        /*margin:-1px -1px -1px -4px;*/
+        background-color: #fff; /*#fdfdfb;*/
+        border: 1px solid #fff; /*#fdfdfb;*/ 
+        position: -webkit-sticky;
+        position: sticky;
+        white-space: pre !important;
+        font-size: 30px;
+    }
+
+    .buttonBlack {
+        background-color: #131313;
+        border: 1px solid #fff; /*#fdfdfb;*/
+        color: #fff; /*#fdfdfb;*/
+        padding: 5px 15px;
+        text-align: center;
+        /*text-decoration: none;*/
+        display: inline-block;
+        margin: 1px 1px;
+        cursor: pointer;
+        border-radius: 0.0em;
+
+    }
+
+    .features-head {
+        content:"";
+        display:inline-block;
+        float:left;
+        width:100%;
+        border-bottom:1px solid rgb(240,240,240);
+        padding-top:10px;
+        margin-top:30px; 
+        margin-bottom:10px
+    }
+
+    input {
+        /*width: 44px;
+        height: 23px;
+        background-color: buttonface;*/
+        cursor: default;
+        border-width: 0px;
+        border-style: solid;
+        border-color: ; #fff; /*#fdfdfb;*//*rgb(169, 169, 169);*/
+        border-image: initial;
+        padding: 0px opx;
+    }
+
+    .inputColor{
+        width: 25px;
+        height: 29px;
+        cursor: default;
+        border: none;
+    }
+
+    button {
+        border: 0;
+        height: 100%;
+        /*width: 100%;*/
+        padding: 5px 15px;
+        text-align: center;
+        /*text-decoration: none;*/
+        display: inline-block;
+        margin: 1px 1px;
+        cursor: pointer;
+        border-radius: 0.0em;
+        vertical-align: top;
+        background: #fff; /*#fdfdfb;*/
+        outline: none;
+    }
+
+    .buttonBorder {
+        border: 0;
+        height: 100%;
+        /*width: 100%;*/
+        padding: 5px 15px;
+        text-align: center;
+        /*text-decoration: none;*/
+        display: inline-block;
+        margin: 1px 1px;
+        cursor: pointer;
+        border-radius: 0.0em;
+        vertical-align: top;
+        background: #fff; /*#fdfdfb;*/
+        outline: none;
+        border:1px solid #efefef;/*#FAF7F5;*/
+    }
+
+    .buttonOT {
+        border:1px solid #efefef;/*#FAF7F5;*/
+        width: 40px;
+        padding: 5px 5px;
+    }
+    .buttonExtra{
+        vertical-align: bottom;
+        line-height: 2em;
+
+        border: 0;
+        height: 100%;
+        /*width: 100%;*/
+        padding: 5px 15px;
+        text-align: center;
+        /*text-decoration: none;*/
+        display: inline-block;
+        margin: 1px 1px;
+        cursor: pointer;
+        border-radius: 0.0em;
+        background: #fff; /*#fdfdfb;*/
+        outline: none;
+    }
+
+    select {
+        border: 0;
+        height: 100%;
+        width: 100%;
+        padding: 5px 15px;
+        text-align: center;
+        /*text-decoration: none;*/
+        display: inline-block;
+        margin: 1px 1px;
+        cursor: pointer;
+        border-radius: 0.0em;
+        vertical-align: top;
+        background: #131313;
+        color: #fff; /*#fdfdfb;*/
+    }
+
+    .selectSampleText {
+        border: 0;
+        height: 100%;
+        width: 200px;
+        /*padding: 5px 15px;*/
+        text-align: center;
+        /*text-decoration: none;*/
+        display: inline-block;
+        margin: 5px 1px;
+        cursor: pointer;
+        border-radius: 0.0em;
+        vertical-align: top;
+        background: #fff; /*#fdfdfb;*/
+        color: #131313;
+    }
+
+    .textTop {vertical-align: top;}
+    .compareBoxes{word-break: break-all;}
+
+    .flyingFont{
+        font-size: 300px;
+        text-align: center;
+        /*text-transform: uppercase;*/
+        width: 100%;
+    }
+
+    .flyingFont1{
+        color: #FF4136/*#131313*/; 
+        z-index: 900; 
+        position: absolute;
+    }
+    .flyingFont2{
+        /*-webkit-text-stroke-width: 2px;
+           -webkit-text-stroke-color: #FF4136;
+           -webkit-text-fill-color: transparent;*/
+        z-index: 899; 
+        position: absolute;
+           opacity: .5;
+           margin-top: 10px;
+           margin-left: 10px;
+    }
+    .flyingFont3{
+        /*-webkit-text-stroke-width: 2px;
+           -webkit-text-stroke-color: #FF4136;
+           -webkit-text-fill-color: transparent;*/
+        z-index: 898; 
+        position: absolute;
+           opacity: .2;
+           margin-top: 20px;
+           margin-left: 20px;
+    }
+
+    .buttonToggle {
+        border: 0;
+        /*background-color: #131313;*/
+        /*color: #fff; /*#fdfdfb;*/*/
+        text-align: center;
+        /*text-decoration: none;*/
+        display: inline-block;
+        margin: 1px 1px;
+        cursor: pointer;
+        border-radius: 0.0em;
+    }
+
+    button:hover, .selectSampleText:hover {background-color: #131313; color: #fff; /*#fdfdfb;*/}
+    .buttonOT:hover {background-color: #131313; color: #fff; /*#fdfdfb;*/}
+    .buttonExtra:hover {background-color: #fff; /*#fdfdfb;*/ color: #131313;}
+
+    hr { border: 0; height: 1px; background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0));}
+
+    .underline {text-decoration: underline; text-decoration-color: #131313; color: hsl(  0,  0%,  95%); overflow: hidden;} /* for the future: text-underline-offset: from-font; text-decoration-width: from-font; */
+    .strikeout {text-decoration: line-through; text-decoration-color: #131313; color: hsl(  0,  0%,  95%); overflow: hidden;} 
+
+    .chr:hover {background:#B3D4FC}
+    .characterUniRanges:hover {background:#B3D4FC}
+    /*.characterUniRanges:active {
+        background:#B3D4FC;
+        font-size: 20.5em;
+        display:inline-block;
+        /*width:10.45em;*/
+        min-width:500px;
+        height:500px;
+        text-align:center;
+        margin:-0px -0px -1px -4px;
+        border:1px solid rgb(240,240,240); 
+        white-space: pre;
+    }
+    */
+    .characterFix:hover {background:#B3D4FC}
+    .character_name {/*padding-top: 5px; padding-left: 25px;*/}
+    
+    @keyframes blinkblink {
+        0% 100%   {background-color: hsl( 24,  100%, 50%); }
+        50% {background-color: hsl( 24,  100%, 45%); }
+    }
+
+    .serious {animation: blinkblink 0.9s ease-in-out 0s infinite;}
+    .critical {background-color: hsl( 0,  100%, 20%); color: hsl( 0,  0%, 90%);}
+    .error {background-color: hsl( 24,  100%, 45%); color: hsl( 24,  100%, 70%);}
+    .warning {background-color: hsl( 50,  65%, 52%); color: hsl( 50,  65%, 70%);}
+    .info {background-color: #f9f7f6;/*hsl(  0,  0%,  95%);*/ color: hsl(  0,  0%,  70%);}
+
+    .extra {background-color: hsl( 200,  50%, 95%);}
+    .extra_info {background-color: hsl( 200,  50%, 96%); color: hsl( 200,  50%, 80%);}
+
+    .colLeft {
+        width: 50%;
+        padding-left: 25px;
+        text-align: right;
+        padding-right: 25px;
+        vertical-align: text-top;
+    }
+
+    .header {
+      text-transform: none;
+      text-decoration: none;
+      background-color: #fff; /*#fdfdfb;*/
+      text-align: left;
+      color: #131313;
+      position: fixed;
+      padding: 15px 15px 0px 0px;
+      width: 100%;
+      box-shadow: 0px 0px 5px #888888;
+      z-index: 99;
+    }
+
+    .header1 {
+      text-transform: none;
+      text-decoration: none;
+      background-color: #fff; /*#fdfdfb;*/
+      text-align: left;
+      color: #131313;
+      position: fixed;
+      padding: 15px 15px 0px 0px;
+      width: 100%;
+      z-index: 99;
+    }
+    
+    .header:hover  { opacity: 0.95; }
+    .header1:hover  { opacity: 0.95; }
+
+
+    .splitter{width:100%; font-weight: bold;}
+    .center{text-align: center;}
+    .left{text-align: left;}
+    .content{padding-top: 500px;}
+    .sampleBig {/*font-size: 50px !important*/; color:#fff; /*#fdfdfb;*/ padding: 20px 50px 20px 50px; }
+    .sampleWaterfall {padding: 20px 50px 20px 20px;}
+    .waterfallOverflow {white-space:nowrap; overflow: hidden; text-overflow: clip; }
+    .sampleContent {/*empty*/ font-size: 30px;}
+    .compareBoxCSS {vertical-align: top; font-size: 30px;}
+    .blackBG {background-color: #131313;}
+
+    .defaultFont {font-size: 30px;}
+    .infoFont {font-family: "Kootenay Pro", Axel, "System Font", "Fira Sans", sans-serif; font-size: 14px; vertical-align: 5px;}
+    
+    .hidden {display:none;}
+    .sliderbar {vertical-align: 4px;}
+
+    /* Slider design Start */
+
+    .inputRangeCompareBox {
+      padding-bottom: 7px !important;
+      padding-left: 10px;
+    }
+
+    .inputNumberCompareBox{
+        max-width: 50px;
+    }
+
+    input[type=range] {
+      padding-bottom: 3px;
+      -webkit-appearance: none;
+      /*position: relative*/
+    }
+
+    input[type=range]::-webkit-slider-runnable-track {
+      width: 300px;
+      height: 2px;
+      border: none;
+      border-radius: 3px;
+      border: 1px solid #131313;
+    }
+
+    input[type=range]::-moz-range-track {
+      background-color: #131313;
+    }
+
+    input::-moz-range-thumb {
+        background-color: #fff; /*#fdfdfb;*/
+        border: solid 2px #131313;
+        border-radius: 0;
+        height: 10px;
+        width: 10px;
+      }
+
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      border: none;
+      height: 12px;
+      width: 12px;
+      border-radius: 510%;
+      background: #fff; /*#fdfdfb;*/
+      border: 2px solid #131313;
+      margin-top: -5px;
+      cursor: pointer
+    }
+
+    input[type=range]:focus {
+      outline: none
+    }
+
+    /* Slider design End */
+
+    .infoToggle {border-bottom:1px solid #efefef;/*#FAF7F5;*/}
+    .colLeftToggle {
+        width: 50%;
+        padding-left: 25px;
+        text-align: right;
+        padding-right: 25px;
+        vertical-align: mittle;
+    }
+
+    td.rotateSAVE {*/height: 140px;*/ white-space: nowrap; /*float: left;*/ }
+    td.rotate > div {-webkit-transform: rotate(270deg); transform: rotate(270deg); width: 30px;}
+    td.rotate > div > span {/*padding: 5px 10px;*/}
+
+
+    
+
+    
+		@font-face {font-family: 'om_NotoSansLinearBRegularttf'; src: url('NotoSansLinearB-Regular.ttf');}
+	.om_NotoSansLinearBRegularttf {font-family: 'om_NotoSansLinearBRegularttf'; /*font-size: 30px;*/}
+
+    
+
+    /*.animationON {animation: LooperOne 5.0s ease-in-out 0s infinite;}
+    .animationOFF {/*empty*/}*/
+
+
+    </style>
+
+  </head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <body style="-webkit-print-color-adjust:exact;" id="body_all" >
+
+      <div id="zoom_characters" class="characterZoom" onclick="mUp()"></div>
+
+    <div class="header1 center" style="z-index:999; ">
+            Monotype
+        <table class="splitter">
+          <tr>
+            <td class="center">F</td>
+            <td class="center">O</td>
+            <td class="center">N</td>
+            <td class="center">T</td>
+            <td class="center">S</td>
+            <td class="center">P</td>
+            <td class="center">L</td>
+            <td class="center">I</td>
+            <td class="center">T</td>
+            <td class="center">T</td>
+            <td class="center">E</td>
+            <td class="center">R</td>
+          </tr>
+        </table>
+        <br>
+    </div>
+
+       <div class="header center">
+        <table style="width:100%">
+            <tbody id="otFeature" >
+                <td>
+                    <!-- OT feature buttons -->
+                    <table>
+		<tr>
+			<td class="colLeft">Select HTML Language</td><td class="left">
+		<select onchange="functionChangeLanguage(this.value)" class="selectSampleText">		<option value=>Default</option>
+			</select>
+			</td>
+		</tr>
+</table>
+
+                    <!-- fonts size slider
+                    <table>
+                        <tr>
+                        <td class="colLeft">Font Size</td><td class="left"><input type="range" min="0.5" max="20" value="2.5" step=".01" id="slider" /></td>
+                        </tr>
+                    </table>
+                     -->
+
+                    <!-- axis variable fonts -->
+                    
+
+                </td>
+            </tbody>
+
+            <th><button class="buttonExtra" id="otFeature_btn" onclick='functionShowHeader(".header", "otFeature");' title="Toggle details">&#x25bc;</button>
+            </th>
+        </table>
+    </div>  
+
+<div id="cssCodeForCustomerPreview" class="containerCSScode deepgray whitetext">
+<pre>
+
+<span class="comment">/* first assign web font */</span>
+
+<span class="rule">@font-face</span> {
+    <span class="keyword">font-family</span>: 'Noto Sans Linear B Regular'; 
+    <span class="prop">src</span>: <span class="prop">url</span>('../NotoSansLinearB-Regular.ttf') <span class="prop">format</span>('truetype');
+    }
+
+<span class="comment">/* go on with normal style definitions */</span>
+<span class="rule">body</span> {
+    <span class="keyword">font-family</span>: 'Noto Sans Linear B Regular'; <span class="comment">/* this is only an example for one style */</span>
+    <span class="featurestring">
+    <span class="comment">/* setup OpenType features */</span>
+    <span class="keyword">font-feature-settings: </span><span id="w3cfeatures"></span>;
+
+    <span class="comment">/* vendor prefixes */</span>
+    <span class="keyword">-webkit-font-feature-settings: </span><span id="webkitfeatures"></span>;
+    <span class="keyword">-moz-font-feature-settings: </span><span id="mozfeatures-up-to-14"></span>;
+    <span class="keyword">-moz-font-feature-settings: </span><span id="mozfeatures"></span>;
+    <span class="keyword">-ms-font-feature-settings: </span><span id="msfeatures"></span>;
+    <span class="keyword">-o-font-feature-settings: </span><span id="ofeatures"></span>;
+    
+}
+    
+
+<span class="comment">/* language tag */</span>
+<code><</code><span class="keyword">html</span><span class="prop"> lang</span>=<span class="rule">"<span id="htmlLangTag"></span>"</span><code>></code>
+
+...
+
+<code><</code>/<span class="keyword">html</span><code>></code>
+
+</pre>
+</div>
+
+
+<div id="containerMainID" class="containerMain" onscroll="scrollXNamesFunc()">
+
+    <div class="cssButton">
+        <a class="cssButtonStyle whitetext" onclick="functionShowCSSCode('.containerMain')" href="#" style="text-decoration:None;"> 
+            css code
+        </a>
+    </div>
+
+    <div id="showFontNames" class="content" style="background: white; opacity: 0; transition: opacity 1s ease-in-out; position: fixed; z-index: -1; width:100%;">
+        <table style="width:100%; border-bottom: 1px solid #FAF7F5;">
+            <tr>
+                <td class="colLeft">
+                </td>
+                <td class="rotate characterFontNames defaultFont"><div><span class="infoFont"> </span></div></td>
+				<td class="rotate characterFontNames om_NotoSansLinearBRegularttf"><div><span>Noto Sans Linear B</span></div></td>
+				
+            </tr>
+        </table>
+    </div>
+
+    <div id="showFontNames_div" class="center" style="position: fixed; bottom: -50px; z-index:998; width:100%;">
+        <button class="buttonBlack" id="showFontNames_btn" onclick='showhide_div("showFontNames", "font names");' title="Toggle details">show font names</button>
+    </div>
+
+    <div id="varFont" class="content">
+
+        <table>
+            <tr>
+                <td class="colLeft">
+                <!-- <a href="#splitterContent">Character Set Compare</a> https://css-tricks.com/snippets/jquery/smooth-scrolling/ -->
+                2021-02-19 - 10:11.31
+                <br>
+                10:11.31
+                <br>
+                <button class="buttonBorder" onClick="window.print()">
+                Print this page
+                </button>
+                </td>
+                <td class="rotate characterFontNames defaultFont"><div><span class="infoFont"> </span></div></td>
+				<td class="rotate characterFontNames om_NotoSansLinearBRegularttf"><div><span>Noto Sans Linear B</span></div></td>
+				
+            </tr>
+        </table>
+
+            
+		<hr>
+		<table>
+<tr>
+<td class="colLeft">Format<br>(by file ending)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Linear B Regular" data-original-title=".ttf"><span class="infoFont">.ttf</span></td>
+</tr>
+<tr>
+<td class="colLeft">Outline Flavour<br>(CFF or glyf table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Linear B Regular" data-original-title="OT TTF"><span class="infoFont">OT TTF</span></td>
+</tr>
+<tr>
+<td class="colLeft">Number of Glyphs<br>(maxp table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Linear B Regular" data-original-title="273"><span class="infoFont">273</span></td>
+</tr>
+<tr>
+<td class="colLeft">Weight Class<br>(OS/2 table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont " title="Noto Sans Linear B Regular" data-original-title="400"><span class="infoFont">400</span></td>
+</tr>
+<tr>
+<td class="colLeft">Width Class<br>(OS/2 table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont " title="Noto Sans Linear B Regular" data-original-title="5"><span class="infoFont">5</span></td>
+</tr>
+<tr>
+<td class="colLeft">Units per Em<br>(head table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Linear B Regular" data-original-title="1000"><div><span class="infoFont">1000</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">Font Revision<br>(head table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Linear B Regular" data-original-title="2.001"><div><span class="infoFont">2.001</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">OS/2 Table Version<br></td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Linear B Regular" data-original-title="4"><div><span class="infoFont">4</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">sTypeAscender<br>(OS/2 table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Linear B Regular" data-original-title="1069"><div><span class="infoFont">1069</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">sTypeDescender<br>(OS/2 table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Linear B Regular" data-original-title="-293"><div><span class="infoFont">-293</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">sTypeLineGap<br>(OS/2 table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Linear B Regular" data-original-title="0"><div><span class="infoFont">0</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">usWinAscent<br>(OS/2 table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Linear B Regular" data-original-title="1069"><div><span class="infoFont">1069</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">usWinDescent<br>(OS/2 table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Linear B Regular" data-original-title="293"><div><span class="infoFont">293</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">Ascender<br>(hhea table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Linear B Regular" data-original-title="1069"><div><span class="infoFont">1069</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">Descender<br>(hhea table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Linear B Regular" data-original-title="-293"><div><span class="infoFont">-293</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">LineGap<br>(hhea table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Linear B Regular" data-original-title="0"><div><span class="infoFont">0</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">post table format<br>(post table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Linear B Regular" data-original-title="2.0"><div><span class="infoFont">2.0</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">Underline Position<br>(post table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Linear B Regular" data-original-title="-100"><div><span class="infoFont">-100</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">Underline Thickness<br>(post table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Linear B Regular" data-original-title="50"><div><span class="infoFont">50</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">Hgo<br>visual check underline</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData om_NotoSansLinearBRegularttf underline" title="Noto Sans Linear B Regular" data-original-title="Hgo">Hgo</td>
+</tr>
+<tr>
+<td class="colLeft">yStrikeoutPosition<br>(OS/2 table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Linear B Regular" data-original-title="322"><div><span class="infoFont">322</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">yStrikeoutSize<br>(OS/2 table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Linear B Regular" data-original-title="50"><div><span class="infoFont">50</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">strikeout<br>visual check</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData om_NotoSansLinearBRegularttf strikeout" title="Noto Sans Linear B Regular" data-original-title="Hgo">Hgo</td>
+</tr>
+<tr>
+<td class="colLeft">Italic Flag<br>(OS/2 table fsSelection)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterMetaData defaultFont" title="Noto Sans Linear B Regular" data-original-title="False"><div><span class="infoFont">False</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">Italic Angle<br>(post table)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterFix defaultFont" title="Noto Sans Linear B Regular" data-original-title="0.0"><div><span class="infoFont">0.0</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">Panose: Family<br>(Value 1)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterFix defaultFont" title="Noto Sans Linear B Regular" data-original-title="Latin Text"><div><span class="infoFont">Latin Text</span></div></td>
+</tr>
+<tr>
+<td class="colLeft">Panose: Serif<br>(Value 2)</td>
+<td class="characterFontNames defaultFont"><div><span> </span></div></td>
+				<td class="characterFix defaultFont" title="Noto Sans Linear B Regular" data-original-title="Normal Sans"><div><span class="infoFont">Normal Sans</span></div></td>
+</tr>
+
+		</table>
+
+
+            
+
+            
+            <hr>
+            <table id="compareBoxID">
+            <tr id="tableTR" class="textTop sampleBig blackBG compareBoxes">
+
+            <button class="buttonBorder" title="add column" onclick="functionBoxAdd()">+</button>
+            <button class="buttonBorder" title="remove column" onclick="functionBoxRemove()">-</button>
+            <select id="mySelectSampleText" onchange="functionSelectSampleText('mySelectSampleText')" class="selectSampleText">
+
+            <option value='Default Sample'>Default Sample</option><option value='All Unicodes'>All Unicodes</option>
+
+            </select>
+            <input type="color" class="inputColor" value="#82e5fe" title="Background Color" onchange="functionGetColorBG(this.value, '.compareBoxes')">
+            <input type="color" class="inputColor" value="#ff79ad" title="Text Color" onchange="functionGetColorText(this.value, '.compareBoxes')">
+            <button class="buttonBorder" title="Swap Colors" onclick="functionSwapColorTextBG('.compareBoxes')">&#x02B14</button>
+            <button class="buttonBorder" title="have fun, change background" onclick="functionGetRandomBG(['gradientBG', 'linearGradientBG', 'linearGradient2BG', 'blackBG'])">∞</button>
+            <input type="range" class="inputRangeCompareBox" title="Text Size" min="0.5" max="100" value="30" step=".01" id="sliderCompareBoxCSS"/>
+            <input type="number" class="inputNumberCompareBox" value="30" step="1" id="numberCompareBoxCSS"/>
+            <button class="buttonOT" id="leftcompareBox_btn" title="text alignment left" onclick="functionTextAlignment('compareBoxID', 'left')">L</button>
+            <button class="buttonOT" id="centercompareBox_btn" title="text alignment center" onclick="functionTextAlignment('compareBoxID', 'center')">C</button>
+            <button class="buttonOT" id="rightcompareBox_btn" title="text alignment right" onclick="functionTextAlignment('compareBoxID', 'right')">R</button>
+            <span style="vertical-align: super; color: #efefef;">|</span>
+            <button class="buttonOT" id="left-to-rightcompareBox_btn" title="reading direction: left to right" onclick="functionReadDirection('compareBoxID', 'left-to-right')">LR</button>
+            <button class="buttonOT" id="right-to-leftcompareBox_btn" title="reading direction: right to left" onclick="functionReadDirection('compareBoxID', 'right-to-left')">RL</button>
+            <!--<button class="buttonOT" id="top-to-downcompareBox_btn" title="reading direction: top to down" onclick="functionReadDirection('compareBoxID', 'top-to-down')">TD</button>-->
+            <button class="buttonBlack" id="hintingOnOff_btn" onclick="hintingOnOff('.compareBoxes', 'hintingOnOff');" title="activate/deactivate hinting">hinting on</button>
+            
+<td id="myBox" class="compareBox om_NotoSansLinearBRegularttf"><select id="mySelect" name="myBox" onchange="functionSelect('mySelect')"><option value='om_NotoSansLinearBRegularttf'>Noto Sans Linear B (ttf)</option>
+</select>
+
+<span id="myBoxContent" contenteditable="true" class="compareBoxCSS ">1234567890 xozszn HOZD 1/3 @ 1a ;#& ? % $ € ! In August of 2016, four unlikely collaborators in the world of type, fonts and font technology stood on a stage at the ATypI conference in Warsaw, Poland. The collaborators were Apple, Microsoft, Adobe and Google. Together they announced the publishing of OpenType 1.8, an update to the now ubiquitous font standard which was originally an amalgam of Apple & Microsoft’s TrueType, and Adobe’s PostScript font formats. The OpenType 1.8 announcement, ATypI, Warsaw, Poland, September 14, 2016.</span></td>
+
+</tr>
+            </table>
+    
+
+            
+		<hr>
+		<table>
+<thead><tr><tr>
+<td class="colLeft">Copyright<br>NID0 MS (3, 1, 1033, 0)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 0)_btn" onclick='toggle_detail("(3, 1, 1033, 0)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 0)0')" onMouseOut="hover('(3, 1, 1033, 0)0')" class="chr defaultFont " title="Noto Sans Linear B Regular" data-original-title="(3, 1, 1033, 0)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 0)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Linear B Regular"><td onMouseOver="hover('(3, 1, 1033, 0)0')" onMouseOut="hover('(3, 1, 1033, 0)0')" id="(3, 1, 1033, 0)0" class="infoToggle" colspan="1">Copyright 2017 Google Inc. All Rights Reserved.</td></tr></tbody><tr>
+<td class="colLeft">Family<br>NID1 MS (3, 1, 1033, 1)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 1)_btn" onclick='toggle_detail("(3, 1, 1033, 1)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 1)0')" onMouseOut="hover('(3, 1, 1033, 1)0')" class="chr defaultFont " title="Noto Sans Linear B Regular" data-original-title="(3, 1, 1033, 1)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 1)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID 1 and 2 together should be unique within the family.</td><tr class="" title="Noto Sans Linear B Regular"><td onMouseOver="hover('(3, 1, 1033, 1)0')" onMouseOut="hover('(3, 1, 1033, 1)0')" id="(3, 1, 1033, 1)0" class="infoToggle" colspan="1">NID1: 'Noto Sans Linear B' + NID2: 'Regular'</td></tr></tbody><tr>
+<td class="colLeft">Subfamily<br>NID2 MS (3, 1, 1033, 2)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 2)_btn" onclick='toggle_detail("(3, 1, 1033, 2)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 2)0')" onMouseOut="hover('(3, 1, 1033, 2)0')" class="chr defaultFont " title="Noto Sans Linear B Regular" data-original-title="(3, 1, 1033, 2)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 2)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be 'Regular', 'Italic', 'Bold' or 'Bold Italic'.</td><tr class="" title="Noto Sans Linear B Regular"><td onMouseOver="hover('(3, 1, 1033, 2)0')" onMouseOut="hover('(3, 1, 1033, 2)0')" id="(3, 1, 1033, 2)0" class="infoToggle" colspan="1">Regular</td></tr></tbody><tr>
+<td class="colLeft">Unique ID<br>NID3 MS (3, 1, 1033, 3)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 3)_btn" onclick='toggle_detail("(3, 1, 1033, 3)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 3)0')" onMouseOut="hover('(3, 1, 1033, 3)0')" class="chr defaultFont " title="Noto Sans Linear B Regular" data-original-title="(3, 1, 1033, 3)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 3)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be DIFFERENT within the family.</td><tr class="" title="Noto Sans Linear B Regular"><td onMouseOver="hover('(3, 1, 1033, 3)0')" onMouseOut="hover('(3, 1, 1033, 3)0')" id="(3, 1, 1033, 3)0" class="infoToggle" colspan="1">2.001;GOOG;NotoSansLinearB-Regular</td></tr></tbody><tr>
+<td class="colLeft">Full Name<br>NID4 MS (3, 1, 1033, 4)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 4)_btn" onclick='toggle_detail("(3, 1, 1033, 4)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 4)0')" onMouseOut="hover('(3, 1, 1033, 4)0')" class="chr defaultFont " title="Noto Sans Linear B Regular" data-original-title="(3, 1, 1033, 4)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 4)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be DIFFERENT within the family.</td><tr class="" title="Noto Sans Linear B Regular"><td onMouseOver="hover('(3, 1, 1033, 4)0')" onMouseOut="hover('(3, 1, 1033, 4)0')" id="(3, 1, 1033, 4)0" class="infoToggle" colspan="1">Noto Sans Linear B Regular</td></tr></tbody><tr>
+<td class="colLeft">Version<br>NID5 MS (3, 1, 1033, 5)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 5)_btn" onclick='toggle_detail("(3, 1, 1033, 5)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 5)0')" onMouseOut="hover('(3, 1, 1033, 5)0')" class="chr defaultFont " title="Noto Sans Linear B Regular" data-original-title="(3, 1, 1033, 5)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 5)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Linear B Regular"><td onMouseOver="hover('(3, 1, 1033, 5)0')" onMouseOut="hover('(3, 1, 1033, 5)0')" id="(3, 1, 1033, 5)0" class="infoToggle" colspan="1">Version 2.001</td></tr></tbody><tr>
+<td class="colLeft">Postscript<br>NID6 MS (3, 1, 1033, 6)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 6)_btn" onclick='toggle_detail("(3, 1, 1033, 6)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 6)0')" onMouseOut="hover('(3, 1, 1033, 6)0')" class="chr defaultFont " title="Noto Sans Linear B Regular" data-original-title="(3, 1, 1033, 6)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 6)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be DIFFERENT within the family.</td><tr class="" title="Noto Sans Linear B Regular"><td onMouseOver="hover('(3, 1, 1033, 6)0')" onMouseOut="hover('(3, 1, 1033, 6)0')" id="(3, 1, 1033, 6)0" class="infoToggle" colspan="1">NotoSansLinearB-Regular</td></tr></tbody><tr>
+<td class="colLeft">Trademark<br>NID7 MS (3, 1, 1033, 7)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 7)_btn" onclick='toggle_detail("(3, 1, 1033, 7)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 7)0')" onMouseOut="hover('(3, 1, 1033, 7)0')" class="chr defaultFont " title="Noto Sans Linear B Regular" data-original-title="(3, 1, 1033, 7)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 7)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Linear B Regular"><td onMouseOver="hover('(3, 1, 1033, 7)0')" onMouseOut="hover('(3, 1, 1033, 7)0')" id="(3, 1, 1033, 7)0" class="infoToggle" colspan="1">Noto is a trademark of Google Inc.</td></tr></tbody><tr>
+<td class="colLeft">Manufacturer<br>NID8 MS (3, 1, 1033, 8)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 8)_btn" onclick='toggle_detail("(3, 1, 1033, 8)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 8)0')" onMouseOut="hover('(3, 1, 1033, 8)0')" class="chr defaultFont " title="Noto Sans Linear B Regular" data-original-title="(3, 1, 1033, 8)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 8)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Linear B Regular"><td onMouseOver="hover('(3, 1, 1033, 8)0')" onMouseOut="hover('(3, 1, 1033, 8)0')" id="(3, 1, 1033, 8)0" class="infoToggle" colspan="1">Monotype Imaging Inc.</td></tr></tbody><tr>
+<td class="colLeft">Designer<br>NID9 MS (3, 1, 1033, 9)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 9)_btn" onclick='toggle_detail("(3, 1, 1033, 9)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 9)0')" onMouseOut="hover('(3, 1, 1033, 9)0')" class="chr defaultFont " title="Noto Sans Linear B Regular" data-original-title="(3, 1, 1033, 9)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 9)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Linear B Regular"><td onMouseOver="hover('(3, 1, 1033, 9)0')" onMouseOut="hover('(3, 1, 1033, 9)0')" id="(3, 1, 1033, 9)0" class="infoToggle" colspan="1">Monotype Design Team</td></tr></tbody><tr>
+<td class="colLeft">Description<br>NID10 MS (3, 1, 1033, 10)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 10)_btn" onclick='toggle_detail("(3, 1, 1033, 10)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 10)0')" onMouseOut="hover('(3, 1, 1033, 10)0')" class="chr defaultFont " title="Noto Sans Linear B Regular" data-original-title="(3, 1, 1033, 10)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 10)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Linear B Regular"><td onMouseOver="hover('(3, 1, 1033, 10)0')" onMouseOut="hover('(3, 1, 1033, 10)0')" id="(3, 1, 1033, 10)0" class="infoToggle" colspan="1">Designed by Monotype design team.</td></tr></tbody><tr>
+<td class="colLeft">URL Vendor<br>NID11 MS (3, 1, 1033, 11)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 11)_btn" onclick='toggle_detail("(3, 1, 1033, 11)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 11)0')" onMouseOut="hover('(3, 1, 1033, 11)0')" class="chr defaultFont " title="Noto Sans Linear B Regular" data-original-title="(3, 1, 1033, 11)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 11)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Linear B Regular"><td onMouseOver="hover('(3, 1, 1033, 11)0')" onMouseOut="hover('(3, 1, 1033, 11)0')" id="(3, 1, 1033, 11)0" class="infoToggle" colspan="1">http://www.google.com/get/noto/</td></tr></tbody><tr>
+<td class="colLeft">URL Designer<br>NID12 MS (3, 1, 1033, 12)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 12)_btn" onclick='toggle_detail("(3, 1, 1033, 12)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 12)0')" onMouseOut="hover('(3, 1, 1033, 12)0')" class="chr defaultFont " title="Noto Sans Linear B Regular" data-original-title="(3, 1, 1033, 12)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 12)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Linear B Regular"><td onMouseOver="hover('(3, 1, 1033, 12)0')" onMouseOut="hover('(3, 1, 1033, 12)0')" id="(3, 1, 1033, 12)0" class="infoToggle" colspan="1">http://www.monotype.com/studio</td></tr></tbody><tr>
+<td class="colLeft">License Description<br>NID13 MS (3, 1, 1033, 13)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 13)_btn" onclick='toggle_detail("(3, 1, 1033, 13)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 13)0')" onMouseOut="hover('(3, 1, 1033, 13)0')" class="chr defaultFont " title="Noto Sans Linear B Regular" data-original-title="(3, 1, 1033, 13)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 13)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Linear B Regular"><td onMouseOver="hover('(3, 1, 1033, 13)0')" onMouseOut="hover('(3, 1, 1033, 13)0')" id="(3, 1, 1033, 13)0" class="infoToggle" colspan="1">This Font Software is licensed under the SIL Open Font License, Version 1.1. This Font Software is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the SIL Open Font License for the specific language, permissions and limitations governing your use of this Font Software.</td></tr></tbody><tr>
+<td class="colLeft">License Info URL<br>NID14 MS (3, 1, 1033, 14)</td>
+<td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 14)_btn" onclick='toggle_detail("(3, 1, 1033, 14)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 14)0')" onMouseOut="hover('(3, 1, 1033, 14)0')" class="chr defaultFont " title="Noto Sans Linear B Regular" data-original-title="(3, 1, 1033, 14)">&#8226</td>
+
+        </tr>
+        </thead>
+        <tbody id="(3, 1, 1033, 14)" style="display: none;">
+        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Noto Sans Linear B Regular"><td onMouseOver="hover('(3, 1, 1033, 14)0')" onMouseOut="hover('(3, 1, 1033, 14)0')" id="(3, 1, 1033, 14)0" class="infoToggle" colspan="1">http://scripts.sil.org/OFL</td></tr></tbody>
+		</table>
+
+
+            
+
+            
+
+        <!-- big text on black backround -->
+            
+
+            
+
+            
+
+            
+		<hr>
+		<table id="splitterContent">
+<tr>
+<td class="colLeft"><br>uni0000</td>
+<td class="chr defaultFont info" onmousedown="mDn(0, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0000">&#x0000</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(0, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni0000">&#x0000</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYLLABLE B008 A<br>uni10000</td>
+<td class="chr defaultFont info" onmousedown="mDn(65536, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10000">&#x10000</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65536, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10000">&#x10000</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYLLABLE B038 E<br>uni10001</td>
+<td class="chr defaultFont info" onmousedown="mDn(65537, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10001">&#x10001</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65537, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10001">&#x10001</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYLLABLE B028 I<br>uni10002</td>
+<td class="chr defaultFont info" onmousedown="mDn(65538, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10002">&#x10002</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65538, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10002">&#x10002</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYLLABLE B061 O<br>uni10003</td>
+<td class="chr defaultFont info" onmousedown="mDn(65539, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10003">&#x10003</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65539, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10003">&#x10003</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYLLABLE B010 U<br>uni10004</td>
+<td class="chr defaultFont info" onmousedown="mDn(65540, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10004">&#x10004</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65540, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10004">&#x10004</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYLLABLE B001 DA<br>uni10005</td>
+<td class="chr defaultFont info" onmousedown="mDn(65541, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10005">&#x10005</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65541, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10005">&#x10005</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYLLABLE B045 DE<br>uni10006</td>
+<td class="chr defaultFont info" onmousedown="mDn(65542, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10006">&#x10006</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65542, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10006">&#x10006</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYLLABLE B007 DI<br>uni10007</td>
+<td class="chr defaultFont info" onmousedown="mDn(65543, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10007">&#x10007</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65543, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10007">&#x10007</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYLLABLE B014 DO<br>uni10008</td>
+<td class="chr defaultFont info" onmousedown="mDn(65544, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10008">&#x10008</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65544, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10008">&#x10008</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYLLABLE B051 DU<br>uni10009</td>
+<td class="chr defaultFont info" onmousedown="mDn(65545, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10009">&#x10009</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65545, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10009">&#x10009</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYLLABLE B057 JA<br>uni1000A</td>
+<td class="chr defaultFont info" onmousedown="mDn(65546, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1000A">&#x1000A</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65546, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni1000A">&#x1000A</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYLLABLE B046 JE<br>uni1000B</td>
+<td class="chr defaultFont info" onmousedown="mDn(65547, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1000B">&#x1000B</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65547, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni1000B">&#x1000B</td>
+</tr>
+<tr>
+<td class="colLeft"><br>uni000D</td>
+<td class="chr defaultFont info" onmousedown="mDn(13, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni000D">&#x000D</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(13, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni000D">&#x000D</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYLLABLE B036 JO<br>uni1000D</td>
+<td class="chr defaultFont info" onmousedown="mDn(65549, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1000D">&#x1000D</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65549, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni1000D">&#x1000D</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYLLABLE B065 JU<br>uni1000E</td>
+<td class="chr defaultFont info" onmousedown="mDn(65550, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1000E">&#x1000E</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65550, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni1000E">&#x1000E</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYLLABLE B077 KA<br>uni1000F</td>
+<td class="chr defaultFont info" onmousedown="mDn(65551, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1000F">&#x1000F</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65551, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni1000F">&#x1000F</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYLLABLE B044 KE<br>uni10010</td>
+<td class="chr defaultFont info" onmousedown="mDn(65552, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10010">&#x10010</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65552, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10010">&#x10010</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYLLABLE B067 KI<br>uni10011</td>
+<td class="chr defaultFont info" onmousedown="mDn(65553, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10011">&#x10011</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65553, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10011">&#x10011</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYLLABLE B070 KO<br>uni10012</td>
+<td class="chr defaultFont info" onmousedown="mDn(65554, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10012">&#x10012</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65554, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10012">&#x10012</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYLLABLE B081 KU<br>uni10013</td>
+<td class="chr defaultFont info" onmousedown="mDn(65555, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10013">&#x10013</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65555, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10013">&#x10013</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYLLABLE B080 MA<br>uni10014</td>
+<td class="chr defaultFont info" onmousedown="mDn(65556, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10014">&#x10014</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65556, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10014">&#x10014</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYLLABLE B013 ME<br>uni10015</td>
+<td class="chr defaultFont info" onmousedown="mDn(65557, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10015">&#x10015</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65557, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10015">&#x10015</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYLLABLE B073 MI<br>uni10016</td>
+<td class="chr defaultFont info" onmousedown="mDn(65558, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10016">&#x10016</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65558, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10016">&#x10016</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYLLABLE B015 MO<br>uni10017</td>
+<td class="chr defaultFont info" onmousedown="mDn(65559, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10017">&#x10017</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65559, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10017">&#x10017</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYLLABLE B023 MU<br>uni10018</td>
+<td class="chr defaultFont info" onmousedown="mDn(65560, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10018">&#x10018</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65560, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10018">&#x10018</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYLLABLE B006 NA<br>uni10019</td>
+<td class="chr defaultFont info" onmousedown="mDn(65561, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10019">&#x10019</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65561, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10019">&#x10019</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYLLABLE B024 NE<br>uni1001A</td>
+<td class="chr defaultFont info" onmousedown="mDn(65562, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1001A">&#x1001A</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65562, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni1001A">&#x1001A</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYLLABLE B030 NI<br>uni1001B</td>
+<td class="chr defaultFont info" onmousedown="mDn(65563, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1001B">&#x1001B</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65563, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni1001B">&#x1001B</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYLLABLE B052 NO<br>uni1001C</td>
+<td class="chr defaultFont info" onmousedown="mDn(65564, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1001C">&#x1001C</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65564, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni1001C">&#x1001C</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYLLABLE B055 NU<br>uni1001D</td>
+<td class="chr defaultFont info" onmousedown="mDn(65565, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1001D">&#x1001D</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65565, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni1001D">&#x1001D</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYLLABLE B003 PA<br>uni1001E</td>
+<td class="chr defaultFont info" onmousedown="mDn(65566, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1001E">&#x1001E</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65566, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni1001E">&#x1001E</td>
+</tr>
+<tr>
+<td class="colLeft">SPACE<br>uni0020</td>
+<td class="chr defaultFont info" onmousedown="mDn(32, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0020">&#x0020</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(32, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni0020">&#x0020</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYLLABLE B072 PE<br>uni1001F</td>
+<td class="chr defaultFont info" onmousedown="mDn(65567, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1001F">&#x1001F</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65567, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni1001F">&#x1001F</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYLLABLE B039 PI<br>uni10020</td>
+<td class="chr defaultFont info" onmousedown="mDn(65568, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10020">&#x10020</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65568, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10020">&#x10020</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYLLABLE B011 PO<br>uni10021</td>
+<td class="chr defaultFont info" onmousedown="mDn(65569, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10021">&#x10021</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65569, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10021">&#x10021</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYLLABLE B050 PU<br>uni10022</td>
+<td class="chr defaultFont info" onmousedown="mDn(65570, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10022">&#x10022</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65570, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10022">&#x10022</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYLLABLE B016 QA<br>uni10023</td>
+<td class="chr defaultFont info" onmousedown="mDn(65571, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10023">&#x10023</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65571, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10023">&#x10023</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYLLABLE B078 QE<br>uni10024</td>
+<td class="chr defaultFont info" onmousedown="mDn(65572, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10024">&#x10024</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65572, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10024">&#x10024</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYLLABLE B021 QI<br>uni10025</td>
+<td class="chr defaultFont info" onmousedown="mDn(65573, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10025">&#x10025</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65573, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10025">&#x10025</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYLLABLE B032 QO<br>uni10026</td>
+<td class="chr defaultFont info" onmousedown="mDn(65574, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10026">&#x10026</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65574, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10026">&#x10026</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYLLABLE B060 RA<br>uni10028</td>
+<td class="chr defaultFont info" onmousedown="mDn(65576, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10028">&#x10028</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65576, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10028">&#x10028</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYLLABLE B027 RE<br>uni10029</td>
+<td class="chr defaultFont info" onmousedown="mDn(65577, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10029">&#x10029</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65577, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10029">&#x10029</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYLLABLE B053 RI<br>uni1002A</td>
+<td class="chr defaultFont info" onmousedown="mDn(65578, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1002A">&#x1002A</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65578, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni1002A">&#x1002A</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYLLABLE B002 RO<br>uni1002B</td>
+<td class="chr defaultFont info" onmousedown="mDn(65579, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1002B">&#x1002B</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65579, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni1002B">&#x1002B</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYLLABLE B026 RU<br>uni1002C</td>
+<td class="chr defaultFont info" onmousedown="mDn(65580, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1002C">&#x1002C</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65580, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni1002C">&#x1002C</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYLLABLE B031 SA<br>uni1002D</td>
+<td class="chr defaultFont info" onmousedown="mDn(65581, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1002D">&#x1002D</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65581, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni1002D">&#x1002D</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYLLABLE B009 SE<br>uni1002E</td>
+<td class="chr defaultFont info" onmousedown="mDn(65582, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1002E">&#x1002E</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65582, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni1002E">&#x1002E</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYLLABLE B041 SI<br>uni1002F</td>
+<td class="chr defaultFont info" onmousedown="mDn(65583, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1002F">&#x1002F</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65583, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni1002F">&#x1002F</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYLLABLE B012 SO<br>uni10030</td>
+<td class="chr defaultFont info" onmousedown="mDn(65584, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10030">&#x10030</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65584, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10030">&#x10030</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYLLABLE B058 SU<br>uni10031</td>
+<td class="chr defaultFont info" onmousedown="mDn(65585, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10031">&#x10031</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65585, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10031">&#x10031</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYLLABLE B059 TA<br>uni10032</td>
+<td class="chr defaultFont info" onmousedown="mDn(65586, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10032">&#x10032</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65586, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10032">&#x10032</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYLLABLE B004 TE<br>uni10033</td>
+<td class="chr defaultFont info" onmousedown="mDn(65587, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10033">&#x10033</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65587, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10033">&#x10033</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYLLABLE B037 TI<br>uni10034</td>
+<td class="chr defaultFont info" onmousedown="mDn(65588, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10034">&#x10034</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65588, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10034">&#x10034</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYLLABLE B005 TO<br>uni10035</td>
+<td class="chr defaultFont info" onmousedown="mDn(65589, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10035">&#x10035</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65589, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10035">&#x10035</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYLLABLE B069 TU<br>uni10036</td>
+<td class="chr defaultFont info" onmousedown="mDn(65590, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10036">&#x10036</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65590, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10036">&#x10036</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYLLABLE B054 WA<br>uni10037</td>
+<td class="chr defaultFont info" onmousedown="mDn(65591, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10037">&#x10037</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65591, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10037">&#x10037</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYLLABLE B075 WE<br>uni10038</td>
+<td class="chr defaultFont info" onmousedown="mDn(65592, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10038">&#x10038</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65592, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10038">&#x10038</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYLLABLE B040 WI<br>uni10039</td>
+<td class="chr defaultFont info" onmousedown="mDn(65593, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10039">&#x10039</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65593, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10039">&#x10039</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYLLABLE B042 WO<br>uni1003A</td>
+<td class="chr defaultFont info" onmousedown="mDn(65594, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1003A">&#x1003A</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65594, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni1003A">&#x1003A</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYLLABLE B017 ZA<br>uni1003C</td>
+<td class="chr defaultFont info" onmousedown="mDn(65596, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1003C">&#x1003C</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65596, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni1003C">&#x1003C</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYLLABLE B074 ZE<br>uni1003D</td>
+<td class="chr defaultFont info" onmousedown="mDn(65597, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1003D">&#x1003D</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65597, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni1003D">&#x1003D</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYLLABLE B020 ZO<br>uni1003F</td>
+<td class="chr defaultFont info" onmousedown="mDn(65599, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1003F">&#x1003F</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65599, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni1003F">&#x1003F</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYLLABLE B025 A2<br>uni10040</td>
+<td class="chr defaultFont info" onmousedown="mDn(65600, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10040">&#x10040</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65600, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10040">&#x10040</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYLLABLE B043 A3<br>uni10041</td>
+<td class="chr defaultFont info" onmousedown="mDn(65601, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10041">&#x10041</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65601, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10041">&#x10041</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYLLABLE B085 AU<br>uni10042</td>
+<td class="chr defaultFont info" onmousedown="mDn(65602, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10042">&#x10042</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65602, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10042">&#x10042</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYLLABLE B071 DWE<br>uni10043</td>
+<td class="chr defaultFont info" onmousedown="mDn(65603, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10043">&#x10043</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65603, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10043">&#x10043</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYLLABLE B090 DWO<br>uni10044</td>
+<td class="chr defaultFont info" onmousedown="mDn(65604, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10044">&#x10044</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65604, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10044">&#x10044</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYLLABLE B048 NWA<br>uni10045</td>
+<td class="chr defaultFont info" onmousedown="mDn(65605, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10045">&#x10045</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65605, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10045">&#x10045</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYLLABLE B029 PU2<br>uni10046</td>
+<td class="chr defaultFont info" onmousedown="mDn(65606, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10046">&#x10046</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65606, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10046">&#x10046</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYLLABLE B062 PTE<br>uni10047</td>
+<td class="chr defaultFont info" onmousedown="mDn(65607, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10047">&#x10047</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65607, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10047">&#x10047</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYLLABLE B076 RA2<br>uni10048</td>
+<td class="chr defaultFont info" onmousedown="mDn(65608, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10048">&#x10048</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65608, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10048">&#x10048</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYLLABLE B033 RA3<br>uni10049</td>
+<td class="chr defaultFont info" onmousedown="mDn(65609, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10049">&#x10049</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65609, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10049">&#x10049</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYLLABLE B068 RO2<br>uni1004A</td>
+<td class="chr defaultFont info" onmousedown="mDn(65610, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1004A">&#x1004A</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65610, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni1004A">&#x1004A</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYLLABLE B066 TA2<br>uni1004B</td>
+<td class="chr defaultFont info" onmousedown="mDn(65611, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1004B">&#x1004B</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65611, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni1004B">&#x1004B</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYLLABLE B087 TWE<br>uni1004C</td>
+<td class="chr defaultFont info" onmousedown="mDn(65612, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1004C">&#x1004C</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65612, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni1004C">&#x1004C</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYLLABLE B091 TWO<br>uni1004D</td>
+<td class="chr defaultFont info" onmousedown="mDn(65613, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1004D">&#x1004D</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65613, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni1004D">&#x1004D</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYMBOL B018<br>uni10050</td>
+<td class="chr defaultFont info" onmousedown="mDn(65616, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10050">&#x10050</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65616, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10050">&#x10050</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYMBOL B019<br>uni10051</td>
+<td class="chr defaultFont info" onmousedown="mDn(65617, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10051">&#x10051</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65617, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10051">&#x10051</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYMBOL B022<br>uni10052</td>
+<td class="chr defaultFont info" onmousedown="mDn(65618, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10052">&#x10052</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65618, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10052">&#x10052</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYMBOL B034<br>uni10053</td>
+<td class="chr defaultFont info" onmousedown="mDn(65619, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10053">&#x10053</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65619, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10053">&#x10053</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYMBOL B047<br>uni10054</td>
+<td class="chr defaultFont info" onmousedown="mDn(65620, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10054">&#x10054</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65620, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10054">&#x10054</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYMBOL B049<br>uni10055</td>
+<td class="chr defaultFont info" onmousedown="mDn(65621, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10055">&#x10055</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65621, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10055">&#x10055</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYMBOL B056<br>uni10056</td>
+<td class="chr defaultFont info" onmousedown="mDn(65622, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10056">&#x10056</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65622, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10056">&#x10056</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYMBOL B063<br>uni10057</td>
+<td class="chr defaultFont info" onmousedown="mDn(65623, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10057">&#x10057</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65623, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10057">&#x10057</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYMBOL B064<br>uni10058</td>
+<td class="chr defaultFont info" onmousedown="mDn(65624, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10058">&#x10058</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65624, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10058">&#x10058</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYMBOL B079<br>uni10059</td>
+<td class="chr defaultFont info" onmousedown="mDn(65625, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10059">&#x10059</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65625, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10059">&#x10059</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYMBOL B082<br>uni1005A</td>
+<td class="chr defaultFont info" onmousedown="mDn(65626, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1005A">&#x1005A</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65626, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni1005A">&#x1005A</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYMBOL B083<br>uni1005B</td>
+<td class="chr defaultFont info" onmousedown="mDn(65627, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1005B">&#x1005B</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65627, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni1005B">&#x1005B</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYMBOL B086<br>uni1005C</td>
+<td class="chr defaultFont info" onmousedown="mDn(65628, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1005C">&#x1005C</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65628, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni1005C">&#x1005C</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B SYMBOL B089<br>uni1005D</td>
+<td class="chr defaultFont info" onmousedown="mDn(65629, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1005D">&#x1005D</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65629, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni1005D">&#x1005D</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B100 MAN<br>uni10080</td>
+<td class="chr defaultFont info" onmousedown="mDn(65664, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10080">&#x10080</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65664, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10080">&#x10080</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B102 WOMAN<br>uni10081</td>
+<td class="chr defaultFont info" onmousedown="mDn(65665, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10081">&#x10081</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65665, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10081">&#x10081</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B104 DEER<br>uni10082</td>
+<td class="chr defaultFont info" onmousedown="mDn(65666, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10082">&#x10082</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65666, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10082">&#x10082</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B105 EQUID<br>uni10083</td>
+<td class="chr defaultFont info" onmousedown="mDn(65667, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10083">&#x10083</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65667, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10083">&#x10083</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B105F MARE<br>uni10084</td>
+<td class="chr defaultFont info" onmousedown="mDn(65668, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10084">&#x10084</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65668, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10084">&#x10084</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B105M STALLION<br>uni10085</td>
+<td class="chr defaultFont info" onmousedown="mDn(65669, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10085">&#x10085</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65669, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10085">&#x10085</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B106F EWE<br>uni10086</td>
+<td class="chr defaultFont info" onmousedown="mDn(65670, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10086">&#x10086</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65670, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10086">&#x10086</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B106M RAM<br>uni10087</td>
+<td class="chr defaultFont info" onmousedown="mDn(65671, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10087">&#x10087</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65671, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10087">&#x10087</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B107F SHE-GOAT<br>uni10088</td>
+<td class="chr defaultFont info" onmousedown="mDn(65672, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10088">&#x10088</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65672, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10088">&#x10088</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B107M HE-GOAT<br>uni10089</td>
+<td class="chr defaultFont info" onmousedown="mDn(65673, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10089">&#x10089</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65673, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10089">&#x10089</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B108F SOW<br>uni1008A</td>
+<td class="chr defaultFont info" onmousedown="mDn(65674, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1008A">&#x1008A</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65674, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni1008A">&#x1008A</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B108M BOAR<br>uni1008B</td>
+<td class="chr defaultFont info" onmousedown="mDn(65675, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1008B">&#x1008B</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65675, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni1008B">&#x1008B</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B109F COW<br>uni1008C</td>
+<td class="chr defaultFont info" onmousedown="mDn(65676, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1008C">&#x1008C</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65676, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni1008C">&#x1008C</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B109M BULL<br>uni1008D</td>
+<td class="chr defaultFont info" onmousedown="mDn(65677, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1008D">&#x1008D</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65677, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni1008D">&#x1008D</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B120 WHEAT<br>uni1008E</td>
+<td class="chr defaultFont info" onmousedown="mDn(65678, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1008E">&#x1008E</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65678, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni1008E">&#x1008E</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B121 BARLEY<br>uni1008F</td>
+<td class="chr defaultFont info" onmousedown="mDn(65679, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1008F">&#x1008F</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65679, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni1008F">&#x1008F</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B122 OLIVE<br>uni10090</td>
+<td class="chr defaultFont info" onmousedown="mDn(65680, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10090">&#x10090</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65680, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10090">&#x10090</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B123 SPICE<br>uni10091</td>
+<td class="chr defaultFont info" onmousedown="mDn(65681, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10091">&#x10091</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65681, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10091">&#x10091</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B125 CYPERUS<br>uni10092</td>
+<td class="chr defaultFont info" onmousedown="mDn(65682, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10092">&#x10092</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65682, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10092">&#x10092</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B MONOGRAM B127 KAPO<br>uni10093</td>
+<td class="chr defaultFont info" onmousedown="mDn(65683, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10093">&#x10093</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65683, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10093">&#x10093</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B MONOGRAM B128 KANAKO<br>uni10094</td>
+<td class="chr defaultFont info" onmousedown="mDn(65684, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10094">&#x10094</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65684, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10094">&#x10094</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B130 OIL<br>uni10095</td>
+<td class="chr defaultFont info" onmousedown="mDn(65685, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10095">&#x10095</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65685, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10095">&#x10095</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B131 WINE<br>uni10096</td>
+<td class="chr defaultFont info" onmousedown="mDn(65686, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10096">&#x10096</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65686, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10096">&#x10096</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B132<br>uni10097</td>
+<td class="chr defaultFont info" onmousedown="mDn(65687, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10097">&#x10097</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65687, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10097">&#x10097</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B MONOGRAM B133 AREPA<br>uni10098</td>
+<td class="chr defaultFont info" onmousedown="mDn(65688, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10098">&#x10098</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65688, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10098">&#x10098</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B MONOGRAM B135 MERI<br>uni10099</td>
+<td class="chr defaultFont info" onmousedown="mDn(65689, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10099">&#x10099</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65689, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10099">&#x10099</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B140 BRONZE<br>uni1009A</td>
+<td class="chr defaultFont info" onmousedown="mDn(65690, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1009A">&#x1009A</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65690, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni1009A">&#x1009A</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B141 GOLD<br>uni1009B</td>
+<td class="chr defaultFont info" onmousedown="mDn(65691, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1009B">&#x1009B</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65691, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni1009B">&#x1009B</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B142<br>uni1009C</td>
+<td class="chr defaultFont info" onmousedown="mDn(65692, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1009C">&#x1009C</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65692, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni1009C">&#x1009C</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B145 WOOL<br>uni1009D</td>
+<td class="chr defaultFont info" onmousedown="mDn(65693, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1009D">&#x1009D</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65693, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni1009D">&#x1009D</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B146<br>uni1009E</td>
+<td class="chr defaultFont info" onmousedown="mDn(65694, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1009E">&#x1009E</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65694, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni1009E">&#x1009E</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B150<br>uni1009F</td>
+<td class="chr defaultFont info" onmousedown="mDn(65695, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1009F">&#x1009F</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65695, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni1009F">&#x1009F</td>
+</tr>
+<tr>
+<td class="colLeft">NO-BREAK SPACE<br>uni00A0</td>
+<td class="chr defaultFont info" onmousedown="mDn(160, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni00A0">&#x00A0</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(160, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni00A0">&#x00A0</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B151 HORN<br>uni100A0</td>
+<td class="chr defaultFont info" onmousedown="mDn(65696, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100A0">&#x100A0</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65696, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100A0">&#x100A0</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B152<br>uni100A1</td>
+<td class="chr defaultFont info" onmousedown="mDn(65697, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100A1">&#x100A1</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65697, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100A1">&#x100A1</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B153<br>uni100A2</td>
+<td class="chr defaultFont info" onmousedown="mDn(65698, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100A2">&#x100A2</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65698, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100A2">&#x100A2</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B154<br>uni100A3</td>
+<td class="chr defaultFont info" onmousedown="mDn(65699, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100A3">&#x100A3</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65699, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100A3">&#x100A3</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B MONOGRAM B156 TURO2<br>uni100A4</td>
+<td class="chr defaultFont info" onmousedown="mDn(65700, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100A4">&#x100A4</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65700, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100A4">&#x100A4</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B157<br>uni100A5</td>
+<td class="chr defaultFont info" onmousedown="mDn(65701, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100A5">&#x100A5</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65701, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100A5">&#x100A5</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B158<br>uni100A6</td>
+<td class="chr defaultFont info" onmousedown="mDn(65702, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100A6">&#x100A6</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65702, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100A6">&#x100A6</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B159 CLOTH<br>uni100A7</td>
+<td class="chr defaultFont info" onmousedown="mDn(65703, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100A7">&#x100A7</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65703, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100A7">&#x100A7</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B160<br>uni100A8</td>
+<td class="chr defaultFont info" onmousedown="mDn(65704, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100A8">&#x100A8</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65704, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100A8">&#x100A8</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B161<br>uni100A9</td>
+<td class="chr defaultFont info" onmousedown="mDn(65705, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100A9">&#x100A9</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65705, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100A9">&#x100A9</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B162 GARMENT<br>uni100AA</td>
+<td class="chr defaultFont info" onmousedown="mDn(65706, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100AA">&#x100AA</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65706, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100AA">&#x100AA</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B163 ARMOUR<br>uni100AB</td>
+<td class="chr defaultFont info" onmousedown="mDn(65707, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100AB">&#x100AB</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65707, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100AB">&#x100AB</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B164<br>uni100AC</td>
+<td class="chr defaultFont info" onmousedown="mDn(65708, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100AC">&#x100AC</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65708, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100AC">&#x100AC</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B165<br>uni100AD</td>
+<td class="chr defaultFont info" onmousedown="mDn(65709, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100AD">&#x100AD</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65709, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100AD">&#x100AD</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B166<br>uni100AE</td>
+<td class="chr defaultFont info" onmousedown="mDn(65710, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100AE">&#x100AE</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65710, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100AE">&#x100AE</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B167<br>uni100AF</td>
+<td class="chr defaultFont info" onmousedown="mDn(65711, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100AF">&#x100AF</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65711, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100AF">&#x100AF</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B168<br>uni100B0</td>
+<td class="chr defaultFont info" onmousedown="mDn(65712, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100B0">&#x100B0</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65712, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100B0">&#x100B0</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B169<br>uni100B1</td>
+<td class="chr defaultFont info" onmousedown="mDn(65713, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100B1">&#x100B1</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65713, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100B1">&#x100B1</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B170<br>uni100B2</td>
+<td class="chr defaultFont info" onmousedown="mDn(65714, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100B2">&#x100B2</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65714, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100B2">&#x100B2</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B171<br>uni100B3</td>
+<td class="chr defaultFont info" onmousedown="mDn(65715, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100B3">&#x100B3</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65715, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100B3">&#x100B3</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B172<br>uni100B4</td>
+<td class="chr defaultFont info" onmousedown="mDn(65716, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100B4">&#x100B4</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65716, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100B4">&#x100B4</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B173 MONTH<br>uni100B5</td>
+<td class="chr defaultFont info" onmousedown="mDn(65717, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100B5">&#x100B5</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65717, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100B5">&#x100B5</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B174<br>uni100B6</td>
+<td class="chr defaultFont info" onmousedown="mDn(65718, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100B6">&#x100B6</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65718, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100B6">&#x100B6</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B176 TREE<br>uni100B7</td>
+<td class="chr defaultFont info" onmousedown="mDn(65719, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100B7">&#x100B7</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65719, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100B7">&#x100B7</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B177<br>uni100B8</td>
+<td class="chr defaultFont info" onmousedown="mDn(65720, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100B8">&#x100B8</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65720, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100B8">&#x100B8</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B178<br>uni100B9</td>
+<td class="chr defaultFont info" onmousedown="mDn(65721, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100B9">&#x100B9</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65721, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100B9">&#x100B9</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B179<br>uni100BA</td>
+<td class="chr defaultFont info" onmousedown="mDn(65722, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100BA">&#x100BA</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65722, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100BA">&#x100BA</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B180<br>uni100BB</td>
+<td class="chr defaultFont info" onmousedown="mDn(65723, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100BB">&#x100BB</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65723, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100BB">&#x100BB</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B181<br>uni100BC</td>
+<td class="chr defaultFont info" onmousedown="mDn(65724, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100BC">&#x100BC</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65724, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100BC">&#x100BC</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B182<br>uni100BD</td>
+<td class="chr defaultFont info" onmousedown="mDn(65725, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100BD">&#x100BD</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65725, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100BD">&#x100BD</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B183<br>uni100BE</td>
+<td class="chr defaultFont info" onmousedown="mDn(65726, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100BE">&#x100BE</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65726, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100BE">&#x100BE</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B184<br>uni100BF</td>
+<td class="chr defaultFont info" onmousedown="mDn(65727, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100BF">&#x100BF</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65727, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100BF">&#x100BF</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B185<br>uni100C0</td>
+<td class="chr defaultFont info" onmousedown="mDn(65728, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100C0">&#x100C0</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65728, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100C0">&#x100C0</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B189<br>uni100C1</td>
+<td class="chr defaultFont info" onmousedown="mDn(65729, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100C1">&#x100C1</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65729, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100C1">&#x100C1</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B190<br>uni100C2</td>
+<td class="chr defaultFont info" onmousedown="mDn(65730, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100C2">&#x100C2</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65730, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100C2">&#x100C2</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B191 HELMET<br>uni100C3</td>
+<td class="chr defaultFont info" onmousedown="mDn(65731, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100C3">&#x100C3</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65731, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100C3">&#x100C3</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B220 FOOTSTOOL<br>uni100C4</td>
+<td class="chr defaultFont info" onmousedown="mDn(65732, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100C4">&#x100C4</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65732, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100C4">&#x100C4</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B225 BATHTUB<br>uni100C5</td>
+<td class="chr defaultFont info" onmousedown="mDn(65733, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100C5">&#x100C5</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65733, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100C5">&#x100C5</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B230 SPEAR<br>uni100C6</td>
+<td class="chr defaultFont info" onmousedown="mDn(65734, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100C6">&#x100C6</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65734, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100C6">&#x100C6</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B231 ARROW<br>uni100C7</td>
+<td class="chr defaultFont info" onmousedown="mDn(65735, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100C7">&#x100C7</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65735, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100C7">&#x100C7</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B232<br>uni100C8</td>
+<td class="chr defaultFont info" onmousedown="mDn(65736, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100C8">&#x100C8</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65736, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100C8">&#x100C8</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B233 SWORD<br>uni100C9</td>
+<td class="chr defaultFont info" onmousedown="mDn(65737, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100C9">&#x100C9</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65737, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100C9">&#x100C9</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B234<br>uni100CA</td>
+<td class="chr defaultFont info" onmousedown="mDn(65738, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100CA">&#x100CA</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65738, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100CA">&#x100CA</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B236<br>uni100CB</td>
+<td class="chr defaultFont info" onmousedown="mDn(65739, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100CB">&#x100CB</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65739, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100CB">&#x100CB</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B240 WHEELED CHARIOT<br>uni100CC</td>
+<td class="chr defaultFont info" onmousedown="mDn(65740, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100CC">&#x100CC</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65740, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100CC">&#x100CC</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B241 CHARIOT<br>uni100CD</td>
+<td class="chr defaultFont info" onmousedown="mDn(65741, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100CD">&#x100CD</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65741, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100CD">&#x100CD</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B242 CHARIOT FRAME<br>uni100CE</td>
+<td class="chr defaultFont info" onmousedown="mDn(65742, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100CE">&#x100CE</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65742, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100CE">&#x100CE</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B243 WHEEL<br>uni100CF</td>
+<td class="chr defaultFont info" onmousedown="mDn(65743, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100CF">&#x100CF</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65743, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100CF">&#x100CF</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B245<br>uni100D0</td>
+<td class="chr defaultFont info" onmousedown="mDn(65744, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100D0">&#x100D0</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65744, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100D0">&#x100D0</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B246<br>uni100D1</td>
+<td class="chr defaultFont info" onmousedown="mDn(65745, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100D1">&#x100D1</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65745, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100D1">&#x100D1</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B MONOGRAM B247 DIPTE<br>uni100D2</td>
+<td class="chr defaultFont info" onmousedown="mDn(65746, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100D2">&#x100D2</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65746, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100D2">&#x100D2</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B248<br>uni100D3</td>
+<td class="chr defaultFont info" onmousedown="mDn(65747, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100D3">&#x100D3</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65747, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100D3">&#x100D3</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B249<br>uni100D4</td>
+<td class="chr defaultFont info" onmousedown="mDn(65748, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100D4">&#x100D4</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65748, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100D4">&#x100D4</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B251<br>uni100D5</td>
+<td class="chr defaultFont info" onmousedown="mDn(65749, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100D5">&#x100D5</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65749, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100D5">&#x100D5</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B252<br>uni100D6</td>
+<td class="chr defaultFont info" onmousedown="mDn(65750, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100D6">&#x100D6</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65750, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100D6">&#x100D6</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B253<br>uni100D7</td>
+<td class="chr defaultFont info" onmousedown="mDn(65751, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100D7">&#x100D7</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65751, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100D7">&#x100D7</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B254 DART<br>uni100D8</td>
+<td class="chr defaultFont info" onmousedown="mDn(65752, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100D8">&#x100D8</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65752, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100D8">&#x100D8</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B255<br>uni100D9</td>
+<td class="chr defaultFont info" onmousedown="mDn(65753, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100D9">&#x100D9</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65753, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100D9">&#x100D9</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B256<br>uni100DA</td>
+<td class="chr defaultFont info" onmousedown="mDn(65754, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100DA">&#x100DA</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65754, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100DA">&#x100DA</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B257<br>uni100DB</td>
+<td class="chr defaultFont info" onmousedown="mDn(65755, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100DB">&#x100DB</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65755, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100DB">&#x100DB</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B258<br>uni100DC</td>
+<td class="chr defaultFont info" onmousedown="mDn(65756, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100DC">&#x100DC</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65756, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100DC">&#x100DC</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM B259<br>uni100DD</td>
+<td class="chr defaultFont info" onmousedown="mDn(65757, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100DD">&#x100DD</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65757, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100DD">&#x100DD</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM VESSEL B155<br>uni100DE</td>
+<td class="chr defaultFont info" onmousedown="mDn(65758, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100DE">&#x100DE</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65758, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100DE">&#x100DE</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM VESSEL B200<br>uni100DF</td>
+<td class="chr defaultFont info" onmousedown="mDn(65759, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100DF">&#x100DF</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65759, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100DF">&#x100DF</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM VESSEL B201<br>uni100E0</td>
+<td class="chr defaultFont info" onmousedown="mDn(65760, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100E0">&#x100E0</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65760, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100E0">&#x100E0</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM VESSEL B202<br>uni100E1</td>
+<td class="chr defaultFont info" onmousedown="mDn(65761, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100E1">&#x100E1</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65761, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100E1">&#x100E1</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM VESSEL B203<br>uni100E2</td>
+<td class="chr defaultFont info" onmousedown="mDn(65762, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100E2">&#x100E2</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65762, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100E2">&#x100E2</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM VESSEL B204<br>uni100E3</td>
+<td class="chr defaultFont info" onmousedown="mDn(65763, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100E3">&#x100E3</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65763, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100E3">&#x100E3</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM VESSEL B205<br>uni100E4</td>
+<td class="chr defaultFont info" onmousedown="mDn(65764, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100E4">&#x100E4</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65764, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100E4">&#x100E4</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM VESSEL B206<br>uni100E5</td>
+<td class="chr defaultFont info" onmousedown="mDn(65765, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100E5">&#x100E5</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65765, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100E5">&#x100E5</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM VESSEL B207<br>uni100E6</td>
+<td class="chr defaultFont info" onmousedown="mDn(65766, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100E6">&#x100E6</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65766, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100E6">&#x100E6</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM VESSEL B208<br>uni100E7</td>
+<td class="chr defaultFont info" onmousedown="mDn(65767, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100E7">&#x100E7</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65767, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100E7">&#x100E7</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM VESSEL B209<br>uni100E8</td>
+<td class="chr defaultFont info" onmousedown="mDn(65768, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100E8">&#x100E8</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65768, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100E8">&#x100E8</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM VESSEL B210<br>uni100E9</td>
+<td class="chr defaultFont info" onmousedown="mDn(65769, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100E9">&#x100E9</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65769, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100E9">&#x100E9</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM VESSEL B211<br>uni100EA</td>
+<td class="chr defaultFont info" onmousedown="mDn(65770, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100EA">&#x100EA</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65770, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100EA">&#x100EA</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM VESSEL B212<br>uni100EB</td>
+<td class="chr defaultFont info" onmousedown="mDn(65771, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100EB">&#x100EB</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65771, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100EB">&#x100EB</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM VESSEL B213<br>uni100EC</td>
+<td class="chr defaultFont info" onmousedown="mDn(65772, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100EC">&#x100EC</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65772, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100EC">&#x100EC</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM VESSEL B214<br>uni100ED</td>
+<td class="chr defaultFont info" onmousedown="mDn(65773, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100ED">&#x100ED</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65773, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100ED">&#x100ED</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM VESSEL B215<br>uni100EE</td>
+<td class="chr defaultFont info" onmousedown="mDn(65774, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100EE">&#x100EE</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65774, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100EE">&#x100EE</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM VESSEL B216<br>uni100EF</td>
+<td class="chr defaultFont info" onmousedown="mDn(65775, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100EF">&#x100EF</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65775, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100EF">&#x100EF</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM VESSEL B217<br>uni100F0</td>
+<td class="chr defaultFont info" onmousedown="mDn(65776, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100F0">&#x100F0</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65776, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100F0">&#x100F0</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM VESSEL B218<br>uni100F1</td>
+<td class="chr defaultFont info" onmousedown="mDn(65777, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100F1">&#x100F1</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65777, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100F1">&#x100F1</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM VESSEL B219<br>uni100F2</td>
+<td class="chr defaultFont info" onmousedown="mDn(65778, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100F2">&#x100F2</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65778, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100F2">&#x100F2</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM VESSEL B221<br>uni100F3</td>
+<td class="chr defaultFont info" onmousedown="mDn(65779, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100F3">&#x100F3</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65779, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100F3">&#x100F3</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM VESSEL B222<br>uni100F4</td>
+<td class="chr defaultFont info" onmousedown="mDn(65780, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100F4">&#x100F4</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65780, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100F4">&#x100F4</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM VESSEL B226<br>uni100F5</td>
+<td class="chr defaultFont info" onmousedown="mDn(65781, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100F5">&#x100F5</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65781, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100F5">&#x100F5</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM VESSEL B227<br>uni100F6</td>
+<td class="chr defaultFont info" onmousedown="mDn(65782, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100F6">&#x100F6</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65782, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100F6">&#x100F6</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM VESSEL B228<br>uni100F7</td>
+<td class="chr defaultFont info" onmousedown="mDn(65783, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100F7">&#x100F7</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65783, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100F7">&#x100F7</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM VESSEL B229<br>uni100F8</td>
+<td class="chr defaultFont info" onmousedown="mDn(65784, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100F8">&#x100F8</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65784, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100F8">&#x100F8</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM VESSEL B250<br>uni100F9</td>
+<td class="chr defaultFont info" onmousedown="mDn(65785, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100F9">&#x100F9</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65785, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100F9">&#x100F9</td>
+</tr>
+<tr>
+<td class="colLeft">LINEAR B IDEOGRAM VESSEL B305<br>uni100FA</td>
+<td class="chr defaultFont info" onmousedown="mDn(65786, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni100FA">&#x100FA</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65786, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni100FA">&#x100FA</td>
+</tr>
+<tr>
+<td class="colLeft">AEGEAN WORD SEPARATOR LINE<br>uni10100</td>
+<td class="chr defaultFont info" onmousedown="mDn(65792, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10100">&#x10100</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65792, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10100">&#x10100</td>
+</tr>
+<tr>
+<td class="colLeft">AEGEAN WORD SEPARATOR DOT<br>uni10101</td>
+<td class="chr defaultFont info" onmousedown="mDn(65793, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10101">&#x10101</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65793, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10101">&#x10101</td>
+</tr>
+<tr>
+<td class="colLeft">AEGEAN CHECK MARK<br>uni10102</td>
+<td class="chr defaultFont info" onmousedown="mDn(65794, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10102">&#x10102</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65794, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10102">&#x10102</td>
+</tr>
+<tr>
+<td class="colLeft">AEGEAN NUMBER ONE<br>uni10107</td>
+<td class="chr defaultFont info" onmousedown="mDn(65799, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10107">&#x10107</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65799, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10107">&#x10107</td>
+</tr>
+<tr>
+<td class="colLeft">AEGEAN NUMBER TWO<br>uni10108</td>
+<td class="chr defaultFont info" onmousedown="mDn(65800, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10108">&#x10108</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65800, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10108">&#x10108</td>
+</tr>
+<tr>
+<td class="colLeft">AEGEAN NUMBER THREE<br>uni10109</td>
+<td class="chr defaultFont info" onmousedown="mDn(65801, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10109">&#x10109</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65801, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10109">&#x10109</td>
+</tr>
+<tr>
+<td class="colLeft">AEGEAN NUMBER FOUR<br>uni1010A</td>
+<td class="chr defaultFont info" onmousedown="mDn(65802, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1010A">&#x1010A</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65802, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni1010A">&#x1010A</td>
+</tr>
+<tr>
+<td class="colLeft">AEGEAN NUMBER FIVE<br>uni1010B</td>
+<td class="chr defaultFont info" onmousedown="mDn(65803, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1010B">&#x1010B</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65803, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni1010B">&#x1010B</td>
+</tr>
+<tr>
+<td class="colLeft">AEGEAN NUMBER SIX<br>uni1010C</td>
+<td class="chr defaultFont info" onmousedown="mDn(65804, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1010C">&#x1010C</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65804, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni1010C">&#x1010C</td>
+</tr>
+<tr>
+<td class="colLeft">AEGEAN NUMBER SEVEN<br>uni1010D</td>
+<td class="chr defaultFont info" onmousedown="mDn(65805, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1010D">&#x1010D</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65805, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni1010D">&#x1010D</td>
+</tr>
+<tr>
+<td class="colLeft">AEGEAN NUMBER EIGHT<br>uni1010E</td>
+<td class="chr defaultFont info" onmousedown="mDn(65806, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1010E">&#x1010E</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65806, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni1010E">&#x1010E</td>
+</tr>
+<tr>
+<td class="colLeft">AEGEAN NUMBER NINE<br>uni1010F</td>
+<td class="chr defaultFont info" onmousedown="mDn(65807, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1010F">&#x1010F</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65807, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni1010F">&#x1010F</td>
+</tr>
+<tr>
+<td class="colLeft">AEGEAN NUMBER TEN<br>uni10110</td>
+<td class="chr defaultFont info" onmousedown="mDn(65808, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10110">&#x10110</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65808, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10110">&#x10110</td>
+</tr>
+<tr>
+<td class="colLeft">AEGEAN NUMBER TWENTY<br>uni10111</td>
+<td class="chr defaultFont info" onmousedown="mDn(65809, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10111">&#x10111</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65809, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10111">&#x10111</td>
+</tr>
+<tr>
+<td class="colLeft">AEGEAN NUMBER THIRTY<br>uni10112</td>
+<td class="chr defaultFont info" onmousedown="mDn(65810, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10112">&#x10112</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65810, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10112">&#x10112</td>
+</tr>
+<tr>
+<td class="colLeft">AEGEAN NUMBER FORTY<br>uni10113</td>
+<td class="chr defaultFont info" onmousedown="mDn(65811, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10113">&#x10113</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65811, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10113">&#x10113</td>
+</tr>
+<tr>
+<td class="colLeft">AEGEAN NUMBER FIFTY<br>uni10114</td>
+<td class="chr defaultFont info" onmousedown="mDn(65812, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10114">&#x10114</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65812, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10114">&#x10114</td>
+</tr>
+<tr>
+<td class="colLeft">AEGEAN NUMBER SIXTY<br>uni10115</td>
+<td class="chr defaultFont info" onmousedown="mDn(65813, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10115">&#x10115</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65813, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10115">&#x10115</td>
+</tr>
+<tr>
+<td class="colLeft">AEGEAN NUMBER SEVENTY<br>uni10116</td>
+<td class="chr defaultFont info" onmousedown="mDn(65814, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10116">&#x10116</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65814, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10116">&#x10116</td>
+</tr>
+<tr>
+<td class="colLeft">AEGEAN NUMBER EIGHTY<br>uni10117</td>
+<td class="chr defaultFont info" onmousedown="mDn(65815, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10117">&#x10117</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65815, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10117">&#x10117</td>
+</tr>
+<tr>
+<td class="colLeft">AEGEAN NUMBER NINETY<br>uni10118</td>
+<td class="chr defaultFont info" onmousedown="mDn(65816, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10118">&#x10118</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65816, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10118">&#x10118</td>
+</tr>
+<tr>
+<td class="colLeft">AEGEAN NUMBER ONE HUNDRED<br>uni10119</td>
+<td class="chr defaultFont info" onmousedown="mDn(65817, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10119">&#x10119</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65817, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10119">&#x10119</td>
+</tr>
+<tr>
+<td class="colLeft">AEGEAN NUMBER TWO HUNDRED<br>uni1011A</td>
+<td class="chr defaultFont info" onmousedown="mDn(65818, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1011A">&#x1011A</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65818, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni1011A">&#x1011A</td>
+</tr>
+<tr>
+<td class="colLeft">AEGEAN NUMBER THREE HUNDRED<br>uni1011B</td>
+<td class="chr defaultFont info" onmousedown="mDn(65819, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1011B">&#x1011B</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65819, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni1011B">&#x1011B</td>
+</tr>
+<tr>
+<td class="colLeft">AEGEAN NUMBER FOUR HUNDRED<br>uni1011C</td>
+<td class="chr defaultFont info" onmousedown="mDn(65820, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1011C">&#x1011C</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65820, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni1011C">&#x1011C</td>
+</tr>
+<tr>
+<td class="colLeft">AEGEAN NUMBER FIVE HUNDRED<br>uni1011D</td>
+<td class="chr defaultFont info" onmousedown="mDn(65821, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1011D">&#x1011D</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65821, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni1011D">&#x1011D</td>
+</tr>
+<tr>
+<td class="colLeft">AEGEAN NUMBER SIX HUNDRED<br>uni1011E</td>
+<td class="chr defaultFont info" onmousedown="mDn(65822, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1011E">&#x1011E</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65822, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni1011E">&#x1011E</td>
+</tr>
+<tr>
+<td class="colLeft">AEGEAN NUMBER SEVEN HUNDRED<br>uni1011F</td>
+<td class="chr defaultFont info" onmousedown="mDn(65823, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1011F">&#x1011F</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65823, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni1011F">&#x1011F</td>
+</tr>
+<tr>
+<td class="colLeft">AEGEAN NUMBER EIGHT HUNDRED<br>uni10120</td>
+<td class="chr defaultFont info" onmousedown="mDn(65824, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10120">&#x10120</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65824, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10120">&#x10120</td>
+</tr>
+<tr>
+<td class="colLeft">AEGEAN NUMBER NINE HUNDRED<br>uni10121</td>
+<td class="chr defaultFont info" onmousedown="mDn(65825, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10121">&#x10121</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65825, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10121">&#x10121</td>
+</tr>
+<tr>
+<td class="colLeft">AEGEAN NUMBER ONE THOUSAND<br>uni10122</td>
+<td class="chr defaultFont info" onmousedown="mDn(65826, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10122">&#x10122</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65826, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10122">&#x10122</td>
+</tr>
+<tr>
+<td class="colLeft">AEGEAN NUMBER TWO THOUSAND<br>uni10123</td>
+<td class="chr defaultFont info" onmousedown="mDn(65827, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10123">&#x10123</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65827, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10123">&#x10123</td>
+</tr>
+<tr>
+<td class="colLeft">AEGEAN NUMBER THREE THOUSAND<br>uni10124</td>
+<td class="chr defaultFont info" onmousedown="mDn(65828, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10124">&#x10124</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65828, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10124">&#x10124</td>
+</tr>
+<tr>
+<td class="colLeft">AEGEAN NUMBER FOUR THOUSAND<br>uni10125</td>
+<td class="chr defaultFont info" onmousedown="mDn(65829, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10125">&#x10125</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65829, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10125">&#x10125</td>
+</tr>
+<tr>
+<td class="colLeft">AEGEAN NUMBER FIVE THOUSAND<br>uni10126</td>
+<td class="chr defaultFont info" onmousedown="mDn(65830, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10126">&#x10126</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65830, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10126">&#x10126</td>
+</tr>
+<tr>
+<td class="colLeft">AEGEAN NUMBER SIX THOUSAND<br>uni10127</td>
+<td class="chr defaultFont info" onmousedown="mDn(65831, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10127">&#x10127</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65831, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10127">&#x10127</td>
+</tr>
+<tr>
+<td class="colLeft">AEGEAN NUMBER SEVEN THOUSAND<br>uni10128</td>
+<td class="chr defaultFont info" onmousedown="mDn(65832, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10128">&#x10128</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65832, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10128">&#x10128</td>
+</tr>
+<tr>
+<td class="colLeft">AEGEAN NUMBER EIGHT THOUSAND<br>uni10129</td>
+<td class="chr defaultFont info" onmousedown="mDn(65833, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10129">&#x10129</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65833, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10129">&#x10129</td>
+</tr>
+<tr>
+<td class="colLeft">AEGEAN NUMBER NINE THOUSAND<br>uni1012A</td>
+<td class="chr defaultFont info" onmousedown="mDn(65834, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1012A">&#x1012A</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65834, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni1012A">&#x1012A</td>
+</tr>
+<tr>
+<td class="colLeft">AEGEAN NUMBER TEN THOUSAND<br>uni1012B</td>
+<td class="chr defaultFont info" onmousedown="mDn(65835, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1012B">&#x1012B</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65835, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni1012B">&#x1012B</td>
+</tr>
+<tr>
+<td class="colLeft">AEGEAN NUMBER TWENTY THOUSAND<br>uni1012C</td>
+<td class="chr defaultFont info" onmousedown="mDn(65836, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1012C">&#x1012C</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65836, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni1012C">&#x1012C</td>
+</tr>
+<tr>
+<td class="colLeft">AEGEAN NUMBER THIRTY THOUSAND<br>uni1012D</td>
+<td class="chr defaultFont info" onmousedown="mDn(65837, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1012D">&#x1012D</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65837, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni1012D">&#x1012D</td>
+</tr>
+<tr>
+<td class="colLeft">AEGEAN NUMBER FORTY THOUSAND<br>uni1012E</td>
+<td class="chr defaultFont info" onmousedown="mDn(65838, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1012E">&#x1012E</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65838, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni1012E">&#x1012E</td>
+</tr>
+<tr>
+<td class="colLeft">AEGEAN NUMBER FIFTY THOUSAND<br>uni1012F</td>
+<td class="chr defaultFont info" onmousedown="mDn(65839, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1012F">&#x1012F</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65839, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni1012F">&#x1012F</td>
+</tr>
+<tr>
+<td class="colLeft">AEGEAN NUMBER SIXTY THOUSAND<br>uni10130</td>
+<td class="chr defaultFont info" onmousedown="mDn(65840, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10130">&#x10130</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65840, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10130">&#x10130</td>
+</tr>
+<tr>
+<td class="colLeft">AEGEAN NUMBER SEVENTY THOUSAND<br>uni10131</td>
+<td class="chr defaultFont info" onmousedown="mDn(65841, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10131">&#x10131</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65841, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10131">&#x10131</td>
+</tr>
+<tr>
+<td class="colLeft">AEGEAN NUMBER EIGHTY THOUSAND<br>uni10132</td>
+<td class="chr defaultFont info" onmousedown="mDn(65842, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10132">&#x10132</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65842, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10132">&#x10132</td>
+</tr>
+<tr>
+<td class="colLeft">AEGEAN NUMBER NINETY THOUSAND<br>uni10133</td>
+<td class="chr defaultFont info" onmousedown="mDn(65843, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10133">&#x10133</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65843, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10133">&#x10133</td>
+</tr>
+<tr>
+<td class="colLeft">AEGEAN WEIGHT BASE UNIT<br>uni10137</td>
+<td class="chr defaultFont info" onmousedown="mDn(65847, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10137">&#x10137</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65847, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10137">&#x10137</td>
+</tr>
+<tr>
+<td class="colLeft">AEGEAN WEIGHT FIRST SUBUNIT<br>uni10138</td>
+<td class="chr defaultFont info" onmousedown="mDn(65848, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10138">&#x10138</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65848, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10138">&#x10138</td>
+</tr>
+<tr>
+<td class="colLeft">AEGEAN WEIGHT SECOND SUBUNIT<br>uni10139</td>
+<td class="chr defaultFont info" onmousedown="mDn(65849, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni10139">&#x10139</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65849, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni10139">&#x10139</td>
+</tr>
+<tr>
+<td class="colLeft">AEGEAN WEIGHT THIRD SUBUNIT<br>uni1013A</td>
+<td class="chr defaultFont info" onmousedown="mDn(65850, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1013A">&#x1013A</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65850, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni1013A">&#x1013A</td>
+</tr>
+<tr>
+<td class="colLeft">AEGEAN WEIGHT FOURTH SUBUNIT<br>uni1013B</td>
+<td class="chr defaultFont info" onmousedown="mDn(65851, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1013B">&#x1013B</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65851, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni1013B">&#x1013B</td>
+</tr>
+<tr>
+<td class="colLeft">AEGEAN DRY MEASURE FIRST SUBUNIT<br>uni1013C</td>
+<td class="chr defaultFont info" onmousedown="mDn(65852, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1013C">&#x1013C</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65852, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni1013C">&#x1013C</td>
+</tr>
+<tr>
+<td class="colLeft">AEGEAN LIQUID MEASURE FIRST SUBUNIT<br>uni1013D</td>
+<td class="chr defaultFont info" onmousedown="mDn(65853, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1013D">&#x1013D</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65853, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni1013D">&#x1013D</td>
+</tr>
+<tr>
+<td class="colLeft">AEGEAN MEASURE SECOND SUBUNIT<br>uni1013E</td>
+<td class="chr defaultFont info" onmousedown="mDn(65854, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1013E">&#x1013E</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65854, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni1013E">&#x1013E</td>
+</tr>
+<tr>
+<td class="colLeft">AEGEAN MEASURE THIRD SUBUNIT<br>uni1013F</td>
+<td class="chr defaultFont info" onmousedown="mDn(65855, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni1013F">&#x1013F</td>
+<td class="chr om_NotoSansLinearBRegularttf " onmousedown="mDn(65855, ['om_NotoSansLinearBRegularttf'])" onmouseup="mUp()" title="Noto Sans Linear B" data-original-title="uni1013F">&#x1013F</td>
+</tr>
+
+		</table>
+
+
+            
+		<hr>
+		<table id="splitterContent_unencoded">
+
+		</table>
+
+
+
+    </div>
+    </div>
+
+
+    <script type="text/javascript">
+
+    //var elementCustomerPreview = document.getElementById("cssCodeForCustomerPreview");
+    //console.log('element.height: ', elementCustomerPreview.offsetHeight)
+    //$('.containerMain').css("top", '-' + elementCustomerPreview.offsetHeight + 'px')
+
+    var elementCustomerPreview = document.getElementById("containerMainID");
+    console.log('element.height: ', elementCustomerPreview.offsetHeight)
+    $('.containerCSScode').css("height", elementCustomerPreview.offsetHeight -200 + 'px')
+
+    var elementHeader = document.getElementById('otFeature');
+    console.log('element.height: ', elementHeader.offsetHeight)
+    divHeight = elementHeader.offsetHeight - 50
+    $('.header').css("top", '-' + divHeight + 'px')
+
+    //document.getElementById("varFont").style.color = "blue";
+
+    $('.sampleContent').on('blur keyup paste input', function() {$(".sampleContent").not(this).html($(this).html());});
+
+    
+    $('#slider').on('change',function(){
+    var val = $(this).val();
+    $(".om_NotoSansLinearBRegularttf").css("font-size",(val+"em"));
+    $(".colLeft").css("width",(50 - (val*2)) +"%");
+    });
+
+    
+
+    function toggle_detail(my_id){
+        var element = document.getElementById(my_id)
+        //var buttoncell = document.getElementById(my_id+"_cell")
+        var button = document.getElementById(my_id+"_btn")
+        if (element.style.display != 'none') {
+          element.style.display = 'none'; //$("#" + my_id).slideUp(); smooth in/out does not work currently
+          button.innerHTML = '▼';
+        } else {
+          element.style.display = ''; //$("#" + my_id).slideDown(); smooth in/out does not work currently
+          button.innerHTML = '▲';
+        }
+    }
+
+    function showhide_div(my_id, buttomName){
+        var element = document.getElementById(my_id)
+        //var buttoncell = document.getElementById(my_id+"_cell")
+        var button = document.getElementById(my_id+"_btn")
+        if (element.style.opacity != '0') {
+          element.style.opacity = '0'; 
+          setTimeout(function () {
+            element.style.zIndex = '-1';
+            }, 1000);
+          button.innerHTML = 'show ' + buttomName;
+        } else {
+          element.style.opacity = '1';
+          element.style.zIndex = '998';
+          button.innerHTML = 'hide ' + buttomName;
+        }
+    }
+
+    function hover(my_id){
+        var element = document.getElementById(my_id)
+        if (element.style.background != '') {
+          element.style.background = '';
+          element.style.color = ''; 
+        } else {
+          element.style.background = '#B3D4FC';
+          element.style.color = 'black'; 
+        }
+    }
+
+    var HTMLCodeCompareBoxes = '1234567890 xozszn HOZD 1/3 @ 1a ;#& ? % $ € ! In August of 2016, four unlikely collaborators in the world of type, fonts and font technology stood on a stage at the ATypI conference in Warsaw, Poland. The collaborators were Apple, Microsoft, Adobe and Google. Together they announced the publishing of OpenType 1.8, an update to the now ubiquitous font standard which was originally an amalgam of Apple & Microsoft’s TrueType, and Adobe’s PostScript font formats. The OpenType 1.8 announcement, ATypI, Warsaw, Poland, September 14, 2016.'
+    var fontWeightsDict = {'Noto Sans Linear B (ttf)':'om_NotoSansLinearBRegularttf'};
+
+    var sampleTexts = {'All Unicodes': '\x00 𐀀 𐀁 𐀂 𐀃 𐀄 𐀅 𐀆 𐀇 𐀈 𐀉 𐀊 𐀋 \r 𐀍 𐀎 𐀏 𐀐 𐀑 𐀒 𐀓 𐀔 𐀕 𐀖 𐀗 𐀘 𐀙 𐀚 𐀛 𐀜 𐀝 𐀞   𐀟 𐀠 𐀡 𐀢 𐀣 𐀤 𐀥 𐀦 𐀨 𐀩 𐀪 𐀫 𐀬 𐀭 𐀮 𐀯 𐀰 𐀱 𐀲 𐀳 𐀴 𐀵 𐀶 𐀷 𐀸 𐀹 𐀺 𐀼 𐀽 𐀿 𐁀 𐁁 𐁂 𐁃 𐁄 𐁅 𐁆 𐁇 𐁈 𐁉 𐁊 𐁋 𐁌 𐁍 𐁐 𐁑 𐁒 𐁓 𐁔 𐁕 𐁖 𐁗 𐁘 𐁙 𐁚 𐁛 𐁜 𐁝 𐂀 𐂁 𐂂 𐂃 𐂄 𐂅 𐂆 𐂇 𐂈 𐂉 𐂊 𐂋 𐂌 𐂍 𐂎 𐂏 𐂐 𐂑 𐂒 𐂓 𐂔 𐂕 𐂖 𐂗 𐂘 𐂙 𐂚 𐂛 𐂜 𐂝 𐂞 𐂟 \xa0 𐂠 𐂡 𐂢 𐂣 𐂤 𐂥 𐂦 𐂧 𐂨 𐂩 𐂪 𐂫 𐂬 𐂭 𐂮 𐂯 𐂰 𐂱 𐂲 𐂳 𐂴 𐂵 𐂶 𐂷 𐂸 𐂹 𐂺 𐂻 𐂼 𐂽 𐂾 𐂿 𐃀 𐃁 𐃂 𐃃 𐃄 𐃅 𐃆 𐃇 𐃈 𐃉 𐃊 𐃋 𐃌 𐃍 𐃎 𐃏 𐃐 𐃑 𐃒 𐃓 𐃔 𐃕 𐃖 𐃗 𐃘 𐃙 𐃚 𐃛 𐃜 𐃝 𐃞 𐃟 𐃠 𐃡 𐃢 𐃣 𐃤 𐃥 𐃦 𐃧 𐃨 𐃩 𐃪 𐃫 𐃬 𐃭 𐃮 𐃯 𐃰 𐃱 𐃲 𐃳 𐃴 𐃵 𐃶 𐃷 𐃸 𐃹 𐃺 𐄀 𐄁 𐄂 𐄇 𐄈 𐄉 𐄊 𐄋 𐄌 𐄍 𐄎 𐄏 𐄐 𐄑 𐄒 𐄓 𐄔 𐄕 𐄖 𐄗 𐄘 𐄙 𐄚 𐄛 𐄜 𐄝 𐄞 𐄟 𐄠 𐄡 𐄢 𐄣 𐄤 𐄥 𐄦 𐄧 𐄨 𐄩 𐄪 𐄫 𐄬 𐄭 𐄮 𐄯 𐄰 𐄱 𐄲 𐄳 𐄷 𐄸 𐄹 𐄺 𐄻 𐄼 𐄽 𐄾 𐄿', 'Default Sample': '1234567890 xozszn HOZD 1/3 @ 1a ;#& ? % $ € ! In August of 2016, four unlikely collaborators in the world of type, fonts and font technology stood on a stage at the ATypI conference in Warsaw, Poland. The collaborators were Apple, Microsoft, Adobe and Google. Together they announced the publishing of OpenType 1.8, an update to the now ubiquitous font standard which was originally an amalgam of Apple & Microsoft’s TrueType, and Adobe’s PostScript font formats. The OpenType 1.8 announcement, ATypI, Warsaw, Poland, September 14, 2016.'}
+
+    var clicks = 0;
+    var arrList = [];
+    var mySpanIDList = [];
+
+    var supported_features = [];
+
+    function functionAddSupportedFeatures(item){
+        var button = document.getElementById(item+"_btn")
+        if (supported_features.includes(item) === true){
+            button.style.color = 'black';
+            button.style.backgroundColor = 'white';
+            var index = supported_features.indexOf(item);
+            if (index > -1) {
+                supported_features.splice(index, 1);
+            }
+        }
+        else { 
+            button.style.color = 'white';
+            button.style.backgroundColor = 'black';
+            supported_features.push(item);
+        }
+        functionSetCSSFeatureCode(supported_features)
+    }
+
+    function functionChangeLanguage(item){
+        document.documentElement.lang = item;
+        $("#htmlLangTag").html(item);
+        if (['ar', 'fa', 'ur'].indexOf(item) >= 0) {
+            document.getElementById('compareBoxID').dir = 'rtl';
+            functionReadDirection('compareBoxID', 'right-to-left');
+        } else {
+            document.getElementById('compareBoxID').dir = '';
+            functionReadDirection('compareBoxID', 'left-to-right')
+        }
+
+    }
+
+
+    function functionSetCSSFeatureCode(arr){
+        var supported_features = arr;
+        var default_features =  []; //['kern', 'vkrn', 'liga', 'clig', 'calt', 'mark', 'mkmk', 'rvrm' ];
+
+        var cssCode_features = "";//font-feature-settings:
+        var moz_features = "";
+        
+
+        var arrayLength = supported_features.length;
+        for (var i = 0; i < arrayLength; i++) {
+            var item = supported_features[i];
+            cssCode_features += "'" + item + "' 1,";
+            moz_features += item + "=1,";
+        }
+
+        var defaultLength = default_features.length;
+        for (var i = 0; i < defaultLength; i++) {
+            var item = default_features[i];
+            if (supported_features.includes(item) === false){
+                cssCode_features += "'" + item + "' 0,";
+                moz_features += item + "=0,";
+            }
+        }
+
+        var stringLength = cssCode_features.length;
+        if (cssCode_features[stringLength-1] === ','){
+            var cleanedCSS = cssCode_features.substring(',', stringLength - 1);
+        } else {
+            var cleanedCSS = cssCode_features;
+        }
+
+        var element = document.getElementById('body_all');
+        element.style.fontFeatureSettings = cleanedCSS;
+
+        var stringLength = moz_features.length;
+        if (moz_features[stringLength-1] === ','){
+            var cleanedCSSmoz_features = moz_features.substring(',', stringLength - 1);
+        } else {
+            var cleanedCSSmoz_features = moz_features;
+        }
+
+        console.log('cleanedCSS: ', cleanedCSS)
+        var webkit_features = cleanedCSS 
+
+        $("#w3cfeatures").html(webkit_features);
+        $("#webkitfeatures").html(webkit_features);
+        $("#mozfeatures-up-to-14").html(webkit_features);
+        $("#mozfeatures").html(cleanedCSSmoz_features);
+        $("#msfeatures").html(webkit_features);
+        $("#ofeatures").html(webkit_features);
+
+      };
+
+
+    function functionBoxAdd() {
+
+        clicks += 1;
+        //arrList.push(clicks.toString())
+        console.log(arrList)
+        //var tdID = 'myTD_' + clicks;
+        //arrList.push(tdID.toString())
+        
+        //var x = document.createElement("TD");
+        //x.setAttribute("id", tdID);
+        //document.getElementById("tableTR").appendChild(x);
+
+        //var optionID = 'myOption_' + clicks;
+        //var d1 = document.createElement("DIV");
+        //d1.setAttribute("id", optionID);
+        //document.getElementById(tdID).appendChild(d1);
+
+        //var copyTextID = 'myText_' + clicks;
+        //var d2 = document.createElement("DIV");
+        //d2.setAttribute("id", copyTextID);
+        //d2.setAttribute("contenteditable", 'true');
+        //document.getElementById(tdID).appendChild(d2);
+        //var SampleText = document.createTextNode(HTMLCodeCompareBoxes);
+        //document.getElementById(copyTextID).innerHTML = HTMLCodeCompareBoxes;
+
+        var nameID = 'myBox_' + clicks;
+        arrList.push(nameID.toString())
+        var x = document.createElement("TD");
+        x.setAttribute("id", nameID);
+        //x.setAttribute("contenteditable", 'true');
+
+
+         var selectID = 'mySelect_' + clicks;
+         var s = document.createElement("SELECT");
+         s.setAttribute("id", selectID);
+         s.setAttribute("name", nameID);
+         s.setAttribute("onchange", "functionSelect('" + selectID + "')");
+
+         var arrListFontname = [];
+         var arrListCSSName = [];
+         lenClicks = 0;
+
+         for(fontName in fontWeightsDict){
+                 lenClicks += 1;
+                 arrListFontname.push(fontName.toString())
+                  var fontCSScode = fontWeightsDict[fontName];
+                  arrListCSSName.push(fontCSScode.toString())
+
+                  var z = document.createElement("option");
+                z.setAttribute("value", fontCSScode);
+                if (clicks + 1 == lenClicks){
+                    var FontSelected = arrListCSSName[lenClicks-1]; //minus one because array starts with zero
+                    z.setAttribute("selected", 'selected');
+                }
+                var t = document.createTextNode(fontName);
+                z.appendChild(t);
+                s.appendChild(z);
+                console.log(arrListFontname[-1])
+        }
+
+        var numberFonts = Object.keys(fontWeightsDict).length;
+        if (numberFonts <= clicks){var FontSelected = arrListCSSName[0];}
+        
+        x.setAttribute("class", "compareBox "+FontSelected);
+        document.getElementById("tableTR").appendChild(x);
+
+
+        //document.getElementById(nameID).appendChild(z);
+        document.getElementById(nameID).appendChild(s);
+
+        //var SampleText = document.createTextNode(HTMLCodeCompareBoxes);
+        var mySpanID = 'myBoxContent_' + clicks;
+        mySpanIDList.push(mySpanID.toString())
+        var span = document.createElement("SPAN");
+        span.setAttribute("id", mySpanID);
+        span.setAttribute("contenteditable", 'true');
+        span.setAttribute("class", 'compareBoxCSS');
+
+        var compareBoxFontSize = document.getElementById("myBoxContent").style.fontSize;
+        //console.log('Font-Size: ', compareBoxFontSize)
+        span.setAttribute("style", "font-size: " + compareBoxFontSize);
+
+        var getSampleText = document.getElementById('myBoxContent').innerHTML
+        //var mySampleText = document.getElementById('mySelectSampleText').value;
+        //var getSampleText = sampleTexts[mySampleText];
+        span.innerHTML = getSampleText;
+
+        //var sp = document.createTextNode(getSampleText);
+        //span.appendChild(sp);
+
+        document.getElementById(nameID).appendChild(span);
+     
+    }
+     
+    function functionBoxRemove() {
+        var item = arrList.pop() ;
+        //var nameID2 = 'myBox_' + (item);
+
+        if (item != 'myBox'){
+            var x = document.getElementById(item);
+            document.getElementById("tableTR").removeChild(x);
+        }
+
+        var index = mySpanIDList.length;
+        if (index > 1){
+            var listIndex = index -1;
+            mySpanIDList.splice(listIndex, 1);
+        }
+
+    }
+
+    var allBoxBG = arrList;
+    allBoxBG.push('myBox'); //first fixed box
+    function functionBoxBG(){
+        for (var item in allBoxBG){
+            console.log(allBoxBG[item])
+            var element = document.getElementById(allBoxBG[item])
+            if (element.style.backgroundColor != "white"){
+                element.style.backgroundColor = "white";
+                element.style.color = 'black';
+            } else {
+                element.style.backgroundColor = "black";
+                element.style.color = 'white';                
+            }
+        }
+    }
+
+    //$('#myBox').on('blur keyup paste input', function() {
+    //    var sampleText = document.getElementById('myBox').innerHTML;
+    //    for (var item in arrList){
+    //        var element = document.getElementById(arrList[item]);
+    //        element.innerHTML = sampleText;
+    //    }
+    //});
+
+    function functionSelect(selectID) {
+        console.log(selectID)
+        //var box = document.getElementById(selectID).parentElement; //.nodeName;
+        var CSScode = document.getElementById(selectID).value;
+        var boxID = document.getElementById(selectID).name;
+        console.log(CSScode)
+        console.log(boxID)
+        //document.getElementById(boxID).classList.add(value);
+        //box.classList.add(value);
+        document.getElementById(boxID).classList = CSScode;
+    }
+
+    mySpanIDList.push('myBoxContent'); //first add "fixed box"
+    function functionSelectSampleText(mySelectSampleText){
+        console.log('LISTE mySpanIDList::::', mySpanIDList)
+        var mySampleText = document.getElementById(mySelectSampleText).value;
+        var sampleText = sampleTexts[mySampleText];
+        for (var item in mySpanIDList){
+            document.getElementById(mySpanIDList[item]).innerHTML = sampleText;
+        }
+
+    }
+
+    function functionGetColorBG(item, CSSClass){
+        $(CSSClass).css('background-color', item);
+    }
+
+    function functionGetColorText(item, CSSClass){
+        $(CSSClass).css('color', item);
+    }
+
+    function functionSwapColorTextBG(CSSClass){
+        var colorText = $(CSSClass).css('color');
+        var colorBG = $(CSSClass).css('backgroundColor');
+        $(CSSClass).css('background-color', colorText);
+        $(CSSClass).css('color', colorBG);
+
+    }
+
+    $('.compareBoxCSS').on('blur keyup paste input', function() {$(".compareBoxCSS").not(this).html($(this).html());});
+
+    $('#sliderCompareBoxCSS').on('change',function(){
+        var val = $(this).val();
+        $(".compareBoxCSS").css("font-size",(val+"px"));
+        
+        document.getElementById("numberCompareBoxCSS").value = val;
+    });
+
+    $('#numberCompareBoxCSS').on('change',function(){
+        var val = $(this).val();
+        $(".compareBoxCSS").css("font-size",(val+"px"));
+        
+        document.getElementById("sliderCompareBoxCSS").value = val;
+    });
+
+    $('#sliderSampleContent').on('change',function(){
+        var val = $(this).val();
+        $(".sampleContent").css("font-size",(val+"px"));
+        if (val <= 30){
+            $(".sampleContent").css("padding",(val+"px 50px "+ val+"px 50px"));
+        } else {
+            $(".sampleContent").css("padding",("30px 50px 30px 50px"));              
+        }        
+        document.getElementById("numberSampleContent").value = val;
+    });
+
+    $('#numberSampleContent').on('change',function(){
+        var val = $(this).val();
+        $(".sampleContent").css("font-size",(val+"px"));
+        if (val <= 30){
+            $(".sampleContent").css("padding",(val+"px 50px "+ val+"px 50px"));
+        } else {
+            $(".sampleContent").css("padding",("30px 50px 30px 50px"));              
+        }           
+        document.getElementById("sliderSampleContent").value = val;
+    });
+
+    clicksBG = 0;
+    function functionGetRandomBG(cssItem){
+        
+        var arrListCSSClasses = [];
+        var numberCSSClasses = Object.keys(cssItem).length;
+        var cssClasses = document.getElementById("tableTR").className;
+
+        var oldCSSClasses = cssClasses.split(' ');
+
+        for (var item in cssItem){
+            if (item == clicksBG){
+                oldCSSClasses.push(cssItem[clicksBG]);
+            } else {
+                var index = oldCSSClasses.indexOf(cssItem[item]);
+                if (index > -1) {
+                    oldCSSClasses.splice(index, 1);
+                }
+                
+            }
+        }
+
+        var newClassNames = oldCSSClasses.join(' ')
+
+        document.getElementById("tableTR").className = newClassNames;
+        
+        clicksBG += 1;
+
+        if (clicksBG === 4){
+            clicksBG = 0;
+        }
+        
+
+    }
+
+    function functionShowCSSCode(CSSClass){
+        if ($(CSSClass).css("left") == '15px'){
+            $(CSSClass).css("transition-timing-function", "ease-in");
+            $(CSSClass).css("transition", "0.4s");
+            $(CSSClass).css("left", "80%");
+        } else {
+            $(CSSClass).css("left", "15px");
+        }
+    }
+
+    function functionShowHeader(CSSClass, my_id){
+        //var element = document.getElementById(my_id)
+        //var buttoncell = document.getElementById(my_id+"_cell")
+
+        var button = document.getElementById(my_id+"_btn");
+        if (button.innerHTML != '▼') {
+            $(CSSClass).css("top", '-' + divHeight + 'px');
+            button.innerHTML = '▼';
+        } else {
+          //$("#" + my_id).slideDown();
+            $(CSSClass).css("transition-timing-function", "ease-in");
+            $(CSSClass).css("transition", "0.4s");
+          $(CSSClass).css("top", "50px");
+          button.innerHTML = '▲';
+        }
+
+    }
+
+        /*function myFunctionAnimate(my_id, CSSClassList){
+            var button = document.getElementById(my_id+"_btn");
+            if (button.innerHTML === 'Play') {
+                button.innerHTML = 'Pause';
+                var countingUp = 1;
+                var minValue = document.getElementById(my_id).min;
+                var maxValue = document.getElementById(my_id).max;
+                var value = document.getElementById(my_id).value;
+                var i = Math.round(value);
+                var speed = Math.round(1000/maxValue);
+                myTimer = setInterval(function() {
+                    console.log(maxValue)
+                    i = i + (1 * countingUp);
+
+                    if (i == maxValue || i == minValue)
+                    {
+                        countingUp *= -1;
+                    }
+
+                    console.log(i)
+                  document.getElementById(my_id).value = i;
+                  document.getElementById(my_id+"_range").innerHTML = i;
+                  //om_AvenirNextVariableRomanttfWeight_showValue(i, CSSClassList)
+                  
+                }, speed);
+
+            } else {
+                button.innerHTML = 'Play';
+                clearInterval(myTimer);
+            }
+        }*/
+
+        
+
+        function functionTextAlignment(ID, item){
+            textAligment = ['left', 'center', 'right'];
+            console.log('ID: ', ID)
+            nameID = ID.replace('ID', '');
+            console.log('nameID: ', nameID)
+            console.log('item: ', item)
+
+            buttonName = item + nameID + "_btn";
+
+            console.log('buttonName: ', buttonName)
+
+            var button = document.getElementById(buttonName);
+            button.style.backgroundColor = 'black';
+            button.style.color = 'white';
+
+            $('#' +ID).css("text-align", item);
+
+            var textAligmentLength = textAligment.length;
+            for (var i = 0; i < textAligmentLength; i++) {
+                var itemLoop = textAligment[i];
+                if (itemLoop != item){
+                    otherButtonName = itemLoop + nameID + "_btn";
+                    console.log('otherButtonName: ', otherButtonName)
+                    var otherButton = document.getElementById(otherButtonName);
+                    otherButton.style.backgroundColor = 'white';
+                    otherButton.style.color = 'black';
+
+                }
+            }
+        }
+
+        function functionReadDirection(ID, item){
+            textAligment = ['left-to-right', 'right-to-left', 'top-to-down'];
+            console.log('ID: ', ID)
+            nameID = ID.replace('ID', '');
+            console.log('nameID: ', nameID)
+            console.log('item: ', item)
+
+            buttonName = item + nameID + "_btn";
+
+            console.log('buttonName: ', buttonName)
+
+            var button = document.getElementById(buttonName);
+            button.style.backgroundColor = 'black';
+            button.style.color = 'white';
+
+            if (item === 'right-to-left'){document.getElementById('compareBoxID').dir = 'rtl';}
+            if (item === 'left-to-right'){document.getElementById('compareBoxID').dir = '';}
+
+            // if (item === 'top-to-down'){
+            //     document.getElementById('compareBoxID').dir = '';
+
+            //     //var elt = document.documentElement
+            //     var elt = document.getElementById(ID);
+            //     elt.setAttribute("style", "writing-mode: vertical-rl;");
+            //     //$("body").css("writing-mode", 'vertical-rl;');
+            //     //document.documentElement.css("writing-mode", 'vertical-rl;');
+
+            //     /* writing-mode: vertical-rl; */
+            // }            
+
+            var textAligmentLength = textAligment.length;
+            for (var i = 0; i < textAligmentLength; i++) {
+                var itemLoop = textAligment[i];
+                if (itemLoop != item){
+                    otherButtonName = itemLoop + nameID + "_btn";
+                    console.log('otherButtonName: ', otherButtonName)
+                    var otherButton = document.getElementById(otherButtonName);
+                    otherButton.style.backgroundColor = 'white';
+                    otherButton.style.color = 'black';
+
+                }
+            }
+        }
+
+    function functionTest(CSSClass){
+            $(CSSClass).css("transition-timing-function", "ease-in");
+            $(CSSClass).css("transition", "1.4s");
+            $(CSSClass).css("transform", 'translate3d(0px,0px,0px)');
+    }
+
+
+    delta = 0;
+    beta = 0;
+    lastPos = null;
+
+    function clearBeta() {
+      beta = 0;
+    }
+
+    window.onscroll = function(){
+
+        function clear() {
+          lastPos = null;
+          delta = 0;
+        }
+
+        newPos = window.scrollY;
+        if ( lastPos != null ){
+          delta = newPos - lastPos;
+        }
+        lastPos = newPos;
+
+        //console.log(100 - delta)
+        //console.log('newPos: ', newPos)
+
+        if (delta < 0){if (beta < (delta * -1)){beta = (delta * 6)} }
+        if (delta > 0){if (beta < delta){beta = delta} }
+
+        //console.log('beta: ', beta)
+
+        setTimeout(clear, 500);
+        setTimeout(clearBeta, 500);
+
+        //console.log(100 - Pos)
+      //var distanz =  window.scrollY
+      //console.log('distanz: ', distanz);
+      //console.log( 'PositivVal: ', PositivVal );
+      //console.log(Int(distanz))
+      $('.flyingFont1').css("transform", 'translate3d(0px,' + (beta * -1) + 'px,0px)');
+      $('.flyingFont2').css("transform", 'translate3d(0px,' + (beta * -2) + 'px,0px)');
+      $('.flyingFont3').css("transform", 'translate3d(0px,' + (beta * -3) + 'px,0px)');
+    };
+
+
+    window.addEventListener("scroll", functionTest('.flyingFont1'), false);
+    window.addEventListener("scroll", functionTest('.flyingFont2'), false);
+    window.addEventListener("scroll", functionTest('.flyingFont3'), false);
+
+    $('.flyingFont').on('blur keyup paste input', function() {$(".flyingFont").not(this).html($(this).html());});
+
+    function adjustHeightOfTwoDiv(div1_ID, div2_ID){
+        var offsetHeight = document.getElementById(div1_ID).offsetHeight;
+        document.getElementById(div2_ID).style.height = offsetHeight + 'px';
+    } 
+
+    $('.flyingFont1').on('blur keyup paste input', function() {adjustHeightOfTwoDiv('flyingFont_ID1', 'flyingFont_ID0')});
+
+    function mDn(uniID, CSSClassFontList) {
+        console.log('uniID: ', uniID)
+        if (typeof uniID === 'string' || uniID instanceof String){
+            console.log('str: True ')
+            var UID = uniID
+        } else {
+            console.log('else: True ')
+            var UID = '&#x' + uniID.toString(16);
+        }
+        console.log('UID: ', UID)
+        var obj = document.getElementById('zoom_characters');
+        obj.style.display = 'block';
+
+        var w = window.innerWidth;
+        var h = window.innerHeight;
+
+        if (w < h){
+            var nW = w / 2;
+            var nH = nW;
+
+        } else {
+            var nW = h / 2;
+            var nH = nW;
+        }
+        var top = (h - nH) / 2;
+        var left = (w - nW) / 2;
+
+        obj.style.height = nH + 'px';
+        obj.style.top = top + 'px';
+        obj.style.width = nW + 'px';
+        obj.style.left = left + 'px';        
+        obj.innerHTML = UID;
+        
+        var arrayLength = CSSClassFontList.length;
+        for (var i = 0; i < arrayLength; i++) {
+            var item = CSSClassFontList[i];
+            obj.classList.add(item);
+        }
+
+
+        
+
+        
+
+
+    }
+
+    function mUp() {
+        var obj = document.getElementById('zoom_characters');
+        obj.innerHTML = '';
+        obj.style.display = 'none';
+        obj.className = "characterZoom";
+    }
+
+    var prevScrollpos = window.pageYOffset;
+    window.onscroll = function() {
+    var currentScrollPos = window.pageYOffset;
+    if (prevScrollpos > currentScrollPos) {
+        document.getElementById("showFontNames_div").style.bottom = "-50px";
+        } else {
+            document.getElementById("showFontNames_div").style.bottom = "0";
+        }
+        prevScrollpos = currentScrollPos;
+    }
+
+    function scrollXNamesFunc() {
+        var elmnt = document.getElementById("containerMainID");
+        var x = elmnt.scrollLeft;
+        $('#showFontNames').css({
+            'left': 15 - x
+        });
+    }
+
+    function hintingOnOff(CSSClass, my_id){
+        var button = document.getElementById(my_id+"_btn");
+        var elements = document.getElementsByClassName('compareBox')
+
+        if (button.innerHTML != 'hinting on') {
+            Array.prototype.filter.call(elements, function(el){
+                el.style.transform = 'rotate(0.0deg)';
+                el.style.transformOrigin = 'top left';
+            });
+
+            button.className = "buttonBlack";
+            button.innerHTML = 'hinting on';
+            button.style.backgroundColor = 'black';
+
+        } else {
+            Array.prototype.filter.call(elements, function(el){
+                el.style.transform = 'rotate(0.03deg)';
+                el.style.transformOrigin = 'top center';
+            });
+
+            button.innerHTML = 'hinting off';
+            button.className = ".buttonBorder";
+
+            button.style.backgroundColor = 'red';
+
+        }
+
+    }
+
+    </script>
+
+  </body>
+</html>
+

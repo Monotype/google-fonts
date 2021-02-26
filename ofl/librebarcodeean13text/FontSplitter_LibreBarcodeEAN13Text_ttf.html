@@ -677,6 +677,8 @@ white-space: pre;
     
         .calt {-webkit-font-feature-settings: "calt" 1; -moz-font-feature-settings: "calt" 1; -moz-font-feature-settings: "calt=1"; -ms-font-feature-settings: "calt" 1; -o-font-feature-settings: "calt" 1;}
         
+        .kern {-webkit-font-feature-settings: "kern" 1; -moz-font-feature-settings: "kern" 1; -moz-font-feature-settings: "kern=1"; -ms-font-feature-settings: "kern" 1; -o-font-feature-settings: "kern" 1;}
+        
 
     
 		@font-face {font-family: 'om_LibreBarcodeEAN13TextRegularttf'; src: url('LibreBarcodeEAN13Text-Regular.ttf');}
@@ -692,7 +694,7 @@ white-space: pre;
 
   </head>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <body style="-webkit-print-color-adjust:exact;" id="body_all" onload="functionAddSupportedFeatures('calt')">
+  <body style="-webkit-print-color-adjust:exact;" id="body_all" onload="functionAddSupportedFeatures('kern'),functionAddSupportedFeatures('calt')">
 
       <div id="zoom_characters" class="characterZoom" onclick="mUp()"></div>
 
@@ -727,6 +729,12 @@ white-space: pre;
 			<td class="colLeft">Select HTML Language</td><td class="left">
 		<select onchange="functionChangeLanguage(this.value)" class="selectSampleText">		<option value=>Default</option>
 			</select>
+			</td>
+		</tr>
+		<tr>
+			<td class="colLeft">Positioning Features</td><td class="left">
+		<button class="buttonOT" data-title="Kerning" id="kern_btn" onclick="functionAddSupportedFeatures('kern')">kern</button>
+
 			</td>
 		</tr>
 		<tr>
@@ -824,9 +832,9 @@ white-space: pre;
             <tr>
                 <td class="colLeft">
                 <!-- <a href="#splitterContent">Character Set Compare</a> https://css-tricks.com/snippets/jquery/smooth-scrolling/ -->
-                2020-11-17 - 16:29.03
+                2021-02-19 - 09:40.12
                 <br>
-                16:29.04
+                09:40.12
                 <br>
                 <button class="buttonBorder" onClick="window.print()">
                 Print this page
@@ -854,7 +862,7 @@ white-space: pre;
 <tr>
 <td class="colLeft">Number of Glyphs<br>(maxp table)</td>
 <td class="characterFontNames defaultFont"><div><span> </span></div></td>
-				<td class="characterMetaData defaultFont" title="Libre Barcode EAN13 Text Regular" data-original-title="82"><span class="infoFont">82</span></td>
+				<td class="characterMetaData defaultFont" title="Libre Barcode EAN13 Text Regular" data-original-title="155"><span class="infoFont">155</span></td>
 </tr>
 <tr>
 <td class="colLeft">Weight Class<br>(OS/2 table)</td>
@@ -874,7 +882,7 @@ white-space: pre;
 <tr>
 <td class="colLeft">Font Revision<br>(head table)</td>
 <td class="characterFontNames defaultFont"><div><span> </span></div></td>
-				<td class="characterMetaData defaultFont" title="Libre Barcode EAN13 Text Regular" data-original-title="1.004"><div><span class="infoFont">1.004</span></div></td>
+				<td class="characterMetaData defaultFont" title="Libre Barcode EAN13 Text Regular" data-original-title="1.008"><div><span class="infoFont">1.008</span></div></td>
 </tr>
 <tr>
 <td class="colLeft">OS/2 Table Version<br></td>
@@ -884,12 +892,12 @@ white-space: pre;
 <tr>
 <td class="colLeft">sTypeAscender<br>(OS/2 table)</td>
 <td class="characterFontNames defaultFont"><div><span> </span></div></td>
-				<td class="characterMetaData defaultFont" title="Libre Barcode EAN13 Text Regular" data-original-title="900"><div><span class="infoFont">900</span></div></td>
+				<td class="characterMetaData defaultFont" title="Libre Barcode EAN13 Text Regular" data-original-title="840"><div><span class="infoFont">840</span></div></td>
 </tr>
 <tr>
 <td class="colLeft">sTypeDescender<br>(OS/2 table)</td>
 <td class="characterFontNames defaultFont"><div><span> </span></div></td>
-				<td class="characterMetaData defaultFont" title="Libre Barcode EAN13 Text Regular" data-original-title="-315"><div><span class="infoFont">-315</span></div></td>
+				<td class="characterMetaData defaultFont" title="Libre Barcode EAN13 Text Regular" data-original-title="-120"><div><span class="infoFont">-120</span></div></td>
 </tr>
 <tr>
 <td class="colLeft">sTypeLineGap<br>(OS/2 table)</td>
@@ -899,22 +907,22 @@ white-space: pre;
 <tr>
 <td class="colLeft">usWinAscent<br>(OS/2 table)</td>
 <td class="characterFontNames defaultFont"><div><span> </span></div></td>
-				<td class="characterMetaData defaultFont" title="Libre Barcode EAN13 Text Regular" data-original-title="900"><div><span class="infoFont">900</span></div></td>
+				<td class="characterMetaData defaultFont" title="Libre Barcode EAN13 Text Regular" data-original-title="840"><div><span class="infoFont">840</span></div></td>
 </tr>
 <tr>
 <td class="colLeft">usWinDescent<br>(OS/2 table)</td>
 <td class="characterFontNames defaultFont"><div><span> </span></div></td>
-				<td class="characterMetaData defaultFont" title="Libre Barcode EAN13 Text Regular" data-original-title="315"><div><span class="infoFont">315</span></div></td>
+				<td class="characterMetaData defaultFont" title="Libre Barcode EAN13 Text Regular" data-original-title="120"><div><span class="infoFont">120</span></div></td>
 </tr>
 <tr>
 <td class="colLeft">Ascender<br>(hhea table)</td>
 <td class="characterFontNames defaultFont"><div><span> </span></div></td>
-				<td class="characterMetaData defaultFont" title="Libre Barcode EAN13 Text Regular" data-original-title="900"><div><span class="infoFont">900</span></div></td>
+				<td class="characterMetaData defaultFont" title="Libre Barcode EAN13 Text Regular" data-original-title="840"><div><span class="infoFont">840</span></div></td>
 </tr>
 <tr>
 <td class="colLeft">Descender<br>(hhea table)</td>
 <td class="characterFontNames defaultFont"><div><span> </span></div></td>
-				<td class="characterMetaData defaultFont" title="Libre Barcode EAN13 Text Regular" data-original-title="-315"><div><span class="infoFont">-315</span></div></td>
+				<td class="characterMetaData defaultFont" title="Libre Barcode EAN13 Text Regular" data-original-title="-120"><div><span class="infoFont">-120</span></div></td>
 </tr>
 <tr>
 <td class="colLeft">LineGap<br>(hhea table)</td>
@@ -944,7 +952,7 @@ white-space: pre;
 <tr>
 <td class="colLeft">yStrikeoutPosition<br>(OS/2 table)</td>
 <td class="characterFontNames defaultFont"><div><span> </span></div></td>
-				<td class="characterMetaData defaultFont" title="Libre Barcode EAN13 Text Regular" data-original-title="240"><div><span class="infoFont">240</span></div></td>
+				<td class="characterMetaData defaultFont" title="Libre Barcode EAN13 Text Regular" data-original-title="252"><div><span class="infoFont">252</span></div></td>
 </tr>
 <tr>
 <td class="colLeft">yStrikeoutSize<br>(OS/2 table)</td>
@@ -991,7 +999,7 @@ white-space: pre;
             <button class="buttonBorder" title="remove column" onclick="functionBoxRemove()">-</button>
             <select id="mySelectSampleText" onchange="functionSelectSampleText('mySelectSampleText')" class="selectSampleText">
 
-            <option value='Default Sample'>Default Sample</option><option value='All Unicodes'>All Unicodes</option>
+            <option value='Default Sample'>Default Sample</option><option value='All Unicodes'>All Unicodes</option><option value='Feature Frac'>Feature Frac</option><option value='MILE basicforms proof'>MILE basicforms proof</option><option value='Steve M Sample Latin'>Steve M Sample Latin</option>
 
             </select>
             <input type="color" class="inputColor" value="#82e5fe" title="Background Color" onchange="functionGetColorBG(this.value, '.compareBoxes')">
@@ -1028,7 +1036,7 @@ white-space: pre;
         </tr>
         </thead>
         <tbody id="(3, 1, 1033, 0)" style="display: none;">
-        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Libre Barcode EAN13 Text Regular"><td onMouseOver="hover('(3, 1, 1033, 0)0')" onMouseOut="hover('(3, 1, 1033, 0)0')" id="(3, 1, 1033, 0)0" class="infoToggle" colspan="1">Copyright 2017-2019 The Libre Barcode Project Authors (https://github.com/graphicore/librebarcode)</td></tr></tbody><tr>
+        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Libre Barcode EAN13 Text Regular"><td onMouseOver="hover('(3, 1, 1033, 0)0')" onMouseOut="hover('(3, 1, 1033, 0)0')" id="(3, 1, 1033, 0)0" class="infoToggle" colspan="1">Copyright 2017-2020 The Libre Barcode Project Authors (https://github.com/graphicore/librebarcode)</td></tr></tbody><tr>
 <td class="colLeft">Family<br>NID1 MS (3, 1, 1033, 1)</td>
 <td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 1)_btn" onclick='toggle_detail("(3, 1, 1033, 1)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 1)0')" onMouseOut="hover('(3, 1, 1033, 1)0')" class="chr defaultFont " title="Libre Barcode EAN13 Text Regular" data-original-title="(3, 1, 1033, 1)">&#8226</td>
 
@@ -1049,7 +1057,7 @@ white-space: pre;
         </tr>
         </thead>
         <tbody id="(3, 1, 1033, 3)" style="display: none;">
-        <td class="colLeftToggle" rowspan="2">NID entry should be DIFFERENT within the family.</td><tr class="" title="Libre Barcode EAN13 Text Regular"><td onMouseOver="hover('(3, 1, 1033, 3)0')" onMouseOut="hover('(3, 1, 1033, 3)0')" id="(3, 1, 1033, 3)0" class="infoToggle" colspan="1">1.004;GRCR;LibreBarcodeEAN13Text-Regular</td></tr></tbody><tr>
+        <td class="colLeftToggle" rowspan="2">NID entry should be DIFFERENT within the family.</td><tr class="" title="Libre Barcode EAN13 Text Regular"><td onMouseOver="hover('(3, 1, 1033, 3)0')" onMouseOut="hover('(3, 1, 1033, 3)0')" id="(3, 1, 1033, 3)0" class="infoToggle" colspan="1">1.008;GRCR;LibreBarcodeEAN13Text-Regular</td></tr></tbody><tr>
 <td class="colLeft">Full Name<br>NID4 MS (3, 1, 1033, 4)</td>
 <td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 4)_btn" onclick='toggle_detail("(3, 1, 1033, 4)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 4)0')" onMouseOut="hover('(3, 1, 1033, 4)0')" class="chr defaultFont " title="Libre Barcode EAN13 Text Regular" data-original-title="(3, 1, 1033, 4)">&#8226</td>
 
@@ -1063,7 +1071,7 @@ white-space: pre;
         </tr>
         </thead>
         <tbody id="(3, 1, 1033, 5)" style="display: none;">
-        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Libre Barcode EAN13 Text Regular"><td onMouseOver="hover('(3, 1, 1033, 5)0')" onMouseOut="hover('(3, 1, 1033, 5)0')" id="(3, 1, 1033, 5)0" class="infoToggle" colspan="1">Version 1.004; ttfautohint (v1.8.3)</td></tr></tbody><tr>
+        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Libre Barcode EAN13 Text Regular"><td onMouseOver="hover('(3, 1, 1033, 5)0')" onMouseOut="hover('(3, 1, 1033, 5)0')" id="(3, 1, 1033, 5)0" class="infoToggle" colspan="1">Version 1.008; ttfautohint (v1.8.3)</td></tr></tbody><tr>
 <td class="colLeft">Postscript<br>NID6 MS (3, 1, 1033, 6)</td>
 <td class="characterFontNames defaultFont"><button id="(3, 1, 1033, 6)_btn" onclick='toggle_detail("(3, 1, 1033, 6)");' title="Toggle details">&#x25bc;</button></td><td onMouseOver="hover('(3, 1, 1033, 6)0')" onMouseOut="hover('(3, 1, 1033, 6)0')" class="chr defaultFont " title="Libre Barcode EAN13 Text Regular" data-original-title="(3, 1, 1033, 6)">&#8226</td>
 
@@ -1084,7 +1092,7 @@ white-space: pre;
         </tr>
         </thead>
         <tbody id="(3, 1, 1033, 14)" style="display: none;">
-        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Libre Barcode EAN13 Text Regular"><td onMouseOver="hover('(3, 1, 1033, 14)0')" onMouseOut="hover('(3, 1, 1033, 14)0')" id="(3, 1, 1033, 14)0" class="infoToggle" colspan="1">http://scripts.sil.org/OFL</td></tr></tbody>
+        <td class="colLeftToggle" rowspan="2">NID entry should be the SAME within the family.</td><tr class="" title="Libre Barcode EAN13 Text Regular"><td onMouseOver="hover('(3, 1, 1033, 14)0')" onMouseOut="hover('(3, 1, 1033, 14)0')" id="(3, 1, 1033, 14)0" class="infoToggle" colspan="1">https://scripts.sil.org/OFL</td></tr></tbody>
 		</table>
 
 
@@ -1108,19 +1116,99 @@ white-space: pre;
 <td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(0, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni0000">&#x0000</td>
 </tr>
 <tr>
+<td class="colLeft">ZERO WIDTH SPACE<br>uni200B</td>
+<td class="chr defaultFont info" onmousedown="mDn(8203, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni200B">&#x200B</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(8203, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni200B">&#x200B</td>
+</tr>
+<tr>
+<td class="colLeft">ZERO WIDTH NON-JOINER<br>uni200C</td>
+<td class="chr defaultFont info" onmousedown="mDn(8204, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni200C">&#x200C</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(8204, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni200C">&#x200C</td>
+</tr>
+<tr>
+<td class="colLeft"><br>uni000D</td>
+<td class="chr defaultFont info" onmousedown="mDn(13, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni000D">&#x000D</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(13, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni000D">&#x000D</td>
+</tr>
+<tr>
+<td class="colLeft">EN DASH<br>uni2013</td>
+<td class="chr defaultFont info" onmousedown="mDn(8211, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2013">&#x2013</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(8211, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni2013">&#x2013</td>
+</tr>
+<tr>
+<td class="colLeft">EM DASH<br>uni2014</td>
+<td class="chr defaultFont info" onmousedown="mDn(8212, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2014">&#x2014</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(8212, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni2014">&#x2014</td>
+</tr>
+<tr>
+<td class="colLeft">LEFT SINGLE QUOTATION MARK<br>uni2018</td>
+<td class="chr defaultFont info" onmousedown="mDn(8216, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2018">&#x2018</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(8216, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni2018">&#x2018</td>
+</tr>
+<tr>
+<td class="colLeft">RIGHT SINGLE QUOTATION MARK<br>uni2019</td>
+<td class="chr defaultFont info" onmousedown="mDn(8217, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2019">&#x2019</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(8217, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni2019">&#x2019</td>
+</tr>
+<tr>
+<td class="colLeft">SINGLE LOW-9 QUOTATION MARK<br>uni201A</td>
+<td class="chr defaultFont info" onmousedown="mDn(8218, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni201A">&#x201A</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(8218, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni201A">&#x201A</td>
+</tr>
+<tr>
+<td class="colLeft">LEFT DOUBLE QUOTATION MARK<br>uni201C</td>
+<td class="chr defaultFont info" onmousedown="mDn(8220, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni201C">&#x201C</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(8220, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni201C">&#x201C</td>
+</tr>
+<tr>
+<td class="colLeft">RIGHT DOUBLE QUOTATION MARK<br>uni201D</td>
+<td class="chr defaultFont info" onmousedown="mDn(8221, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni201D">&#x201D</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(8221, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni201D">&#x201D</td>
+</tr>
+<tr>
+<td class="colLeft">DOUBLE LOW-9 QUOTATION MARK<br>uni201E</td>
+<td class="chr defaultFont info" onmousedown="mDn(8222, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni201E">&#x201E</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(8222, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni201E">&#x201E</td>
+</tr>
+<tr>
 <td class="colLeft">SPACE<br>uni0020</td>
 <td class="chr defaultFont info" onmousedown="mDn(32, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0020">&#x0020</td>
 <td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(32, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni0020">&#x0020</td>
 </tr>
 <tr>
-<td class="colLeft">NO-BREAK SPACE<br>uni00A0</td>
-<td class="chr defaultFont info" onmousedown="mDn(160, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni00A0">&#x00A0</td>
-<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(160, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni00A0">&#x00A0</td>
+<td class="colLeft">BULLET<br>uni2022</td>
+<td class="chr defaultFont info" onmousedown="mDn(8226, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2022">&#x2022</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(8226, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni2022">&#x2022</td>
 </tr>
 <tr>
-<td class="colLeft">ZERO WIDTH SPACE<br>uni200B</td>
-<td class="chr defaultFont info" onmousedown="mDn(8203, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni200B">&#x200B</td>
-<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(8203, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni200B">&#x200B</td>
+<td class="colLeft">HORIZONTAL ELLIPSIS<br>uni2026</td>
+<td class="chr defaultFont info" onmousedown="mDn(8230, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni2026">&#x2026</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(8230, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni2026">&#x2026</td>
+</tr>
+<tr>
+<td class="colLeft">LEFT PARENTHESIS<br>uni0028</td>
+<td class="chr defaultFont info" onmousedown="mDn(40, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0028">&#x0028</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(40, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni0028">&#x0028</td>
+</tr>
+<tr>
+<td class="colLeft">RIGHT PARENTHESIS<br>uni0029</td>
+<td class="chr defaultFont info" onmousedown="mDn(41, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0029">&#x0029</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(41, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni0029">&#x0029</td>
+</tr>
+<tr>
+<td class="colLeft">ASTERISK<br>uni002A</td>
+<td class="chr defaultFont info" onmousedown="mDn(42, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni002A">&#x002A</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(42, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni002A">&#x002A</td>
+</tr>
+<tr>
+<td class="colLeft">PLUS SIGN<br>uni002B</td>
+<td class="chr defaultFont info" onmousedown="mDn(43, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni002B">&#x002B</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(43, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni002B">&#x002B</td>
+</tr>
+<tr>
+<td class="colLeft">HYPHEN-MINUS<br>uni002D</td>
+<td class="chr defaultFont info" onmousedown="mDn(45, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni002D">&#x002D</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(45, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni002D">&#x002D</td>
 </tr>
 <tr>
 <td class="colLeft">DIGIT ZERO<br>uni0030</td>
@@ -1172,6 +1260,626 @@ white-space: pre;
 <td class="chr defaultFont info" onmousedown="mDn(57, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0039">&#x0039</td>
 <td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(57, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni0039">&#x0039</td>
 </tr>
+<tr>
+<td class="colLeft">COLON<br>uni003A</td>
+<td class="chr defaultFont info" onmousedown="mDn(58, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni003A">&#x003A</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(58, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni003A">&#x003A</td>
+</tr>
+<tr>
+<td class="colLeft">SEMICOLON<br>uni003B</td>
+<td class="chr defaultFont info" onmousedown="mDn(59, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni003B">&#x003B</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(59, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni003B">&#x003B</td>
+</tr>
+<tr>
+<td class="colLeft">LESS-THAN SIGN<br>uni003C</td>
+<td class="chr defaultFont info" onmousedown="mDn(60, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni003C">&#x003C</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(60, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni003C">&#x003C</td>
+</tr>
+<tr>
+<td class="colLeft">GREATER-THAN SIGN<br>uni003E</td>
+<td class="chr defaultFont info" onmousedown="mDn(62, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni003E">&#x003E</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(62, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni003E">&#x003E</td>
+</tr>
+<tr>
+<td class="colLeft">QUESTION MARK<br>uni003F</td>
+<td class="chr defaultFont info" onmousedown="mDn(63, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni003F">&#x003F</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(63, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni003F">&#x003F</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN CAPITAL LETTER A<br>uni0041</td>
+<td class="chr defaultFont info" onmousedown="mDn(65, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0041">&#x0041</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(65, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni0041">&#x0041</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN CAPITAL LETTER B<br>uni0042</td>
+<td class="chr defaultFont info" onmousedown="mDn(66, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0042">&#x0042</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(66, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni0042">&#x0042</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN CAPITAL LETTER C<br>uni0043</td>
+<td class="chr defaultFont info" onmousedown="mDn(67, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0043">&#x0043</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(67, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni0043">&#x0043</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN CAPITAL LETTER D<br>uni0044</td>
+<td class="chr defaultFont info" onmousedown="mDn(68, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0044">&#x0044</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(68, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni0044">&#x0044</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN CAPITAL LETTER E<br>uni0045</td>
+<td class="chr defaultFont info" onmousedown="mDn(69, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0045">&#x0045</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(69, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni0045">&#x0045</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN CAPITAL LETTER F<br>uni0046</td>
+<td class="chr defaultFont info" onmousedown="mDn(70, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0046">&#x0046</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(70, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni0046">&#x0046</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN CAPITAL LETTER G<br>uni0047</td>
+<td class="chr defaultFont info" onmousedown="mDn(71, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0047">&#x0047</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(71, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni0047">&#x0047</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN CAPITAL LETTER H<br>uni0048</td>
+<td class="chr defaultFont info" onmousedown="mDn(72, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0048">&#x0048</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(72, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni0048">&#x0048</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN CAPITAL LETTER I<br>uni0049</td>
+<td class="chr defaultFont info" onmousedown="mDn(73, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0049">&#x0049</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(73, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni0049">&#x0049</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN CAPITAL LETTER J<br>uni004A</td>
+<td class="chr defaultFont info" onmousedown="mDn(74, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni004A">&#x004A</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(74, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni004A">&#x004A</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN CAPITAL LETTER K<br>uni004B</td>
+<td class="chr defaultFont info" onmousedown="mDn(75, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni004B">&#x004B</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(75, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni004B">&#x004B</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN CAPITAL LETTER L<br>uni004C</td>
+<td class="chr defaultFont info" onmousedown="mDn(76, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni004C">&#x004C</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(76, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni004C">&#x004C</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN CAPITAL LETTER M<br>uni004D</td>
+<td class="chr defaultFont info" onmousedown="mDn(77, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni004D">&#x004D</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(77, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni004D">&#x004D</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN CAPITAL LETTER N<br>uni004E</td>
+<td class="chr defaultFont info" onmousedown="mDn(78, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni004E">&#x004E</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(78, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni004E">&#x004E</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN CAPITAL LETTER O<br>uni004F</td>
+<td class="chr defaultFont info" onmousedown="mDn(79, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni004F">&#x004F</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(79, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni004F">&#x004F</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN CAPITAL LETTER P<br>uni0050</td>
+<td class="chr defaultFont info" onmousedown="mDn(80, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0050">&#x0050</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(80, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni0050">&#x0050</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN CAPITAL LETTER Q<br>uni0051</td>
+<td class="chr defaultFont info" onmousedown="mDn(81, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0051">&#x0051</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(81, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni0051">&#x0051</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN CAPITAL LETTER R<br>uni0052</td>
+<td class="chr defaultFont info" onmousedown="mDn(82, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0052">&#x0052</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(82, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni0052">&#x0052</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN CAPITAL LETTER S<br>uni0053</td>
+<td class="chr defaultFont info" onmousedown="mDn(83, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0053">&#x0053</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(83, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni0053">&#x0053</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN CAPITAL LETTER T<br>uni0054</td>
+<td class="chr defaultFont info" onmousedown="mDn(84, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0054">&#x0054</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(84, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni0054">&#x0054</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN CAPITAL LETTER X<br>uni0058</td>
+<td class="chr defaultFont info" onmousedown="mDn(88, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0058">&#x0058</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(88, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni0058">&#x0058</td>
+</tr>
+<tr>
+<td class="colLeft">RING ABOVE<br>uni02DA</td>
+<td class="chr defaultFont info" onmousedown="mDn(730, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni02DA">&#x02DA</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(730, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni02DA">&#x02DA</td>
+</tr>
+<tr>
+<td class="colLeft">LEFT SQUARE BRACKET<br>uni005B</td>
+<td class="chr defaultFont info" onmousedown="mDn(91, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni005B">&#x005B</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(91, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni005B">&#x005B</td>
+</tr>
+<tr>
+<td class="colLeft">REVERSE SOLIDUS<br>uni005C</td>
+<td class="chr defaultFont info" onmousedown="mDn(92, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni005C">&#x005C</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(92, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni005C">&#x005C</td>
+</tr>
+<tr>
+<td class="colLeft">RIGHT SQUARE BRACKET<br>uni005D</td>
+<td class="chr defaultFont info" onmousedown="mDn(93, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni005D">&#x005D</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(93, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni005D">&#x005D</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN SMALL LETTER A<br>uni0061</td>
+<td class="chr defaultFont info" onmousedown="mDn(97, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0061">&#x0061</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(97, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni0061">&#x0061</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN SMALL LETTER B<br>uni0062</td>
+<td class="chr defaultFont info" onmousedown="mDn(98, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0062">&#x0062</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(98, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni0062">&#x0062</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN SMALL LETTER C<br>uni0063</td>
+<td class="chr defaultFont info" onmousedown="mDn(99, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0063">&#x0063</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(99, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni0063">&#x0063</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN SMALL LETTER D<br>uni0064</td>
+<td class="chr defaultFont info" onmousedown="mDn(100, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0064">&#x0064</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(100, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni0064">&#x0064</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN SMALL LETTER E<br>uni0065</td>
+<td class="chr defaultFont info" onmousedown="mDn(101, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0065">&#x0065</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(101, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni0065">&#x0065</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN SMALL LETTER F<br>uni0066</td>
+<td class="chr defaultFont info" onmousedown="mDn(102, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0066">&#x0066</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(102, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni0066">&#x0066</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN SMALL LETTER G<br>uni0067</td>
+<td class="chr defaultFont info" onmousedown="mDn(103, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0067">&#x0067</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(103, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni0067">&#x0067</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN SMALL LETTER H<br>uni0068</td>
+<td class="chr defaultFont info" onmousedown="mDn(104, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0068">&#x0068</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(104, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni0068">&#x0068</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN SMALL LETTER I<br>uni0069</td>
+<td class="chr defaultFont info" onmousedown="mDn(105, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0069">&#x0069</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(105, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni0069">&#x0069</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN SMALL LETTER J<br>uni006A</td>
+<td class="chr defaultFont info" onmousedown="mDn(106, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni006A">&#x006A</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(106, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni006A">&#x006A</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN SMALL LETTER K<br>uni006B</td>
+<td class="chr defaultFont info" onmousedown="mDn(107, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni006B">&#x006B</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(107, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni006B">&#x006B</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN SMALL LETTER L<br>uni006C</td>
+<td class="chr defaultFont info" onmousedown="mDn(108, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni006C">&#x006C</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(108, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni006C">&#x006C</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN SMALL LETTER M<br>uni006D</td>
+<td class="chr defaultFont info" onmousedown="mDn(109, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni006D">&#x006D</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(109, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni006D">&#x006D</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN SMALL LETTER N<br>uni006E</td>
+<td class="chr defaultFont info" onmousedown="mDn(110, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni006E">&#x006E</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(110, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni006E">&#x006E</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN SMALL LETTER O<br>uni006F</td>
+<td class="chr defaultFont info" onmousedown="mDn(111, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni006F">&#x006F</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(111, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni006F">&#x006F</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN SMALL LETTER P<br>uni0070</td>
+<td class="chr defaultFont info" onmousedown="mDn(112, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0070">&#x0070</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(112, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni0070">&#x0070</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN SMALL LETTER Q<br>uni0071</td>
+<td class="chr defaultFont info" onmousedown="mDn(113, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0071">&#x0071</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(113, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni0071">&#x0071</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN SMALL LETTER R<br>uni0072</td>
+<td class="chr defaultFont info" onmousedown="mDn(114, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0072">&#x0072</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(114, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni0072">&#x0072</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN SMALL LETTER S<br>uni0073</td>
+<td class="chr defaultFont info" onmousedown="mDn(115, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0073">&#x0073</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(115, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni0073">&#x0073</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN SMALL LETTER T<br>uni0074</td>
+<td class="chr defaultFont info" onmousedown="mDn(116, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0074">&#x0074</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(116, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni0074">&#x0074</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN SMALL LETTER X<br>uni0078</td>
+<td class="chr defaultFont info" onmousedown="mDn(120, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0078">&#x0078</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(120, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni0078">&#x0078</td>
+</tr>
+<tr>
+<td class="colLeft">LEFT CURLY BRACKET<br>uni007B</td>
+<td class="chr defaultFont info" onmousedown="mDn(123, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni007B">&#x007B</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(123, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni007B">&#x007B</td>
+</tr>
+<tr>
+<td class="colLeft">VERTICAL LINE<br>uni007C</td>
+<td class="chr defaultFont info" onmousedown="mDn(124, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni007C">&#x007C</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(124, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni007C">&#x007C</td>
+</tr>
+<tr>
+<td class="colLeft">RIGHT CURLY BRACKET<br>uni007D</td>
+<td class="chr defaultFont info" onmousedown="mDn(125, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni007D">&#x007D</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(125, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni007D">&#x007D</td>
+</tr>
+<tr>
+<td class="colLeft">NO-BREAK SPACE<br>uni00A0</td>
+<td class="chr defaultFont info" onmousedown="mDn(160, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni00A0">&#x00A0</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(160, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni00A0">&#x00A0</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN CAPITAL LETTER A WITH GRAVE<br>uni00C0</td>
+<td class="chr defaultFont info" onmousedown="mDn(192, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni00C0">&#x00C0</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(192, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni00C0">&#x00C0</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN CAPITAL LETTER A WITH ACUTE<br>uni00C1</td>
+<td class="chr defaultFont info" onmousedown="mDn(193, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni00C1">&#x00C1</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(193, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni00C1">&#x00C1</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN CAPITAL LETTER A WITH CIRCUMFLEX<br>uni00C2</td>
+<td class="chr defaultFont info" onmousedown="mDn(194, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni00C2">&#x00C2</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(194, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni00C2">&#x00C2</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN CAPITAL LETTER A WITH TILDE<br>uni00C3</td>
+<td class="chr defaultFont info" onmousedown="mDn(195, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni00C3">&#x00C3</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(195, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni00C3">&#x00C3</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN CAPITAL LETTER A WITH DIAERESIS<br>uni00C4</td>
+<td class="chr defaultFont info" onmousedown="mDn(196, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni00C4">&#x00C4</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(196, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni00C4">&#x00C4</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN CAPITAL LETTER A WITH RING ABOVE<br>uni00C5</td>
+<td class="chr defaultFont info" onmousedown="mDn(197, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni00C5">&#x00C5</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(197, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni00C5">&#x00C5</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN CAPITAL LETTER AE<br>uni00C6</td>
+<td class="chr defaultFont info" onmousedown="mDn(198, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni00C6">&#x00C6</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(198, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni00C6">&#x00C6</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN CAPITAL LETTER C WITH CEDILLA<br>uni00C7</td>
+<td class="chr defaultFont info" onmousedown="mDn(199, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni00C7">&#x00C7</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(199, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni00C7">&#x00C7</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN CAPITAL LETTER E WITH GRAVE<br>uni00C8</td>
+<td class="chr defaultFont info" onmousedown="mDn(200, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni00C8">&#x00C8</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(200, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni00C8">&#x00C8</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN CAPITAL LETTER E WITH ACUTE<br>uni00C9</td>
+<td class="chr defaultFont info" onmousedown="mDn(201, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni00C9">&#x00C9</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(201, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni00C9">&#x00C9</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN CAPITAL LETTER E WITH CIRCUMFLEX<br>uni00CA</td>
+<td class="chr defaultFont info" onmousedown="mDn(202, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni00CA">&#x00CA</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(202, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni00CA">&#x00CA</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN CAPITAL LETTER E WITH DIAERESIS<br>uni00CB</td>
+<td class="chr defaultFont info" onmousedown="mDn(203, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni00CB">&#x00CB</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(203, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni00CB">&#x00CB</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN CAPITAL LETTER I WITH GRAVE<br>uni00CC</td>
+<td class="chr defaultFont info" onmousedown="mDn(204, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni00CC">&#x00CC</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(204, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni00CC">&#x00CC</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN CAPITAL LETTER I WITH ACUTE<br>uni00CD</td>
+<td class="chr defaultFont info" onmousedown="mDn(205, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni00CD">&#x00CD</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(205, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni00CD">&#x00CD</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN CAPITAL LETTER I WITH CIRCUMFLEX<br>uni00CE</td>
+<td class="chr defaultFont info" onmousedown="mDn(206, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni00CE">&#x00CE</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(206, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni00CE">&#x00CE</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN CAPITAL LETTER I WITH DIAERESIS<br>uni00CF</td>
+<td class="chr defaultFont info" onmousedown="mDn(207, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni00CF">&#x00CF</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(207, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni00CF">&#x00CF</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN CAPITAL LETTER ETH<br>uni00D0</td>
+<td class="chr defaultFont info" onmousedown="mDn(208, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni00D0">&#x00D0</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(208, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni00D0">&#x00D0</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN CAPITAL LETTER N WITH TILDE<br>uni00D1</td>
+<td class="chr defaultFont info" onmousedown="mDn(209, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni00D1">&#x00D1</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(209, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni00D1">&#x00D1</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN CAPITAL LETTER O WITH GRAVE<br>uni00D2</td>
+<td class="chr defaultFont info" onmousedown="mDn(210, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni00D2">&#x00D2</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(210, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni00D2">&#x00D2</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN CAPITAL LETTER O WITH ACUTE<br>uni00D3</td>
+<td class="chr defaultFont info" onmousedown="mDn(211, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni00D3">&#x00D3</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(211, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni00D3">&#x00D3</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN CAPITAL LETTER O WITH CIRCUMFLEX<br>uni00D4</td>
+<td class="chr defaultFont info" onmousedown="mDn(212, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni00D4">&#x00D4</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(212, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni00D4">&#x00D4</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN CAPITAL LETTER O WITH TILDE<br>uni00D5</td>
+<td class="chr defaultFont info" onmousedown="mDn(213, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni00D5">&#x00D5</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(213, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni00D5">&#x00D5</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN CAPITAL LETTER O WITH DIAERESIS<br>uni00D6</td>
+<td class="chr defaultFont info" onmousedown="mDn(214, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni00D6">&#x00D6</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(214, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni00D6">&#x00D6</td>
+</tr>
+<tr>
+<td class="colLeft">MULTIPLICATION SIGN<br>uni00D7</td>
+<td class="chr defaultFont info" onmousedown="mDn(215, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni00D7">&#x00D7</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(215, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni00D7">&#x00D7</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN CAPITAL LETTER O WITH STROKE<br>uni00D8</td>
+<td class="chr defaultFont info" onmousedown="mDn(216, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni00D8">&#x00D8</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(216, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni00D8">&#x00D8</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN CAPITAL LETTER U WITH GRAVE<br>uni00D9</td>
+<td class="chr defaultFont info" onmousedown="mDn(217, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni00D9">&#x00D9</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(217, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni00D9">&#x00D9</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN CAPITAL LETTER U WITH ACUTE<br>uni00DA</td>
+<td class="chr defaultFont info" onmousedown="mDn(218, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni00DA">&#x00DA</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(218, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni00DA">&#x00DA</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN CAPITAL LETTER U WITH CIRCUMFLEX<br>uni00DB</td>
+<td class="chr defaultFont info" onmousedown="mDn(219, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni00DB">&#x00DB</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(219, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni00DB">&#x00DB</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN CAPITAL LETTER U WITH DIAERESIS<br>uni00DC</td>
+<td class="chr defaultFont info" onmousedown="mDn(220, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni00DC">&#x00DC</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(220, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni00DC">&#x00DC</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN CAPITAL LETTER Y WITH ACUTE<br>uni00DD</td>
+<td class="chr defaultFont info" onmousedown="mDn(221, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni00DD">&#x00DD</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(221, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni00DD">&#x00DD</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN CAPITAL LETTER THORN<br>uni00DE</td>
+<td class="chr defaultFont info" onmousedown="mDn(222, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni00DE">&#x00DE</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(222, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni00DE">&#x00DE</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN SMALL LETTER SHARP S<br>uni00DF</td>
+<td class="chr defaultFont info" onmousedown="mDn(223, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni00DF">&#x00DF</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(223, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni00DF">&#x00DF</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN SMALL LETTER A WITH GRAVE<br>uni00E0</td>
+<td class="chr defaultFont info" onmousedown="mDn(224, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni00E0">&#x00E0</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(224, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni00E0">&#x00E0</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN SMALL LETTER A WITH ACUTE<br>uni00E1</td>
+<td class="chr defaultFont info" onmousedown="mDn(225, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni00E1">&#x00E1</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(225, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni00E1">&#x00E1</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN SMALL LETTER A WITH CIRCUMFLEX<br>uni00E2</td>
+<td class="chr defaultFont info" onmousedown="mDn(226, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni00E2">&#x00E2</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(226, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni00E2">&#x00E2</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN SMALL LETTER A WITH TILDE<br>uni00E3</td>
+<td class="chr defaultFont info" onmousedown="mDn(227, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni00E3">&#x00E3</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(227, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni00E3">&#x00E3</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN SMALL LETTER A WITH DIAERESIS<br>uni00E4</td>
+<td class="chr defaultFont info" onmousedown="mDn(228, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni00E4">&#x00E4</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(228, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni00E4">&#x00E4</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN SMALL LETTER A WITH RING ABOVE<br>uni00E5</td>
+<td class="chr defaultFont info" onmousedown="mDn(229, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni00E5">&#x00E5</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(229, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni00E5">&#x00E5</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN SMALL LETTER AE<br>uni00E6</td>
+<td class="chr defaultFont info" onmousedown="mDn(230, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni00E6">&#x00E6</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(230, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni00E6">&#x00E6</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN SMALL LETTER C WITH CEDILLA<br>uni00E7</td>
+<td class="chr defaultFont info" onmousedown="mDn(231, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni00E7">&#x00E7</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(231, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni00E7">&#x00E7</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN SMALL LETTER E WITH GRAVE<br>uni00E8</td>
+<td class="chr defaultFont info" onmousedown="mDn(232, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni00E8">&#x00E8</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(232, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni00E8">&#x00E8</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN SMALL LETTER E WITH ACUTE<br>uni00E9</td>
+<td class="chr defaultFont info" onmousedown="mDn(233, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni00E9">&#x00E9</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(233, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni00E9">&#x00E9</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN SMALL LETTER E WITH CIRCUMFLEX<br>uni00EA</td>
+<td class="chr defaultFont info" onmousedown="mDn(234, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni00EA">&#x00EA</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(234, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni00EA">&#x00EA</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN SMALL LETTER E WITH DIAERESIS<br>uni00EB</td>
+<td class="chr defaultFont info" onmousedown="mDn(235, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni00EB">&#x00EB</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(235, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni00EB">&#x00EB</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN SMALL LETTER I WITH GRAVE<br>uni00EC</td>
+<td class="chr defaultFont info" onmousedown="mDn(236, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni00EC">&#x00EC</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(236, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni00EC">&#x00EC</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN SMALL LETTER I WITH ACUTE<br>uni00ED</td>
+<td class="chr defaultFont info" onmousedown="mDn(237, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni00ED">&#x00ED</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(237, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni00ED">&#x00ED</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN SMALL LETTER I WITH CIRCUMFLEX<br>uni00EE</td>
+<td class="chr defaultFont info" onmousedown="mDn(238, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni00EE">&#x00EE</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(238, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni00EE">&#x00EE</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN SMALL LETTER I WITH DIAERESIS<br>uni00EF</td>
+<td class="chr defaultFont info" onmousedown="mDn(239, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni00EF">&#x00EF</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(239, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni00EF">&#x00EF</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN SMALL LETTER ETH<br>uni00F0</td>
+<td class="chr defaultFont info" onmousedown="mDn(240, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni00F0">&#x00F0</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(240, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni00F0">&#x00F0</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN SMALL LETTER N WITH TILDE<br>uni00F1</td>
+<td class="chr defaultFont info" onmousedown="mDn(241, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni00F1">&#x00F1</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(241, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni00F1">&#x00F1</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN SMALL LETTER O WITH GRAVE<br>uni00F2</td>
+<td class="chr defaultFont info" onmousedown="mDn(242, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni00F2">&#x00F2</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(242, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni00F2">&#x00F2</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN SMALL LETTER O WITH ACUTE<br>uni00F3</td>
+<td class="chr defaultFont info" onmousedown="mDn(243, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni00F3">&#x00F3</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(243, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni00F3">&#x00F3</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN SMALL LETTER O WITH CIRCUMFLEX<br>uni00F4</td>
+<td class="chr defaultFont info" onmousedown="mDn(244, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni00F4">&#x00F4</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(244, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni00F4">&#x00F4</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN SMALL LETTER O WITH TILDE<br>uni00F5</td>
+<td class="chr defaultFont info" onmousedown="mDn(245, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni00F5">&#x00F5</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(245, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni00F5">&#x00F5</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN SMALL LETTER O WITH DIAERESIS<br>uni00F6</td>
+<td class="chr defaultFont info" onmousedown="mDn(246, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni00F6">&#x00F6</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(246, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni00F6">&#x00F6</td>
+</tr>
+<tr>
+<td class="colLeft">DIVISION SIGN<br>uni00F7</td>
+<td class="chr defaultFont info" onmousedown="mDn(247, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni00F7">&#x00F7</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(247, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni00F7">&#x00F7</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN SMALL LETTER O WITH STROKE<br>uni00F8</td>
+<td class="chr defaultFont info" onmousedown="mDn(248, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni00F8">&#x00F8</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(248, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni00F8">&#x00F8</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN SMALL LETTER U WITH GRAVE<br>uni00F9</td>
+<td class="chr defaultFont info" onmousedown="mDn(249, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni00F9">&#x00F9</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(249, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni00F9">&#x00F9</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN SMALL LETTER U WITH ACUTE<br>uni00FA</td>
+<td class="chr defaultFont info" onmousedown="mDn(250, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni00FA">&#x00FA</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(250, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni00FA">&#x00FA</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN SMALL LETTER U WITH CIRCUMFLEX<br>uni00FB</td>
+<td class="chr defaultFont info" onmousedown="mDn(251, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni00FB">&#x00FB</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(251, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni00FB">&#x00FB</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN SMALL LETTER U WITH DIAERESIS<br>uni00FC</td>
+<td class="chr defaultFont info" onmousedown="mDn(252, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni00FC">&#x00FC</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(252, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni00FC">&#x00FC</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN SMALL LETTER Y WITH ACUTE<br>uni00FD</td>
+<td class="chr defaultFont info" onmousedown="mDn(253, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni00FD">&#x00FD</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(253, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni00FD">&#x00FD</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN SMALL LETTER THORN<br>uni00FE</td>
+<td class="chr defaultFont info" onmousedown="mDn(254, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni00FE">&#x00FE</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(254, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni00FE">&#x00FE</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN SMALL LETTER Y WITH DIAERESIS<br>uni00FF</td>
+<td class="chr defaultFont info" onmousedown="mDn(255, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni00FF">&#x00FF</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(255, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni00FF">&#x00FF</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN SMALL LETTER DOTLESS I<br>uni0131</td>
+<td class="chr defaultFont info" onmousedown="mDn(305, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0131">&#x0131</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(305, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni0131">&#x0131</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN CAPITAL LIGATURE OE<br>uni0152</td>
+<td class="chr defaultFont info" onmousedown="mDn(338, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0152">&#x0152</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(338, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni0152">&#x0152</td>
+</tr>
+<tr>
+<td class="colLeft">LATIN SMALL LIGATURE OE<br>uni0153</td>
+<td class="chr defaultFont info" onmousedown="mDn(339, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni0153">&#x0153</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(339, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni0153">&#x0153</td>
+</tr>
+<tr>
+<td class="colLeft">SMALL TILDE<br>uni02DC</td>
+<td class="chr defaultFont info" onmousedown="mDn(732, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni02DC">&#x02DC</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(732, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni02DC">&#x02DC</td>
+</tr>
+<tr>
+<td class="colLeft">MODIFIER LETTER CIRCUMFLEX ACCENT<br>uni02C6</td>
+<td class="chr defaultFont info" onmousedown="mDn(710, ['defaultFont'])" onmouseup="mUp()" title="defaultFont" data-original-title="uni02C6">&#x02C6</td>
+<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(710, ['om_LibreBarcodeEAN13TextRegularttf'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="uni02C6">&#x02C6</td>
+</tr>
 
 		</table>
 
@@ -1179,341 +1887,6 @@ white-space: pre;
             
 		<hr>
 		<table id="splitterContent_unencoded">
-<tr>
-<td class="colLeft">add_on.delineator<br>Ending "delineator" ≠ OT Feature (cannot display this character) feature (cannot find base glyph) (cannot find base glyph)</td>
-<td class="chr defaultFont info" onmousedown="mDn(&#x0000&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="add_on.delineator Ending "delineator" ≠ OT Feature (cannot display this character) feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
-<td class="chr om_LibreBarcodeEAN13TextRegularttf warning" onmousedown="mDn(&#x0000&#x0000, ['om_LibreBarcodeEAN13TextRegularttf', 'warning'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="add_on.delineator Ending "delineator" ≠ OT Feature (cannot display this character) feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
-</tr>
-<tr>
-<td class="colLeft">add_on.guard.fiveDigit<br>feature (cannot find base glyph) (cannot find base glyph)</td>
-<td class="chr defaultFont info" onmousedown="mDn(&#x0000&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="add_on.guard.fiveDigit feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
-<td class="chr om_LibreBarcodeEAN13TextRegularttf warning" onmousedown="mDn(&#x0000&#x0000, ['om_LibreBarcodeEAN13TextRegularttf', 'warning'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="add_on.guard.fiveDigit feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
-</tr>
-<tr>
-<td class="colLeft">add_on.guard.twoDigit<br>feature (cannot find base glyph) (cannot find base glyph)</td>
-<td class="chr defaultFont info" onmousedown="mDn(&#x0000&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="add_on.guard.twoDigit feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
-<td class="chr om_LibreBarcodeEAN13TextRegularttf warning" onmousedown="mDn(&#x0000&#x0000, ['om_LibreBarcodeEAN13TextRegularttf', 'warning'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="add_on.guard.twoDigit feature (cannot find base glyph) (cannot find base glyph)">&#x0000&#x0000</td>
-</tr>
-<tr>
-<td class="colLeft">below.eight<br>Ending "eight" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)</td>
-<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="below.eight Ending "eight" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
-<td class="chr om_LibreBarcodeEAN13TextRegularttf warning" onmousedown="mDn(&#x0000, ['om_LibreBarcodeEAN13TextRegularttf', 'warning'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="below.eight Ending "eight" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
-</tr>
-<tr>
-<td class="colLeft">below.five<br>Ending "five" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)</td>
-<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="below.five Ending "five" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
-<td class="chr om_LibreBarcodeEAN13TextRegularttf warning" onmousedown="mDn(&#x0000, ['om_LibreBarcodeEAN13TextRegularttf', 'warning'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="below.five Ending "five" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
-</tr>
-<tr>
-<td class="colLeft">below.four<br>Ending "four" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)</td>
-<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="below.four Ending "four" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
-<td class="chr om_LibreBarcodeEAN13TextRegularttf warning" onmousedown="mDn(&#x0000, ['om_LibreBarcodeEAN13TextRegularttf', 'warning'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="below.four Ending "four" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
-</tr>
-<tr>
-<td class="colLeft">below.nine<br>Ending "nine" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)</td>
-<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="below.nine Ending "nine" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
-<td class="chr om_LibreBarcodeEAN13TextRegularttf warning" onmousedown="mDn(&#x0000, ['om_LibreBarcodeEAN13TextRegularttf', 'warning'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="below.nine Ending "nine" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
-</tr>
-<tr>
-<td class="colLeft">below.one<br>Ending "one" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)</td>
-<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="below.one Ending "one" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
-<td class="chr om_LibreBarcodeEAN13TextRegularttf warning" onmousedown="mDn(&#x0000, ['om_LibreBarcodeEAN13TextRegularttf', 'warning'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="below.one Ending "one" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
-</tr>
-<tr>
-<td class="colLeft">below.seven<br>Ending "seven" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)</td>
-<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="below.seven Ending "seven" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
-<td class="chr om_LibreBarcodeEAN13TextRegularttf warning" onmousedown="mDn(&#x0000, ['om_LibreBarcodeEAN13TextRegularttf', 'warning'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="below.seven Ending "seven" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
-</tr>
-<tr>
-<td class="colLeft">below.six<br>Ending "six" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)</td>
-<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="below.six Ending "six" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
-<td class="chr om_LibreBarcodeEAN13TextRegularttf warning" onmousedown="mDn(&#x0000, ['om_LibreBarcodeEAN13TextRegularttf', 'warning'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="below.six Ending "six" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
-</tr>
-<tr>
-<td class="colLeft">below.three<br>Ending "three" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)</td>
-<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="below.three Ending "three" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
-<td class="chr om_LibreBarcodeEAN13TextRegularttf warning" onmousedown="mDn(&#x0000, ['om_LibreBarcodeEAN13TextRegularttf', 'warning'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="below.three Ending "three" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
-</tr>
-<tr>
-<td class="colLeft">below.two<br>Ending "two" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)</td>
-<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="below.two Ending "two" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
-<td class="chr om_LibreBarcodeEAN13TextRegularttf warning" onmousedown="mDn(&#x0000, ['om_LibreBarcodeEAN13TextRegularttf', 'warning'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="below.two Ending "two" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
-</tr>
-<tr>
-<td class="colLeft">below.zero<br>zero feature (cannot find base glyph)</td>
-<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="below.zero zero feature (cannot find base glyph)">&#x0000</td>
-<td class="chr om_LibreBarcodeEAN13TextRegularttf zero" onmousedown="mDn(&#x0000, ['om_LibreBarcodeEAN13TextRegularttf', 'zero'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="below.zero zero feature (cannot find base glyph)">&#x0000</td>
-</tr>
-<tr>
-<td class="colLeft">guard.centre<br>Ending "centre" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)</td>
-<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="guard.centre Ending "centre" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
-<td class="chr om_LibreBarcodeEAN13TextRegularttf warning" onmousedown="mDn(&#x0000, ['om_LibreBarcodeEAN13TextRegularttf', 'warning'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="guard.centre Ending "centre" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
-</tr>
-<tr>
-<td class="colLeft">guard.normal<br>Ending "normal" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)</td>
-<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="guard.normal Ending "normal" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
-<td class="chr om_LibreBarcodeEAN13TextRegularttf warning" onmousedown="mDn(&#x0000, ['om_LibreBarcodeEAN13TextRegularttf', 'warning'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="guard.normal Ending "normal" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
-</tr>
-<tr>
-<td class="colLeft">guard.normal.triggerAddOn<br>feature (cannot find base glyph)</td>
-<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="guard.normal.triggerAddOn feature (cannot find base glyph)">&#x0000</td>
-<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(&#x0000, ['om_LibreBarcodeEAN13TextRegularttf', ''])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="guard.normal.triggerAddOn feature (cannot find base glyph)">&#x0000</td>
-</tr>
-<tr>
-<td class="colLeft">guard.special<br>Ending "special" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)</td>
-<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="guard.special Ending "special" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
-<td class="chr om_LibreBarcodeEAN13TextRegularttf warning" onmousedown="mDn(&#x0000, ['om_LibreBarcodeEAN13TextRegularttf', 'warning'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="guard.special Ending "special" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
-</tr>
-<tr>
-<td class="colLeft">setA.addOn.eight<br>feature (cannot find base glyph)</td>
-<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="setA.addOn.eight feature (cannot find base glyph)">&#x0000</td>
-<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(&#x0000, ['om_LibreBarcodeEAN13TextRegularttf', ''])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="setA.addOn.eight feature (cannot find base glyph)">&#x0000</td>
-</tr>
-<tr>
-<td class="colLeft">setA.addOn.five<br>feature (cannot find base glyph)</td>
-<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="setA.addOn.five feature (cannot find base glyph)">&#x0000</td>
-<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(&#x0000, ['om_LibreBarcodeEAN13TextRegularttf', ''])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="setA.addOn.five feature (cannot find base glyph)">&#x0000</td>
-</tr>
-<tr>
-<td class="colLeft">setA.addOn.four<br>feature (cannot find base glyph)</td>
-<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="setA.addOn.four feature (cannot find base glyph)">&#x0000</td>
-<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(&#x0000, ['om_LibreBarcodeEAN13TextRegularttf', ''])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="setA.addOn.four feature (cannot find base glyph)">&#x0000</td>
-</tr>
-<tr>
-<td class="colLeft">setA.addOn.nine<br>feature (cannot find base glyph)</td>
-<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="setA.addOn.nine feature (cannot find base glyph)">&#x0000</td>
-<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(&#x0000, ['om_LibreBarcodeEAN13TextRegularttf', ''])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="setA.addOn.nine feature (cannot find base glyph)">&#x0000</td>
-</tr>
-<tr>
-<td class="colLeft">setA.addOn.one<br>feature (cannot find base glyph)</td>
-<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="setA.addOn.one feature (cannot find base glyph)">&#x0000</td>
-<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(&#x0000, ['om_LibreBarcodeEAN13TextRegularttf', ''])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="setA.addOn.one feature (cannot find base glyph)">&#x0000</td>
-</tr>
-<tr>
-<td class="colLeft">setA.addOn.seven<br>feature (cannot find base glyph)</td>
-<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="setA.addOn.seven feature (cannot find base glyph)">&#x0000</td>
-<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(&#x0000, ['om_LibreBarcodeEAN13TextRegularttf', ''])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="setA.addOn.seven feature (cannot find base glyph)">&#x0000</td>
-</tr>
-<tr>
-<td class="colLeft">setA.addOn.six<br>feature (cannot find base glyph)</td>
-<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="setA.addOn.six feature (cannot find base glyph)">&#x0000</td>
-<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(&#x0000, ['om_LibreBarcodeEAN13TextRegularttf', ''])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="setA.addOn.six feature (cannot find base glyph)">&#x0000</td>
-</tr>
-<tr>
-<td class="colLeft">setA.addOn.three<br>feature (cannot find base glyph)</td>
-<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="setA.addOn.three feature (cannot find base glyph)">&#x0000</td>
-<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(&#x0000, ['om_LibreBarcodeEAN13TextRegularttf', ''])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="setA.addOn.three feature (cannot find base glyph)">&#x0000</td>
-</tr>
-<tr>
-<td class="colLeft">setA.addOn.two<br>feature (cannot find base glyph)</td>
-<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="setA.addOn.two feature (cannot find base glyph)">&#x0000</td>
-<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(&#x0000, ['om_LibreBarcodeEAN13TextRegularttf', ''])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="setA.addOn.two feature (cannot find base glyph)">&#x0000</td>
-</tr>
-<tr>
-<td class="colLeft">setA.addOn.zero<br>zero feature (cannot find base glyph)</td>
-<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="setA.addOn.zero zero feature (cannot find base glyph)">&#x0000</td>
-<td class="chr om_LibreBarcodeEAN13TextRegularttf zero" onmousedown="mDn(&#x0000, ['om_LibreBarcodeEAN13TextRegularttf', 'zero'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="setA.addOn.zero zero feature (cannot find base glyph)">&#x0000</td>
-</tr>
-<tr>
-<td class="colLeft">setA.eight<br>Ending "eight" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)</td>
-<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="setA.eight Ending "eight" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
-<td class="chr om_LibreBarcodeEAN13TextRegularttf warning" onmousedown="mDn(&#x0000, ['om_LibreBarcodeEAN13TextRegularttf', 'warning'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="setA.eight Ending "eight" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
-</tr>
-<tr>
-<td class="colLeft">setA.five<br>Ending "five" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)</td>
-<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="setA.five Ending "five" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
-<td class="chr om_LibreBarcodeEAN13TextRegularttf warning" onmousedown="mDn(&#x0000, ['om_LibreBarcodeEAN13TextRegularttf', 'warning'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="setA.five Ending "five" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
-</tr>
-<tr>
-<td class="colLeft">setA.four<br>Ending "four" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)</td>
-<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="setA.four Ending "four" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
-<td class="chr om_LibreBarcodeEAN13TextRegularttf warning" onmousedown="mDn(&#x0000, ['om_LibreBarcodeEAN13TextRegularttf', 'warning'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="setA.four Ending "four" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
-</tr>
-<tr>
-<td class="colLeft">setA.nine<br>Ending "nine" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)</td>
-<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="setA.nine Ending "nine" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
-<td class="chr om_LibreBarcodeEAN13TextRegularttf warning" onmousedown="mDn(&#x0000, ['om_LibreBarcodeEAN13TextRegularttf', 'warning'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="setA.nine Ending "nine" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
-</tr>
-<tr>
-<td class="colLeft">setA.one<br>Ending "one" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)</td>
-<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="setA.one Ending "one" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
-<td class="chr om_LibreBarcodeEAN13TextRegularttf warning" onmousedown="mDn(&#x0000, ['om_LibreBarcodeEAN13TextRegularttf', 'warning'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="setA.one Ending "one" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
-</tr>
-<tr>
-<td class="colLeft">setA.seven<br>Ending "seven" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)</td>
-<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="setA.seven Ending "seven" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
-<td class="chr om_LibreBarcodeEAN13TextRegularttf warning" onmousedown="mDn(&#x0000, ['om_LibreBarcodeEAN13TextRegularttf', 'warning'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="setA.seven Ending "seven" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
-</tr>
-<tr>
-<td class="colLeft">setA.six<br>Ending "six" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)</td>
-<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="setA.six Ending "six" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
-<td class="chr om_LibreBarcodeEAN13TextRegularttf warning" onmousedown="mDn(&#x0000, ['om_LibreBarcodeEAN13TextRegularttf', 'warning'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="setA.six Ending "six" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
-</tr>
-<tr>
-<td class="colLeft">setA.three<br>Ending "three" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)</td>
-<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="setA.three Ending "three" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
-<td class="chr om_LibreBarcodeEAN13TextRegularttf warning" onmousedown="mDn(&#x0000, ['om_LibreBarcodeEAN13TextRegularttf', 'warning'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="setA.three Ending "three" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
-</tr>
-<tr>
-<td class="colLeft">setA.two<br>Ending "two" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)</td>
-<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="setA.two Ending "two" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
-<td class="chr om_LibreBarcodeEAN13TextRegularttf warning" onmousedown="mDn(&#x0000, ['om_LibreBarcodeEAN13TextRegularttf', 'warning'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="setA.two Ending "two" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
-</tr>
-<tr>
-<td class="colLeft">setA.zero<br>zero feature (cannot find base glyph)</td>
-<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="setA.zero zero feature (cannot find base glyph)">&#x0000</td>
-<td class="chr om_LibreBarcodeEAN13TextRegularttf zero" onmousedown="mDn(&#x0000, ['om_LibreBarcodeEAN13TextRegularttf', 'zero'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="setA.zero zero feature (cannot find base glyph)">&#x0000</td>
-</tr>
-<tr>
-<td class="colLeft">setB.addOn.eight<br>feature (cannot find base glyph)</td>
-<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="setB.addOn.eight feature (cannot find base glyph)">&#x0000</td>
-<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(&#x0000, ['om_LibreBarcodeEAN13TextRegularttf', ''])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="setB.addOn.eight feature (cannot find base glyph)">&#x0000</td>
-</tr>
-<tr>
-<td class="colLeft">setB.addOn.five<br>feature (cannot find base glyph)</td>
-<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="setB.addOn.five feature (cannot find base glyph)">&#x0000</td>
-<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(&#x0000, ['om_LibreBarcodeEAN13TextRegularttf', ''])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="setB.addOn.five feature (cannot find base glyph)">&#x0000</td>
-</tr>
-<tr>
-<td class="colLeft">setB.addOn.four<br>feature (cannot find base glyph)</td>
-<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="setB.addOn.four feature (cannot find base glyph)">&#x0000</td>
-<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(&#x0000, ['om_LibreBarcodeEAN13TextRegularttf', ''])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="setB.addOn.four feature (cannot find base glyph)">&#x0000</td>
-</tr>
-<tr>
-<td class="colLeft">setB.addOn.nine<br>feature (cannot find base glyph)</td>
-<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="setB.addOn.nine feature (cannot find base glyph)">&#x0000</td>
-<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(&#x0000, ['om_LibreBarcodeEAN13TextRegularttf', ''])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="setB.addOn.nine feature (cannot find base glyph)">&#x0000</td>
-</tr>
-<tr>
-<td class="colLeft">setB.addOn.one<br>feature (cannot find base glyph)</td>
-<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="setB.addOn.one feature (cannot find base glyph)">&#x0000</td>
-<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(&#x0000, ['om_LibreBarcodeEAN13TextRegularttf', ''])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="setB.addOn.one feature (cannot find base glyph)">&#x0000</td>
-</tr>
-<tr>
-<td class="colLeft">setB.addOn.seven<br>feature (cannot find base glyph)</td>
-<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="setB.addOn.seven feature (cannot find base glyph)">&#x0000</td>
-<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(&#x0000, ['om_LibreBarcodeEAN13TextRegularttf', ''])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="setB.addOn.seven feature (cannot find base glyph)">&#x0000</td>
-</tr>
-<tr>
-<td class="colLeft">setB.addOn.six<br>feature (cannot find base glyph)</td>
-<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="setB.addOn.six feature (cannot find base glyph)">&#x0000</td>
-<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(&#x0000, ['om_LibreBarcodeEAN13TextRegularttf', ''])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="setB.addOn.six feature (cannot find base glyph)">&#x0000</td>
-</tr>
-<tr>
-<td class="colLeft">setB.addOn.three<br>feature (cannot find base glyph)</td>
-<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="setB.addOn.three feature (cannot find base glyph)">&#x0000</td>
-<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(&#x0000, ['om_LibreBarcodeEAN13TextRegularttf', ''])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="setB.addOn.three feature (cannot find base glyph)">&#x0000</td>
-</tr>
-<tr>
-<td class="colLeft">setB.addOn.two<br>feature (cannot find base glyph)</td>
-<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="setB.addOn.two feature (cannot find base glyph)">&#x0000</td>
-<td class="chr om_LibreBarcodeEAN13TextRegularttf " onmousedown="mDn(&#x0000, ['om_LibreBarcodeEAN13TextRegularttf', ''])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="setB.addOn.two feature (cannot find base glyph)">&#x0000</td>
-</tr>
-<tr>
-<td class="colLeft">setB.addOn.zero<br>zero feature (cannot find base glyph)</td>
-<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="setB.addOn.zero zero feature (cannot find base glyph)">&#x0000</td>
-<td class="chr om_LibreBarcodeEAN13TextRegularttf zero" onmousedown="mDn(&#x0000, ['om_LibreBarcodeEAN13TextRegularttf', 'zero'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="setB.addOn.zero zero feature (cannot find base glyph)">&#x0000</td>
-</tr>
-<tr>
-<td class="colLeft">setB.eight<br>Ending "eight" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)</td>
-<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="setB.eight Ending "eight" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
-<td class="chr om_LibreBarcodeEAN13TextRegularttf warning" onmousedown="mDn(&#x0000, ['om_LibreBarcodeEAN13TextRegularttf', 'warning'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="setB.eight Ending "eight" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
-</tr>
-<tr>
-<td class="colLeft">setB.five<br>Ending "five" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)</td>
-<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="setB.five Ending "five" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
-<td class="chr om_LibreBarcodeEAN13TextRegularttf warning" onmousedown="mDn(&#x0000, ['om_LibreBarcodeEAN13TextRegularttf', 'warning'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="setB.five Ending "five" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
-</tr>
-<tr>
-<td class="colLeft">setB.four<br>Ending "four" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)</td>
-<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="setB.four Ending "four" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
-<td class="chr om_LibreBarcodeEAN13TextRegularttf warning" onmousedown="mDn(&#x0000, ['om_LibreBarcodeEAN13TextRegularttf', 'warning'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="setB.four Ending "four" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
-</tr>
-<tr>
-<td class="colLeft">setB.nine<br>Ending "nine" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)</td>
-<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="setB.nine Ending "nine" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
-<td class="chr om_LibreBarcodeEAN13TextRegularttf warning" onmousedown="mDn(&#x0000, ['om_LibreBarcodeEAN13TextRegularttf', 'warning'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="setB.nine Ending "nine" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
-</tr>
-<tr>
-<td class="colLeft">setB.one<br>Ending "one" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)</td>
-<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="setB.one Ending "one" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
-<td class="chr om_LibreBarcodeEAN13TextRegularttf warning" onmousedown="mDn(&#x0000, ['om_LibreBarcodeEAN13TextRegularttf', 'warning'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="setB.one Ending "one" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
-</tr>
-<tr>
-<td class="colLeft">setB.seven<br>Ending "seven" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)</td>
-<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="setB.seven Ending "seven" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
-<td class="chr om_LibreBarcodeEAN13TextRegularttf warning" onmousedown="mDn(&#x0000, ['om_LibreBarcodeEAN13TextRegularttf', 'warning'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="setB.seven Ending "seven" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
-</tr>
-<tr>
-<td class="colLeft">setB.six<br>Ending "six" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)</td>
-<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="setB.six Ending "six" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
-<td class="chr om_LibreBarcodeEAN13TextRegularttf warning" onmousedown="mDn(&#x0000, ['om_LibreBarcodeEAN13TextRegularttf', 'warning'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="setB.six Ending "six" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
-</tr>
-<tr>
-<td class="colLeft">setB.three<br>Ending "three" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)</td>
-<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="setB.three Ending "three" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
-<td class="chr om_LibreBarcodeEAN13TextRegularttf warning" onmousedown="mDn(&#x0000, ['om_LibreBarcodeEAN13TextRegularttf', 'warning'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="setB.three Ending "three" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
-</tr>
-<tr>
-<td class="colLeft">setB.two<br>Ending "two" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)</td>
-<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="setB.two Ending "two" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
-<td class="chr om_LibreBarcodeEAN13TextRegularttf warning" onmousedown="mDn(&#x0000, ['om_LibreBarcodeEAN13TextRegularttf', 'warning'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="setB.two Ending "two" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
-</tr>
-<tr>
-<td class="colLeft">setB.zero<br>zero feature (cannot find base glyph)</td>
-<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="setB.zero zero feature (cannot find base glyph)">&#x0000</td>
-<td class="chr om_LibreBarcodeEAN13TextRegularttf zero" onmousedown="mDn(&#x0000, ['om_LibreBarcodeEAN13TextRegularttf', 'zero'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="setB.zero zero feature (cannot find base glyph)">&#x0000</td>
-</tr>
-<tr>
-<td class="colLeft">setC.eight<br>Ending "eight" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)</td>
-<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="setC.eight Ending "eight" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
-<td class="chr om_LibreBarcodeEAN13TextRegularttf warning" onmousedown="mDn(&#x0000, ['om_LibreBarcodeEAN13TextRegularttf', 'warning'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="setC.eight Ending "eight" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
-</tr>
-<tr>
-<td class="colLeft">setC.five<br>Ending "five" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)</td>
-<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="setC.five Ending "five" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
-<td class="chr om_LibreBarcodeEAN13TextRegularttf warning" onmousedown="mDn(&#x0000, ['om_LibreBarcodeEAN13TextRegularttf', 'warning'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="setC.five Ending "five" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
-</tr>
-<tr>
-<td class="colLeft">setC.four<br>Ending "four" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)</td>
-<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="setC.four Ending "four" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
-<td class="chr om_LibreBarcodeEAN13TextRegularttf warning" onmousedown="mDn(&#x0000, ['om_LibreBarcodeEAN13TextRegularttf', 'warning'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="setC.four Ending "four" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
-</tr>
-<tr>
-<td class="colLeft">setC.nine<br>Ending "nine" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)</td>
-<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="setC.nine Ending "nine" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
-<td class="chr om_LibreBarcodeEAN13TextRegularttf warning" onmousedown="mDn(&#x0000, ['om_LibreBarcodeEAN13TextRegularttf', 'warning'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="setC.nine Ending "nine" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
-</tr>
-<tr>
-<td class="colLeft">setC.one<br>Ending "one" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)</td>
-<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="setC.one Ending "one" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
-<td class="chr om_LibreBarcodeEAN13TextRegularttf warning" onmousedown="mDn(&#x0000, ['om_LibreBarcodeEAN13TextRegularttf', 'warning'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="setC.one Ending "one" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
-</tr>
-<tr>
-<td class="colLeft">setC.seven<br>Ending "seven" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)</td>
-<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="setC.seven Ending "seven" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
-<td class="chr om_LibreBarcodeEAN13TextRegularttf warning" onmousedown="mDn(&#x0000, ['om_LibreBarcodeEAN13TextRegularttf', 'warning'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="setC.seven Ending "seven" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
-</tr>
-<tr>
-<td class="colLeft">setC.six<br>Ending "six" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)</td>
-<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="setC.six Ending "six" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
-<td class="chr om_LibreBarcodeEAN13TextRegularttf warning" onmousedown="mDn(&#x0000, ['om_LibreBarcodeEAN13TextRegularttf', 'warning'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="setC.six Ending "six" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
-</tr>
-<tr>
-<td class="colLeft">setC.three<br>Ending "three" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)</td>
-<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="setC.three Ending "three" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
-<td class="chr om_LibreBarcodeEAN13TextRegularttf warning" onmousedown="mDn(&#x0000, ['om_LibreBarcodeEAN13TextRegularttf', 'warning'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="setC.three Ending "three" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
-</tr>
-<tr>
-<td class="colLeft">setC.two<br>Ending "two" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)</td>
-<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="setC.two Ending "two" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
-<td class="chr om_LibreBarcodeEAN13TextRegularttf warning" onmousedown="mDn(&#x0000, ['om_LibreBarcodeEAN13TextRegularttf', 'warning'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="setC.two Ending "two" ≠ OT Feature (cannot display this character) feature (cannot find base glyph)">&#x0000</td>
-</tr>
-<tr>
-<td class="colLeft">setC.zero<br>zero feature (cannot find base glyph)</td>
-<td class="chr defaultFont info" onmousedown="mDn(&#x0000, ['defaultFont', 'info'])" onmouseup="mUp()" title="defaultFont" data-original-title="setC.zero zero feature (cannot find base glyph)">&#x0000</td>
-<td class="chr om_LibreBarcodeEAN13TextRegularttf zero" onmousedown="mDn(&#x0000, ['om_LibreBarcodeEAN13TextRegularttf', 'zero'])" onmouseup="mUp()" title="Libre Barcode EAN13 Text" data-original-title="setC.zero zero feature (cannot find base glyph)">&#x0000</td>
-</tr>
 
 		</table>
 
@@ -1595,7 +1968,7 @@ white-space: pre;
     var HTMLCodeCompareBoxes = '1234567890 xozszn HOZD 1/3 @ 1a ;#& ? % $ € ! In August of 2016, four unlikely collaborators in the world of type, fonts and font technology stood on a stage at the ATypI conference in Warsaw, Poland. The collaborators were Apple, Microsoft, Adobe and Google. Together they announced the publishing of OpenType 1.8, an update to the now ubiquitous font standard which was originally an amalgam of Apple & Microsoft’s TrueType, and Adobe’s PostScript font formats. The OpenType 1.8 announcement, ATypI, Warsaw, Poland, September 14, 2016.'
     var fontWeightsDict = {'Libre Barcode EAN13 Text (ttf)':'om_LibreBarcodeEAN13TextRegularttf'};
 
-    var sampleTexts = {'All Unicodes': '\x00   \xa0 \u200b 0 1 2 3 4 5 6 7 8 9', 'Default Sample': '1234567890 xozszn HOZD 1/3 @ 1a ;#& ? % $ € ! In August of 2016, four unlikely collaborators in the world of type, fonts and font technology stood on a stage at the ATypI conference in Warsaw, Poland. The collaborators were Apple, Microsoft, Adobe and Google. Together they announced the publishing of OpenType 1.8, an update to the now ubiquitous font standard which was originally an amalgam of Apple & Microsoft’s TrueType, and Adobe’s PostScript font formats. The OpenType 1.8 announcement, ATypI, Warsaw, Poland, September 14, 2016.'}
+    var sampleTexts = {'All Unicodes': '\x00 \u200b \u200c \r – — ‘ ’ ‚ “ ” „   • … ( ) * + - 0 1 2 3 4 5 6 7 8 9 : ; < > ? A B C D E F G H I J K L M N O P Q R S T X ˚ [ \\ ] a b c d e f g h i j k l m n o p q r s t x { | } \xa0 À Á Â Ã Ä Å Æ Ç È É Ê Ë Ì Í Î Ï Ð Ñ Ò Ó Ô Õ Ö × Ø Ù Ú Û Ü Ý Þ ß à á â ã ä å æ ç è é ê ë ì í î ï ð ñ ò ó ô õ ö ÷ ø ù ú û ü ý þ ÿ ı Œ œ ˜ ˆ', 'Default Sample': '1234567890 xozszn HOZD 1/3 @ 1a ;#& ? % $ € ! In August of 2016, four unlikely collaborators in the world of type, fonts and font technology stood on a stage at the ATypI conference in Warsaw, Poland. The collaborators were Apple, Microsoft, Adobe and Google. Together they announced the publishing of OpenType 1.8, an update to the now ubiquitous font standard which was originally an amalgam of Apple & Microsoft’s TrueType, and Adobe’s PostScript font formats. The OpenType 1.8 announcement, ATypI, Warsaw, Poland, September 14, 2016.', 'Feature Frac': '1 0/1<br>2 2/3<br>3 4/5<br>4 6/7<br>5 8/9<br>6 9/8<br>7 7/6<br>8 5/4<br>9 3/2<br>0 1/0<br>1234567890/9876543210<br><br>', 'MILE basicforms proof': 'E F H I J L T U<br>A V W X Z<br>K M N Y<br>C O Q S<br>B P R D G<br><br>f i j l t r<br>k v w x y z<br>h m n u<br>c e o g s<br>a b d p q', 'Steve M Sample Latin': 'ABACADAEAFAGAHAIAJAKALAMANAOAPAQARASATAUAVAWAXAYAZA<br>BABBCBDBEBFBGBHBIBJBKBLBBMBNBOBPBQBRBSBTBUBVBWBXBYBZB<br>CACBCCDCECFCGCHCICJCKCLCMCNCOCPCQCRCSCTCUCVCWCXCYCZC<br>DADBDCDDEDFDGDHDIDJDKDLDMDNDODPDQDRDSDTDUDVDWDXDYDZD<br>EAEBECEDEEFEGEHEIEJEKELEMENEOEPEQERESETEUEVEWEXEYEZE<br>FAFBFCFDFEFFGFHFIFJFFKFLFMFNFOFPFQFRFSFTFUFVFWFXFYFZF<br>GAGBGCGDGEGFGGHGIGJGKGLGMGNGOGPGQGRGSGTGUGVGWGXGYGZG<br>HAHBHCHDHEHFHGHHIHJHKHLHMHNHOHPHQHRHSHTHUHVHWHXHYHZH<br>IAIBICIDIEIFIGIHIIIJIKILIMINIOIPIQIRISITIUIVIWIXIYIZI<br>JAJBJCJDJEJFJGJHJIJJKJLJMJNJOJPJQJRJSJTJUJVJWJXJYJZJ<br>KAKBKCKDKEKFKGKHKIKJKKLKMKNKOKPKQKRKSKTKUKVKWKXKYKZK<br>LALBLCLDLELFLGLHLILJLKLLMLNLOLPLQLRLSLTLULVLWLXLYLZL<br>MAMBMCMDMEMFMGMHMIMJMKMLMMNMOMPMQMRMSMTMUMVMWMXMYMZM<br>NANBNCNDNENFNGNHNINJNKNLNMNNONPNQNRNSNTNUNVNWNXNYNZN<br>OAOBOCODOEOFOGOHOIOJOKOLOMONOOPOQOROSOTOUOVOWOXOYOZO<br>PAPBPCPDPEPFPGPHPIPJPKPLPMPNPOPPQPRPSPTPUPVPWPXPYPZP<br>QAQBQCQDQEQFQGQHQIQJQKQLQMQNQOQPQQRQSQTQUQVQWQXQYQZQ<br>RARBRCRDRERFRGRHRIRJRKRLRMRNRORPRQRRSRTRURVRWRXRYRZR<br>SASBSCSDSESFSGSHSISJSKSLSMSNSOSPSQSRSSTSUSVSWSXSYSZS<br>TATBTCTDTETFTGTHTITJTKTLTMTNTOTPTQTRTSTTUTVTWTXTYTZT<br>UAUBUCUDUEUFUGUHUIUJUKULUMUNUOUPUQURUSUTUVUWUXUYUZU<br>VAVBVCVDVEVFVGVHVIVJVKVLVMVNVOVPVQVRVSVTVUVVWVXVYVZV<br>WAWBWCWDWEWFWGWHWIWJWKWLWMWNWOWPWQWRWSWTWUWVWWXWYWZW<br>XAXBXCXDXEXFXGXHXIXJXKXLXMXNXOXPXQXRXSXTXUXVXWXXYXZX<br>YAYBYCYDYEYFYGYHYIYJYKYLYMYNYOYPYQYRYSYTYUYVYWYXYYZY<br>ZAZBZCZDZEZFZGZHZIZJZKZLZMZNZOZPZQZRZSZTZUZVZWZXZYZZ<br> <br>aabacadaeafagahaiajakalamanaoapaqarasatauavawaxayaza<br>babbcbdbebfbgbhbibjbkblbbmbnbobpbqbrbsbtbubvbwbxbybzb<br>cacbccdcecfcgchcicjckclcmcncocpcqcrcsctcucvcwcxcyczc<br>dadbdcddedfdgdhdidjdkdldmdndodpdqdrdsdtdudvdwdxdydzd<br>eaebecedeefegeheiejekelemeneoepeqereseteuevewexeyeze<br>fafbfcfdfeffgfhfifjffkflfmfnfofpfqfrfsftfufvfwfxfyfzf<br>gagbgcgdgegfgghgigjgkglgmgngogpgqgrgsgtgugvgwgxgygzg<br>hahbhchdhehfhghhihjhkhlhmhnhohphqhrhshthuhvhwhxhyhzh<br>iaibicidieifigihiiijikiliminioipiqirisitiuiviwixiyizi<br>jajbjcjdjejfjgjhjijjkjljmjnjojpjqjrjsjtjujvjwjxjyjzj<br>kakbkckdkekfkgkhkikjkklkmknkokpkqkrksktkukvkwkxkykzk<br>lalblcldlelflglhliljlkllmlnlolplqlrlsltlulvlwlxlylzl<br>mambmcmdmemfmgmhmimjmkmlmmnmompmqmrmsmtmumvmwmxmymzm<br>nanbncndnenfngnhninjnknlnmnnonpnqnrnsntnunvnwnxnynzn<br>oaobocodoeofogohoiojokolomonoopoqorosotouovowoxoyozo<br>papbpcpdpepfpgphpipjpkplpmpnpoppqprpsptpupvpwpxpypzp<br>qaqbqcqdqeqfqgqhqiqjqkqlqmqnqoqpqqrqsqtquqvqwqxqyqzq<br>rarbrcrdrerfrgrhrirjrkrlrmrnrorprqrrsrtrurvrwrxryrzr<br>sasbscsdsesfsgshsisjskslsmsnsospsqsrsstsusvswsxsyszs<br>tatbtctdtetftgthtitjtktltmtntotptqtrtsttutvtwtxtytzt<br>uaubucudueufuguhuiujukulumunuoupuqurusutuvuwuxuyuzu<br>vavbvcvdvevfvgvhvivjvkvlvmvnvovpvqvrvsvtvuvvwvxvyvzv<br>wawbwcwdwewfwgwhwiwjwkwlwmwnwowpwqwrwswtwuwvwwxwywzw<br>xaxbxcxdxexfxgxhxixjxkxlxmxnxoxpxqxrxsxtxuxvxwxxyxzx<br>yaybycydyeyfygyhyiyjykylymynyoypyqyrysytyuyvywyxyyzy<br>zazbzczdzezfzgzhzizjzkzlzmznzozpzqzrzsztzuzvzwzxzyzz<br> <br>001020304050607080900<br>101112131415161718191<br>202122232425262728292<br>303132333435363738393<br>404142434445464748494<br>540515253545565758595<br>606162636465666768696<br>707172737475767778797<br>808182838485868788898<br>909192939495969798999<br>'}
 
     var clicks = 0;
     var arrList = [];
@@ -1637,7 +2010,7 @@ white-space: pre;
 
     function functionSetCSSFeatureCode(arr){
         var supported_features = arr;
-        var default_features =  ['calt']; //['kern', 'vkrn', 'liga', 'clig', 'calt', 'mark', 'mkmk', 'rvrm' ];
+        var default_features =  ['kern', 'calt']; //['kern', 'vkrn', 'liga', 'clig', 'calt', 'mark', 'mkmk', 'rvrm' ];
 
         var cssCode_features = "";//font-feature-settings:
         var moz_features = "";

@@ -1,0 +1,83 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "NotoSansBengali[wdth,wght].ttf",
+                "type": "ttf",
+                "size": 542788,
+                "md5": "aaf97bb4aa917e7462790db9a4794555",
+                "geometryMd5": "5610949b7c0abc14afbab02a7e45ea1f"
+            },
+            "name": {
+                "family": "Noto Sans Bengali",
+                "subFamily": "Regular",
+                "fullName": "Noto Sans Bengali Regular",
+                "psName": "NotoSansBengali-Regular",
+                "versionText": "Version 2.001",
+                "copyright": "Copyright 2017 Google Inc. All Rights Reserved.",
+                "trademark": "Noto is a trademark of Google Inc."
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 695,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "GOOG",
+                "font_vendor": "Google"
+            },
+            "validation": {
+                "font_full_name": "Noto Sans Bengali Regular",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 4,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_a2bb8cd845b64da6aab977747ed50cc0.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2021-02-20T16:18:51.806987Z",
+                        "orig_output": "validate_a2bb8cd845b64da6aab977747ed50cc0.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
+                    },
+                    {
+                        "subroutine": "validate_a2bb8cd845b64da6aab977747ed50cc0.OS_2.usMaxContext",
+                        "levelname": "ERROR",
+                        "message": "The usMaxContext should be 5, but is 0",
+                        "timestamp": "2021-02-20T16:16:41.953681Z",
+                        "orig_output": "validate_a2bb8cd845b64da6aab977747ed50cc0.OS_2.usMaxContext - ERROR - The usMaxContext should be 5, but is 0",
+                        "msg_code": "V0831"
+                    },
+                    {
+                        "subroutine": "validate_a2bb8cd845b64da6aab977747ed50cc0.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 696, but is 697",
+                        "timestamp": "2021-02-20T16:16:41.954127Z",
+                        "orig_output": "validate_a2bb8cd845b64da6aab977747ed50cc0.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 696, but is 697",
+                        "msg_code": "E2135"
+                    },
+                    {
+                        "subroutine": "validate_a2bb8cd845b64da6aab977747ed50cc0.STAT",
+                        "levelname": "ERROR",
+                        "message": "The following axes have no AxisValueTables associated with them: ['wdth', 'wght']",
+                        "timestamp": "2021-02-20T16:16:41.964905Z",
+                        "orig_output": "validate_a2bb8cd845b64da6aab977747ed50cc0.STAT - ERROR - The following axes have no AxisValueTables associated with them: ['wdth', 'wght']",
+                        "msg_code": "Vxxxx"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20201030.330639rc3",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 149285,
+    "completedDate": "2021-02-20 16:18:52.455329"
+}

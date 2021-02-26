@@ -1,0 +1,83 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "NotoSansTamil[wdth,wght].ttf",
+                "type": "ttf",
+                "size": 224172,
+                "md5": "bb84d388f32d0808f3e3d9139d48b3db",
+                "geometryMd5": "fbea8356fa17671b1f10ea17c0bb431a"
+            },
+            "name": {
+                "family": "Noto Sans Tamil",
+                "subFamily": "Regular",
+                "fullName": "Noto Sans Tamil Regular",
+                "psName": "NotoSansTamil-Regular",
+                "versionText": "Version 2.001",
+                "copyright": "Copyright 2017 Google Inc. All Rights Reserved.",
+                "trademark": "Noto is a trademark of Google Inc."
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 244,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "GOOG",
+                "font_vendor": "Google"
+            },
+            "validation": {
+                "font_full_name": "Noto Sans Tamil Regular",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 4,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_3e9ad45a10f2452f96a21592e1e259c9.GDEF.glyphClasses",
+                        "levelname": "ERROR",
+                        "message": "The following mark glyphs have nonzero advances: [4, 41, 42, 44, 45, 54, 164, 165, 166, 167, 168, 169]",
+                        "timestamp": "2021-02-21T10:08:41.632157Z",
+                        "orig_output": "validate_3e9ad45a10f2452f96a21592e1e259c9.GDEF.glyphClasses - ERROR - The following mark glyphs have nonzero advances: [4, 41, 42, 44, 45, 54, 164, 165, 166, 167, 168, 169]",
+                        "msg_code": "V1102"
+                    },
+                    {
+                        "subroutine": "validate_3e9ad45a10f2452f96a21592e1e259c9.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2021-02-21T10:09:28.502945Z",
+                        "orig_output": "validate_3e9ad45a10f2452f96a21592e1e259c9.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
+                    },
+                    {
+                        "subroutine": "validate_3e9ad45a10f2452f96a21592e1e259c9.OS_2.usMaxContext",
+                        "levelname": "ERROR",
+                        "message": "The usMaxContext should be 4, but is 0",
+                        "timestamp": "2021-02-21T10:08:46.422729Z",
+                        "orig_output": "validate_3e9ad45a10f2452f96a21592e1e259c9.OS_2.usMaxContext - ERROR - The usMaxContext should be 4, but is 0",
+                        "msg_code": "V0831"
+                    },
+                    {
+                        "subroutine": "validate_3e9ad45a10f2452f96a21592e1e259c9.STAT",
+                        "levelname": "ERROR",
+                        "message": "The following axes have no AxisValueTables associated with them: ['wdth', 'wght']",
+                        "timestamp": "2021-02-21T10:08:46.423315Z",
+                        "orig_output": "validate_3e9ad45a10f2452f96a21592e1e259c9.STAT - ERROR - The following axes have no AxisValueTables associated with them: ['wdth', 'wght']",
+                        "msg_code": "Vxxxx"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20201030.330639rc3",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 50639,
+    "completedDate": "2021-02-21 10:09:28.950882"
+}

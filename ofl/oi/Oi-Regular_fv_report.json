@@ -1,0 +1,83 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Oi-Regular.ttf",
+                "type": "ttf",
+                "size": 191864,
+                "md5": "af4f31786f7ee434e0ac31334bb0de67",
+                "geometryMd5": "01f52c47dbd65658885176a79cd25363"
+            },
+            "name": {
+                "family": "Oi",
+                "subFamily": "Regular",
+                "fullName": "Oi Regular",
+                "psName": "Oi-Regular",
+                "versionText": "Version 2.000",
+                "copyright": "Copyright 2019 The Oi Project Authors (github.com/kosbarts/Oi)",
+                "trademark": "Oi is a trademark of Kostas Bartsokas."
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 727,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "IDKB",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Oi Regular",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 4,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_95a3946015704146aa3c3640860f45f6.DSIG",
+                        "levelname": "ERROR",
+                        "message": "The digital signature of the file did not verify.",
+                        "timestamp": "2021-02-19T23:51:42.515147Z",
+                        "orig_output": "validate_95a3946015704146aa3c3640860f45f6.DSIG - ERROR - The digital signature of the file did not verify.",
+                        "msg_code": "E0502"
+                    },
+                    {
+                        "subroutine": "validate_95a3946015704146aa3c3640860f45f6.glyf.glyph 470 ('Alphatonos').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2021-02-19T23:52:01.992281Z",
+                        "orig_output": "validate_95a3946015704146aa3c3640860f45f6.glyf.glyph 470 ('Alphatonos').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_95a3946015704146aa3c3640860f45f6.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2021-02-19T23:52:10.094545Z",
+                        "orig_output": "validate_95a3946015704146aa3c3640860f45f6.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
+                    },
+                    {
+                        "subroutine": "validate_95a3946015704146aa3c3640860f45f6.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 945, but is 946",
+                        "timestamp": "2021-02-19T23:51:47.709818Z",
+                        "orig_output": "validate_95a3946015704146aa3c3640860f45f6.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 945, but is 946",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20201030.330639rc3",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 33087,
+    "completedDate": "2021-02-19 23:52:11.034217"
+}

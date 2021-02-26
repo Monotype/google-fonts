@@ -1,0 +1,83 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "NotoSansTamilUI[wdth,wght].ttf",
+                "type": "ttf",
+                "size": 224208,
+                "md5": "3ae52041abfaa290984c981c42a90971",
+                "geometryMd5": "99566291677aede7d8959af5ac0d3aae"
+            },
+            "name": {
+                "family": "Noto Sans Tamil UI",
+                "subFamily": "Regular",
+                "fullName": "Noto Sans Tamil UI Regular",
+                "psName": "NotoSansTamilUI-Regular",
+                "versionText": "Version 2.001",
+                "copyright": "Copyright 2017 Google Inc. All Rights Reserved.",
+                "trademark": "Noto is a trademark of Google Inc."
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 244,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "GOOG",
+                "font_vendor": "Google"
+            },
+            "validation": {
+                "font_full_name": "Noto Sans Tamil UI Regular",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 4,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_c75f9a6fbb054ebdbe0eeeb8c15b9a91.GDEF.glyphClasses",
+                        "levelname": "ERROR",
+                        "message": "The following mark glyphs have nonzero advances: [4, 41, 42, 44, 45, 54, 164, 165, 166, 167, 168, 169]",
+                        "timestamp": "2021-02-21T10:23:53.043169Z",
+                        "orig_output": "validate_c75f9a6fbb054ebdbe0eeeb8c15b9a91.GDEF.glyphClasses - ERROR - The following mark glyphs have nonzero advances: [4, 41, 42, 44, 45, 54, 164, 165, 166, 167, 168, 169]",
+                        "msg_code": "V1102"
+                    },
+                    {
+                        "subroutine": "validate_c75f9a6fbb054ebdbe0eeeb8c15b9a91.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2021-02-21T10:24:57.106518Z",
+                        "orig_output": "validate_c75f9a6fbb054ebdbe0eeeb8c15b9a91.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
+                    },
+                    {
+                        "subroutine": "validate_c75f9a6fbb054ebdbe0eeeb8c15b9a91.OS_2.usMaxContext",
+                        "levelname": "ERROR",
+                        "message": "The usMaxContext should be 4, but is 0",
+                        "timestamp": "2021-02-21T10:23:58.031926Z",
+                        "orig_output": "validate_c75f9a6fbb054ebdbe0eeeb8c15b9a91.OS_2.usMaxContext - ERROR - The usMaxContext should be 4, but is 0",
+                        "msg_code": "V0831"
+                    },
+                    {
+                        "subroutine": "validate_c75f9a6fbb054ebdbe0eeeb8c15b9a91.STAT",
+                        "levelname": "ERROR",
+                        "message": "The following axes have no AxisValueTables associated with them: ['wdth', 'wght']",
+                        "timestamp": "2021-02-21T10:23:58.032549Z",
+                        "orig_output": "validate_c75f9a6fbb054ebdbe0eeeb8c15b9a91.STAT - ERROR - The following axes have no AxisValueTables associated with them: ['wdth', 'wght']",
+                        "msg_code": "Vxxxx"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20201030.330639rc3",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 68419,
+    "completedDate": "2021-02-21 10:24:57.531047"
+}

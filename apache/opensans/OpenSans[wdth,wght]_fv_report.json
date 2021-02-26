@@ -1,0 +1,92 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "OpenSans[wdth,wght].ttf",
+                "type": "ttf",
+                "size": 532604,
+                "md5": "78b0c5ccb2f4119be85684377f5e516a",
+                "geometryMd5": "5195a2bd0879799a1964edce20cf35bb"
+            },
+            "name": {
+                "family": "Open Sans",
+                "subFamily": "Regular",
+                "fullName": "Open Sans Regular",
+                "psName": "OpenSans-Regular",
+                "versionText": "Version 3.000",
+                "copyright": "Copyright 2020 The Open Sans Project Authors (https://github.com/googlefonts/opensans)",
+                "trademark": "Open Sans is a trademark of Google and may be registered in certain jurisdictions.",
+                "variationsPSNamePrefix": "OpenSansRoman"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 1150,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "GOOG",
+                "font_vendor": "Google"
+            },
+            "validation": {
+                "font_full_name": "Open Sans Regular",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 5,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_6452c624ae964949bfaa51018cee46c0.DSIG",
+                        "levelname": "ERROR",
+                        "message": "The digital signature of the file did not verify.",
+                        "timestamp": "2021-02-24T15:04:57.182705Z",
+                        "orig_output": "validate_6452c624ae964949bfaa51018cee46c0.DSIG - ERROR - The digital signature of the file did not verify.",
+                        "msg_code": "E0502"
+                    },
+                    {
+                        "subroutine": "validate_6452c624ae964949bfaa51018cee46c0.GDEF.glyphClasses",
+                        "levelname": "ERROR",
+                        "message": "The following mark glyphs have nonzero advances: [339, 340, 563, 886]",
+                        "timestamp": "2021-02-24T15:04:57.183615Z",
+                        "orig_output": "validate_6452c624ae964949bfaa51018cee46c0.GDEF.glyphClasses - ERROR - The following mark glyphs have nonzero advances: [339, 340, 563, 886]",
+                        "msg_code": "V1102"
+                    },
+                    {
+                        "subroutine": "validate_6452c624ae964949bfaa51018cee46c0.hmtx",
+                        "levelname": "ERROR",
+                        "message": "The left sidebearing 193 does not match the glyph's xMin 0 (glyph 0)",
+                        "timestamp": "2021-02-24T15:06:19.281248Z",
+                        "orig_output": "validate_6452c624ae964949bfaa51018cee46c0.hmtx - ERROR - The left sidebearing 193 does not match the glyph's xMin 0 (glyph 0)",
+                        "msg_code": "V0933"
+                    },
+                    {
+                        "subroutine": "validate_6452c624ae964949bfaa51018cee46c0.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2021-02-24T15:06:22.629003Z",
+                        "orig_output": "validate_6452c624ae964949bfaa51018cee46c0.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
+                    },
+                    {
+                        "subroutine": "validate_6452c624ae964949bfaa51018cee46c0.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 1168, but is 1169",
+                        "timestamp": "2021-02-24T15:05:11.885901Z",
+                        "orig_output": "validate_6452c624ae964949bfaa51018cee46c0.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 1168, but is 1169",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20201030.330639rc3",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 93905,
+    "completedDate": "2021-02-24 15:06:26.163912"
+}

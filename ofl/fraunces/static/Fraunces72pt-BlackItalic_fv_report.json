@@ -1,0 +1,94 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Fraunces72pt-BlackItalic.ttf",
+                "type": "ttf",
+                "size": 75924,
+                "md5": "55cce991fb809b1fae3cc00b69855430",
+                "geometryMd5": "379af6ebf822c9eb16d12cd1e486369f"
+            },
+            "name": {
+                "family": "Fraunces 72pt Black",
+                "subFamily": "Italic",
+                "fullName": "Fraunces 72pt Black Italic",
+                "psName": "Fraunces72pt-BlackItalic",
+                "versionText": "Version 1.000;[b76b70a41]",
+                "copyright": "Copyright 2020 The Fraunces Project Authors (github.com/undercasetype/Fraunces)",
+                "trademark": "Unknown",
+                "typographicFamily": "Fraunces 72pt",
+                "typographicSubFamily": "Black Italic",
+                "variationsPSNamePrefix": "FrauncesItalic"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 698,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "UCT ",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Fraunces 72pt Black Italic",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 5,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_53551c80edd04e39a1432f285bc1c397.DSIG",
+                        "levelname": "ERROR",
+                        "message": "The digital signature of the file did not verify.",
+                        "timestamp": "2021-02-20T03:59:37.126271Z",
+                        "orig_output": "validate_53551c80edd04e39a1432f285bc1c397.DSIG - ERROR - The digital signature of the file did not verify.",
+                        "msg_code": "E0502"
+                    },
+                    {
+                        "subroutine": "validate_53551c80edd04e39a1432f285bc1c397.glyf.glyph 108 ('asterisk').contours.contour 1",
+                        "levelname": "ERROR",
+                        "message": "Contour is degenerate (only two (x,y) locations).",
+                        "timestamp": "2021-02-20T03:59:39.745711Z",
+                        "orig_output": "validate_53551c80edd04e39a1432f285bc1c397.glyf.glyph 108 ('asterisk').contours.contour 1 - ERROR - Contour is degenerate (only two (x,y) locations).",
+                        "msg_code": "V1013"
+                    },
+                    {
+                        "subroutine": "validate_53551c80edd04e39a1432f285bc1c397.glyf.glyph 81 ('guillemetright')",
+                        "levelname": "ERROR",
+                        "message": "Bounds should be [481, 85, 1614, 937], but are [4, 85, 1137, 937].",
+                        "timestamp": "2021-02-20T03:59:39.518365Z",
+                        "orig_output": "validate_53551c80edd04e39a1432f285bc1c397.glyf.glyph 81 ('guillemetright') - ERROR - Bounds should be [481, 85, 1614, 937], but are [4, 85, 1137, 937].",
+                        "msg_code": "E1112"
+                    },
+                    {
+                        "subroutine": "validate_53551c80edd04e39a1432f285bc1c397.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2021-02-20T03:59:51.488810Z",
+                        "orig_output": "validate_53551c80edd04e39a1432f285bc1c397.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
+                    },
+                    {
+                        "subroutine": "validate_53551c80edd04e39a1432f285bc1c397.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 1166, but is 1167",
+                        "timestamp": "2021-02-20T03:59:38.354100Z",
+                        "orig_output": "validate_53551c80edd04e39a1432f285bc1c397.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 1166, but is 1167",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20201030.330639rc3",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 17874,
+    "completedDate": "2021-02-20 03:59:51.955127"
+}

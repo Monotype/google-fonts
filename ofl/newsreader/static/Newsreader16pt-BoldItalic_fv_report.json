@@ -1,0 +1,83 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Newsreader16pt-BoldItalic.ttf",
+                "type": "ttf",
+                "size": 153128,
+                "md5": "b14f19e760d11ab5c88a889443469347",
+                "geometryMd5": "768d5964af6afe026a60148e63b3af41"
+            },
+            "name": {
+                "family": "Newsreader 16pt",
+                "subFamily": "Bold Italic",
+                "fullName": "Newsreader 16pt Bold Italic",
+                "psName": "Newsreader16pt-BoldItalic",
+                "versionText": "Version 1.003; ttfautohint (v1.8.3)",
+                "copyright": "Copyright 2020 The Newsreader Project Authors (http://github.com/productiontype/Newsreader)",
+                "trademark": "Newsreader is a registered trademark of Production Systems SAS."
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 658,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "PROD",
+                "font_vendor": "Production Type"
+            },
+            "validation": {
+                "font_full_name": "Newsreader 16pt Bold Italic",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 4,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_a0d2daf7124d4bd9a0360b7afc8af1c8.DSIG",
+                        "levelname": "ERROR",
+                        "message": "The digital signature of the file did not verify.",
+                        "timestamp": "2021-02-24T00:44:35.592038Z",
+                        "orig_output": "validate_a0d2daf7124d4bd9a0360b7afc8af1c8.DSIG - ERROR - The digital signature of the file did not verify.",
+                        "msg_code": "E0502"
+                    },
+                    {
+                        "subroutine": "validate_a0d2daf7124d4bd9a0360b7afc8af1c8.glyf.glyph 325 ('uni01EB').contours.contour 0",
+                        "levelname": "ERROR",
+                        "message": "Contour has duplicate adjacent points of differing on-curve states.",
+                        "timestamp": "2021-02-24T00:44:42.705969Z",
+                        "orig_output": "validate_a0d2daf7124d4bd9a0360b7afc8af1c8.glyf.glyph 325 ('uni01EB').contours.contour 0 - ERROR - Contour has duplicate adjacent points of differing on-curve states.",
+                        "msg_code": "V0295"
+                    },
+                    {
+                        "subroutine": "validate_a0d2daf7124d4bd9a0360b7afc8af1c8.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2021-02-24T00:45:58.229625Z",
+                        "orig_output": "validate_a0d2daf7124d4bd9a0360b7afc8af1c8.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
+                    },
+                    {
+                        "subroutine": "validate_a0d2daf7124d4bd9a0360b7afc8af1c8.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 1132, but is 1133",
+                        "timestamp": "2021-02-24T00:44:40.053436Z",
+                        "orig_output": "validate_a0d2daf7124d4bd9a0360b7afc8af1c8.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 1132, but is 1133",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20201030.330639rc3",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 157236,
+    "completedDate": "2021-02-24 00:47:09.014860"
+}

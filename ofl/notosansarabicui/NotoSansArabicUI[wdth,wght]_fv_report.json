@@ -1,0 +1,91 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "NotoSansArabicUI[wdth,wght].ttf",
+                "type": "ttf",
+                "size": 898932,
+                "md5": "15b31018b141afc9c02dc9085a3dd2ab",
+                "geometryMd5": "2d5547563fa6f121716148a4a210429f"
+            },
+            "name": {
+                "family": "Noto Sans Arabic UI",
+                "subFamily": "Regular",
+                "fullName": "Noto Sans Arabic UI Regular",
+                "psName": "NotoSansArabicUI-Regular",
+                "versionText": "Version 2.004",
+                "copyright": "Copyright 2016-2020 Google LLC. All Rights Reserved.",
+                "trademark": "Noto is a trademark of Google LLC"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 1563,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "GOOG",
+                "font_vendor": "Google"
+            },
+            "validation": {
+                "font_full_name": "Noto Sans Arabic UI Regular",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 5,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_364c163f745b4511918fa676c349be45.glyf.glyph 1367 ('uni08E3')",
+                        "levelname": "ERROR",
+                        "message": "Bounds should be [38, 1437, 281, 1683], but are [38, -291, 281, -45].",
+                        "timestamp": "2021-02-20T15:43:08.945182Z",
+                        "orig_output": "validate_364c163f745b4511918fa676c349be45.glyf.glyph 1367 ('uni08E3') - ERROR - Bounds should be [38, 1437, 281, 1683], but are [38, -291, 281, -45].",
+                        "msg_code": "E1112"
+                    },
+                    {
+                        "subroutine": "validate_364c163f745b4511918fa676c349be45.GPOS.features.[b'mark0002'].[0]",
+                        "levelname": "ERROR",
+                        "message": "The following ligatures have inconsistent counts between the GSUB Ligature Lookup that created them and the length of the mark-to-ligature data in this table: [674, 675, 676, 680, 681, 682, 993]",
+                        "timestamp": "2021-02-20T15:42:23.082798Z",
+                        "orig_output": "validate_364c163f745b4511918fa676c349be45.GPOS.features.[b'mark0002'].[0] - ERROR - The following ligatures have inconsistent counts between the GSUB Ligature Lookup that created them and the length of the mark-to-ligature data in this table: [674, 675, 676, 680, 681, 682, 993]",
+                        "msg_code": "V1062"
+                    },
+                    {
+                        "subroutine": "validate_364c163f745b4511918fa676c349be45.head",
+                        "levelname": "ERROR",
+                        "message": "The calculated value for yMax (1683) exceeds the actual value 1062",
+                        "timestamp": "2021-02-20T15:46:26.106782Z",
+                        "orig_output": "validate_364c163f745b4511918fa676c349be45.head - ERROR - The calculated value for yMax (1683) exceeds the actual value 1062",
+                        "msg_code": "E1326"
+                    },
+                    {
+                        "subroutine": "validate_364c163f745b4511918fa676c349be45.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2021-02-20T15:46:28.980297Z",
+                        "orig_output": "validate_364c163f745b4511918fa676c349be45.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
+                    },
+                    {
+                        "subroutine": "validate_364c163f745b4511918fa676c349be45.STAT",
+                        "levelname": "ERROR",
+                        "message": "The following axes have no AxisValueTables associated with them: ['wdth', 'wght']",
+                        "timestamp": "2021-02-20T15:42:53.512380Z",
+                        "orig_output": "validate_364c163f745b4511918fa676c349be45.STAT - ERROR - The following axes have no AxisValueTables associated with them: ['wdth', 'wght']",
+                        "msg_code": "Vxxxx"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20201030.330639rc3",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 279699,
+    "completedDate": "2021-02-20 15:46:30.095125"
+}

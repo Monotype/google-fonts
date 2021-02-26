@@ -1,0 +1,76 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Fraunces144pt-BoldItalic.ttf",
+                "type": "ttf",
+                "size": 74948,
+                "md5": "efc21db553c6d273e4fc0a90dd69eb6a",
+                "geometryMd5": "fdcfe32a4fc2a38a54aa952a10715ff8"
+            },
+            "name": {
+                "family": "Fraunces 144pt",
+                "subFamily": "Bold Italic",
+                "fullName": "Fraunces 144pt Bold Italic",
+                "psName": "Fraunces144pt-BoldItalic",
+                "versionText": "Version 1.000;[b76b70a41]",
+                "copyright": "Copyright 2020 The Fraunces Project Authors (github.com/undercasetype/Fraunces)",
+                "trademark": "Unknown",
+                "variationsPSNamePrefix": "FrauncesItalic"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 698,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "UCT ",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Fraunces 144pt Bold Italic",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 3,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_35e6f98f2c764fe3ac5e31a15dca63ad.DSIG",
+                        "levelname": "ERROR",
+                        "message": "The digital signature of the file did not verify.",
+                        "timestamp": "2021-02-21T10:35:23.757058Z",
+                        "orig_output": "validate_35e6f98f2c764fe3ac5e31a15dca63ad.DSIG - ERROR - The digital signature of the file did not verify.",
+                        "msg_code": "E0502"
+                    },
+                    {
+                        "subroutine": "validate_35e6f98f2c764fe3ac5e31a15dca63ad.glyf.glyph 81 ('guillemetright')",
+                        "levelname": "ERROR",
+                        "message": "Bounds should be [411, 150, 1352, 862], but are [27, 150, 968, 862].",
+                        "timestamp": "2021-02-21T10:35:27.413371Z",
+                        "orig_output": "validate_35e6f98f2c764fe3ac5e31a15dca63ad.glyf.glyph 81 ('guillemetright') - ERROR - Bounds should be [411, 150, 1352, 862], but are [27, 150, 968, 862].",
+                        "msg_code": "E1112"
+                    },
+                    {
+                        "subroutine": "validate_35e6f98f2c764fe3ac5e31a15dca63ad.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2021-02-21T10:35:41.966437Z",
+                        "orig_output": "validate_35e6f98f2c764fe3ac5e31a15dca63ad.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20201030.330639rc3",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 22563,
+    "completedDate": "2021-02-21 10:35:42.479008"
+}

@@ -1,0 +1,85 @@
+﻿{
+    "processed": [
+        {
+            "file": {
+                "name": "Imbue10pt-ExtraBold.ttf",
+                "type": "ttf",
+                "size": 125528,
+                "md5": "695959406cb25a912e0ecb338b3ce541",
+                "geometryMd5": "00c7f880a54000d668920b3eb57d7fe5"
+            },
+            "name": {
+                "family": "Imbue 10pt ExtraBold",
+                "subFamily": "Regular",
+                "fullName": "Imbue 10pt ExtraBold",
+                "psName": "Imbue10pt-ExtraBold",
+                "versionText": "Version 1.102; ttfautohint (v1.8.3)",
+                "copyright": "Copyright 2020 The Imbue Project Authors (https://github.com/Etcetera-Type-Co/Imbue)",
+                "trademark": "Unknown",
+                "typographicFamily": "Imbue 10pt",
+                "typographicSubFamily": "ExtraBold"
+            },
+            "format": {
+                "format": "OT",
+                "flavor": "TT"
+            },
+            "summary": {
+                "num_glyphs": 895,
+                "embedding": "Installable Embedding",
+                "font_vendor_id": "ETCO",
+                "font_vendor": "Unknown"
+            },
+            "validation": {
+                "font_full_name": "Imbue 10pt ExtraBold",
+                "level": "ERROR",
+                "last_success": "finished validation python",
+                "msg_count": {
+                    "CRITICAL": 0,
+                    "ERROR": 4,
+                    "WARNING": 0,
+                    "INFO": 0,
+                    "DEBUG": 0
+                },
+                "result": [
+                    {
+                        "subroutine": "validate_f9f9057cccea441294f5b7748de26ce7.DSIG",
+                        "levelname": "ERROR",
+                        "message": "The digital signature of the file did not verify.",
+                        "timestamp": "2021-02-21T10:20:27.837765Z",
+                        "orig_output": "validate_f9f9057cccea441294f5b7748de26ce7.DSIG - ERROR - The digital signature of the file did not verify.",
+                        "msg_code": "E0502"
+                    },
+                    {
+                        "subroutine": "validate_f9f9057cccea441294f5b7748de26ce7.GPOS.features.[b'mark0003'].[0]",
+                        "levelname": "ERROR",
+                        "message": "The following ligatures have inconsistent counts between the GSUB Ligature Lookup that created them and the length of the mark-to-ligature data in this table: [419, 420]",
+                        "timestamp": "2021-02-21T10:20:28.245853Z",
+                        "orig_output": "validate_f9f9057cccea441294f5b7748de26ce7.GPOS.features.[b'mark0003'].[0] - ERROR - The following ligatures have inconsistent counts between the GSUB Ligature Lookup that created them and the length of the mark-to-ligature data in this table: [419, 420]",
+                        "msg_code": "V1062"
+                    },
+                    {
+                        "subroutine": "validate_f9f9057cccea441294f5b7748de26ce7.name",
+                        "levelname": "ERROR",
+                        "message": "Postscript name not present for both Mac and Windows.",
+                        "timestamp": "2021-02-21T10:21:24.989414Z",
+                        "orig_output": "validate_f9f9057cccea441294f5b7748de26ce7.name - ERROR - Postscript name not present for both Mac and Windows.",
+                        "msg_code": "E2008"
+                    },
+                    {
+                        "subroutine": "validate_f9f9057cccea441294f5b7748de26ce7.OS_2.xAvgCharWidth",
+                        "levelname": "ERROR",
+                        "message": "The xAvgCharWidth should be 818, but is 819",
+                        "timestamp": "2021-02-21T10:20:29.546957Z",
+                        "orig_output": "validate_f9f9057cccea441294f5b7748de26ce7.OS_2.xAvgCharWidth - ERROR - The xAvgCharWidth should be 818, but is 819",
+                        "msg_code": "E2135"
+                    }
+                ]
+            }
+        }
+    ],
+    "skipped": [],
+    "fontio3_version": "3.7.20201030.330639rc3",
+    "fontvalidator_version": "20200305.1",
+    "runningTime": 104387,
+    "completedDate": "2021-02-21 10:22:08.639825"
+}
